@@ -2,7 +2,8 @@
 // Après le tirage : écrit vak-examen/TIRAGE.md et vak-examen/graines-tirees.tsv à partir de la sortie de tirage.mjs.
 // Usage : node vak-examen/tirage-publier.mjs <sortie de tirage.mjs (JSON)> <tour enregistré (JSON du relais drand)>
 // graines-tirees.tsv (nom, dépôt, commit) sert à la session scellée des graines (TIREES= de scelle/lancer.sh). Le nom
-// d'une app est celui de son dépôt, en minuscules ; ses essais seront <nom>-1 et <nom>-2.
+// d'une app est celui de son dépôt, en minuscules, chaque suite d'autres caractères remplacée par « _ » ; ses essais
+// seront <nom>_1 et <nom>_2 (la pile nomme sa base examen_<id>, et vak localdb n'accepte que [a-z0-9_]).
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -23,7 +24,7 @@ const commitDe = (url) => {
   if (!l) throw new Error(`${url} absent de candidats.tsv`);
   return l[1];
 };
-const nomDe = (url) => url.replace(/^https:\/\/github\.com\/[^/]+\//, "").toLowerCase();
+const nomDe = (url) => url.replace(/^https:\/\/github\.com\/[^/]+\//, "").toLowerCase().replace(/[^a-z0-9]+/g, "_");
 const tirees = t.tirees.map((a) => ({ ...a, nom: nomDe(a.url), commit: commitDe(a.url) }));
 if (new Set(tirees.map((a) => a.nom)).size !== tirees.length) throw new Error("deux apps tirées ont le même nom");
 
@@ -47,7 +48,7 @@ const md = [
   "",
   "| plateforme | app | commit | rang (SHA-256 du texte « aléa, saut de ligne, url ») | essais |",
   "|---|---|---|---|---|",
-  ...tirees.map((a) => `| ${a.plateforme} | ${a.url} | \`${a.commit.slice(0, 12)}\` | \`${a.rang.slice(0, 16)}…\` | \`${a.nom}-1\`, \`${a.nom}-2\` |`),
+  ...tirees.map((a) => `| ${a.plateforme} | ${a.url} | \`${a.commit.slice(0, 12)}\` | \`${a.rang.slice(0, 16)}…\` | \`${a.nom}_1\`, \`${a.nom}_2\` |`),
   "",
   "## La réserve, dans l'ordre",
   "",

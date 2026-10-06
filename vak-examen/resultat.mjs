@@ -26,7 +26,7 @@ const ids = readFileSync(liste, "utf8")
   .split("\n")
   .filter((l) => l.trim() && !l.startsWith("#"))
   .map((l) => l.split("\t")[0])
-  .filter((id) => !id.startsWith("temoin-"));
+  .filter((id) => !/^temoin[-_]/.test(id));
 
 const manque = [];
 const essais = ids.map((id) => {

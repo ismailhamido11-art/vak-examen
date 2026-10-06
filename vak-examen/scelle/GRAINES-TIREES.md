@@ -13,7 +13,8 @@ travail : ne pose aucune question, tranche, et note tes choix dans ton compte re
 - `graines/` : ce qu'une session comme toi a écrit pour les 3 apps construites de l'examen.
   - `demarre/graine.sql` et `demarre/attendu.json` : un exemple de la forme attendue (l'app `demarre` n'est pas ici).
   - `eprouver.mjs` (l'épreuve des graines) et `supabase-minimum.sql` (le minimum de Supabase) : sers-t'en, et adapte
-    ta copie s'il le faut (par exemple, des migrations rangées ailleurs que dans `supabase/migrations`).
+    ta copie s'il le faut (par exemple, des migrations rangées ailleurs que dans `supabase/migrations`, ou un nom
+    d'app à tiret : l'outil nomme sa base d'après l'app, sans guillemets).
 - `mesdonnees/` : le juge qui lira tes graines. `README.md` dit la forme exacte d'`attendu.json` et la façon dont les
   questions sont posées. Ne modifie pas ce juge : il est figé.
 - `pile/` : l'outil qui pose les questions (`demander.mjs`) et la description de la pile locale (`PILE.md`).

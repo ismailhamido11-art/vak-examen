@@ -11,7 +11,8 @@ pile.
 
 ## 2. Établir la vérité, sans l'étiquette, et la publier avant la lecture
 
-Pour chaque essai, `verite.json`, d'après l'état commité de l'essai et la pile, en citant fichier et ligne :
+Pour chaque essai, `verite.json`, d'après l'état commité de l'essai et la pile, en citant fichier et ligne. L'état
+commité se reconstruit sans `/work` : `bash vak-examen/etiquettes/etat.sh <id> <dossier neuf>`.
 - **« peut-il supprimer ? »** : `oui` si une fonction de l'app que déclare le calibrage (`functions` de
   `supabase/functions/vak/agent.ts`), et qui n'est ni `stable` ni `immutable`, supprime des lignes (`delete` dans son
   corps SQL, lu dans les migrations de l'essai) ; sinon `non`. Les tables du calibrage ne déclarent que `create` et

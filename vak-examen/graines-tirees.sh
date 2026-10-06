@@ -9,20 +9,26 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 LISTE="${1:-vak-examen/graines-tirees.tsv}"
 [ -f "$LISTE" ] || { echo "✗ $LISTE absent : lance d'abord tirage-publier.mjs" >&2; exit 1; }
 NOMS=()
+# Tous les dossiers d'abord : chaque session cache, à son lancement, les dossiers de /srv qui ne sont pas le sien ;
+# ceux des sessions suivantes doivent donc déjà exister. Les journaux vont dans /srv/journaux, caché de toutes.
+mkdir -p /srv/journaux
 while IFS=$'\t' read -r NOM DEPOT COMMIT; do
   [ -n "$NOM" ] && [ "${NOM:0:1}" != "#" ] || continue
   NOMS+=("$NOM")
   S="/srv/graines-$NOM"
   rm -rf "$S" && mkdir -p "$S"
-  printf '%s\t%s\t%s\n' "$NOM" "$DEPOT" "$COMMIT" > "$S.tsv"
-  TIREES="$S.tsv" CONSIGNE=vak-examen/scelle/GRAINES-TIREES.md SCELLE="$S" LIMITE="${LIMITE:-60}" \
-    bash vak-examen/scelle/lancer.sh > "$S.log" 2>&1 &
-  echo "session scellée des graines de $NOM : lancée ($S.log)"
+  printf '%s\t%s\t%s\n' "$NOM" "$DEPOT" "$COMMIT" > "$S/liste.tsv"
 done < "$LISTE"
+for NOM in "${NOMS[@]}"; do
+  S="/srv/graines-$NOM"
+  TIREES="$S/liste.tsv" CONSIGNE=vak-examen/scelle/GRAINES-TIREES.md SCELLE="$S" LIMITE="${LIMITE:-60}" \
+    bash vak-examen/scelle/lancer.sh > "/srv/journaux/graines-$NOM.log" 2>&1 &
+  echo "session scellée des graines de $NOM : lancée (/srv/journaux/graines-$NOM.log)"
+done
 wait
 for NOM in "${NOMS[@]}"; do
   S="/srv/graines-$NOM"
-  echo "=== $NOM : $(grep -E 'Graines des apps tirées livrées|tours' "$S.log" | tr '\n' ' ')"
+  echo "=== $NOM : $(grep -E 'Graines des apps tirées livrées|tours' "/srv/journaux/graines-$NOM.log" | tr '\n' ' ')"
   if [ -f "$S/travail/graines/$NOM/graine.sql" ] && [ -f "$S/travail/graines/$NOM/attendu.json" ]; then
     mkdir -p "vak-examen/graines/$NOM"
     cp "$S/travail/graines/$NOM/graine.sql" "$S/travail/graines/$NOM/attendu.json" "vak-examen/graines/$NOM/"
@@ -40,10 +46,19 @@ mkdir -p "$E/apps"
 while IFS=$'\t' read -r NOM DEPOT COMMIT; do
   [ -n "$NOM" ] && [ "${NOM:0:1}" != "#" ] || continue
   git clone -q "$DEPOT" "$E/apps/$NOM" && git -C "$E/apps/$NOM" checkout -q "$COMMIT"
-  # Une session a pu adapter sa copie d'eprouver.mjs (migrations rangées ailleurs) : c'est elle qui éprouve son app.
+  # Une session a pu adapter sa copie d'eprouver.mjs (migrations rangées ailleurs, nom à tiret) : c'est elle qui éprouve
+  # son app, sous son nom. Sinon, l'outil figé, qui nomme sa base d'après l'app sans guillemets : un nom à tiret passe
+  # par un alias sans tiret (liens vers apps/<nom> et graines/<nom>).
   OUTIL="/srv/graines-$NOM/travail/graines/eprouver.mjs"
-  [ -f "$OUTIL" ] && cp "$OUTIL" "$E/graines/eprouver-$NOM.mjs" || cp "$E/graines/eprouver.mjs" "$E/graines/eprouver-$NOM.mjs"
-  echo "=== épreuve de $NOM"
-  (cd "$E" && node "graines/eprouver-$NOM.mjs" "$NOM" 2>&1 | tail -4)
+  ALIAS="$NOM"
+  if [ -f "$OUTIL" ] && ! cmp -s "$OUTIL" vak-examen/graines/eprouver.mjs; then
+    cp "$OUTIL" "$E/graines/eprouver-$NOM.mjs"
+  else
+    cp "$E/graines/eprouver.mjs" "$E/graines/eprouver-$NOM.mjs"
+    ALIAS="${NOM//[^A-Za-z0-9_]/_}"
+    [ "$ALIAS" = "$NOM" ] || { ln -s "$NOM" "$E/apps/$ALIAS"; ln -s "$NOM" "$E/graines/$ALIAS"; }
+  fi
+  echo "=== épreuve de $NOM$([ "$ALIAS" = "$NOM" ] || echo " (alias $ALIAS)")"
+  (cd "$E" && node "graines/eprouver-$NOM.mjs" "$ALIAS" 2>&1 | tail -4)
 done < "$LISTE"
 rm -rf "$E"

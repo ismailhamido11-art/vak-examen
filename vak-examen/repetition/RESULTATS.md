@@ -305,3 +305,16 @@ Elle dit notamment « Can propose: remember a memory » : l'assistant peut écri
 étiquettes compte donc aussi les tables de vak qu'une prise active écrit (`etiquettes/README.md`).
 
 Résultats : `repetition2/resultats/sqlnoir-0.24.3-essai-sh/`.
+
+## Répétition 9 : les ids d'essais sans tiret (06/10, kit 0.24.3)
+
+Avant le tirage, une relecture a trouvé que la pile (figée) nomme sa base `examen_<id>`, et que `vak localdb` refuse
+tout nom hors de `^[a-z_][a-z0-9_]{0,62}$`. Avec les ids prévus (`demarre-1`), la pile aurait échoué à chaque essai,
+pour une raison de harnais ; la répétition 8 (id `sqlnoir`) ne pouvait pas le montrer. Les ids deviennent `<app>_<n>`
+(`AVANT-ESSAIS.md`). `essai.sh` a été rejoué de bout en bout sur sqlnoir, avec l'id `sqlnoir_9` :
+- 16 minutes en tout, dont 7,5 min d'agent ;
+- pile démarrée sur `examen_sqlnoir_9`, juge « juste » (couverture 1/2), contrôleur scellé « réussi », verdict
+  « réussi » ;
+- étiquette lue sur la pile, en anglais.
+
+Résultats : `repetition2/resultats/sqlnoir-0.24.3-ids/`.

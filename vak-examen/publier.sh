@@ -3,9 +3,10 @@
 # que dans le dépôt de vak, depuis l'état commité (HEAD), jamais depuis des fichiers en cours.
 # Usage, depuis n'importe où : [GRAINES=1] bash vak-examen/publier.sh <clone du dépôt public>
 # Recopié :
-#  - vak-examen/, sans graines/ (publiées après les essais : GRAINES=1 les ajoute) ;
+#  - vak-examen/, sans graines/ (publiées après les essais : GRAINES=1 les ajoute) ni REPRISE.md ;
 #  - les scripts du lanceur des essais (repetition2/), sans ses résultats ni son journal ;
 #  - RACINE.md, qui devient le README de la racine.
+# - avec RESULTATS=1, les résultats des essais (voir plus bas).
 # Rien n'est commité ni poussé : le script montre l'état du clone public.
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
@@ -18,6 +19,22 @@ LANCEUR=(.gitignore apps.tsv controle.mjs controler.sh horodater.mjs lancer.sh m
 rm -rf "$DEST/vak-examen" "$DEST/repetition2"
 git archive --format=tar HEAD -- vak-examen "${LANCEUR[@]/#/repetition2/}" | tar -x -C "$DEST"
 [ "${GRAINES:-0}" = 1 ] || rm -rf "$DEST/vak-examen/graines"
+# La note de reprise sert aux sessions de travail (elle nomme le dépôt privé) : elle n'est pas publiée.
+rm -f "$DEST/vak-examen/REPRISE.md"
 mv "$DEST/vak-examen/RACINE.md" "$DEST/README.md"
+# RESULTATS=1 : les résultats commités des essais de l'examen (repetition2/resultats/<id>, coupures comprises), pour les
+# ids de LISTE_ESSAIS (défaut : vak-examen/essais.tsv), sans essai.bundle : l'état commité d'un essai contient vak, il
+# n'est publié que si l'examen est réussi (ETATS=1).
+if [ "${RESULTATS:-0}" = 1 ]; then
+  CHEMINS=()
+  while read -r ID _; do
+    [ -n "$ID" ] && [ "${ID:0:1}" != "#" ] || continue
+    while read -r C; do [ -z "$C" ] || CHEMINS+=("$C"); done < <(git ls-tree -d --name-only HEAD repetition2/resultats/ |
+      grep -E "^repetition2/resultats/${ID}(-coupe-[a-z0-9-]+)?$" || true)
+  done < "${LISTE_ESSAIS:-vak-examen/essais.tsv}"
+  [ "${#CHEMINS[@]}" -eq 0 ] || git archive --format=tar HEAD -- "${CHEMINS[@]}" | tar -x -C "$DEST"
+  [ "${ETATS:-0}" = 1 ] || find "$DEST/repetition2" -name essai.bundle -delete
+  echo "résultats recopiés : ${#CHEMINS[@]} dossier(s)$([ "${ETATS:-0}" = 1 ] && echo ", états commités compris" || echo ", sans les états commités")"
+fi
 echo "recopié depuis $(git rev-parse --short HEAD) ($([ "${GRAINES:-0}" = 1 ] && echo "graines comprises" || echo "sans les graines"))"
 git -C "$DEST" status --short | head -40
