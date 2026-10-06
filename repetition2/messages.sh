@@ -49,9 +49,15 @@ const reste = demande.match(/\*<[^>]*>\*/);
 if (reste) throw new Error(`champ non rempli dans la demande du README : ${reste[0]}`);
 process.stdout.write(demande);
 ' "$REPO/vertical-agent-kit/README.md" "$METIER" "$EMPLACEMENT" "$TRAVAIL/vak-agent.tgz")" || fail "demande du README illisible (voir ci-dessus)"
+# Groupe témoin (TEMOIN=1, REGLE.md) : la consigne fixée par la règle remplace la demande de vak, sans le nom du kit.
+INTRO="Essai sans fenêtre de vak (essai $ID)."
+if [ "${TEMOIN:-0}" = 1 ]; then
+  INTRO="Essai sans fenêtre (essai $ID)."
+  DEMANDE="Ajoute un assistant IA qui lit et modifie les données de l'utilisateur connecté, avec validation avant toute écriture, sans jamais montrer celles d'un autre."
+fi
 if [ "$FORME" = "--sans-fenetre" ]; then
   cat <<EOF
-Essai sans fenêtre de vak (essai $ID). Personne ne répondra pendant l'essai : ne pose aucune question et n'attends personne.
+$INTRO Personne ne répondra pendant l'essai : ne pose aucune question et n'attends personne.
 
 L'app est dans $APP (dépôt git, branche essai) : travaille là. $DEMANDE
 

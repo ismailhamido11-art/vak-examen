@@ -292,3 +292,16 @@ Gestes : le compte rendu laisse une commande, `vak connect`, avec le fournisseur
 aussi ces deux valeurs en questions. Cela fait 1 geste, et 3 au plus dans la lecture la plus stricte.
 
 Résultats : `repetition2/resultats/sqlnoir-0.24.3-bulle/` (`verdict.txt`, `verdict-examen.json`, `mesdonnees.json`).
+
+## Répétition 8 : `essai.sh` de bout en bout (06/10, kit 0.24.3)
+
+`essai.sh` enchaîne un essai complet de l'examen : l'essai, le contrôleur scellé, la pile et le juge, l'étiquette, le
+verdict, puis le ménage du disque. Il a été joué une fois sur sqlnoir, avant le premier essai de l'examen :
+- 16 minutes en tout, dont 7,4 min d'agent ;
+- contrôleur scellé « réussi », juge « juste » (couverture 1/2), verdict « réussi » ;
+- l'étiquette a été lue sur la pile (en anglais, la langue de l'app).
+
+Elle dit notamment « Can propose: remember a memory » : l'assistant peut écrire dans sa propre mémoire. La vérité des
+étiquettes compte donc aussi les tables de vak qu'une prise active écrit (`etiquettes/README.md`).
+
+Résultats : `repetition2/resultats/sqlnoir-0.24.3-essai-sh/`.

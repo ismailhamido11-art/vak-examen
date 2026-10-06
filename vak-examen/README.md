@@ -21,7 +21,7 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
   (`verifier.mjs`), puis passées au critère « pas une copie » et à la liste d'exclusion complète (`historique.mjs`,
   06/10).
 - [`tirage.mjs`](tirage.mjs) : le tirage des 4 apps publiques. `node tirage.mjs <tour drand>` lit l'aléa du tour
-  « quicknet » fixé d'avance, le contrôle, classe les éligibles par SHA-256(aléa + url) et prend les 2 premières apps
+  « quicknet » fixé d'avance, le contrôle, classe les éligibles par le SHA-256 du texte « aléa, saut de ligne, url » et prend les 2 premières apps
   Expo et les 2 premières apps Next ; les suivantes forment la réserve de chaque plateforme.
 - [`apps/`](apps/) : les 3 apps construites (06/10), chacune par une session scellée qui n'a reçu que sa fiche ; leurs
   archives git, leurs empreintes et les vérifications.
@@ -29,7 +29,15 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
   le dépôt de vak, d'après `REGLE.md`, la page publique et [`scelle/CAHIER.md`](scelle/CAHIER.md) ; le lanceur est
   [`scelle/lancer.sh`](scelle/lancer.sh). `controleur/juger.sh` le lance, dans la bulle des essais.
 - [`mesdonnees/`](mesdonnees/) : le juge « mes données » (point 5 de la règle), écrit le 06/10 par une session
-  scellée.
+  scellée. [`verdict.mjs`](verdict.mjs) assemble le verdict d'un essai (contrôleur et point 5).
+- [`essais.tsv`](essais.tsv) : les essais de l'examen et les champs de leur demande (métier, emplacement), lus par le
+  lanceur avec `APPS=`. [`essai.sh`](essai.sh) joue un essai de bout en bout : essai, contrôleur, pile, juge,
+  étiquette, verdict, puis ménage du disque. Le groupe témoin passe par `TEMOIN=1` (sans l'archive de vak, avec la
+  consigne de la règle).
+- [`etiquettes/`](etiquettes/) : la lecture des étiquettes, la vérité de chaque essai, le lecteur scellé
+  ([`scelle/ETIQUETTE.md`](scelle/ETIQUETTE.md)) et la comparaison.
+- [`scelle/GRAINES-TIREES.md`](scelle/GRAINES-TIREES.md) : la consigne des graines des 4 apps tirées (`TIREES=` du
+  lanceur scellé).
 - `graines/` : les graines A et B de chaque app, écrites par la même session. Elles seront publiées après les
   essais ; leurs empreintes sont dans `PUBLICATION.md`.
 

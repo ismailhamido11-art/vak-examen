@@ -36,6 +36,8 @@ LISTE="${APPS:-$HERE/apps.tsv}"
 LIGNE="$(awk -F'\t' -v id="$ID" '$1 == id' "$LISTE")"
 [ -n "$LIGNE" ] || fail "id inconnu : $ID ($LISTE : $(awk -F'\t' '!/^#/ {printf "%s ", $1}' "$LISTE"))"
 IFS=$'\t' read -r _ DEPOT COMMIT _ _ <<<"$LIGNE"
+# Une archive git de l'examen (les apps construites) se donne depuis la racine du dépôt (06/10).
+case "$DEPOT" in http://* | https://* | git@* | /*) ;; *) DEPOT="$REPO/$DEPOT" ;; esac
 shopt -s nullglob
 ARCHIVES=("$REPO"/vertical-agent-kit/releases/vak-agent-*.tgz)
 shopt -u nullglob
@@ -156,7 +158,8 @@ ecrire_preparation() { # [fin]
 const [fichier, id, depot, commit, prepare, nom, sha256, debut, admis, fin] = process.argv.slice(1);
 const dir = require("path").dirname(fichier);
 const acces = admis ? { acces_admis: admis.split(" ") } : {};
-const p = { id, depot, commit, prepare, archive: { nom, sha256 }, app: `${dir}/app`, avant: `${dir}/avant.json`, debut, ...acces, ...(fin ? { fin } : {}) };
+const archive = process.env.TEMOIN === "1" ? null : { nom, sha256 };
+const p = { id, depot, commit, prepare, archive, ...(archive ? {} : { temoin: true }), app: `${dir}/app`, avant: `${dir}/avant.json`, debut, ...acces, ...(fin ? { fin } : {}) };
 require("fs").writeFileSync(fichier, `${JSON.stringify(p, null, 2)}\n`);
 ' "$W/preparation.json" "$ID" "$DEPOT" "$COMMIT" "$PREPARE" "$NOM" "$EMPREINTE" "$DEBUT" "$ADMIS" "${1:-}"
 }
@@ -176,8 +179,11 @@ mkdir -p "$W"
 etape "app : $APP (branche essai, archive commitée dans vendor/vak)"
 if [ -f "$W/preparation.json" ] && [ -d "$APP/.git" ]; then
   PREPARE="$(lire "$W/preparation.json" .prepare)"
-  ANCIENNE="$(lire "$W/preparation.json" .archive.sha256)"
-  [ "$ANCIENNE" = "$EMPREINTE" ] || fail "$APP préparée avec une autre archive (sha256 ${ANCIENNE:0:12}) : --neuf pour tout refaire"
+  # Archive de la préparation : « aucune » pour le groupe témoin (TEMOIN=1).
+  ANCIENNE="$(lire "$W/preparation.json" '.archive?.sha256 ?? "aucune"')"
+  ATTENDUE="$EMPREINTE"
+  [ "${TEMOIN:-0}" != 1 ] || ATTENDUE="aucune"
+  [ "$ANCIENNE" = "$ATTENDUE" ] || fail "$APP préparée avec une autre archive (${ANCIENNE:0:12}) : --neuf pour tout refaire"
   if [ "$(git -C "$APP" rev-parse HEAD)" = "$PREPARE" ] && [ -z "$(git -C "$APP" status --porcelain)" ]; then
     echo "  déjà préparée (HEAD ${PREPARE:0:7}, arbre propre) : rien changé"
   else
@@ -186,6 +192,10 @@ if [ -f "$W/preparation.json" ] && [ -d "$APP/.git" ]; then
 else
   [ ! -e "$APP" ] || echo "  préparation précédente incomplète : app reclonée"
   cloner "$APP"
+  if [ "${TEMOIN:-0}" = 1 ]; then
+    # Groupe témoin (REGLE.md) : l'app part sans l'archive de vak ; le commit de préparation est celui de l'app.
+    echo "  témoin : sans l'archive de vak"
+  else
   mkdir -p "$APP/vendor/vak"
   cp "$ARCHIVE" "$APP/vendor/vak/$NOM"
   if git -C "$APP" check-ignore -q "vendor/vak/$NOM"; then echo "  ! vendor/vak/$NOM est ignorée par le .gitignore de l'app : commitée quand même (git add -f)"; fi
@@ -194,6 +204,7 @@ else
   GIT_AUTHOR_NAME="Préparation vak" GIT_AUTHOR_EMAIL="essai@example.invalid" GIT_AUTHOR_DATE="$DATE" \
     GIT_COMMITTER_NAME="Préparation vak" GIT_COMMITTER_EMAIL="essai@example.invalid" GIT_COMMITTER_DATE="$DATE" \
     git -C "$APP" -c commit.gpgsign=false -c core.hooksPath=/dev/null commit -q --no-verify -m "vak : archive du kit"
+  fi
   PREPARE="$(git -C "$APP" rev-parse HEAD)"
   ecrire_preparation
   echo "  commit de préparation ${PREPARE:0:7} sur ${COMMIT:0:7}"

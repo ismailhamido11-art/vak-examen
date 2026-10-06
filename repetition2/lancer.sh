@@ -97,6 +97,8 @@ bulle() {
 # Ce que l'agent ne voit pas (06/10) : la session et le dépôt, /srv (contrôleur, verdicts, graines), un /tmp vide à
 # lui, et, sous $TRAVAIL, tout sauf son essai et l'archive (ni les essais précédents, ni leurs journaux).
 CACHER_AGENT="$SESSION:$(dirname "$REPO"):/srv:/tmp"
+# Groupe témoin (TEMOIN=1, REGLE.md) : l'archive de vak est cachée aussi.
+[ "${TEMOIN:-0}" != 1 ] || CACHER_AGENT="$CACHER_AGENT:$TRAVAIL/vak-agent.tgz"
 for E in "$TRAVAIL"/* "$TRAVAIL"/.[!.]*; do
   [ -e "$E" ] || continue
   case "$E" in "$TRAVAIL/$ID" | "$TRAVAIL/vak-agent.tgz") ;; *) CACHER_AGENT="$CACHER_AGENT:$E" ;; esac
@@ -105,6 +107,7 @@ done
 if [ "${SONDE_BULLE:-0}" = 1 ]; then
   (cd "$APP" && bulle "$CACHER_AGENT" bash -c '
     echo "travail : $(ls -A "$TRAVAIL" | tr "\n" " ")"
+    echo "archive dans la bulle : $(wc -c < "$TRAVAIL/vak-agent.tgz" 2>/dev/null || echo absente) octets"
     echo "srv : $(ls -A /srv | tr "\n" " ")"
     echo "tmp : $(ls -A /tmp | tr "\n" " ")"
     echo "racine du compte : $(ls -A /root | tr "\n" " ")"

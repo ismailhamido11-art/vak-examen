@@ -1,0 +1,9 @@
+# Essais de l'examen (REGLE.md) : id, dépôt (URL, ou archive git depuis la racine du dépôt), commit, métier, emplacement.
+# Les champs de la demande (métier, emplacement) sont fixés avant le premier essai et publiés (06/10). Les 4 apps tirées
+# s'ajoutent après le tirage. Usage : APPS=vak-examen/essais.tsv bash vak-examen/repetition/jouer.sh <id>…
+demarre-1	vak-examen/apps/demarre.bundle	891485f41f5b5f425c4d5a78bf16db5b907d580c	Un carnet de lecture personnel : on y note les livres qu'on lit, et ses séances de lecture.	un bouton flottant sur tous les écrans
+demarre-2	vak-examen/apps/demarre.bundle	891485f41f5b5f425c4d5a78bf16db5b907d580c	Un carnet de lecture personnel : on y note les livres qu'on lit, et ses séances de lecture.	un bouton flottant sur tous les écrans
+equipe-1	vak-examen/apps/equipe.bundle	ed96d9a1505e38d72746c80b669a6451a0eaef02	Le suivi des chantiers d'une petite entreprise de rénovation : une équipe partage ses chantiers et leurs tâches, et chacun suit les siennes.	un bouton flottant sur tous les écrans
+equipe-2	vak-examen/apps/equipe.bundle	ed96d9a1505e38d72746c80b669a6451a0eaef02	Le suivi des chantiers d'une petite entreprise de rénovation : une équipe partage ses chantiers et leurs tâches, et chacun suit les siennes.	un bouton flottant sur tous les écrans
+fonctions-1	vak-examen/apps/fonctions.bundle	824674902a11c6966034c1fa0e1da7c3a34f386d	Le budget d'un foyer : on note ses dépenses par catégorie, et on suit le total du mois.	un onglet « Assistant »
+fonctions-2	vak-examen/apps/fonctions.bundle	824674902a11c6966034c1fa0e1da7c3a34f386d	Le budget d'un foyer : on note ses dépenses par catégorie, et on suit le total du mois.	un onglet « Assistant »

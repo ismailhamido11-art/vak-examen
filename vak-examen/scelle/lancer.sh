@@ -50,6 +50,41 @@ elif [ "${GRAINES:-}" = 1 ]; then
   DEMANDE="$(basename "$CONSIGNE")"
   IDS=()
   CONSIGNE=""
+elif [ -n "${TIREES:-}" ]; then
+  # Graines des apps tirées (06/10) : TIREES=<liste nom TAB dépôt TAB commit> CONSIGNE=vak-examen/scelle/GRAINES-TIREES.md
+  # SCELLE=/srv/graines-tirees : la règle, la page de vak, la consigne, les apps tirées à leur commit, l'exemple et les
+  # outils des graines des apps construites, le juge et l'outil de questions de la pile.
+  [ -n "$CONSIGNE" ] || fail "TIREES demande une CONSIGNE"
+  [ -f "$TIREES" ] || fail "$TIREES absent"
+  rmdir "$S/travail/essais"
+  cp vak-examen/REGLE.md "$CONSIGNE" "$S/travail/" && cp vertical-agent-kit/README.md "$S/travail/PAGE-VAK.md"
+  mkdir -p "$S/travail/apps" "$S/travail/graines/demarre" "$S/travail/mesdonnees" "$S/travail/pile"
+  cp vak-examen/graines/eprouver.mjs vak-examen/graines/supabase-minimum.sql "$S/travail/graines/"
+  cp vak-examen/graines/demarre/graine.sql vak-examen/graines/demarre/attendu.json "$S/travail/graines/demarre/"
+  cp vak-examen/mesdonnees/juger.mjs vak-examen/mesdonnees/README.md "$S/travail/mesdonnees/"
+  cp vak-examen/pile/demander.mjs vak-examen/pile/PILE.md "$S/travail/pile/"
+  cp "$TIREES" "$S/travail/apps/TIREES.tsv"
+  while IFS=$'\t' read -r NOM DEPOT COMMIT; do
+    [ -n "$NOM" ] && [ "${NOM:0:1}" != "#" ] || continue
+    git clone -q "$DEPOT" "$S/travail/apps/$NOM" && git -C "$S/travail/apps/$NOM" checkout -q "$COMMIT" &&
+      git -C "$S/travail/apps/$NOM" remote remove origin || fail "$NOM : $DEPOT @ $COMMIT impossible à cloner"
+  done < "$TIREES"
+  DEMANDE="$(basename "$CONSIGNE")"
+  IDS=()
+  CONSIGNE=""
+elif [ -n "${ETIQUETTE:-}" ]; then
+  # Lecteur des étiquettes (06/10, REGLE.md) : ETIQUETTE=<etiquette.json> CONSIGNE=vak-examen/scelle/ETIQUETTE.md
+  # SCELLE=/srv/lecteur-<id> : une session neuve par étiquette, qui ne reçoit que la consigne et les lignes de
+  # l'étiquette (ETIQUETTE.txt) : ni la règle, ni la page de vak, ni l'app.
+  [ -n "$CONSIGNE" ] || fail "ETIQUETTE demande une CONSIGNE"
+  rmdir "$S/travail/essais"
+  cp "$CONSIGNE" "$S/travail/"
+  node -e 'const e = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+if (!Array.isArray(e.etiquette) || !e.etiquette.length) process.exit(1);
+process.stdout.write(e.etiquette.join("\n") + "\n");' "$ETIQUETTE" > "$S/travail/ETIQUETTE.txt" || fail "$ETIQUETTE : aucune étiquette"
+  DEMANDE="$(basename "$CONSIGNE")"
+  IDS=()
+  CONSIGNE=""
 elif [ "${SANS_ESSAIS:-}" = 1 ]; then
   # Tâche sans rapport avec vak (liste des apps éligibles) : la règle, la consigne et les exclusions seulement.
   [ -n "$CONSIGNE" ] || fail "SANS_ESSAIS=1 demande une CONSIGNE"
@@ -92,6 +127,9 @@ fi
 CA=/etc/ssl/certs/ca-certificates.crt
 CACHER="$HOME:$(dirname "$REPO"):/work"
 for d in /tmp/claude-*; do [ -d "$d" ] && CACHER="$CACHER:$d"; done
+# Les autres sessions scellées et leurs résultats, sous /srv : seul le dossier de celle-ci reste visible (06/10 ; un
+# lecteur d'étiquette ne doit pas trouver la page de vak d'une autre session).
+for d in /srv/*; do [ "$d" = "$S" ] || [ ! -d "$d" ] || CACHER="$CACHER:$d"; done
 echo "session scellée : lancée à $(date -u +%H:%M:%SZ) (limite $LIMITE min), essais : ${IDS[*]:-aucun}"
 set +e
 (cd "$S/travail" && env -i PATH="$PATH" LANG=C.UTF-8 TERM=dumb HOME="$S/home" IS_SANDBOX=1 \
@@ -115,8 +153,10 @@ for (const l of require("fs").readFileSync(process.argv[1], "utf8").split("\n"))
 console.log(fin || "aucun résultat dans le flux");' "$S/session.jsonl"
 if [ -n "${FICHE:-}" ]; then
   git -C "$S/travail/app" log --oneline -5 2>/dev/null || echo "✗ aucun dépôt app/"
-elif [ "${GRAINES:-}" = 1 ]; then
+elif [ "${GRAINES:-}" = 1 ] || [ -n "${TIREES:-}" ]; then
   ls "$S/travail/graines" "$S/travail/mesdonnees" 2>/dev/null || echo "✗ ni graines/ ni mesdonnees/"
+elif [ -n "${ETIQUETTE:-}" ]; then
+  cat "$S/travail/reponses.json" 2>/dev/null || echo "✗ aucun reponses.json"
 else
   ls "$S/travail/controleur" 2>/dev/null || echo "✗ aucun dossier controleur/"
 fi
