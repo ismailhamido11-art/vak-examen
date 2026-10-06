@@ -30,7 +30,7 @@ if [ "${RESULTATS:-0}" = 1 ]; then
   while read -r ID _; do
     [ -n "$ID" ] && [ "${ID:0:1}" != "#" ] || continue
     while read -r C; do [ -z "$C" ] || CHEMINS+=("$C"); done < <(git ls-tree -d --name-only HEAD repetition2/resultats/ |
-      grep -E "^repetition2/resultats/${ID}(-coupe-[a-z0-9-]+)?$" || true)
+      grep -E "^repetition2/resultats/${ID}(-(coupe|panne)-[a-z0-9-]+)?$" || true)
   done < "${LISTE_ESSAIS:-vak-examen/essais.tsv}"
   [ "${#CHEMINS[@]}" -eq 0 ] || git archive --format=tar HEAD -- "${CHEMINS[@]}" | tar -x -C "$DEST"
   [ "${ETATS:-0}" = 1 ] || find "$DEST/repetition2" -name essai.bundle -delete

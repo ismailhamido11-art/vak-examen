@@ -1,0 +1,31 @@
+[
+  {
+    "table": "public.categories",
+    "colonne": "owner_id",
+    "nom": "catégories",
+    "langue": "fr",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-A85539F6",
+      "MARQUEUR-B-53AECA05",
+      "MARQUEUR-B-A991AC25",
+      "MARQUEUR-B-E882D726"
+    ]
+  },
+  {
+    "table": "public.expenses",
+    "colonne": "owner_id",
+    "nom": "dépenses",
+    "langue": "fr",
+    "a": 11,
+    "marqueurs_b": [
+      "MARQUEUR-B-48AEA83B",
+      "MARQUEUR-B-C39C8817",
+      "MARQUEUR-B-64EF4A9A",
+      "MARQUEUR-B-489B3B53",
+      "MARQUEUR-B-D6FC4771",
+      "MARQUEUR-B-72122BB8",
+      "MARQUEUR-B-3C68F5E3"
+    ]
+  }
+]

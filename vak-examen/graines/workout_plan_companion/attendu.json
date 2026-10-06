@@ -1,0 +1,117 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "user_id",
+    "nom": "perfiles",
+    "langue": "es",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-BC6C5E81",
+      "MARQUEUR-B-6FFD9A2E",
+      "MARQUEUR-B-C1823EDD"
+    ]
+  },
+  {
+    "table": "public.user_preferences",
+    "colonne": "user_id",
+    "nom": "preferencias de apariencia",
+    "langue": "es",
+    "a": 1,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.exercise_catalog",
+    "colonne": "owner_user_id",
+    "nom": "ejercicios creados por el asistente",
+    "langue": "es",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-59DC48FF",
+      "MARQUEUR-B-644CB4F6",
+      "MARQUEUR-B-06694541",
+      "MARQUEUR-B-CFD8B2FF"
+    ]
+  },
+  {
+    "table": "public.plan_versions",
+    "colonne": "user_id",
+    "nom": "versiones de plan",
+    "langue": "es",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-742E86F2",
+      "MARQUEUR-B-298CF82D"
+    ]
+  },
+  {
+    "table": "public.active_plan_selection",
+    "colonne": "user_id",
+    "nom": "selecciones de plan activo",
+    "langue": "es",
+    "a": 1,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.assistant_conversations",
+    "colonne": "user_id",
+    "nom": "conversaciones con el asistente",
+    "langue": "es",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.assistant_messages",
+    "colonne": "user_id",
+    "nom": "mensajes con el asistente",
+    "langue": "es",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-3CED51C3",
+      "MARQUEUR-B-6F770686",
+      "MARQUEUR-B-54ED7509",
+      "MARQUEUR-B-7FFA1661"
+    ]
+  },
+  {
+    "table": "public.plan_proposals",
+    "colonne": "user_id",
+    "nom": "propuestas de plan",
+    "langue": "es",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-BB54F1E5",
+      "MARQUEUR-B-E2BCB6BE"
+    ]
+  },
+  {
+    "table": "public.workout_logs",
+    "colonne": "user_id",
+    "nom": "registros de entrenamiento",
+    "langue": "es",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-8A4E2C3C",
+      "MARQUEUR-B-F1F2DB25",
+      "MARQUEUR-B-409BC9BD",
+      "MARQUEUR-B-8EECE796"
+    ]
+  },
+  {
+    "table": "public.training_history_backups",
+    "colonne": "user_id",
+    "nom": "copias de seguridad del historial",
+    "langue": "es",
+    "a": 1,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.assistant_consents",
+    "colonne": "user_id",
+    "nom": "consentimientos del asistente",
+    "langue": "es",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-7A448822"
+    ]
+  }
+]
