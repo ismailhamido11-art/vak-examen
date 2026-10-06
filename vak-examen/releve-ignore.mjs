@@ -48,14 +48,41 @@ for (const ev of evts) {
   }
 }
 
-// Les clés de `ignore` dans le calibrage commité.
-const agent = readFileSync(join(etat, "supabase", "functions", "vak", "agent.ts"), "utf8").split("\n");
-const debut = agent.findIndex((l) => /^\s{2}ignore\s*:\s*\{/.test(l));
+// Les clés de `ignore` dans le calibrage commité : le bloc suivi accolade par accolade (chaînes et commentaires
+// sautés), qu'il tienne sur une ligne (« ignore: {}, ») ou sur plusieurs ; seules les clés de son premier niveau.
+const texte = readFileSync(join(etat, "supabase", "functions", "vak", "agent.ts"), "utf8");
 const ignore = [];
-if (debut >= 0) {
-  for (let i = debut + 1; i < agent.length && !/^\s{2}\}/.test(agent[i]); i++) {
-    const m = /^\s{4}["']?([A-Za-z0-9_.]+)["']?\s*:/.exec(agent[i]);
-    if (m) ignore.push({ nom: m[1].replace(/^public\./, ""), ligne: i + 1 });
+// Le `ignore` du premier niveau de defineAgent (deux espaces), sinon le premier venu.
+const m = /^ {2}ignore\s*:\s*\{/m.exec(texte) ?? /^\s*ignore\s*:\s*\{/m.exec(texte);
+if (m) {
+  let i = m.index + m[0].length;
+  let profondeur = 1;
+  let ligne = texte.slice(0, i).split("\n").length;
+  let attendCle = true;
+  while (i < texte.length && profondeur > 0) {
+    const c = texte[i];
+    if (c === "\n") { ligne++; i++; continue; }
+    if (c === "/" && texte[i + 1] === "/") { while (i < texte.length && texte[i] !== "\n") i++; continue; }
+    if (c === "/" && texte[i + 1] === "*") { const f = texte.indexOf("*/", i + 2); ligne += texte.slice(i, f).split("\n").length - 1; i = f + 2; continue; }
+    if (c === '"' || c === "'" || c === "`") {
+      let j = i + 1;
+      while (j < texte.length && texte[j] !== c) j += texte[j] === "\\" ? 2 : 1;
+      const chaine = texte.slice(i + 1, j);
+      if (profondeur === 1 && attendCle && /^\s*:/.test(texte.slice(j + 1))) { ignore.push({ nom: chaine.replace(/^public\./, ""), ligne }); attendCle = false; }
+      ligne += chaine.split("\n").length - 1;
+      i = j + 1;
+      continue;
+    }
+    if (c === "{" || c === "[" || c === "(") profondeur++;
+    else if (c === "}" || c === "]" || c === ")") profondeur--;
+    else if (c === "," && profondeur === 1) attendCle = true;
+    else if (profondeur === 1 && attendCle && /[A-Za-z_$]/.test(c)) {
+      const id = /^[A-Za-z0-9_$.]+/.exec(texte.slice(i))[0];
+      if (/^\s*:/.test(texte.slice(i + id.length))) { ignore.push({ nom: id.replace(/^public\./, ""), ligne }); attendCle = false; }
+      i += id.length;
+      continue;
+    }
+    i++;
   }
 }
 const relevees = [...new Set(echecs.map((e) => e.table))].filter((t) => ignore.some((x) => x.nom === t));
