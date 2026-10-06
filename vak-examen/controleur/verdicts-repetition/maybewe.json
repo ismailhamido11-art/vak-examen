@@ -1,0 +1,396 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "maybewe",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "backend/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 45,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 659
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 2,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 27
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.1.tgz sha256 = préparation",
+        "8 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "lien-hors-depot",
+          "ligne": 182,
+          "heure": "19:17:56",
+          "detail": "ln -s $PWD/node_modules /tmp/base/node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules)",
+          "commande": "git worktree add -q /tmp/base 400fcd4 && ln -s $PWD/node_modules /tmp/base/node_modules && (cd /tmp/base && node test/verify.js 2>&1 | grep -E 'Error|^---' | tail -4); git worktree remove --force /tmp/base"
+        }
+      ]
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-03T19:10:20.408Z",
+      "demande": "2026-10-03T19:10:17.478Z",
+      "premierVakQuiRendZero": "2026-10-03T19:16:02.967Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 5.71,
+      "ligne": 152
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 34660,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "    → si ce n'est pas voulu (profils publics, catalogue…), corrige la politique RLS de ces tables dans une migration, puis relance la preuve",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "    - users : politique « Public profiles are readable by authenticated users » using (true) : publication par l'app : voulue ?",
+            "    - trips : politique « Active trips are readable by authenticated users » using (true) : publication par l'app : voulue ?",
+            "    - travel_history : politique « Travel history is readable by authenticated users » using (true) : publication par l'app : voulue ?",
+            "    - fonction « find_overlapping_trips » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « get_hangout_suggestion_votes » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « get_user_social_stats » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « is_chat_group_member » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « is_hangout_member » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    → vérifie chaque point ; corrige dans une migration de l'app si besoin",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - trips.is_public : modifiable par l'utilisateur et lue par la politique « Trip activities are readable by authenticated users for visible » : elle décide qui voit la ligne",
+            "    - trip_days.trip_id : modifiable par l'utilisateur et lue par la politique « Trip activities are readable by authenticated users for visible » : elle décide qui voit la ligne",
+            "    - trip_activities.trip_day_id : modifiable par l'utilisateur et lue par la politique « Trip activities are readable by authenticated users for visible » : elle décide qui voit la ligne",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.24.1, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 aucun tsconfig.json à la racine : rien à exclure",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (7 dans tables ; ignore : 30 tables, 8 fonctions) ; dans ignore, tables de l'utilisateur : « active_location_shares », « app_notifications », « chat_group_members »,",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (7)",
+            "! VAK015 assistant éprouvé du 2026-10-03 ; mais l'app elle-même montre à un utilisateur des lignes d'un autre (travel_history, trip_activities, trip_days, trips, users)",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "etat": "absente"
+        },
+        "lint": {
+          "etat": "absente"
+        },
+        "test": {
+          "avant": {
+            "commande": "node test/verify.js",
+            "source": "aucun script « test » ; un seul fichier dans test/",
+            "code": 1,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 1,
+            "tests": null
+          },
+          "apres": {
+            "commande": "node test/verify.js",
+            "source": "aucun script « test » ; un seul fichier dans test/",
+            "code": 1,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 1,
+            "tests": null
+          },
+          "erreurs": {
+            "avant": 1,
+            "apres": 1,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : expo export --platform web",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : expo export --platform web",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "6 fichier(s) géré(s) par vak absent(s) du commit (ignorés par git ?) : .claude/skills/vak/SKILL.md, .claude/skills/vak/references/calibration.md, .claude/skills/vak/references/features.md… ; « vak doctor » (VAK001, VAK003) en juge au point 1",
+    "lien symbolique tapé hors du dépôt de l'app (une mesure, pas un échec) : journal ligne 182 (19:17:56) : ln -s $PWD/node_modules /tmp/base/node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules) — commande : git worktree add -q /tmp/base 400fcd4 && ln -s $PWD/node_modules /tmp/base/node_modules && (cd /tmp/base && node test/verify.js 2>&1 | grep -E 'Error|^---' | tail -4); git worktree remove --force /tm…"
+  ],
+  "entree": {
+    "essai": "/srv/scelle-1/travail/essais/maybewe",
+    "preparation": {
+      "id": "maybewe",
+      "depot": "https://github.com/maybewe-india/maybewe.git",
+      "commit": "8fed7ac5ba7ca9c1f23b5d96c27f1608bb4c59ca",
+      "prepare": "400fcd48647cd50b15e2a4f370fbdfbeee666ada",
+      "archive": {
+        "nom": "vak-agent-0.24.1.tgz",
+        "sha256": "eea33e431a9c23ea987725f77901f9c6fc73fa5ee911a125163e7ffcd6890396"
+      },
+      "debut": "2026-10-03T19:10:15Z"
+    },
+    "tip": "934e7d421c32faf6b283334beaaeefc2143ce740",
+    "commitsAgent": 2,
+    "appsVak": [
+      ""
+    ]
+  },
+  "journal": {
+    "entrees": 71,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 37,
+      "tablesAMoi": 32,
+      "aMoiEprouvees": 5,
+      "ignorees": 38,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "400fcd48647cd50b15e2a4f370fbdfbeee666ada",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "npm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "added 639 packages in 42s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "test": {
+          "commande": "node test/verify.js",
+          "source": "aucun script « test » ; un seul fichier dans test/",
+          "code": 1,
+          "delai": false,
+          "secondes": 0,
+          "erreurs": 1,
+          "tests": null,
+          "liste": [
+            "test/verify.js:203 AssertionError [ERR_ASSERTION]: Light theme background must be #F6F8FB"
+          ],
+          "fin": [
+            "    at TracingChannel.traceSync (node:diagnostics_channel:328:14)",
+            "    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)",
+            "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)",
+            "    at node:internal/main/run_main_module:36:49 {",
+            "  generatedMessage: false,",
+            "  code: 'ERR_ASSERTION',",
+            "  actual: false,",
+            "  expected: true,",
+            "  operator: '==',",
+            "  diff: 'simple'",
+            "}",
+            "Node.js v22.22.0"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : expo export --platform web",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)",
+            "node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)",
+            "node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)",
+            "node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)",
+            "node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)",
+            "› web bundles (1):",
+            "_expo/static/js/web/entry-36f5bb46250e710c703aeb90f26e3aaf.js (3.9MB)",
+            "› Files (3):",
+            "favicon.ico (15KB)",
+            "index.html (1.2KB)",
+            "metadata.json (49B)",
+            "Exported: dist"
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "934e7d421c32faf6b283334beaaeefc2143ce740",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "added 643 packages in 10s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "test": {
+          "commande": "node test/verify.js",
+          "source": "aucun script « test » ; un seul fichier dans test/",
+          "code": 1,
+          "delai": false,
+          "secondes": 0,
+          "erreurs": 1,
+          "tests": null,
+          "liste": [
+            "test/verify.js:205 AssertionError [ERR_ASSERTION]: Light theme background must be #F6F8FB"
+          ],
+          "fin": [
+            "    at TracingChannel.traceSync (node:diagnostics_channel:328:14)",
+            "    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)",
+            "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)",
+            "    at node:internal/main/run_main_module:36:49 {",
+            "  generatedMessage: false,",
+            "  code: 'ERR_ASSERTION',",
+            "  actual: false,",
+            "  expected: true,",
+            "  operator: '==',",
+            "  diff: 'simple'",
+            "}",
+            "Node.js v22.22.0"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : expo export --platform web",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)",
+            "node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)",
+            "node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)",
+            "node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)",
+            "node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)",
+            "› web bundles (1):",
+            "_expo/static/js/web/entry-750a6928414607c1c0d3e6688623af81.js (5.1MB)",
+            "› Files (3):",
+            "favicon.ico (15KB)",
+            "index.html (1.2KB)",
+            "metadata.json (49B)",
+            "Exported: dist"
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-04T04:40:10.043Z"
+}

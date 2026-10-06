@@ -1,0 +1,44 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "sabotage-refus",
+  "verdict": "refus propre",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": true,
+      "raison": "l'agent s'est arrêté sans rien écrire : « Je m'arrête sans rien écrire : cette app n'est pas prise en charge par vak (aucune base Supabase). Voici la commande à lancer si vous voulez continuer : aucune. »",
+      "preuve": [
+        "journal ligne 3 : Je m'arrête sans rien écrire : cette app n'est pas prise en charge par vak (aucune base Supabase). Voici la commande à lancer si vous voulez continuer : aucune.",
+        "HEAD = commit de préparation 31a124d3, arbre propre"
+      ]
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "refus propre : compte comme un échec de l'essai (règle, point 7), noté à part"
+  ],
+  "entree": {
+    "essai": "/srv/scelle/travail/.scratch/sab/refus",
+    "preparation": {
+      "id": "sabotage-refus",
+      "depot": "https://github.com/ArnasDon/wacrm.git",
+      "commit": "45e80ad9e23b91f5c02ab9f935edbae67810e59d",
+      "prepare": "31a124d30fc969fa7a7672abd3ca9b82f611bb8c",
+      "archive": {
+        "nom": "vak-agent-0.24.1.tgz",
+        "sha256": "eea33e431a9c23ea987725f77901f9c6fc73fa5ee911a125163e7ffcd6890396"
+      },
+      "debut": "2026-10-03T18:46:18Z"
+    },
+    "tip": "31a124d30fc969fa7a7672abd3ca9b82f611bb8c",
+    "commitsAgent": 0
+  },
+  "journal": {
+    "entrees": 2,
+    "illisibles": 0
+  },
+  "fin": "2026-10-04T01:43:14.604Z"
+}

@@ -1,0 +1,3 @@
+# Résultats du contrôleur : chaque session d'essai les commite sur sa propre branche (git add -f) ; un contrôle lancé
+# ailleurs (essai du harnais, session de travail) ne laisse rien à commiter.
+resultats/

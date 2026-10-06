@@ -1,0 +1,19 @@
+# Apps des répétitions, exclues du tirage de l'examen avec leurs copies et leurs propriétaires (REGLE.md).
+#
+# Répétition 1 (étape 4, septembre 2026, vak-etape4/DEFAUTS.md du dépôt de vak). Ces apps ont aussi servi aux tests
+# du kit. Elles manquaient dans la liste remise le 04/10 à la session scellée des candidats (../scelle/exclusions.txt).
+# Une relecture l'a vu le 06/10, avant le tirage, et elles ont été ajoutées ici.
+https://github.com/mckaywrigley/chatbot-ui
+https://github.com/imbhargav5/nextbase-nextjs-supabase-starter
+https://github.com/DevKevZeb/compraYa
+https://github.com/aaronksaunders/expo-supabase-ai-template
+#
+# Répétitions 2 à 6 (repetition2/apps.tsv) : la liste remise le 04/10.
+https://github.com/hristo2612/SQLNoir
+https://github.com/Danm72/mission-control
+https://github.com/ArnasDon/wacrm
+https://github.com/compute-toys/compute.toys
+https://github.com/maybewe-india/maybewe
+https://github.com/makerkit/react-native-expo-turbo-saas-kit
+https://github.com/firecrawl/open-scouts
+https://github.com/cz-bszy/paper_sender

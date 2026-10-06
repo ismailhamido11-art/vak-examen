@@ -1,0 +1,588 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "makerkit",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "apps/expo-app/package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 50
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "packages/features/account/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "packages/features/auth/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "packages/supabase/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "packages/ui/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "genre": "verrou",
+          "ajouts": 2,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 1694
+        },
+        {
+          "fichier": "pnpm-workspace.yaml",
+          "genre": "workspace",
+          "identique": true
+        },
+        {
+          "fichier": "tooling/eslint-config/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "tooling/prettier-config/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "tooling/tailwind-config/package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "tooling/typescript-config/package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive apps/expo-app/vendor/vak/vak-agent-0.24.2.tgz sha256 = préparation",
+        "1 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (apps/expo-app/supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-03T20:28:27.015Z",
+      "demande": "2026-10-03T20:28:23.992Z",
+      "premierVakQuiRendZero": "2026-10-03T20:32:53.135Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 4.44,
+      "ligne": 130
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": "apps/expo-app",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 29882,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "    - tables.accounts : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « accounts_read » : équipe ou rôle ? sinon owner: \"created_by\"",
+            "    - tables.accounts.update : la politique « accounts_read » de l'app ouvre la lecture autrement que par « created_by » (équipe, rôle…), qui n'est donc pas devinée propriétaire : écriture sous la seule RLS de l'app, toujours avec « Valider » ; permise si vak prove prouve que l'assistant de A n'écri",
+            "    → vérifie que c'est voulu",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (1 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-03 : éprouvé (1 table(s), 40 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "Fini pour l'agent de code : `vak` → 0 (`node ../../node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le ",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.24.2, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (1 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-03 : éprouvé (1 table(s), 40 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "pnpm run typecheck",
+            "source": "script « typecheck » : turbo typecheck --cache-dir=.turbo",
+            "code": 0,
+            "delai": false,
+            "secondes": 17,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "pnpm run typecheck",
+            "source": "script « typecheck » : turbo typecheck --cache-dir=.turbo",
+            "code": 0,
+            "delai": false,
+            "secondes": 20,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : turbo lint --cache-dir=.turbo --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+            "code": 0,
+            "delai": false,
+            "secondes": 22,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 1,
+              "erreurs": 0,
+              "avertissements": 1
+            }
+          },
+          "apres": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : turbo lint --cache-dir=.turbo --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+            "code": 0,
+            "delai": false,
+            "secondes": 18,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 1,
+              "erreurs": 0,
+              "avertissements": 1
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "RACINE=\"$PWD\"; rc=0; echo \"== apps/expo-app : jest\"; (cd \"apps/expo-app\" && PATH=\"$PWD/node_modules/.bin:$RACINE/node_modules/.bin:$PATH\" jest) || rc=1; exit $rc",
+            "source": "script « test » en mode surveillance : exécuté une fois, sans --watch, dans apps/expo-app",
+            "code": 1,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 0,
+            "tests": null
+          },
+          "apres": {
+            "commande": "RACINE=\"$PWD\"; rc=0; echo \"== apps/expo-app : jest\"; (cd \"apps/expo-app\" && PATH=\"$PWD/node_modules/.bin:$RACINE/node_modules/.bin:$PATH\" jest) || rc=1; exit $rc",
+            "source": "script « test » en mode surveillance : exécuté une fois, sans --watch, dans apps/expo-app",
+            "code": 1,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 0,
+            "tests": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "build": {
+          "avant": {
+            "commande": "pnpm run build",
+            "source": "script « build » : turbo build --cache-dir=.turbo",
+            "code": 0,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "pnpm run build",
+            "source": "script « build » : turbo build --cache-dir=.turbo",
+            "code": 0,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "test : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie"
+  ],
+  "entree": {
+    "essai": "/srv/scelle/travail/essais/makerkit",
+    "preparation": {
+      "id": "makerkit",
+      "depot": "https://github.com/makerkit/react-native-expo-turbo-saas-kit.git",
+      "commit": "74a9b575a8f1e603f5400614e1f22fe809221cfa",
+      "prepare": "e4214df893a1fefe2e1393129ebf625694f8f23f",
+      "archive": {
+        "nom": "vak-agent-0.24.2.tgz",
+        "sha256": "1d4bfba846c300a1dbc6789086967be7a64947eec7db72d0436c5975497207db"
+      },
+      "debut": "2026-10-03T20:28:22Z"
+    },
+    "tip": "7c10cfeb699a5b66659edf2123687b9f0341bc49",
+    "commitsAgent": 1,
+    "appsVak": [
+      "apps/expo-app"
+    ]
+  },
+  "journal": {
+    "entrees": 45,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": "apps/expo-app",
+      "tablesDeLApp": 1,
+      "tablesAMoi": 1,
+      "aMoiEprouvees": 1,
+      "ignorees": 0,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "e4214df893a1fefe2e1393129ebf625694f8f23f",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "Progress: resolved 0, reused 1247, downloaded 0, added 1318, done",
+          ". postinstall$ manypkg fix",
+          ". postinstall: ☔️ success fixed workspaces!",
+          ". postinstall: Done",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: esbuild@0.25.12, unrs-resolver@1.11.1.              │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 4.3s using pnpm v10.33.4"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "pnpm run typecheck",
+          "source": "script « typecheck » : turbo typecheck --cache-dir=.turbo",
+          "code": 0,
+          "delai": false,
+          "secondes": 17,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "@kit/supabase:typecheck: > @kit/supabase@0.0.0 typecheck /srv/scelle/travail/.scratch/final/makerkit/clones/prep/packages/supabase",
+            "@kit/supabase:typecheck: > tsc --noEmit",
+            "@kit/supabase:typecheck: ",
+            " Tasks:    7 successful, 7 total",
+            "Cached:    0 cached, 7 total",
+            "  Time:    16.78s ",
+            " WARNING  no output files found for task @kit/account#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/auth#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/supabase#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/tailwind-config#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/ui#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task app#typecheck. Please check your `outputs` key in `turbo.json`"
+          ]
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : turbo lint --cache-dir=.turbo --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+          "code": 0,
+          "delai": false,
+          "secondes": 22,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 1,
+            "erreurs": 0,
+            "avertissements": 1
+          },
+          "liste": [],
+          "fin": [
+            "app:lint: ",
+            "app:lint: ",
+            "app:lint: /srv/scelle/travail/.scratch/final/makerkit/clones/prep/apps/expo-app/components/theme-provider.tsx",
+            "app:lint:   25:11  warning  Unused eslint-disable directive (no problems were reported from 'no-undef')",
+            "app:lint: ",
+            "app:lint: ✖ 1 problem (0 errors, 1 warning)",
+            "app:lint:   0 errors and 1 warning potentially fixable with the `--fix` option.",
+            "app:lint: ",
+            " Tasks:    5 successful, 5 total",
+            "Cached:    0 cached, 5 total",
+            "  Time:    21.438s ",
+            "☔️ success workspaces valid!"
+          ]
+        },
+        "test": {
+          "commande": "RACINE=\"$PWD\"; rc=0; echo \"== apps/expo-app : jest\"; (cd \"apps/expo-app\" && PATH=\"$PWD/node_modules/.bin:$RACINE/node_modules/.bin:$PATH\" jest) || rc=1; exit $rc",
+          "source": "script « test » en mode surveillance : exécuté une fois, sans --watch, dans apps/expo-app",
+          "code": 1,
+          "delai": false,
+          "secondes": 0,
+          "erreurs": 0,
+          "tests": null,
+          "liste": [],
+          "fin": [
+            "== apps/expo-app : jest",
+            "No tests found, exiting with code 1",
+            "Run with `--passWithNoTests` to exit with code 0",
+            "In /srv/scelle/travail/.scratch/final/makerkit/clones/prep/apps/expo-app",
+            "  32 files checked.",
+            "  testMatch: **/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x) - 0 matches",
+            "  testPathIgnorePatterns: /node_modules/ - 32 matches",
+            "  testRegex:  - 0 matches",
+            "Pattern:  - 0 matches"
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : turbo build --cache-dir=.turbo",
+          "code": 0,
+          "delai": false,
+          "secondes": 1,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> react-native-expo-supabase-starter-kit@ build /srv/scelle/travail/.scratch/final/makerkit/clones/prep",
+            "> turbo build --cache-dir=.turbo",
+            "   • Packages in scope: @kit/account, @kit/auth, @kit/eslint-config, @kit/prettier-config, @kit/supabase, @kit/tailwind-config, @kit/typescript-config, @kit/ui, app",
+            "   • Running build in 9 packages",
+            "   • Remote caching disabled",
+            " WARNING  No tasks were executed as part of this run.",
+            " Tasks:    0 successful, 0 total",
+            "Cached:    0 cached, 0 total",
+            "  Time:    132ms "
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "7c10cfeb699a5b66659edf2123687b9f0341bc49",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "Progress: resolved 0, reused 1248, downloaded 0, added 1319, done",
+          ". postinstall$ manypkg fix",
+          ". postinstall: ☔️ success fixed workspaces!",
+          ". postinstall: Done",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: esbuild@0.25.12, unrs-resolver@1.11.1.              │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 4.3s using pnpm v10.33.4"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "pnpm run typecheck",
+          "source": "script « typecheck » : turbo typecheck --cache-dir=.turbo",
+          "code": 0,
+          "delai": false,
+          "secondes": 20,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "@kit/supabase:typecheck: > @kit/supabase@0.0.0 typecheck /srv/scelle/travail/.scratch/final/makerkit/clones/head/packages/supabase",
+            "@kit/supabase:typecheck: > tsc --noEmit",
+            "@kit/supabase:typecheck: ",
+            " Tasks:    7 successful, 7 total",
+            "Cached:    0 cached, 7 total",
+            "  Time:    19.812s ",
+            " WARNING  no output files found for task @kit/account#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/auth#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/supabase#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/tailwind-config#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task @kit/ui#typecheck. Please check your `outputs` key in `turbo.json`",
+            " WARNING  no output files found for task app#typecheck. Please check your `outputs` key in `turbo.json`"
+          ]
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : turbo lint --cache-dir=.turbo --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+          "code": 0,
+          "delai": false,
+          "secondes": 18,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 1,
+            "erreurs": 0,
+            "avertissements": 1
+          },
+          "liste": [],
+          "fin": [
+            "app:lint: ",
+            "app:lint: ",
+            "app:lint: /srv/scelle/travail/.scratch/final/makerkit/clones/head/apps/expo-app/components/theme-provider.tsx",
+            "app:lint:   25:11  warning  Unused eslint-disable directive (no problems were reported from 'no-undef')",
+            "app:lint: ",
+            "app:lint: ✖ 1 problem (0 errors, 1 warning)",
+            "app:lint:   0 errors and 1 warning potentially fixable with the `--fix` option.",
+            "app:lint: ",
+            " Tasks:    5 successful, 5 total",
+            "Cached:    0 cached, 5 total",
+            "  Time:    17.758s ",
+            "☔️ success workspaces valid!"
+          ]
+        },
+        "test": {
+          "commande": "RACINE=\"$PWD\"; rc=0; echo \"== apps/expo-app : jest\"; (cd \"apps/expo-app\" && PATH=\"$PWD/node_modules/.bin:$RACINE/node_modules/.bin:$PATH\" jest) || rc=1; exit $rc",
+          "source": "script « test » en mode surveillance : exécuté une fois, sans --watch, dans apps/expo-app",
+          "code": 1,
+          "delai": false,
+          "secondes": 0,
+          "erreurs": 0,
+          "tests": null,
+          "liste": [],
+          "fin": [
+            "== apps/expo-app : jest",
+            "No tests found, exiting with code 1",
+            "Run with `--passWithNoTests` to exit with code 0",
+            "In /srv/scelle/travail/.scratch/final/makerkit/clones/head/apps/expo-app",
+            "  42 files checked.",
+            "  testMatch: **/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x) - 0 matches",
+            "  testPathIgnorePatterns: /node_modules/ - 42 matches",
+            "  testRegex:  - 0 matches",
+            "Pattern:  - 0 matches"
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : turbo build --cache-dir=.turbo",
+          "code": 0,
+          "delai": false,
+          "secondes": 1,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> react-native-expo-supabase-starter-kit@ build /srv/scelle/travail/.scratch/final/makerkit/clones/head",
+            "> turbo build --cache-dir=.turbo",
+            "   • Packages in scope: @kit/account, @kit/auth, @kit/eslint-config, @kit/prettier-config, @kit/supabase, @kit/tailwind-config, @kit/typescript-config, @kit/ui, app",
+            "   • Running build in 9 packages",
+            "   • Remote caching disabled",
+            " WARNING  No tasks were executed as part of this run.",
+            " Tasks:    0 successful, 0 total",
+            "Cached:    0 cached, 0 total",
+            "  Time:    108ms "
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-04T01:03:32.736Z"
+}
