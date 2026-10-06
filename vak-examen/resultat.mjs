@@ -31,7 +31,7 @@ const ids = readFileSync(liste, "utf8")
 const manque = [];
 const essais = ids.map((id) => {
   const d = join(dossier, id);
-  const e = { id, verdict: null, raisons: [], minutes: null, gestes: null, pile: null, fuite: null, chiffres: null, faux_fini: null, etiquette: null };
+  const e = { id, verdict: null, raisons: [], minutes: null, duree_note: null, gestes: null, pile: null, fuite: null, chiffres: null, faux_fini: null, etiquette: null };
   const fichier = (nom) => join(d, nom);
   if (!existsSync(fichier("verdict-examen.json"))) {
     manque.push(`${id} : pas de verdict du contrôleur`);
@@ -39,7 +39,24 @@ const essais = ids.map((id) => {
   }
   const c = lire(fichier("verdict-examen.json"));
   const p = c.points ?? {};
-  e.minutes = p.p6?.premierVakQuiRendZero && typeof p.p6.minutes === "number" ? p.p6.minutes : Infinity;
+  // Les raisons du contrôleur, lisibles (verdict.mjs, figé, les affiche « [object Object] »).
+  e.raisons_controleur = (c.raisons ?? []).map((r) => (typeof r === "string" ? r : `point ${r.point} : ${r.resume}`));
+  // Durée (REGLE.md, « Comment on compte les seuils ») : jusqu'au premier `vak` qui rend 0, infinie s'il n'en rend jamais
+  // 0. Le contrôleur (figé) la tire du journal. Sa source principale, la ligne finale de vak (« vak : fini (…) [code 0] »),
+  // n'est écrite que par un `vak` qui rend 0. Ses replis ne le prouvent pas : la phrase « Fini pour l'agent de code » est
+  // aussi imprimée par `vak --help` (essai demarre_1, 06/10), et « rc=0 » peut venir d'une autre commande de la ligne.
+  // Sur un repli, la durée n'est retenue que si duree.json la confirme (écrit à la main : { minutes, preuve }, la ligne
+  // du journal d'un `vak` qui rend 0 citée ; minutes null si aucun) ; sinon elle est infinie : dans le doute, contre vak.
+  const source = String(p.p6?.preuve ?? "");
+  if (p.p6?.premierVakQuiRendZero && typeof p.p6.minutes === "number" && source.startsWith("ligne finale de vak")) e.minutes = p.p6.minutes;
+  else if (existsSync(fichier("duree.json"))) {
+    const d = lire(fichier("duree.json"));
+    e.minutes = typeof d.minutes === "number" ? d.minutes : Infinity;
+    e.duree_note = `duree.json : ${d.preuve ?? "sans preuve"}`;
+  } else {
+    e.minutes = Infinity;
+    if (p.p6?.premierVakQuiRendZero) e.duree_note = `repli du contrôleur non retenu (${source.slice(0, 60)}…) : durée infinie`;
+  }
 
   // Point 5 et pile.
   if (existsSync(fichier("mesdonnees.json"))) {
