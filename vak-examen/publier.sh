@@ -43,10 +43,10 @@ if [ "${RESULTATS:-0}" = 1 ]; then
   done < "${LISTE_ESSAIS:-vak-examen/essais.tsv}"
   [ "${#CHEMINS[@]}" -eq 0 ] || git archive --format=tar HEAD -- "${CHEMINS[@]}" | tar -x -C "$DEST"
   [ "${ETATS:-0}" = 1 ] || find "$DEST/repetition2" -name essai.bundle -delete
-  # Les noms de modèle et les e-mails de tiers que la transcription du lanceur laisse passer (masquer.mjs) : copie
-  # publiée seulement.
-  mapfile -t TRANSCRIPTIONS < <(find "$DEST/repetition2/resultats" -name transcription.jsonl.gz 2>/dev/null)
-  [ "${#TRANSCRIPTIONS[@]}" -eq 0 ] || node vak-examen/masquer.mjs "${TRANSCRIPTIONS[@]}" | tail -1
+  # Les noms et identifiants de modèle et les e-mails de tiers que la transcription du lanceur laisse passer, et ceux du
+  # code d'un agent témoin (autres.diff) : masquer.mjs, sur chaque fichier des résultats, copie publiée seulement.
+  mapfile -t A_MASQUER < <(find "$DEST/repetition2/resultats" -type f 2>/dev/null)
+  [ "${#A_MASQUER[@]}" -eq 0 ] || node vak-examen/masquer.mjs "${A_MASQUER[@]}" | tail -1
   [ "${#CHEMINS[@]}" -eq 0 ] || git -C "$DEST" add -f -- "${CHEMINS[@]}"
   echo "résultats recopiés : ${#CHEMINS[@]} dossier(s)$([ "${ETATS:-0}" = 1 ] && echo ", états commités compris" || echo ", sans les états commités")"
 fi

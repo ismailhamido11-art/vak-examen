@@ -1,0 +1,327 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "temoin_equipe",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "5 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 1
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 1
+          },
+          "erreurs": {
+            "avant": 1,
+            "apres": 1,
+            "nouvelles": []
+          },
+          "etat": "identique (code 2)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/temoin_equipe",
+    "preparation": {
+      "id": "temoin_equipe",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/equipe.bundle",
+      "commit": "ed96d9a1505e38d72746c80b669a6451a0eaef02",
+      "prepare": "ed96d9a1505e38d72746c80b669a6451a0eaef02",
+      "archive": null,
+      "debut": "2026-10-06T15:16:19Z"
+    },
+    "tip": "e262e87704854111ab8c31f98a35606f3cf6e599",
+    "commitsAgent": 1,
+    "appsVak": []
+  },
+  "journal": {
+    "entrees": 18,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "ed96d9a1505e38d72746c80b669a6451a0eaef02",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 359 packages in 13s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 2,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 1,
+          "liste": [
+            "src/app/layout.tsx:9 src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ],
+          "fin": [
+            "src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint",
+            "> eslint"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : next build",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "✓ Generating static pages using 3 workers (6/6) in 302ms",
+            "  Finalizing page optimization ...",
+            "Route (app)",
+            "┌ ○ /",
+            "├ ○ /_not-found",
+            "├ ○ /login",
+            "├ ƒ /sites/[siteId]",
+            "├ ○ /tasks",
+            "├ ƒ /teams/[teamId]",
+            "└ ƒ /teams/[teamId]/members",
+            "○  (Static)   prerendered as static content",
+            "ƒ  (Dynamic)  server-rendered on demand"
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "e262e87704854111ab8c31f98a35606f3cf6e599",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 359 packages in 10s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 2,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 1,
+          "liste": [
+            "src/app/layout.tsx:9 src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ],
+          "fin": [
+            "src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint",
+            "> eslint"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : next build",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "  Finalizing page optimization ...",
+            "Route (app)",
+            "┌ ○ /",
+            "├ ○ /_not-found",
+            "├ ƒ /api/assistant",
+            "├ ○ /login",
+            "├ ƒ /sites/[siteId]",
+            "├ ○ /tasks",
+            "├ ƒ /teams/[teamId]",
+            "└ ƒ /teams/[teamId]/members",
+            "○  (Static)   prerendered as static content",
+            "ƒ  (Dynamic)  server-rendered on demand"
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T15:20:16.386Z"
+}

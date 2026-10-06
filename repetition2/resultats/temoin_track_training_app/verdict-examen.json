@@ -1,0 +1,445 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "temoin_track_training_app",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "23 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "sql-a-la-main",
+          "ligne": 64,
+          "heure": "15:30:21",
+          "detail": "extension créé à la main : create extension",
+          "commande": "P=\"psql -h 127.0.0.1 -v ON_ERROR_STOP=1 -q\"; psql -h 127.0.0.1 -d postgres -c 'drop database if exists assistant_scratch' -c 'create database assistant_scratch' && $P -d assistant_scratch <<'EOF' create schema extensions; create schema auth; create schema storage; create extension pgcrypto with schema extensions; create extension pgtap with schema extensions; create table auth.users(id uuid prima…"
+        },
+        {
+          "code": "sql-a-la-main",
+          "ligne": 75,
+          "heure": "15:30:30",
+          "detail": "extension créé à la main : create extension",
+          "commande": "cat > /tmp/scratch_setup.sh <<'EOF' P=\"psql -h 127.0.0.1 -v ON_ERROR_STOP=1 -q\" psql -h 127.0.0.1 -d postgres -q -c 'drop database if exists assistant_scratch' -c 'create database assistant_scratch' $P -d assistant_scratch <<'SQL' create schema extensions; create schema auth; create schema storage; create extension pgcrypto with schema extensions; create extension pgtap with schema extensions; cr…"
+        },
+        {
+          "code": "sql-a-la-main",
+          "ligne": 88,
+          "heure": "15:31:01",
+          "detail": "table créé à la main : create table",
+          "commande": "cat > supabase/migrations/20260828150000_ai_assistant.sql <<'EOF' -- AI assistant: owner-scoped reads and write proposals that require explicit approval. -- -- The assistant never writes workout data directly. The Edge Function (running with the -- caller's JWT) can only: -- * read through assistant_list_workouts, which is hard-filtered to auth.uid() because -- workouts are also readable by accep…"
+        },
+        {
+          "code": "sql-a-la-main",
+          "ligne": 93,
+          "heure": "15:31:15",
+          "detail": "extension créé à la main : create extension",
+          "commande": "sed -i '/^create or replace function public.assistant_propose/,/^as \\$\\$/ s/security invoker/security definer/' supabase/migrations/20260828150000_ai_assistant.sql && grep -n \"security\" supabase/migrations/20260828150000_ai_assistant.sql cat > supabase/tests/database/ai_assistant.test.sql <<'EOF' begin; create extension if not exists pgtap with schema extensions; set local search_path = public, e…"
+        }
+      ]
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 12,
+              "erreurs": 0,
+              "avertissements": 12
+            }
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 12,
+              "erreurs": 0,
+              "avertissements": 12
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "npm run test",
+            "source": "script « test » : jest --runInBand",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 15
+            }
+          },
+          "apres": {
+            "commande": "npm run test",
+            "source": "script « test » : jest --runInBand",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 15
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 4,
+      "code": "sql-a-la-main",
+      "resume": "migration ajoutée à la main : supabase/migrations/20260828150000_ai_assistant.sql",
+      "preuve": [
+        "supabase/migrations/20260828150000_ai_assistant.sql : create table public.assistant_proposals"
+      ]
+    },
+    {
+      "point": 4,
+      "code": "journal-sql-a-la-main",
+      "resume": "rôle, extension ou table créé à la main (4 fois)",
+      "preuve": [
+        "journal ligne 64 (15:30:21) : extension créé à la main : create extension — commande : P=\"psql -h 127.0.0.1 -v ON_ERROR_STOP=1 -q\"; psql -h 127.0.0.1 -d postgres -c 'drop database if exists assistant_scratch' -c 'create database assistant_scratch' && $P -d assistant_scratch <<'EOF' cre…",
+        "journal ligne 75 (15:30:30) : extension créé à la main : create extension — commande : cat > /tmp/scratch_setup.sh <<'EOF' P=\"psql -h 127.0.0.1 -v ON_ERROR_STOP=1 -q\" psql -h 127.0.0.1 -d postgres -q -c 'drop database if exists assistant_scratch' -c 'create database assistant_scratch' …",
+        "journal ligne 88 (15:31:01) : table créé à la main : create table — commande : cat > supabase/migrations/20260828150000_ai_assistant.sql <<'EOF' -- AI assistant: owner-scoped reads and write proposals that require explicit approval. -- -- The assistant never writes workout data…",
+        "journal ligne 93 (15:31:15) : extension créé à la main : create extension — commande : sed -i '/^create or replace function public.assistant_propose/,/^as \\$\\$/ s/security invoker/security definer/' supabase/migrations/20260828150000_ai_assistant.sql && grep -n \"security\" supabase/migr…"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/temoin_track_training_app",
+    "preparation": {
+      "id": "temoin_track_training_app",
+      "depot": "https://github.com/aprescod12/track-training-app",
+      "commit": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+      "prepare": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+      "archive": null,
+      "debut": "2026-10-06T15:28:58Z"
+    },
+    "tip": "bb7d4f311b92ca838a43c94abc448015533cd986",
+    "commitsAgent": 1,
+    "appsVak": []
+  },
+  "journal": {
+    "entrees": 56,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "added 1161 packages in 21s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 7,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 4,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 12,
+            "erreurs": 0,
+            "avertissements": 12
+          },
+          "liste": [],
+          "fin": [
+            "  305:6  warning  React Hook useEffect has a missing dependency: 'hideToast'. Either include it or remove the dependency array  react-hooks/exhaustive-deps",
+            "/srv/verdicts/temoin_track_training_app/clones/prep/app/team-training/template-new.tsx",
+            "  126:9  warning  The 'teamPermissions' logical expression could make the dependencies of useMemo Hook (at line 133) change on every render. To fix this, wrap the initialization of 'teamPermissions' in its own useMemo() Hook  react-hooks/exhaustive-deps",
+            "/srv/verdicts/temoin_track_training_app/clones/prep/app/workout/[id].tsx",
+            "  69:10  warning  'status' is assigned a value but never used  @typescript-eslint/no-unused-vars",
+            "/srv/verdicts/temoin_track_training_app/clones/prep/components/FormScreen.tsx",
+            "  2:64  warning  '/srv/verdicts/temoin_track_training_app/clones/prep/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "  3:49  warning  '/srv/verdicts/temoin_track_training_app/clones/prep/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "/srv/verdicts/temoin_track_training_app/clones/prep/components/WorkoutCard.tsx",
+            "  1:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars",
+            "✖ 12 problems (0 errors, 12 warnings)",
+            "  0 errors and 3 warnings potentially fixable with the `--fix` option."
+          ]
+        },
+        "test": {
+          "commande": "npm run test",
+          "source": "script « test » : jest --runInBand",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "tests": {
+            "echecs": 0,
+            "reussis": 15
+          },
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 test",
+            "> jest --runInBand",
+            "(node:161) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+            "(Use `node --trace-deprecation ...` to show where the warning was created)",
+            "PASS lib/environment.test.ts",
+            "PASS lib/errors.test.ts",
+            "PASS lib/date.test.ts",
+            "Test Suites: 3 passed, 3 total",
+            "Tests:       15 passed, 15 total",
+            "Snapshots:   0 total",
+            "Time:        1.899 s",
+            "Ran all test suites."
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "bb7d4f311b92ca838a43c94abc448015533cd986",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "added 1161 packages in 19s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 7,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 4,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 12,
+            "erreurs": 0,
+            "avertissements": 12
+          },
+          "liste": [],
+          "fin": [
+            "  305:6  warning  React Hook useEffect has a missing dependency: 'hideToast'. Either include it or remove the dependency array  react-hooks/exhaustive-deps",
+            "/srv/verdicts/temoin_track_training_app/clones/head/app/team-training/template-new.tsx",
+            "  126:9  warning  The 'teamPermissions' logical expression could make the dependencies of useMemo Hook (at line 133) change on every render. To fix this, wrap the initialization of 'teamPermissions' in its own useMemo() Hook  react-hooks/exhaustive-deps",
+            "/srv/verdicts/temoin_track_training_app/clones/head/app/workout/[id].tsx",
+            "  69:10  warning  'status' is assigned a value but never used  @typescript-eslint/no-unused-vars",
+            "/srv/verdicts/temoin_track_training_app/clones/head/components/FormScreen.tsx",
+            "  2:64  warning  '/srv/verdicts/temoin_track_training_app/clones/head/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "  3:49  warning  '/srv/verdicts/temoin_track_training_app/clones/head/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "/srv/verdicts/temoin_track_training_app/clones/head/components/WorkoutCard.tsx",
+            "  1:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars",
+            "✖ 12 problems (0 errors, 12 warnings)",
+            "  0 errors and 3 warnings potentially fixable with the `--fix` option."
+          ]
+        },
+        "test": {
+          "commande": "npm run test",
+          "source": "script « test » : jest --runInBand",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "tests": {
+            "echecs": 0,
+            "reussis": 15
+          },
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 test",
+            "> jest --runInBand",
+            "(node:310) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+            "(Use `node --trace-deprecation ...` to show where the warning was created)",
+            "PASS lib/environment.test.ts",
+            "PASS lib/errors.test.ts",
+            "PASS lib/date.test.ts",
+            "Test Suites: 3 passed, 3 total",
+            "Tests:       15 passed, 15 total",
+            "Snapshots:   0 total",
+            "Time:        1.852 s",
+            "Ran all test suites."
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T15:35:22.572Z"
+}

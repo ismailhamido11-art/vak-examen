@@ -1,0 +1,88 @@
+{
+  "dossier": "/work/temoin_fonctions/apres",
+  "commit": "0e31ffe9b909d3d07670f6c8545d5f9419428615",
+  "debut": "2026-10-06T15:22:01.933Z",
+  "fin": "2026-10-06T15:22:31.475Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/temoin_fonctions/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/temoin_fonctions/apres",
+    "code": 0,
+    "duree_s": 20,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 852 packages in 20s"
+    ],
+    "journal": "/work/temoin_fonctions/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/temoin_fonctions/apres",
+      "code": 2,
+      "duree_s": 2,
+      "erreurs": [
+        "supabase/functions/assistant/index.ts(9,30): error TS2307: Cannot find module 'npm:@supabase/supabase-js@2' or its corresponding type declarations.",
+        "supabase/functions/assistant/index.ts(127,1): error TS2304: Cannot find name 'Deno'.",
+        "supabase/functions/assistant/index.ts(127,19): error TS7006: Parameter 'req' implicitly has an 'any' type.",
+        "supabase/functions/assistant/index.ts(131,18): error TS2304: Cannot find name 'Deno'.",
+        "supabase/functions/assistant/index.ts(135,27): error TS2304: Cannot find name 'Deno'.",
+        "supabase/functions/assistant/index.ts(135,58): error TS2304: Cannot find name 'Deno'."
+      ],
+      "fin": [
+        "supabase/functions/assistant/index.ts(131,18): error TS2304: Cannot find name 'Deno'.",
+        "supabase/functions/assistant/index.ts(135,27): error TS2304: Cannot find name 'Deno'.",
+        "supabase/functions/assistant/index.ts(135,58): error TS2304: Cannot find name 'Deno'."
+      ],
+      "journal": "/work/temoin_fonctions/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/temoin_fonctions/apres",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [
+        "> budget-foyer@1.0.0 lint",
+        "> expo lint"
+      ],
+      "journal": "/work/temoin_fonctions/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/temoin_fonctions/apres",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [
+        "index.html (1.2KB)",
+        "metadata.json (49B)",
+        "Exported: /tmp/mesure-export-tPfDm1"
+      ],
+      "journal": "/work/temoin_fonctions/apres-journaux/build.txt"
+    }
+  }
+}

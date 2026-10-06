@@ -1,0 +1,156 @@
+diff --git a/docs/assistant-turn-preflight.md b/docs/assistant-turn-preflight.md
+index db8df56..bb4d3c1 100644
+--- a/docs/assistant-turn-preflight.md
++++ b/docs/assistant-turn-preflight.md
+@@ -22,3 +22,7 @@ Before configuring another environment or deploying to production, decide and ap
+ - server-side secret name and deployment environment.
+ 
+ After activation, the function derives the active remote plan from the authenticated account rather than accepting a plan ID from Expo. It first requires the current explicit consent, then loads only profile, active-plan session summary, and aggregated up/down feedback by exercise. It deliberately excludes notes, individual sets, full workout logs, and any shared exercise catalogue. It parses the untrusted model response, persists only a validated conversation/proposal, and returns a reviewable draft. The separate publication RPC activates private assistant exercises and a new immutable plan version only after the person confirms. At that explicit confirmation, the app stores its own local snapshot and requests an optional local notification; it does not replace the prior plan history. It must not add a local template fallback. See the non-production activation checklist in [`activate-ai-assistant-staging.md`](activate-ai-assistant-staging.md).
++
++## Local isolation test
++
++`supabase/tests/run.sh` creates a throwaway database on the local PostgreSQL (`PGHOST=127.0.0.1 supabase/tests/run.sh`), stubs Supabase's `auth` schema and roles, applies every migration, and checks that one person cannot read, write, or publish another person's profile, conversations, messages, or proposals; that clients cannot insert or alter assistant tables directly; and that anonymous callers and the service-only quota function are refused. It uses no credentials and does not replace a review against a real Supabase project.
+diff --git a/supabase/tests/assistant_isolation.sql b/supabase/tests/assistant_isolation.sql
+new file mode 100644
+index 0000000..13ab190
+--- /dev/null
++++ b/supabase/tests/assistant_isolation.sql
+@@ -0,0 +1,108 @@
++-- Local isolation test for the assistant data path. Run against a scratch database that already
++-- has supabase/tests/auth_stub.sql and every migration applied (see supabase/tests/run.sh).
++-- Each check raises an exception on failure; success prints "ok" lines.
++\set ON_ERROR_STOP on
++\set a '\'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\''
++\set b '\'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\''
++
++insert into auth.users(id, email) values (:a, 'a@example.test'), (:b, 'b@example.test');
++
++-- Seed as table owner (stands in for the Edge Function's server-side writes).
++insert into public.profiles(user_id, first_name, limitations) values
++  (:a, 'Ana', 'rodilla derecha'), (:b, 'Beto', 'hombro izquierdo');
++insert into public.assistant_conversations(id, user_id) values
++  ('a0000000-0000-0000-0000-000000000001', :a), ('b0000000-0000-0000-0000-000000000001', :b);
++insert into public.assistant_messages(conversation_id, user_id, role, content) values
++  ('a0000000-0000-0000-0000-000000000001', :a, 'user', 'mensaje de Ana'),
++  ('b0000000-0000-0000-0000-000000000001', :b, 'user', 'mensaje de Beto');
++insert into public.plan_proposals(id, user_id, conversation_id, proposal_snapshot) values
++  ('a1000000-0000-0000-0000-000000000001', :a, 'a0000000-0000-0000-0000-000000000001', '{}'),
++  ('b1000000-0000-0000-0000-000000000001', :b, 'b0000000-0000-0000-0000-000000000001', '{}');
++
++create function pg_temp.as_user(p_uid text) returns void language plpgsql as $$
++begin
++  perform set_config('request.jwt.claim.sub', p_uid, false);
++  perform set_config('request.jwt.claim.role', 'authenticated', false);
++end $$;
++
++create function pg_temp.expect_count(p_label text, p_sql text, p_expected bigint) returns void language plpgsql as $$
++declare n bigint;
++begin
++  execute 'select count(*) from (' || p_sql || ') q' into n;
++  if n <> p_expected then raise exception 'FAIL %: expected %, got %', p_label, p_expected, n; end if;
++  raise notice 'ok %', p_label;
++end $$;
++
++grant execute on all functions in schema pg_temp to public;
++set role authenticated;
++select pg_temp.as_user('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa');
++
++-- Reads: Ana sees exactly her own rows in every private table.
++select pg_temp.expect_count('A reads own profile', 'select 1 from public.profiles', 1);
++select pg_temp.expect_count('A cannot read B profile', $$select 1 from public.profiles where user_id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'$$, 0);
++select pg_temp.expect_count('A sees only own conversations', 'select 1 from public.assistant_conversations', 1);
++select pg_temp.expect_count('A sees only own messages', 'select 1 from public.assistant_messages', 1);
++select pg_temp.expect_count('A sees only own proposals', 'select 1 from public.plan_proposals', 1);
++
++-- Writes: direct client writes to assistant tables are denied outright.
++do $$ begin
++  begin
++    insert into public.plan_proposals(user_id, proposal_snapshot) values ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '{}');
++    raise exception 'FAIL client inserted a proposal';
++  exception when insufficient_privilege then raise notice 'ok client cannot insert proposals'; end;
++  begin
++    update public.plan_proposals set status = 'published';
++    raise exception 'FAIL client updated a proposal';
++  exception when insufficient_privilege then raise notice 'ok client cannot update proposals'; end;
++  begin
++    insert into public.assistant_messages(conversation_id, user_id, role, content)
++    values ('a0000000-0000-0000-0000-000000000001', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'assistant', 'forjado');
++    raise exception 'FAIL client forged an assistant message';
++  exception when insufficient_privilege then raise notice 'ok client cannot forge messages'; end;
++  begin
++    update public.assistant_consents set revoked_at = null;
++    raise notice 'ok consent update affects no row (no policy)';
++  exception when insufficient_privilege then raise notice 'ok client cannot update consent table'; end;
++end $$;
++
++-- Own profile edit allowed; editing B's row is a silent no-op under RLS.
++do $$ declare n int; begin
++  update public.profiles set first_name = 'Ana2' where user_id = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
++  get diagnostics n = row_count; if n <> 1 then raise exception 'FAIL A cannot edit own profile'; end if;
++  update public.profiles set first_name = 'hack' where user_id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
++  get diagnostics n = row_count; if n <> 0 then raise exception 'FAIL A edited B profile'; end if;
++  begin
++    insert into public.profiles(user_id) values ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb');
++    raise exception 'FAIL A inserted a profile for B';
++  exception when insufficient_privilege or unique_violation then raise notice 'ok A cannot write B profile'; end;
++end $$;
++
++-- Publication RPC (the only write route for proposals): B's proposal is invisible to A.
++do $$ begin
++  begin
++    perform public.publish_ai_plan_proposal('b1000000-0000-0000-0000-000000000001');
++    raise exception 'FAIL A published B proposal';
++  exception when raise_exception then
++    if sqlerrm like 'FAIL%' then raise; end if;
++    raise notice 'ok A cannot publish B proposal (%)', sqlerrm;
++  end;
++end $$;
++
++-- Anonymous callers: nothing visible, RPC refuses.
++select pg_temp.as_user('');
++reset role; set role anon;
++do $$ begin
++  begin perform 1 from public.profiles; raise exception 'FAIL anon read profiles';
++  exception when insufficient_privilege then raise notice 'ok anon cannot read profiles'; end;
++end $$;
++
++-- Service-only quota function is not callable by clients.
++reset role; set role authenticated;
++select pg_temp.as_user('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa');
++do $$ begin
++  begin perform public.consume_assistant_turn_quota('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 10);
++    raise exception 'FAIL client called quota function';
++  exception when insufficient_privilege then raise notice 'ok client cannot call quota function'; end;
++end $$;
++reset role;
++\echo all isolation checks passed
+diff --git a/supabase/tests/auth_stub.sql b/supabase/tests/auth_stub.sql
+new file mode 100644
+index 0000000..a78057f
+--- /dev/null
++++ b/supabase/tests/auth_stub.sql
+@@ -0,0 +1,7 @@
++create schema auth;
++create table auth.users(id uuid primary key default gen_random_uuid(), email text);
++create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true),'')::uuid $$;
++create function auth.role() returns text language sql stable as $$ select coalesce(nullif(current_setting('request.jwt.claim.role', true),''),'anon') $$;
++do $$ begin create role anon nologin; exception when duplicate_object then null; end $$; do $$ begin create role authenticated nologin; exception when duplicate_object then null; end $$; do $$ begin create role service_role nologin bypassrls; exception when duplicate_object then null; end $$;
++create schema extensions;
++grant usage on schema public, auth to anon, authenticated, service_role;
+diff --git a/supabase/tests/run.sh b/supabase/tests/run.sh
+new file mode 100755
+index 0000000..932d84b
+--- /dev/null
++++ b/supabase/tests/run.sh
+@@ -0,0 +1,11 @@
++#!/usr/bin/env bash
++# Builds a throwaway local PostgreSQL database, applies every migration, runs the SQL tests, drops it.
++# Usage: PGHOST=127.0.0.1 supabase/tests/run.sh   (no secrets; local PostgreSQL superuser only)
++set -euo pipefail
++here="$(cd "$(dirname "$0")" && pwd)"
++db="gym_rls_test_$$"
++psql -d postgres -qc "create database $db"
++trap 'psql -d postgres -qc "drop database if exists $db" >/dev/null' EXIT
++psql -d "$db" -q -v ON_ERROR_STOP=1 -f "$here/auth_stub.sql"
++for f in "$here"/../migrations/*.sql; do psql -d "$db" -q -v ON_ERROR_STOP=1 -f "$f"; done
++for t in "$here"/*_*.sql; do [ "$(basename "$t")" = auth_stub.sql ] && continue; psql -d "$db" -v ON_ERROR_STOP=1 -f "$t"; done

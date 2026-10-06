@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/temoin_budget_app/apres)
+

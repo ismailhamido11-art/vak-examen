@@ -1,0 +1,88 @@
+{
+  "dossier": "/work/temoin_company_invoicing/apres",
+  "commit": "e999749419b13064009e57bf02e917af07fd60ad",
+  "debut": "2026-10-06T15:47:11.067Z",
+  "fin": "2026-10-06T15:48:45.896Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/temoin_company_invoicing/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/temoin_company_invoicing/apres",
+    "code": 0,
+    "duree_s": 18,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated fstream@1.0.12: This package is no longer supported.",
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 884 packages in 18s"
+    ],
+    "journal": "/work/temoin_company_invoicing/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/temoin_company_invoicing/apres",
+      "code": 0,
+      "duree_s": 10,
+      "erreurs": [],
+      "fin": [
+        "> company-invoicing@1.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/temoin_company_invoicing/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/temoin_company_invoicing/apres",
+      "code": 0,
+      "duree_s": 11,
+      "erreurs": [],
+      "fin": [
+        "> company-invoicing@1.0.0 lint",
+        "> eslint"
+      ],
+      "journal": "/work/temoin_company_invoicing/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/temoin_company_invoicing/apres",
+      "code": 0,
+      "duree_s": 2,
+      "erreurs": [],
+      "fin": [
+        "Duration  1.44s (import 62%, transform 24%, tests 7%, setup 5%, worker 2%)",
+        "Isolate  9 workers spawned · ~131ms startup each (spawn + environment, per file)",
+        "at least ~261ms faster with isolate: false — reuses workers across files instead of one per file"
+      ],
+      "journal": "/work/temoin_company_invoicing/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/temoin_company_invoicing/apres",
+      "code": 1,
+      "duree_s": 53,
+      "erreurs": [],
+      "fin": [
+        "}",
+        "Export encountered an error on /(auth)/reset-password/page: /reset-password, exiting the build.",
+        "⨯ Next.js build worker exited with code: 1 and signal: null"
+      ],
+      "journal": "/work/temoin_company_invoicing/apres-journaux/build.txt"
+    }
+  }
+}

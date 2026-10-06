@@ -1,0 +1,28 @@
+$ npm run test
+(dossier : /work/temoin_company_invoicing/apres)
+
+
+> company-invoicing@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /work/temoin_company_invoicing/apres
+
+ ✓ tests/unit/documents.test.ts (7 tests) 11ms
+ ✓ tests/unit/document-data.test.ts (12 tests) 30ms
+ ✓ tests/unit/validations.test.ts (16 tests) 15ms
+ ✓ tests/unit/permissions.test.ts (6 tests) 8ms
+ ✓ tests/unit/money.test.ts (9 tests) 23ms
+ ✓ tests/unit/bank-match-confidence.test.ts (6 tests) 7ms
+ ✓ tests/unit/payments-validation.test.ts (6 tests) 9ms
+ ✓ tests/unit/idle.test.ts (7 tests) 6ms
+ ✓ tests/unit/bank-import.test.ts (7 tests) 19ms
+
+ Test Files  9 passed (9)
+      Tests  76 passed (76)
+   Start at  15:47:51
+   Duration  1.44s (import 62%, transform 24%, tests 7%, setup 5%, worker 2%)
+
+    Isolate  9 workers spawned · ~131ms startup each (spawn + environment, per file)
+             at least ~261ms faster with isolate: false — reuses workers across files instead of one per file
+

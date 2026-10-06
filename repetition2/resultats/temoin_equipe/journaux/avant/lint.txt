@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/temoin_equipe/avant)
+
+
+> app@0.1.0 lint
+> eslint
+

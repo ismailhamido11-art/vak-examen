@@ -1,0 +1,16 @@
+{
+  "id": "temoin_workout_plan_companion",
+  "depot": "https://github.com/AndreuCrespo/workout-plan-companion",
+  "commit": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+  "prepare": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+  "archive": null,
+  "temoin": true,
+  "app": "/work/temoin_workout_plan_companion/app",
+  "avant": "/work/temoin_workout_plan_companion/avant.json",
+  "debut": "2026-10-06T15:35:31Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T15:36:13Z"
+}

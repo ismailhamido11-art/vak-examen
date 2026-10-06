@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/temoin_workout_plan_companion/avant/mobile)
+
+
+> mobile@0.1.0 lint
+> eslint .
+

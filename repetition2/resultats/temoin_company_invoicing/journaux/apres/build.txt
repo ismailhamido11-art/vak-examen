@@ -1,0 +1,30 @@
+$ npm run build
+(dossier : /work/temoin_company_invoicing/apres)
+
+
+> company-invoicing@1.0.0 build
+> next build --webpack
+
+▲ Next.js 16.3.6 (webpack)
+✓ Running next.config.mjs took 13ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 33.4s
+  Running TypeScript ...
+  Finished TypeScript in 11.0s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/45) ...
+  Generating static pages using 3 workers (11/45) 
+  Generating static pages using 3 workers (22/45) 
+  Generating static pages using 3 workers (33/45) 
+Error occurred prerendering page "/reset-password". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Missing required environment variable: NEXT_PUBLIC_SUPABASE_URL
+    at d (.next/server/chunks/8312.js:1:23292)
+    at f (.next/server/chunks/8312.js:1:23422)
+    at f (.next/server/chunks/8312.js:1:36101)
+    at <unknown> (.next/server/app/api/pdf/credit-notes/[id]/route.js:1:14471)
+    at h (.next/server/app/(auth)/login/page.js:1:5332) {
+  digest: '400856348'
+}
+Export encountered an error on /(auth)/reset-password/page: /reset-password, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,16 @@
+{
+  "id": "temoin_demarre",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/demarre.bundle",
+  "commit": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+  "prepare": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+  "archive": null,
+  "temoin": true,
+  "app": "/work/temoin_demarre/app",
+  "avant": "/work/temoin_demarre/avant.json",
+  "debut": "2026-10-06T15:13:51Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T15:14:24Z"
+}

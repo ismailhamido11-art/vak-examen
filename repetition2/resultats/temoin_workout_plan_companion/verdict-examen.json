@@ -1,0 +1,133 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "temoin_workout_plan_companion",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "mobile/package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "mobile/package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "9 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "sql-a-la-main",
+          "ligne": 43,
+          "heure": "15:36:27",
+          "detail": "rôle créé à la main : create role anon",
+          "commande": "cd /work/temoin_workout_plan_companion/app/supabase && psql -h 127.0.0.1 -d postgres -qc 'drop database if exists gym_rls_test' -c 'create database gym_rls_test' && cat > /tmp/stub.sql <<'EOF' create schema auth; create table auth.users(id uuid primary key default gen_random_uuid(), email text); create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('reque…"
+        }
+      ]
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {},
+      "installation": {
+        "avant": {
+          "ok": false
+        },
+        "apres": {
+          "ok": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 4,
+      "code": "journal-sql-a-la-main",
+      "resume": "rôle, extension ou table créé à la main (1 fois)",
+      "preuve": [
+        "journal ligne 43 (15:36:27) : rôle créé à la main : create role anon — commande : cd /work/temoin_workout_plan_companion/app/supabase && psql -h 127.0.0.1 -d postgres -qc 'drop database if exists gym_rls_test' -c 'create database gym_rls_test' && cat > /tmp/stub.sql <<'EOF' create…"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    }
+  ],
+  "notes": [
+    "installation impossible avant et après : vérifications non comparables"
+  ],
+  "entree": {
+    "essai": "/srv/essais/temoin_workout_plan_companion",
+    "preparation": {
+      "id": "temoin_workout_plan_companion",
+      "depot": "https://github.com/AndreuCrespo/workout-plan-companion",
+      "commit": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+      "prepare": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+      "archive": null,
+      "debut": "2026-10-06T15:35:31Z"
+    },
+    "tip": "37e8d145bf112df47b5422189955a1dcfa170d27",
+    "commitsAgent": 1,
+    "appsVak": []
+  },
+  "journal": {
+    "entrees": 31,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+      "gestionnaire": null,
+      "installation": {
+        "ok": false,
+        "raison": "aucun verrou ni package.json"
+      },
+      "verifs": {}
+    },
+    "head": {
+      "revision": "37e8d145bf112df47b5422189955a1dcfa170d27",
+      "gestionnaire": null,
+      "installation": {
+        "ok": false,
+        "raison": "aucun verrou ni package.json"
+      },
+      "verifs": {}
+    }
+  },
+  "fin": "2026-10-06T15:37:54.590Z"
+}

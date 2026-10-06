@@ -1,0 +1,399 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "temoin_budget_app",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "genre": "verrou",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "8 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "sql-a-la-main",
+          "ligne": 51,
+          "heure": "15:24:45",
+          "detail": "table créé à la main : create table",
+          "commande": "cat > supabase/migrations/202611060001_assistant_proposals.sql <<'EOF' -- AI assistant: write actions are stored as proposals and only applied after -- the owner explicitly confirms them. create type assistant_proposal_status as enum ('pending', 'applied', 'rejected', 'failed'); create table public.assistant_proposals ( id uuid primary key default gen_random_uuid(), user_id uuid not null default …"
+        },
+        {
+          "code": "sql-a-la-main",
+          "ligne": 51,
+          "heure": "15:24:45",
+          "detail": "rôle créé à la main : create role authenticated",
+          "commande": "cat > supabase/migrations/202611060001_assistant_proposals.sql <<'EOF' -- AI assistant: write actions are stored as proposals and only applied after -- the owner explicitly confirms them. create type assistant_proposal_status as enum ('pending', 'applied', 'rejected', 'failed'); create table public.assistant_proposals ( id uuid primary key default gen_random_uuid(), user_id uuid not null default …"
+        },
+        {
+          "code": "sql-a-la-main",
+          "ligne": 63,
+          "heure": "15:25:22",
+          "detail": "rôle créé à la main : create role authenticated",
+          "commande": "python3 - <<'EOF' p='supabase/migrations/202611060001_assistant_proposals.sql' s=open(p).read() s=s.replace(\"for update using (auth.uid() = user_id and status = 'pending')\",\"for update using (auth.uid() = user_id and status in ('pending', 'applied'))\") s=s.replace(\"-- Owner may only resolve a pending proposal; payload/action/user stay immutable.\",\"-- Owner may resolve a pending proposal (claim = …"
+        }
+      ]
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": false,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 10,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 18,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 23,
+            "erreurs": 1
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 1,
+            "nouvelles": [
+              "(.next/server/app/api/receipts/jobs/[jobId]/route.js:6 at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)"
+            ],
+            "generique": true
+          },
+          "etat": "échec"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 1,
+      "code": "rien-livre",
+      "resume": "l'agent n'a rien écrit et n'a pas dit que l'app n'est pas prise en charge",
+      "preuve": [
+        "HEAD = commit de préparation f1f3ef1b"
+      ]
+    },
+    {
+      "point": 4,
+      "code": "journal-sql-a-la-main",
+      "resume": "rôle, extension ou table créé à la main (3 fois)",
+      "preuve": [
+        "journal ligne 51 (15:24:45) : table créé à la main : create table — commande : cat > supabase/migrations/202611060001_assistant_proposals.sql <<'EOF' -- AI assistant: write actions are stored as proposals and only applied after -- the owner explicitly confirms them. create type…",
+        "journal ligne 51 (15:24:45) : rôle créé à la main : create role authenticated — commande : cat > supabase/migrations/202611060001_assistant_proposals.sql <<'EOF' -- AI assistant: write actions are stored as proposals and only applied after -- the owner explicitly confirms them. create type…",
+        "journal ligne 63 (15:25:22) : rôle créé à la main : create role authenticated — commande : python3 - <<'EOF' p='supabase/migrations/202611060001_assistant_proposals.sql' s=open(p).read() s=s.replace(\"for update using (auth.uid() = user_id and status = 'pending')\",\"for update using (auth.ui…"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    },
+    {
+      "point": 2,
+      "code": "build-erreurs",
+      "resume": "build : la liste d'erreurs s'allonge (0 → 1, 1 nouvelle(s))",
+      "preuve": [
+        "(.next/server/app/api/receipts/jobs/[jobId]/route.js:6 at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)"
+      ]
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/temoin_budget_app",
+    "preparation": {
+      "id": "temoin_budget_app",
+      "depot": "https://github.com/AndrerezaMedya/budget-app",
+      "commit": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+      "prepare": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+      "archive": null,
+      "debut": "2026-10-06T15:23:27Z"
+    },
+    "tip": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+    "commitsAgent": 0,
+    "appsVak": []
+  },
+  "journal": {
+    "entrees": 27,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ tailwindcss 3.4.18",
+          "+ typescript 5.9.3",
+          " WARN  Failed to create bin at /srv/verdicts/temoin_budget_app/clones/prep/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/srv/verdicts/temoin_budget_app/clones/prep/node_modules/supabase/bin/supabase'",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.33.5, sharp@0.34.5, supabase@2.54.11,       │",
+          "│   tesseract.js@5.1.1, unrs-resolver@1.11.1.                                  │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 18s using pnpm v10.33.0"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 0,
+          "delai": false,
+          "secondes": 8,
+          "erreurs": 0,
+          "liste": [],
+          "fin": []
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint /srv/verdicts/temoin_budget_app/clones/prep",
+            "> eslint",
+            "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`"
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : next build",
+          "code": 1,
+          "delai": false,
+          "secondes": 18,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "    at module evaluation (.next/server/chunks/821c6_next_dist_94679f53._.js:1:348)",
+            "    at instantiateModule (.next/server/chunks/[turbopack]_runtime.js:715:9)",
+            "    at instantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:743:12)",
+            "    at getOrInstantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:756:12)",
+            "    at Object.m (.next/server/chunks/[turbopack]_runtime.js:765:18)",
+            "    at Object.<anonymous> (.next/server/app/api/overview/charts/route.js:8:3)",
+            "> Build error occurred",
+            "Error: Failed to collect page data for /api/overview/charts",
+            "    at ignore-listed frames {",
+            "  type: 'Error'",
+            "}",
+            " ELIFECYCLE  Command failed with exit code 1."
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ tailwindcss 3.4.18",
+          "+ typescript 5.9.3",
+          " WARN  Failed to create bin at /srv/verdicts/temoin_budget_app/clones/head/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/srv/verdicts/temoin_budget_app/clones/head/node_modules/supabase/bin/supabase'",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.33.5, sharp@0.34.5, supabase@2.54.11,       │",
+          "│   tesseract.js@5.1.1, unrs-resolver@1.11.1.                                  │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 2.2s using pnpm v10.33.0"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 0,
+          "delai": false,
+          "secondes": 8,
+          "erreurs": 0,
+          "liste": [],
+          "fin": []
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 10,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint /srv/verdicts/temoin_budget_app/clones/head",
+            "> eslint",
+            "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`"
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : next build",
+          "code": 1,
+          "delai": false,
+          "secondes": 23,
+          "erreurs": 1,
+          "liste": [
+            "(.next/server/app/api/receipts/jobs/[jobId]/route.js:6 at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)"
+          ],
+          "fin": [
+            "    at module evaluation (.next/server/chunks/[root-of-the-server]__99278d40._.js:1:1277)",
+            "    at instantiateModule (.next/server/chunks/[turbopack]_runtime.js:715:9)",
+            "    at instantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:743:12)",
+            "    at getOrInstantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:756:12)",
+            "    at Object.m (.next/server/chunks/[turbopack]_runtime.js:765:18)",
+            "    at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)",
+            "> Build error occurred",
+            "Error: Failed to collect page data for /api/receipts/jobs/[jobId]",
+            "    at ignore-listed frames {",
+            "  type: 'Error'",
+            "}",
+            " ELIFECYCLE  Command failed with exit code 1."
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T15:28:49.631Z"
+}

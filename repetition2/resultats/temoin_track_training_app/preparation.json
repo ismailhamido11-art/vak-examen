@@ -1,0 +1,16 @@
+{
+  "id": "temoin_track_training_app",
+  "depot": "https://github.com/aprescod12/track-training-app",
+  "commit": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+  "prepare": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+  "archive": null,
+  "temoin": true,
+  "app": "/work/temoin_track_training_app/app",
+  "avant": "/work/temoin_track_training_app/avant.json",
+  "debut": "2026-10-06T15:28:58Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T15:29:52Z"
+}

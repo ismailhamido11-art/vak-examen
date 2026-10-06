@@ -1,0 +1,90 @@
+{
+  "dossier": "/work/temoin_track_training_app/avant",
+  "commit": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+  "debut": "2026-10-06T15:29:01.309Z",
+  "fin": "2026-10-06T15:29:41.045Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/temoin_track_training_app/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/temoin_track_training_app/avant",
+    "code": 0,
+    "duree_s": 20,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+      "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+      "added 1161 packages in 19s"
+    ],
+    "journal": "/work/temoin_track_training_app/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/temoin_track_training_app/avant",
+      "code": 0,
+      "duree_s": 7,
+      "erreurs": [],
+      "fin": [
+        "> track-training@1.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/temoin_track_training_app/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/temoin_track_training_app/avant",
+      "code": 0,
+      "duree_s": 5,
+      "erreurs": [],
+      "fin": [
+        "1:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars",
+        "✖ 12 problems (0 errors, 12 warnings)",
+        "0 errors and 3 warnings potentially fixable with the `--fix` option."
+      ],
+      "journal": "/work/temoin_track_training_app/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/temoin_track_training_app/avant",
+      "code": 0,
+      "duree_s": 3,
+      "erreurs": [],
+      "fin": [
+        "Snapshots:   0 total",
+        "Time:        1.894 s",
+        "Ran all test suites."
+      ],
+      "journal": "/work/temoin_track_training_app/avant-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/temoin_track_training_app/avant",
+      "code": 1,
+      "duree_s": 6,
+      "erreurs": [],
+      "fin": [
+        "at f (/work/temoin_track_training_app/avant/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stabl",
+        "at a (/work/temoin_track_training_app/avant/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stabl",
+        "at i (/work/temoin_track_training_app/avant/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stabl"
+      ],
+      "journal": "/work/temoin_track_training_app/avant-journaux/build.txt"
+    }
+  }
+}

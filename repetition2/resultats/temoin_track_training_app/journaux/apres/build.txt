@@ -1,0 +1,42 @@
+$ expo export --platform web
+(dossier : /work/temoin_track_training_app/apres)
+
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+| (node:192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:199) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 78.3% (800/918)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 87.4% (1622/1735)
+λ Bundled 2788ms node_modules/expo-router/node/render.js (1878 modules)
+λ  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect. 
+
+Metro error: Missing EXPO_PUBLIC_SUPABASE_URL.
+
+  Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+    at s (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:927:968)
+    at e.getEnvironmentConfig (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:927:259)
+    at /work/temoin_track_training_app/apres/node_modules/@supabase/supabase-js/dist/index.mjs:407:1
+    at f (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1556)
+    at r (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+    at /work/temoin_track_training_app/apres/app/calendar/add-event.tsx:3:1
+    at f (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1484)
+    at i (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+    at s (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:927:968)
+    at e.getEnvironmentConfig (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:927:259)
+    at /work/temoin_track_training_app/apres/node_modules/@supabase/supabase-js/dist/index.mjs:407:1
+    at f (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1556)
+    at r (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+    at /work/temoin_track_training_app/apres/app/calendar/add-event.tsx:3:1
+    at f (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1484)
+    at i (/work/temoin_track_training_app/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)

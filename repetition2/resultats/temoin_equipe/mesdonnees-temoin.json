@@ -1,0 +1,70 @@
+{
+  "id": "temoin_equipe",
+  "regle": "REGLE.md, « Le groupe témoin » : trois questions « combien de mes … ? » en tant que A, nombres exacts, aucun marqueur de B",
+  "methode": "questions et lecture des nombres du juge des essais de vak (mesdonnees/juger.mjs) ; trois premières tables d'attendu.json",
+  "interface": "Route d'API Next.js /api/assistant de l'agent, servie par `next start` sur la pile témoin : bash vak-examen/temoin-pile.sh up temoin_equipe <état> ; bash vak-examen/temoin-servir.sh next temoin_equipe <état> 3100 ANTHROPIC_API_KEY=@DEEPSEEK_API_KEY@ ANTHROPIC_MODEL=deepseek-flash. Adaptation : URL du fournisseur (api.anthropic.com → api.deepseek.com/anthropic), dans la copie servie. Question : POST /api/assistant en tant que A, une conversation neuve par question ; réponse lue : `reply`.",
+  "demander": "repetition2/resultats/temoin_equipe/demander-temoin.mjs",
+  "mesure": "mesuré",
+  "questions": [
+    {
+      "table": "public.teams",
+      "question": "Combien de mes équipes ?",
+      "attendu": 3,
+      "attendu_graine": 3,
+      "reponse": "Vous avez **3 équipes** (vous en êtes propriétaire) :\n\n1. Équipe Menuiserie\n2. Équipe Peinture\n3. Équipe Toiture",
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.team_members",
+      "question": "Combien de mes adhésions ?",
+      "attendu": 3,
+      "attendu_graine": 3,
+      "reponse": "Vous avez **3 adhésions** (3 équipes), toutes avec le rôle **propriétaire** :\n\n1. Équipe Menuiserie\n2. Équipe Peinture\n3. Équipe Toiture",
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.tasks",
+      "question": "Combien de mes tâches ?",
+      "attendu": 9,
+      "attendu_graine": 9,
+      "reponse": "Vous avez **9 tâches assignées** : 4 terminées et **5 en cours**.\n\nDétail des tâches restantes :\n- Poser les étagères — échéance 12/03/2026\n- Découper le plan de travail — 15/04/2026\n- Vérifier la charpente — 03/06/2026\n- Commander les tuiles — 10/06/2026\n- Protéger les sols — sans échéance\n\nVoulez-vous que je filtre par chantier ou par état ?",
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          4,
+          5
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 10
+  },
+  "chiffres_exacts": true,
+  "aucune_fuite": true
+}

@@ -86,6 +86,10 @@ do \$\$ begin
 end \$\$;
 alter role examen_pile with login password '$MDP';
 grant anon, authenticated to examen_pile;
+-- Une interface qui écrit avec la clé service_role (comme sur Supabase) : le rôle, s'il existe dans la base.
+do \$\$ begin
+  if exists (select 1 from pg_roles where rolname = 'service_role') then grant service_role to examen_pile; end if;
+end \$\$;
 SQL
 PG_PORT="$(port_libre)"
 NOM_BASE="${DB##*/}"; NOM_BASE="${NOM_BASE%%\?*}"

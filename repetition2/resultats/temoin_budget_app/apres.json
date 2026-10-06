@@ -1,0 +1,78 @@
+{
+  "dossier": "/work/temoin_budget_app/apres",
+  "commit": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+  "debut": "2026-10-06T15:26:11.288Z",
+  "fin": "2026-10-06T15:27:04.510Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": null,
+    "lanceur": "pnpm",
+    "verrous": [
+      "pnpm-lock.yaml",
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/temoin_budget_app/apres-journaux",
+  "installation": {
+    "commande": "pnpm install --frozen-lockfile",
+    "dossier": "/work/temoin_budget_app/apres",
+    "code": 0,
+    "duree_s": 18,
+    "erreurs": [],
+    "fin": [
+      "│                                                                              │",
+      "╰──────────────────────────────────────────────────────────────────────────────╯",
+      "Done in 18s using pnpm v10.33.0"
+    ],
+    "journal": "/work/temoin_budget_app/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/temoin_budget_app/apres",
+      "code": 0,
+      "duree_s": 7,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/temoin_budget_app/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "pnpm run lint",
+      "dossier": "/work/temoin_budget_app/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "> app@0.1.0 lint /work/temoin_budget_app/apres",
+        "> eslint",
+        "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`"
+      ],
+      "journal": "/work/temoin_budget_app/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "pnpm run build",
+      "dossier": "/work/temoin_budget_app/apres",
+      "code": 1,
+      "duree_s": 18,
+      "erreurs": [],
+      "fin": [
+        "type: 'Error'",
+        "}",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/temoin_budget_app/apres-journaux/build.txt"
+    }
+  }
+}

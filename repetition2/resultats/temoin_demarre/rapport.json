@@ -1,0 +1,151 @@
+{
+  "id": "temoin_demarre",
+  "verdict": "échec",
+  "raisons": [
+    "vak non installé : supabase/functions/vak/vak.lock.json absent du commit final"
+  ],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [],
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/demarre.bundle",
+  "commit": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+  "prepare": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+  "head": "3c9d7ca0a84457a4d24b43faeeccaea7621bf0f2",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "3c9d7ca0a84457a4d24b43faeeccaea7621bf0f2",
+      "date": "2026-10-06T15:15:49+00:00",
+      "sujet": "Assistant IA : Edge Function (lecture sous RLS) + écritures validées par l'utilisateur"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": null,
+    "commitees": [],
+    "vakInstalle": null
+  },
+  "controle": {
+    "debut": "2026-10-06T15:18:22.675Z",
+    "fin": "2026-10-06T15:18:57.852Z",
+    "duree_s": 35,
+    "node": "v22.22.2"
+  },
+  "vak": {},
+  "preuve": {
+    "commite": null,
+    "controle": null
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 18,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 14,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 2,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 2,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 3,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 4,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "absent",
+      "raison": "pas de script test"
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "expo export --platform web",
+        "code": 0,
+        "duree_s": 3,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "expo export --platform web",
+        "code": 0,
+        "duree_s": 3,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          849,
+          849
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A src/app/assistant.tsx",
+      "A src/lib/assistant.ts"
+    ],
+    "aRelire": [
+      "M src/app/_layout.tsx",
+      "M src/app/index.tsx",
+      "A supabase/functions/assistant/index.ts",
+      "M tsconfig.json"
+    ]
+  }
+}

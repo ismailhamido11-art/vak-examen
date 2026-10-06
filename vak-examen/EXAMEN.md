@@ -246,6 +246,8 @@ Conséquences :
   répond pas aux questions « combien ».
 - Le verdict de l'examen ne change pas : `RESULTAT.json` est recalculé, et un faux « c'est fait » reste
   (workout_plan_companion_1).
+- Confirmé par le groupe témoin : temoin_budget_app n'a rien commité, son code est donc identique avant et après. Il
+  reçoit pourtant le même « 0 → 1 », sur la même route.
 
 ## Le groupe témoin « sans vak »
 
@@ -259,4 +261,39 @@ champs que les essais de vak. [`temoin.sh`](temoin.sh) les joue l'un après l'au
   en tant que A, trois questions « combien de mes … ? », à la main si besoin. Si cette interface ne peut pas être
   servie ou interrogée, ce critère est « non mesuré ».
 
-Les résultats seront publiés ici, quels qu'ils soient.
+### Les résultats (06/10, 15:13 à 16:10 UTC)
+
+| Essai témoin | Agent | Commit | Point 2 | « Mes données » |
+|---|---|---|---|---|
+| temoin_demarre | 1,5 min | oui | vrai | 2 réponses justes sur 2 (l'app n'a que deux tables « à moi ») ; aucune fuite |
+| temoin_equipe | 1,8 min | oui | vrai | 3 sur 3 ; aucune fuite |
+| temoin_fonctions | 1,1 min | oui | faux : typecheck 0 → 6 erreurs (la fonction Deno n'est pas exclue de `tsc`) | 1 sur 2 (pour les dépenses, il demande le mois) ; aucune fuite |
+| temoin_budget_app | 1,8 min | non | faux, mais c'est le défaut du contrôleur vu plus haut : le code est identique avant et après | non mesuré : rien de commité |
+| temoin_track_training_app | 3,5 min | oui | vrai | 2 sur 3 (le calendrier : « je n'y ai pas accès ») ; aucune fuite |
+| temoin_workout_plan_companion | 1,0 min | oui, des tests seulement | vrai | non mesuré : l'assistant est celui que l'app avait déjà, et DeepSeek refuse son appel au modèle |
+| temoin_company_invoicing | 7,2 min | non | vrai (rien n'a changé) | non mesuré : rien de commité |
+
+« Mes données » : chaque interface est servie sur une pile comme celle des essais de vak, avec la graine de l'app et
+DeepSeek. Les questions et la lecture des nombres sont celles du juge des essais de vak. Les trois premières tables de
+la graine sont interrogées, ou toutes s'il y en a moins. Les seules adaptations du code de l'agent ont été faites dans la
+copie servie :
+- l'URL du fournisseur, écrite en dur, devient celle de l'API compatible de DeepSeek ;
+- un identifiant de modèle écrit en dur devient `deepseek-flash`.
+
+Chaque essai publie son module d'appel (`demander-temoin.mjs`) et sa mesure (`mesdonnees-temoin.json`).
+
+Ce qu'on peut en lire, sans plus :
+- les agents sans vak finissent vite (1 à 7 minutes), mais deux sur sept n'ont rien commité ;
+- sur les questions qu'on a pu poser, 8 réponses sur 10 sont justes, et aucune donnée de B n'apparaît ;
+- rien n'y est prouvé : ni la séparation des comptes au-delà de ces questions, ni la validation avant écriture, ni une
+  étiquette.
+
+Deux défauts du lanceur, et une erreur de ma part, sont publiés avec les résultats :
+- **Le contrôle de répétition plantait sur un essai témoin** (`repetition2/controle.mjs` lisait l'archive de vak, absente
+  du témoin). C'est une panne du lanceur, réparée pendant le groupe témoin. temoin_demarre n'a pas été rejoué : l'agent
+  avait fini (code 0) quand le contrôle a planté, et seul son contrôle a été refait.
+- En refaisant ce contrôle, j'ai lancé `controle.mjs` à la main. Il vide le dossier de résultats : la transcription, le
+  chrono et `lanceur.json` ont disparu. La transcription et le chrono ont été recopiés depuis la session de l'agent, à
+  l'identique.
+- En refaisant `lanceur.json`, j'ai écrasé par erreur le flux brut de l'agent (`/work/temoin_demarre/agent.jsonl`). Le
+  nombre de tours et le coût n'existaient que là : ils sont inconnus. La fiche refaite le dit (`reconstruit`).
