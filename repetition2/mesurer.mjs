@@ -252,13 +252,44 @@ function webDeclare(dir, pkg) {
 }
 const PAS_DE_TEST = /no test specified/;
 
+/**
+ * Sous-dossiers (3 niveaux au plus, sans node_modules, vendor ni dossiers cachés) dont le package.json est une app Next
+ * ou Expo : pour une app sans package.json à la racine, rangée par exemple dans mobile/ à côté de supabase/.
+ */
+function appsSousDossiers(racine) {
+  const out = [];
+  const visiter = (d, profondeur) => {
+    if (profondeur > 3) return;
+    let entrees;
+    try { entrees = readdirSync(d, { withFileTypes: true }); } catch { return; }
+    for (const e of entrees) {
+      if (!e.isDirectory() || e.name.startsWith(".") || e.name === "node_modules" || e.name === "vendor") continue;
+      const sd = join(d, e.name);
+      if (typeApp(lireJson(join(sd, "package.json")))) out.push(sd);
+      else visiter(sd, profondeur + 1);
+    }
+  };
+  visiter(racine, 1);
+  return out;
+}
+
 export async function mesurer(dirArg, sortieArg) {
-  const DIR = realpathSync(resolve(dirArg));
+  let DIR = realpathSync(resolve(dirArg));
   const SORTIE = resolve(sortieArg);
   const JOURNAUX = `${SORTIE.replace(/\.json$/, "")}-journaux`;
   rmSync(JOURNAUX, { recursive: true, force: true });
   mkdirSync(JOURNAUX, { recursive: true });
-  const pkg = lireJson(join(DIR, "package.json"));
+  let pkg = lireJson(join(DIR, "package.json"));
+  // Examen, 06/10 (panne de workout_plan_companion_1) : sans package.json à la racine, l'app d'un seul sous-dossier est
+  // mesurée là. Rien ne change pour une app qui a un package.json à la racine.
+  if (!pkg) {
+    const sous = appsSousDossiers(DIR);
+    if (sous.length === 1) {
+      console.log(`  pas de package.json à la racine : app mesurée dans ${relative(DIR, sous[0])}/`);
+      DIR = sous[0];
+      pkg = lireJson(join(DIR, "package.json"));
+    }
+  }
   if (!pkg) throw new Error(`package.json absent ou illisible : ${DIR}`);
   const pm = gestionnaire(DIR, pkg);
   const ws = espaces(DIR, pkg);

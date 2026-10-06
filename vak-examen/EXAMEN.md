@@ -47,3 +47,20 @@ mécaniquement pour chaque essai, avec le même motif sans ce défaut : [`releve
 
 Le relevé est publié avec les résultats de chaque essai (`releve-ignore.json`, `releve.json`), et `resultat.mjs` en
 tient compte.
+
+### 06/10, 13:05 : une panne du lanceur répare la mesure d'une app rangée dans un sous-dossier
+
+`workout_plan_companion_1` n'a pas tourné : sa préparation s'est arrêtée en 3 secondes, avant l'agent, sur « ✗ mesure
+impossible : package.json absent ou illisible » (`repetition2/resultats/workout_plan_companion_1-panne-1/`). Cette app
+range son code Expo dans `mobile/`, à côté de `supabase/`, sans `package.json` à la racine. La mesure « avant » du
+lanceur (`repetition2/mesurer.mjs`) ne cherchait l'app qu'à la racine.
+
+La règle : « seule une panne qui empêche un essai de tourner se répare : la réparation est publiée, et l'essai touché
+est rejoué ». Sans `package.json` à la racine, `mesurer.mjs` mesure désormais l'app du seul sous-dossier (3 niveaux au
+plus) qui en contient une. Pour une app qui a un `package.json` à la racine, rien ne change. Le texte que reçoit
+l'agent, la bulle, la transcription et la limite de temps ne changent pas. Cette mesure ne sert qu'au contrôleur des
+répétitions, qui ne compte pas. Le contrôleur scellé, figé, fait ses propres mesures, et son verdict sera publié tel
+quel.
+
+`workout_plan_companion_1` est rejoué à neuf après les autres essais de la liste. `workout_plan_companion_2`, plus loin
+dans la liste, part avec la réparation.
