@@ -1,0 +1,47 @@
+$ vak prove
+(dossier : /work/budget_app_1/apres)
+
+✓ base base éprouvée = photographie (schema.gen.ts), fonctions de politique comprises
+✓ accounts éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 59 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »
+✓ budgets éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 25 ligne(s) de A ajoutée(s) ; 9 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « period 0 a »
+✓ categories éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »
+✓ category_monthly_summaries éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - totaux de read_data : 25 ligne(s) de A ajoutée(s) ; 4 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A
+✓ payees éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »
+✓ transactions éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 71 ligne(s) de A ajoutée(s) aux bornes des périodes ; 44 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A
+base locale vak_prove_365eb4b4 construite (12 migration(s)) puis supprimée
+preuve à deux comptes : éprouvé (6 éprouvée(s), 0 en échec, 0 non prouvée(s) ; 192 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]

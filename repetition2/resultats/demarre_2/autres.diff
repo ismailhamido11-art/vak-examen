@@ -1,0 +1,91 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index 064236f..89332bc 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,23 +1,31 @@
+-import { Stack } from 'expo-router';
++import { AgentButton } from '@vak/agent/native';
++import { type Href, Stack, useRouter } from 'expo-router';
+ import { StatusBar } from 'expo-status-bar';
+-import { ActivityIndicator } from 'react-native';
++import { ActivityIndicator, View } from 'react-native';
+ import { AuthProvider, useAuth } from '../lib/auth';
++import { vak } from '../lib/vak';
+ 
+ function Routes() {
+   const { session, loading } = useAuth();
++  const router = useRouter();
+   if (loading) return <ActivityIndicator style={{ flex: 1 }} />;
+   return (
+-    <Stack>
+-      <Stack.Protected guard={!!session}>
+-        <Stack.Screen name="index" options={{ title: 'Mes livres' }} />
+-        <Stack.Screen name="add-book" options={{ title: 'Ajouter un livre', presentation: 'modal' }} />
+-        <Stack.Screen name="book/[id]" options={{ title: 'Livre' }} />
+-        <Stack.Screen name="add-session" options={{ title: 'Ajouter une séance', presentation: 'modal' }} />
+-      </Stack.Protected>
+-      <Stack.Protected guard={!session}>
+-        <Stack.Screen name="login" options={{ title: 'Connexion' }} />
+-      </Stack.Protected>
+-    </Stack>
++    <View style={{ flex: 1 }}>
++      <Stack>
++        <Stack.Protected guard={!!session}>
++          <Stack.Screen name="index" options={{ title: 'Mes livres' }} />
++          <Stack.Screen name="add-book" options={{ title: 'Ajouter un livre', presentation: 'modal' }} />
++          <Stack.Screen name="book/[id]" options={{ title: 'Livre' }} />
++          <Stack.Screen name="add-session" options={{ title: 'Ajouter une séance', presentation: 'modal' }} />
++          <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++          <Stack.Screen name="reglages" options={{ title: 'Réglages' }} />
++        </Stack.Protected>
++        <Stack.Protected guard={!session}>
++          <Stack.Screen name="login" options={{ title: 'Connexion' }} />
++        </Stack.Protected>
++      </Stack>
++      {session && <AgentButton {...vak} label="Assistant" navigate={(href) => router.push(href as Href)} />}
++    </View>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 7bef426..f3d61a0 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -46,7 +46,12 @@ export default function Books() {
+             </Pressable>
+           </Link>
+         )}
+-        ListFooterComponent={<Button title="Se déconnecter" onPress={() => supabase.auth.signOut()} secondary />}
++        ListFooterComponent={
++          <>
++            <Button title="Réglages de l’assistant" onPress={() => router.push('/reglages')} secondary />
++            <Button title="Se déconnecter" onPress={() => supabase.auth.signOut()} secondary />
++          </>
++        }
+       />
+     </View>
+   );
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..e06c239
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,6 @@
++import { AgentSettings } from '@vak/agent/native';
++import { vak } from '../lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index b9567f6..382119d 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -2,5 +2,6 @@
+   "extends": "expo/tsconfig.base",
+   "compilerOptions": {
+     "strict": true
+-  }
++  },
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

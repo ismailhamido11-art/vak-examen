@@ -1,0 +1,18 @@
+{
+  "id": "demarre_1",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/demarre.bundle",
+  "commit": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+  "prepare": "a3082ceb599474cc9e89a187adc3d7a6d0c328be",
+  "archive": {
+    "nom": "vak-agent-0.24.3.tgz",
+    "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+  },
+  "app": "/work/demarre_1/app",
+  "avant": "/work/demarre_1/avant.json",
+  "debut": "2026-10-06T12:11:19Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T12:11:48Z"
+}

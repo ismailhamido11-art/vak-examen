@@ -1,0 +1,202 @@
+{
+  "id": "track_training_app_1",
+  "echecs_de_preuve": [
+    {
+      "table": "field_attempts",
+      "verdict": "non prouvé",
+      "ligne": 229,
+      "texte": "✗ field_attempts non prouvé"
+    },
+    {
+      "table": "workout_entries",
+      "verdict": "non prouvé",
+      "ligne": 229,
+      "texte": "✗ workout_entries non prouvé"
+    },
+    {
+      "table": "workouts",
+      "verdict": "non prouvé",
+      "ligne": 229,
+      "texte": "✗ workouts non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "exercise_prs",
+      "ligne": 67
+    },
+    {
+      "nom": "achievements",
+      "ligne": 68
+    },
+    {
+      "nom": "athlete_assignment_inbox_v",
+      "ligne": 69
+    },
+    {
+      "nom": "coach_assignment_dashboard_v",
+      "ligne": 70
+    },
+    {
+      "nom": "coach_athlete_assignments",
+      "ligne": 71
+    },
+    {
+      "nom": "coach_training_permissions",
+      "ligne": 72
+    },
+    {
+      "nom": "entity_claims",
+      "ligne": 73
+    },
+    {
+      "nom": "field_event_bests_v",
+      "ligne": 74
+    },
+    {
+      "nom": "friendships",
+      "ligne": 75
+    },
+    {
+      "nom": "organization_affiliation_requests",
+      "ligne": 76
+    },
+    {
+      "nom": "organization_memberships",
+      "ligne": 77
+    },
+    {
+      "nom": "organizations",
+      "ligne": 78
+    },
+    {
+      "nom": "team_group_memberships",
+      "ligne": 79
+    },
+    {
+      "nom": "team_groups",
+      "ligne": 80
+    },
+    {
+      "nom": "team_invitations",
+      "ligne": 81
+    },
+    {
+      "nom": "team_memberships",
+      "ligne": 82
+    },
+    {
+      "nom": "team_workout_summary_v",
+      "ligne": 83
+    },
+    {
+      "nom": "teams",
+      "ligne": 84
+    },
+    {
+      "nom": "verification_requests",
+      "ligne": 85
+    },
+    {
+      "nom": "workout_assignment_entries",
+      "ligne": 86
+    },
+    {
+      "nom": "workout_assignment_recipients",
+      "ligne": 87
+    },
+    {
+      "nom": "workout_assignment_submissions",
+      "ligne": 88
+    },
+    {
+      "nom": "workout_assignment_targets",
+      "ligne": 89
+    },
+    {
+      "nom": "workout_assignments",
+      "ligne": 90
+    },
+    {
+      "nom": "workout_summary_v",
+      "ligne": 91
+    },
+    {
+      "nom": "workout_template_entries",
+      "ligne": 92
+    },
+    {
+      "nom": "workout_templates",
+      "ligne": 93
+    },
+    {
+      "nom": "accept_team_invitation",
+      "ligne": 94
+    },
+    {
+      "nom": "assign_coach_to_athlete",
+      "ligne": 95
+    },
+    {
+      "nom": "attach_workout_to_assignment",
+      "ligne": 96
+    },
+    {
+      "nom": "cancel_workout_assignment",
+      "ligne": 97
+    },
+    {
+      "nom": "close_workout_assignment",
+      "ligne": 98
+    },
+    {
+      "nom": "create_organization",
+      "ligne": 99
+    },
+    {
+      "nom": "create_team",
+      "ligne": 100
+    },
+    {
+      "nom": "create_workout_assignment",
+      "ligne": 101
+    },
+    {
+      "nom": "end_coach_athlete_assignment",
+      "ligne": 102
+    },
+    {
+      "nom": "is_username_available",
+      "ligne": 103
+    },
+    {
+      "nom": "parse_time_to_seconds",
+      "ligne": 104
+    },
+    {
+      "nom": "request_organization_affiliation",
+      "ligne": 105
+    },
+    {
+      "nom": "request_verification",
+      "ligne": 106
+    },
+    {
+      "nom": "resolve_organization_affiliation",
+      "ligne": 107
+    },
+    {
+      "nom": "review_workout_assignment_submission",
+      "ligne": 108
+    },
+    {
+      "nom": "submit_entity_claim",
+      "ligne": 109
+    },
+    {
+      "nom": "submit_workout_assignment",
+      "ligne": 110
+    }
+  ],
+  "relevees": []
+}

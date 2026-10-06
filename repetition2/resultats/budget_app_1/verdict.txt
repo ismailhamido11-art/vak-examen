@@ -1,0 +1,60 @@
+verdict budget_app_1 : réussi
+{
+  "id": "budget_app_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "6/12",
+    "listes_sans_decider": [
+      {
+        "question": "List my accounts.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my categories.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my payees.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my transactions.",
+        "attendu": 14,
+        "lu": 14,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my budgets.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my category monthly summaries.",
+        "attendu": 12,
+        "lu": 12,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+$ vak prove
+(dossier : /work/track_training_app_2/apres)
+
+✓ base base éprouvée = photographie (schema.gen.ts), fonctions de politique comprises
+✓ calendar_events éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - modification de la ligne de B : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »
+! exercises rls
+    - l'app montre à A 6 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 25 ligne(s) de A ajoutée(s) ; 13 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+✗ field_attempts non prouvé
+    - graine impossible : parent workout_entries absent
+    - totaux de read_data non comparés (verdict non prouvé)
+    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve
+✗ field_event_bests_v non prouvé
+    - l'app ne montre à A aucune de ses données dans cette relation (graine hors de ses règles, ou aucune colonne ne l'identifie)
+    - sans identifiant de ligne (vue, table sans clé) : vérifiée par les valeurs semées (identifiants, textes)
+    - RLS de l'app : aucune donnée de B visible pour A
+    - lecture par l'assistant : aucune donnée de B
+    - totaux de read_data non comparés (verdict non prouvé)
+    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve
+! profiles rls
+    - l'app montre à A 1 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « id »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - table du compte : l'assistant ne lit que la ligne de A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 2 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+✗ workout_entries non prouvé
+    - graine impossible : parent workouts absent
+    - totaux de read_data non comparés (verdict non prouvé)
+    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve
+✗ workouts non prouvé
+    - graine impossible : 23514 new row for relation "workouts" violates check constraint "workouts_workout_type_check"
+    - totaux de read_data non comparés (verdict non prouvé)
+    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve
+base locale vak_prove_e040b931 construite (27 migration(s)) puis supprimée
+preuve à deux comptes : non prouvé (3 éprouvée(s) (dont 2 où l'app elle-même laisse A atteindre B), 0 en échec, 4 non prouvée(s) ; 53 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 1]

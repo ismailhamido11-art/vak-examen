@@ -1,0 +1,68 @@
+verdict demarre_2 : échec (contrôleur : échec ([object Object] ; [object Object] ; [object Object]))
+{
+  "id": "demarre_2",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec ([object Object] ; [object Object] ; [object Object])"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 4,
+        "code": "journal-fichier-gere",
+        "resume": "fichier géré par vak retouché à la main (2 fois)",
+        "preuve": [
+          "journal ligne 101 (13:26:00) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : V=node_modules/@vak/agent/bin/vak.mjs; U=postgresql://root@127.0.0.1:5432/vak_local_4e24d1; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; node $V s…",
+          "journal ligne 101 (13:26:00) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : V=node_modules/@vak/agent/bin/vak.mjs; U=postgresql://root@127.0.0.1:5432/vak_local_4e24d1; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; node $V s…"
+        ]
+      },
+      {
+        "point": 6,
+        "code": "jamais-fini",
+        "resume": "aucun « vak » ne rend 0 dans le journal",
+        "preuve": [
+          "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+        ]
+      },
+      {
+        "point": 1,
+        "code": "vak-non-nul",
+        "resume": "« vak » rend 1 dans .",
+        "preuve": [
+          "✗ VAK003 fichiers gérés modifiés ou pas à jour",
+          "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+          "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+          "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+          "✓ VAK105 vues calibrées en security_invoker",
+          "✓ VAK106 capacités réelles conformes au calibrage",
+          "✓ VAK107 aucun avis de sécurité bloquant",
+          "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+          "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "2/2",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes livres.",
+        "attendu": 7,
+        "lu": 7,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes séances de lecture.",
+        "attendu": 12,
+        "lu": 12,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

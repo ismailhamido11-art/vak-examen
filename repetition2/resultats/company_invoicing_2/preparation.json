@@ -1,0 +1,18 @@
+{
+  "id": "company_invoicing_2",
+  "depot": "https://github.com/xtshepana/company-invoicing",
+  "commit": "e999749419b13064009e57bf02e917af07fd60ad",
+  "prepare": "e149185790ea3e5d1b82fce0b41836dbff249607",
+  "archive": {
+    "nom": "vak-agent-0.24.3.tgz",
+    "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+  },
+  "app": "/work/company_invoicing_2/app",
+  "avant": "/work/company_invoicing_2/avant.json",
+  "debut": "2026-10-06T14:19:36Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T14:21:28Z"
+}

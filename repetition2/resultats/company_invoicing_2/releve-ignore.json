@@ -1,0 +1,230 @@
+{
+  "id": "company_invoicing_2",
+  "echecs_de_preuve": [
+    {
+      "table": "invoices",
+      "verdict": "fuite",
+      "ligne": 137,
+      "texte": "✗ invoices fuite"
+    },
+    {
+      "table": "payments",
+      "verdict": "fuite",
+      "ligne": 137,
+      "texte": "✗ payments fuite"
+    },
+    {
+      "table": "quotes",
+      "verdict": "fuite",
+      "ligne": 137,
+      "texte": "✗ quotes fuite"
+    },
+    {
+      "table": "get_invoice_summary_totals",
+      "verdict": "fuite",
+      "ligne": 137,
+      "texte": "✗ get_invoice_summary_totals() fuite"
+    },
+    {
+      "table": "bank_transactions",
+      "verdict": "fuite",
+      "ligne": 160,
+      "texte": "✗ bank_transactions fuite"
+    },
+    {
+      "table": "get_invoice_summary_totals",
+      "verdict": "fuite",
+      "ligne": 160,
+      "texte": "✗ get_invoice_summary_totals() fuite"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "audit_logs",
+      "ligne": 177
+    },
+    {
+      "nom": "client_magic_links",
+      "ligne": 178
+    },
+    {
+      "nom": "client_sessions",
+      "ligne": 179
+    },
+    {
+      "nom": "company_settings",
+      "ligne": 180
+    },
+    {
+      "nom": "email_logs",
+      "ligne": 181
+    },
+    {
+      "nom": "expenses",
+      "ligne": 182
+    },
+    {
+      "nom": "invoice_items",
+      "ligne": 183
+    },
+    {
+      "nom": "invoice_reminders_sent",
+      "ligne": 184
+    },
+    {
+      "nom": "payment_allocations",
+      "ligne": 185
+    },
+    {
+      "nom": "payment_checkpoints_sent",
+      "ligne": 186
+    },
+    {
+      "nom": "products",
+      "ligne": 187
+    },
+    {
+      "nom": "profiles",
+      "ligne": 188
+    },
+    {
+      "nom": "quote_items",
+      "ligne": 189
+    },
+    {
+      "nom": "recurring_invoice_items",
+      "ligne": 190
+    },
+    {
+      "nom": "recurring_invoices",
+      "ligne": 191
+    },
+    {
+      "nom": "suppliers",
+      "ligne": 192
+    },
+    {
+      "nom": "customer_credits",
+      "ligne": 193
+    },
+    {
+      "nom": "credit_note_items",
+      "ligne": 194
+    },
+    {
+      "nom": "apply_customer_credit",
+      "ligne": 195
+    },
+    {
+      "nom": "auto_match_bank_transactions",
+      "ligne": 196
+    },
+    {
+      "nom": "compute_next_recurring_date",
+      "ligne": 197
+    },
+    {
+      "nom": "convert_quote_to_invoice",
+      "ligne": 198
+    },
+    {
+      "nom": "create_credit_note",
+      "ligne": 199
+    },
+    {
+      "nom": "create_invoice",
+      "ligne": 200
+    },
+    {
+      "nom": "create_quote",
+      "ligne": 201
+    },
+    {
+      "nom": "create_recurring_invoice",
+      "ligne": 202
+    },
+    {
+      "nom": "current_role_name",
+      "ligne": 203
+    },
+    {
+      "nom": "get_invoice_summary_totals",
+      "ligne": 204
+    },
+    {
+      "nom": "has_module_access",
+      "ligne": 205
+    },
+    {
+      "nom": "import_bank_transactions",
+      "ligne": 206
+    },
+    {
+      "nom": "is_active_staff",
+      "ligne": 207
+    },
+    {
+      "nom": "is_admin",
+      "ligne": 208
+    },
+    {
+      "nom": "issue_credit_note",
+      "ligne": 209
+    },
+    {
+      "nom": "match_bank_transaction",
+      "ligne": 210
+    },
+    {
+      "nom": "next_credit_note_number",
+      "ligne": 211
+    },
+    {
+      "nom": "next_customer_account_number",
+      "ligne": 212
+    },
+    {
+      "nom": "next_invoice_number",
+      "ligne": 213
+    },
+    {
+      "nom": "next_quote_number",
+      "ligne": 214
+    },
+    {
+      "nom": "record_payment",
+      "ligne": 215
+    },
+    {
+      "nom": "skip_next_recurring_invoice",
+      "ligne": 216
+    },
+    {
+      "nom": "unmatch_bank_transaction",
+      "ligne": 217
+    },
+    {
+      "nom": "update_credit_note",
+      "ligne": 218
+    },
+    {
+      "nom": "update_invoice",
+      "ligne": 219
+    },
+    {
+      "nom": "update_quote",
+      "ligne": 220
+    },
+    {
+      "nom": "update_recurring_invoice",
+      "ligne": 221
+    },
+    {
+      "nom": "void_credit_note",
+      "ligne": 222
+    }
+  ],
+  "relevees": [
+    "get_invoice_summary_totals"
+  ]
+}

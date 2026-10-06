@@ -1,0 +1,427 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "budget_app_1",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 33
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "genre": "verrou",
+          "ajouts": 2,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 639
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.3.tgz sha256 = préparation",
+        "8 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-06T12:39:10.644Z",
+      "demande": "2026-10-06T12:39:05.892Z",
+      "premierVakQuiRendZero": "2026-10-06T12:48:34.606Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 9.4,
+      "ligne": 151
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 38038,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "    - « daily_cashflow_summaries » : calibre-la, owner",
+            "    - « profiles » : calibre-la, owner",
+            "    - « receipt_ingestion_jobs » : calibre-la, owner",
+            "    - « receipt_line_items » : calibre-la, through: \"receipt_id\"",
+            "    - « receipts » : calibre-la, owner",
+            "    - « tags » : calibre-la, owner",
+            "    - « transaction_tags » : calibre-la, through: \"transaction_id\"",
+            "    → calibre-les comme indiqué : jamais ignore pour faire passer la preuve ; si l'assistant ne doit vraiment pas les voir, dis-le à l'humain en une ligne",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (8)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-06 : éprouvé (6 table(s), 192 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "    - fonction « create_workspace_seed » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « refresh_category_monthly_summary » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    - fonction « refresh_daily_cashflow_summary » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+            "    → vérifie chaque point ; corrige dans une migration de l'app si besoin",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.24.3, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (6 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (6 dans tables ; ignore : 8 tables, 3 fonctions) ; dans ignore, tables de l'utilisateur : « account_daily_summaries », « daily_cashflow_summaries », « profiles », « ",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (8)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-06 : éprouvé (6 table(s), 192 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 20,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 18,
+            "erreurs": 2
+          },
+          "apres": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 19,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 2,
+            "apres": 0,
+            "nouvelles": [],
+            "generique": true
+          },
+          "etat": "identique (code 1)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/budget_app_1",
+    "preparation": {
+      "id": "budget_app_1",
+      "depot": "https://github.com/AndrerezaMedya/budget-app",
+      "commit": "f1f3ef1bdbaccaf9933cf8cfceb6d6bb395c2703",
+      "prepare": "2fdc6837db8e9e19fdf5ae77345a66f80bb96365",
+      "archive": {
+        "nom": "vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      },
+      "debut": "2026-10-06T12:38:00Z"
+    },
+    "tip": "eb35624704a68706e631115e93175d59ec0795fb",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ]
+  },
+  "journal": {
+    "entrees": 58,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 14,
+      "tablesAMoi": 14,
+      "aMoiEprouvees": 6,
+      "ignorees": 11,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "2fdc6837db8e9e19fdf5ae77345a66f80bb96365",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ tailwindcss 3.4.18",
+          "+ typescript 5.9.3",
+          " WARN  Failed to create bin at /srv/verdicts/budget_app_1/clones/prep/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/srv/verdicts/budget_app_1/clones/prep/node_modules/supabase/bin/supabase'",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.33.5, sharp@0.34.5, supabase@2.54.11,       │",
+          "│   tesseract.js@5.1.1, unrs-resolver@1.11.1.                                  │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 17.8s using pnpm v10.33.0"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 0,
+          "delai": false,
+          "secondes": 7,
+          "erreurs": 0,
+          "liste": [],
+          "fin": []
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint /srv/verdicts/budget_app_1/clones/prep",
+            "> eslint",
+            "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`"
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : next build",
+          "code": 1,
+          "delai": false,
+          "secondes": 18,
+          "erreurs": 2,
+          "liste": [
+            "(.next/server/app/api/receipts/jobs/[jobId]/route.js:6 at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)",
+            "(.next/server/app/api/overview/charts/route.js:8 at Object.<anonymous> (.next/server/app/api/overview/charts/route.js:8:3)"
+          ],
+          "fin": [
+            "    at module evaluation (.next/server/chunks/[root-of-the-server]__99278d40._.js:1:1277)",
+            "    at instantiateModule (.next/server/chunks/[turbopack]_runtime.js:715:9)",
+            "    at instantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:743:12)",
+            "    at getOrInstantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:756:12)",
+            "    at Object.m (.next/server/chunks/[turbopack]_runtime.js:765:18)",
+            "    at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)",
+            "> Build error occurred",
+            "Error: Failed to collect page data for /api/receipts/jobs/[jobId]",
+            "    at ignore-listed frames {",
+            "  type: 'Error'",
+            "}",
+            " ELIFECYCLE  Command failed with exit code 1."
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "eb35624704a68706e631115e93175d59ec0795fb",
+      "gestionnaire": "pnpm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ tailwindcss 3.4.18",
+          "+ typescript 5.9.3",
+          " WARN  Failed to create bin at /srv/verdicts/budget_app_1/clones/head/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/srv/verdicts/budget_app_1/clones/head/node_modules/supabase/bin/supabase'",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.33.5, sharp@0.34.5, supabase@2.54.11,       │",
+          "│   tesseract.js@5.1.1, unrs-resolver@1.11.1.                                  │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 1.8s using pnpm v10.33.0"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 0,
+          "delai": false,
+          "secondes": 8,
+          "erreurs": 0,
+          "liste": [],
+          "fin": []
+        },
+        "lint": {
+          "commande": "pnpm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 20,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint /srv/verdicts/budget_app_1/clones/head",
+            "> eslint",
+            "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`",
+            "[BABEL] Note: The code generator has deoptimised the styling of /srv/verdicts/budget_app_1/clones/head/supabase/functions/vak/vak-server.mjs as it exceeds the max of 500KB."
+          ]
+        },
+        "build": {
+          "commande": "pnpm run build",
+          "source": "script « build » : next build",
+          "code": 1,
+          "delai": false,
+          "secondes": 19,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "    at module evaluation (.next/server/chunks/[root-of-the-server]__99278d40._.js:1:1277)",
+            "    at instantiateModule (.next/server/chunks/[turbopack]_runtime.js:715:9)",
+            "    at instantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:743:12)",
+            "    at getOrInstantiateRuntimeModule (.next/server/chunks/[turbopack]_runtime.js:756:12)",
+            "    at Object.m (.next/server/chunks/[turbopack]_runtime.js:765:18)",
+            "    at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)",
+            "> Build error occurred",
+            "Error: Failed to collect page data for /api/receipts/jobs/[jobId]",
+            "    at ignore-listed frames {",
+            "  type: 'Error'",
+            "}",
+            " ELIFECYCLE  Command failed with exit code 1."
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T12:52:40.321Z"
+}

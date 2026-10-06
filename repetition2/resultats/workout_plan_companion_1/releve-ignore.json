@@ -1,0 +1,200 @@
+{
+  "id": "workout_plan_companion_1",
+  "echecs_de_preuve": [
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 129,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 135,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 135,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 138,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 138,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "exercise_catalog",
+      "verdict": "non prouvé",
+      "ligne": 142,
+      "texte": "✗ exercise_catalog non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 142,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 142,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "exercise_catalog",
+      "verdict": "non prouvé",
+      "ligne": 157,
+      "texte": "✗ exercise_catalog non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 157,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 157,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "exercise_catalog",
+      "verdict": "non prouvé",
+      "ligne": 161,
+      "texte": "✗ exercise_catalog non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 161,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 161,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "exercise_catalog",
+      "verdict": "non prouvé",
+      "ligne": 167,
+      "texte": "✗ exercise_catalog non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 167,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 167,
+      "texte": "✗ workout_log_sets non prouvé"
+    },
+    {
+      "table": "exercise_catalog",
+      "verdict": "non prouvé",
+      "ligne": 175,
+      "texte": "✗ exercise_catalog non prouvé"
+    },
+    {
+      "table": "plan_session_exercises",
+      "verdict": "non prouvé",
+      "ligne": 175,
+      "texte": "✗ plan_session_exercises non prouvé"
+    },
+    {
+      "table": "workout_log_sets",
+      "verdict": "non prouvé",
+      "ligne": 175,
+      "texte": "✗ workout_log_sets non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "exercise_catalog",
+      "ligne": 102
+    },
+    {
+      "nom": "plan_session_exercises",
+      "ligne": 103
+    },
+    {
+      "nom": "workout_log_sets",
+      "ligne": 104
+    },
+    {
+      "nom": "active_plan_selection",
+      "ligne": 105
+    },
+    {
+      "nom": "assistant_consents",
+      "ligne": 106
+    },
+    {
+      "nom": "assistant_conversations",
+      "ligne": 107
+    },
+    {
+      "nom": "assistant_messages",
+      "ligne": 108
+    },
+    {
+      "nom": "assistant_usage_daily",
+      "ligne": 109
+    },
+    {
+      "nom": "plan_proposals",
+      "ligne": 110
+    },
+    {
+      "nom": "training_history_backups",
+      "ligne": 111
+    },
+    {
+      "nom": "user_preferences",
+      "ligne": 112
+    },
+    {
+      "nom": "workout_exercise_feedback",
+      "ligne": 113
+    },
+    {
+      "nom": "complete_workout_log",
+      "ligne": 114
+    },
+    {
+      "nom": "grant_assistant_consent",
+      "ligne": 115
+    },
+    {
+      "nom": "import_local_training_history",
+      "ligne": 116
+    },
+    {
+      "nom": "publish_ai_plan_proposal",
+      "ligne": 117
+    },
+    {
+      "nom": "revoke_assistant_consent",
+      "ligne": 118
+    }
+  ],
+  "relevees": [
+    "workout_log_sets",
+    "plan_session_exercises",
+    "exercise_catalog"
+  ]
+}

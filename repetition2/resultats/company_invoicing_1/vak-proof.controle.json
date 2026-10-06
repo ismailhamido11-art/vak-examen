@@ -1,0 +1,79 @@
+{
+  "vak": "0.24.3",
+  "at": "2026-10-06T13:13:04.492Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:14669d3af8cf198555889045107c664c2e46d2eab0c207601c3d438a7cb6aae6",
+  "schema": "sha256:841b28072d81e5787538abe2966ab1e226e3197f67efec37019a35c83218da4e",
+  "tables": {
+    "bank_transactions": "rls",
+    "credit_notes": "rls",
+    "customers": "rls",
+    "invoices": "rls",
+    "payments": "rls",
+    "quotes": "rls"
+  },
+  "notes": {
+    "bank_transactions": [
+      "l'app montre à A 1 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « matched_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "coéquipier de A non semé (ligne en conflit avec une contrainte d'unicité de l'app, et aucune ligne existante de cet utilisateur) : le partage entre membres n'est pas vérifié",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 48 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "credit_notes": [
+      "l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « credit_note_number 0 a »"
+    ],
+    "customers": [
+      "l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 46 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « company_name 0 a »"
+    ],
+    "invoices": [
+      "l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « invoice_number 0 a »"
+    ],
+    "payments": [
+      "l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 62 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "quotes": [
+      "l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)",
+      "la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « quote_number 0 a »"
+    ]
+  },
+  "totals": 315,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Clients (Type, Nom, Contact, E-mail, Téléphone, Mobile, N° de TVA, Référence client, Solde d'ouverture, Actif, Créé le) ; Factures (N° de facture, Client, Date de facture, Échéance, Référence, Statut, Total HT, Remise, TVA, Total TTC, Montant payé, Annulée le) ; Paiements (Client, Date de paiement, Montant, Moyen de paiement, Référence bancaire, Description, Affectation) ; Opérations bancaires (Date, Libellé, Référence, Montant, Solde après, Statut, Rapprochée le) ; Devis (N° de devis, Client, Date du devis, Expiration, Référence, Statut, Total HT, TVA, Total TTC, Facture issue du devis) ; Avoirs (N° d'avoir, Client, Facture liée, Date, Motif, Statut, Total HT, TVA, Total TTC, Émis le)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir : Facture, Fiche client, Relevé client, Paiement, Nouveau paiement, Rapprochement bancaire, Factures",
+    "Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire audit_logs, bank_import_batches, client_magic_links, client_sessions, company_settings, credit_note_items, customer_credits, email_logs, 11 autres ; appeler apply_customer_credit, auto_match_bank_transactions, compute_next_recurring_date, convert_quote_to_invoice, create_credit_note, create_invoice, create_quote, create_recurring_invoice, 21 autres"
+  ]
+}

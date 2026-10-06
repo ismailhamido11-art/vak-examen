@@ -1,0 +1,18 @@
+{
+  "id": "track_training_app_1",
+  "depot": "https://github.com/aprescod12/track-training-app",
+  "commit": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+  "prepare": "5c19395d82d8229e2cb5f0f20237d69c2efaae6a",
+  "archive": {
+    "nom": "vak-agent-0.24.3.tgz",
+    "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+  },
+  "app": "/work/track_training_app_1/app",
+  "avant": "/work/track_training_app_1/avant.json",
+  "debut": "2026-10-06T12:54:19Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-06T12:56:06Z"
+}

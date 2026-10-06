@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-06T12:30:22.669Z",
+  "langue": "fr",
+  "nom": "Assistant chantiers",
+  "etiquette": [
+    "Voit : Chantiers (Équipe, Nom du chantier, Adresse, Date de début, Statut) ; Tâches (Chantier, Intitulé, Échéance, Terminée, Assignée à, Créée par) ; Équipes (Nom, Créée le) ; Membres (Équipe, Utilisateur, Rôle, Depuis le)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir : Équipe, Membres, Chantier, Mes tâches",
+    "Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire team_invitations ; appeler create_team, invite_member, is_site_member, is_site_team_user, is_team_member, is_team_owner, team_roster",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:0661a7fe11f9513b8f585f09b029caab01d17196800b68eb73b5e07a8dfcd298",
+    "calibrage": "sha256:065f76eb32704f7266ff73ee89e2b77e9483bc2acfb6a65ab939d93345ec650a"
+  }
+}

@@ -1,0 +1,403 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "equipe_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 411
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 10
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.3.tgz sha256 = préparation",
+        "5 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "team_members étroit (journal ligne 112)"
+      ],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-06T13:31:47.167Z",
+      "demande": "2026-10-06T13:31:44.536Z",
+      "premierVakQuiRendZero": "2026-10-06T13:32:47.868Z",
+      "preuve": "phrase « Fini pour l'agent de code » : Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans P…",
+      "minutes": 1.01,
+      "ligne": 52
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 25874,
+          "derniereLigne": null,
+          "fin": [
+            "    - création rattachée au parent de B (site_id) : refusée",
+            "    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 16 : sans filtre ; sans filtre, limit 5 ; period last_30_days ; period this_month ; period upcoming ; …",
+            "✗ team_invitations non prouvé",
+            "    - la RLS de l'app ne montre pas à A sa propre ligne : la graine ne suit pas une règle de l'app",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data non comparés (verdict non prouvé)",
+            "    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve",
+            "✓ team_members éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+            "    - totaux de read_data : 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✓ teams éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "base locale vak_prove_120249fd construite (9 migration(s)) puis supprimée",
+            "vak prove : preuve à deux comptes : non prouvé (4 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 168 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+          ],
+          "controles": [
+            "✓ sites éprouvé",
+            "✓ tasks éprouvé",
+            "✗ team_invitations non prouvé",
+            "✓ team_members éprouvé",
+            "✓ teams éprouvé"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 1
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 1
+          },
+          "erreurs": {
+            "avant": 1,
+            "apres": 1,
+            "nouvelles": []
+          },
+          "etat": "identique (code 2)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 11,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ team_invitations non prouvé",
+        "- lecture par l'assistant : la ligne de A",
+        "- ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+        "- lecture de la ligne de B par son identifiant : refusée",
+        "- totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+        "base locale vak_prove_120249fd construite (9 migration(s)) puis supprimée",
+        "vak prove : preuve à deux comptes : non prouvé (4 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 168 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+      ]
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/equipe_2",
+    "preparation": {
+      "id": "equipe_2",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/equipe.bundle",
+      "commit": "ed96d9a1505e38d72746c80b669a6451a0eaef02",
+      "prepare": "15577d2f145cc4816ac31cb86ed73df7a768ba07",
+      "archive": {
+        "nom": "vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      },
+      "debut": "2026-10-06T13:31:11Z"
+    },
+    "tip": "70aff0f5d7b3e0ffc48736ea7fad47006fb8fa3f",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ]
+  },
+  "journal": {
+    "entrees": 55,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 5,
+      "tablesAMoi": 5,
+      "aMoiEprouvees": 5,
+      "ignorees": 7,
+      "verdictDuRecu": "non prouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "15577d2f145cc4816ac31cb86ed73df7a768ba07",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 359 packages in 13s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 2,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 1,
+          "liste": [
+            "src/app/layout.tsx:9 src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ],
+          "fin": [
+            "src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint",
+            "> eslint"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : next build",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "✓ Generating static pages using 3 workers (6/6) in 327ms",
+            "  Finalizing page optimization ...",
+            "Route (app)",
+            "┌ ○ /",
+            "├ ○ /_not-found",
+            "├ ○ /login",
+            "├ ƒ /sites/[siteId]",
+            "├ ○ /tasks",
+            "├ ƒ /teams/[teamId]",
+            "└ ƒ /teams/[teamId]/members",
+            "○  (Static)   prerendered as static content",
+            "ƒ  (Dynamic)  server-rendered on demand"
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "70aff0f5d7b3e0ffc48736ea7fad47006fb8fa3f",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 360 packages in 12s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npx --no-install tsc --noEmit",
+          "source": "tsconfig.json à la racine, sans script",
+          "code": 2,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 1,
+          "liste": [
+            "src/app/layout.tsx:11 src/app/layout.tsx(11,50): error TS2304: Cannot find name 'LayoutProps'."
+          ],
+          "fin": [
+            "src/app/layout.tsx(11,50): error TS2304: Cannot find name 'LayoutProps'."
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : eslint",
+          "code": 0,
+          "delai": false,
+          "secondes": 9,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@0.1.0 lint",
+            "> eslint"
+          ]
+        },
+        "build": {
+          "commande": "npm run build",
+          "source": "script « build » : next build",
+          "code": 0,
+          "delai": false,
+          "secondes": 11,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "Route (app)",
+            "┌ ○ /",
+            "├ ○ /_not-found",
+            "├ ƒ /assistant",
+            "├ ○ /login",
+            "├ ○ /reglages",
+            "├ ƒ /sites/[siteId]",
+            "├ ○ /tasks",
+            "├ ƒ /teams/[teamId]",
+            "└ ƒ /teams/[teamId]/members",
+            "○  (Static)   prerendered as static content",
+            "ƒ  (Dynamic)  server-rendered on demand"
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T13:38:35.625Z"
+}

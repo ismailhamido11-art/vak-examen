@@ -1,0 +1,7 @@
+$ npm run typecheck
+(dossier : /work/demarre_2/avant)
+
+
+> app@1.0.0 typecheck
+> tsc --noEmit
+

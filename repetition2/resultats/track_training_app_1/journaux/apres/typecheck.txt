@@ -1,0 +1,7 @@
+$ npm run typecheck
+(dossier : /work/track_training_app_1/apres)
+
+
+> track-training@1.0.0 typecheck
+> tsc --noEmit
+

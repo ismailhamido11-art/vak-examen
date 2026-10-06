@@ -1,0 +1,88 @@
+diff --git a/mobile/app/(tabs)/_layout.tsx b/mobile/app/(tabs)/_layout.tsx
+index 3c47e70..ad2df32 100644
+--- a/mobile/app/(tabs)/_layout.tsx
++++ b/mobile/app/(tabs)/_layout.tsx
+@@ -49,6 +49,14 @@ export default function TabLayout() {
+           tabBarIcon: ({ color }) => <TabIcon color={color} ios="person.crop.circle" android="person" web="person" />,
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          title: 'Asistente',
++          tabBarAccessibilityLabel: 'Ir a Asistente',
++          tabBarIcon: ({ color }) => <TabIcon color={color} ios="sparkles" android="auto_awesome" web="auto_awesome" />,
++        }}
++      />
+     </Tabs>
+   );
+ }
+@@ -108,9 +116,9 @@ function AppTabBar({ descriptors, navigation, state }: BottomTabBarProps) {
+ 
+ interface TabIconProps {
+   color: ColorValue;
+-  ios: 'house.fill' | 'calendar' | 'chart.line.uptrend.xyaxis' | 'person.crop.circle';
+-  android: 'home' | 'calendar_month' | 'trending_up' | 'person';
+-  web: 'home' | 'calendar_month' | 'trending_up' | 'person';
++  ios: 'house.fill' | 'calendar' | 'chart.line.uptrend.xyaxis' | 'person.crop.circle' | 'sparkles';
++  android: 'home' | 'calendar_month' | 'trending_up' | 'person' | 'auto_awesome';
++  web: 'home' | 'calendar_month' | 'trending_up' | 'person' | 'auto_awesome';
+ }
+ 
+ function TabIcon({ color, ios, android, web }: TabIconProps) {
+diff --git a/mobile/app/(tabs)/perfil.tsx b/mobile/app/(tabs)/perfil.tsx
+index 6eea18b..989d988 100644
+--- a/mobile/app/(tabs)/perfil.tsx
++++ b/mobile/app/(tabs)/perfil.tsx
+@@ -80,6 +80,12 @@ export default function ProfileScreen() {
+           onPress={() => router.push('/perfil/apariencia')}
+           value={theme.label}
+         />
++        <ListRow
++          accessibilityHint="Abre los ajustes de privacidad del asistente"
++          label="Asistente"
++          onPress={() => router.push('/perfil/asistente')}
++          value="Consentimiento y datos"
++        />
+       </View>
+ 
+       <View style={styles.section}>
+diff --git a/mobile/app/_layout.tsx b/mobile/app/_layout.tsx
+index 9fe5b39..d4e6f19 100644
+--- a/mobile/app/_layout.tsx
++++ b/mobile/app/_layout.tsx
+@@ -68,6 +68,7 @@ function RootNavigator() {
+           <Stack.Screen name="sesion/[sessionId]" options={{ headerShown: false }} />
+           <Stack.Screen name="ejercicios/[exerciseId]" options={{ headerShown: false }} />
+           <Stack.Screen name="perfil/apariencia" options={{ headerShown: false }} />
++          <Stack.Screen name="perfil/asistente" options={{ headerShown: false }} />
+           <Stack.Screen name="perfil/editar" options={{ headerShown: false }} />
+           <Stack.Screen name="plan/propuesta" options={{ headerShown: false }} />
+           <Stack.Screen name="plan/borrador" options={{ headerShown: false }} />
+diff --git a/mobile/app/perfil/asistente.tsx b/mobile/app/perfil/asistente.tsx
+new file mode 100644
+index 0000000..78e8046
+--- /dev/null
++++ b/mobile/app/perfil/asistente.tsx
+@@ -0,0 +1,21 @@
++import { AgentSettings } from '@vak/agent/native';
++import { useRouter } from 'expo-router';
++
++import { Screen } from '@/components/layout/Screen';
++import { ScreenHeader } from '@/components/ui/ScreenHeader';
++import { vak } from '@/lib/vak';
++
++export default function AssistantSettingsScreen() {
++  const router = useRouter();
++
++  return (
++    <Screen>
++      <ScreenHeader
++        description="Consentimiento, recuerdos, exportación y borrado de los datos del asistente."
++        onBack={() => router.back()}
++        title="Asistente"
++      />
++      <AgentSettings {...vak} />
++    </Screen>
++  );
++}

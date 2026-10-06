@@ -1,0 +1,42 @@
+$ expo export --platform web
+(dossier : /work/track_training_app_2/apres)
+
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+| (node:193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:194) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 82.8% (1072/1434)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 87.2% (1671/1789)
+λ Bundled 3142ms node_modules/expo-router/node/render.js (2032 modules)
+| (node:200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect. 
+
+Metro error: Missing EXPO_PUBLIC_SUPABASE_URL.
+
+  Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+    at getEnvironmentConfig (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:1021:968)
+    at e.getEnvironmentConfig (/work/track_training_app_2/apres/lib/supabase.ts:7:62)
+    at /work/track_training_app_2/apres/node_modules/@supabase/supabase-js/dist/index.mjs:407:1
+    at f (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1556)
+    at r (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+    at /work/track_training_app_2/apres/app/calendar/add-event.tsx:3:1
+    at f (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1484)
+    at i (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+Error: Missing EXPO_PUBLIC_SUPABASE_URL.
+    at getEnvironmentConfig (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:1021:968)
+    at e.getEnvironmentConfig (/work/track_training_app_2/apres/lib/supabase.ts:7:62)
+    at /work/track_training_app_2/apres/node_modules/@supabase/supabase-js/dist/index.mjs:407:1
+    at f (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1556)
+    at r (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)
+    at /work/track_training_app_2/apres/app/calendar/add-event.tsx:3:1
+    at f (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:2060)
+    at a (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:1484)
+    at i (/work/track_training_app_2/apres/node_modules/expo-router/node/render.js.bundle?platform=web&dev=false&hot=false&minify=true&transform.engine=hermes&transform.routerRoot=app&resolver.environment=node&transform.environment=node&resolver.exporting=true&unstable_transformProfile=hermes-stable:3:586)

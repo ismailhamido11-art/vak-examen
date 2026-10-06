@@ -1,0 +1,83 @@
+verdict budget_app_2 : échec (contrôleur : échec ([object Object]) ; point 5 : « How many of my transactions are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {"error":"quota_exceeded","message":"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.","details":{"maxTokensPerDay":40000}} ; « How many of my budgets are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {"error":"quota_exceeded","message":"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.","details":{"maxTokensPerDay":40000}} ; « How many of my category monthly summaries are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {"error":"quota_exceeded","message":"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.","details":{"maxTokensPerDay":40000}})
+{
+  "id": "budget_app_2",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec ([object Object])",
+    "point 5 : « How many of my transactions are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}} ; « How many of my budgets are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}} ; « How many of my category monthly summaries are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 2,
+        "code": "build-erreurs",
+        "resume": "build : la liste d'erreurs s'allonge (0 → 1, 1 nouvelle(s))",
+        "preuve": [
+          "(.next/server/app/api/receipts/jobs/[jobId]/route.js:6 at Object.<anonymous> (.next/server/app/api/receipts/jobs/[jobId]/route.js:6:3)"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": false,
+    "raisons": [
+      "« How many of my transactions are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}",
+      "« How many of my budgets are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}",
+      "« How many of my category monthly summaries are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+    ],
+    "juge": "faux",
+    "couverture": "7/12",
+    "listes_sans_decider": [
+      {
+        "question": "List my profiles.",
+        "attendu": 1,
+        "lu": 4,
+        "juste": false,
+        "raison": "4 éléments listés, attendu 1"
+      },
+      {
+        "question": "List my accounts.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my categories.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my payees.",
+        "attendu": 6,
+        "lu": null,
+        "juste": false,
+        "raison": "pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+      },
+      {
+        "question": "List my transactions.",
+        "attendu": 14,
+        "lu": null,
+        "juste": false,
+        "raison": "pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+      },
+      {
+        "question": "List my budgets.",
+        "attendu": 6,
+        "lu": null,
+        "juste": false,
+        "raison": "pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+      },
+      {
+        "question": "List my category monthly summaries.",
+        "attendu": 12,
+        "lu": null,
+        "juste": false,
+        "raison": "pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+      }
+    ]
+  }
+}

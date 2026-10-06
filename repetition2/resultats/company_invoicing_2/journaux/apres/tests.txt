@@ -1,0 +1,25 @@
+$ npm run test
+(dossier : /work/company_invoicing_2/apres)
+
+
+> company-invoicing@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /work/company_invoicing_2/apres
+
+ ✓ tests/unit/document-data.test.ts (12 tests) 29ms
+ ✓ tests/unit/documents.test.ts (7 tests) 9ms
+ ✓ tests/unit/validations.test.ts (16 tests) 13ms
+ ✓ tests/unit/permissions.test.ts (6 tests) 5ms
+ ✓ tests/unit/money.test.ts (9 tests) 24ms
+ ✓ tests/unit/bank-match-confidence.test.ts (6 tests) 5ms
+ ✓ tests/unit/payments-validation.test.ts (6 tests) 12ms
+ ✓ tests/unit/idle.test.ts (7 tests) 6ms
+ ✓ tests/unit/bank-import.test.ts (7 tests) 13ms
+
+ Test Files  9 passed (9)
+      Tests  76 passed (76)
+   Start at  14:29:54
+   Duration  1.43s (import 65%, transform 23%, tests 6%, setup 3%, worker 2%)
+

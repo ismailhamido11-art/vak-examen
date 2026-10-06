@@ -1,0 +1,78 @@
+{
+  "dossier": "/work/budget_app_2/apres",
+  "commit": "4a008b5867d4c02c3e146bcb738a428fddc17171",
+  "debut": "2026-10-06T13:55:02.264Z",
+  "fin": "2026-10-06T13:55:49.625Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": null,
+    "lanceur": "pnpm",
+    "verrous": [
+      "pnpm-lock.yaml",
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/budget_app_2/apres-journaux",
+  "installation": {
+    "commande": "pnpm install --frozen-lockfile",
+    "dossier": "/work/budget_app_2/apres",
+    "code": 0,
+    "duree_s": 2,
+    "erreurs": [],
+    "fin": [
+      "│                                                                              │",
+      "╰──────────────────────────────────────────────────────────────────────────────╯",
+      "Done in 1.8s using pnpm v10.33.0"
+    ],
+    "journal": "/work/budget_app_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/budget_app_2/apres",
+      "code": 0,
+      "duree_s": 7,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/budget_app_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "pnpm run lint",
+      "dossier": "/work/budget_app_2/apres",
+      "code": 0,
+      "duree_s": 19,
+      "erreurs": [],
+      "fin": [
+        "> eslint",
+        "[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`",
+        "[BABEL] Note: The code generator has deoptimised the styling of /work/budget_app_2/apres/supabase/functions/vak/vak-server.mjs as it exceeds the max of 500KB."
+      ],
+      "journal": "/work/budget_app_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "pnpm run build",
+      "dossier": "/work/budget_app_2/apres",
+      "code": 1,
+      "duree_s": 19,
+      "erreurs": [],
+      "fin": [
+        "type: 'Error'",
+        "}",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/budget_app_2/apres-journaux/build.txt"
+    }
+  }
+}

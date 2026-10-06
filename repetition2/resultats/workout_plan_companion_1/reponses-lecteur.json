@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
+  "envoyer": { "editeur": "DeepSeek (Chine, selon ses propres conditions)", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Never: delete or edit outside these lists, except through remember a memory (plugin memory) » : aucune suppression n'est annoncée, et la seule exception à l'interdiction est « remember a memory », qui est une proposition d'ajout soumise à approbation. L'étiquette ne précise pas si cette fonction peut aussi effacer des souvenirs. L'assistant peut lire les données de Perfil, Versions del plan, Semanas del plan, Sesiones del plan et Sesiones registradas, et ouvrir les écrans Hoy, Mi plan, Progreso, Perfil, Editar perfil et Abrir sesión. Il ne peut pas lire plusieurs tables (exercise_catalog, plan_session_exercises, workout_log_sets, etc.) ni appeler complete_workout_log, grant_assistant_consent, import_local_training_history, publish_ai_plan_proposal, revoke_assistant_consent."
+}

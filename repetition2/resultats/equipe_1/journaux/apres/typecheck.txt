@@ -1,0 +1,4 @@
+$ tsc --noEmit
+(dossier : /work/equipe_1/apres)
+
+src/app/layout.tsx(11,50): error TS2304: Cannot find name 'LayoutProps'.

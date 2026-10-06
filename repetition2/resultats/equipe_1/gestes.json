@@ -1,0 +1,21 @@
+{
+  "id": "equipe_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origine du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne : le fournisseur, les origines et la clé du modèle qu'elle demande"
+    },
+    {
+      "genre": "commande",
+      "citation": "Pour la production, ajoutez `--prod` avec votre accord.",
+      "note": "une seconde ligne de commande (connect --prod) ; dans le doute, c'est un geste"
+    }
+  ],
+  "non_comptes": [
+    "« Si vous voulez qu'elle soit lisible, il faudra un cas de preuve avec un responsable. » : conditionnel, facultatif",
+    "« doctor garde deux avertissements : VAK107 … et VAK108 … Je ne les ai pas examinés. » : signalement, aucune action demandée"
+  ]
+}

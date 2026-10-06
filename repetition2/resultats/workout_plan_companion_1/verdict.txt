@@ -1,0 +1,61 @@
+verdict workout_plan_companion_1 : échec (contrôleur : échec ([object Object]) ; point 5 : « How many of my perfiles are there? » : la réponse donne 3, attendu 1)
+{
+  "id": "workout_plan_companion_1",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec ([object Object])",
+    "point 5 : « How many of my perfiles are there? » : la réponse donne 3, attendu 1"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 1,
+        "code": "vak-non-nul",
+        "resume": "« vak » rend 1 dans .",
+        "preuve": [
+          "✗ VAK005 TypeScript introuvable : typage du calibrage non vérifié",
+          "! VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 12 tables, 5 fonctions) ; dans ignore, tables de l'utilisateur : « exercise_catalog », « plan_session_exercises », « workout_log_sets », «",
+          "! VAK107 avis de sécurité (avertissement)",
+          "- fonction « import_local_training_history » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+          "- fonction « publish_ai_plan_proposal » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+          "- fonction « revoke_assistant_consent » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul",
+          "→ vérifie chaque point ; corrige dans une migration de l'app si besoin",
+          "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+          "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": false,
+    "raisons": [
+      "« How many of my perfiles are there? » : la réponse donne 3, attendu 1"
+    ],
+    "juge": "faux",
+    "couverture": "3/11",
+    "listes_sans_decider": [
+      {
+        "question": "List my perfiles.",
+        "attendu": 1,
+        "lu": 8,
+        "juste": false,
+        "raison": "8 éléments listés, attendu 1"
+      },
+      {
+        "question": "List my versiones de plan.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my registros de entrenamiento.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

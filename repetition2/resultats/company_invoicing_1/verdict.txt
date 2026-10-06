@@ -1,0 +1,53 @@
+verdict company_invoicing_1 : réussi
+{
+  "id": "company_invoicing_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "5/9",
+    "listes_sans_decider": [
+      {
+        "question": "List my customers.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my quotes.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my invoices.",
+        "attendu": 8,
+        "lu": 8,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my credit notes.",
+        "attendu": 2,
+        "lu": 2,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my payments.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

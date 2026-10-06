@@ -1,0 +1,27 @@
+{
+  "id": "track_training_app_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 4,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider openai --model <modèle> --origins <origine du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, modèle, origine)"
+    },
+    { "genre": "commande", "citation": "`npx supabase migration up`", "note": "commande distincte" },
+    {
+      "genre": "question restée ouverte",
+      "citation": "VAK003, défaut du kit : `sync` écrit `schema.gen.ts` sans les clés étrangères composées […] Je n'ai pas retouché le fichier ni le kit.",
+      "note": "bloquante, remise au propriétaire (« Ce qui bloque (pour le propriétaire) »)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "`workouts.workout_type` a pour défaut `'track'`, que sa propre contrainte CHECK refuse […] Il faut corriger ce défaut dans une migration de l'app. Je ne l'ai pas fait.",
+      "note": "bloquante : la preuve reste « non prouvé » (aussi : « Peut-on corriger le défaut 'track' de workouts ? »)"
+    }
+  ],
+  "non_comptes": [
+    "« profiles et exercises : … lisibles par tous les comptes connectés », VAK108 : signalements de failles de l'app",
+    "« Quelles tables l'assistant doit-il voir ? », « Peut-il écrire des séances ? J'ai choisi non », « Peut-il lire les records des amis ? » : choix faits par l'agent dans le calibrage"
+  ]
+}

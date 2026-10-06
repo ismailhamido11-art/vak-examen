@@ -1,0 +1,73 @@
+$ vak prove
+(dossier : /work/company_invoicing_2/apres)
+
+✓ base base éprouvée = photographie (schema.gen.ts), fonctions de politique comprises
+! bank_import_batches rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « imported_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 39 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « filename 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! bank_transactions rls
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - coéquipier de A non semé (ligne en conflit avec une contrainte d'unicité de l'app, et aucune ligne existante de cet utilisateur) : le partage entre membres n'est pas vérifié
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data non comparés (verdict rls)
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! credit_notes rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « credit_note_number 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! customers rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 46 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « company_name 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! invoices rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « invoice_number 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! payments rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 62 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+! quotes rls
+    - l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by »)
+    - la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non)
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « quote_number 0 a »
+    → l'assistant ne montre rien de B, mais l'app elle-même montre à A la ligne de B : si ce n'est pas voulu (profils publics, catalogue…), corrige sa politique RLS dans une migration
+✓ get_aging_report() éprouvé
+    - appel par l'assistant de A : aucune donnée de B
+    - résultat de A inchangé quand les 57 ligne(s) de B sont retirées, puis quand un second compte copie B (15 table(s)) aux valeurs plus grandes, puis plus petites
+    - argument « p_as_of » (non vérifié par le kit) : 2 valeur(s) visant B essayée(s), rien de B atteint
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+base locale vak_prove_4203e763 construite (39 migration(s)) puis supprimée
+preuve à deux comptes : éprouvé (8 éprouvée(s) (dont 7 où l'app elle-même laisse A atteindre B), 0 en échec, 0 non prouvée(s), fonctions comprises (1) ; 306 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]

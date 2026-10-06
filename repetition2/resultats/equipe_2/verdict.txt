@@ -1,0 +1,63 @@
+verdict equipe_2 : échec (contrôleur : échec ([object Object]))
+{
+  "id": "equipe_2",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec ([object Object])"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 1,
+        "code": "vak-non-nul",
+        "resume": "« vak » rend 1 dans .",
+        "preuve": [
+          "✗ team_invitations non prouvé",
+          "- lecture par l'assistant : la ligne de A",
+          "- ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+          "- lecture de la ligne de B par son identifiant : refusée",
+          "- totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+          "base locale vak_prove_120249fd construite (9 migration(s)) puis supprimée",
+          "vak prove : preuve à deux comptes : non prouvé (4 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 168 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "4/4",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes équipes.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes adhésions.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes tâches.",
+        "attendu": 9,
+        "lu": 9,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes invitations.",
+        "attendu": 2,
+        "lu": 2,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

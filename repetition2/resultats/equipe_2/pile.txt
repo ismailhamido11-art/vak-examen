@@ -1,0 +1,3 @@
+NOTICE:  role "examen_pile" has already been granted membership in role "anon" by role "postgres"
+NOTICE:  role "examen_pile" has already been granted membership in role "authenticated" by role "postgres"
+pile equipe_2 prête : /work/equipe_2/pile/pile.json (fonction http://127.0.0.1:34783/functions/v1/vak)

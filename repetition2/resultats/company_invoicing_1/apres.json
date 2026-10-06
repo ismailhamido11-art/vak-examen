@@ -1,0 +1,88 @@
+{
+  "dossier": "/work/company_invoicing_1/apres",
+  "commit": "75243c44ff31c6bd1c7a31240c556c05b357c3da",
+  "debut": "2026-10-06T13:14:31.715Z",
+  "fin": "2026-10-06T13:16:18.209Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/company_invoicing_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/company_invoicing_1/apres",
+    "code": 0,
+    "duree_s": 20,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated fstream@1.0.12: This package is no longer supported.",
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 893 packages in 20s"
+    ],
+    "journal": "/work/company_invoicing_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/company_invoicing_1/apres",
+      "code": 0,
+      "duree_s": 11,
+      "erreurs": [],
+      "fin": [
+        "> company-invoicing@1.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/company_invoicing_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/company_invoicing_1/apres",
+      "code": 0,
+      "duree_s": 17,
+      "erreurs": [],
+      "fin": [
+        "> company-invoicing@1.0.0 lint",
+        "> eslint"
+      ],
+      "journal": "/work/company_invoicing_1/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/company_invoicing_1/apres",
+      "code": 0,
+      "duree_s": 2,
+      "erreurs": [],
+      "fin": [
+        "Tests  76 passed (76)",
+        "Start at  13:15:19",
+        "Duration  1.39s (import 61%, transform 27%, tests 6%, setup 4%, worker 2%)"
+      ],
+      "journal": "/work/company_invoicing_1/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/company_invoicing_1/apres",
+      "code": 1,
+      "duree_s": 57,
+      "erreurs": [],
+      "fin": [
+        "}",
+        "Export encountered an error on /(auth)/forgot-password/page: /forgot-password, exiting the build.",
+        "⨯ Next.js build worker exited with code: 1 and signal: null"
+      ],
+      "journal": "/work/company_invoicing_1/apres-journaux/build.txt"
+    }
+  }
+}

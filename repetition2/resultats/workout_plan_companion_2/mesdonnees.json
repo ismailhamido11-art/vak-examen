@@ -1,0 +1,706 @@
+{
+  "verdict": "faux",
+  "raisons": [
+    "public.profiles « List my perfiles. » : 8 éléments listés, attendu 1"
+  ],
+  "dossier": "/work/workout_plan_companion_2/apres",
+  "lecture": {
+    "fichier": "/work/workout_plan_companion_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.profiles",
+      "public.plan_versions",
+      "public.plan_weeks",
+      "public.plan_sessions",
+      "public.plan_session_exercises",
+      "public.workout_logs",
+      "public.workout_log_sets",
+      "public.exercise_catalog"
+    ],
+    "ignorees": [
+      "public.active_plan_selection",
+      "public.assistant_consents",
+      "public.assistant_conversations",
+      "public.assistant_messages",
+      "public.plan_proposals",
+      "public.training_history_backups",
+      "public.user_preferences",
+      "public.workout_exercise_feedback",
+      "public.assistant_usage_daily",
+      "public.complete_workout_log",
+      "public.grant_assistant_consent",
+      "public.import_local_training_history",
+      "public.publish_ai_plan_proposal",
+      "public.revoke_assistant_consent"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.profiles",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 1,
+      "attendu_json": 1,
+      "accord": true
+    },
+    {
+      "table": "public.exercise_catalog",
+      "colonne": "owner_user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.plan_versions",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.workout_logs",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.profiles",
+      "type": "combien",
+      "langue": "es",
+      "question": "How many of my perfiles are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b9afb2fd-758c-4638-b67b-5b226701a77e",
+        "question": "How many of my perfiles are there?",
+        "texte": "Tienes **1 perfil**, Marta. Es el tuyo: aparece una sola vez en la app.\n\nSi quieres repasarlo o ajustar algo, puedes abrir la pantalla de perfil.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "profiles",
+              "label": "Perfil",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "user_id": "250b63a3-2895-40d0-800d-251d108eee6f",
+                  "first_name": "Marta",
+                  "primary_goal": "strength (Fuerza)",
+                  "training_experience": "some-experience (Algo de experiencia)",
+                  "availability": "three-days (Tres días)",
+                  "session_duration_minutes": 60,
+                  "equipment_access": "dumbbells-and-bench (Mancuernas y banco)",
+                  "training_emphasis": "compound-strength (Fuerza con multiarticulares)",
+                  "limitations": "Molestias leves en el hombro derecho",
+                  "units": "metric (Métrico)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.profiles",
+      "type": "liste",
+      "langue": "es",
+      "question": "List my perfiles.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-11752bb8-4ab8-4e23-9832-f2f8bd7e771b",
+        "question": "List my perfiles.",
+        "texte": "Aquí tienes tu perfil, Marta:\n\n- **Objetivo:** fuerza\n- **Experiencia:** algo de experiencia\n- **Disponibilidad:** tres días por semana\n- **Duración por sesión:** 60 minutos\n- **Material:** mancuernas y banco\n- **Énfasis:** fuerza con multiarticulares\n- **Limitaciones declaradas:** molestias leves en el hombro derecho\n- **Unidades:** métrico\n\nEs el único perfil de tu cuenta. Si quieres revisar o ajustar algo, ¿te abro la pantalla de perfil?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "profiles",
+              "label": "Perfil",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "user_id": "250b63a3-2895-40d0-800d-251d108eee6f",
+                  "first_name": "Marta",
+                  "primary_goal": "strength (Fuerza)",
+                  "training_experience": "some-experience (Algo de experiencia)",
+                  "availability": "three-days (Tres días)",
+                  "session_duration_minutes": 60,
+                  "equipment_access": "dumbbells-and-bench (Mancuernas y banco)",
+                  "training_emphasis": "compound-strength (Fuerza con multiarticulares)",
+                  "limitations": "Molestias leves en el hombro derecho",
+                  "units": "metric (Métrico)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 1,
+        "nombres_lus": [
+          60
+        ],
+        "ok": false,
+        "retenu": 8,
+        "source": "éléments de la liste",
+        "elements": 8,
+        "raison": "8 éléments listés, attendu 1"
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.exercise_catalog",
+      "type": "combien",
+      "langue": "es",
+      "question": "How many of my ejercicios creados por el asistente are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-f39327ce-3992-4584-81d6-74177debcc21",
+        "question": "How many of my ejercicios creados por el asistente are there?",
+        "texte": "Tienes **3 ejercicios propuestos por el asistente** en tu catálogo:\n\n- Zancada hacia atrás (mancuernas)\n- Remo unilateral con mancuerna (mancuerna y banco)\n- Puente de glúteo (esterilla)\n\n¿Quieres que te abra alguno para ver su técnica?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "exercise_catalog",
+              "where": [
+                {
+                  "column": "entry_source",
+                  "op": "eq",
+                  "value": "assistant"
+                }
+              ],
+              "limit": 50
+            },
+            "sortie": {
+              "table": "exercise_catalog",
+              "label": "Catálogo de ejercicios",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "asistente-a-zancada-atras",
+                  "name": "Zancada hacia atrás",
+                  "equipment": "Mancuernas",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Da el paso atrás con control.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                },
+                {
+                  "id": "asistente-a-remo-unilateral",
+                  "name": "Remo unilateral con mancuerna",
+                  "equipment": "Mancuerna y banco",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Mantén la espalda larga.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                },
+                {
+                  "id": "asistente-a-puente-gluteo",
+                  "name": "Puente de glúteo",
+                  "equipment": "Esterilla",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Empuja con los talones.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.exercise_catalog",
+      "type": "liste",
+      "langue": "es",
+      "question": "List my ejercicios creados por el asistente.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b0e2b1f1-1edb-44af-afed-00dcae8ccb72",
+        "question": "List my ejercicios creados por el asistente.",
+        "texte": "Voy a mirar el catálogo.Tienes 3 ejercicios creados por el asistente en tu catálogo:\n\n- **Zancada hacia atrás** — Mancuernas. Indicación: da el paso atrás con control.\n- **Remo unilateral con mancuerna** — Mancuerna y banco. Indicación: mantén la espalda larga.\n- **Puente de glúteo** — Esterilla. Indicación: empuja con los talones.\n\nLos tres son propuestas mías que aún no están revisadas, así que pueden estar más incompletos que los del catálogo revisado (por ejemplo, sin pasos de técnica ni errores comunes rellenados).\n\n¿Quieres que abra alguno para ver su ficha?Ahí tienes el detalle del remo unilateral. Si tienes molestias en el hombro derecho, ve con calma en ese ejercicio y, si notas dolor, mejor parar y consultarlo con un profesional.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "exercise_catalog",
+              "where": [
+                {
+                  "column": "entry_source",
+                  "op": "eq",
+                  "value": "assistant"
+                }
+              ],
+              "limit": 20
+            },
+            "sortie": {
+              "table": "exercise_catalog",
+              "label": "Catálogo de ejercicios",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "asistente-a-zancada-atras",
+                  "name": "Zancada hacia atrás",
+                  "equipment": "Mancuernas",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Da el paso atrás con control.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                },
+                {
+                  "id": "asistente-a-remo-unilateral",
+                  "name": "Remo unilateral con mancuerna",
+                  "equipment": "Mancuerna y banco",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Mantén la espalda larga.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                },
+                {
+                  "id": "asistente-a-puente-gluteo",
+                  "name": "Puente de glúteo",
+                  "equipment": "Esterilla",
+                  "equipment_setup": "",
+                  "technique_steps": "[]",
+                  "coaching_cue": "Empuja con los talones.",
+                  "preparation": "",
+                  "execution": "",
+                  "breathing": "",
+                  "common_mistakes": "[]",
+                  "entry_source": "assistant (Propuesto por el asistente)"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "ejercicio",
+              "params": {
+                "exerciseId": "asistente-a-remo-unilateral"
+              }
+            },
+            "sortie": {
+              "href": "/ejercicios/asistente-a-remo-unilateral",
+              "label": "Abrir el ejercicio"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.plan_versions",
+      "type": "combien",
+      "langue": "es",
+      "question": "How many of my versiones de plan are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-f468d40b-ebf2-41dd-97e0-8ef8b1b6a85e",
+        "question": "How many of my versiones de plan are there?",
+        "texte": "You have **3 versions of your plan**:\n\n1. Plan inicial de fuerza (v1)\n2. Plan de fuerza ajustado (v2)\n3. Plan equilibrado de otoño (v3) — the most recent one\n\nThe history isn't overwritten each time a new one is published, so you can see them all. Want me to open your plan to see the current version by weeks and sessions?Watch out: the button only opens the screen — it doesn't change anything on its own.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "plan_versions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "plan_versions",
+              "label": "Versiones del plan",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "cb423454-56f1-48c1-a12c-9067c41b21ab",
+                  "version_number": 1,
+                  "name": "Plan inicial de fuerza",
+                  "published_at": "2026-10-06T16:18"
+                },
+                {
+                  "id": "22d07166-b9c4-4161-9dd5-f2eebc11abd7",
+                  "version_number": 2,
+                  "name": "Plan de fuerza ajustado",
+                  "published_at": "2026-10-06T16:18"
+                },
+                {
+                  "id": "ec51d031-a87c-407f-846d-f117791b5aa6",
+                  "version_number": 3,
+                  "name": "Plan equilibrado de otoño",
+                  "published_at": "2026-10-06T16:18"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "plan"
+            },
+            "sortie": {
+              "href": "/plan",
+              "label": "Abrir Mi plan"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.plan_versions",
+      "type": "liste",
+      "langue": "es",
+      "question": "List my versiones de plan.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-765c801f-0a39-499d-b585-6caf4e455485",
+        "question": "List my versiones de plan.",
+        "texte": "Tienes 3 versiones del plan:\n\n1. **Plan inicial de fuerza** — versión 1, publicada el 6 de octubre a las 16:18\n2. **Plan de fuerza ajustado** — versión 2, también el 6 de octubre a las 16:18\n3. **Plan equilibrado de otoño** — versión 3, misma fecha y hora\n\n¿Quieres que te muestre las semanas y sesiones de alguna de ellas, o que abramos tu plan?Ahí tienes el botón para abrir **Mi plan** cuando quieras.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "plan_versions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "plan_versions",
+              "label": "Versiones del plan",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "cb423454-56f1-48c1-a12c-9067c41b21ab",
+                  "version_number": 1,
+                  "name": "Plan inicial de fuerza",
+                  "published_at": "2026-10-06T16:18"
+                },
+                {
+                  "id": "22d07166-b9c4-4161-9dd5-f2eebc11abd7",
+                  "version_number": 2,
+                  "name": "Plan de fuerza ajustado",
+                  "published_at": "2026-10-06T16:18"
+                },
+                {
+                  "id": "ec51d031-a87c-407f-846d-f117791b5aa6",
+                  "version_number": 3,
+                  "name": "Plan equilibrado de otoño",
+                  "published_at": "2026-10-06T16:18"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "plan"
+            },
+            "sortie": {
+              "href": "/plan",
+              "label": "Abrir Mi plan"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          1,
+          6,
+          2,
+          6,
+          3
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.workout_logs",
+      "type": "combien",
+      "langue": "es",
+      "question": "How many of my registros de entrenamiento are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-11e6123e-654a-4a56-8af8-1e9a0e0e59f3",
+        "question": "How many of my registros de entrenamiento are there?",
+        "texte": "Tienes **3 entrenamientos registrados** en total.\n\n¿Quieres que te los repase uno a uno, o prefieres ver el detalle en la pantalla de Progreso?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "workout_logs",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "workout_logs",
+              "label": "Entrenamientos registrados",
+              "total": 3,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "abaa3f66-70e5-4e48-b7ec-31ab7138cc88",
+                  "plan_version_id": "Plan equilibrado de otoño (id ec51d031-a87c-407f-846d-f117791b5aa6)",
+                  "plan_session_id": "Sesión B (id 5dcd1d25-255d-4561-8460-2d944bc87f92)",
+                  "session_title_snapshot": "Sesión B",
+                  "status": "completed (Completado)",
+                  "started_at": "2026-09-04T20:00",
+                  "completed_at": "2026-09-04T20:55",
+                  "units": "metric (Métrico)",
+                  "note": "Un poco cansada"
+                }
+              ],
+              "note": "1 ligne montrée sur 3 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.workout_logs",
+      "type": "liste",
+      "langue": "es",
+      "question": "List my registros de entrenamiento.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-4b85553c-6295-4f72-9419-ace5624083e0",
+        "question": "List my registros de entrenamiento.",
+        "texte": "Tienes 3 entrenamientos registrados, Marta. Todos completados:\n\n| Fecha | Sesión | Duración | Nota |\n|---|---|---|---|\n| 4 sep 2026 | Sesión B | 55 min | «Un poco cansada» |\n| 1 sep 2026 | Sesión A | 55 min | «Buena sesión, subí peso en la sentadilla» |\n| 20 ago 2026 | Sesión A | 55 min | «Primera sesión del plan ajustado» |\n\nLos tres son de 20:00 a 20:55. Los dos de septiembre pertenecen al *Plan equilibrado de otoño*; el de agosto, al *Plan de fuerza ajustado*.\n\n¿Quieres que te abra el progreso para ver adherencia y cargas?Ahí tienes el botón para abrir **Progreso** si quieres ver más detalle.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "workout_logs",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "workout_logs",
+              "label": "Entrenamientos registrados",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "abaa3f66-70e5-4e48-b7ec-31ab7138cc88",
+                  "plan_version_id": "Plan equilibrado de otoño (id ec51d031-a87c-407f-846d-f117791b5aa6)",
+                  "plan_session_id": "Sesión B (id 5dcd1d25-255d-4561-8460-2d944bc87f92)",
+                  "session_title_snapshot": "Sesión B",
+                  "status": "completed (Completado)",
+                  "started_at": "2026-09-04T20:00",
+                  "completed_at": "2026-09-04T20:55",
+                  "units": "metric (Métrico)",
+                  "note": "Un poco cansada"
+                },
+                {
+                  "id": "2898256d-e973-49e3-97e0-aba1deeec2e0",
+                  "plan_version_id": "Plan equilibrado de otoño (id ec51d031-a87c-407f-846d-f117791b5aa6)",
+                  "plan_session_id": "Sesión A (id a47ff801-dab4-40a6-8f0b-ea44001bcc3c)",
+                  "session_title_snapshot": "Sesión A",
+                  "status": "completed (Completado)",
+                  "started_at": "2026-09-01T20:00",
+                  "completed_at": "2026-09-01T20:55",
+                  "units": "metric (Métrico)",
+                  "note": "Buena sesión, subí peso en la sentadilla"
+                },
+                {
+                  "id": "8bc475c6-fc9f-4f54-9602-c15cc12b9d78",
+                  "plan_version_id": "Plan de fuerza ajustado (id 22d07166-b9c4-4161-9dd5-f2eebc11abd7)",
+                  "plan_session_id": "Sesión A (id 237b8d2d-bb29-4db3-92df-6ced4a610b11)",
+                  "session_title_snapshot": "Sesión A",
+                  "status": "completed (Completado)",
+                  "started_at": "2026-08-20T20:00",
+                  "completed_at": "2026-08-20T20:55",
+                  "units": "metric (Métrico)",
+                  "note": "Primera sesión del plan ajustado"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "progreso"
+            },
+            "sortie": {
+              "href": "/progreso",
+              "label": "Abrir Progreso"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          55,
+          55,
+          20,
+          2026,
+          55
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 20
+  },
+  "couverture": {
+    "lues": 4,
+    "total": 11,
+    "tables": [
+      {
+        "table": "public.profiles",
+        "lue": true
+      },
+      {
+        "table": "public.user_preferences",
+        "lue": false
+      },
+      {
+        "table": "public.exercise_catalog",
+        "lue": true
+      },
+      {
+        "table": "public.plan_versions",
+        "lue": true
+      },
+      {
+        "table": "public.active_plan_selection",
+        "lue": false
+      },
+      {
+        "table": "public.assistant_conversations",
+        "lue": false
+      },
+      {
+        "table": "public.assistant_messages",
+        "lue": false
+      },
+      {
+        "table": "public.plan_proposals",
+        "lue": false
+      },
+      {
+        "table": "public.workout_logs",
+        "lue": true
+      },
+      {
+        "table": "public.training_history_backups",
+        "lue": false
+      },
+      {
+        "table": "public.assistant_consents",
+        "lue": false
+      }
+    ],
+    "texte": "4/11"
+  }
+}

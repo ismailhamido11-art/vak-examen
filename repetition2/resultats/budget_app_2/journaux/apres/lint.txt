@@ -1,0 +1,9 @@
+$ pnpm run lint
+(dossier : /work/budget_app_2/apres)
+
+
+> app@0.1.0 lint /work/budget_app_2/apres
+> eslint
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[BABEL] Note: The code generator has deoptimised the styling of /work/budget_app_2/apres/supabase/functions/vak/vak-server.mjs as it exceeds the max of 500KB.

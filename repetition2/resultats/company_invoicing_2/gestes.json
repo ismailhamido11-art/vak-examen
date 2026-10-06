@@ -1,0 +1,26 @@
+{
+  "id": "company_invoicing_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 3,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:3000` Ajoutez `--model <id>` si le fournisseur est `mistral`, `openrouter` ou `openai`.",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines, modèle)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "C'est à vous de trancher : garder ce comportement prudent, ou déclarer ces tables en `shared: true` […] Faut-il élargir la visibilité de l'assistant à toute l'équipe ?",
+      "note": "une décision demandée à l'humain ; dans le doute, c'est un geste"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "`/settings` n'est accessible qu'au propriétaire. Un membre du personnel ne peut donc pas révoquer son consentement ni effacer ses données depuis l'app. […] Les réglages de l'assistant doivent-ils être accessibles à tout le personnel ?",
+      "note": "non tranchée par l'agent (comme company_invoicing_1) ; dans le doute, c'est un geste"
+    }
+  ],
+  "non_comptes": [
+    "« Le build doit-il compter dans la mesure avant/après ? » : question sur la mesure de l'agent, pas sur l'assistant",
+    "« Fonction écartée : get_invoice_summary_totals … » et VAK013 : signalements, sans demande"
+  ]
+}

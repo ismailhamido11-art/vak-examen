@@ -1,0 +1,5 @@
+Sees: Accounts (Name, Type, Currency, Opening balance (minor units), Archived at) ; Categories (Name, Parent category, Created at) ; Transactions (Account, Category, Payee, Type, Description, Amount (minor units), Currency, Date, Notes) ; Budgets (Category, Period, Budgeted amount (minor units), Rollover) ; Monthly category summaries (User, Category, Period, Income (minor units), Expenses (minor units), Budget (minor units), Available (minor units)) ; Payees (Name, Created at)
+Can propose (after your approval): remember a memory (plugin memory)
+Can open: Transactions, Budgets, Accounts, Overview, Reports, Receipts
+Never: delete or edit outside these lists, except through remember a memory (plugin memory) ; read account_daily_summaries, daily_cashflow_summaries, profiles, receipt_ingestion_jobs, receipt_line_items, receipts, tags, transaction_tags ; call create_workspace_seed, refresh_category_monthly_summary, refresh_daily_cashflow_summary
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

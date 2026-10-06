@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
+  "envoyer": { "editeur": "DeepSeek (Chine, selon ses propres conditions)", "hote": "api.deepseek.com" },
+  "remarques": "Suppression : la ligne « Never » interdit de supprimer ou modifier hors des listes, sauf via « remember a memory » ; aucune liste ne mentionne de suppression, donc « non ». L'étiquette ne dit pas si « remember a memory » permet d'effacer une mémoire. Les données de la ligne « Sees » (clients, factures, devis, paiements, avoirs, imports et transactions bancaires) sont seulement vues, pas modifiables. « Can open » ne sert qu'à ouvrir des pages, ce n'est pas une modification. Les outils de création ou de conversion (create_invoice, create_quote, create_credit_note, etc.) sont listés comme interdits, avec « 20 others » non détaillés."
+}

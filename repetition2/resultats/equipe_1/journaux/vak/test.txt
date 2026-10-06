@@ -1,0 +1,18 @@
+$ vak test
+(dossier : /work/equipe_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (4 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1257 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data sites exécuté sans validation → {"table":"sites","label":"Chantiers","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000…
+✓ tour read_data tasks exécuté sans validation → {"table":"tasks","label":"Tâches","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000100…
+✓ tour read_data teams exécuté sans validation → {"table":"teams","label":"Équipes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000030…
+✓ tour read_data team_members exécuté sans validation → {"table":"team_members","label":"Membres","total":2,"shown":2,"complete":true,"rows":[{"team_id":"00000000-0000-4000-…
+✓ tour open_screen equipe exécuté sans validation → {"href":"/teams/00000000-0000-4000-8000-000003000000","label":"Équipe"}
+✓ tour open_screen membres exécuté sans validation → {"href":"/teams/00000000-0000-4000-8000-000003000000/members","label":"Membres"}
+✓ tour open_screen chantier exécuté sans validation → {"href":"/sites/00000000-0000-4000-8000-000000000000","label":"Chantier"}
+✓ tour open_screen mes_taches exécuté sans validation → {"href":"/tasks","label":"Mes tâches"}
+vak test : tout est vert [code 0]

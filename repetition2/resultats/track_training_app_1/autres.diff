@@ -1,0 +1,58 @@
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+index 634f531..d8a863f 100644
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -66,6 +66,19 @@ export default function TabLayout() {
+           ),
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          title: "Assistant",
++          tabBarIcon: ({ color, size, focused }) => (
++            <Ionicons
++              name={focused ? "chatbubble-ellipses" : "chatbubble-ellipses-outline"}
++              size={size}
++              color={color}
++            />
++          ),
++        }}
++      />
+       <Tabs.Screen
+         name="profile"
+         options={{
+diff --git a/app/(tabs)/profile.tsx b/app/(tabs)/profile.tsx
+index 6da2eae..4a88692 100644
+--- a/app/(tabs)/profile.tsx
++++ b/app/(tabs)/profile.tsx
+@@ -7,6 +7,8 @@ import { router, useFocusEffect } from "expo-router";
+ import { getMyProfile, Profile } from "../../lib/profile";
+ import Avatar from "../../components/Avatar";
+ import { toAppError } from "../../lib/errors";
++import { AgentSettings } from "@vak/agent/native";
++import { vak } from "@/lib/vak";
+ import { normalizeTrainingDomain } from "../../lib/trainingDomains";
+ 
+ export default function ProfileScreen() {
+@@ -387,6 +389,8 @@ export default function ProfileScreen() {
+           )}
+         </View>
+ 
++        <AgentSettings {...vak} />
++
+         <Pressable
+           onPress={handleLogout}
+           style={{
+diff --git a/tsconfig.json b/tsconfig.json
+index fcd8d05..70a174f 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -17,5 +17,6 @@
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts",
+     "scripts/backfillEntrySets.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

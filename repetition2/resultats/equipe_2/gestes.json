@@ -1,0 +1,20 @@
+{
+  "id": "equipe_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origine du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "À vous de décider : l'assistant a-t-il besoin de lire les invitations en attente (adresses e-mail) ? Sinon, `ignore` avec une raison métier est la sortie propre.",
+      "note": "bloquante : `vak` rend 1 tant qu'elle n'est pas tranchée"
+    }
+  ],
+  "non_comptes": [
+    "« L'assistant peut-il créer et modifier des tâches ? J'ai dit oui » : tranchée par l'agent"
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "verdict": "échoué",
+  "manque": [],
+  "seuils": {
+    "reussis": {
+      "valeur": "2/14",
+      "vrai": false
+    },
+    "mediane_minutes": {
+      "valeur": "infini",
+      "vrai": false
+    },
+    "gestes_au_plus_3": {
+      "valeur": "demarre_1:2 demarre_2:2 equipe_1:2 equipe_2:2 fonctions_1:3 fonctions_2:2 budget_app_1:3 budget_app_2:3 track_training_app_1:4 track_training_app_2:4 workout_plan_companion_1:3 workout_plan_companion_2:3 company_invoicing_1:3 company_invoicing_2:3",
+      "vrai": false
+    },
+    "aucune_fuite": {
+      "valeur": [],
+      "vrai": true
+    },
+    "chiffres_exacts": {
+      "valeur": [
+        "budget_app_2",
+        "workout_plan_companion_1"
+      ],
+      "vrai": false
+    },
+    "jamais_faux_fini": {
+      "valeur": [
+        "budget_app_2",
+        "workout_plan_companion_1"
+      ],
+      "vrai": false
+    },
+    "etiquettes": {
+      "valeur": [
+        "demarre_2",
+        "equipe_1",
+        "budget_app_1",
+        "budget_app_2",
+        "workout_plan_companion_2"
+      ],
+      "vrai": false
+    }
+  },
+  "essais": [
+    {
+      "id": "demarre_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (2 fois)",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "demarre_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (2 fois)",
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "equipe_1",
+      "verdict": "échec",
+      "raisons": [
+        "relevé : point 4 : table(s) « à moi » team_invitations mise(s) dans ignore après un échec de la preuve (releve.json)"
+      ],
+      "releve": "point 4 : table(s) « à moi » team_invitations mise(s) dans ignore après un échec de la preuve (releve.json)",
+      "minutes": 5.43,
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": []
+    },
+    {
+      "id": "equipe_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "fonctions_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (1 fois)",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "fonctions_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (1 fois)",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "budget_app_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 9.4,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": []
+    },
+    {
+      "id": "budget_app_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object])",
+        "point 5 : « How many of my transactions are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}} ; « How many of my budgets are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}} ; « How many of my category monthly summaries are there? » : pas de réponse exploitable : erreur de l'assistant : 429 {\"error\":\"quota_exceeded\",\"message\":\"Today's usage limit has been reached. Come back tomorrow. In an emergency, contact a professional directly.\",\"details\":{\"maxTokensPerDay\":40000}}"
+      ],
+      "releve": null,
+      "minutes": 6.4,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": false,
+      "faux_fini": true,
+      "etiquette": false,
+      "raisons_controleur": [
+        "point 2 : build : la liste d'erreurs s'allonge (0 → 1, 1 nouvelle(s))"
+      ]
+    },
+    {
+      "id": "track_training_app_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 4,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (2 fois)",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "track_training_app_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "repli du contrôleur non retenu (phrase « Fini pour l'agent de code » : Fini pour l'agent de …) : durée infinie",
+      "gestes": 4,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (2 fois)",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "workout_plan_companion_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object])",
+        "point 5 : « How many of my perfiles are there? » : la réponse donne 3, attendu 1",
+        "relevé : point 4 : table(s) « à moi » exercise_catalog mise(s) dans ignore après un échec de la preuve (releve.json)"
+      ],
+      "releve": "point 4 : table(s) « à moi » exercise_catalog mise(s) dans ignore après un échec de la preuve (releve.json)",
+      "minutes": 10.57,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": false,
+      "faux_fini": true,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "workout_plan_companion_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object] ; [object Object])"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": [
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "company_invoicing_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 6.55,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "company_invoicing_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec ([object Object])"
+      ],
+      "releve": null,
+      "minutes": 7.28,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 4 : table(s) « à moi » mise(s) dans ignore après un échec de la preuve : get_invoice_summary_totals"
+      ]
+    }
+  ]
+}

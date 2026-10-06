@@ -1,0 +1,6 @@
+$ npm ci
+(dossier : /work/workout_plan_companion_2/avant/mobile)
+
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 825 packages in 16s

@@ -1,0 +1,54 @@
+{
+  "id": "budget_app_2",
+  "echecs_de_preuve": [
+    {
+      "table": "category_monthly_summaries",
+      "verdict": "non prouvé",
+      "ligne": 146,
+      "texte": "✗ category_monthly_summaries non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "account_daily_summaries",
+      "ligne": 115
+    },
+    {
+      "nom": "daily_cashflow_summaries",
+      "ligne": 116
+    },
+    {
+      "nom": "receipt_ingestion_jobs",
+      "ligne": 117
+    },
+    {
+      "nom": "receipt_line_items",
+      "ligne": 118
+    },
+    {
+      "nom": "receipts",
+      "ligne": 119
+    },
+    {
+      "nom": "tags",
+      "ligne": 120
+    },
+    {
+      "nom": "transaction_tags",
+      "ligne": 121
+    },
+    {
+      "nom": "create_workspace_seed",
+      "ligne": 122
+    },
+    {
+      "nom": "refresh_category_monthly_summary",
+      "ligne": 123
+    },
+    {
+      "nom": "refresh_daily_cashflow_summary",
+      "ligne": 124
+    }
+  ],
+  "relevees": []
+}

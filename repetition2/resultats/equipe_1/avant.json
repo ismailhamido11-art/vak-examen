@@ -1,0 +1,79 @@
+{
+  "dossier": "/work/equipe_1/avant",
+  "commit": "ed96d9a1505e38d72746c80b669a6451a0eaef02",
+  "debut": "2026-10-06T12:20:53.048Z",
+  "fin": "2026-10-06T12:21:19.415Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/equipe_1/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/equipe_1/avant",
+    "code": 0,
+    "duree_s": 11,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 359 packages in 11s"
+    ],
+    "journal": "/work/equipe_1/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/equipe_1/avant",
+      "code": 2,
+      "duree_s": 3,
+      "erreurs": [
+        "src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "fin": [
+        "src/app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "journal": "/work/equipe_1/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/equipe_1/avant",
+      "code": 0,
+      "duree_s": 3,
+      "erreurs": [],
+      "fin": [
+        "> app@0.1.0 lint",
+        "> eslint"
+      ],
+      "journal": "/work/equipe_1/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/equipe_1/avant",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "└ ƒ /teams/[teamId]/members",
+        "○  (Static)   prerendered as static content",
+        "ƒ  (Dynamic)  server-rendered on demand"
+      ],
+      "journal": "/work/equipe_1/avant-journaux/build.txt"
+    }
+  }
+}

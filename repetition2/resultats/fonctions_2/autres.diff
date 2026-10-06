@@ -1,0 +1,38 @@
+diff --git a/src/app/(tabs)/_layout.tsx b/src/app/(tabs)/_layout.tsx
+index 0113378..4ab821e 100644
+--- a/src/app/(tabs)/_layout.tsx
++++ b/src/app/(tabs)/_layout.tsx
+@@ -6,6 +6,8 @@ export default function TabsLayout() {
+       <Tabs.Screen name="index" options={{ title: 'Dépenses' }} />
+       <Tabs.Screen name="summary" options={{ title: 'Totaux' }} />
+       <Tabs.Screen name="categories" options={{ title: 'Catégories' }} />
++      <Tabs.Screen name="assistant" options={{ title: 'Assistant' }} />
++      <Tabs.Screen name="reglages" options={{ title: 'Réglages' }} />
+     </Tabs>
+   );
+ }
+diff --git a/src/app/(tabs)/reglages.tsx b/src/app/(tabs)/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/(tabs)/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

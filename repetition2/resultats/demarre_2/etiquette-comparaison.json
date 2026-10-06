@@ -1,0 +1,12 @@
+{
+  "id": "demarre_2",
+  "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+  "supprimer": false,
+  "modifier": false,
+  "envoyer": true,
+  "notes": {
+    "supprimer": "vérité « non » ; lecteur « l'étiquette ne le dit pas » : « l'étiquette ne le dit pas » est faux (etiquettes/README.md, « 4. Comparer »)",
+    "modifier": "vérité : public.vak_memories (sa mémoire (prise memory)) ; lecteur : « Ajouter un livre », « Ajouter une séance », « retenir un souvenir (prise memory) » ; nomme aussi « Ajouter un livre » et « Ajouter une séance » (des écrans que l'assistant peut ouvrir) : Livres et Séances, où l'assistant n'écrit pas ; la vérité n'a que sa mémoire",
+    "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek, api.deepseek.com"
+  }
+}

@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/company_invoicing_1/apres)
+
+base locale vak_local_7bf74a supprimée [code 0]

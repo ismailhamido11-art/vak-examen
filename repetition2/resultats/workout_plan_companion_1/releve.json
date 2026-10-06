@@ -1,0 +1,30 @@
+{
+  "id": "workout_plan_companion_1",
+  "clause": "REGLE.md, point 4 : « une table « à moi » mise dans `ignore` pour faire passer la preuve. C'est le cas quand le journal montre une sortie de vak qui la juge en échec (`fuite`, `total faux`, `étroit` ou `non prouvé`), et qu'elle finit dans `ignore`. »",
+  "pourquoi_le_controleur_ne_l_a_pas_vu": "lib/journal.mjs, echecsDePreuve : « non prouvé » n'est jamais reconnu (\\b sans drapeau u après « é », EXAMEN.md)",
+  "tables": [
+    {
+      "table": "exercise_catalog",
+      "a_moi": true,
+      "preuves_a_moi": [
+        "supabase/migrations/20260826184500_add_private_ai_exercise_catalog.sql:4 : `owner_user_id uuid references auth.users (id)` (règle, point 5 : « une clé vers auth.users »)",
+        "même fichier, lignes 22-24 : politique exercise_catalog_select_active_or_owned, `owner_user_id = (select auth.uid())`",
+        "vak-examen/graines/workout_plan_companion/attendu.json : public.exercise_catalog (owner_user_id) est une table « à moi » de la graine"
+      ],
+      "echecs_de_preuve": ["journal lignes 142, 157, 161, 167 et 175 : « ✗ exercise_catalog non prouvé » (sorties de vak)"],
+      "dans_ignore": "état commité 962d979, supabase/functions/vak/agent.ts:102"
+    },
+    {
+      "table": "plan_session_exercises",
+      "a_moi": false,
+      "raison": "aucune colonne qui désigne l'utilisateur : plan_session_id → plan_sessions ; sa lecture passe par le parent (règle, point 5)"
+    },
+    {
+      "table": "workout_log_sets",
+      "a_moi": false,
+      "raison": "aucune colonne qui désigne l'utilisateur : workout_log_id → workout_logs ; sa politique compare log.user_id (la table parente) à auth.uid() (supabase/migrations/20260826135522_initial_private_data_foundation.sql:528-534)"
+    }
+  ],
+  "point4": false,
+  "consequence": "l'essai échoue aussi au point 4 (il échouait déjà au point 1, vak rend 1)"
+}

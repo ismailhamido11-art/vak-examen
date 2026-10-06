@@ -1,0 +1,289 @@
+{
+  "id": "company_invoicing_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)",
+    "table(s) « à moi » écartée(s) par l'agent (ignore), sans échec de preuve au journal : choix de périmètre, à dire à l'humain : audit_logs, bank_import_batches, credit_note_items, customer_credits, expenses, invoice_items, invoice_reminders_sent, payment_allocations, payment_checkpoints_sent, products, profiles, quote_items, recurring_invoice_items, recurring_invoices, suppliers, audit_logs, bank_import_batches, credit_note_items, customer_credits, expenses, invoice_items, invoice_reminders_sent, payment_allocations, payment_checkpoints_sent, products, profiles, quote_items, recurring_invoice_items, recurring_invoices, suppliers",
+    "« rls » (l'app montre à un utilisateur des lignes d'un autre ; à signaler à l'humain) : bank_transactions, credit_notes, customers, invoices, payments, quotes"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/xtshepana/company-invoicing",
+  "commit": "e999749419b13064009e57bf02e917af07fd60ad",
+  "prepare": "e149185790ea3e5d1b82fce0b41836dbff249607",
+  "head": "75243c44ff31c6bd1c7a31240c556c05b357c3da",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "75243c44ff31c6bd1c7a31240c556c05b357c3da",
+      "date": "2026-10-06T13:13:31+00:00",
+      "sujet": "Integrate vak AI assistant (floating button, settings, read-only calibration)"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "e149185790ea3e5d1b82fce0b41836dbff249607",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.24.3.tgz",
+      "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      }
+    ],
+    "vakInstalle": "0.24.3"
+  },
+  "controle": {
+    "debut": "2026-10-06T13:14:31.205Z",
+    "fin": "2026-10-06T13:16:42.830Z",
+    "duree_s": 132,
+    "node": "v22.22.2"
+  },
+  "vak": {
+    "test": {
+      "commande": "vak test",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "vak test : tout est vert [code 0]",
+      "signaux": []
+    },
+    "localdb": {
+      "commande": "vak localdb",
+      "code": 0,
+      "duree_s": 3,
+      "resume": "base locale vak_local_7bf74a prête : 39 migration(s) appliquée(s) [code 0]",
+      "signaux": []
+    },
+    "doctor": {
+      "commande": "vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_7bf74a'",
+      "code": 0,
+      "duree_s": 15,
+      "resume": "doctor : aucun échec, mais des avertissements (!) à lire [code 0]",
+      "signaux": [
+        "! VAK013 chaque table de l'app est calibrée ou ignorée (6 dans tables ; ignore : 19 tables, 29 fonctions) ; dans ignore, tables de l'utilisateur : « audit_logs », « bank_import_batches », « credit_note_items », « customer_credits », « expenses », « invoice_items », « invoice_reminders_sent », « payment_allocations », « payment_checkpoints_sent », « products », « profiles », « quote_items », « recurring_invoice_items », « recurring_invoices », « suppliers » (« audit_logs » : calibre-la, owner ; « bank_import_batches » : calibre-la, owner ; « credit_note_items » : calibre-la, through: \"credit_note_id\" ; « customer_credits » : calibre-la, owner ; « expenses » : calibre-la, owner ; « invoice_items » : calibre-la, through: \"invoice_id\" ; « invoice_reminders_sent » : calibre-la, through: \"invoice_id\" ; « payment_allocations » : calibre-la, owner ; « payment_checkpoints_sent » : calibre-la, through: \"invoice_id\" ; « products » : calibre-la, owner ; « profiles » : calibre-la, owner ; « quote_items » : calibre-la, through: \"quote_id\" ; « recurring_invoice_items » : calibre-la, through: \"recurring_invoice_id\" ; « recurring_invoices » : calibre-la, owner ; « suppliers » : calibre-la, owner)",
+        "! VAK015 assistant éprouvé du 2026-10-06 ; mais l'app elle-même montre à un utilisateur des lignes d'un autre (bank_transactions, credit_notes, customers, invoices, payments, quotes)",
+        "! VAK107 avis de sécurité (avertissement) (fonction « next_customer_account_number » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul ; customers : politique ouverte à anon : à vérifier (aucune ligne lue sans compte) ; invoices : politique ouverte à anon : à vérifier (aucune ligne lue sans compte) ; payments : politique ouverte à anon : à vérifier (aucune ligne lue sans compte) ; bank_transactions : politique ouverte à anon : à vérifier (aucune ligne lue sans compte) ; quotes : politique ouverte à anon : à vérifier (aucune ligne lue sans compte) ; credit_notes : politique ouverte à anon : à vérifier (aucune ligne lue sans compte))"
+      ]
+    },
+    "localdb-drop": {
+      "commande": "vak localdb --drop",
+      "code": 0,
+      "duree_s": 0,
+      "resume": "base locale vak_local_7bf74a supprimée [code 0]",
+      "signaux": []
+    },
+    "prove": {
+      "commande": "vak prove",
+      "code": 0,
+      "duree_s": 5,
+      "resume": "preuve à deux comptes : éprouvé (6 éprouvée(s) (dont 6 où l'app elle-même laisse A atteindre B), 0 en échec, 0 non prouvée(s) ; 315 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]",
+      "signaux": [
+        "! bank_transactions rls (l'app montre à A 1 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « matched_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; coéquipier de A non semé (ligne en conflit avec une contrainte d'unicité de l'app, et aucune ligne existante de cet utilisateur) : le partage entre membres n'est pas vérifié ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 48 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A)",
+        "! credit_notes rls (l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « credit_note_number 0 a »)",
+        "! customers rls (l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 46 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « company_name 0 a »)",
+        "! invoices rls (l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « invoice_number 0 a »)",
+        "! payments rls (l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 62 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A)",
+        "! quotes rls (l'app montre à A 8 ligne(s) de B (partage, publication) ; l'assistant ne les montre pas (owner « created_by ») ; la RLS de l'app laisse A lire la ligne de B (fuite de l'app, assistant ou non) ; lecture par l'assistant : jamais la ligne de B ; lecture par l'assistant : la ligne de A ; ligne de C : l'app la montre à A comme celle de B (lignes ouvertes à tous), non comparée ; lecture de la ligne de B par son identifiant : refusée ; totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « quote_number 0 a »)"
+      ]
+    }
+  },
+  "preuve": {
+    "commite": {
+      "verdict": "éprouvé",
+      "vak": "0.24.3",
+      "at": "2026-10-06T13:13:04.492Z",
+      "tables": {
+        "bank_transactions": "rls",
+        "credit_notes": "rls",
+        "customers": "rls",
+        "invoices": "rls",
+        "payments": "rls",
+        "quotes": "rls"
+      },
+      "fonctions": {}
+    },
+    "controle": {
+      "verdict": "éprouvé",
+      "vak": "0.24.3",
+      "at": "2026-10-06T13:13:04.492Z",
+      "tables": {
+        "bank_transactions": "rls",
+        "credit_notes": "rls",
+        "customers": "rls",
+        "invoices": "rls",
+        "payments": "rls",
+        "quotes": "rls"
+      },
+      "fonctions": {}
+    }
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 22,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 20,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 11,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 11,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 12,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 17,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 2,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 2,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 53,
+        "erreurs": 0,
+        "fin": [
+          "}",
+          "Export encountered an error on /(auth)/forgot-password/page: /forgot-password, exiting the build.",
+          "⨯ Next.js build worker exited with code: 1 and signal: null"
+        ]
+      },
+      "apres": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 57,
+        "erreurs": 0,
+        "fin": [
+          "}",
+          "Export encountered an error on /(auth)/forgot-password/page: /forgot-password, exiting the build.",
+          "⨯ Next.js build worker exited with code: 1 and signal: null"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          1007,
+          1031
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A .agents/skills/vak/SKILL.md",
+      "A .agents/skills/vak/references/calibration.md",
+      "A .agents/skills/vak/references/features.md",
+      "A .agents/skills/vak/references/guardrails.md",
+      "A .agents/skills/vak/references/local-first.md",
+      "A .agents/skills/vak/references/ui.md",
+      "A .claude/skills/vak/SKILL.md",
+      "A .claude/skills/vak/references/calibration.md",
+      "A .claude/skills/vak/references/features.md",
+      "A .claude/skills/vak/references/guardrails.md",
+      "A .claude/skills/vak/references/local-first.md",
+      "A .claude/skills/vak/references/ui.md",
+      "M AGENTS.md",
+      "A app/(app)/assistant/assistant.tsx",
+      "A app/(app)/assistant/page.tsx",
+      "A lib/vak.ts",
+      "M package-lock.json",
+      "M package.json",
+      "A supabase/.gitignore",
+      "A supabase/config.toml",
+      "A supabase/functions/vak/agent.ts",
+      "A supabase/functions/vak/deno.json",
+      "A supabase/functions/vak/index.ts",
+      "A supabase/functions/vak/schema.gen.ts",
+      "A supabase/functions/vak/tsconfig.json",
+      "A supabase/functions/vak/vak-proof.json",
+      "A supabase/functions/vak/vak-server.mjs",
+      "A supabase/functions/vak/vak.lock.json",
+      "A supabase/migrations/20261006130853_vak_0001_core.sql",
+      "A supabase/migrations/20261006130854_vak_0002_feedback.sql",
+      "A supabase/migrations/20261006130855_vak_0003_history.sql",
+      "A supabase/migrations/20261006130856_vak_0004_quota_erase.sql",
+      "M tsconfig.json",
+      "A vendor/vak/vak-agent-0.24.3.tgz"
+    ],
+    "aRelire": [
+      "A app/(app)/settings/agent-settings.tsx (branchement : cite vak)",
+      "M app/(app)/settings/page.tsx",
+      "M app/layout.tsx (branchement : cite vak)",
+      "M components/layout/app-shell.tsx (branchement : cite vak)",
+      "M components/layout/nav-items.ts",
+      "A components/layout/vak-button.tsx (branchement : cite vak)"
+    ]
+  }
+}

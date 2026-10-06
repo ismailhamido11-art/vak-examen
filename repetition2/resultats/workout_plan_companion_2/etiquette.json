@@ -1,0 +1,34 @@
+{
+  "lue_le": "2026-10-06T14:19:24.261Z",
+  "langue": "es",
+  "nom": "Asistente",
+  "etiquette": [
+    "Sees: Perfil (Nombre, Objetivo, Experiencia, Disponibilidad semanal, Duración de la sesión (min), Material disponible, Énfasis, Limitaciones declaradas, Unidades) ; Versiones del plan (Versión, Nombre, Publicado) ; Semanas del plan (Versión del plan, Semana, Objetivo) ; Sesiones del plan (Semana, Orden, Día, Título, Foco, Minutos estimados, Calentamiento, Vuelta a la calma) ; Ejercicios del plan (Sesión, Posición, Ejercicio del catálogo, Prescripción (series, repeticiones, RPE o descanso)) ; Entrenamientos registrados (Versión del plan, Sesión del plan, Sesión, Estado, Inicio, Fin, Unidades, Nota) ; Series registradas (Entrenamiento, Ejercicio, Serie, Objetivo, Descanso, Carga introducida, Unidad, Carga (kg), Repeticiones, RPE, Completada) ; shared catalog Catálogo de ejercicios (Nombre, Material, Preparación del material, Pasos de técnica, Indicación técnica, Preparación, Ejecución, Respiración, Errores comunes, Origen)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open: Abrir Hoy, Abrir Mi plan, Abrir Progreso, Abrir Perfil, Abrir Apariencia, Abrir la sesión, Abrir el ejercicio",
+    "Never: delete or edit outside these lists, except through remember a memory (plugin memory) ; read active_plan_selection, assistant_consents, assistant_conversations, assistant_messages, plan_proposals, training_history_backups, user_preferences, workout_exercise_feedback, 1 others ; call complete_workout_log, grant_assistant_consent, import_local_training_history, publish_ai_plan_proposal, revoke_assistant_consent",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts",
+    "guardrails"
+  ],
+  "empreintes": {
+    "schema": "sha256:0018dc7dc205373a34d4c5a800677ab770607280cdb9b07b7c983ae46febd31b",
+    "calibrage": "sha256:8432fd3e033c6f9112fcffffcef786e495d1535965c1d6dcbd11840afd877616"
+  }
+}

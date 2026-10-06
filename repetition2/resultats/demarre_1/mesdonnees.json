@@ -1,0 +1,642 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/demarre_1/apres",
+  "lecture": {
+    "fichier": "/work/demarre_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.books",
+      "public.reading_sessions"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.books",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 7,
+      "attendu_json": 7,
+      "accord": true
+    },
+    {
+      "table": "public.reading_sessions",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 12,
+      "attendu_json": 12,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.books",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes livres ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-f2e61de8-d312-401e-a947-c71a2ba62068",
+        "question": "Combien de mes livres ?",
+        "texte": "Tu as **7 livres** dans ton carnet 📚\n\n- 2 en cours\n- 2 à lire\n- 3 lus\n\nTu veux que je te montre ceux en cours, ou que j'ouvre un écran pour en ajouter un ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "where": [
+                {
+                  "column": "status",
+                  "op": "eq",
+                  "value": "lu"
+                }
+              ],
+              "limit": 1
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 3,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "de799bdf-33ed-4d32-b120-e153452461da",
+                  "title": "Le Petit Prince",
+                  "author": "Antoine de Saint-Exupéry",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-02-02"
+                }
+              ],
+              "note": "1 ligne montrée sur 3 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 7,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "7ffa4829-514d-4ef5-8009-1c46ea2f19f5",
+                  "title": "La Peste",
+                  "author": "Albert Camus",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-04-01"
+                }
+              ],
+              "note": "1 ligne montrée sur 7 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "where": [
+                {
+                  "column": "status",
+                  "op": "eq",
+                  "value": "en_cours"
+                }
+              ],
+              "limit": 1
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 2,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "title": "Dune",
+                  "author": "Frank Herbert",
+                  "status": "en_cours (En cours)",
+                  "added_at": "2026-03-01"
+                }
+              ],
+              "note": "1 ligne montrée sur 2 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "where": [
+                {
+                  "column": "status",
+                  "op": "eq",
+                  "value": "a_lire"
+                }
+              ],
+              "limit": 1
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 2,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "7ffa4829-514d-4ef5-8009-1c46ea2f19f5",
+                  "title": "La Peste",
+                  "author": "Albert Camus",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-04-01"
+                }
+              ],
+              "note": "1 ligne montrée sur 2 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 7,
+        "nombres_lus": [
+          7,
+          2,
+          2,
+          3
+        ],
+        "ok": true,
+        "retenu": 7
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.books",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes livres.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-bd615dcb-e3b5-4c77-acec-2791d6d2cb58",
+        "question": "Liste mes livres.",
+        "texte": "Voici tes 7 livres 📚\n\n**En cours**\n- *Dune* — Frank Herbert\n- *L'Étranger* — Albert Camus\n\n**À lire**\n- *La Peste* — Albert Camus\n- *Fahrenheit 451* — Ray Bradbury\n\n**Lus**\n- *Le Petit Prince* — Antoine de Saint-Exupéry\n- *Germinal* — Émile Zola\n- *Les Misérables* — Victor Hugo\n\nTu veux noter une séance de lecture, ou ouvrir la fiche d'un de ces livres ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 7,
+              "shown": 7,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7ffa4829-514d-4ef5-8009-1c46ea2f19f5",
+                  "title": "La Peste",
+                  "author": "Albert Camus",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-04-01"
+                },
+                {
+                  "id": "624af9a5-03f4-44ea-bd19-324d0bdebbcf",
+                  "title": "Fahrenheit 451",
+                  "author": "Ray Bradbury",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-03-15"
+                },
+                {
+                  "id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "title": "Dune",
+                  "author": "Frank Herbert",
+                  "status": "en_cours (En cours)",
+                  "added_at": "2026-03-01"
+                },
+                {
+                  "id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "title": "L'Étranger",
+                  "author": "Albert Camus",
+                  "status": "en_cours (En cours)",
+                  "added_at": "2026-02-16"
+                },
+                {
+                  "id": "de799bdf-33ed-4d32-b120-e153452461da",
+                  "title": "Le Petit Prince",
+                  "author": "Antoine de Saint-Exupéry",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-02-02"
+                },
+                {
+                  "id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "title": "Germinal",
+                  "author": "Émile Zola",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-01-19"
+                },
+                {
+                  "id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "title": "Les Misérables",
+                  "author": "Victor Hugo",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-01-05"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "carnet de lecture habitudes préférences"
+            },
+            "sortie": {
+              "memories": []
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 7,
+        "nombres_lus": [
+          7,
+          451
+        ],
+        "ok": true,
+        "retenu": 7,
+        "source": "nombre annoncé",
+        "elements": 7
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.reading_sessions",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes séances de lecture ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-9e289b70-a447-489d-8b2b-0cbc952a0690",
+        "question": "Combien de mes séances de lecture ?",
+        "texte": "Tu as **12 séances de lecture** enregistrées, de début janvier à mars 2026. 📚\n\nTu veux que je te les détaille par livre ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "reading_sessions",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "reading_sessions",
+              "label": "Séances de lecture",
+              "total": 12,
+              "shown": 12,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "3cdc86e9-4102-4f12-ae77-a73f9727aa5e",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-12",
+                  "pages_read": 51,
+                  "note": "Le conseil des Harkonnen"
+                },
+                {
+                  "id": "4fb99fcc-15b9-43b2-8d2c-24df22f63933",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-09",
+                  "pages_read": 38,
+                  "note": "L'épice"
+                },
+                {
+                  "id": "ad5c77a2-f53b-44e5-9b30-035d9f30671a",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-05",
+                  "pages_read": 44,
+                  "note": "Les Fremen"
+                },
+                {
+                  "id": "edf4fe05-20b0-4770-86ba-67c7b8da9bdd",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-02",
+                  "pages_read": 50,
+                  "note": "Le désert d'Arrakis"
+                },
+                {
+                  "id": "3eb69d05-3a0e-436c-aa81-d9c2882f19b1",
+                  "book_id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "read_on": "2026-02-24",
+                  "pages_read": 33,
+                  "note": "Le procès"
+                },
+                {
+                  "id": "9934f82f-7b29-44c8-8192-f89bee1b4c91",
+                  "book_id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "read_on": "2026-02-17",
+                  "pages_read": 25,
+                  "note": "Première partie"
+                },
+                {
+                  "id": "4c79cf07-79d9-44f1-aabc-7450d9076c22",
+                  "book_id": "de799bdf-33ed-4d32-b120-e153452461da",
+                  "read_on": "2026-02-03",
+                  "pages_read": 30,
+                  "note": "Lu d'une traite"
+                },
+                {
+                  "id": "855323ca-bb03-4c77-9b6c-6dcb2b20e61e",
+                  "book_id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "read_on": "2026-01-27",
+                  "pages_read": 48,
+                  "note": "La grève approche"
+                },
+                {
+                  "id": "3dc01d7a-f1a9-4e84-bfd4-f53968006a8b",
+                  "book_id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "read_on": "2026-01-20",
+                  "pages_read": 35,
+                  "note": "La mine"
+                },
+                {
+                  "id": "6826ffae-bf0e-4ff7-91bd-6310f4a44386",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-14",
+                  "pages_read": 62,
+                  "note": "Fin de la première partie"
+                },
+                {
+                  "id": "33aec708-9cae-4ba3-aedd-567672ef0457",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-09",
+                  "pages_read": 55,
+                  "note": "Les chapitres sur Fantine"
+                },
+                {
+                  "id": "0baa5363-42ec-462d-a55f-577150d47878",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-06",
+                  "pages_read": 40,
+                  "note": "Début du tome un"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 12,
+        "nombres_lus": [
+          12,
+          26
+        ],
+        "ok": true,
+        "retenu": 12
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.reading_sessions",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes séances de lecture.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-77683add-38a3-4265-85dc-fffb91a4c13b",
+        "question": "Liste mes séances de lecture.",
+        "texte": "Je regarde ça tout de suite.Voici tes 12 séances de lecture, de la plus récente à la plus ancienne :\n\n**Dune** — Frank Herbert\n- 12/03 : 51 pages — Le conseil des Harkonnen\n- 09/03 : 38 pages — L'épice\n- 05/03 : 44 pages — Les Fremen\n- 02/03 : 50 pages — Le désert d'Arrakis\n\n**L'Étranger** — Albert Camus\n- 24/02 : 33 pages — Le procès\n- 17/02 : 25 pages — Première partie\n\n**Le Petit Prince** — Antoine de Saint-Exupéry\n- 03/02 : 30 pages — Lu d'une traite\n\n**Germinal** — Émile Zola\n- 27/01 : 48 pages — La grève approche\n- 20/01 : 35 pages — La mine\n\n**Les Misérables** — Victor Hugo\n- 14/01 : 62 pages — Fin de la première partie\n- 09/01 : 55 pages — Les chapitres sur Fantine\n- 06/01 : 40 pages — Début du tome un\n\nÇa fait 511 pages en tout. Tu veux que j'ouvre une fiche en particulier, ou ajouter une séance ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "reading_sessions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "reading_sessions",
+              "label": "Séances de lecture",
+              "total": 12,
+              "shown": 12,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "3cdc86e9-4102-4f12-ae77-a73f9727aa5e",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-12",
+                  "pages_read": 51,
+                  "note": "Le conseil des Harkonnen"
+                },
+                {
+                  "id": "4fb99fcc-15b9-43b2-8d2c-24df22f63933",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-09",
+                  "pages_read": 38,
+                  "note": "L'épice"
+                },
+                {
+                  "id": "ad5c77a2-f53b-44e5-9b30-035d9f30671a",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-05",
+                  "pages_read": 44,
+                  "note": "Les Fremen"
+                },
+                {
+                  "id": "edf4fe05-20b0-4770-86ba-67c7b8da9bdd",
+                  "book_id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "read_on": "2026-03-02",
+                  "pages_read": 50,
+                  "note": "Le désert d'Arrakis"
+                },
+                {
+                  "id": "3eb69d05-3a0e-436c-aa81-d9c2882f19b1",
+                  "book_id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "read_on": "2026-02-24",
+                  "pages_read": 33,
+                  "note": "Le procès"
+                },
+                {
+                  "id": "9934f82f-7b29-44c8-8192-f89bee1b4c91",
+                  "book_id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "read_on": "2026-02-17",
+                  "pages_read": 25,
+                  "note": "Première partie"
+                },
+                {
+                  "id": "4c79cf07-79d9-44f1-aabc-7450d9076c22",
+                  "book_id": "de799bdf-33ed-4d32-b120-e153452461da",
+                  "read_on": "2026-02-03",
+                  "pages_read": 30,
+                  "note": "Lu d'une traite"
+                },
+                {
+                  "id": "855323ca-bb03-4c77-9b6c-6dcb2b20e61e",
+                  "book_id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "read_on": "2026-01-27",
+                  "pages_read": 48,
+                  "note": "La grève approche"
+                },
+                {
+                  "id": "3dc01d7a-f1a9-4e84-bfd4-f53968006a8b",
+                  "book_id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "read_on": "2026-01-20",
+                  "pages_read": 35,
+                  "note": "La mine"
+                },
+                {
+                  "id": "6826ffae-bf0e-4ff7-91bd-6310f4a44386",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-14",
+                  "pages_read": 62,
+                  "note": "Fin de la première partie"
+                },
+                {
+                  "id": "33aec708-9cae-4ba3-aedd-567672ef0457",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-09",
+                  "pages_read": 55,
+                  "note": "Les chapitres sur Fantine"
+                },
+                {
+                  "id": "0baa5363-42ec-462d-a55f-577150d47878",
+                  "book_id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "read_on": "2026-01-06",
+                  "pages_read": 40,
+                  "note": "Début du tome un"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "books",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "books",
+              "label": "Livres",
+              "total": 7,
+              "shown": 7,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7ffa4829-514d-4ef5-8009-1c46ea2f19f5",
+                  "title": "La Peste",
+                  "author": "Albert Camus",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-04-01"
+                },
+                {
+                  "id": "624af9a5-03f4-44ea-bd19-324d0bdebbcf",
+                  "title": "Fahrenheit 451",
+                  "author": "Ray Bradbury",
+                  "status": "a_lire (À lire)",
+                  "added_at": "2026-03-15"
+                },
+                {
+                  "id": "d8747b5b-457a-488d-b471-a868e6f66d9e",
+                  "title": "Dune",
+                  "author": "Frank Herbert",
+                  "status": "en_cours (En cours)",
+                  "added_at": "2026-03-01"
+                },
+                {
+                  "id": "f1e94a7b-94a6-4794-bbca-a14da2230d1c",
+                  "title": "L'Étranger",
+                  "author": "Albert Camus",
+                  "status": "en_cours (En cours)",
+                  "added_at": "2026-02-16"
+                },
+                {
+                  "id": "de799bdf-33ed-4d32-b120-e153452461da",
+                  "title": "Le Petit Prince",
+                  "author": "Antoine de Saint-Exupéry",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-02-02"
+                },
+                {
+                  "id": "1d694aa4-4985-4040-8145-24995fc81249",
+                  "title": "Germinal",
+                  "author": "Émile Zola",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-01-19"
+                },
+                {
+                  "id": "bc823444-29fb-4fa4-b726-b86135669966",
+                  "title": "Les Misérables",
+                  "author": "Victor Hugo",
+                  "status": "lu (Lu)",
+                  "added_at": "2026-01-05"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 12,
+        "nombres_lus": [
+          12,
+          12,
+          51,
+          9,
+          38,
+          5,
+          44,
+          2,
+          50,
+          24,
+          33,
+          17,
+          25,
+          3,
+          30,
+          27,
+          48,
+          20,
+          35,
+          14,
+          62,
+          9,
+          55,
+          6,
+          40,
+          511,
+          1
+        ],
+        "ok": true,
+        "retenu": 12,
+        "source": "nombre annoncé",
+        "elements": 12
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 14
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.books",
+        "lue": true
+      },
+      {
+        "table": "public.reading_sessions",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "equipe_2",
+  "etat_commite": "70aff0f5d7b3e0ffc48736ea7fad47006fb8fa3f",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions ; les fonctions de l'app sont dans ignore",
+      "agent.ts:17-56 : teams, team_members, team_invitations et sites n'ont ni create ni update ; tasks a create et update (lignes 70-71), jamais de suppression"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.tasks", "nom": "Tâches", "preuve": "agent.ts:70-71 (create : site_id, title, due_date ; update : done, due_date)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:107, plugins : memory()" }
+    ]
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

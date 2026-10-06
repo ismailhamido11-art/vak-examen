@@ -1,0 +1,39 @@
+verdict equipe_1 : réussi
+{
+  "id": "equipe_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "faux",
+    "couverture": "3/4",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes équipes.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes adhésions.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes tâches.",
+        "attendu": 9,
+        "lu": 5,
+        "juste": false,
+        "raison": "5 éléments listés, attendu 9"
+      }
+    ]
+  }
+}

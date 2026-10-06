@@ -1,0 +1,39 @@
+{
+  "vak": "0.24.3",
+  "at": "2026-10-06T12:36:10.313Z",
+  "verdict": "non prouvé",
+  "calibration": "sha256:383d66148e50486cb2fd812b2d770bf06a893c17a72cf59b2ef12772ce39c278",
+  "schema": "sha256:43a53bcb0cce7a4db42f1fde3e393f6724943e667e186aeddab49eb53c551df8",
+  "tables": {
+    "categories": "éprouvé",
+    "expenses": "non prouvé"
+  },
+  "notes": {
+    "categories": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ],
+    "expenses": [
+      "graine impossible : 23503 insert or update on table \"expenses\" violates foreign key constraint \"expenses_category_id_owner_id_fkey\"",
+      "totaux de read_data non comparés (verdict non prouvé)"
+    ]
+  },
+  "functions": {
+    "add_expense": "non prouvé",
+    "month_summary": "non prouvé",
+    "update_expense": "non prouvé",
+    "upsert_category": "non prouvé"
+  },
+  "totals": 38,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Catégories (Nom, Plafond mensuel (€), Création) ; Dépenses (Catégorie, Montant (€), Date, Libellé)",
+    "Peut proposer (après votre validation) : « Ajouter une dépense » (fonction de l'app) ; « Modifier une dépense » (fonction de l'app) ; « Créer ou modifier une catégorie » (fonction de l'app) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir : Totaux, Catégories, Dépense",
+    "Jamais : supprimer ou modifier hors de ces listes, sauf par « Ajouter une dépense » (fonction de l'app), « Modifier une dépense » (fonction de l'app), « Créer ou modifier une catégorie » (fonction de l'app), retenir un souvenir (prise memory) ; appeler delete_expense"
+  ]
+}

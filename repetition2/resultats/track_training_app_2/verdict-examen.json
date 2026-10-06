@@ -1,0 +1,520 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "track_training_app_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 1207
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 45
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.3.tgz sha256 = préparation",
+        "23 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "fichier-gere",
+          "ligne": 126,
+          "heure": "14:02:55",
+          "detail": "écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts",
+          "commande": "V=\"node node_modules/@vak/agent/bin/vak.mjs\"; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; $V sync --db-url postgresql://root@127.0.0.1:5432/vak_local_ea9357 2>&1 | tail -4; cmp /tmp/schema.bak supabase/functions/vak/schema.gen.ts && echo same; $V doctor 2>&1 | grep -A3 \"VAK003\""
+        },
+        {
+          "code": "fichier-gere",
+          "ligne": 126,
+          "heure": "14:02:55",
+          "detail": "écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts",
+          "commande": "V=\"node node_modules/@vak/agent/bin/vak.mjs\"; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; $V sync --db-url postgresql://root@127.0.0.1:5432/vak_local_ea9357 2>&1 | tail -4; cmp /tmp/schema.bak supabase/functions/vak/schema.gen.ts && echo same; $V doctor 2>&1 | grep -A3 \"VAK003\""
+        }
+      ]
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-06T14:00:20.976Z",
+      "demande": "2026-10-06T14:00:18.272Z",
+      "premierVakQuiRendZero": "2026-10-06T14:01:33.400Z",
+      "preuve": "phrase « Fini pour l'agent de code » : Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans P…",
+      "minutes": 1.21,
+      "ligne": 42
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 30916,
+          "derniereLigne": null,
+          "fin": [
+            "    - « workout_assignment_submissions » : calibre-la, through: \"workout_id\"",
+            "    - « workout_template_entries » : calibre-la, through: \"template_id\"",
+            "    - « workout_templates » : calibre-la, through: \"team_id\"",
+            "    → calibre-les comme indiqué : jamais ignore pour faire passer la preuve ; si l'assistant ne doit vraiment pas les voir, dis-le à l'humain en une ligne",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (23)",
+            "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+            "    → node node_modules/@vak/agent/bin/vak.mjs prove --db-url <base de TEST où les migrations de l'app sont appliquées ; sans Docker : node node_modules/@vak/agent/bin/vak.mjs localdb donne l'URL>",
+            "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+            "    - base : sha256:392e50410da4c568da1db9c9b54e0673900c0b03222d27711511d5989f792d67",
+            "    - schema.gen.ts : —",
+            "    → node node_modules/@vak/agent/bin/vak.mjs sync (même source), puis node node_modules/@vak/agent/bin/vak.mjs doctor --db",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "    - profiles : politique « profiles_authenticated_read » using (true) : publication par l'app : voulue ?",
+            "    - exercises : politique « exercises_authenticated_select » using (true) : publication par l'app : voulue ?",
+            "    → vérifie chaque point ; corrige dans une migration de l'app si besoin",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - workout_entries.workout_id : modifiable par l'utilisateur et lue par la politique « workout_entries_authorized_select » : elle décide qui voit la ligne",
+            "    - field_attempts.entry_id : modifiable par l'utilisateur et lue par la politique « field_attempts_authorized_select » : elle décide qui voit la ligne",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.24.3, bundle serveur et deno.json compris)",
+            "✗ VAK003 fichiers gérés modifiés ou pas à jour",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (7 dans tables ; ignore : 27 tables, 17 fonctions) ; dans ignore, tables de l'utilisateur : « exercise_prs », « achievements », « coach_athlete_assignments », « coac",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (23)",
+            "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+            "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 5,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 12,
+              "erreurs": 0,
+              "avertissements": 12
+            }
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 5,
+            "erreurs": 0,
+            "avertissements": {
+              "problemes": 12,
+              "erreurs": 0,
+              "avertissements": 12
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "npm run test",
+            "source": "script « test » : jest --runInBand",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 15
+            }
+          },
+          "apres": {
+            "commande": "npm run test",
+            "source": "script « test » : jest --runInBand",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 15
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 4,
+      "code": "journal-fichier-gere",
+      "resume": "fichier géré par vak retouché à la main (2 fois)",
+      "preuve": [
+        "journal ligne 126 (14:02:55) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : V=\"node node_modules/@vak/agent/bin/vak.mjs\"; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; $V sync --db-url postgresql://root@127.0.0.1:5432/vak_l…",
+        "journal ligne 126 (14:02:55) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : V=\"node node_modules/@vak/agent/bin/vak.mjs\"; cp supabase/functions/vak/schema.gen.ts /tmp/schema.bak; rm supabase/functions/vak/schema.gen.ts; $V sync --db-url postgresql://root@127.0.0.1:5432/vak_l…"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ VAK003 fichiers gérés modifiés ou pas à jour",
+        "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+        "! VAK013 chaque table de l'app est calibrée ou ignorée (7 dans tables ; ignore : 27 tables, 17 fonctions) ; dans ignore, tables de l'utilisateur : « exercise_prs », « achievements », « coach_athlete_assignments », « coac",
+        "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+        "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+        "! VAK107 avis de sécurité (avertissement)",
+        "! VAK108 colonnes qui décident des droits (avertissement)",
+        "→ vérifie chaque point ; corrige dans une migration de l'app si besoin",
+        "! VAK108 colonnes qui décident des droits (avertissement)",
+        "- workout_entries.workout_id : modifiable par l'utilisateur et lue par la politique « workout_entries_authorized_select » : elle décide qui voit la ligne",
+        "- field_attempts.entry_id : modifiable par l'utilisateur et lue par la politique « field_attempts_authorized_select » : elle décide qui voit la ligne",
+        "→ voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+        "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+      ]
+    }
+  ],
+  "notes": [
+    "aucune table « à moi » éprouvée dans supabase/functions/vak/ (26 dans le schéma) : le point 5 échouera, vérifié à part"
+  ],
+  "entree": {
+    "essai": "/srv/essais/track_training_app_2",
+    "preparation": {
+      "id": "track_training_app_2",
+      "depot": "https://github.com/aprescod12/track-training-app",
+      "commit": "00acb94c39f8ffe3664a789fe35cec4e50e5c204",
+      "prepare": "5c19395d82d8229e2cb5f0f20237d69c2efaae6a",
+      "archive": {
+        "nom": "vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      },
+      "debut": "2026-10-06T13:59:25Z"
+    },
+    "tip": "7648b9bcc492cb6a9e4e00c58b4ff558d1f10e7d",
+    "commitsAgent": 2,
+    "appsVak": [
+      ""
+    ]
+  },
+  "journal": {
+    "entrees": 105,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 34,
+      "tablesAMoi": 26,
+      "aMoiEprouvees": 0,
+      "ignorees": 44,
+      "verdictDuRecu": null
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "5c19395d82d8229e2cb5f0f20237d69c2efaae6a",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "added 1161 packages in 24s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 7,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 5,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 12,
+            "erreurs": 0,
+            "avertissements": 12
+          },
+          "liste": [],
+          "fin": [
+            "  305:6  warning  React Hook useEffect has a missing dependency: 'hideToast'. Either include it or remove the dependency array  react-hooks/exhaustive-deps",
+            "/srv/verdicts/track_training_app_2/clones/prep/app/team-training/template-new.tsx",
+            "  126:9  warning  The 'teamPermissions' logical expression could make the dependencies of useMemo Hook (at line 133) change on every render. To fix this, wrap the initialization of 'teamPermissions' in its own useMemo() Hook  react-hooks/exhaustive-deps",
+            "/srv/verdicts/track_training_app_2/clones/prep/app/workout/[id].tsx",
+            "  69:10  warning  'status' is assigned a value but never used  @typescript-eslint/no-unused-vars",
+            "/srv/verdicts/track_training_app_2/clones/prep/components/FormScreen.tsx",
+            "  2:64  warning  '/srv/verdicts/track_training_app_2/clones/prep/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "  3:49  warning  '/srv/verdicts/track_training_app_2/clones/prep/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "/srv/verdicts/track_training_app_2/clones/prep/components/WorkoutCard.tsx",
+            "  1:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars",
+            "✖ 12 problems (0 errors, 12 warnings)",
+            "  0 errors and 3 warnings potentially fixable with the `--fix` option."
+          ]
+        },
+        "test": {
+          "commande": "npm run test",
+          "source": "script « test » : jest --runInBand",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "tests": {
+            "echecs": 0,
+            "reussis": 15
+          },
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 test",
+            "> jest --runInBand",
+            "(node:189) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+            "(Use `node --trace-deprecation ...` to show where the warning was created)",
+            "PASS lib/environment.test.ts",
+            "PASS lib/errors.test.ts",
+            "PASS lib/date.test.ts",
+            "Test Suites: 3 passed, 3 total",
+            "Tests:       15 passed, 15 total",
+            "Snapshots:   0 total",
+            "Time:        2.062 s",
+            "Ran all test suites."
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "7648b9bcc492cb6a9e4e00c58b4ff558d1f10e7d",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+          "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "added 1162 packages in 17s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 7,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 5,
+          "erreurs": 0,
+          "avertissements": {
+            "problemes": 12,
+            "erreurs": 0,
+            "avertissements": 12
+          },
+          "liste": [],
+          "fin": [
+            "  305:6  warning  React Hook useEffect has a missing dependency: 'hideToast'. Either include it or remove the dependency array  react-hooks/exhaustive-deps",
+            "/srv/verdicts/track_training_app_2/clones/head/app/team-training/template-new.tsx",
+            "  126:9  warning  The 'teamPermissions' logical expression could make the dependencies of useMemo Hook (at line 133) change on every render. To fix this, wrap the initialization of 'teamPermissions' in its own useMemo() Hook  react-hooks/exhaustive-deps",
+            "/srv/verdicts/track_training_app_2/clones/head/app/workout/[id].tsx",
+            "  69:10  warning  'status' is assigned a value but never used  @typescript-eslint/no-unused-vars",
+            "/srv/verdicts/track_training_app_2/clones/head/components/FormScreen.tsx",
+            "  2:64  warning  '/srv/verdicts/track_training_app_2/clones/head/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "  3:49  warning  '/srv/verdicts/track_training_app_2/clones/head/node_modules/react-native/index.js' imported multiple times  import/no-duplicates",
+            "/srv/verdicts/track_training_app_2/clones/head/components/WorkoutCard.tsx",
+            "  1:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars",
+            "✖ 12 problems (0 errors, 12 warnings)",
+            "  0 errors and 3 warnings potentially fixable with the `--fix` option."
+          ]
+        },
+        "test": {
+          "commande": "npm run test",
+          "source": "script « test » : jest --runInBand",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "tests": {
+            "echecs": 0,
+            "reussis": 15
+          },
+          "liste": [],
+          "fin": [
+            "> track-training@1.0.0 test",
+            "> jest --runInBand",
+            "(node:338) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+            "(Use `node --trace-deprecation ...` to show where the warning was created)",
+            "PASS lib/environment.test.ts",
+            "PASS lib/errors.test.ts",
+            "PASS lib/date.test.ts",
+            "Test Suites: 3 passed, 3 total",
+            "Tests:       15 passed, 15 total",
+            "Snapshots:   0 total",
+            "Time:        1.945 s",
+            "Ran all test suites."
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T14:08:38.257Z"
+}

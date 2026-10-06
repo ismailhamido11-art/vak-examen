@@ -1,0 +1,9 @@
+$ vak localdb
+(dossier : /work/budget_app_1/apres)
+
+URL : postgresql://root@127.0.0.1:5432/vak_local_77e13b
+ensuite : node node_modules/@vak/agent/bin/vak.mjs sync --db-url postgresql://root@127.0.0.1:5432/vak_local_77e13b
+puis : node node_modules/@vak/agent/bin/vak.mjs doctor --db --db-url postgresql://root@127.0.0.1:5432/vak_local_77e13b
+à la fin : node node_modules/@vak/agent/bin/vak.mjs localdb --drop
+rôles de l'API et de Supabase émulés (anon, authenticated, rôle de service, supabase_admin…) et postgres : communs au serveur PostgreSQL, sans connexion, ils restent après --drop (sans droits hors des bases de ce type)
+base locale vak_local_77e13b prête : 12 migration(s) appliquée(s) [code 0]

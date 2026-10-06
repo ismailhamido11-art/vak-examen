@@ -1,0 +1,19 @@
+{
+  "id": "workout_plan_companion_2",
+  "etat_commite": "ded3670028a8490b9aa789f1707c4b1ff83c110a",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions ; les fonctions de l'app sont dans ignore",
+      "agent.ts:39-178 : les 8 tables (profiles, plan_versions, plan_weeks, plan_sessions, plan_session_exercises, workout_logs, workout_log_sets, exercise_catalog) n'ont ni create ni update"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:189, plugins : memory()" }
+    ],
+    "note": "aucune table de l'app : lecture seule"
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

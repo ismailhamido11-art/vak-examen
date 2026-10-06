@@ -1,0 +1,76 @@
+$ pnpm install --frozen-lockfile
+(dossier : /work/budget_app_1/avant)
+
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +542
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 542, reused 9, downloaded 0, added 0
+Progress: resolved 542, reused 21, downloaded 0, added 0
+Progress: resolved 542, reused 34, downloaded 0, added 0
+Progress: resolved 542, reused 73, downloaded 0, added 0
+Progress: resolved 542, reused 135, downloaded 7, added 4
+Progress: resolved 542, reused 135, downloaded 39, added 117
+Progress: resolved 542, reused 135, downloaded 44, added 121
+Progress: resolved 542, reused 135, downloaded 50, added 121
+Progress: resolved 542, reused 135, downloaded 65, added 127
+Progress: resolved 542, reused 135, downloaded 85, added 135
+Progress: resolved 542, reused 135, downloaded 94, added 139
+Progress: resolved 542, reused 135, downloaded 122, added 153
+Progress: resolved 542, reused 135, downloaded 156, added 185
+Progress: resolved 542, reused 135, downloaded 190, added 200
+Progress: resolved 542, reused 135, downloaded 285, added 274
+Progress: resolved 542, reused 135, downloaded 353, added 476
+Progress: resolved 542, reused 135, downloaded 405, added 539
+Progress: resolved 542, reused 135, downloaded 405, added 540
+Progress: resolved 542, reused 135, downloaded 407, added 542, done
+ WARN  Failed to create bin at /work/budget_app_1/avant/node_modules/.pnpm/supabase@2.54.11/node_modules/supabase/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/work/budget_app_1/avant/node_modules/.pnpm/supabase@2.54.11/node_modules/supabase/bin/supabase'
+ WARN  Failed to create bin at /work/budget_app_1/avant/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/work/budget_app_1/avant/node_modules/.pnpm/supabase@2.54.11/node_modules/supabase/bin/supabase'
+
+dependencies:
++ @google/generative-ai 0.11.5
++ @hookform/resolvers 3.10.0
++ @radix-ui/react-dialog 1.1.15
++ @radix-ui/react-dropdown-menu 2.1.16
++ @radix-ui/react-slot 1.2.4
++ @supabase/ssr 0.7.0
++ @supabase/supabase-js 2.80.0
++ @tanstack/react-query 5.90.7
++ class-variance-authority 0.7.1
++ clsx 2.1.1
++ date-fns 3.6.0
++ lucide-react 0.475.0
++ next 16.0.1
++ react 19.2.0
++ react-dom 19.2.0
++ react-hook-form 7.66.0
++ recharts 3.3.0
++ sharp 0.33.5
++ tailwind-merge 2.6.0
++ tailwindcss-animate 1.0.7
++ tesseract.js 5.1.1
++ tesseract.js-core 5.1.1
++ zod 3.25.76
+
+devDependencies:
++ @types/node 20.19.24
++ @types/react 19.2.2
++ @types/react-dom 19.2.2
++ autoprefixer 10.4.21
++ eslint 9.39.1
++ eslint-config-next 16.0.1
++ postcss 8.5.6
++ supabase 2.54.11
++ tailwindcss 3.4.18
++ typescript 5.9.3
+
+ WARN  Failed to create bin at /work/budget_app_1/avant/node_modules/.bin/supabase. ENOENT: no such file or directory, open '/work/budget_app_1/avant/node_modules/supabase/bin/supabase'
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: sharp@0.33.5, sharp@0.34.5, supabase@2.54.11,       │
+│   tesseract.js@5.1.1, unrs-resolver@1.11.1.                                  │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 19.6s using pnpm v10.33.0

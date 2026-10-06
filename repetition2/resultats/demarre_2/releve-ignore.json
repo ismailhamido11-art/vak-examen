@@ -1,0 +1,13 @@
+{
+  "id": "demarre_2",
+  "echecs_de_preuve": [
+    {
+      "table": "reading_sessions",
+      "verdict": "non prouvé",
+      "ligne": 184,
+      "texte": "✗ reading_sessions non prouvé"
+    }
+  ],
+  "ignore": [],
+  "relevees": []
+}

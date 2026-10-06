@@ -1,0 +1,19 @@
+{
+  "id": "equipe_1",
+  "etat_commite": "631cbfe85b8036955fee67d93eb9ce3800401340",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions ; les fonctions de l'app sont dans ignore (agent.ts:70-76), l'assistant ne les appelle pas",
+      "agent.ts:23-66 : les 4 tables (sites, tasks, teams, team_members) n'ont ni create ni update"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:102, plugins : memory()" }
+    ],
+    "note": "aucune table de l'app : lecture seule (agent.ts:20-67)"
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

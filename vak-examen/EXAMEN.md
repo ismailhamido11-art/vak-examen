@@ -1,8 +1,11 @@
 # Le journal de l'examen
 
-Les 14 essais ont commencé le 06/10/2026 à 12:11 UTC, après la publication de leur liste (`AVANT-ESSAIS.md`). Ils sont
-joués l'un après l'autre par `essai.sh`. Leurs résultats, leurs jugements et le verdict de l'examen seront publiés à la
-fin, comme le veut la règle (`REGLE.md`, « La publication »).
+Les 14 essais ont commencé le 06/10/2026 à 12:11 UTC, après la publication de leur liste (`AVANT-ESSAIS.md`). Ils ont
+été joués l'un après l'autre par `essai.sh`, et le dernier a fini à 14:52 UTC. Leurs résultats, leurs jugements et le
+verdict de l'examen sont publiés, comme le veut la règle (`REGLE.md`, « La publication »).
+
+**Verdict : l'examen est échoué.** 2 essais réussis sur 14, quand il en fallait 12. Six seuils sur sept ne sont pas
+tenus. Le détail est dans « Le verdict », à la fin de ce journal.
 
 ## Les corrections faites pendant l'examen
 
@@ -64,3 +67,157 @@ quel.
 
 `workout_plan_companion_1` est rejoué à neuf après les autres essais de la liste. `workout_plan_companion_2`, plus loin
 dans la liste, part avec la réparation.
+
+### 06/10, 14:55 : les vérités des étiquettes n'étaient pas dans le dépôt public avant la lecture
+
+La règle veut la vérité de chaque essai « publiée avant la lecture » (« Comment on compte les seuils »).
+`etiquettes/README.md` le précise : « Les vérités de tous les essais sont publiées, dans le dépôt public, avant que le
+premier lecteur ne lise. »
+
+La publication de 14:55 devait contenir ces vérités, avec les résultats des 14 essais : c'est le commit public
+`44ed538`, poussé à 14:55:39 UTC. Elle ne les contenait pas. `publier.sh` recopiait bien les résultats dans le clone
+public, mais le `.gitignore` du lanceur (`repetition2/.gitignore`, « resultats/ ») les a écartés du commit, sans
+message. Les lecteurs ont commencé à 14:55:48 UTC, sans que les vérités soient publiques. Le défaut a été vu à 15:05,
+en préparant la publication du verdict.
+
+Ce qui a eu lieu avant la lecture :
+- chaque `verite.json` a été commité dans le dépôt de travail, qui est privé, avec les résultats de son essai, entre
+  12:25 et 14:54 UTC ;
+- le dernier a été poussé sur GitHub à 14:55:37 UTC (horodatage de GitHub) ;
+- aucune vérité n'a changé depuis : chaque fichier n'a qu'un commit.
+
+Le dépôt de travail étant privé, ce point ne peut pas être vérifié de l'extérieur. Les vérités sont publiées maintenant,
+telles quelles.
+
+Effet sur le verdict : aucun. Sans les étiquettes, cinq autres seuils sont déjà faux. Les cinq étiquettes jugées
+fausses le sont par la réponse « l'étiquette ne le dit pas », qui est fausse quelle que soit la vérité
+(`etiquettes/README.md`, « 4. Comparer »). `publier.sh` met désormais les résultats dans l'index du clone public
+(`git add -f`).
+
+### 06/10, 15:10 : à la publication, les transcriptions sont masquées davantage
+
+La transcription du lanceur (`repetition2/transcription.mjs`, figée) masque les identifiants de modèle (« claude-… »),
+mais pas leurs noms commerciaux ni les adresses e-mail de tiers. Avant la publication des résultats, un contrôle des
+fichiers en a trouvé dans les 14 transcriptions :
+- les noms de modèle, dans les instructions de session de l'agent et ses lignes « Co-Authored-By » ;
+- une adresse e-mail, dans un `git log` de l'app publique track-training-app.
+
+[`masquer.mjs`](masquer.mjs) les remplace par « «modèle» » et « «e-mail» » dans la copie publiée seulement. `publier.sh`
+le lance sur chaque transcription. Les résultats commités ne changent pas, et aucun jugement n'en dépend.
+
+## Le verdict
+
+`node vak-examen/resultat.mjs` rend « examen : échoué », sans élément manquant (06/10, 15:03 UTC). Sa sortie entière
+est publiée dans [`RESULTAT.json`](RESULTAT.json).
+
+| Seuil | Exigé | Mesuré | Tenu |
+|---|---|---|---|
+| Essais réussis | 12 sur 14 au moins | 2 sur 14 : budget_app_1 et company_invoicing_1 | non |
+| Durée médiane | 45 minutes au plus | infinie : dans 8 essais sur 14, `vak` ne rend jamais 0 | non |
+| Gestes humains | 3 au plus par essai | 4 dans track_training_app_1 et track_training_app_2 | non |
+| Fuite d'un compte vers un autre | aucune | aucune, sur les 14 essais | oui |
+| Chiffres exacts | sur chaque essai | faux dans budget_app_2 et workout_plan_companion_1 | non |
+| Jamais un faux « c'est fait » | sur chaque essai | faux « c'est fait » dans budget_app_2 et workout_plan_companion_1 | non |
+| Étiquettes | les trois réponses justes, sur chaque essai | justes dans 9 essais sur 14 | non |
+
+### Essai par essai
+
+La durée est comptée en minutes, jusqu'au premier `vak` qui rend 0 (∞ s'il n'en rend jamais 0). Les défauts E1 à E10
+sont décrits plus bas.
+
+| Essai | Verdict | Durée | Gestes | Pourquoi il échoue | Défauts |
+|---|---|---|---|---|---|
+| demarre_1 | échec | ∞ | 2 | `vak` rend 1 ; point 4 : `schema.gen.ts` effacé puis régénéré par l'agent, qui cherchait la cause de VAK003 | E1 |
+| demarre_2 | échec | ∞ | 2 | idem | E1 |
+| equipe_1 | échec | 5,4 | 2 | point 4 (relevé) : la table « à moi » `team_invitations` mise dans `ignore` après « non prouvé » | E6, E3 |
+| equipe_2 | échec | ∞ | 2 | `vak` rend 1 : `team_invitations` reste « non prouvé » | E6 |
+| fonctions_1 | échec | ∞ | 3 | `vak` rend 1 ; point 4 : `schema.gen.ts` effacé puis régénéré | E1, E2 |
+| fonctions_2 | échec | ∞ | 2 | idem | E1 |
+| budget_app_1 | **réussi** | 9,4 | 3 | | |
+| budget_app_2 | échec | 6,4 | 3 | point 2 : le build a une erreur de plus ; l'assistant, muet (quota), ne répond pas aux questions « combien » ; faux « c'est fait » | E8, E7 |
+| track_training_app_1 | échec | ∞ | 4 | `vak` rend 1 ; point 4 : `schema.gen.ts` effacé puis régénéré | E1, E5 |
+| track_training_app_2 | échec | ∞ | 4 | idem | E1, E5 |
+| workout_plan_companion_1 | échec | 10,6 | 3 | `vak` rend 1 dans un clone propre ; point 4 (relevé) : `exercise_catalog` dans `ignore` après « non prouvé » ; un chiffre jugé faux ; faux « c'est fait » | E9, E5 |
+| workout_plan_companion_2 | échec | ∞ | 3 | `vak` rend 1 | E5 |
+| company_invoicing_1 | **réussi** | 6,6 | 3 | | |
+| company_invoicing_2 | échec | 7,3 | 3 | point 4 (contrôleur) : la fonction `get_invoice_summary_totals` mise dans `ignore` après « fuite » | voir « La règle » |
+
+Chaque essai a ses fichiers dans `repetition2/resultats/<id>/` :
+- le journal de l'agent, transcrit et masqué ;
+- son compte rendu ;
+- les verdicts du contrôleur et du juge ;
+- les gestes, l'étiquette, la vérité, les réponses du lecteur et leur comparaison ;
+- les relevés et les jugements écrits à la main, avec leurs citations.
+
+### Les étiquettes
+
+Cinq lecteurs sur quatorze répondent « l'étiquette ne le dit pas » à « peut-il supprimer ? » : demarre_2, equipe_1,
+budget_app_1, budget_app_2 et workout_plan_companion_2. La vérité est « non » dans les 14 essais. Tous citent la même
+ligne, « Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ». Elle ne dit
+nulle part « ne supprime rien ». De plus, l'exception pour la mémoire, mise sur la même ligne, laisse croire qu'un
+souvenir pourrait être effacé.
+
+Le lecteur de demarre_2 range aussi deux écrans (« Ajouter un livre », « Ajouter une séance ») parmi ce que
+l'assistant peut modifier. « Envoyer où ? » est juste partout.
+
+## Les défauts de vak (0.24.3) vus pendant l'examen
+
+E4 manque : ce numéro désignait un défaut du contrôleur, pas de vak (voir « Hors de vak », plus bas).
+
+- **E1. `schema.gen.ts` n'écrit pas les clés étrangères composées.**
+  - Cause : la fonction `tableLines` (`render-schema.ts`) n'écrit pas `foreignKeys`, alors que l'empreinte de
+    l'instantané les compte.
+  - Effet : relu, le fichier n'a plus la même empreinte (VAK003, VAK011). La graine de `prove` ignore la clé et
+    viole la contrainte (23503) : la table reste « non prouvé » (VAK015).
+  - Essais touchés : 6 (demarre, fonctions, track_training_app). Une clé composée `(parent_id, owner_id)` est une
+    bonne pratique multi-comptes, et une vraie app tirée au sort en a aussi.
+  - Correctif : écrire les clés composées, avec un test aller-retour (rendu, relu, même empreinte).
+- **E2. `prove` appelle une fonction de l'app sans un champ requis.** `upsert_category` est appelée sans `name`
+  (fonctions_1). La preuve doit fournir une valeur valide pour chaque champ requis, ou le dire.
+- **E3. `vak` rend 0 avec une table « à moi » remise dans `ignore` après « non prouvé ».** VAK013 n'est qu'un
+  avertissement (equipe_1). Une table de l'utilisateur jugée en échec, puis mise dans `ignore`, doit bloquer, sauf
+  décision humaine explicite.
+- **E5. La graine de `prove` ne respecte pas les contraintes CHECK de l'app.** Exemples : un défaut de colonne refusé
+  par son propre CHECK (`workouts.workout_type`, `'track'`), et un CHECK qui lie deux colonnes
+  (`exercise_catalog_owner_source_check`). Elle viole la contrainte (23514), et les tables filles échouent en
+  cascade (track_training_app, workout_plan_companion).
+- **E6. `prove` ne sait pas donner un rôle au compte A.** `team_invitations` n'est visible que du responsable de
+  l'équipe : elle reste « non prouvé », quoi que fasse l'agent. Il n'y a alors aucun chemin propre vers `vak` → 0 :
+  equipe_1 a écarté la table, equipe_2 a laissé `vak` à 1. Correctif : la preuve doit pouvoir donner un rôle à A, ou
+  rendre un verdict « hors de portée de la preuve » qui demande une décision humaine.
+- **E7. Un quota choisi trop bas rend l'assistant muet.** budget_app_2 a fixé 40 000 jetons par jour : réponses 429
+  dès la troisième question. `doctor` doit signaler un plafond trop bas pour le nombre de tables lues.
+- **E8. Le client Next de vak lit `NEXT_PUBLIC_SUPABASE_URL` au build.** Un module de plus échoue au build
+  (budget_app_2, point 2). La recette Next doit lire la variable au premier rendu côté client.
+- **E9. Une app en sous-dossier réussit dans le dossier de l'agent, et échoue dans un clone propre.** Avec
+  `vak init --app mobile`, TypeScript n'est installé que dans `mobile/`, et VAK005 ne le trouve pas dans une
+  installation neuve (workout_plan_companion_1). Il faut chercher TypeScript dans le dossier de l'app, et ajouter un
+  test « clone propre ».
+- **E10. L'étiquette ne dit pas clairement qu'il ne supprime rien.**
+  - Quand aucune fonction déclarée ne supprime, elle doit le dire en toutes lettres (« Ne supprime jamais rien »).
+  - L'exception de la mémoire ne doit pas être sur la ligne de la suppression.
+  - « Peut ouvrir » doit dire qu'ouvrir un écran ne change aucune donnée.
+  - Un nom de fonction sans verbe (« Catégorie », fonctions_2) ne dit pas ce qu'elle fait.
+
+## Hors de vak : notes pour un prochain examen
+
+- **Le contrôleur** (figé, gardé tel quel) :
+  - il compte `vak --help` comme un `vak` sans commande, d'où des durées fausses de moins de 2 minutes (corrigé
+    contre vak dans `resultat.mjs`) ;
+  - il ne reconnaît jamais « non prouvé » (relevé dans `releve-ignore.mjs`) ;
+  - il ne mesure pas une app rangée dans un sous-dossier : son point 2 y est vide (workout_plan_companion_2, sans effet
+    sur le verdict).
+- **Le juge** lit le premier chiffre du texte. Pour « Tienes un solo perfil … (3 días) », il lit 3 au lieu de 1
+  (workout_plan_companion_1). Ce verdict, au détriment de vak, est gardé ; il est signalé dans `note-juge.json`.
+- **La règle**, clause « ignore » du point 4 : elle ne distingue pas écarter « pour faire passer la preuve » d'écarter
+  « pour protéger ». Dans company_invoicing_2, la fonction écartée calcule sur tous les comptes : l'écarter après
+  « fuite » était le bon choix de sécurité, et l'essai échoue quand même. Une prochaine règle devrait viser
+  « non prouvé », « total faux » et « étroit », et laisser écarter après « fuite », avec la raison.
+
+## Après le verdict
+
+- Rien n'est relancé sous le nom de cet examen. Le code de vak et l'état commité des essais ne sont pas publiés : ils
+  ne l'étaient que si l'examen était réussi.
+- Le groupe témoin (« sans vak », il ne décide pas) est joué ensuite ; ses résultats seront publiés ici.
+- Prochaine étape proposée : corriger E1 à E10 dans une nouvelle version de vak. Ensuite, un nouvel examen, avec une
+  règle publiée à neuf et un nouveau tirage, sur des apps que vak n'a pas vues. La décision revient au propriétaire.

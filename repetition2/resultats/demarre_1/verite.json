@@ -1,0 +1,20 @@
+{
+  "id": "demarre_1",
+  "etat_commite": "e6799be26b440c6704c66884653e40301db961db",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions, l'assistant n'appelle aucune fonction de l'app",
+      "agent.ts:27-28 et 36-37 : les tables ne déclarent que create et update"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.books", "nom": "Livres", "preuve": "agent.ts:27-28 (create, update)" },
+      { "table": "public.reading_sessions", "nom": "Séances de lecture", "preuve": "agent.ts:36-37 (create, update)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:64, plugins : memory()" }
+    ]
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

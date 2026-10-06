@@ -1,0 +1,738 @@
+{
+  "verdict": "faux",
+  "raisons": [
+    "public.tasks « Liste mes tâches. » : 5 éléments listés, attendu 9"
+  ],
+  "dossier": "/work/equipe_1/apres",
+  "lecture": {
+    "fichier": "/work/equipe_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.sites",
+      "public.tasks",
+      "public.teams",
+      "public.team_members"
+    ],
+    "ignorees": [
+      "public.team_invitations",
+      "public.create_team",
+      "public.invite_member",
+      "public.is_site_member",
+      "public.is_site_team_user",
+      "public.is_team_member",
+      "public.is_team_owner",
+      "public.team_roster"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.teams",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.team_members",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.tasks",
+      "colonne": "assignee_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.teams",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes équipes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ddaf54d3-3dfe-48f6-b3ce-59b7d5e841c1",
+        "question": "Combien de mes équipes ?",
+        "texte": "Vous êtes membre de **3 équipes** (et responsable des trois) :\n\n- Équipe Menuiserie\n- Équipe Peinture\n- Équipe Toiture\n\nVoulez-vous que j'ouvre l'une d'elles ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "teams",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "teams",
+              "label": "Équipes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "84b3a8bf-9f84-414a-a393-afcd1309f4e9",
+                  "name": "Équipe Menuiserie",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "id": "32595bb6-270d-49d4-bc05-2bcb6109c565",
+                  "name": "Équipe Peinture",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "id": "0662fbe6-6478-4ee2-a83e-470a12efa738",
+                  "name": "Équipe Toiture",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "team_members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "team_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "team_id": "Équipe Menuiserie (id 84b3a8bf-9f84-414a-a393-afcd1309f4e9)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Peinture (id 32595bb6-270d-49d4-bc05-2bcb6109c565)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Toiture (id 0662fbe6-6478-4ee2-a83e-470a12efa738)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.teams",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes équipes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-72f686c8-50ed-41c0-81a5-3fb4c6ea4db6",
+        "question": "Liste mes équipes.",
+        "texte": "Vous faites partie de 3 équipes (vous en êtes responsable dans chacune) :\n\n- **Équipe Menuiserie**\n- **Équipe Peinture**\n- **Équipe Toiture**\n\nVoulez-vous en ouvrir une en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "teams",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "teams",
+              "label": "Équipes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "84b3a8bf-9f84-414a-a393-afcd1309f4e9",
+                  "name": "Équipe Menuiserie",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "id": "32595bb6-270d-49d4-bc05-2bcb6109c565",
+                  "name": "Équipe Peinture",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "id": "0662fbe6-6478-4ee2-a83e-470a12efa738",
+                  "name": "Équipe Toiture",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "team_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "team_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "team_id": "Équipe Menuiserie (id 84b3a8bf-9f84-414a-a393-afcd1309f4e9)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Peinture (id 32595bb6-270d-49d4-bc05-2bcb6109c565)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Toiture (id 0662fbe6-6478-4ee2-a83e-470a12efa738)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.team_members",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes adhésions ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-70bcf31f-6df7-4bdc-829d-3347ef1fe4db",
+        "question": "Combien de mes adhésions ?",
+        "texte": "Vous avez **3 adhésions**, et vous êtes responsable (owner) des trois :\n\n- Équipe Menuiserie\n- Équipe Peinture\n- Équipe Toiture\n\nSouhaitez-vous que j'ouvre l'une de ces équipes ?",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "utilisateur identifiant équipe"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "team_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "team_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "team_id": "Équipe Menuiserie (id 84b3a8bf-9f84-414a-a393-afcd1309f4e9)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Peinture (id 32595bb6-270d-49d4-bc05-2bcb6109c565)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Toiture (id 0662fbe6-6478-4ee2-a83e-470a12efa738)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.team_members",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes adhésions.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ba96d686-6ba6-4300-b4e2-ff3dc2839ae2",
+        "question": "Liste mes adhésions.",
+        "texte": "Je regarde ça.Vous êtes membre de 3 équipes, avec le rôle de responsable dans chacune :\n\n| Équipe | Rôle | Membre depuis |\n|---|---|---|\n| Équipe Menuiserie | Responsable | 6 oct. 2026 |\n| Équipe Peinture | Responsable | 6 oct. 2026 |\n| Équipe Toiture | Responsable | 6 oct. 2026 |\n\nVoulez-vous que j'ouvre l'une de ces équipes ?",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "utilisateur identité équipes"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "team_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "team_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "team_id": "Équipe Menuiserie (id 84b3a8bf-9f84-414a-a393-afcd1309f4e9)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Peinture (id 32595bb6-270d-49d4-bc05-2bcb6109c565)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Toiture (id 0662fbe6-6478-4ee2-a83e-470a12efa738)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.tasks",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes tâches ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-cf66f39e-0a93-42c2-9420-147967c9bfe5",
+        "question": "Combien de mes tâches ?",
+        "texte": "Vous avez **9 tâches** assignées.\n\n- **5 à faire**, dont 4 déjà en retard (échéances passées) : Vérifier la charpente (03/06), Commander les tuiles (10/06), Poser les étagères (12/03), Découper le plan de travail (15/04) — et « Protéger les sols », sans échéance.\n- **4 terminées.**\n\nVoulez-vous les voir dans l'app ?Le bouton « Mes tâches » est affiché : cliquez pour les retrouver.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "utilisateur identifiant mes tâches assignation"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tâches",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "926c5c5c-9738-4a99-b81e-e0004f8f1ea1",
+                  "site_id": "Appartement Martin (id 5440b91b-82ad-46bf-92b1-369df953dd59)",
+                  "title": "Protéger les sols",
+                  "due_date": null,
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "0b3980a2-b654-4071-8d21-6f896e114716",
+                  "site_id": "Hangar des Prés (id 084dd373-3248-4376-86d7-426ba725be25)",
+                  "title": "Commander les tuiles",
+                  "due_date": "2026-06-10",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "29ced566-cf5a-44b0-820e-bc26763399e8",
+                  "site_id": "Hangar des Prés (id 084dd373-3248-4376-86d7-426ba725be25)",
+                  "title": "Vérifier la charpente",
+                  "due_date": "2026-06-03",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "0a6fa126-950e-4666-81f2-e74ddbc0f603",
+                  "site_id": "Cuisine Dupont (id 77bb3e5a-3756-4233-ad0d-c183b321ff0d)",
+                  "title": "Découper le plan de travail",
+                  "due_date": "2026-04-15",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "3482d1a2-6936-4784-a607-c7bd2ec0a93b",
+                  "site_id": "Cuisine Dupont (id 77bb3e5a-3756-4233-ad0d-c183b321ff0d)",
+                  "title": "Relever les mesures",
+                  "due_date": "2026-04-02",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "f36060d5-9e6f-4db2-b060-30cdabfe77f4",
+                  "site_id": "Atelier Nord (id 47eee889-364c-49b2-94bc-057a1625b7f0)",
+                  "title": "Poser les étagères",
+                  "due_date": "2026-03-12",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "f7ee9006-d45e-48d0-ba6c-dd08b3d7e4eb",
+                  "site_id": "Atelier Nord (id 47eee889-364c-49b2-94bc-057a1625b7f0)",
+                  "title": "Commander le bois",
+                  "due_date": "2026-03-05",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "76cf538f-bd28-425d-b553-e5e3517d1d3d",
+                  "site_id": "Façade école (id d36158b9-9840-47a3-a4da-a6eab2ea436b)",
+                  "title": "Appliquer la sous-couche",
+                  "due_date": "2026-02-20",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "3c11e42f-a115-4ba1-a908-113c2929764c",
+                  "site_id": "Façade école (id d36158b9-9840-47a3-a4da-a6eab2ea436b)",
+                  "title": "Poser l'échafaudage",
+                  "due_date": "2026-02-16",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "mes_taches"
+            },
+            "sortie": {
+              "href": "/tasks",
+              "label": "Mes tâches"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          5,
+          4,
+          3,
+          10,
+          12,
+          15,
+          4
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.tasks",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes tâches.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-338cea29-d979-42af-8aa1-89b726ea4207",
+        "question": "Liste mes tâches.",
+        "texte": "Voici vos tâches (toutes vous sont assignées) :\n\n**En retard**\n- **Vérifier la charpente** — Hangar des Prés — échéance 03/06/2026\n- **Commander les tuiles** — Hangar des Prés — échéance 10/06/2026\n- **Découper le plan de travail** — Cuisine Dupont — échéance 15/04/2026\n- **Poser les étagères** — Atelier Nord — échéance 12/03/2026\n\n**Sans échéance**\n- **Protéger les sols** — Appartement Martin\n\n**Terminées** (4) : Poser l'échafaudage, Appliquer la sous-couche (Façade école), Commander le bois (Atelier Nord), Relever les mesures (Cuisine Dupont).\n\nJe vous ouvre la liste ?Le bouton « Mes tâches » est affiché : cliquez pour y aller.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "utilisateur identifiant membre équipe"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "period": "upcoming",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tâches",
+              "total": 0,
+              "shown": 0,
+              "complete": true,
+              "rows": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "team_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "team_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "team_id": "Équipe Menuiserie (id 84b3a8bf-9f84-414a-a393-afcd1309f4e9)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Peinture (id 32595bb6-270d-49d4-bc05-2bcb6109c565)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                },
+                {
+                  "team_id": "Équipe Toiture (id 0662fbe6-6478-4ee2-a83e-470a12efa738)",
+                  "user_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "role": "owner (Responsable)",
+                  "created_at": "2026-10-06T14:29"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tâches",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "3c11e42f-a115-4ba1-a908-113c2929764c",
+                  "site_id": "Façade école (id d36158b9-9840-47a3-a4da-a6eab2ea436b)",
+                  "title": "Poser l'échafaudage",
+                  "due_date": "2026-02-16",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "76cf538f-bd28-425d-b553-e5e3517d1d3d",
+                  "site_id": "Façade école (id d36158b9-9840-47a3-a4da-a6eab2ea436b)",
+                  "title": "Appliquer la sous-couche",
+                  "due_date": "2026-02-20",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "f7ee9006-d45e-48d0-ba6c-dd08b3d7e4eb",
+                  "site_id": "Atelier Nord (id 47eee889-364c-49b2-94bc-057a1625b7f0)",
+                  "title": "Commander le bois",
+                  "due_date": "2026-03-05",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "f36060d5-9e6f-4db2-b060-30cdabfe77f4",
+                  "site_id": "Atelier Nord (id 47eee889-364c-49b2-94bc-057a1625b7f0)",
+                  "title": "Poser les étagères",
+                  "due_date": "2026-03-12",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "3482d1a2-6936-4784-a607-c7bd2ec0a93b",
+                  "site_id": "Cuisine Dupont (id 77bb3e5a-3756-4233-ad0d-c183b321ff0d)",
+                  "title": "Relever les mesures",
+                  "due_date": "2026-04-02",
+                  "done": true,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "0a6fa126-950e-4666-81f2-e74ddbc0f603",
+                  "site_id": "Cuisine Dupont (id 77bb3e5a-3756-4233-ad0d-c183b321ff0d)",
+                  "title": "Découper le plan de travail",
+                  "due_date": "2026-04-15",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "29ced566-cf5a-44b0-820e-bc26763399e8",
+                  "site_id": "Hangar des Prés (id 084dd373-3248-4376-86d7-426ba725be25)",
+                  "title": "Vérifier la charpente",
+                  "due_date": "2026-06-03",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "0b3980a2-b654-4071-8d21-6f896e114716",
+                  "site_id": "Hangar des Prés (id 084dd373-3248-4376-86d7-426ba725be25)",
+                  "title": "Commander les tuiles",
+                  "due_date": "2026-06-10",
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                },
+                {
+                  "id": "926c5c5c-9738-4a99-b81e-e0004f8f1ea1",
+                  "site_id": "Appartement Martin (id 5440b91b-82ad-46bf-92b1-369df953dd59)",
+                  "title": "Protéger les sols",
+                  "due_date": null,
+                  "done": false,
+                  "assignee_id": "296c2a7b-7d5c-43ec-a067-da9df701d3c4",
+                  "created_by": "296c2a7b-7d5c-43ec-a067-da9df701d3c4"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "mes_taches"
+            },
+            "sortie": {
+              "href": "/tasks",
+              "label": "Mes tâches"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          4
+        ],
+        "ok": false,
+        "retenu": 5,
+        "source": "éléments de la liste",
+        "elements": 5,
+        "raison": "5 éléments listés, attendu 9"
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 10
+  },
+  "couverture": {
+    "lues": 3,
+    "total": 4,
+    "tables": [
+      {
+        "table": "public.teams",
+        "lue": true
+      },
+      {
+        "table": "public.team_members",
+        "lue": true
+      },
+      {
+        "table": "public.tasks",
+        "lue": true
+      },
+      {
+        "table": "public.team_invitations",
+        "lue": false
+      }
+    ],
+    "texte": "3/4"
+  }
+}

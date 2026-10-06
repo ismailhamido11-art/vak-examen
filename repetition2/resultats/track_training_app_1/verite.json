@@ -1,0 +1,19 @@
+{
+  "id": "track_training_app_1",
+  "etat_commite": "aa068a29a2661d9271f9ea1337a23e01a67b7f1c",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions ; les fonctions de l'app sont dans ignore (agent.ts:66-111)",
+      "agent.ts:22-65 : seule calendar_events a create et update (ligne 59) ; aucune table ne supprime"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.calendar_events", "nom": "Calendar events", "preuve": "agent.ts:59 (create, update)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:112, plugins : memory()" }
+    ]
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

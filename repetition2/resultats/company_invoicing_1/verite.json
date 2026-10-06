@@ -1,0 +1,19 @@
+{
+  "id": "company_invoicing_1",
+  "etat_commite": "75243c44ff31c6bd1c7a31240c556c05b357c3da",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions ; les 29 fonctions de l'app sont dans ignore (agent.ts:142-249)",
+      "agent.ts:24-140 : les 6 tables (customers, invoices, payments, bank_transactions, quotes, credit_notes) n'ont ni create ni update"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:250, plugins : memory()" }
+    ],
+    "note": "aucune table de l'app : lecture seule"
+  },
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com", "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)" }
+}

@@ -1,0 +1,47 @@
+{
+  "dossier": "/work/workout_plan_companion_1/apres",
+  "commit": "962d9796481e6e10603e90c32be46743f715bad8",
+  "debut": "2026-10-06T14:50:21.336Z",
+  "fin": "2026-10-06T14:50:22.361Z",
+  "node": "v22.22.2",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [],
+  "journaux": "/work/workout_plan_companion_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/workout_plan_companion_1/apres",
+    "code": 0,
+    "duree_s": 1,
+    "erreurs": [],
+    "fin": [
+      "added 1 package in 934ms"
+    ],
+    "journal": "/work/workout_plan_companion_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "absent": true,
+      "raison": "ni script typecheck ni tsconfig.json"
+    },
+    "lint": {
+      "absent": true,
+      "raison": "pas de script lint"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "absent": true,
+      "raison": "ni Next ni Expo"
+    }
+  }
+}

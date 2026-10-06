@@ -1,0 +1,17 @@
+$ vak prove
+(dossier : /work/demarre_2/apres)
+
+✓ base base éprouvée = photographie (schema.gen.ts), fonctions de politique comprises
+✓ books éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »
+✗ reading_sessions non prouvé
+    - graine impossible : 23503 insert or update on table "reading_sessions" violates foreign key constraint "reading_sessions_book_fk"
+    - totaux de read_data non comparés (verdict non prouvé)
+    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve
+base locale vak_prove_28694612 construite (5 migration(s)) puis supprimée
+preuve à deux comptes : non prouvé (1 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 47 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 1]

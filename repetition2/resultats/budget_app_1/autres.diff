@@ -1,0 +1,115 @@
+diff --git a/src/app/app/layout.tsx b/src/app/app/layout.tsx
+index cbaa177..a71bad8 100644
+--- a/src/app/app/layout.tsx
++++ b/src/app/app/layout.tsx
+@@ -2,6 +2,7 @@ import type { Metadata } from "next";
+ import { redirect } from "next/navigation";
+ 
+ import { AppShell } from "@/components/layout/app-shell";
++import { VakLauncher } from "@/components/layout/vak-launcher";
+ import { createSupabaseServerComponentClient } from "@/lib/supabase/server";
+ 
+ export const metadata: Metadata = {
+@@ -26,5 +27,10 @@ export default async function AppLayout({
+     redirect("/sign-in");
+   }
+ 
+-  return <AppShell>{children}</AppShell>;
++  return (
++    <>
++      <AppShell>{children}</AppShell>
++      <VakLauncher />
++    </>
++  );
+ }
+diff --git a/src/app/app/settings/agent-settings.tsx b/src/app/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..4320bfa
+--- /dev/null
++++ b/src/app/app/settings/agent-settings.tsx
+@@ -0,0 +1,9 @@
++"use client";
++
++import { AgentSettings } from "@vak/agent/web";
++
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/app/app/settings/page.tsx b/src/app/app/settings/page.tsx
+index 0dbd490..9b92034 100644
+--- a/src/app/app/settings/page.tsx
++++ b/src/app/app/settings/page.tsx
+@@ -7,6 +7,7 @@ import {
+   CardHeader,
+   CardTitle,
+ } from "@/components/ui/card";
++import { VakSettings } from "./agent-settings";
+ import { LanguagePreferenceForm } from "@/components/forms/language-preference-form";
+ 
+ export default async function SettingsPage() {
+@@ -47,6 +48,7 @@ export default async function SettingsPage() {
+           </CardContent>
+         </Card>
+       </div>
++      <VakSettings />
+     </div>
+   );
+ }
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 3ebd660..003ede5 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -102,4 +102,12 @@
+     font-variant-numeric: tabular-nums;
+     text-rendering: optimizeLegibility;
+   }
+-}
+\ No newline at end of file
++}
++/* Assistant vak : sur mobile, au-dessus de la barre de navigation et du bouton + de l'app, a gauche. */
++@media (max-width: 1023px) {
++  .vak-launcher {
++    right: auto;
++    left: 20px;
++    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
++  }
++}
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 2e2eb60..544db70 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -7,6 +7,7 @@ import { ToastProvider } from "@/components/providers/toast-provider";
+ import { createSupabaseServerComponentClient } from "@/lib/supabase/server";
+ import { cn } from "@/lib/utils";
+ import type { Locale } from "@/i18n/translations";
++import "@vak/agent/web/styles.css";
+ import "./globals.css";
+ 
+ const geistSans = Geist({
+diff --git a/src/components/layout/vak-launcher.tsx b/src/components/layout/vak-launcher.tsx
+new file mode 100644
+index 0000000..f33d67f
+--- /dev/null
++++ b/src/components/layout/vak-launcher.tsx
+@@ -0,0 +1,19 @@
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++
++import { vak } from "@/lib/vak";
++
++export function VakLauncher() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/sign-in")}
++      theme={{ accent: "#0F766E", mode: "system" }}
++    />
++  );
++}

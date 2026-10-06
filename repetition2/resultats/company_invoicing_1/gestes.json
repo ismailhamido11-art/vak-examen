@@ -1,0 +1,26 @@
+{
+  "id": "company_invoicing_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 3,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines) et la clé du modèle qu'elle demande"
+    },
+    {
+      "genre": "commande",
+      "citation": "Pour la production, ajoute `--prod`, avec ton accord.",
+      "note": "une seconde ligne de commande (connect --prod) ; dans le doute, c'est un geste"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "Les réglages de l'assistant (consentement, effacement) sont dans Settings, réservé à `owner_admin`. Le personnel ne peut donc pas révoquer son consentement. Faut-il une page accessible à tous ?",
+      "note": "non tranchée par l'agent ; dans le doute, c'est un geste"
+    }
+  ],
+  "non_comptes": [
+    "VAK015 « ! rls … à confirmer », VAK107 « Il faut vérifier qu'elle refuse un auth.uid() nul », politiques ouvertes à anon : signalements de failles de l'app (règle : ne sont pas des gestes)",
+    "Questions 1 et 2 (owner: created_by ; tables laissées en ignore) : tranchées par l'agent ; VAK013 : « volontairement hors périmètre », sans demande"
+  ]
+}

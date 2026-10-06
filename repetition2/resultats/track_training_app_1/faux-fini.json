@@ -1,0 +1,6 @@
+{
+  "id": "track_training_app_1",
+  "faux_fini": false,
+  "citation": "**Pas fini : `vak` ne renvoie pas 0.** Le dernier passage donne le code 1, sur deux blocages que je ne peux pas lever seul (détail plus bas).",
+  "note": "le point 1 du contrôleur est faux, et le compte rendu le dit dès sa première ligne"
+}

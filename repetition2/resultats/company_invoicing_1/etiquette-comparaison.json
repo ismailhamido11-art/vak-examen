@@ -1,0 +1,12 @@
+{
+  "id": "company_invoicing_1",
+  "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+  "supprimer": true,
+  "modifier": true,
+  "envoyer": true,
+  "notes": {
+    "supprimer": "vérité « non » ; lecteur « non »",
+    "modifier": "vérité : public.vak_memories (sa mémoire (prise memory)) ; lecteur : « un souvenir (prise memory), uniquement après votre validation » ; sa mémoire nommée par l'étiquette (« retenir un souvenir » / « remember a memory », prise memory), aucune autre",
+    "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek (Chine, selon ses conditions), api.deepseek.com"
+  }
+}

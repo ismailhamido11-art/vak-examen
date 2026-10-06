@@ -1,0 +1,32 @@
+{
+  "id": "track_training_app_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 4,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081` […] Le modèle et la clé sont à fournir",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines, clé)"
+    },
+    {
+      "genre": "commande",
+      "citation": "Ensuite, `npx supabase db push` en production, avec votre accord.",
+      "note": "commande distincte, demandée pour la production"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "VAK003 et VAK011 : défaut du kit 0.24.3. […] Je n'ai pas édité à la main le fichier géré ni le kit. À signaler à l'éditeur du kit.",
+      "note": "bloquante : `vak` rend 1 tant que le kit n'est pas corrigé"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "Faut-il corriger le défaut `'track'` de `workouts.workout_type` par une migration ?",
+      "note": "bloquante : `vak prove` reste « non prouvé » pour workouts, workout_entries et field_attempts"
+    }
+  ],
+  "non_comptes": [
+    "« profiles et exercises (! rls) : […] À dire si ce n'est pas voulu. » : signalement d'une faille de l'app, au conditionnel",
+    "« VAK108 : … » et la liste des tables dans ignore, sous « À transmettre au propriétaire » : signalements, sans action demandée",
+    "« Faut-il ouvrir l'écriture des séances à l'assistant ? » : tranchée par l'agent (non) ; « Quel fournisseur de modèle choisir ? » : valeur de la commande connect"
+  ]
+}

@@ -1,0 +1,25 @@
+$ vak test
+(dossier : /work/budget_app_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (7 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1844 tokens (maximum 5000)
+✓ evals 6 évaluations bien formées
+✓ garde-fous 4 cas de garde-fou vérifiés hors ligne
+✓ tour read_data profiles exécuté sans validation → {"table":"profiles","label":"Profile","total":1,"shown":1,"complete":true,"rows":[{"id":"7e570000-0000-4000-8000-0000…
+✓ tour read_data accounts exécuté sans validation → {"table":"accounts","label":"Accounts","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000…
+✓ tour read_data categories exécuté sans validation → {"table":"categories","label":"Categories","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000…
+✓ tour read_data payees exécuté sans validation → {"table":"payees","label":"Payees","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000040…
+✓ tour read_data transactions exécuté sans validation → {"table":"transactions","label":"Transactions","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-…
+✓ tour read_data budgets exécuté sans validation → {"table":"budgets","label":"Budgets","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000…
+✓ tour read_data category_monthly_summaries exécuté sans validation → {"table":"category_monthly_summaries","label":"Monthly category summaries","total":2,"shown":2,"complete":true,"rows"…
+✓ tour open_screen overview exécuté sans validation → {"href":"/app/overview","label":"Overview"}
+✓ tour open_screen transactions exécuté sans validation → {"href":"/app/transactions?type=test","label":"Transactions"}
+✓ tour open_screen accounts exécuté sans validation → {"href":"/app/accounts","label":"Accounts"}
+✓ tour open_screen budgets exécuté sans validation → {"href":"/app/budgets","label":"Budgets"}
+✓ tour open_screen reports exécuté sans validation → {"href":"/app/reports","label":"Reports"}
+✓ tour open_screen receipts exécuté sans validation → {"href":"/app/receipts","label":"Receipt scanning"}
+✓ tour open_screen settings exécuté sans validation → {"href":"/app/settings","label":"Settings"}
+vak test : tout est vert [code 0]

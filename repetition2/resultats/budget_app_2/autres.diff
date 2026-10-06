@@ -1,0 +1,81 @@
+diff --git a/src/app/app/settings/agent-settings.tsx b/src/app/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/src/app/app/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/app/app/settings/page.tsx b/src/app/app/settings/page.tsx
+index 0dbd490..9b92034 100644
+--- a/src/app/app/settings/page.tsx
++++ b/src/app/app/settings/page.tsx
+@@ -7,6 +7,7 @@ import {
+   CardHeader,
+   CardTitle,
+ } from "@/components/ui/card";
++import { VakSettings } from "./agent-settings";
+ import { LanguagePreferenceForm } from "@/components/forms/language-preference-form";
+ 
+ export default async function SettingsPage() {
+@@ -47,6 +48,7 @@ export default async function SettingsPage() {
+           </CardContent>
+         </Card>
+       </div>
++      <VakSettings />
+     </div>
+   );
+ }
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 2e2eb60..2edfaf3 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -3,10 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
+ import { AuthProvider } from "@/components/providers/auth-provider";
+ import { I18nProvider } from "@/components/providers/i18n-provider";
+ import { ThemeProvider } from "@/components/providers/theme-provider";
++import { VakButton } from "@/components/vak-button";
+ import { ToastProvider } from "@/components/providers/toast-provider";
+ import { createSupabaseServerComponentClient } from "@/lib/supabase/server";
+ import { cn } from "@/lib/utils";
+ import type { Locale } from "@/i18n/translations";
++import "@vak/agent/web/styles.css";
+ import "./globals.css";
+ 
+ const geistSans = Geist({
+@@ -73,6 +75,7 @@ export default async function RootLayout({
+           <AuthProvider initialSession={session} initialUser={initialUser}>
+             <I18nProvider locale={locale}>
+               <ToastProvider>{children}</ToastProvider>
++              <VakButton />
+             </I18nProvider>
+           </AuthProvider>
+         </ThemeProvider>
+diff --git a/src/components/vak-button.tsx b/src/components/vak-button.tsx
+new file mode 100644
+index 0000000..2561c72
+--- /dev/null
++++ b/src/components/vak-button.tsx
+@@ -0,0 +1,17 @@
++"use client";
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++
++export function VakButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/sign-in")}
++      theme={{ accent: "#2F7DEB", mode: "system" }}
++    />
++  );
++}

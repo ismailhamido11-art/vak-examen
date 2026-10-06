@@ -1,0 +1,9 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Calendar events (Title, Notes, Starts at, Ends at) : ajout et modification, après approbation de l'utilisateur",
+    "a memory (plugin memory) : « remember a memory »"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Never: delete or edit outside these lists » et aucune suppression n'est listée, donc non. Seule exception de formulation : « except through remember a memory (plugin memory) », dont l'étiquette ne détaille pas la portée. Les messages partent en Chine (China), sous les conditions propres de DeepSeek. L'étiquette ne dit pas si les ajouts/modifications de Calendar events sont limités à certains événements."
+}

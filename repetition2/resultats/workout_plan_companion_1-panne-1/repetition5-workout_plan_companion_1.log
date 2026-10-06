@@ -1,0 +1,16 @@
+préparation de l'essai workout_plan_companion_1 (https://github.com/AndreuCrespo/workout-plan-companion @ ebf680c, vak-agent-0.24.3.tgz sha256 2765b6929c14) : 2026-10-06T13:05:43Z
+→ environnement d'examen sans accès réel
+  accès du compte d'essai admis par le propriétaire (03/10), jamais utilisés par l'essai : DEEPSEEK_API_KEY SUPABASE_ACCESS_TOKEN
+→ PostgreSQL 16
+  serveur 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1) sur 127.0.0.1:5432
+→ super-utilisateur local « root » et ~/.pgpass
+  déjà prêt : postgresql://127.0.0.1:5432/postgres répond sans invite (rien changé)
+  ok : psql -h 127.0.0.1 postgres -c 'select 1' sans invite ; postgresql://127.0.0.1:5432/postgres en super-utilisateur
+→ identité git
+  Claude <noreply@anthropic.com>
+→ archive au chemin fixe de la demande : /work/vak-agent.tgz
+  déjà en place (vak-agent-0.24.3.tgz)
+→ app : /work/workout_plan_companion_1/app (branche essai, archive commitée dans vendor/vak)
+  commit de préparation 6db30b6 sur ebf680c
+→ mesure avant (clone neuf séparé) : /work/workout_plan_companion_1/avant.json
+✗ mesure impossible : package.json absent ou illisible : /work/workout_plan_companion_1/avant

@@ -1,0 +1,18 @@
+$ npm run test
+(dossier : /work/track_training_app_1/avant)
+
+
+> track-training@1.0.0 test
+> jest --runInBand
+
+(node:20706) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS lib/environment.test.ts
+PASS lib/errors.test.ts
+PASS lib/date.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        1.841 s
+Ran all test suites.

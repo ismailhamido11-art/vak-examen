@@ -1,0 +1,43 @@
+$ vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_da18a8'
+(dossier : /work/equipe_2/apres)
+
+✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)
+✓ VAK002 versions alignées (@vak/agent 0.24.3, bundle serveur et deno.json compris)
+✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md
+✓ VAK004 tsconfig.json exclut supabase/functions
+✓ VAK005 tsc -p supabase/functions/vak : aucune erreur
+! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements
+    - tables.team_members : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; déclarez through: "team_id" (la ligne appartient à l'utilisateur par sa table parente, calibrée)
+    → vérifie que c'est voulu
+✓ VAK007 lib/vak.ts sans vak:todo, persona écrite
+✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app
+✓ VAK009 aucun secret côté client
+✓ VAK010 [functions.vak] verify_jwt = false
+✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git
+✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 0 tables, 7 fonctions)
+✓ VAK014 photographie postérieure aux migrations de l'app (5)
+✗ VAK015 preuve à deux comptes du 2026-10-06 : non prouvé
+    - team_invitations : non prouvé
+    → corrige d'après les notes de node node_modules/@vak/agent/bin/vak.mjs prove (table par table), puis relance-le
+✓ VAK011 photographie à jour (schema.gen.ts = base)
+✓ VAK101 migration vak appliquée (vak_schema_version = 4)
+✓ VAK102 droits des tables vak_ exactement ceux attendus
+✓ VAK103 RLS active sur les tables calibrées et vak_*
+✓ VAK105 vues calibrées en security_invoker
+✓ VAK106 capacités réelles conformes au calibrage
+! VAK107 avis de sécurité (avertissement)
+    - fonction « create_team » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « invite_member » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « is_site_member » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « is_site_team_user » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « is_team_member » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « is_team_owner » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « team_roster » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    → vérifie chaque point ; corrige dans une migration de l'app si besoin
+! VAK108 colonnes qui décident des droits (avertissement)
+    - teams.name : modifiable par l'utilisateur ; la politique « teams_select » passe la ligne à une fonction : à vérifier
+    - teams.created_at : modifiable par l'utilisateur ; la politique « teams_select » passe la ligne à une fonction : à vérifier
+    - sites.team_id : modifiable par l'utilisateur et lue par la politique « sites_select » : elle décide qui voit la ligne
+    - tasks.site_id : modifiable par l'utilisateur et lue par la politique « tasks_select » : elle décide qui voit la ligne
+    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app
+doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) [code 1]

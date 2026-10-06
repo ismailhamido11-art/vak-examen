@@ -1,0 +1,19 @@
+$ npm run test
+(dossier : /work/company_invoicing_1/avant)
+
+
+> company-invoicing@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /work/company_invoicing_1/avant
+
+
+ Test Files  9 passed (9)
+      Tests  76 passed (76)
+   Start at  13:06:34
+   Duration  1.48s (import 59%, transform 29%, tests 6%, setup 4%, worker 2%)
+
+    Isolate  9 workers spawned · ~158ms startup each (spawn + environment, per file)
+             at least ~315ms faster with isolate: false — reuses workers across files instead of one per file
+

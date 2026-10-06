@@ -1,0 +1,19 @@
+$ vak test
+(dossier : /work/demarre_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (2 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 9 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1639 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data books exécuté sans validation → {"table":"books","label":"Livres","total":1,"shown":1,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000000…
+✓ tour read_data reading_sessions exécuté sans validation → {"table":"reading_sessions","label":"Séances de lecture","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-…
+✓ tour create_books validation demandée, puis une ligne écrite → {"saved":true,"table":"books","id":"c0c8bc11-3908-4817-b632-48e335bac77e","title":"title 5"}
+✓ tour update_books validation demandée, puis une ligne écrite → {"saved":true,"table":"books","id":"00000000-0000-4000-8000-000000000000","title":"title 6"}
+✓ tour create_reading_sessions validation demandée, puis une ligne écrite → {"saved":true,"table":"reading_sessions","id":"0dff6e2a-4a92-443d-bf9f-227c2f21e691","title":"note 5"}
+✓ tour update_reading_sessions validation demandée, puis une ligne écrite → {"saved":true,"table":"reading_sessions","id":"00000000-0000-4000-8000-000001000000","title":"note 0"}
+✓ tour open_screen fiche_livre exécuté sans validation → {"href":"/book/00000000-0000-4000-8000-000000000000","label":"Fiche du livre"}
+✓ tour open_screen nouveau_livre exécuté sans validation → {"href":"/add-book","label":"Ajouter un livre"}
+✓ tour open_screen nouvelle_seance exécuté sans validation → {"href":"/add-session?bookId=test","label":"Ajouter une séance"}
+vak test : tout est vert [code 0]

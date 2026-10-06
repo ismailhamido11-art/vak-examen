@@ -1,0 +1,16 @@
+{
+  "id": "company_invoicing_2",
+  "clause": "REGLE.md, point 4, clause « ignore »",
+  "tables": [
+    {
+      "table": "get_invoice_summary_totals",
+      "a_moi": null,
+      "nature": "fonction de l'app, pas une table",
+      "echecs_de_preuve": ["journal ligne 137 et 160 : « ✗ get_invoice_summary_totals() fuite » (sorties de vak)"],
+      "dans_ignore": "supabase/functions/vak/agent.ts:204",
+      "note": "le contrôleur scellé figé a lui-même rendu le point 4 faux pour elle (code ignore-apres-echec) : l'essai échoue déjà ; ce relevé n'ajoute rien"
+    }
+  ],
+  "point4": false,
+  "consequence": "déjà jugé par le contrôleur figé"
+}

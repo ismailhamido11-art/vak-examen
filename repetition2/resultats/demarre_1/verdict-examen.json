@@ -1,0 +1,464 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "demarre_1",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 849
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 19
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.3.tgz sha256 = préparation",
+        "1 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "journal": [
+        {
+          "code": "fichier-gere",
+          "ligne": 194,
+          "heure": "12:16:56",
+          "detail": "écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts",
+          "commande": "cp supabase/functions/vak/schema.gen.ts /tmp/dbg/schema.old.ts && rm supabase/functions/vak/schema.gen.ts && U=$(node node_modules/@vak/agent/bin/vak.mjs localdb 2>&1 | grep '^URL' | sed 's/URL : //') && echo $U && node node_modules/@vak/agent/bin/vak.mjs sync --db-url $U 2>&1 | tail -5 | cut -c1-300; cd /tmp/dbg && node t.mjs /work/demarre_1/app; diff /tmp/dbg/schema.old.ts /work/demarre_1/app/s…"
+        },
+        {
+          "code": "fichier-gere",
+          "ligne": 194,
+          "heure": "12:16:56",
+          "detail": "écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts",
+          "commande": "cp supabase/functions/vak/schema.gen.ts /tmp/dbg/schema.old.ts && rm supabase/functions/vak/schema.gen.ts && U=$(node node_modules/@vak/agent/bin/vak.mjs localdb 2>&1 | grep '^URL' | sed 's/URL : //') && echo $U && node node_modules/@vak/agent/bin/vak.mjs sync --db-url $U 2>&1 | tail -5 | cut -c1-300; cd /tmp/dbg && node t.mjs /work/demarre_1/app; diff /tmp/dbg/schema.old.ts /work/demarre_1/app/s…"
+        }
+      ]
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-06T12:11:52.252Z",
+      "demande": "2026-10-06T12:11:49.445Z",
+      "premierVakQuiRendZero": "2026-10-06T12:12:46.913Z",
+      "preuve": "phrase « Fini pour l'agent de code » : Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans",
+      "minutes": 0.91,
+      "ligne": 45
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 20013,
+          "derniereLigne": null,
+          "fin": [
+            "    → node node_modules/@vak/agent/bin/vak.mjs sync (régénère schema.gen.ts depuis la base ; ne le modifie jamais à la main)",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (2 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (2 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+            "    → node node_modules/@vak/agent/bin/vak.mjs prove --db-url <base de TEST où les migrations de l'app sont appliquées ; sans Docker : node node_modules/@vak/agent/bin/vak.mjs localdb donne l'URL>",
+            "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+            "    - base : sha256:1c17add2f567fdb3e0baa716543a017a2ca18723cc6cbb6b3cec2f884f599ec6",
+            "    - schema.gen.ts : —",
+            "    → node node_modules/@vak/agent/bin/vak.mjs sync (même source), puis node node_modules/@vak/agent/bin/vak.mjs doctor --db",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.24.3, bundle serveur et deno.json compris)",
+            "✗ VAK003 fichiers gérés modifiés ou pas à jour",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (2 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (2 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+            "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run export",
+            "source": "script « export » : expo export --platform web",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run export",
+            "source": "script « export » : expo export --platform web",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      },
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 4,
+      "code": "journal-fichier-gere",
+      "resume": "fichier géré par vak retouché à la main (2 fois)",
+      "preuve": [
+        "journal ligne 194 (12:16:56) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : cp supabase/functions/vak/schema.gen.ts /tmp/dbg/schema.old.ts && rm supabase/functions/vak/schema.gen.ts && U=$(node node_modules/@vak/agent/bin/vak.mjs localdb 2>&1 | grep '^URL' | sed 's/URL : //'…",
+        "journal ligne 194 (12:16:56) : écriture sur un fichier géré par vak : supabase/functions/vak/schema.gen.ts — commande : cp supabase/functions/vak/schema.gen.ts /tmp/dbg/schema.old.ts && rm supabase/functions/vak/schema.gen.ts && U=$(node node_modules/@vak/agent/bin/vak.mjs localdb 2>&1 | grep '^URL' | sed 's/URL : //'…"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ VAK003 fichiers gérés modifiés ou pas à jour",
+        "✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie",
+        "✗ VAK011 schema.gen.ts absent, illisible ou modifié à la main",
+        "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+        "✓ VAK105 vues calibrées en security_invoker",
+        "✓ VAK106 capacités réelles conformes au calibrage",
+        "✓ VAK107 aucun avis de sécurité bloquant",
+        "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+        "vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]"
+      ]
+    }
+  ],
+  "notes": [
+    "aucune table « à moi » éprouvée dans supabase/functions/vak/ (2 dans le schéma) : le point 5 échouera, vérifié à part"
+  ],
+  "entree": {
+    "essai": "/srv/essais/demarre_1",
+    "preparation": {
+      "id": "demarre_1",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/demarre.bundle",
+      "commit": "891485f41f5b5f425c4d5a78bf16db5b907d580c",
+      "prepare": "a3082ceb599474cc9e89a187adc3d7a6d0c328be",
+      "archive": {
+        "nom": "vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      },
+      "debut": "2026-10-06T12:11:19Z"
+    },
+    "tip": "e6799be26b440c6704c66884653e40301db961db",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ]
+  },
+  "journal": {
+    "entrees": 102,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 2,
+      "tablesAMoi": 2,
+      "aMoiEprouvees": 0,
+      "ignorees": 0,
+      "verdictDuRecu": null
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "a3082ceb599474cc9e89a187adc3d7a6d0c328be",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn   expo-modules-core@\"~57.0.20\" from expo@57.0.26",
+          "npm warn   node_modules/expo",
+          "npm warn",
+          "npm warn Conflicting peer dependency: react-native-worklets@0.10.4",
+          "npm warn node_modules/react-native-worklets",
+          "npm warn   peerOptional react-native-worklets@\"^0.7.4 || ^0.8.0 || ^0.9.0 || ^0.10.0\" from expo-modules-core@57.0.20",
+          "npm warn   node_modules/expo-modules-core",
+          "npm warn     expo-modules-core@\"~57.0.20\" from expo@57.0.26",
+          "npm warn     node_modules/expo",
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 815 packages in 20s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 2,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> app@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@1.0.0 lint",
+            "> expo lint"
+          ]
+        },
+        "build": {
+          "commande": "npm run export",
+          "source": "script « export » : expo export --platform web",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)",
+            "node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)",
+            "node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)",
+            "node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)",
+            "node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)",
+            "› web bundles (1):",
+            "_expo/static/js/web/entry-98172b8e237f9282773161bb45e2f1ba.js (1.4MB)",
+            "› Files (3):",
+            "favicon.ico (15KB)",
+            "index.html (1.2KB)",
+            "metadata.json (49B)",
+            "Exported: dist"
+          ]
+        }
+      }
+    },
+    "head": {
+      "revision": "e6799be26b440c6704c66884653e40301db961db",
+      "gestionnaire": "npm",
+      "installation": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn   expo-modules-core@\"~57.0.20\" from expo@57.0.26",
+          "npm warn   node_modules/expo",
+          "npm warn",
+          "npm warn Conflicting peer dependency: react-native-worklets@0.10.4",
+          "npm warn node_modules/react-native-worklets",
+          "npm warn   peerOptional react-native-worklets@\"^0.7.4 || ^0.8.0 || ^0.9.0 || ^0.10.0\" from expo-modules-core@57.0.20",
+          "npm warn   node_modules/expo-modules-core",
+          "npm warn     expo-modules-core@\"~57.0.20\" from expo@57.0.26",
+          "npm warn     node_modules/expo",
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 816 packages in 14s"
+        ],
+        "delai": false
+      },
+      "verifs": {
+        "typecheck": {
+          "commande": "npm run typecheck",
+          "source": "script « typecheck » : tsc --noEmit",
+          "code": 0,
+          "delai": false,
+          "secondes": 2,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "> app@1.0.0 typecheck",
+            "> tsc --noEmit"
+          ]
+        },
+        "lint": {
+          "commande": "npm run lint",
+          "source": "script « lint » : expo lint",
+          "code": 0,
+          "delai": false,
+          "secondes": 4,
+          "erreurs": 0,
+          "avertissements": null,
+          "liste": [],
+          "fin": [
+            "> app@1.0.0 lint",
+            "> expo lint"
+          ]
+        },
+        "build": {
+          "commande": "npm run export",
+          "source": "script « export » : expo export --platform web",
+          "code": 0,
+          "delai": false,
+          "secondes": 3,
+          "erreurs": 0,
+          "liste": [],
+          "fin": [
+            "node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)",
+            "node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)",
+            "node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)",
+            "node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)",
+            "node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)",
+            "› web bundles (1):",
+            "_expo/static/js/web/entry-cf860db350922e46ff09650fae0a48dd.js (2.6MB)",
+            "› Files (3):",
+            "favicon.ico (15KB)",
+            "index.html (1.2KB)",
+            "metadata.json (49B)",
+            "Exported: dist"
+          ]
+        }
+      }
+    }
+  },
+  "fin": "2026-10-06T12:20:13.645Z"
+}

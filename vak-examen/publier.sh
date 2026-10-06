@@ -6,8 +6,10 @@
 #  - vak-examen/, sans graines/ (publiées après les essais : GRAINES=1 les ajoute) ni REPRISE.md ;
 #  - les scripts du lanceur des essais (repetition2/), sans ses résultats ni son journal ;
 #  - RACINE.md, qui devient le README de la racine.
-# - avec RESULTATS=1, les résultats des essais (voir plus bas).
-# Rien n'est commité ni poussé : le script montre l'état du clone public.
+# - avec RESULTATS=1, les résultats des essais (voir plus bas), transcriptions masquées par masquer.mjs.
+# Rien n'est commité ni poussé : le script montre l'état du clone public. Seuls les résultats sont mis dans l'index
+# (git add -f) : sans cela, le .gitignore du lanceur (repetition2/.gitignore, « resultats/ ») les écarte du commit
+# sans rien dire (publication du 06/10, 14:55, EXAMEN.md).
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 DEST="${1:?usage : bash vak-examen/publier.sh <clone du dépôt public>}"
@@ -34,6 +36,11 @@ if [ "${RESULTATS:-0}" = 1 ]; then
   done < "${LISTE_ESSAIS:-vak-examen/essais.tsv}"
   [ "${#CHEMINS[@]}" -eq 0 ] || git archive --format=tar HEAD -- "${CHEMINS[@]}" | tar -x -C "$DEST"
   [ "${ETATS:-0}" = 1 ] || find "$DEST/repetition2" -name essai.bundle -delete
+  # Les noms de modèle et les e-mails de tiers que la transcription du lanceur laisse passer (masquer.mjs) : copie
+  # publiée seulement.
+  mapfile -t TRANSCRIPTIONS < <(find "$DEST/repetition2/resultats" -name transcription.jsonl.gz 2>/dev/null)
+  [ "${#TRANSCRIPTIONS[@]}" -eq 0 ] || node vak-examen/masquer.mjs "${TRANSCRIPTIONS[@]}" | tail -1
+  [ "${#CHEMINS[@]}" -eq 0 ] || git -C "$DEST" add -f -- "${CHEMINS[@]}"
   echo "résultats recopiés : ${#CHEMINS[@]} dossier(s)$([ "${ETATS:-0}" = 1 ] && echo ", états commités compris" || echo ", sans les états commités")"
 fi
 echo "recopié depuis $(git rev-parse --short HEAD) ($([ "${GRAINES:-0}" = 1 ] && echo "graines comprises" || echo "sans les graines"))"

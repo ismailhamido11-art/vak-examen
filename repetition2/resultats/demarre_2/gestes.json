@@ -1,0 +1,20 @@
+{
+  "id": "demarre_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "À transmettre à l'éditeur du kit, ou à vous pour décider si l'app doit changer cette clé étrangère. Après correction, relancer `sync`, `prove`, puis `vak`.",
+      "note": "bloquante : `vak` rend 1 tant qu'elle n'est pas tranchée ; « relancer sync, prove, puis vak » en est la suite"
+    }
+  ],
+  "non_comptes": [
+    "« Doit-on ouvrir `create`/`update` pour que l'assistant écrive ? J'ai laissé la lecture seule » : tranchée par l'agent"
+  ]
+}
