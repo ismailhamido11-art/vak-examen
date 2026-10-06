@@ -31,7 +31,7 @@ const ids = readFileSync(liste, "utf8")
 const manque = [];
 const essais = ids.map((id) => {
   const d = join(dossier, id);
-  const e = { id, verdict: null, raisons: [], minutes: null, duree_note: null, gestes: null, pile: null, fuite: null, chiffres: null, faux_fini: null, etiquette: null };
+  const e = { id, verdict: null, raisons: [], releve: null, minutes: null, duree_note: null, gestes: null, pile: null, fuite: null, chiffres: null, faux_fini: null, etiquette: null };
   const fichier = (nom) => join(d, nom);
   if (!existsSync(fichier("verdict-examen.json"))) {
     manque.push(`${id} : pas de verdict du contrôleur`);
@@ -82,6 +82,25 @@ const essais = ids.map((id) => {
   } else {
     manque.push(`${id} : ni mesdonnees.json ni pile-echec.json`);
     return e;
+  }
+
+  // Clause « ignore » du point 4 (REGLE.md), que le contrôleur figé ne voit pas pour « non prouvé » (EXAMEN.md, 06/10) :
+  // releve-ignore.json (releve-ignore.mjs, mécanique) pour chaque essai ; une table relevée est jugée à la main dans
+  // releve.json (« à moi » ou non, avec ses preuves). Un relevé ne peut que faire échouer un essai, jamais réussir.
+  if (!existsSync(fichier("releve-ignore.json"))) manque.push(`${id} : clause « ignore » du point 4 non relevée (releve-ignore.mjs)`);
+  else {
+    const ri = lire(fichier("releve-ignore.json"));
+    if ((ri.relevees ?? []).length) {
+      if (!existsSync(fichier("releve.json"))) manque.push(`${id} : table(s) relevée(s) (${ri.relevees.join(", ")}) à juger : « à moi » ou non (releve.json)`);
+      else {
+        const amoi = (lire(fichier("releve.json")).tables ?? []).filter((t) => t.a_moi === true).map((t) => t.table);
+        if (amoi.length) {
+          e.releve = `point 4 : table(s) « à moi » ${amoi.join(", ")} mise(s) dans ignore après un échec de la preuve (releve.json)`;
+          e.verdict = "échec";
+          e.raisons = [...e.raisons, `relevé : ${e.releve}`];
+        }
+      }
+    }
   }
 
   // Gestes.

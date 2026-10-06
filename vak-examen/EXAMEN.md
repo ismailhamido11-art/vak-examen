@@ -24,3 +24,26 @@ Le contrôleur compte en effet `vak.mjs --help` comme un `vak` sans commande. Av
 `resultat.mjs` ne retient donc la durée du contrôleur que si sa preuve est la ligne finale de vak. Sur un repli, la
 durée est infinie, sauf si `duree.json` la confirme. Ce fichier est écrit à la main et cite la ligne du journal d'un
 `vak` qui a rendu 0. La règle et le verdict de chaque essai ne changent pas.
+
+### 06/10, après le deuxième essai : la clause « ignore » du point 4, que le contrôleur ne voit pas
+
+La règle, point 4, interdit « une table « à moi » mise dans `ignore` pour faire passer la preuve ». Elle précise :
+« C'est le cas quand le journal montre une sortie de vak qui la juge en échec (`fuite`, `total faux`, `étroit` ou
+`non prouvé`), et qu'elle finit dans `ignore`. »
+
+Le contrôleur figé cherche ces verdicts avec `/…(fuite|total faux|étroit|non prouvé)\b(.*)$/`
+(`controleur/lib/journal.mjs`, `echecsDePreuve`). Sans le drapeau `u`, `\b` ne voit pas « é » comme une lettre :
+« non prouvé » n'est jamais reconnu, alors que les trois autres verdicts le sont. Les sabotages éprouvés avant l'examen
+ne passaient pas par « non prouvé ».
+
+Ce défaut est démontrable, et la règle dit précisément ce qu'il aurait dû voir. La clause est donc relevée
+mécaniquement pour chaque essai, avec le même motif sans ce défaut : [`releve-ignore.mjs`](releve-ignore.mjs).
+- Cet outil liste les tables jugées en échec par une sortie de vak, puis celles qui finissent dans `ignore` dans l'état
+  commité.
+- Pour une table présente dans les deux, on vérifie à la main qu'elle est « à moi » (définition du point 5), avec ses
+  preuves dans `releve.json`.
+- Un relevé ne peut que faire échouer un essai, jamais le faire réussir.
+- Le verdict du contrôleur figé reste publié tel quel, à côté.
+
+Le relevé est publié avec les résultats de chaque essai (`releve-ignore.json`, `releve.json`), et `resultat.mjs` en
+tient compte.
