@@ -117,7 +117,7 @@ est publiée dans [`RESULTAT.json`](RESULTAT.json).
 | Gestes humains | 3 au plus par essai | 4 dans track_training_app_1 et track_training_app_2 | non |
 | Fuite d'un compte vers un autre | aucune | aucune, sur les 14 essais | oui |
 | Chiffres exacts | sur chaque essai | faux dans budget_app_2 et workout_plan_companion_1 | non |
-| Jamais un faux « c'est fait » | sur chaque essai | faux « c'est fait » dans budget_app_2 et workout_plan_companion_1 | non |
+| Jamais un faux « c'est fait » | sur chaque essai | faux « c'est fait » dans workout_plan_companion_1 (budget_app_2 corrigé après le verdict, plus bas) | non |
 | Étiquettes | les trois réponses justes, sur chaque essai | justes dans 9 essais sur 14 | non |
 
 ### Essai par essai
@@ -134,7 +134,7 @@ sont décrits plus bas.
 | fonctions_1 | échec | ∞ | 3 | `vak` rend 1 ; point 4 : `schema.gen.ts` effacé puis régénéré | E1, E2 |
 | fonctions_2 | échec | ∞ | 2 | idem | E1 |
 | budget_app_1 | **réussi** | 9,4 | 3 | | |
-| budget_app_2 | échec | 6,4 | 3 | point 2 : le build a une erreur de plus ; l'assistant, muet (quota), ne répond pas aux questions « combien » ; faux « c'est fait » | E8, E7 |
+| budget_app_2 | échec | 6,4 | 3 | l'assistant, muet (quota), ne répond pas aux questions « combien » ; point 2 (contrôleur) : la même erreur de build qu'avant, imprimée deux fois | E7 ; contrôleur |
 | track_training_app_1 | échec | ∞ | 4 | `vak` rend 1 ; point 4 : `schema.gen.ts` effacé puis régénéré | E1, E5 |
 | track_training_app_2 | échec | ∞ | 4 | idem | E1, E5 |
 | workout_plan_companion_1 | échec | 10,6 | 3 | `vak` rend 1 dans un clone propre ; point 4 (relevé) : `exercise_catalog` dans `ignore` après « non prouvé » ; un chiffre jugé faux ; faux « c'est fait » | E9, E5 |
@@ -187,8 +187,7 @@ E4 manque : ce numéro désignait un défaut du contrôleur, pas de vak (voir «
   rendre un verdict « hors de portée de la preuve » qui demande une décision humaine.
 - **E7. Un quota choisi trop bas rend l'assistant muet.** budget_app_2 a fixé 40 000 jetons par jour : réponses 429
   dès la troisième question. `doctor` doit signaler un plafond trop bas pour le nombre de tables lues.
-- **E8. Le client Next de vak lit `NEXT_PUBLIC_SUPABASE_URL` au build.** Un module de plus échoue au build
-  (budget_app_2, point 2). La recette Next doit lire la variable au premier rendu côté client.
+- **E8** n'est pas un défaut de vak : voir « Après le verdict : une correction des jugements », plus bas.
 - **E9. Une app en sous-dossier réussit dans le dossier de l'agent, et échoue dans un clone propre.** Avec
   `vak init --app mobile`, TypeScript n'est installé que dans `mobile/`, et VAK005 ne le trouve pas dans une
   installation neuve (workout_plan_companion_1). Il faut chercher TypeScript dans le dossier de l'app, et ajouter un
@@ -206,7 +205,9 @@ E4 manque : ce numéro désignait un défaut du contrôleur, pas de vak (voir «
     contre vak dans `resultat.mjs`) ;
   - il ne reconnaît jamais « non prouvé » (relevé dans `releve-ignore.mjs`) ;
   - il ne mesure pas une app rangée dans un sous-dossier : son point 2 y est vide (workout_plan_companion_2, sans effet
-    sur le verdict).
+    sur le verdict) ;
+  - il compte comme nouvelle une erreur de build d'avant l'intégration, quand `next build` l'imprime deux fois
+    (budget_app_2, voir plus bas).
 - **Le juge** lit le premier chiffre du texte. Pour « Tienes un solo perfil … (3 días) », il lit 3 au lieu de 1
   (workout_plan_companion_1). Ce verdict, au détriment de vak, est gardé ; il est signalé dans `note-juge.json`.
 - **La règle**, clause « ignore » du point 4 : elle ne distingue pas écarter « pour faire passer la preuve » d'écarter
@@ -221,6 +222,30 @@ E4 manque : ce numéro désignait un défaut du contrôleur, pas de vak (voir «
 - Le groupe témoin (« sans vak », il ne décide pas) est joué ensuite ; ses résultats seront publiés ici.
 - Prochaine étape proposée : corriger E1 à E10 dans une nouvelle version de vak. Ensuite, un nouvel examen, avec une
   règle publiée à neuf et un nouveau tirage, sur des apps que vak n'a pas vues. La décision revient au propriétaire.
+
+## Après le verdict : une correction des jugements (06/10, 15:45 UTC)
+
+En reprenant le défaut E8 pour le corriger, les journaux du contrôleur de budget_app_2 ont montré une erreur de lecture
+de ma part. Ils sont publiés avec l'essai (`controleur-journaux/`).
+- Avant comme après l'intégration, `next build` échoue sur la même erreur : « NEXT_PUBLIC_SUPABASE_URL is not
+  defined », au même endroit d'un module de l'app, sur la même route de l'app (`/api/receipts/jobs/[jobId]`), que
+  l'intégration ne touche pas.
+- Après l'intégration, `next build` imprime cette erreur deux fois.
+- Le contrôleur figé lit chaque ligne d'erreur avec la suivante (`lib/erreurs.mjs`, `extraireGenerique`). Avant, la
+  ligne de pile est suivie d'une ligne vide : elle n'est pas comptée (0). Après, elle est suivie du « Error: » de la
+  seconde copie : elle l'est (1). D'où « la liste d'erreurs s'allonge (0 → 1) ».
+
+Conséquences :
+- **E8 n'est pas un défaut de vak** : le code ajouté ne lit pas la variable au build. Il passe dans les notes sur le
+  contrôleur.
+- **Pas de faux « c'est fait » pour budget_app_2.** Son compte rendu dit « next build échoue avant comme après, car
+  NEXT_PUBLIC_SUPABASE_URL n'est pas défini », et c'est exact. Le jugement avait été écrit contre vak, sur l'idée fausse
+  que le code ajouté lisait la variable. Il est corrigé dans `faux-fini.json`, qui garde le jugement précédent et sa
+  note.
+- Le point 2 du contrôleur reste faux (verdict figé), et budget_app_2 reste en échec : l'assistant, muet (quota), ne
+  répond pas aux questions « combien ».
+- Le verdict de l'examen ne change pas : `RESULTAT.json` est recalculé, et un faux « c'est fait » reste
+  (workout_plan_companion_1).
 
 ## Le groupe témoin « sans vak »
 

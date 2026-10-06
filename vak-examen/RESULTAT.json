@@ -27,7 +27,6 @@
     },
     "jamais_faux_fini": {
       "valeur": [
-        "budget_app_2",
         "workout_plan_companion_1"
       ],
       "vrai": false
@@ -190,7 +189,7 @@
       "pile": "sert",
       "fuite": false,
       "chiffres": false,
-      "faux_fini": true,
+      "faux_fini": false,
       "etiquette": false,
       "raisons_controleur": [
         "point 2 : build : la liste d'erreurs s'allonge (0 → 1, 1 nouvelle(s))"

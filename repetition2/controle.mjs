@@ -416,8 +416,9 @@ for (const c of changes.filter((x) => x.statut !== "D")) {
 const archives = fichiersHead.filter((f) => /(^|\/)vendor\/vak\/[^/]+\.tgz$/.test(f));
 const empreinteHead = (f) => spawnSync("bash", ["-c", `git -C '${APP}' cat-file blob '${head}:${f}' | sha256sum | cut -d' ' -f1`], { encoding: "utf8" }).stdout.trim();
 const archivesHead = archives.map((f) => ({ fichier: f, sha256: empreinteHead(f) }));
-if (!archivesHead.some((a) => a.sha256 === prep.archive.sha256)) raisons.push(`archive du kit absente de vendor/vak au commit final (attendue : ${prep.archive.nom}, sha256 ${prep.archive.sha256.slice(0, 12)})`);
-if (archivesHead.some((a) => a.sha256 !== prep.archive.sha256)) raisons.push(`autre archive dans vendor/vak : ${archivesHead.filter((a) => a.sha256 !== prep.archive.sha256).map((a) => a.fichier).join(", ")}`);
+// Groupe témoin (TEMOIN=1, preparer.sh) : aucune archive attendue (06/10, panne réparée pendant le groupe témoin).
+if (prep.archive && !archivesHead.some((a) => a.sha256 === prep.archive.sha256)) raisons.push(`archive du kit absente de vendor/vak au commit final (attendue : ${prep.archive.nom}, sha256 ${prep.archive.sha256.slice(0, 12)})`);
+if (prep.archive && archivesHead.some((a) => a.sha256 !== prep.archive.sha256)) raisons.push(`autre archive dans vendor/vak : ${archivesHead.filter((a) => a.sha256 !== prep.archive.sha256).map((a) => a.fichier).join(", ")}`);
 
 // ---------------------------------------------------------------- 5. commandes de vak sur le clone propre
 const verrouVak = fichiersHead.filter((f) => /(^|\/)supabase\/functions\/vak\/vak\.lock\.json$/.test(f));
@@ -569,7 +570,7 @@ const liste = (titre, items, max = 30) => {
 };
 md.push(`# Essai ${ID} : ${verdict}`, "");
 md.push(`- App : ${prep.depot} @ ${court(prep.commit)} ; préparée ${court(prep.prepare)} ; HEAD ${court(head)} (${branche}), ${commits.length} commit(s) de l'essai${commits.length ? ` (${commits[0].date} → ${commits.at(-1).date})` : ""}`);
-md.push(`- Archive : ${prep.archive.nom} (sha256 ${prep.archive.sha256.slice(0, 12)}) ; vak installé dans le clone propre : ${vakInstalle ?? "aucun"}`);
+md.push(`- Archive : ${prep.archive ? `${prep.archive.nom} (sha256 ${prep.archive.sha256.slice(0, 12)})` : "aucune (groupe témoin)"} ; vak installé dans le clone propre : ${vakInstalle ?? "aucun"}`);
 md.push(`- Contrôle : ${debut.toISOString()} → ${fin.toISOString()} (${rapport.controle.duree_s} s), clone propre ${APRES}`);
 md.push("");
 if (raisons.length) liste("Raisons de l'échec", raisons);

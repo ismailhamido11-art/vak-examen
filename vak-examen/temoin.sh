@@ -51,6 +51,8 @@ const p2 = v.points?.p2 ?? {};
 console.log(`point 2 (l app compile comme avant) : ${p2.ok === true ? "vrai" : p2.ok === false ? "faux" : "non mesuré"}`);' "$R/verdict-examen.json" | sed "s/l app/l'app/"
   [ -f "$R/essai.bundle" ] || echo "=== $id : ! pas d'essai.bundle (aucun commit de l'agent ?) : « mes données » partira de l'app à son commit"
   rm -rf "${TRAVAIL:?}/$id" "/srv/essais/$id"
+  # Les caches du HOME du contrôleur (npm, pnpm) ne servent qu'à la vitesse : le disque ne les tient pas 7 fois.
+  rm -rf /srv/juge-home/.npm/_cacache /srv/juge-home/.npm/_npx /srv/juge-home/.local/share/pnpm
   echo "=== $id : fin $(date -u +%H:%M:%SZ)"
 done
 echo "=== FIN"
