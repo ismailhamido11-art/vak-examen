@@ -16,6 +16,13 @@ DEST="${1:?usage : bash vak-examen/publier.sh <clone du dépôt public>}"
 fail() { echo "✗ $*" >&2; exit 1; }
 [ -d "$DEST/.git" ] || fail "$DEST n'est pas un dépôt git"
 [ "$(cd "$DEST" && pwd)" != "$(pwd)" ] || fail "$DEST est le dépôt de vak lui-même"
+# Ce qui est déjà publié ne s'efface pas par oubli d'une variable : sans elle, la copie l'enlèverait du clone public.
+if [ "${RESULTATS:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files repetition2/resultats | head -1)" ]; then
+  fail "$DEST publie déjà des résultats : relancer avec RESULTATS=1 pour ne pas les effacer"
+fi
+if [ "${GRAINES:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files vak-examen/graines | head -1)" ]; then
+  fail "$DEST publie déjà les graines : relancer avec GRAINES=1 pour ne pas les effacer"
+fi
 LANCEUR=(.gitignore apps.tsv controle.mjs controler.sh horodater.mjs lancer.sh mesurer.mjs messages.sh preparer.sh
   transcription.mjs)
 rm -rf "$DEST/vak-examen" "$DEST/repetition2"

@@ -221,3 +221,17 @@ E4 manque : ce numéro désignait un défaut du contrôleur, pas de vak (voir «
 - Le groupe témoin (« sans vak », il ne décide pas) est joué ensuite ; ses résultats seront publiés ici.
 - Prochaine étape proposée : corriger E1 à E10 dans une nouvelle version de vak. Ensuite, un nouvel examen, avec une
   règle publiée à neuf et un nouveau tirage, sur des apps que vak n'a pas vues. La décision revient au propriétaire.
+
+## Le groupe témoin « sans vak »
+
+Il ne décide pas de l'examen (`REGLE.md`, « Le groupe témoin »). Ses 7 essais, un par app, sont publiés avant le premier
+d'entre eux, à la fin d'`essais.tsv` (ids `temoin_<app>`). Ils reprennent le même dépôt, le même commit et les mêmes
+champs que les essais de vak. [`temoin.sh`](temoin.sh) les joue l'un après l'autre :
+- l'essai : le lanceur en mode témoin (`TEMOIN=1`), sans l'archive de vak, avec la consigne de la règle, en 120
+  minutes ;
+- le point 2, « l'app compile comme avant » : le même contrôleur scellé ;
+- « mes données » : l'interface construite par l'agent, servie avec la graine de l'app et le même modèle. On y pose,
+  en tant que A, trois questions « combien de mes … ? », à la main si besoin. Si cette interface ne peut pas être
+  servie ou interrogée, ce critère est « non mesuré ».
+
+Les résultats seront publiés ici, quels qu'ils soient.
