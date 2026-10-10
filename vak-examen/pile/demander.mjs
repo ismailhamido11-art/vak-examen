@@ -3,6 +3,7 @@
 // (packages/agent/docs/HTTP.md) : connexion, accord (texte relu, fournisseurs tels quels), POST chat. Rend du JSON :
 // { compte, conversation, question, texte, outils: [{ nom, entree, sortie }], erreur? }.
 // Usage : node demander.mjs <pile.json> <A|B> "<question>" [--conversation <id>]
+import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 
@@ -31,6 +32,13 @@ if (!accord.granted) {
   if (r.status !== 200) throw new Error(`accord refusé (${r.status}) : ${(await r.text()).slice(0, 200)}`);
 }
 
+// Le quota de l'app n'est pas ce que mesure le point 5 (budget_app_3, 07/10 : 10 messages par jour, 12 questions du
+// juge, réponses 429) : le compteur de vak du compte est remis à zéro avant chaque question.
+if (pile.db) {
+  const sql = "select to_regclass('public.vak_usage') is not null as vak \\gset\n\\if :vak\ndelete from public.vak_usage where user_id = :'u';\n\\endif\n";
+  execFileSync("psql", ["-X", "-q", "-v", "ON_ERROR_STOP=1", "-v", `u=${compte.id}`, pile.db], { input: sql, stdio: ["pipe", "ignore", "pipe"] });
+}
+
 const reponse = await fetch(`${pile.fonction}/chat`, {
   method: "POST",
   headers: h,
@@ -47,7 +55,11 @@ const morceaux = brut
       return [];
     }
   });
-const texte = morceaux.filter((m) => m.type === "text-delta").map((m) => String(m.delta ?? "")).join("");
+// Un bloc par partie de texte (son `id`), séparés comme l'interface de vak les affiche (src/web/message.tsx) : recollés,
+// « Je regarde ça. » puis « Deux invitations » donnaient « ça.Deux », que le juge ne lit pas (equipe_9, 10/10).
+const parties = new Map();
+for (const m of morceaux) if (m.type === "text-delta") parties.set(m.id ?? "", (parties.get(m.id ?? "") ?? "") + String(m.delta ?? ""));
+const texte = [...parties.values()].join("\n\n");
 const entrees = new Map(morceaux.filter((m) => m.type === "tool-input-available").map((m) => [m.toolCallId, { nom: m.toolName, entree: m.input }]));
 const outils = morceaux.filter((m) => m.type === "tool-output-available").map((m) => ({ ...(entrees.get(m.toolCallId) ?? {}), sortie: m.output }));
 const erreur = reponse.status !== 200 ? `${reponse.status} ${brut.slice(0, 300)}` : morceaux.find((m) => m.type === "error")?.errorText;

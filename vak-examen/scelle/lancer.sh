@@ -12,6 +12,7 @@
 # travail/app.
 # Graines et juge « mes données » (06/10) : GRAINES=1 CONSIGNE=vak-examen/scelle/GRAINES.md SCELLE=/srv/graines : la
 # règle, la page de vak, la consigne, l'outil de questions de la pile, les 3 apps construites et sqlnoir (répétition).
+# Mise à jour du juge (08/10) : JUGE=1 CONSIGNE=vak-examen/scelle/JUGE-1.md SCELLE=/srv/juge-1 … <id>… (sans la page).
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 REPO="$(pwd)"
@@ -69,6 +70,21 @@ elif [ -n "${TIREES:-}" ]; then
     git clone -q "$DEPOT" "$S/travail/apps/$NOM" && git -C "$S/travail/apps/$NOM" checkout -q "$COMMIT" &&
       git -C "$S/travail/apps/$NOM" remote remove origin || fail "$NOM : $DEPOT @ $COMMIT impossible à cloner"
   done < "$TIREES"
+  DEMANDE="$(basename "$CONSIGNE")"
+  IDS=()
+  CONSIGNE=""
+elif [ "${JUGE:-}" = 1 ]; then
+  # Mise à jour du juge « mes données » (08/10) : JUGE=1 CONSIGNE=vak-examen/scelle/JUGE-1.md SCELLE=/srv/juge-1
+  # bash vak-examen/scelle/lancer.sh <id>… : la règle, la consigne, le juge et ses épreuves, l'outil de questions de la
+  # pile, et la sortie du juge de chaque essai cité (cas/<id>.json). Ni la page de vak, ni le dépôt.
+  [ -n "$CONSIGNE" ] || fail "JUGE=1 demande une CONSIGNE"
+  rmdir "$S/travail/essais"
+  cp vak-examen/REGLE.md "$CONSIGNE" "$S/travail/"
+  mkdir -p "$S/travail/pile" "$S/travail/cas" && cp -r vak-examen/mesdonnees "$S/travail/mesdonnees"
+  cp vak-examen/pile/demander.mjs vak-examen/pile/PILE.md "$S/travail/pile/"
+  for id in "${IDS[@]}"; do
+    cp "repetition2/resultats/$id/mesdonnees.json" "$S/travail/cas/$id.json" || fail "sortie du juge de $id absente"
+  done
   DEMANDE="$(basename "$CONSIGNE")"
   IDS=()
   CONSIGNE=""
@@ -155,6 +171,8 @@ if [ -n "${FICHE:-}" ]; then
   git -C "$S/travail/app" log --oneline -5 2>/dev/null || echo "✗ aucun dépôt app/"
 elif [ "${GRAINES:-}" = 1 ] || [ -n "${TIREES:-}" ]; then
   ls "$S/travail/graines" "$S/travail/mesdonnees" 2>/dev/null || echo "✗ ni graines/ ni mesdonnees/"
+elif [ "${JUGE:-}" = 1 ]; then
+  ls "$S/travail/mesdonnees" "$S/travail/mesdonnees/tests" 2>/dev/null || echo "✗ aucun mesdonnees/"
 elif [ -n "${ETIQUETTE:-}" ]; then
   cat "$S/travail/reponses.json" 2>/dev/null || echo "✗ aucun reponses.json"
 else

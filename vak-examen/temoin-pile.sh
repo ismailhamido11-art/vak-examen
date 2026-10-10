@@ -45,7 +45,9 @@ arreter() {
 
 if [ "$ACTION" = "down" ]; then
   arreter
-  (cd "$APP" && "${VAK[@]}" localdb --drop --db-name "examen_$ID" >/dev/null 2>&1 || true)
+  # La base par son nom, directement : vak localdb --drop demande supabase/config.toml, que up n'a posé que le temps
+  # de créer la base.
+  dropdb -h 127.0.0.1 --if-exists --force "examen_$ID" >/dev/null 2>&1 || true
   echo "pile témoin $ID arrêtée"
   exit 0
 fi

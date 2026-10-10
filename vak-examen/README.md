@@ -1,10 +1,11 @@
 # Examen public de vak
 
 Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://github.com/ismailhamido11-art/vak-examen
-(publié le 06/10/2026), avec le lanceur des essais (`repetition2/`). C'est [`publier.sh`](publier.sh) qui le recopie.
+(publié le 06/10/2026 pour le premier examen, le 10/10/2026 pour le deuxième), avec le lanceur des essais
+(`repetition2/`). C'est [`publier.sh`](publier.sh) qui le recopie. Le premier examen est dans l'historique.
 
 - [`REGLE.md`](REGLE.md) : la règle. Elle dit ce qui est mesuré, quelles apps sont choisies, ce qu'est un essai réussi
-  et quels sont les seuils. Elle est figée depuis le 06/10/2026.
+  et quels sont les seuils. Celle du deuxième examen est figée le 10/10/2026.
 - [`PUBLICATION.md`](PUBLICATION.md) : ce qui est figé avant le tirage (empreintes, texte de la demande,
   environnement, tour drand).
 - [`pile/`](pile/) : la vérification « mes données » d'un essai fini.
@@ -17,13 +18,15 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
   - `repetition/saboter.sh <id>` éprouve le contrôleur : sur un essai réussi, il plante tour à tour 6 sabotages et
     vérifie que le contrôleur rend « échec » pour la bonne raison.
 
-- [`candidats/`](candidats/) : les apps publiques éligibles (23 au 06/10), constituées en tiers par une session scellée
+- [`candidats/`](candidats/) : les apps publiques éligibles (23 au 06/10 ; 19 au 10/10, sans les 7 apps du premier
+  examen), constituées en tiers par une session scellée
   (`verifier.mjs`), puis passées au critère « pas une copie » et à la liste d'exclusion complète (`historique.mjs`,
   06/10).
 - [`tirage.mjs`](tirage.mjs) : le tirage des 4 apps publiques. `node tirage.mjs <tour drand>` lit l'aléa du tour
   « quicknet » fixé d'avance, le contrôle, classe les éligibles par le SHA-256 du texte « aléa, saut de ligne, url » et prend les 2 premières apps
   Expo et les 2 premières apps Next ; les suivantes forment la réserve de chaque plateforme.
-- [`apps/`](apps/) : les 3 apps construites (06/10), chacune par une session scellée qui n'a reçu que sa fiche ; leurs
+- [`apps/`](apps/) : les 3 apps construites du premier examen (06/10, `fiches/`) et celles du deuxième (10/10 :
+  plantes, agence, compteurs, `fiches-2/`), chacune par une session scellée qui n'a reçu que sa fiche ; leurs
   archives git, leurs empreintes et les vérifications.
 - [`controleur/`](controleur/) : le contrôleur de l'examen. Une session Claude Code scellée l'a écrit le 04/10, sans
   le dépôt de vak, d'après `REGLE.md`, la page publique et [`scelle/CAHIER.md`](scelle/CAHIER.md) ; le lanceur est
@@ -37,7 +40,8 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
 - [`etiquettes/`](etiquettes/) : la lecture des étiquettes, la vérité de chaque essai, le lecteur scellé
   ([`scelle/ETIQUETTE.md`](scelle/ETIQUETTE.md)) et la comparaison.
 - [`scelle/GRAINES-TIREES.md`](scelle/GRAINES-TIREES.md) : la consigne des graines des 4 apps tirées (`TIREES=` du
-  lanceur scellé).
+  lanceur scellé) ; [`scelle/GRAINES-CONSTRUITES.md`](scelle/GRAINES-CONSTRUITES.md), celle des 3 apps construites
+  du deuxième examen.
 - `graines/` : les graines A et B de chaque app, écrites par la même session. Elles seront publiées après les
   essais ; leurs empreintes sont dans `PUBLICATION.md`.
 
@@ -52,4 +56,8 @@ Les étapes, dans l'ordre :
    - les empreintes de l'archive, de la règle, des fiches de forme, des 3 apps construites et de leurs graines ;
    - le tour drand.
 6. Le tirage (`tirage.mjs`), puis les graines des 4 apps tirées et leur empreinte.
-7. L'examen : 14 essais et le groupe témoin, puis la publication de tout.
+7. L'examen : 14 essais et le groupe témoin, puis la publication de tout (06/10 : échoué, 2 sur 14).
+
+Le deuxième examen (10/10) reprend ces étapes : 3 apps nouvelles construites et leurs graines, les 6 sabotages
+rejoués sur le contrôleur mis à jour le 08/10 (`controleur/verdicts-sabotages-10-10/`), la publication, le tirage,
+les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`).

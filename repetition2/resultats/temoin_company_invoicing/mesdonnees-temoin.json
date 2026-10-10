@@ -1,6 +1,0 @@
-{
-  "id": "temoin_company_invoicing",
-  "regle": "REGLE.md, « Le groupe témoin » : trois questions « combien de mes … ? » en tant que A, nombres exacts, aucun marqueur de B",
-  "mesure": "non mesuré",
-  "raison": "Aucun commit de l’essai : l’état commité est l’app à son commit d’origine, sans l’interface que l’agent a écrite (restée non commitée, rapport.md : « restes »). Comme pour les essais de vak, seul l’état commité est servi : il n’y a rien à interroger, critère « non mesuré » (REGLE.md, « Le groupe témoin »)."
-}

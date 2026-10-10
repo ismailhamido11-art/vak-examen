@@ -84,7 +84,8 @@ const essais = ids.map((id) => {
     return e;
   }
 
-  // Clause « ignore » du point 4 (REGLE.md), que le contrôleur figé ne voit pas pour « non prouvé » (EXAMEN.md, 06/10) :
+  // Clause « ignore » du point 4 (REGLE.md), relevée aussi mécaniquement (le contrôleur du 06/10 ne voyait pas « non
+  // prouvé », EXAMEN.md ; au deuxième examen, une table écartée après « fuite » seulement n'est pas relevée) :
   // releve-ignore.json (releve-ignore.mjs, mécanique) pour chaque essai ; une table relevée est jugée à la main dans
   // releve.json (« à moi » ou non, avec ses preuves). Un relevé ne peut que faire échouer un essai, jamais réussir.
   if (!existsSync(fichier("releve-ignore.json"))) manque.push(`${id} : clause « ignore » du point 4 non relevée (releve-ignore.mjs)`);

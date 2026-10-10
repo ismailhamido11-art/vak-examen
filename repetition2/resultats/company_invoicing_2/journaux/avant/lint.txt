@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/company_invoicing_2/avant)
-
-
-> company-invoicing@1.0.0 lint
-> eslint
-

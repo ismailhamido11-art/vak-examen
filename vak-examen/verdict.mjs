@@ -23,8 +23,10 @@ const c = lire(fichierControleur);
 const j = lire(fichierJuge);
 
 const raisons = [];
+// Raisons du contrôleur : des objets { point, code, resume, preuve } (« [object Object] » à l'examen du 06/10).
+const raisonDe = (r) => (typeof r === 'string' ? r : `point ${r?.point ?? '?'} : ${r?.resume ?? r?.code ?? JSON.stringify(r)}`);
 if (c.verdict !== 'réussi') {
-  const detail = (c.raisons ?? []).length ? ` (${c.raisons.join(' ; ')})` : '';
+  const detail = (c.raisons ?? []).length ? ` (${c.raisons.map(raisonDe).join(' ; ')})` : '';
   raisons.push(`contrôleur : ${c.verdict ?? 'sans verdict'}${detail}`);
 }
 

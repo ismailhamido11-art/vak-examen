@@ -1,7 +1,0 @@
-$ npm run typecheck
-(dossier : /work/fonctions_2/apres)
-
-
-> budget-foyer@1.0.0 typecheck
-> tsc --noEmit
-

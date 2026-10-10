@@ -202,7 +202,7 @@ function chrono(lignes) {
     reponse_finale: finale?.timestamp ?? null,
     duree_min: duree,
     temps_depasse: duree !== null && duree > 120,
-    reponse_finale_texte: finale?.message ? texte(finale.message.content).slice(0, 4000) : null,
+    reponse_finale_texte: finale?.message ? texte(finale.message.content) : null, // entier : on y lit les gestes (08/10)
     messages_recus: entre.filter((m) => !m.texte.startsWith("Stop hook feedback")).map((m) => ({ at: m.at, texte: m.texte.slice(0, 1500) })),
     rappels_automatiques: entre.filter((m) => m.texte.startsWith("Stop hook feedback")).length,
     commandes_bash: commandes.length,
@@ -234,7 +234,7 @@ function chronoCodex(lignes) {
     reponse_finale: finale?.t ?? null,
     duree_min: duree,
     temps_depasse: duree !== null && duree > 120,
-    reponse_finale_texte: finale ? String(finale.item.text).slice(0, 4000) : null,
+    reponse_finale_texte: finale ? String(finale.item.text) : null,
     messages_recus: [],
     rappels_automatiques: 0,
     commandes_bash: commandes.length,

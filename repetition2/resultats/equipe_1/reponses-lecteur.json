@@ -1,6 +1,0 @@
-{
-  "supprimer": "l'étiquette ne le dit pas",
-  "modifier": ["retenir un souvenir (prise memory), après votre validation"],
-  "envoyer": { "editeur": "DeepSeek (Chine, selon ses conditions)", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ». La formule est ambiguë : elle n'affirme ni n'exclut clairement une suppression, et « ces listes » n'est pas défini avec précision. Aucune action de suppression n'est nommée, donc je réponds que l'étiquette ne le dit pas. Les données visibles (Chantiers, Tâches, Équipes, Membres) sont présentées en lecture (« Voit »), pas en modification."
-}

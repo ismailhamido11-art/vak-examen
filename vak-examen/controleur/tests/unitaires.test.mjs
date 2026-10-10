@@ -7,9 +7,9 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { comparerDependances } from '../lib/deps.mjs';
-import { comparerErreurs, extraireErreurs } from '../lib/erreurs.mjs';
+import { comparerErreurs, extraireErreurs, extraireGenerique } from '../lib/erreurs.mjs';
 import { contournements, echecsDePreuve, premierVakOk } from '../lib/journal.mjs';
-import { cleIgnore, lireSchema, tablesAMoi } from '../lib/schema.mjs';
+import { cleIgnore, lireIgnore, lireSchema, tablesAMoi } from '../lib/schema.mjs';
 
 const ici = path.dirname(fileURLToPath(import.meta.url));
 
@@ -74,6 +74,41 @@ test('journal : échecs de preuve et premier vak à 0', () => {
   assert.equal(premierVakOk(j).ligne, 6); // « doctor » seul n'est pas « vak »
 });
 
+// Journal minimal : [commande, sortie, secondes] par appel Bash.
+const journalDeSorties = (...appels) => {
+  const evts = [];
+  appels.forEach(([commande, sortie, secondes], i) => {
+    evts.push({ n: 2 * i + 1, ts: secondes * 1000, genre: 'outil', id: `t${i}`, nom: 'Bash', entree: { command: commande } });
+    evts.push({ n: 2 * i + 2, ts: secondes * 1000, genre: 'resultat', id: `t${i}`, texte: sortie });
+  });
+  return { evts, outils: new Map(evts.filter((e) => e.genre === 'outil').map((e) => [e.id, e])) };
+};
+const VAK = 'node node_modules/@vak/agent/bin/vak.mjs';
+const AIDE = "vak 0.24.3 — assistant IA\nFini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande)\nvak : fini (sync, doctor, test, prove) [code 0]";
+
+test('journal : vak --help n\'est pas un vak sans commande (durée)', () => {
+  const vrai = [`${VAK} 2>&1 | tail -3`, 'vak : fini (sync, doctor, test, prove) [code 0]', 600];
+  // l'aide, seule : aucune sortie de vak ne compte
+  for (const cmd of [`${VAK} --help`, `${VAK} --help | head -60`, `${VAK} -h`, `${VAK} doctor --help`, `V="${VAK}"; $V --help | head -60`, `V="${VAK}"; "\${V}" --help`]) {
+    assert.equal(premierVakOk(journalDeSorties([cmd, AIDE, 60])), null, cmd);
+  }
+  // avant un vrai lancement : le vrai lancement fait foi, pas l'aide lue plus tôt
+  assert.equal(premierVakOk(journalDeSorties([`${VAK} --help | head -60`, AIDE, 60], vrai)).ligne, 4);
+  // l'aide sans la ligne finale (repli : phrase « Fini pour l'agent de code ») ne compte pas non plus
+  const filtre = [`V="${VAK}"; $V --help | head -60`, "Fini pour l'agent de code : `vak` → 0 (…)", 60];
+  assert.equal(premierVakOk(journalDeSorties(filtre, [`${VAK} 2>&1 | grep Fini`, "Fini pour l'agent de code : `vak` → 0 (…)", 900])).ligne, 4);
+  // une variable qui porte vak : l'affectation n'est pas un lancement, `$V` sans commande en est un, `$V doctor` non
+  assert.equal(premierVakOk(journalDeSorties([`V="${VAK}"; $V doctor`, 'vak : fini (sync, doctor) [code 0]', 60])), null);
+  assert.equal(premierVakOk(journalDeSorties([`V="${VAK}"; $V 2>&1 | tail -4`, 'vak : fini (sync, doctor, test, prove) [code 0]', 600])).ligne, 2);
+  assert.equal(premierVakOk(journalDeSorties([`${VAK} --db-url postgresql://x/y 2>&1 | tail`, 'vak : fini (sync, doctor, test, prove) [code 0]', 600])).ligne, 2);
+});
+
+test('journal : « non prouvé » est un échec de preuve, comme fuite, total faux et étroit', () => {
+  const sortie = ['✓ sites éprouvé', '✗ team_invitations non prouvé', '    - la graine ne suit pas une règle de l\'app', '✗ notes fuite', '✗ lignes total faux', '✗ tags étroit', '✗ public.amis(): non prouvé', 'vak prove : non prouvé (4 éprouvée(s))'].join('\n');
+  assert.deepEqual(echecsDePreuve(journalDeSorties([`${VAK} 2>&1 | tail`, sortie, 1])).map((e) => [e.table, e.verdict]),
+    [['team_invitations', 'non prouvé'], ['notes', 'fuite'], ['lignes', 'total faux'], ['tags', 'étroit']]);
+});
+
 // ── erreurs ──
 test('erreurs : tsc, eslint, jest, préfixes turbo', () => {
   const sortie = [
@@ -96,6 +131,37 @@ test('erreurs : une ligne qui bouge n\'est pas une erreur nouvelle ; une erreur 
   const c = comparerErreurs(a, plus);
   assert.equal(c.allonge, true);
   assert.equal(c.nouvelles.length, 1);
+});
+
+test('erreurs : des ensembles, pas des listes (une erreur imprimée deux fois reste ancienne)', () => {
+  const une = extraireErreurs("a.ts(3,1): error TS2322: Type 'x' is not assignable.", '');
+  const deux = extraireErreurs("a.ts(3,1): error TS2322: Type 'x' is not assignable.\na.ts(3,1): error TS2322: Type 'x' is not assignable.", '');
+  assert.equal(deux.length, 2);
+  for (const [a, b] of [[une, deux], [deux, une], [deux, deux]]) {
+    const c = comparerErreurs(a, b);
+    assert.equal(c.allonge, false);
+    assert.equal(c.nouvelles.length, 0);
+  }
+  // une erreur d'un autre message ou d'un autre fichier est nouvelle, même si une ancienne a disparu ; comptée une fois
+  const autre = extraireErreurs("b.ts(1,1): error TS2304: Cannot find name 'y'.\nb.ts(2,1): error TS2304: Cannot find name 'y'.", '');
+  const c = comparerErreurs(une, autre);
+  assert.equal(c.allonge, true);
+  assert.equal(c.nouvelles.length, 1);
+});
+
+test('erreurs : next build (budget_app_2), la même erreur imprimée une fois puis deux fois n\'est pas nouvelle', () => {
+  const pile = (page) => [
+    'Error: NEXT_PUBLIC_SUPABASE_URL is not defined',
+    '    at module evaluation (.next/server/chunks/_9858d073._.js:34:47445)',
+    '    at instantiateModule (.next/server/chunks/[turbopack]_runtime.js:715:9)',
+    `    at Object.<anonymous> (.next/server/app/api/${page}/route.js:8:3)`,
+  ];
+  const fin = ['', '> Build error occurred', 'Error: Failed to collect page data for /api/x', '    at ignore-listed frames {', "  type: 'Error'", '}', ' ELIFECYCLE  Command failed with exit code 1.'];
+  const avant = [...pile('overview/charts'), ...fin].join('\n');
+  const apres = [...pile('receipts/jobs/[jobId]'), ...pile('overview/charts'), ...fin].join('\n');
+  const lire = (t) => { const e = extraireErreurs(t, '/clone'); return e.length ? e : extraireGenerique(t, '/clone'); };
+  const c = comparerErreurs(lire(avant), lire(apres));
+  assert.equal(c.allonge, false, JSON.stringify(c.nouvelles));
 });
 
 // ── dépendances : dépôts git jetables ──
@@ -152,4 +218,9 @@ export const schema = { version: 1, tables: {
   assert.deepEqual([...tablesAMoi(schema).keys()].sort(), ['amis', 'lignes', 'notes']);
   const ig = cleIgnore('export default defineAgent({\n  tables: { a: { x: 1 } },\n  ignore: {\n    notes: "a, b: c",\n    "lignes": "x", // ignore: { faux: 1 }\n    fn: "y",\n  },\n  plugins: [],\n});');
   assert.deepEqual([...ig.keys()], ['notes', 'lignes', 'fn']);
+});
+
+test('schéma : ignore garde la ligne et la raison écrite', () => {
+  const ig = lireIgnore('export default defineAgent({\n  ignore: {\n    notes: "messages privés, jamais vus de l\'assistant",\n    "lignes": \'x "y"\', // c\n    vide: "",\n    fn: 3,\n  },\n});');
+  assert.deepEqual([...ig].map(([k, x]) => [k, x.ligne, x.raison]), [['notes', 3, "messages privés, jamais vus de l'assistant"], ['lignes', 4, 'x "y"'], ['vide', 5, ''], ['fn', 6, null]]);
 });

@@ -17,3 +17,10 @@ https://github.com/maybewe-india/maybewe
 https://github.com/makerkit/react-native-expo-turbo-saas-kit
 https://github.com/firecrawl/open-scouts
 https://github.com/cz-bszy/paper_sender
+#
+# Premier examen (06/10) : ses 4 apps tirées ont servi à toutes les répétitions, de la 0.25 à la 0.26 (vak a été corrigé
+# sur elles). Exclues du deuxième examen, avec leurs copies et leurs propriétaires (ajouté le 10/10, avant le tirage).
+https://github.com/AndrerezaMedya/budget-app
+https://github.com/aprescod12/track-training-app
+https://github.com/AndreuCrespo/workout-plan-companion
+https://github.com/xtshepana/company-invoicing

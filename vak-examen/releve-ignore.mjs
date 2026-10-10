@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-// Relève, pour un essai, la clause « ignore » du point 4 de la règle (REGLE.md) : « une table « à moi » mise dans
-// `ignore` pour faire passer la preuve. C'est le cas quand le journal montre une sortie de vak qui la juge en échec
-// (`fuite`, `total faux`, `étroit` ou `non prouvé`), et qu'elle finit dans `ignore`. »
+// Relève, pour un essai, la clause « ignore » du point 4 de la règle (REGLE.md, deuxième examen) : « une table « à moi »
+// mise dans `ignore` après une sortie de vak qui la juge `non prouvé`, `total faux` ou `étroit`. Après `fuite`,
+// l'écarter avec sa raison écrite dans `ignore` est permis ». Une table écartée après `fuite` seulement n'est donc pas
+// relevée : elle est listée à part (`ecartees_apres_fuite`), comme le contrôleur la note (10/10 ; au premier examen,
+// `fuite` comptait aussi).
 // Pourquoi cet outil : le contrôleur figé cherche ces verdicts avec /…(fuite|total faux|étroit|non prouvé)\b/, sans le
 // drapeau `u` ; « \b » ne voit pas « é » comme une lettre, donc « non prouvé » n'est jamais reconnu (essai equipe_1,
 // 06/10). Ici, le même motif, sans ce défaut. Node 22, aucune dépendance.
@@ -85,5 +87,7 @@ if (m) {
     i++;
   }
 }
-const relevees = [...new Set(echecs.map((e) => e.table))].filter((t) => ignore.some((x) => x.nom === t));
-console.log(JSON.stringify({ id, echecs_de_preuve: echecs, ignore, relevees }, null, 2));
+const dans = (t) => ignore.some((x) => x.nom === t);
+const relevees = [...new Set(echecs.filter((e) => e.verdict !== "fuite").map((e) => e.table))].filter(dans);
+const ecartees_apres_fuite = [...new Set(echecs.filter((e) => e.verdict === "fuite").map((e) => e.table))].filter((t) => dans(t) && !relevees.includes(t));
+console.log(JSON.stringify({ id, echecs_de_preuve: echecs, ignore, relevees, ecartees_apres_fuite }, null, 2));

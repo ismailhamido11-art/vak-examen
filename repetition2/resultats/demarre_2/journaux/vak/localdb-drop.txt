@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/demarre_2/apres)
-
-base locale vak_local_54a38c supprimée [code 0]

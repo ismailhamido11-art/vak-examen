@@ -240,12 +240,19 @@ const MOTS = {
   two: 2, three: 3, four: 4, five: 5, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, fifteenth: 15, sixteen: 16,
   seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20,
 };
-const MOTS_RE = Object.keys(MOTS).filter((m) => !/^(fifteenth)$/.test(m)).sort((a, b) => b.length - a.length).join("|");
-const NOMBRES = new RegExp(
-  `(?<![\\p{L}\\p{N}_\\-/#@.])(?:(\\d{1,3}(?:[ \\u00a0\\u202f]\\d{3})+|\\d+)([.,]\\d+)?|(${MOTS_RE}))(?![\\p{L}\\p{N}_])`,
+// Espagnol : lu seulement quand la langue de la table est `es` (« once » est aussi de l'anglais, « dos » aussi).
+const MOTS_ES = {
+  cero: 0, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10, once: 11, doce: 12, trece: 13, catorce: 14, quince: 15,
+  dieciséis: 16, dieciseis: 16, diecisiete: 17, dieciocho: 18, diecinueve: 19, veinte: 20,
+};
+const nombresRe = (mots) => new RegExp(
+  `(?<![\\p{L}\\p{N}_\\-/#@.])(?:(\\d{1,3}(?:[ \\u00a0\\u202f]\\d{3})+|\\d+)([.,]\\d+)?|(${Object.keys(mots).filter((m) => !/^(fifteenth)$/.test(m)).sort((a, b) => b.length - a.length).join("|")}))(?![\\p{L}\\p{N}_])`,
   "giu",
 );
+const NOMBRES = nombresRe(MOTS);
+const NOMBRES_ES = nombresRe({ ...MOTS, ...MOTS_ES });
 const FORMES_UN = /(?<![\p{L}])(?:un seul|une seule|un unique|une unique|seulement un|seulement une|only one|just one|exactly one|a single|one single|single)(?![\p{L}])/giu;
+const FORMES_UN_ES = /(?<![\p{L}])(?:un solo|una sola|s[oó]lo uno|s[oó]lo una|únicamente uno|únicamente una)(?![\p{L}])/giu;
 
 // Retire ce qui ressemble à un nombre sans en être un : dates, heures, identifiants, numérotation de liste.
 export function nettoyer(texte) {
@@ -261,21 +268,27 @@ export function nettoyer(texte) {
 }
 
 // Rend les nombres d'un texte, dans l'ordre : [{ valeur, texte }]. `nom` (pluriel de l'objet compté) sert à reconnaître
-// « un livre » / « one profile » comme 1 ; « un », « une », « one » seuls ne sont jamais lus comme un nombre.
-export function nombresDe(texteBrut, nom = "") {
+// « un livre » / « one profile » / « un perfil » comme 1 ; « un », « une », « una », « uno », « one » seuls ne sont jamais lus
+// comme un nombre. `langue` = "es" ajoute l'espagnol (nombres en lettres, « un solo »…) ; sans elle, rien ne change.
+export function nombresDe(texteBrut, nom = "", langue = null) {
+  const es = langue === "es";
   const t = nettoyer(texteBrut);
   const trouves = [];
-  for (const m of t.matchAll(NOMBRES)) {
-    if (m[3]) trouves.push({ pos: m.index, valeur: MOTS[m[3].toLowerCase()], texte: m[0] });
+  for (const m of t.matchAll(es ? NOMBRES_ES : NOMBRES)) {
+    if (m[3]) trouves.push({ pos: m.index, valeur: es ? { ...MOTS, ...MOTS_ES }[m[3].toLowerCase()] : MOTS[m[3].toLowerCase()], texte: m[0] });
     else {
       const entier = m[1].replace(/[   ]/g, "");
       trouves.push({ pos: m.index, valeur: m[2] ? Number(`${entier}.${m[2].slice(1)}`) : Number(entier), texte: m[0] });
     }
   }
   for (const m of t.matchAll(FORMES_UN)) trouves.push({ pos: m.index, valeur: 1, texte: m[0] });
-  const premier = String(nom).trim().split(/\s+/)[0]?.replace(/s$/i, "");
-  if (premier && premier.length > 2) {
-    const re = new RegExp(`(?<![\\p{L}])(?:un|une|one)\\s+(?:\\p{L}+\\s+)?${premier.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "giu");
+  if (es) for (const m of t.matchAll(FORMES_UN_ES)) trouves.push({ pos: m.index, valeur: 1, texte: m[0] });
+  const mot = String(nom).trim().split(/\s+/)[0] ?? "";
+  // Espagnol : « perfiles » → « perfil » (pluriel en -es) ou « ejercicios » → « ejercicio » (pluriel en -s).
+  const racines = [mot.replace(/s$/i, ""), ...(es && /es$/i.test(mot) ? [mot.replace(/es$/i, "")] : [])].filter((r) => r.length > 2);
+  if (racines.length) {
+    const alt = racines.map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+    const re = new RegExp(`(?<![\\p{L}])(?:un|une|one${es ? "|una|uno" : ""})\\s+(?:\\p{L}+\\s+)?(?:${alt})`, "giu");
     for (const m of t.matchAll(re)) trouves.push({ pos: m.index, valeur: 1, texte: m[0] });
   }
   return trouves.sort((x, y) => x.pos - y.pos).map(({ valeur, texte: tx }) => ({ valeur, texte: tx }));
@@ -313,8 +326,8 @@ export function elementsDeListe(texteBrut) {
 //  - combien : on prend le PREMIER nombre du texte (après nettoyage) ; juste s'il égale `attendu`.
 //  - liste   : si le texte qui précède la liste (ou tout le texte, sans liste) contient un nombre, c'est le premier qui
 //              décide ; sinon le nombre d'éléments de premier niveau de la liste décide ; ni l'un ni l'autre : faux.
-export function comparer(type, texteReponse, attendu, nom = "") {
-  const tous = nombresDe(texteReponse, nom);
+export function comparer(type, texteReponse, attendu, nom = "", langue = null) {
+  const tous = nombresDe(texteReponse, nom, langue);
   const base = { regle: type === "combien" ? "premier nombre du texte" : "premier nombre avant la liste, sinon nombre d'éléments de la liste", attendu, nombres_lus: tous.map((n) => n.valeur) };
   if (type === "combien") {
     if (!tous.length) return { ...base, ok: false, retenu: null, raison: "aucun nombre dans la réponse" };
@@ -322,7 +335,7 @@ export function comparer(type, texteReponse, attendu, nom = "") {
     return { ...base, ok: retenu === attendu, retenu, ...(retenu === attendu ? {} : { raison: `la réponse donne ${retenu}, attendu ${attendu}` }) };
   }
   const { preambule, elements } = elementsDeListe(texteReponse);
-  const avant = nombresDe(preambule, nom);
+  const avant = nombresDe(preambule, nom, langue);
   if (avant.length) {
     const retenu = avant[0].valeur;
     return { ...base, ok: retenu === attendu, retenu, source: "nombre annoncé", elements, ...(retenu === attendu ? {} : { raison: `la réponse annonce ${retenu}, attendu ${attendu}` }) };
@@ -384,6 +397,7 @@ export function compterSousA(pile, a, table, colonne) {
 const QUESTIONS = {
   fr: { combien: (nom) => `Combien de mes ${nom} ?`, liste: (nom) => `Liste mes ${nom}.` },
   en: { combien: (nom) => `How many of my ${nom} are there?`, liste: (nom) => `List my ${nom}.` },
+  es: { combien: (nom) => `¿Cuántos de mis ${nom} hay?`, liste: (nom) => `Lista mis ${nom}.` },
 };
 
 export function poser(fichierPile, question) {
@@ -446,7 +460,7 @@ export function juger(fichierPile, fichierAttendu, dossier) {
       for (const f of fuites) if (!sortie.marqueurs_b.fuites.some((x) => x.marqueur === f.marqueur && x.question === question)) sortie.marqueurs_b.fuites.push({ ...f, table: t.table, question });
       let comparaison;
       if (defaut) comparaison = { ok: false, attendu: sql, raison: `pas de réponse exploitable : ${defaut}` };
-      else comparaison = comparer(type, String(reponse?.texte ?? ""), sql, t.nom);
+      else comparaison = comparer(type, String(reponse?.texte ?? ""), sql, t.nom, langue);
       if (!comparaison.ok) raisons.push(`${t.table} « ${question} » : ${comparaison.raison}`);
       sortie.questions.push({ table: t.table, type, langue, question, reponse: reponse ?? { sortie_brute: bruts.stdout.slice(0, 2000), erreur_standard: bruts.stderr.slice(0, 2000) }, comparaison, marqueurs_b: fuites });
     }

@@ -20,11 +20,21 @@ COMMIT="$(lire .commit)"
 PREPARE="$(lire .prepare)"
 NOM="$(lire '.archive?.nom')"
 case "$DEPOT" in http://* | https://* | git@* | /*) ;; *) DEPOT="$REPO/$DEPOT" ;; esac
+# Chemin absolu d'une autre machine (le dépôt cloné ailleurs) : le même bundle, dans ce dépôt.
+[ "${DEPOT#/}" = "$DEPOT" ] || [ -e "$DEPOT" ] || DEPOT="$REPO/vak-examen/apps/${DEPOT##*/}"
 git clone -q "$DEPOT" "$D"
 git -C "$D" checkout -q -b essai "$COMMIT"
 if [ -n "$NOM" ]; then
-  [ -f "vertical-agent-kit/releases/$NOM" ] || fail "archive vertical-agent-kit/releases/$NOM absente"
-  mkdir -p "$D/vendor/vak" && cp "vertical-agent-kit/releases/$NOM" "$D/vendor/vak/$NOM"
+  A="vertical-agent-kit/releases/$NOM"
+  mkdir -p "$D/vendor/vak"
+  # Archive gelée de l'examen, remplacée depuis dans releases/ (pnpm release supprime l'ancienne) : reprise de
+  # l'historique git, au dernier commit qui la contient (mêmes octets, empreinte de preparation.json vérifiée).
+  if [ -f "$A" ]; then cp "$A" "$D/vendor/vak/$NOM"
+  else
+    C="$(git log -1 --format=%H -- "$A")"
+    [ -n "$C" ] && { git show "$C:$A" || git show "$C^:$A"; } > "$D/vendor/vak/$NOM" 2>/dev/null || fail "archive $A absente, et de l'historique git"
+  fi
+  [ "$(sha256sum "$D/vendor/vak/$NOM" | cut -d' ' -f1)" = "$(lire '.archive?.sha256')" ] || fail "archive $NOM : empreinte différente de preparation.json"
   git -C "$D" add -f "vendor/vak/$NOM"
   DATE="$(git -C "$D" log -1 --format=%cI HEAD)"
   GIT_AUTHOR_NAME="Préparation vak" GIT_AUTHOR_EMAIL="essai@example.invalid" GIT_AUTHOR_DATE="$DATE" \

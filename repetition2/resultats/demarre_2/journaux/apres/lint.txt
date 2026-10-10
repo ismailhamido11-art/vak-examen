@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/demarre_2/apres)
-
-
-> app@1.0.0 lint
-> expo lint
-

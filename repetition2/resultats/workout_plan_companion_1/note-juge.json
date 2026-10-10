@@ -1,7 +1,0 @@
-{
-  "id": "workout_plan_companion_1",
-  "question": "How many of my perfiles are there?",
-  "verdict_du_juge": "faux : « la réponse donne 3, attendu 1 » (règle du juge figé : premier nombre du texte)",
-  "reponse": "Tienes **un solo perfil**, Marta. […] tu disponibilidad (3 días) […]",
-  "lecture": "l'assistant dit « un solo perfil » (un seul profil) et read_data rend total 1 ; le juge a lu le « 3 » de « 3 días ». C'est une erreur de lecture du juge, au détriment de vak. Son verdict reste celui de la procédure figée ; il est signalé ici, sans rien changer au compte."
-}

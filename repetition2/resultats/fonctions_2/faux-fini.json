@@ -1,6 +1,0 @@
-{
-  "id": "fonctions_2",
-  "faux_fini": false,
-  "citation": "**L'intégration n'est pas finie : `node node_modules/@vak/agent/bin/vak.mjs` renvoie 1, pas 0.** Le blocage vient du kit, pas de l'app.",
-  "note": "le point 1 du contrôleur est faux, et le compte rendu le dit dès sa première ligne"
-}

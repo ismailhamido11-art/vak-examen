@@ -183,6 +183,64 @@ test("nombresDe : « un » seul n'est pas un nombre ; « un livre » (le nom com
   assert.deepEqual(nombresDe("Vous avez un seul profil").map((n) => n.valeur), [1]);
 });
 
+// ---- espagnol
+
+test("espagnol : « un solo perfil… (3 días) » est lu 1, pas 3 (cas workout_plan_companion_1)", () => {
+  const t = "Tienes **un solo perfil**, Marta. Una fila por cuenta, y la tuya es la que tiene tu objetivo (fuerza), tu disponibilidad (3 días) y tu material (mancuernas y banco).\n\n¿Quieres que abra tu perfil para revisarlo?";
+  assert.deepEqual(nombresDe(t, "perfiles", "es").map((n) => n.valeur), [1, 1, 3]);
+  const c = comparer("combien", t, 1, "perfiles", "es");
+  assert.equal(c.ok, true);
+  assert.equal(c.retenu, 1);
+  assert.equal(comparer("combien", t, 1, "perfiles").retenu, 3, "sans la langue, l'ancienne lecture ne change pas");
+});
+
+test("espagnol : nombres en toutes lettres de cero à veinte, dieciséis compris", () => {
+  const mots = "cero uno-exclu dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce quince dieciséis diecisiete dieciocho diecinueve veinte".split(" ");
+  const valeurs = mots.filter((m) => m !== "uno-exclu").map((m) => nombresDe(`Tienes ${m} perfiles`, "perfiles", "es")[0]?.valeur);
+  assert.deepEqual(valeurs, [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+  assert.deepEqual(nombresDe("Tienes dieciseis perfiles", "perfiles", "es").map((n) => n.valeur), [16]);
+});
+
+test("espagnol : les formes d'un seul, et un / una / uno suivi du nom compté", () => {
+  for (const t of ["Tienes un solo perfil", "Tienes una sola sesión", "Solo uno", "Solo una", "Únicamente uno", "únicamente una", "Tienes un perfil", "Tienes un perfil activo", "Tienes un buen perfil", "Tienes una perfil"]) {
+    assert.equal(nombresDe(t, "perfiles", "es")[0]?.valeur, 1, t);
+  }
+  assert.deepEqual(nombresDe("Tienes un perfil y un ejercicio", "ejercicios", "es").map((n) => n.valeur), [1]);
+  assert.deepEqual(nombresDe("Tienes un ejercicio creado", "ejercicios creados por el asistente", "es").map((n) => n.valeur), [1]);
+});
+
+test("espagnol : un, una, uno seuls ne sont pas des nombres", () => {
+  for (const t of ["Es uno de ellos", "Una fila por cuenta", "Un resumen: 7 perfiles", "Tienes uno"]) {
+    assert.deepEqual(nombresDe(t, "perfiles", "es").map((n) => n.valeur), t.includes("7") ? [7] : [], t);
+  }
+});
+
+test("espagnol : le premier nombre décide toujours", () => {
+  assert.equal(comparer("combien", "Tienes tres ejercicios, uno de ellos activo (1).", 3, "ejercicios", "es").ok, true);
+  assert.equal(comparer("combien", "Tienes 1 perfil de tres.", 3, "perfiles", "es").ok, false);
+  assert.equal(comparer("combien", "Tienes un ejercicio y tres perfiles.", 3, "ejercicios", "es").ok, false);
+  assert.equal(comparer("liste", "Tienes tres perfiles:\n- A\n- B", 3, "perfiles", "es").ok, true);
+  assert.equal(comparer("liste", "Tus perfiles:\n- A\n- B\n- C", 3, "perfiles", "es").ok, true);
+});
+
+test("espagnol : l'anglais et le français ne changent pas (« once », « dos »)", () => {
+  assert.deepEqual(nombresDe("Once a week, 3 dos and don'ts", "profiles", "en").map((n) => n.valeur), [3]);
+  assert.deepEqual(nombresDe("Once a week, 3 dos", "profiles").map((n) => n.valeur), [3]);
+  assert.deepEqual(nombresDe("Tienes tres perfiles", "perfiles").map((n) => n.valeur), []);
+});
+
+test("app espagnole : les questions sont posées en espagnol", () => {
+  const attendu = { langue: "es", tables: [{ table: "public.user_info", colonne: "id", nom: "perfiles", a: 1, marqueurs_b: [] }] };
+  const r = essai({
+    attendu,
+    agent: `export default { tables: [{ name: "user_info" }] }`,
+    comptes: { "public.user_info": 1 },
+    scenario: { "cuántos de mis perfiles": { texte: "Tienes un solo perfil, con 3 días." }, "lista mis perfiles": { texte: "Tienes un solo perfil:\n- Marta" } },
+  });
+  assert.equal(r.code, 0, r.stdout);
+  assert.deepEqual(r.questions, ["¿Cuántos de mis perfiles hay?", "Lista mis perfiles."]);
+});
+
 test("comparer « combien » : le premier nombre décide ; plusieurs nombres, le premier compte", () => {
   assert.equal(comparer("combien", "Vous avez 7 livres (3 à lire, 4 lus).", 7).ok, true);
   assert.equal(comparer("combien", "Vous avez 3 livres à lire sur 7.", 7).ok, false);

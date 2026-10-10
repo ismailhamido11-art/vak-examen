@@ -51,6 +51,8 @@ for id in "$@"; do
   fi
   node vak-examen/mesdonnees/juger.mjs "$TRAVAIL/$id/pile/pile.json" "$G/attendu.json" "$TRAVAIL/$id/apres" "$R/mesdonnees.json" | tail -1
   node vak-examen/etiquettes/lire.mjs "$TRAVAIL/$id/pile/pile.json" > "$R/etiquette.json" || echo "=== $id : étiquette illisible"
+  # Répétition seulement (ENTRETIEN=1, 08/10) : l'entretien avec l'assistant, après le juge ; il ne décide de rien.
+  [ "${ENTRETIEN:-}" != 1 ] || node vak-examen/repetition/entretien.mjs "$TRAVAIL/$id/pile/pile.json" "$G/attendu.json" "$R/mesdonnees.json" > "$R/entretien.json" || echo "=== $id : entretien en échec"
   bash vak-examen/pile/pile.sh down "$id" > /dev/null 2>&1
   node vak-examen/verdict.mjs "$R/verdict-examen.json" "$R/mesdonnees.json" > "$R/verdict.txt"
   head -1 "$R/verdict.txt"

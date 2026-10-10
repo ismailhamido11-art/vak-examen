@@ -1,57 +1,57 @@
-# Publication avant le tirage
+# Publication avant le tirage (deuxième examen)
 
-Publiée le 06/10/2026, avant le tirage. Ce fichier fige ce que la règle ([`REGLE.md`](REGLE.md), « La publication »)
-demande de publier avant le tirage. Après lui, plus rien ne change.
+Publiée le 10/10/2026, avant le tirage. Ce fichier fige ce que la règle ([`REGLE.md`](REGLE.md), « La publication »)
+demande de publier avant le tirage. Après lui, plus rien ne change. La publication du premier examen (06/10/2026,
+échoué : 2 essais réussis sur 14) reste lisible dans l'historique de ce dépôt.
 
 ## Les empreintes
 
 Ce sont des SHA-256. Les mêmes sont dans [`EMPREINTES.sha256`](EMPREINTES.sha256), avec des chemins pris depuis la
 racine du dépôt : `sha256sum -c --ignore-missing vak-examen/EMPREINTES.sha256` vérifie tout ce qui est déjà publié.
 
-- **La règle** : `vak-examen/REGLE.md`, `4c34f324cd6b1fd61a970790eb4b8612a39844d468362e5ecbb270d247ecfa2d`.
-- **L'archive gelée du kit** : `vak-agent-0.24.3.tgz` (2 985 693 octets),
-  `2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f`. C'est la seule archive des 14 essais. Elle
+- **La règle** : `vak-examen/REGLE.md`, `8c64ce1ed8b489901ef5e84a1432be0865731e303296154e33598a2fff8afadb`.
+- **L'archive gelée du kit** : `vak-agent-0.26.1.tgz` (2 991 943 octets),
+  `e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7`. C'est la seule archive des 14 essais. Elle
   sera publiée si l'examen est réussi.
 - **La page de vak**, d'où vient la demande (son README ; il n'est pas dans l'archive) : `vertical-agent-kit/README.md`,
-  `aff4f32095eb5a0981acbce823d8e39efc57121628c6b6286af6c702bcd2f618`. Elle sera publiée avec l'archive.
-- **Les fiches de forme et les 3 apps construites** : `fiches/*.md` et `apps/*.bundle`, publiées ici. Leurs
-  empreintes sont aussi dans [`apps/SHA256SUMS`](apps/SHA256SUMS). Branches `main` des apps : démarre
-  `891485f41f5b5f425c4d5a78bf16db5b907d580c`, équipe `ed96d9a1505e38d72746c80b669a6451a0eaef02`, fonctions
-  `824674902a11c6966034c1fa0e1da7c3a34f386d`.
-- **Les graines A et B** des 3 apps construites (et de sqlnoir, l'app des répétitions), avec l'outil qui les éprouve
-  et le compte rendu de la session scellée qui les a écrites : les 12 fichiers de `graines/`. Ils seront publiés après
-  les essais.
+  `72780b7aa4f9367bd1ee3e3fdc88de6cf3b8b992361860528a04ae098a54d942`. Elle sera publiée avec l'archive.
+- **Les fiches de forme et les 3 apps construites** : `fiches-2/*.md` et `apps/plantes.bundle`, `apps/agence.bundle`,
+  `apps/compteurs.bundle`, publiées ici. Leurs empreintes sont aussi dans [`apps/SHA256SUMS`](apps/SHA256SUMS).
+  Branches `main` des apps : plantes `bea4192347a7ecf310391b23278294b6d841c56d`, agence
+  `fed608276a1fd66abfd4e6f24b84d08e8f5a9876`, compteurs `5c12ec9ed61311cbd81103de20902210f22ca364`.
+- **Les graines A et B** des 3 apps construites, l'outil qui les éprouve et les comptes rendus des sessions scellées
+  qui les ont écrites : les 11 fichiers de `graines/` listés plus bas. Ils seront publiés après les essais.
 - **La liste des apps éligibles** : `candidats/historique.tsv`,
-  `9cad401aed68e9ab6d9551115500ff824159f225c4bee79231c0e58c5ea05f72` : 23 apps éligibles, 14 Expo et 9 Next, chacune
+  `968dc2f416255d5750f1f4c391b1df125679e604bdb414a20975b6faec1edae7` : 19 apps éligibles, 12 Expo et 7 Next, chacune
   à son commit de `candidats/candidats.tsv`. La liste d'exclusion complète est
-  [`candidats/exclusions.txt`](candidats/exclusions.txt).
+  [`candidats/exclusions.txt`](candidats/exclusions.txt) : elle exclut aussi les 7 apps du premier examen.
 - **Les outils figés** avec la règle sont ceux de ce commit : le contrôleur (`controleur/`), le juge « mes données »
-  (`mesdonnees/`), la pile (`pile/`), `verdict.mjs` et le tirage (`tirage.mjs`, `candidats/`). Le lanceur
-  (`repetition2/`) l'est pour le texte que reçoit l'agent, la bulle, la transcription du journal et la limite de
-  temps.
+  (`mesdonnees/`), la pile (`pile/`), `verdict.mjs`, le tirage (`tirage.mjs`, `candidats/`), le lecteur des
+  étiquettes (`lecteurs.sh`, `etiquettes/`, `scelle/ETIQUETTE.md`), le relevé de la clause « ignore »
+  (`releve-ignore.mjs`) et l'assemblage du résultat (`resultat.mjs`). Le lanceur (`repetition2/`, `essai.sh`) l'est
+  pour le texte que reçoit l'agent, la bulle, la transcription du journal et la limite de temps.
 
 ```text
-4c34f324cd6b1fd61a970790eb4b8612a39844d468362e5ecbb270d247ecfa2d  vak-examen/REGLE.md
-2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f  vertical-agent-kit/releases/vak-agent-0.24.3.tgz
-aff4f32095eb5a0981acbce823d8e39efc57121628c6b6286af6c702bcd2f618  vertical-agent-kit/README.md
-7337fd028d43e0fd474c1f37161c6542c19a1a5123adedb3d35664cb0a1063e0  vak-examen/fiches/demarre.md
-3effef5ab7cfef8c30dc59cb015efe910c03a6ce6511344d3a180675a094e076  vak-examen/fiches/equipe.md
-333e1fecc26c60f093b05d993d22437e092e8aa76898fc72ab36f41f1e549ab9  vak-examen/fiches/fonctions.md
-7326e0fddeeb06e6338d538d48ae9b3092a0fd412288ec68f6a6c00b0a8c87ca  vak-examen/apps/demarre.bundle
-027c6f93fb883c1b8b0c654acbf315dfabeb20fee80a269efe4040e040db2b01  vak-examen/apps/equipe.bundle
-d2d249bdefbc40f3371c976f453f44cd2597f60d289dce0c77581a8353fb7d10  vak-examen/apps/fonctions.bundle
-9cad401aed68e9ab6d9551115500ff824159f225c4bee79231c0e58c5ea05f72  vak-examen/candidats/historique.tsv
-ed133f12074f949e90302e694d6142a0eb4377ce50a4a6db5206e3bb2b16a9ea  vak-examen/graines/RAPPORT.md
-e18d0dc2001d0619a825d2b9459d30b66fcdb99bd722c68d8bdf1edfc84ff055  vak-examen/graines/README.md
-aab860abba7434fe459f51af134d414d42a57e1113dcd5b2b7c6379b4f5c7cd1  vak-examen/graines/demarre/attendu.json
-ef958be01ccb086f1695bc28def47b9c841993b248346e0370e34517228ddf2d  vak-examen/graines/demarre/graine.sql
+8c64ce1ed8b489901ef5e84a1432be0865731e303296154e33598a2fff8afadb  vak-examen/REGLE.md
+e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7  vertical-agent-kit/releases/vak-agent-0.26.1.tgz
+72780b7aa4f9367bd1ee3e3fdc88de6cf3b8b992361860528a04ae098a54d942  vertical-agent-kit/README.md
+75c895865f47eddc07e65bfea72eb76d5cf6412bf799b41c64fd8661bb6b328f  vak-examen/fiches-2/demarre.md
+99bc3d7430c4ca17f812a3c0eed0ec09e3d91e54af06c7e25909912132b7295b  vak-examen/fiches-2/equipe.md
+e0b1813797d60a59cc430fee61f6ad613a8a238b41eb583e1536abbd3c138429  vak-examen/fiches-2/fonctions.md
+07c56939a038c6e1b3d968d813b3b584bf1f19cb4ac914740e98486e2abeae7a  vak-examen/apps/plantes.bundle
+3cca7ff1925013402aba5ed00a9fa1a82253365dd71f3cfb4a9ea780569501eb  vak-examen/apps/agence.bundle
+bb6790e62dc0ff486361e3cf7d48ed933527e33d8474a2efac1f5f5c9bf9b7e3  vak-examen/apps/compteurs.bundle
+968dc2f416255d5750f1f4c391b1df125679e604bdb414a20975b6faec1edae7  vak-examen/candidats/historique.tsv
+caf3c4a7970d34743625f3354a3ae7c88edef5fb3079b6dba044580f81d1f93d  vak-examen/graines/RAPPORT-plantes.md
+46cb4fd3d2f1d3e687b0702b06566e5b589a3262d3c188de17820818a963a0b5  vak-examen/graines/RAPPORT-agence.md
+636158e0f305018e3a7e9877730c834c85ba8c6490ec6156c313d5d5324d7237  vak-examen/graines/RAPPORT-compteurs.md
+b788c65e3074b9991af57f675fef6b290414dfa1c7f7f068ec287b95f959fd76  vak-examen/graines/plantes/attendu.json
+a7dc886cb5b38e7992dcb3a2ca900785cf0aece1d2bb30aded43a3bf4eec6f31  vak-examen/graines/plantes/graine.sql
+c98fa64d0476fb39dc379a420cfa50f6f2ea60506d80644c79d8ee83b86cf286  vak-examen/graines/agence/attendu.json
+a09c042af8d904f2dc5f0e04d5311128e1f33bb20435ea5a29cee917b819c4b6  vak-examen/graines/agence/graine.sql
+e859328adac87a5cf45429f10235ebaf8b1a583597f156bd04ec68e37e0b56a1  vak-examen/graines/compteurs/attendu.json
+85402ccb3ac68097ea2d177dd0fdd40867bc5193dab94fda1571161619b1197f  vak-examen/graines/compteurs/graine.sql
 c6c0e03637c6d062af1c251b022787ee9407ff05cec1d07983eec2e48d9bf1d4  vak-examen/graines/eprouver.mjs
-2c31f7136405dae89b8a7bce987b9a6a2b6d5f966c8604f8ba15c15276a1ab28  vak-examen/graines/equipe/attendu.json
-7575a7f2a4837f16d0734e7f8cab8b54b66b3bb20f3f6a6d349a59a37d2a73da  vak-examen/graines/equipe/graine.sql
-aa8e7384fd1d0ab6148e01c58c8d65486a93feb2b38badd111979f9be746ada2  vak-examen/graines/fonctions/attendu.json
-f720124c8c50cb74db128e75a2c7e23041038c0177d2ac9ddf09b414dfbce6fc  vak-examen/graines/fonctions/graine.sql
-fef844193939eff1b8c0b33e69cfdb5207a489055cffecf428839dc814aad212  vak-examen/graines/sqlnoir/attendu.json
-93a74b86c7bed9831cf1b49a6787e19b696ae8ee419ab410e00ff84a7500f2ee  vak-examen/graines/sqlnoir/graine.sql
 e9675d55ce552bc97ddca7daddc1e3750d4fa1331ed199431260c160bb48484d  vak-examen/graines/supabase-minimum.sql
 ```
 
@@ -64,7 +64,8 @@ remplis. Voici le texte exact, champs non remplis :
 Intègre l'assistant IA vak dans cette app. Métier : *<une phrase sur le métier>*. Emplacement : *<un onglet « Assistant » ou un bouton flottant sur tous les écrans>*. L'archive du kit est ici : *<chemin absolu de vak-agent-<version>.tgz>* ; c'est moi qui l'ai fournie (pour un agent en ligne, je l'ai commitée dans `vendor/vak`). Lis-la d'abord sans rien exécuter : `tar -xzOf - package/package.json < "<ce chemin>"` montre `"private": true` et aucun script d'installation (`preinstall`, `install`, `postinstall`, `prepare`). Puis lance `npx -y --package="<ce chemin>" vak init` et suis ce qu'il affiche ; une commande refusée, ne la contourne jamais : arrête-toi et donne-la-moi. Avant de me poser une question, cherche la réponse dans `node_modules/@vak/agent/docs/FAQ.md`. Mesure les vérifications de l'app avant l'installation. Tu as fini quand `node node_modules/@vak/agent/bin/vak.mjs` renvoie 0 et que la phrase « Fini pour l'agent de code » de son aide (`--help`) est vraie. S'il te manque un accès ou une clé, arrête-toi et donne-moi la commande exacte à lancer dans mon terminal.
 ```
 
-Le harnais (`repetition2/messages.sh`) remplit les trois champs :
+Le texte est le même, mot pour mot, que celui du premier examen. Le harnais (`repetition2/messages.sh`) remplit les
+trois champs :
 - le métier et l'emplacement, fixés pour chaque app avant ses essais ;
 - le chemin `/work/vak-agent.tgz`, où `repetition2/preparer.sh` copie l'archive.
 
@@ -72,13 +73,14 @@ Il place la demande entre deux phrases d'introduction et les règles de l'essai,
 
 ## L'environnement des essais
 
-- La machine : un conteneur Linux x86_64 (Ubuntu 24.04.4 LTS, 16 Go de mémoire), dans le cloud de Claude Code.
-- Node 22.22.2.
-- PostgreSQL 16.13 (paquet `postgresql-16` 16.13-0ubuntu0.24.04.1), avec pgTAP 1.3.2 (`postgresql-16-pgtap`) pour
+- La machine : un conteneur Linux x86_64 (Ubuntu 24.04.4 LTS, 16 Go de mémoire, 4 processeurs), dans le cloud de
+  Claude Code.
+- Node 22.22.0.
+- PostgreSQL 16.14 (paquet `postgresql-16` 16.14-0ubuntu0.24.04.1), avec pgTAP 1.3.2 (`postgresql-16-pgtap`) pour
   les tests du kit. Aucune autre extension n'est ajoutée, pgvector compris.
 - La CLI Supabase 2.118.0, la version que fixe l'archive gelée. Pas de Docker.
 - L'agent :
-  - Claude Code 2.1.291 (`claude -p`, mode `bypassPermissions`), avec le modèle par défaut de cette version ;
+  - Claude Code 2.1.296 (`claude -p`, mode `bypassPermissions`), avec le modèle par défaut de cette version ;
   - il tourne dans la bulle de `repetition2/lancer.sh`. Elle lui cache la session, `/srv`, le `/tmp` de la machine
     et les autres essais de `/work` (vides pour lui). Les bases locales sont supprimées avant chaque essai ;
   - chaque essai consigne la version de Claude Code dans son `lanceur.json`.
@@ -90,77 +92,76 @@ Il place la demande entre deux phrases d'introduction et les règles de l'essai,
 
 - La chaîne drand « quicknet » : `52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971`. Elle produit un
   tour toutes les 3 secondes depuis le 23/08/2023 à 15:09:27 UTC (genèse 1692803367).
-- **Le tour choisi est le 32828212**. Il sera produit le **6 octobre 2026 à 12:00:00 UTC**. Quand ce fichier
+- **Le tour choisi est le 32950012**. Il sera produit le **10 octobre 2026 à 17:30:00 UTC**. Quand ce fichier
   est publié, il n'existe pas encore.
-- La commande : `node vak-examen/tirage.mjs 32828212`. Elle lit l'aléa sur un relais public de drand et vérifie sa
-  signature. Elle classe ensuite les 23 apps éligibles, et prend les 2 premières apps Expo et les 2 premières apps
+- La commande : `node vak-examen/tirage.mjs 32950012`. Elle lit l'aléa sur un relais public de drand et vérifie sa
+  signature. Elle classe ensuite les 19 apps éligibles, et prend les 2 premières apps Expo et les 2 premières apps
   Next.
 - Son résultat sera publié dans `vak-examen/TIRAGE.md`, avant les essais.
 
 ## L'ordre des étapes
 
-- **04/10, 09:59 UTC** : les fiches de forme sont commitées (commit `bc7c312` du dépôt de vak).
-- **04/10** : le contrôleur est écrit par une session scellée.
-- **04/10** : la liste des apps éligibles est établie par une session scellée. Le critère « pas une copie » lui est
-  appliqué le 06/10.
-- **06/10, entre 00:15 et 00:21 UTC** : les 3 apps sont construites par des sessions scellées.
-- **06/10, vers 08:00 UTC** : une session scellée écrit les graines A et B et le juge « mes données ».
-- **06/10, de 07:57 à 08:16 UTC** : la répétition 6 joue tout le circuit sur sqlnoir (essai, contrôleur, « mes
-  données »).
-- **06/10, matin** : un agent indépendant relit la règle deux fois avant le gel. Ses 12 constats, puis les 5 de sa
-  seconde lecture, sont traités (plus bas). Le critère « pas une copie » est rejoué avec la liste d'exclusion
-  complète, et la bulle durcie est éprouvée sur un vrai essai (répétition 7).
-- **06/10** : cette publication.
+- **08/10** : le contrôleur et le juge « mes données » sont mis à jour par deux sessions scellées
+  (`scelle/MISE-A-JOUR-2.md`, `scelle/JUGE-1.md`), chacune pour des défauts vus à l'examen ou en répétition.
+- **10/10, matin** : le propriétaire décide de préparer le deuxième examen. Les 4 apps tirées le 06/10 sont exclues,
+  la liste des apps éligibles est refaite par son outil.
+- **10/10, 12:31 UTC** : les fiches de forme des 3 apps nouvelles sont commitées (`fiches-2/`).
+- **10/10, 14:40 à 14:47 UTC** : les 3 apps sont construites par trois sessions scellées, qui n'ont reçu que leur fiche
+  et `scelle/CONSTRUIRE.md` ; vérifiées ensuite sur des clones neufs (`apps/README.md`).
+- **10/10, de 14:50 à 14:52 UTC** : les graines A et B des 3 apps sont écrites par trois sessions scellées
+  (`scelle/GRAINES-CONSTRUITES.md`), puis éprouvées sur des bases neuves : « tout est conforme ».
+- **10/10, de 14:42 à 15:24 UTC** : les 6 sabotages de la règle sont rejoués sur le contrôleur figé (mis à jour le
+  08/10), dans des copies de l'essai wacrm de la répétition 4 : tous vus, avec la bonne raison ; l'essai intact reste
+  « réussi » (`controleur/verdicts-sabotages-10-10/`).
+- **10/10** : la règle est relue par la session de travail, ligne à ligne contre celle du premier examen. Aucun agent
+  indépendant ne l'a relue cette fois : le propriétaire n'en a pas demandé, et la règle du premier examen, qui en
+  forme le corps, avait été relue deux fois par un agent indépendant avant le 06/10. Ce qui change est listé
+  ci-dessous.
+- **10/10** : cette publication.
 
 Seule cette publication est datée par GitHub. Les étapes d'avant le sont par l'histoire du dépôt de vak, qui n'est
 pas public.
 
-## Ce qui a changé depuis le brouillon du 03/10
+## Ce qui a changé depuis le premier examen
 
-Le brouillon n'avait pas été publié. Il a été précisé le 06/10, avant le gel :
-1. **La liste d'exclusion était incomplète.**
-   - Celle remise le 04/10 à la session scellée des candidats (`scelle/exclusions.txt`) oubliait les 4 apps de la
-     répétition 1 (étape 4, septembre), où le kit a été développé et testé.
-   - L'une d'elles, `aaronksaunders/expo-supabase-ai-template`, était éligible : elle est écartée.
-   - La liste complète est `candidats/exclusions.txt`. Le critère « pas une copie » a été rejoué avec elle, avec en
-     plus l'exclusion par dépôt et par propriétaire : aucune autre app n'est touchée.
-   - `Razikus/supabase-nextjs-template` reste éligible : elle a été lue le 30/09, sans rien lancer, pour choisir les
-     apps de la répétition 2, puis écartée de celle-ci. Aucune mesure du kit n'a porté sur elle.
-2. **Qui juge** : le contrôleur scellé et le juge « mes données », jamais la dernière ligne du lanceur. Ils sont figés
-   avec la règle, et relancés si la machine les a empêchés de juger. Le contrôleur et la pile démarrent PostgreSQL
-   eux-mêmes, hors de toute bulle, car la machine peut redémarrer.
-3. **Les points 2, 4 et 6** disent ce que le contrôleur vérifie vraiment. Le point 5 dit ce que deviennent une pile
-   qui ne sert pas l'assistant et un comptage qui diffère de la graine.
-4. **Le tirage** : la formule exacte du rang, les seules raisons de sauter une app, et rien de remplacé après le
-   premier essai.
-5. **Les coupures** : un essai arrêté à 120 minutes compte ; une coupure par la machine se lit dans les journaux.
-6. **Les seuils** : la médiane exacte, une seule définition du geste (dans le doute, c'est un geste), et le faux
-   « c'est fait ».
-7. **Les étiquettes** : le lecteur est une session scellée, au lieu d'une personne (choix du propriétaire). La vérité
-   de chaque essai est publiée avant la lecture.
-8. **Le groupe témoin** part sans l'archive de vak, et sa mesure est dite.
-9. **L'environnement exact** (pgTAP, version de la CLI Supabase), et le texte de la demande, qui n'est pas dans
-   l'archive.
-10. **Ce qui est publié après les essais**, et ce qui ne l'est qu'avec vak.
-11. **La bulle de l'agent** cache aussi `/srv`, le `/tmp` de la machine et les autres essais de `/work`, et les bases
-    locales sont supprimées avant chaque essai. Avant ce changement, un essai pouvait voir les essais précédents.
-    Elle est figée avec la règle.
-12. **Les nombres se jugent sur « combien de mes … ? »**. À la répétition 7, l'assistant a répondu juste à « List my
-    profiles. » (« one account, one file on you »), puis a listé les 4 champs de ce profil ; le juge y a lu
-    « 4 éléments ». « Liste mes … » sert donc à chercher les marqueurs de B, et sa lecture est publiée sans décider.
-    `verdict.mjs` assemble le verdict de chaque essai ; le juge scellé n'est pas modifié.
+1. **Les apps.**
+   - Les 7 apps du premier examen sortent de la liste : vak a été corrigé sur elles, en répétition, de la 0.25 à la
+     0.26 (les 4 apps tirées rejoignent `candidats/exclusions.txt`).
+   - Restent 19 apps éligibles, jamais vues de vak : 12 Expo, 7 Next, à leurs commits du 04/10. Aucune n'a servi au
+     développement du kit : le banc de schémas de vak n'a pris que des apps ni Next ni Expo.
+   - 3 apps construites nouvelles, d'après des fiches nouvelles (mêmes trois formes, domaines nouveaux, aucune plus
+     facile que celle du 06/10) : des plantes d'intérieur (valeurs bornées par des CHECK) ; les dossiers d'une agence
+     de voyages (un rôle qui voit sans modifier) ; des relevés de compteurs (un relevé plus petit que le précédent est
+     refusé).
+2. **Point 4, clause « ignore »** : écarter une table « à moi » après `fuite`, avec sa raison, est permis et noté.
+   C'est un choix de sécurité (l'assistant ne doit pas montrer ce que l'app laisse fuir), que la règle du 06/10
+   comptait comme un échec (company_invoicing_2). Après `non prouvé`, `total faux` ou `étroit`, c'est toujours un
+   échec. Le contrôleur et le relevé mécanique de cette clause (`releve-ignore.mjs`) suivent ce texte.
+3. **Les outils figés ont été réparés depuis le 06/10**, chacun pour un défaut vu à l'examen ou en répétition :
+   - le contrôleur (session scellée, 08/10) : `vak --help` ne compte plus comme un `vak` ; « non prouvé » est
+     reconnu ; une app en sous-dossier est mesurée dans son dossier ; une erreur de build imprimée deux fois reste
+     ancienne ; la clause « ignore » ci-dessus ;
+   - le juge « mes données » (session scellée, 08/10) : l'espagnol (« un solo perfil » lu 1) ;
+   - la pile : le compteur de quota de vak remis à zéro avant chaque question (le quota n'est pas ce que mesure le
+     point 5) ; les parties de texte d'une réponse séparées comme l'interface de vak les affiche (« ça.Deux » n'était
+     pas lu) ;
+   - `verdict.mjs` (raisons lisibles) et la transcription du lanceur (compte rendu final entier).
+4. **Le kit gelé** : vak 0.26.1, au lieu de la 0.24.3.
+5. **Le groupe témoin** n'est pas rejoué (choix du propriétaire, 10/10) : celui du 06/10 reste publié.
+6. **Une précision sur les gestes** avait été proposée (« une question que l'agent a tranchée lui-même, son choix écrit
+   dans le compte rendu, n'est pas restée ouverte ») ; elle n'est pas retenue. La règle reste : dans le doute, c'est
+   un geste.
 
 ## Ce qui viendra
 
 - **Après le tirage, avant les essais** :
   - `TIRAGE.md` ;
   - les empreintes des graines des 4 apps tirées ;
-  - la liste des 7 apps, avec les trois champs de leur demande ;
-  - le mode témoin du lanceur et le lecteur des étiquettes ;
+  - la liste des 7 apps, avec les trois champs de leur demande (`essais.tsv`, `AVANT-ESSAIS.md`) ;
   - toute correction du lanceur, avec sa raison.
 - **Après les essais** :
   - les journaux des agents, avec les secrets masqués ;
   - les verdicts du contrôleur et du juge « mes données » ;
   - les gestes, les étiquettes, la vérité et les réponses du lecteur ;
-  - le groupe témoin et les graines.
+  - les graines.
 - **Si l'examen est réussi** : l'archive et la page de vak, et l'état commité de chaque essai.

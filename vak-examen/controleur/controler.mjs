@@ -12,7 +12,7 @@ import { compterAvertissements, comparerErreurs, extraireErreurs, extraireGeneri
 import {
   RE_NON_PRIS_EN_CHARGE, contournements, debutAgent, dernierTexteAgent, echecsDePreuve, legacyPoseParVak, lireJournal, premierVakOk,
 } from './lib/journal.mjs';
-import { cleIgnore, lireSchema, tablesAMoi } from './lib/schema.mjs';
+import { lireIgnore, lireSchema, tablesAMoi } from './lib/schema.mjs';
 
 const VERSION = '1.0.0';
 const MIN = 60_000;
@@ -384,11 +384,17 @@ async function main() {
     // fichiers gérés par vak : empreintes du verrou
     const verrous = [...arbTip.keys()].filter((p) => /(^|\/)supabase\/functions\/vak\/vak\.lock\.json$/.test(p));
     const dossiersApp = [];
+    const dossiersMesure = new Set();
     for (const lockPath of verrous) {
       const racineApp = lockPath.replace(/supabase\/functions\/vak\/vak\.lock\.json$/, '');
       dossiersApp.push(racineApp.replace(/\/$/, ''));
       let verrou;
       try { verrou = JSON.parse(gitShow(app, tip, lockPath)); } catch { ajoute('fichier-gere', 'vak.lock.json illisible', [lockPath]); continue; }
+      // `vak init --app <dossier>` : l'app est dans un sous-dossier de la racine de vak, inscrit dans `apps` du verrou
+      for (const a of Array.isArray(verrou.apps) ? verrou.apps : []) {
+        const rel = path.posix.normalize(String(a)).replace(/\/$/, '');
+        if (rel !== '.' && !rel.startsWith('..')) dossiersMesure.add(path.posix.join(racineApp, rel));
+      }
       const alterés = [];
       const absents = [];
       let n = 0;
@@ -405,26 +411,38 @@ async function main() {
       if (alterés.length) ajoute('fichier-gere', `${alterés.length} fichier(s) géré(s) par vak retouché(s)`, alterés.slice(0, 8));
     }
     v.entree.appsVak = dossiersApp;
-    // table « à moi » mise dans ignore après un échec de la preuve sur elle
+    v.entree.dossiersMesure = dossiersMesure.size ? [...dossiersMesure].sort() : ['.'];
+    // table « à moi » mise dans ignore après une sortie de vak qui la juge `non prouvé`, `total faux` ou `étroit`.
+    // Après `fuite`, l'écarter avec sa raison écrite dans ignore est permis : noté, pas un échec.
     const echecs = echecsDePreuve(journal);
     p4.echecsDePreuve = echecs.map((e) => `${e.table} ${e.verdict} (journal ligne ${e.ligne})`);
+    p4.fuitesEcartees = [];
     for (const racineApp of dossiersApp) {
       const dir = `${racineApp ? `${racineApp}/` : ''}supabase/functions/vak/`;
       const agent = gitShow(app, tip, `${dir}agent.ts`);
       const schema = lireSchema(gitShow(app, tip, `${dir}schema.gen.ts`));
-      const ignore = cleIgnore(agent);
+      const ignore = lireIgnore(agent);
       const aMoi = tablesAMoi(schema);
       if (!schema) note(`schema.gen.ts illisible dans ${dir} : « table à moi » jugée sur la seule sortie de vak`);
       const fautifs = [];
+      const fuites = new Map();
       for (const e of echecs) {
         if (!ignore?.has(e.table)) continue;
         if (schema && !aMoi.has(e.table)) { note(`table ${e.table} : échec de preuve puis ignore, mais pas une table « à moi » (${schema.tables[e.table] ? 'aucune colonne ne désigne l\'utilisateur' : 'absente du schéma'}) : non retenu`); continue; }
+        if (e.verdict === 'fuite') { if (!fuites.has(e.table)) fuites.set(e.table, e); continue; }
         fautifs.push(e);
+      }
+      for (const [table, e] of fuites) {
+        if (fautifs.some((f) => f.table === table)) continue; // jugée aussi non prouvé, total faux ou étroit : échec ci-dessous
+        const { ligne, raison } = ignore.get(table);
+        const ecartee = { table, app: racineApp || '.', journalLigne: e.ligne, journalHeure: e.heure, agentTsLigne: ligne, raison };
+        p4.fuitesEcartees.push(ecartee);
+        note(`table « à moi » ${table} écartée dans ignore après « fuite » (journal ligne ${e.ligne}, ${e.heure}) : permis ; ${dir}agent.ts ligne ${ligne}, ${raison ? `raison écrite : « ${court(raison, 200)} »` : 'AUCUNE raison écrite dans ignore'}`);
       }
       if (fautifs.length) {
         const uniq = [...new Map(fautifs.map((f) => [f.table, f])).values()];
-        ajoute('ignore-apres-echec', `table(s) « à moi » mise(s) dans ignore après un échec de la preuve : ${uniq.map((f) => f.table).join(', ')}`,
-          uniq.flatMap((f) => [`journal ligne ${f.ligne} (${f.heure}) : ${f.texte}`, `${dir}agent.ts ligne ${ignore.get(f.table)} : ${f.table} est dans ignore${aMoi.has(f.table) ? ` (« à moi » : ${aMoi.get(f.table)})` : ''}`]));
+        ajoute('ignore-apres-echec', `table(s) « à moi » mise(s) dans ignore après une sortie de vak qui la juge en échec : ${uniq.map((f) => `${f.table} (${f.verdict})`).join(', ')}`,
+          uniq.flatMap((f) => [`journal ligne ${f.ligne} (${f.heure}) : ${f.texte}`, `${dir}agent.ts ligne ${ignore.get(f.table).ligne} : ${f.table} est dans ignore${aMoi.has(f.table) ? ` (« à moi » : ${aMoi.get(f.table)})` : ''}`]));
       }
       if (schema) {
         let recu = null;
@@ -471,31 +489,50 @@ async function main() {
   }
 
   // ── points 2 et 1 : mesures sur clones propres
-  const pm = (() => { // détecté sur le commit de préparation
-    const t = arbPrep;
-    if (t.has('pnpm-lock.yaml')) return 'pnpm';
-    if (t.has('yarn.lock')) return 'yarn';
-    if (t.has('package-lock.json') || t.has('npm-shrinkwrap.json')) return 'npm';
+  // Le point 2 se mesure dans le dossier de l'app : la racine, ou le sous-dossier de `vak init --app <dossier>`.
+  const dirs = v.entree.dossiersMesure ?? ['.'];
+  const unSeul = dirs.length === 1;
+  const lieu = (dir) => (dir === '.' ? '' : ` dans ${dir}`);
+  const cleDe = (genre, dir) => (unSeul ? genre : `${genre}@${dir}`);
+  const pmDe = (dir) => { // détecté sur le commit de préparation
+    const pre = dir === '.' ? '' : `${dir}/`;
+    if (arbPrep.has(`${pre}pnpm-lock.yaml`)) return 'pnpm';
+    if (arbPrep.has(`${pre}yarn.lock`)) return 'yarn';
+    if (arbPrep.has(`${pre}package-lock.json`) || arbPrep.has(`${pre}npm-shrinkwrap.json`)) return 'npm';
     return null;
-  })();
+  };
   const legacyVakLignes = legacyPoseParVak(journal);
   const mesures = {};
-  let exemple = { fichier: null, env: {} };
+  const exemples = {};
 
   async function cote(nom, revision) {
     const dossier = path.join(travail, 'clones', nom);
     log(`${nom} : clone propre de ${revision.slice(0, 8)}`);
     cloner(app, revision, dossier);
-    const m = { revision, pm: pm ?? gestionnaire(dossier) };
+    const m = { revision, dossiers: {} };
     mesures[nom] = m;
-    if (!m.pm) { m.installation = { ok: false, raison: 'aucun verrou ni package.json' }; return { dossier, m }; }
-    log(`${nom} : installation (${m.pm})`);
-    m.installation = await installer(dossier, m.pm, logs, nom, nom === 'head' && legacyVakLignes.length > 0);
-    if (m.installation.ok) {
-      // chaque côté détecte ses propres vérifications : une vérification qui existait avant et plus après est « disparue »
-      m.detectees = detecterVerifs(dossier, m.pm);
-      if (nom === 'prep') { exemple = envExemple(dossier); m.envExemple = exemple.fichier; }
-      m.verifs = await mesurerVerifs(dossier, m.detectees, logs, nom, exemple.env);
+    for (const dir of dirs) {
+      const cible = dir === '.' ? dossier : path.join(dossier, dir);
+      const nomLog = dir === '.' ? nom : `${nom}-${dir.replace(/\W+/g, '_')}`;
+      const d = { dir, pm: null };
+      m.dossiers[dir] = d;
+      if (!fs.existsSync(cible)) { d.installation = { ok: false, raison: `le dossier ${dir} n'existe pas dans ${nom}` }; continue; }
+      d.pm = pmDe(dir) ?? gestionnaire(cible);
+      if (!d.pm) { d.installation = { ok: false, raison: 'aucun verrou ni package.json' }; continue; }
+      log(`${nom} : installation (${d.pm})${lieu(dir)}`);
+      d.installation = await installer(cible, d.pm, logs, nomLog, nom === 'head' && legacyVakLignes.length > 0);
+      if (d.installation.ok) {
+        // chaque côté détecte ses propres vérifications : une vérification qui existait avant et plus après est « disparue »
+        d.detectees = detecterVerifs(cible, d.pm);
+        if (nom === 'prep') { exemples[dir] = envExemple(cible); d.envExemple = exemples[dir].fichier; }
+        d.verifs = await mesurerVerifs(cible, d.detectees, logs, nomLog, exemples[dir]?.env ?? {});
+      }
+    }
+    // vak se lance depuis la racine de son verrou : ses dépendances s'y installent, même si l'app est dans un sous-dossier
+    m.racine = m.dossiers['.']?.installation;
+    if (!m.racine) {
+      const pm = gestionnaire(dossier);
+      m.racine = pm ? await installer(dossier, pm, logs, `${nom}-racine`, nom === 'head' && legacyVakLignes.length > 0) : { ok: false, raison: 'aucun verrou ni package.json' };
     }
     return { dossier, m };
   }
@@ -511,9 +548,9 @@ async function main() {
     const dossiersApp = v.entree.appsVak ?? [];
     if (dossiersApp.length === 0) {
       echec(1, 'pas-integre', 'vak n\'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD', []);
-    } else if (!headCote.m.installation?.ok) {
+    } else if (!headCote.m.racine?.ok) {
       p1.raison = 'installation impossible';
-      echec(1, 'installation', 'les dépendances du HEAD ne s\'installent pas : vak ne peut pas être lancé', headCote.m.installation?.fin ?? [headCote.m.installation?.raison]);
+      echec(1, 'installation', 'les dépendances du HEAD ne s\'installent pas : vak ne peut pas être lancé', headCote.m.racine?.fin ?? [headCote.m.racine?.raison]);
     } else {
       const res = await avecVerrou(() => lancerVak(headCote.dossier, dossiersApp, logs));
       p1.apps = res;
@@ -535,54 +572,62 @@ async function main() {
   }
   if (!GARDER) supprimer(headCote.dossier);
 
-  // point 2 : comparaison avant / après
+  // point 2 : comparaison avant / après, dans chaque dossier d'app
   {
-    const p2 = { ok: true, verifs: {} };
+    const p2 = { ok: true, dossiers: dirs, installation: {}, verifs: {} };
     v.points.p2 = p2;
     v.mesures = { prep: strip(mesures.prep), head: strip(mesures.head) };
-    const ip = mesures.prep?.installation;
-    const ih = mesures.head?.installation;
-    p2.installation = { avant: ip && { ok: ip.ok, commande: ip.commande, souple: ip.souple }, apres: ih && { ok: ih.ok, commande: ih.commande, souple: ih.souple } };
-    if (ip && !ip.ok && ih && !ih.ok) note('installation impossible avant et après : vérifications non comparables');
-    else if (ip && !ip.ok) note(`installation impossible au commit de préparation (${ip.raison ?? 'échec'}) : vérifications non comparables`);
-    else if (ih && !ih.ok) {
-      p2.ok = false;
-      echec(2, 'installation', 'les dépendances s\'installaient avant (verrou commité) et ne s\'installent plus', ih.fin ?? []);
-    } else if (ip?.ok && ih?.ok) {
-      if (ih.souple && !ip.souple) note(`installation stricte impossible au HEAD (verrou en désaccord avec package.json), réussie en mode souple : ${ih.tentatives?.map((t) => `${t.commande} → ${t.code}`).join(' ; ')}`);
-      if (ih.souple && !ip.souple) { p2.ok = false; echec(2, 'verrou', 'le verrou commité ne suffit plus à installer l\'app (installation stricte refusée au HEAD, acceptée avant)', ih.tentatives.map((t) => `${t.commande} → code ${t.code}`)); }
-      for (const genre of Object.keys(CANDIDATS)) {
-        const a = mesures.prep.verifs?.[genre];
-        const b = mesures.head.verifs?.[genre];
-        const e = { avant: a && resumeV(a), apres: b && resumeV(b) };
-        p2.verifs[genre] = e;
-        if (!a && !b) { e.etat = 'absente'; continue; }
-        if (a && !b) {
-          e.etat = 'disparue';
-          p2.ok = false;
-          echec(2, `${genre}-disparue`, `${genre} : la vérification existait avant (${a.commande}) et n'existe plus`, [`avant : ${a.source}`]);
-          continue;
+    for (const dir of dirs) {
+      const ap = mesures.prep.dossiers[dir];
+      const ah = mesures.head.dossiers[dir];
+      const ip = ap?.installation;
+      const ih = ah?.installation;
+      const ou = lieu(dir);
+      const inst = { avant: ip && { ok: ip.ok, commande: ip.commande, souple: ip.souple }, apres: ih && { ok: ih.ok, commande: ih.commande, souple: ih.souple } };
+      if (unSeul) p2.installation = inst; else p2.installation[dir] = inst;
+      if (ip && !ip.ok && ih && !ih.ok) note(`installation impossible avant et après${ou} : vérifications non comparables`);
+      else if (ip && !ip.ok) note(`installation impossible au commit de préparation${ou} (${ip.raison ?? 'échec'}) : vérifications non comparables`);
+      else if (ih && !ih.ok) {
+        p2.ok = false;
+        echec(2, 'installation', `les dépendances s'installaient avant (verrou commité) et ne s'installent plus${ou}`, ih.fin ?? []);
+      } else if (ip?.ok && ih?.ok) {
+        if (ih.souple && !ip.souple) note(`installation stricte impossible au HEAD${ou} (verrou en désaccord avec package.json), réussie en mode souple : ${ih.tentatives?.map((t) => `${t.commande} → ${t.code}`).join(' ; ')}`);
+        if (ih.souple && !ip.souple) { p2.ok = false; echec(2, 'verrou', `le verrou commité ne suffit plus à installer l'app${ou} (installation stricte refusée au HEAD, acceptée avant)`, ih.tentatives.map((t) => `${t.commande} → code ${t.code}`)); }
+        for (const genre of Object.keys(CANDIDATS)) {
+          const a = ap.verifs?.[genre];
+          const b = ah.verifs?.[genre];
+          const e = { avant: a && resumeV(a), apres: b && resumeV(b) };
+          const cle = cleDe(genre, dir);
+          const nom = `${genre}${ou}`;
+          p2.verifs[cle] = e;
+          if (!a && !b) { e.etat = 'absente'; continue; }
+          if (a && !b) {
+            e.etat = 'disparue';
+            p2.ok = false;
+            echec(2, `${genre}-disparue`, `${nom} : la vérification existait avant (${a.commande}) et n'existe plus`, [`avant : ${a.source}`]);
+            continue;
+          }
+          if (!a && b) { e.etat = 'ajoutée'; note(`${nom} : absente avant, présente après (${b.commande}) : rien à comparer`); continue; }
+          if (a.delai && b.delai) { e.etat = 'non comparable (délai dépassé avant et après)'; note(`${nom} : délai dépassé avant et après : non comparable`); continue; }
+          if (b.delai) { e.etat = 'échec'; p2.ok = false; echec(2, `${genre}-delai`, `${nom} : délai dépassé après (${Math.round(b.ms / MIN)} min), pas avant`, b.fin); continue; }
+          if (a.delai) { e.etat = 'meilleure (le délai était dépassé avant)'; continue; }
+          const cmp = comparerErreurs(a.erreurs, b.erreurs);
+          e.erreurs = { avant: cmp.avant, apres: cmp.apres, nouvelles: cmp.nouvelles.map((x) => `${x.fichier}:${x.ligne} ${x.brut}`) };
+          if (a.generique || b.generique) e.erreurs.generique = true;
+          if (a.code === 0 && b.code !== 0) {
+            e.etat = 'échec';
+            p2.ok = false;
+            echec(2, `${genre}-code`, `${nom} : le code de sortie passe de 0 à ${b.code}`, [`${b.commande}`, ...(cmp.nouvelles.length ? cmp.nouvelles.slice(0, 6).map((x) => `${x.fichier}:${x.ligne} ${x.brut}`) : b.fin.slice(-6))]);
+          } else if (cmp.allonge) {
+            e.etat = 'échec';
+            p2.ok = false;
+            echec(2, `${genre}-erreurs`, `${nom} : ${cmp.nouvelles.length} erreur(s) nouvelle(s) (${cmp.avant} → ${cmp.apres} erreurs distinctes)`, cmp.nouvelles.slice(0, 8).map((x) => `${x.fichier}:${x.ligne} ${x.brut}`));
+          } else {
+            e.etat = a.code === b.code ? `identique (code ${b.code})` : `code ${a.code} → ${b.code}, sans nouvelle erreur`;
+            if (a.code !== 0 && cmp.avant === 0 && cmp.apres === 0) note(`${nom} : échoue avant (code ${a.code}) et après (code ${b.code}) sans erreur reconnue : comparé par le seul code de sortie`);
+          }
+          if (genre === 'lint' && a.avertissements && b.avertissements && b.avertissements.avertissements > a.avertissements.avertissements) note(`${nom} : avertissements ${a.avertissements.avertissements} → ${b.avertissements.avertissements} (non bloquant : seuls les erreurs comptent)`);
         }
-        if (!a && b) { e.etat = 'ajoutée'; note(`${genre} : absente avant, présente après (${b.commande}) : rien à comparer`); continue; }
-        if (a.delai && b.delai) { e.etat = 'non comparable (délai dépassé avant et après)'; note(`${genre} : délai dépassé avant et après : non comparable`); continue; }
-        if (b.delai) { e.etat = 'échec'; p2.ok = false; echec(2, `${genre}-delai`, `${genre} : délai dépassé après (${Math.round(b.ms / MIN)} min), pas avant`, b.fin); continue; }
-        if (a.delai) { e.etat = 'meilleure (le délai était dépassé avant)'; continue; }
-        const cmp = comparerErreurs(a.erreurs, b.erreurs);
-        e.erreurs = { avant: cmp.avant, apres: cmp.apres, nouvelles: cmp.nouvelles.map((x) => `${x.fichier}:${x.ligne} ${x.brut}`) };
-        if (a.generique || b.generique) e.erreurs.generique = true;
-        if (a.code === 0 && b.code !== 0) {
-          e.etat = 'échec';
-          p2.ok = false;
-          echec(2, `${genre}-code`, `${genre} : le code de sortie passe de 0 à ${b.code}`, [`${b.commande}`, ...(cmp.nouvelles.length ? cmp.nouvelles.slice(0, 6).map((x) => `${x.fichier}:${x.ligne} ${x.brut}`) : b.fin.slice(-6))]);
-        } else if (cmp.allonge) {
-          e.etat = 'échec';
-          p2.ok = false;
-          echec(2, `${genre}-erreurs`, `${genre} : la liste d'erreurs s'allonge (${cmp.avant} → ${cmp.apres}, ${cmp.nouvelles.length} nouvelle(s))`, cmp.nouvelles.slice(0, 8).map((x) => `${x.fichier}:${x.ligne} ${x.brut}`));
-        } else {
-          e.etat = a.code === b.code ? `identique (code ${b.code})` : `code ${a.code} → ${b.code}, sans nouvelle erreur`;
-          if (a.code !== 0 && cmp.avant === 0 && cmp.apres === 0) note(`${genre} : échoue avant (code ${a.code}) et après (code ${b.code}) sans erreur reconnue : comparé par le seul code de sortie`);
-        }
-        if (genre === 'lint' && a.avertissements && b.avertissements && b.avertissements.avertissements > a.avertissements.avertissements) note(`lint : avertissements ${a.avertissements.avertissements} → ${b.avertissements.avertissements} (non bloquant : seuls les erreurs comptent)`);
       }
     }
   }
@@ -592,8 +637,12 @@ async function main() {
 }
 
 const strip = (m) => m && {
-  revision: m.revision, gestionnaire: m.pm, installation: m.installation,
-  verifs: Object.fromEntries(Object.entries(m.verifs ?? {}).map(([k, x]) => [k, resumeV(x, true)])),
+  revision: m.revision,
+  dossiers: Object.fromEntries(Object.entries(m.dossiers).map(([dir, d]) => [dir, {
+    gestionnaire: d.pm, installation: d.installation,
+    verifs: Object.fromEntries(Object.entries(d.verifs ?? {}).map(([k, x]) => [k, resumeV(x, true)])),
+  }])),
+  installationRacine: m.racine,
 };
 function resumeV(x, avecErreurs = false) {
   return {

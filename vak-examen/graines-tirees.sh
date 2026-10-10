@@ -4,6 +4,7 @@
 # sans voir les autres. Puis les graines sont recopiées dans vak-examen/graines/<nom>/ et éprouvées sur des bases
 # neuves (graines/eprouver.mjs), dans un dossier de travail qui a la disposition des sessions scellées.
 # Usage, en root, depuis n'importe où : bash vak-examen/graines-tirees.sh [vak-examen/graines-tirees.tsv]
+# Apps construites du deuxième examen (10/10) : CONSIGNE_GRAINES=vak-examen/scelle/GRAINES-CONSTRUITES.md, avec leur liste.
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 LISTE="${1:-vak-examen/graines-tirees.tsv}"
@@ -21,7 +22,7 @@ while IFS=$'\t' read -r NOM DEPOT COMMIT; do
 done < "$LISTE"
 for NOM in "${NOMS[@]}"; do
   S="/srv/graines-$NOM"
-  TIREES="$S/liste.tsv" CONSIGNE=vak-examen/scelle/GRAINES-TIREES.md SCELLE="$S" LIMITE="${LIMITE:-60}" \
+  TIREES="$S/liste.tsv" CONSIGNE="${CONSIGNE_GRAINES:-vak-examen/scelle/GRAINES-TIREES.md}" SCELLE="$S" LIMITE="${LIMITE:-60}" \
     bash vak-examen/scelle/lancer.sh > "/srv/journaux/graines-$NOM.log" 2>&1 &
   echo "session scellée des graines de $NOM : lancée (/srv/journaux/graines-$NOM.log)"
 done

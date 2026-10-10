@@ -1,5 +1,0 @@
-Voit : Chantiers (Équipe, Nom du chantier, Adresse, Date de début, Statut) ; Tâches (Chantier, Intitulé, Échéance, Terminée, Assignée à, Créée par) ; Équipes (Nom, Créée le) ; Membres (Équipe, Utilisateur, Rôle, Depuis le)
-Peut proposer (après votre validation) : retenir un souvenir (prise memory)
-Peut ouvrir : Équipe, Membres, Chantier, Mes tâches
-Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire team_invitations ; appeler create_team, invite_member, is_site_member, is_site_team_user, is_team_member, is_team_owner, team_roster
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

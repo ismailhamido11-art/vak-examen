@@ -301,7 +301,8 @@ export function contournements(journal, { migrationsPrep = new Set(), racineApp 
 // Lignes de sortie de vak qui jugent une table en échec de preuve.
 export function echecsDePreuve(journal) {
   const out = [];
-  const re = /^\s*✗\s+([A-Za-z0-9_."]+?)(?:\(\))?\s+(fuite|total faux|étroit|non prouvé)\b(.*)$/;
+  // pas de \b : « é » n'est pas un caractère de mot pour JavaScript, et « non prouvé » finit par lui
+  const re = /^\s*✗\s+([A-Za-z0-9_."]+?)(?:\(\))?\s+(fuite|total faux|étroit|non prouvé)(?![\p{L}\p{N}_])(.*)$/u;
   for (const evt of journal.evts) {
     if (evt.genre !== 'resultat') continue;
     for (const l of evt.texte.split('\n')) {
@@ -327,10 +328,10 @@ export function legacyPoseParVak(journal) {
 
 // ───────────────────────── durée et refus ─────────────────────────
 
-// Premier « vak » (sans commande, éventuellement avec options) qui rend 0 d'après le journal. Preuve de premier rang :
-// la dernière ligne de vak, « vak : fini (…) [code 0] ». Si l'agent a filtré la sortie (grep, tail), deux preuves
-// de repli, signalées dans `source` : la phrase « Fini pour l'agent de code » (affichée seulement quand tout passe),
-// ou un « rc=0 » / « code 0 » écrit après la commande.
+// Premier « vak » (sans commande, éventuellement avec options, mais pas --help) qui rend 0 d'après le journal. Preuve
+// de premier rang : la dernière ligne de vak, « vak : fini (…) [code 0] ». Si l'agent a filtré la sortie (grep, tail),
+// deux preuves de repli, signalées dans `source` : la phrase « Fini pour l'agent de code » (que `vak init` et la page
+// d'aide affichent aussi), ou un « rc=0 » / « code 0 » écrit après la commande.
 export function premierVakOk(journal) {
   const preuves = [
     ['ligne finale de vak', (t) => /^vak : fini \(.*\) \[code 0\]\s*$/m.exec(t)],
@@ -342,12 +343,7 @@ export function premierVakOk(journal) {
     if (evt.genre !== 'resultat') continue;
     const outil = journal.outils.get(evt.id);
     if (!outil || outil.nom !== 'Bash') continue;
-    const segs = aplatir(outil.entree.command || '');
-    const sansCommande = segs.some((s) => {
-      const i = s.mots.findIndex((w) => /(^|\/)vak\.mjs$/.test(w));
-      return i >= 0 && (s.mots[i + 1] === undefined || s.mots[i + 1].startsWith('-'));
-    });
-    if (sansCommande) candidats.push(evt);
+    if (invocationsVak(outil.entree.command || '').some((i) => i.sansCommande && !i.aide)) candidats.push(evt);
   }
   let meilleur = null;
   for (const [source, test] of preuves) {
@@ -359,6 +355,32 @@ export function premierVakOk(journal) {
     if (meilleur) return meilleur;
   }
   return null;
+}
+
+// Les lancements de la CLI de vak (…/vak.mjs) d'une commande : sans commande (options seules) ou non, et avec --help
+// ou non. `vak --help` et `vak <commande> --help` affichent la page d'aide, qui cite la phrase « Fini pour l'agent de
+// code » : ce n'est pas un `vak` qui a fini. Une variable qui porte la CLI (V="node …/vak.mjs"; $V --help) est suivie :
+// son affectation n'est pas un lancement, `$V` en est un.
+const RE_CLI_VAK = /(^|\/)vak\.mjs$/;
+const RE_AFFECTATION = /^([A-Za-z_]\w*)=(.*)$/;
+export function invocationsVak(cmd) {
+  const variables = new Map();
+  const out = [];
+  for (const s of aplatir(cmd)) {
+    for (const w of s.mots) {
+      const a = RE_AFFECTATION.exec(w);
+      if (a && RE_CLI_VAK.test(a[2])) variables.set(a[1], a[2].split(/\s+/).filter(Boolean));
+    }
+    const mots = s.mots.flatMap((w) => {
+      const v = /^\$(?:\{(\w+)\}|(\w+))$/.exec(w);
+      return v && variables.has(v[1] ?? v[2]) ? variables.get(v[1] ?? v[2]) : [w];
+    });
+    const i = mots.findIndex((w) => !RE_AFFECTATION.test(w) && RE_CLI_VAK.test(w));
+    if (i < 0) continue;
+    const apres = mots.slice(i + 1);
+    out.push({ sansCommande: apres[0] === undefined || apres[0].startsWith('-'), aide: apres.some((w) => w === '--help' || w === '-h') });
+  }
+  return out;
 }
 
 export function debutAgent(journal) {

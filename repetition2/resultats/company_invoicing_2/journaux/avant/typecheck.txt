@@ -1,7 +1,0 @@
-$ npm run typecheck
-(dossier : /work/company_invoicing_2/avant)
-
-
-> company-invoicing@1.0.0 typecheck
-> tsc --noEmit
-

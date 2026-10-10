@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/budget_app_2/apres)
-
-base locale vak_local_d30e25 supprimée [code 0]

@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/fonctions_1/avant)
-
-
-> budget-foyer@1.0.0 lint
-> expo lint
-

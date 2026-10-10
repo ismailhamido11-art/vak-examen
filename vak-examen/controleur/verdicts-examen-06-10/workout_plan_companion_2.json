@@ -1,0 +1,390 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "workout_plan_companion_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "mobile/package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 859
+        },
+        {
+          "fichier": "mobile/package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 27
+        }
+      ],
+      "notes": [
+        "verrou ajouté : package-lock.json"
+      ],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.24.3.tgz sha256 = préparation",
+        "9 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "workout_log_sets non prouvé (journal ligne 133)",
+        "exercise_catalog non prouvé (journal ligne 137)",
+        "plan_session_exercises non prouvé (journal ligne 137)",
+        "workout_log_sets non prouvé (journal ligne 137)",
+        "exercise_catalog non prouvé (journal ligne 148)",
+        "plan_session_exercises non prouvé (journal ligne 148)",
+        "workout_log_sets non prouvé (journal ligne 148)",
+        "exercise_catalog non prouvé (journal ligne 171)",
+        "plan_session_exercises non prouvé (journal ligne 171)",
+        "workout_log_sets non prouvé (journal ligne 171)",
+        "exercise_catalog non prouvé (journal ligne 176)",
+        "plan_session_exercises non prouvé (journal ligne 176)",
+        "workout_log_sets non prouvé (journal ligne 176)",
+        "exercise_catalog non prouvé (journal ligne 188)",
+        "plan_session_exercises non prouvé (journal ligne 188)",
+        "workout_log_sets non prouvé (journal ligne 188)",
+        "exercise_catalog non prouvé (journal ligne 199)",
+        "plan_session_exercises non prouvé (journal ligne 199)",
+        "workout_log_sets non prouvé (journal ligne 199)",
+        "workout_log_sets non prouvé (journal ligne 206)"
+      ],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 29646,
+          "derniereLigne": null,
+          "fin": [
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 2 ligne(s) de A ajoutée(s) ; 7 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✓ profiles éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - table du compte : l'assistant ne lit que la ligne de A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 2 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✗ workout_log_sets non prouvé",
+            "    - graine impossible : parent plan_session_exercises absent",
+            "    - totaux de read_data non comparés (verdict non prouvé)",
+            "    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve",
+            "✓ workout_logs éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - coéquipier de A non semé (P0001 Workout logs must use a session from the user plan version) : le partage entre membres n'est pas vérifié",
+            "    - totaux de read_data : 50 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "    - graine des totaux refusée par l'app (23514 new row for relation \"workout_logs\" violates check constraint \"workout_logs_check\") : totaux vérifiés sur les lignes de la preuve seules",
+            "base locale vak_prove_1403e59e construite (13 migration(s)) puis supprimée",
+            "vak prove : preuve à deux comptes : non prouvé (5 éprouvée(s), 0 en échec, 3 non prouvée(s) ; 108 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+          ],
+          "controles": [
+            "✗ exercise_catalog non prouvé",
+            "✗ plan_session_exercises non prouvé",
+            "✓ plan_sessions éprouvé",
+            "✓ plan_versions éprouvé",
+            "✓ plan_weeks éprouvé",
+            "✓ profiles éprouvé",
+            "✗ workout_log_sets non prouvé",
+            "✓ workout_logs éprouvé"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "mobile"
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 6,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 7,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ exercise_catalog non prouvé",
+        "✗ plan_session_exercises non prouvé",
+        "✗ workout_log_sets non prouvé",
+        "- lecture de la ligne de B par son identifiant : refusée",
+        "- coéquipier de A non semé (P0001 Workout logs must use a session from the user plan version) : le partage entre membres n'est pas vérifié",
+        "- totaux de read_data : 50 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+        "- graine des totaux refusée par l'app (23514 new row for relation \"workout_logs\" violates check constraint \"workout_logs_check\") : totaux vérifiés sur les lignes de la preuve seules",
+        "base locale vak_prove_1403e59e construite (13 migration(s)) puis supprimée",
+        "vak prove : preuve à deux comptes : non prouvé (5 éprouvée(s), 0 en échec, 3 non prouvée(s) ; 108 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+      ]
+    }
+  ],
+  "notes": [
+    "verrou ajouté : package-lock.json",
+    "schema.gen.ts illisible dans supabase/functions/vak/ : « table à moi » jugée sur la seule sortie de vak"
+  ],
+  "entree": {
+    "essai": "/srv/scelle-2/travail/essais/workout_plan_companion_2",
+    "preparation": {
+      "id": "workout_plan_companion_2",
+      "depot": "https://github.com/AndreuCrespo/workout-plan-companion",
+      "commit": "ebf680c396b90693bbb2aa798d71a23bd7d00e34",
+      "prepare": "6db30b6fddfc2e3d5b7791fd0cc9fca0ff38ebbc",
+      "archive": {
+        "nom": "vak-agent-0.24.3.tgz",
+        "sha256": "2765b6929c144be93031b424114dd5f3c0d95c4b94118600edc687e1b811a31f"
+      },
+      "debut": "2026-10-06T14:09:24Z"
+    },
+    "tip": "ded3670028a8490b9aa789f1707c4b1ff83c110a",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "mobile"
+    ]
+  },
+  "journal": {
+    "entrees": 80,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "6db30b6fddfc2e3d5b7791fd0cc9fca0ff38ebbc",
+      "dossiers": {
+        "mobile": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 825 packages in 21s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 6,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> mobile@0.1.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> mobile@0.1.0 lint",
+                "> eslint ."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": false,
+        "raison": "aucun verrou ni package.json"
+      }
+    },
+    "head": {
+      "revision": "ded3670028a8490b9aa789f1707c4b1ff83c110a",
+      "dossiers": {
+        "mobile": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 826 packages in 22s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 7,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> mobile@0.1.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> mobile@0.1.0 lint",
+                "> eslint ."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "added 1 package in 1s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-08T13:58:58.723Z"
+}

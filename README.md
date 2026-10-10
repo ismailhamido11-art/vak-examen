@@ -5,9 +5,14 @@ essais, avec des seuils publiés avant la mesure. Dans chaque essai, un agent de
 qu'il n'a jamais vue, sans rien casser. L'assistant obtenu doit donner des chiffres exacts, et ne jamais montrer les
 données d'un autre compte.
 
-- **La règle** : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 06/10/2026.
-- **Ce qui est figé avant le tirage** : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
-  empreintes, le texte de la demande, l'environnement et le tour drand du tirage.
+- **Le deuxième examen** (10/10/2026) :
+  - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 10/10/2026 ;
+  - ce qui est figé avant le tirage : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
+    empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le premier
+    examen.
+- **Le premier examen** (06/10/2026) : échoué, 2 essais réussis sur 14, aucune fuite. Sa règle, sa publication, ses
+  résultats (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`) et son groupe témoin restent dans l'historique de
+  ce dépôt (commit `57f5686` et avant).
 - **Les pièces de l'examen** : [`vak-examen/README.md`](vak-examen/README.md). Ce sont le contrôleur, la pile « mes
   données » et son juge, les 3 apps construites, la liste des apps éligibles et le tirage.
 - **Le lanceur des essais** : [`repetition2/`](repetition2/) (`lancer.sh`, `preparer.sh`, `messages.sh`…).
@@ -15,7 +20,7 @@ données d'un autre compte.
 Ce dépôt reprend, aux mêmes chemins, les fichiers de l'examen tenus dans le dépôt de vak (`vak-examen/publier.sh` les
 recopie). Le dépôt de vak n'est pas public. Les scripts y lisent deux fichiers du kit, dont seules les empreintes sont
 publiées ici :
-- l'archive gelée, `vertical-agent-kit/releases/vak-agent-0.24.3.tgz` ;
+- l'archive gelée, `vertical-agent-kit/releases/vak-agent-0.26.1.tgz` (deuxième examen) ;
 - sa page, `vertical-agent-kit/README.md`, d'où vient la demande.
 
 Les deux seront publiés si l'examen est réussi. Les graines des données de test seront publiées après les essais, et

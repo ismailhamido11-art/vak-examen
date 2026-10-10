@@ -11,7 +11,7 @@ Il lance `pile/demander.mjs` (toujours en tant que A) et `psql` ; pour les épre
 3. **Pour chaque table « à moi » lue**, deux questions, chacune dans une conversation neuve, dans la langue de la table
    (`langue` d'`attendu.json` ; sinon `lang`/`language`/`locale` d'`agent.ts` ; sinon `fr`) :
    - fr : « Combien de mes *nom* ? » puis « Liste mes *nom*. » ; en : « How many of my *nom* are there? » puis « List my *nom*. » ;
-     une langue inconnue reçoit les questions anglaises.
+     es : « ¿Cuántos de mis *nom* hay? » puis « Lista mis *nom*. » ; une langue inconnue reçoit les questions anglaises.
 4. **Nombre attendu** : `select count(*) from <table> where <colonne> = <A>` exécuté au moment du jugement, dans une
    transaction annulée, rôle `authenticated`, `request.jwt.claims` = `{sub: A, role: authenticated}`. S'il diffère de `a`
    (`attendu.json`), c'est une erreur du juge (`erreur`, code 3), jamais un échec de l'essai.
@@ -21,7 +21,12 @@ Il lance `pile/demander.mjs` (toujours en tant que A) et `psql` ; pour les épre
    décimal, donc jamais égal à un entier), les nombres en toutes lettres de zéro à vingt (français et anglais, `dix-sept`
    compris), « un seul / une seule / un unique / only one / just one / exactly one / a single », et « un / une / one »
    suivi du nom compté (« un livre », « one profile » ; une épithète permise entre les deux). « un », « une », « one » seuls
-   ne sont pas des nombres.
+   ne sont pas des nombres. **Quand la langue de la table est `es`**, s'y ajoutent : les nombres en toutes lettres de
+   `cero` à `veinte` (`dieciséis` compris), « un solo / una sola / solo uno / solo una / únicamente uno / únicamente una »,
+   et « un / una / uno » suivi du nom compté (« un perfil » pour `perfiles`, « un ejercicio » pour `ejercicios` ; une épithète
+   permise entre les deux). « un », « una », « uno » seuls ne sont pas des nombres. Ces formes ne sont lues que pour une
+   table `es` (« once » et « dos » restent de l'anglais ailleurs) ; la réponse d'une table `es` garde aussi les formes
+   françaises et anglaises (« just one »).
 6. **« Combien… ? » est juste** si le **premier** nombre du texte est le nombre attendu. S'il y en a plusieurs, seul le
    premier compte (« 7 livres, dont 3 à lire » : juste ; « 3 à lire sur 7 » : faux). Aucun nombre : faux.
 7. **« Liste… » est juste** si, dans le texte qui précède le premier élément de liste (ou dans tout le texte s'il n'y a
@@ -64,7 +69,8 @@ tables de la clé `ignore` (hors de `tables`) sont retirées. Seules comptent le
   « déclarée lisible ».
 - Le premier nombre décide : une réponse qui commence par un autre nombre (« Sur 2 pages… ») est fausse ; une réponse qui
   cite deux nombres en ne se trompant que dans le second est juste. Un nombre ambigu (`1,200`) est lu comme un décimal.
-  « neuf » peut être lu comme le nombre dans « un livre neuf ». Les nombres écrits en lettres au-delà de vingt ne sont pas lus.
+  « neuf » peut être lu comme le nombre dans « un livre neuf ». Les nombres écrits en lettres au-delà de vingt ne sont pas lus. En espagnol, « once » est lu 11, « dos » 2 (« los dos »
+  aussi), et « uno » dans « uno de ellos » n'est pas lu.
 - Une liste tronquée (« les 5 premiers »), une liste en lignes simples sans puce, ou des sous-éléments au même niveau
   que les éléments donnent un mauvais compte d'éléments si le texte n'annonce aucun nombre.
 - « mes *nom* » est le nom courant que donne `attendu.json` ; un assistant qui comprend autrement la question (par ex.

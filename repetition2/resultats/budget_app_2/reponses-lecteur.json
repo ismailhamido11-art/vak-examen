@@ -1,6 +1,0 @@
-{
-  "supprimer": "l'étiquette ne le dit pas",
-  "modifier": ["remember a memory (plugin memory), après approbation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek (Chine, selon ses propres conditions)", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Never: delete or edit outside these lists, except through remember a memory (plugin memory) ». Aucune liste n'accorde de suppression, donc la suppression est interdite en dehors de la mémoire ; mais l'exception « except through remember a memory » ne précise pas si la suppression est possible via la mémoire, d'où « l'étiquette ne le dit pas ». Les autres données (profil, comptes, catégories, bénéficiaires, transactions, budgets, résumés mensuels) sont listées en lecture seulement (« Sees »). L'étiquette ne dit pas ce que contient ou fait exactement une « memory »."
-}

@@ -1,5 +1,0 @@
-Voit : Équipes (Nom, Création) ; Membres (Équipe, Membre, Rôle, Arrivée) ; Invitations (Équipe, E-mail, Envoyée le) ; Chantiers (Équipe, Nom, Adresse, Début, Statut) ; Tâches (Chantier, Titre, Échéance, Faite, Assignée à)
-Peut proposer (après votre validation) : ajouter dans Tâches (Chantier, Titre, Échéance, dont « Chantier », qui décide qui voit la ligne) ; modifier dans Tâches (Échéance, Faite) ; retenir un souvenir (prise memory)
-Peut ouvrir : Mes tâches, Chantier, Équipe
-Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; appeler create_team, invite_member, is_site_member, is_site_team_user, is_team_member, is_team_owner, team_roster
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

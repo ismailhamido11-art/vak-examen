@@ -3,7 +3,8 @@
 # que dans le dépôt de vak, depuis l'état commité (HEAD), jamais depuis des fichiers en cours.
 # Usage, depuis n'importe où : [GRAINES=1] bash vak-examen/publier.sh <clone du dépôt public>
 # Recopié :
-#  - vak-examen/, sans graines/ (publiées après les essais : GRAINES=1 les ajoute) ni REPRISE.md ;
+#  - vak-examen/, sans graines/ (publiées après les essais : GRAINES=1 les ajoute), ni REPRISE.md, ni les listes des
+#    répétitions privées (repetition-*.tsv) ;
 #  - les scripts du lanceur des essais (repetition2/), sans ses résultats ni son journal ;
 #  - RACINE.md, qui devient le README de la racine.
 # - avec RESULTATS=1, les résultats des essais (voir plus bas), transcriptions masquées par masquer.mjs.
@@ -17,10 +18,12 @@ fail() { echo "✗ $*" >&2; exit 1; }
 [ -d "$DEST/.git" ] || fail "$DEST n'est pas un dépôt git"
 [ "$(cd "$DEST" && pwd)" != "$(pwd)" ] || fail "$DEST est le dépôt de vak lui-même"
 # Ce qui est déjà publié ne s'efface pas par oubli d'une variable : sans elle, la copie l'enlèverait du clone public.
-if [ "${RESULTATS:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files repetition2/resultats | head -1)" ]; then
+# NOUVEL_EXAMEN=1 (deuxième examen, 10/10) : les résultats et les graines de l'examen précédent quittent l'arbre public
+# exprès (ils restent dans son historique) ; les graines du nouvel examen ne sont publiées qu'après ses essais.
+if [ "${NOUVEL_EXAMEN:-0}" != 1 ] && [ "${RESULTATS:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files repetition2/resultats | head -1)" ]; then
   fail "$DEST publie déjà des résultats : relancer avec RESULTATS=1 pour ne pas les effacer"
 fi
-if [ "${GRAINES:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files vak-examen/graines | head -1)" ]; then
+if [ "${NOUVEL_EXAMEN:-0}" != 1 ] && [ "${GRAINES:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files vak-examen/graines | head -1)" ]; then
   fail "$DEST publie déjà les graines : relancer avec GRAINES=1 pour ne pas les effacer"
 fi
 LANCEUR=(.gitignore apps.tsv controle.mjs controler.sh horodater.mjs lancer.sh mesurer.mjs messages.sh preparer.sh
@@ -29,7 +32,8 @@ rm -rf "$DEST/vak-examen" "$DEST/repetition2"
 git archive --format=tar HEAD -- vak-examen "${LANCEUR[@]/#/repetition2/}" | tar -x -C "$DEST"
 [ "${GRAINES:-0}" = 1 ] || rm -rf "$DEST/vak-examen/graines"
 # La note de reprise sert aux sessions de travail (elle nomme le dépôt privé) : elle n'est pas publiée.
-rm -f "$DEST/vak-examen/REPRISE.md"
+rm -f "$DEST/vak-examen/REPRISE.md" "$DEST"/vak-examen/repetition-*.tsv   # reprise et répétitions privées : jamais publiées
+rm -f "$DEST/vak-examen/REGLE-PROCHAINE.md"   # brouillon de la règle suivante : publié seulement devenu REGLE.md
 mv "$DEST/vak-examen/RACINE.md" "$DEST/README.md"
 # RESULTATS=1 : les résultats commités des essais de l'examen (repetition2/resultats/<id>, coupures comprises), pour les
 # ids de LISTE_ESSAIS (défaut : vak-examen/essais.tsv), sans essai.bundle : l'état commité d'un essai contient vak, il

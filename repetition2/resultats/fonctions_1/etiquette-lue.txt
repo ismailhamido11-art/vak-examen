@@ -1,5 +1,0 @@
-Voit : Catégories (Nom, Plafond mensuel (€), Création) ; Dépenses (Catégorie, Montant (€), Date, Libellé)
-Peut proposer (après votre validation) : « Ajouter une dépense » (fonction de l'app) ; « Modifier une dépense » (fonction de l'app) ; « Créer ou modifier une catégorie » (fonction de l'app) ; retenir un souvenir (prise memory)
-Peut ouvrir : Totaux, Catégories, Dépense
-Jamais : supprimer ou modifier hors de ces listes, sauf par « Ajouter une dépense » (fonction de l'app), « Modifier une dépense » (fonction de l'app), « Créer ou modifier une catégorie » (fonction de l'app), retenir un souvenir (prise memory) ; appeler delete_expense
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

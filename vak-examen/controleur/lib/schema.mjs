@@ -16,8 +16,9 @@ export function lireSchema(texte) {
   }
 }
 
-// Clés de premier niveau de `ignore: { … }` dans agent.ts, avec leur ligne.
-export function cleIgnore(texte) {
+// Clés de premier niveau de `ignore: { … }` dans agent.ts, avec leur ligne et la raison écrite (la chaîne qui suit
+// les deux-points ; null si ce n'est pas une chaîne).
+export function lireIgnore(texte) {
   if (!texte) return null;
   const debut = /^\s*ignore\s*:\s*\{/m.exec(texte);
   if (!debut) return new Map();
@@ -39,8 +40,11 @@ export function cleIgnore(texte) {
     if (ch === '/' && texte[i + 1] === '*') { const f = texte.indexOf('*/', i + 2); i = f < 0 ? texte.length : f + 2; continue; }
     if (profondeur === 1 && debutCle) {
       const m = /^\s*(?:"([^"]+)"|'([^']+)'|([A-Za-z_$][\w$]*))\s*:/.exec(texte.slice(i, i + 200));
-      if (m) { cles.set(m[1] ?? m[2] ?? m[3], ligne); debutCle = false; }
-      else if (!/\s/.test(ch)) debutCle = false;
+      if (m) {
+        const r = /^\s*(?:"((?:[^"\\\n]|\\.)*)"|'((?:[^'\\\n]|\\.)*)')/.exec(texte.slice(i + m[0].length, i + m[0].length + 2000));
+        cles.set(m[1] ?? m[2] ?? m[3], { ligne, raison: r ? (r[1] ?? r[2]).replace(/\\(.)/g, '$1') : null });
+        debutCle = false;
+      } else if (!/\s/.test(ch)) debutCle = false;
     }
     if (ch === '"' || ch === "'" || ch === '`') q = ch;
     else if (ch === '{' || ch === '[' || ch === '(') profondeur++;
@@ -49,6 +53,12 @@ export function cleIgnore(texte) {
     i++;
   }
   return cles;
+}
+
+// Les mêmes clés, avec leur seule ligne.
+export function cleIgnore(texte) {
+  const l = lireIgnore(texte);
+  return l && new Map([...l].map(([k, x]) => [k, x.ligne]));
 }
 
 // Définition de la règle (point 5) : une colonne désigne l'utilisateur : clé vers auth.users ou vers la table du

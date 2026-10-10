@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/workout_plan_companion_1/apres)
-
-base locale vak_local_9970f2 supprimée [code 0]

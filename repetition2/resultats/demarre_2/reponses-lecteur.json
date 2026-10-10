@@ -1,6 +1,0 @@
-{
-  "supprimer": "l'étiquette ne le dit pas",
-  "modifier": ["Ajouter un livre", "Ajouter une séance", "retenir un souvenir (prise memory)"],
-  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette interdit de supprimer ou modifier « hors de ces listes » (Livres, Séances de lecture), sauf par retenir un souvenir ; elle ne dit pas si la suppression est possible à l'intérieur de ces listes, d'où « l'étiquette ne le dit pas ». Ajouter un livre et ajouter une séance sont des formulaires que l'assistant peut ouvrir ; retenir un souvenir n'est proposé qu'après validation de l'utilisateur. « Fiche du livre » semble une page à consulter : l'étiquette ne dit pas si elle permet de modifier. Messages envoyés à DeepSeek (api.deepseek.com, Chine, selon ses conditions)."
-}

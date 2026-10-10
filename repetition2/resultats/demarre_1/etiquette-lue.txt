@@ -1,5 +1,0 @@
-Voit : Livres (Titre, Auteur, Statut, Ajouté le) ; Séances de lecture (Livre, Date, Pages lues, Note)
-Peut proposer (après ta validation) : ajouter dans Livres (Titre, Auteur, Statut) ; modifier dans Livres (Titre, Auteur, Statut) ; ajouter dans Séances de lecture (Livre, Date, Pages lues, Note) ; modifier dans Séances de lecture (Date, Pages lues, Note) ; retenir un souvenir (prise memory)
-Peut ouvrir : Fiche du livre, Ajouter un livre, Ajouter une séance
-Jamais : supprimer ou modifier hors de ces listes, sauf par retenir un souvenir (prise memory)
-Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

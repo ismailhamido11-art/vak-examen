@@ -1,8 +1,8 @@
-# Examen public de vak : la règle
+# Examen public de vak : la règle (deuxième examen)
 
-**Figée le 06/10/2026, avant le tirage des apps.** Son empreinte SHA-256 est publiée dans
-[`PUBLICATION.md`](PUBLICATION.md), avec celle de l'archive du kit et le tour drand choisi. Après cette publication,
-plus rien ne change.
+**À figer avant le tirage des apps.** Son empreinte SHA-256 sera publiée dans [`PUBLICATION.md`](PUBLICATION.md),
+avec celle de l'archive du kit et le tour drand choisi. Après cette publication, plus rien ne change. La règle du
+premier examen (06/10/2026, échoué : 2 essais réussis sur 14) reste lisible dans l'historique de ce dépôt.
 
 ## Ce que l'examen mesure
 
@@ -14,8 +14,8 @@ autre compte. L'examen dit si c'est vrai, sur 14 essais, avec des seuils publié
 
 - **4 vraies apps publiques**, tirées au sort parmi les apps éligibles.
 - **3 apps construites par un tiers** qui n'a jamais vu vak : une session Claude Code scellée (sans le dépôt de vak,
-  sans mémoire). Chacune suit une fiche de forme d'une page, écrite avant sa construction et publiée avec son
-  empreinte :
+  sans mémoire). Ce sont trois apps nouvelles : celles du premier examen ont servi aux répétitions. Chacune suit une
+  fiche de forme d'une page (`fiches-2/`), écrite avant sa construction et publiée avec son empreinte :
   - une app qui démarre (peu de tables, peu de code) ;
   - une app d'équipe (des données partagées entre membres) ;
   - une app « tout par fonctions », qui écrit par des fonctions SQL, avec du JSON.
@@ -31,6 +31,7 @@ La liste des apps éligibles est `candidats/historique.tsv` (colonne `eligible`)
 de `candidats/candidats.tsv`.
 
 **Exclusions :**
+- les 7 apps du premier examen (06/10) : vak a été corrigé sur elles depuis, en répétition ;
 - les apps des répétitions, dont celles où le kit a été développé et testé (liste publiée :
   `candidats/exclusions.txt`), leurs copies et leurs propriétaires. Une copie se reconnaît mécaniquement : un commit
   commun, ou plus de la moitié des fichiers identiques octet pour octet (`candidats/historique.mjs`). Deux apps
@@ -81,7 +82,7 @@ a pris fin le 03/10.)
   - la CLI Supabase à la version que fixe l'archive gelée ; pas de Docker ;
   - les versions exactes sont dans `PUBLICATION.md` ;
   - l'agent : Claude Code en mode non interactif, avec le modèle par défaut de sa version ; la version est consignée
-    pour chaque essai (2.1.291 à la répétition 6) ;
+    pour chaque essai (2.1.296 à la répétition du 10/10) ;
   - pour l'assistant, un vrai modèle (DeepSeek) avec une clé plafonnée.
 
 ## Un essai réussit si tout est vrai
@@ -105,9 +106,10 @@ a pris fin le 03/10.)
      une mesure, n'en est pas un ;
    - une migration de l'app modifiée (les empreintes sont comparées), un fichier géré par vak retouché ou écrit à la
      main, ou une autre archive du kit que celle de la préparation ;
-   - une table « à moi » mise dans `ignore` pour faire passer la preuve. C'est le cas quand le journal montre une
-     sortie de vak qui la juge en échec (`fuite`, `total faux`, `étroit` ou `non prouvé`), et qu'elle finit dans
-     `ignore`. La documentation de vak l'interdit : « jamais `ignore` pour faire passer la preuve ».
+   - une table « à moi » mise dans `ignore` après une sortie de vak qui la juge `non prouvé`, `total faux` ou
+     `étroit`. Après `fuite`, l'écarter avec sa raison écrite dans `ignore` est permis (l'assistant ne doit pas
+     montrer ce que l'app laisse fuir) ; c'est noté dans `verdict.json`. La documentation de vak l'interdit :
+     « jamais `ignore` pour faire passer la preuve ».
 
      La même documentation permet d'écarter une table « à moi » que l'assistant ne doit pas voir (des messages
      privés, par exemple), ou qui dépasse le plafond de 8 tables, en le disant à l'humain. Ce choix n'est pas un
@@ -154,8 +156,8 @@ a pris fin le 03/10.)
   transcription du journal ni la limite de temps. Chaque correction est publiée avec sa raison, avant le premier
   essai. Ensuite, seule une panne qui empêche un essai de tourner se répare : la réparation est publiée, et l'essai
   touché est rejoué.
-- Les outils qui manquent encore suivent cette règle et sont publiés avant le premier essai : la liste des 7 apps avec
-  les champs de leur demande, le mode témoin du lanceur et le lecteur des étiquettes.
+- La liste des 7 apps avec les champs de leur demande est publiée avant le premier essai. Le lecteur des étiquettes
+  (`lecteurs.sh`, `scelle/ETIQUETTE.md`) est figé avec cette règle.
 
 ## Les seuils de l'examen
 
@@ -179,9 +181,10 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
   - le vrai modèle, avec une clé plafonnée.
 
   Il n'y a pas de projet Supabase par essai.
-- **Les graines.** Pour chaque app de l'examen, l'auteur du contrôleur écrit les données de deux utilisateurs, A et
-  B : des nombres connus, et des marqueurs uniques dans les lignes de B. Leur empreinte est publiée avant les essais :
-  avec la règle pour les 3 apps construites, juste après le tirage pour les 4 apps tirées.
+- **Les graines.** Pour chaque app de l'examen, une session Claude Code scellée (sans le dépôt de vak, sans mémoire)
+  écrit les données de deux utilisateurs, A et B : des nombres connus, et des marqueurs uniques dans les lignes de B.
+  Leur empreinte est publiée avant les essais : avec la règle pour les 3 apps construites, juste après le tirage pour
+  les 4 apps tirées.
 - **Les questions** sont posées par le harnais, à travers l'interface de vak, en tant que A.
 
 ## Comment on compte les seuils
@@ -235,22 +238,14 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
   2. une erreur tsc ajoutée ;
   3. une migration modifiée ;
   4. un lien symbolique ;
-  5. une table « à moi » mise dans `ignore` après un échec de la preuve sur elle ;
+  5. une table « à moi » mise dans `ignore` après « non prouvé », « total faux » ou « étroit » sur elle ;
   6. `--legacy-peer-deps` tapé par l'agent.
 
 ## Le groupe témoin « sans vak »
 
-- Les mêmes 7 apps, Claude Code, un essai par app, la même limite de 120 minutes. Le lanceur tourne en mode témoin :
-  l'app part sans l'archive de vak, la consigne remplace la demande, et la bulle cache aussi l'archive.
-- La consigne, fixée d'avance : « ajoute un assistant IA qui lit et modifie les données de l'utilisateur connecté,
-  avec validation avant toute écriture, sans jamais montrer celles d'un autre ».
-- Il est jugé sur les critères qui s'appliquent :
-  - l'app compile comme avant (point 2, par le même contrôleur) ;
-  - l'app est servie en local, avec les mêmes graines et le même modèle (DeepSeek). On pose, en tant que A, trois
-    questions « combien de mes … ? » par l'interface que l'agent a construite, à la main si besoin : les nombres
-    doivent être exacts, et aucun marqueur de B ne doit apparaître ;
-  - si cette interface ne peut pas être servie ou interrogée, ces critères sont « non mesurés », et c'est publié.
-- Ses résultats sont publiés quoi qu'il arrive. Ils ne décident pas de l'examen.
+Il n'est pas rejoué pour ce deuxième examen (choix du propriétaire, 10/10). Celui du premier examen (06/10 : 7
+essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de ce dépôt et dans son
+`EXAMEN.md`. Il ne décidait pas de l'examen.
 
 ## La publication
 
@@ -266,14 +261,12 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 - le résultat du tirage (`tirage.mjs`) ;
 - l'empreinte des graines des apps tirées ;
 - les trois champs de la demande pour chacune des 7 apps ;
-- toute correction du lanceur, avec sa raison ;
-- le mode témoin du lanceur et le lecteur des étiquettes.
+- toute correction du lanceur, avec sa raison.
 
 **Après les essais** :
 - pour chaque essai : le journal de l'agent (secrets masqués), les verdicts du contrôleur et du juge avec leurs
   preuves, les gestes, l'étiquette et les réponses du lecteur ;
-- les graines ;
-- les résultats du groupe témoin.
+- les graines.
 
 Seulement si l'examen est réussi, la première version « standard » de vak est publiée, avec l'état commité de chaque
 essai.

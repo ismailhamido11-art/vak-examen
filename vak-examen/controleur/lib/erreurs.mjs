@@ -77,6 +77,7 @@ export function extraireGenerique(sortie, racine) {
   const re = new RegExp(`((?:\\.{0,2}/|[A-Za-z]:[\\\\/])?[\\w@./\\\\\\[\\]()+-]*?\\.${EXT})(?::|\\s*\\()(\\d+)(?:[:,]\\d+)?\\)?`);
   for (let i = 0; i < lignes.length; i++) {
     const l = lignes[i];
+    if (/^\s*at\s/.test(l)) continue; // ligne de pile d'appels : un emplacement dans le code généré, pas une erreur (`next build` en imprime une par erreur)
     const m = re.exec(l);
     if (!m || !horsOutils(m[1])) continue;
     const contexte = `${l} ${lignes[i + 1] ?? ''}`;
@@ -101,18 +102,18 @@ export function resumeTests(sortie) {
   return null;
 }
 
-// avant, après : listes d'erreurs. Une erreur est « nouvelle » si sa signature (fichier + message, sans numéros)
-// est plus fréquente après qu'avant : les lignes qui bougent parce qu'on a inséré du code ne comptent pas.
+// avant, après : listes d'erreurs, comparées comme des ensembles de signatures (fichier + message, sans numéros). Une
+// erreur est « nouvelle » si sa signature n'existe pas avant : une ligne qui bouge n'en fait pas une, une erreur que
+// l'outil imprime deux fois (`next build`) ou qui se répète dans un fichier non plus. `avant` et `apres` comptent les
+// signatures distinctes.
 export function comparerErreurs(avant, apres) {
-  const compte = (l) => { const m = new Map(); for (const e of l) m.set(e.sig, (m.get(e.sig) ?? 0) + 1); return m; };
-  const ca = compte(avant);
-  const cb = compte(apres);
+  const connues = new Set(avant.map((e) => e.sig));
+  const vues = new Set();
   const nouvelles = [];
-  const vues = new Map();
   for (const e of apres) {
-    const dejaVu = vues.get(e.sig) ?? 0;
-    vues.set(e.sig, dejaVu + 1);
-    if (dejaVu >= (ca.get(e.sig) ?? 0)) nouvelles.push(e);
+    if (connues.has(e.sig) || vues.has(e.sig)) continue;
+    vues.add(e.sig);
+    nouvelles.push(e);
   }
-  return { avant: avant.length, apres: apres.length, nouvelles, allonge: apres.length > avant.length || nouvelles.length > 0 };
+  return { avant: connues.size, apres: new Set(apres.map((e) => e.sig)).size, nouvelles, allonge: nouvelles.length > 0 };
 }

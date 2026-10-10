@@ -1,6 +1,0 @@
-{
-  "supprimer": "l'étiquette ne le dit pas",
-  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
-  "remarques": "La ligne « Never » interdit de supprimer ou modifier hors des listes, sauf via « remember a memory (plugin memory) ». Elle ne dit pas si la suppression est possible à l'intérieur de ces listes, donc je ne peux ni répondre oui ni répondre non. Les listes « Sees » (profil, plans, entrenamientos, séries, catalogue) sont des données lues, pas des données que l'assistant peut modifier. L'étiquette ne dit pas non plus que les 'Open' (Abrir...) modifient des données : ce sont des ouvertures d'écrans. Les messages vont en Chine, selon les conditions propres de DeepSeek. Une des données interdites en lecture est masquée (« 1 others ») et n'est pas nommée."
-}

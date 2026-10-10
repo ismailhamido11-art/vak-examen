@@ -1,6 +1,0 @@
-$ npm ci
-(dossier : /work/temoin_workout_plan_companion/apres/mobile)
-
-npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-
-added 825 packages in 18s
