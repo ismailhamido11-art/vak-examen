@@ -1,0 +1,23 @@
+{
+  "id": "pups_supabase_2",
+  "etat_commite": "64f44e7f3b6c8de6e8130b25e5c29fa0cd5f4ba8",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions, l'assistant n'appelle aucune fonction de l'app",
+      "agent.ts:17-69 : aucune règle create ni update sur les 3 tables (lecture seule)",
+      "agent.ts:70 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:70, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

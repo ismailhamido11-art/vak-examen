@@ -1,0 +1,272 @@
+{
+  "id": "agence_1",
+  "verdict": "échec",
+  "raisons": [
+    "vérification typecheck pire qu'avant : 1 nouvelle(s) ligne(s) d'erreur dans les fichiers ou la configuration changés par l'essai"
+  ],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [],
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/agence.bundle",
+  "commit": "fed608276a1fd66abfd4e6f24b84d08e8f5a9876",
+  "prepare": "c19dc4178f6897696bb17703b15764ac11834286",
+  "head": "b9aeb65065e30e3e1d4f285b33abf0937335d60c",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "b9aeb65065e30e3e1d4f285b33abf0937335d60c",
+      "date": "2026-10-10T18:02:57+00:00",
+      "sujet": "Assistant vak : bouton flottant, réglages, calibrage et preuve à deux comptes"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "c19dc4178f6897696bb17703b15764ac11834286",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.26.1.tgz",
+      "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.26.1.tgz",
+        "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+      }
+    ],
+    "vakInstalle": "0.26.1"
+  },
+  "controle": {
+    "debut": "2026-10-10T18:03:52.113Z",
+    "fin": "2026-10-10T18:04:45.202Z",
+    "duree_s": 53,
+    "node": "v22.22.0"
+  },
+  "vak": {
+    "test": {
+      "commande": "vak test",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "vak test : tout est vert [code 0]",
+      "signaux": []
+    },
+    "localdb": {
+      "commande": "vak localdb",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "base locale vak_local_ace0f8 prête : 6 migration(s) appliquée(s) [code 0]",
+      "signaux": []
+    },
+    "doctor": {
+      "commande": "vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_ace0f8'",
+      "code": 0,
+      "duree_s": 14,
+      "resume": "doctor : aucun échec, mais des avertissements (!) à lire [code 0]",
+      "signaux": [
+        "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements (tables.agencies : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « agencies_select » : équipe ou rôle ? sinon owner: \"created_by\" ; tables.agency_members : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « members_select » : équipe ou rôle ? sinon owner: \"user_id\" ; tables.agency_invitations : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « invitations_select » : équipe ou rôle ? sinon owner: \"invited_by\" ; tables.trips : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « trips_select » : équipe ou rôle ? sinon owner: \"created_by\" ; tables.bookings : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « bookings_select » : équipe ou rôle ? sinon owner: \"assigned_to\" ; tables.bookings.update : la politique « bookings_select » de l'app ouvre la lecture autrement que par « assigned_to » (équipe, rôle…), qui n'est donc pas devinée propriétaire : écriture sous la seule RLS de l'app, toujours avec « Valider » ; permise si vak prove prouve que l'assistant de A n'écrit rien chez B (sinon doctor VAK015 ✗))",
+        "! VAK108 colonnes qui décident des droits (avertissement) (agencies.name : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier ; agencies.created_by : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier ; agencies.created_at : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier ; agency_members.role : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier ; agency_members.created_at : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier ; trips.agency_id : modifiable par l'utilisateur et lue par la politique « trips_select » : elle décide qui voit la ligne ; bookings.agency_id : modifiable par l'utilisateur et lue par la politique « bookings_select » : elle décide qui voit la ligne)"
+      ]
+    },
+    "localdb-drop": {
+      "commande": "vak localdb --drop",
+      "code": 0,
+      "duree_s": 0,
+      "resume": "base locale vak_local_ace0f8 supprimée [code 0]",
+      "signaux": []
+    },
+    "prove": {
+      "commande": "vak prove",
+      "code": 0,
+      "duree_s": 3,
+      "resume": "preuve à deux comptes : éprouvé (5 éprouvée(s), 0 en échec, 0 non prouvée(s) ; 229 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]",
+      "signaux": []
+    }
+  },
+  "preuve": {
+    "commite": {
+      "verdict": "éprouvé",
+      "vak": "0.26.1",
+      "at": "2026-10-10T18:02:12.986Z",
+      "tables": {
+        "agencies": "éprouvé",
+        "agency_invitations": "éprouvé",
+        "agency_members": "éprouvé",
+        "bookings": "éprouvé",
+        "trips": "éprouvé"
+      },
+      "fonctions": {}
+    },
+    "controle": {
+      "verdict": "éprouvé",
+      "vak": "0.26.1",
+      "at": "2026-10-10T18:02:12.986Z",
+      "tables": {
+        "agencies": "éprouvé",
+        "agency_invitations": "éprouvé",
+        "agency_members": "éprouvé",
+        "bookings": "éprouvé",
+        "trips": "éprouvé"
+      },
+      "fonctions": {}
+    }
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 16,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pire",
+      "detail": "1 nouvelle(s) ligne(s) d'erreur dans les fichiers ou la configuration changés par l'essai",
+      "avant": {
+        "commande": "tsc --noEmit",
+        "code": 2,
+        "duree_s": 2,
+        "erreurs": 7,
+        "fin": [
+          "app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.",
+          "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+          "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+        ]
+      },
+      "apres": {
+        "commande": "tsc --noEmit",
+        "code": 2,
+        "duree_s": 3,
+        "erreurs": 7,
+        "fin": [
+          "app/layout.tsx(37,50): error TS2304: Cannot find name 'LayoutProps'.",
+          "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+          "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+        ]
+      },
+      "nouvelles": [
+        "app/layout.tsx(37,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "imputables": [
+        "app/layout.tsx(37,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "disparues": 1
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 3,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "absent",
+      "raison": "pas de script test"
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run build",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run build",
+        "code": 0,
+        "duree_s": 13,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          413,
+          437
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A .agents/skills/vak/SKILL.md",
+      "A .agents/skills/vak/references/calibration.md",
+      "A .agents/skills/vak/references/features.md",
+      "A .agents/skills/vak/references/guardrails.md",
+      "A .agents/skills/vak/references/local-first.md",
+      "A .agents/skills/vak/references/ui.md",
+      "A .claude/skills/vak/SKILL.md",
+      "A .claude/skills/vak/references/calibration.md",
+      "A .claude/skills/vak/references/features.md",
+      "A .claude/skills/vak/references/guardrails.md",
+      "A .claude/skills/vak/references/local-first.md",
+      "A .claude/skills/vak/references/ui.md",
+      "A AGENTS.md",
+      "A CLAUDE.md",
+      "A app/assistant/assistant.tsx",
+      "A app/assistant/page.tsx",
+      "A lib/vak.ts",
+      "M package-lock.json",
+      "M package.json",
+      "A supabase/.gitignore",
+      "A supabase/config.toml",
+      "A supabase/functions/vak/agent.ts",
+      "A supabase/functions/vak/deno.json",
+      "A supabase/functions/vak/index.ts",
+      "A supabase/functions/vak/schema.gen.ts",
+      "A supabase/functions/vak/tsconfig.json",
+      "A supabase/functions/vak/vak-proof.json",
+      "A supabase/functions/vak/vak-server.mjs",
+      "A supabase/functions/vak/vak.lock.json",
+      "A supabase/migrations/20261010175856_vak_0001_core.sql",
+      "A supabase/migrations/20261010175857_vak_0002_feedback.sql",
+      "A supabase/migrations/20261010175858_vak_0003_history.sql",
+      "A supabase/migrations/20261010175859_vak_0004_quota_erase.sql",
+      "M tsconfig.json",
+      "A vendor/vak/vak-agent-0.26.1.tgz"
+    ],
+    "aRelire": [
+      "A app/assistant-button.tsx (branchement : cite vak)",
+      "M app/layout.tsx (branchement : cite vak)",
+      "A app/reglages/agent-settings.tsx (branchement : cite vak)",
+      "A app/reglages/page.tsx",
+      "A lib/supabase/client.ts"
+    ]
+  }
+}

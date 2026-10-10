@@ -1,0 +1,19 @@
+{
+  "id": "pups_supabase_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur>`",
+      "note": "avec les valeurs de sa ligne, que demande aussi « Quel fournisseur de modèle pour `connect` ? » : comptée une fois"
+    }
+  ],
+  "non_comptes": [
+    "« Quel fournisseur de modèle pour `connect` ? » (rubrique « Questions que j'aurais posées ») : la valeur `--provider` de la même ligne de commande",
+    "« L'assistant doit-il pouvoir ajouter au panier ? J'ai supposé que non, car le panier est local à l'app. » (rubrique « Questions que j'aurais posées ») : tranché par l'agent, avec sa raison ; l'assistant marche sans réponse, comme les questions tranchées de fonctions_8. Compté par un lecteur plus strict (dans le doute), le total serait 2, sous le seuil",
+    "« La base de test `vak_local_2e61d8`, créée par `localdb`. Pour la supprimer : `node node_modules/@vak/agent/bin/vak.mjs localdb --drop`. » : ménage facultatif (comme fonctions_2)",
+    "« `puppies` est lisible sans compte (catalogue public), ce qui est voulu. » et « Le fichier `supabase/migrations/001_init.sql` de l'app n'a pas de nom horodaté » : signalements, aucune action demandée",
+    "« Choix que j'ai tranchés (retour arrière : modifier `agent.ts`) » : choix faits par l'agent"
+  ]
+}

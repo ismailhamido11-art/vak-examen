@@ -1,0 +1,16 @@
+$ vak test
+(dossier : /work/compteurs_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (2 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 9 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1682 tokens (maximum 5000)
+✓ evals 0 évaluations bien formées
+✓ tour read_data meters exécuté sans validation → {"table":"meters","label":"Compteurs","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000…
+✓ tour read_data readings exécuté sans validation → {"table":"readings","label":"Relevés","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000…
+✓ tour open_screen nouveau_releve exécuté sans validation → {"href":"/reading/edit?meterId=test&date=test&value=test","label":"Nouveau relevé"}
+✓ tour open_screen accueil exécuté sans validation → {"href":"/","label":"Mes compteurs"}
+✓ tour open_screen consommation exécuté sans validation → {"href":"/consumption","label":"Consommation du mois"}
+✓ tour open_screen compteur exécuté sans validation → {"href":"/meter/00000000-0000-4000-8000-000000000000","label":"Relevés"}
+vak test : tout est vert [code 0]

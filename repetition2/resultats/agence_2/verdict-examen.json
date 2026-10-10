@@ -1,0 +1,478 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "agence_2",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 413
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 11
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.26.1.tgz sha256 = préparation",
+        "2 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "agency_invitations étroit (journal ligne 104)"
+      ],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-10T19:11:46.736Z",
+      "demande": "2026-10-10T19:11:44.216Z",
+      "premierVakQuiRendZero": "2026-10-10T19:17:02.732Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 5.27,
+      "ligne": 120
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 34811,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 0 tables, 8 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (2)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-10 : éprouvé (5 table(s), 229 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - agencies.name : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier",
+            "    - agencies.created_by : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier",
+            "    - agencies.created_at : modifiable par l'utilisateur ; la politique « agencies_select » passe la ligne à une fonction : à vérifier",
+            "    - agency_members.role : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier",
+            "    - agency_members.created_at : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier",
+            "    - trips.agency_id : modifiable par l'utilisateur et lue par la politique « trips_select » : elle décide qui voit la ligne",
+            "    - bookings.agency_id : modifiable par l'utilisateur et lue par la politique « bookings_select » : elle décide qui voit la ligne",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.26.1, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 0 tables, 8 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (2)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-10 : éprouvé (5 table(s), 229 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 7
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 7
+          },
+          "erreurs": {
+            "avant": 7,
+            "apres": 7,
+            "nouvelles": []
+          },
+          "etat": "identique (code 2)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 11,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/agence_2",
+    "preparation": {
+      "id": "agence_2",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/agence.bundle",
+      "commit": "fed608276a1fd66abfd4e6f24b84d08e8f5a9876",
+      "prepare": "c19dc4178f6897696bb17703b15764ac11834286",
+      "archive": {
+        "nom": "vak-agent-0.26.1.tgz",
+        "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+      },
+      "debut": "2026-10-10T19:11:13Z"
+    },
+    "tip": "51ce46e080481efecf321eada7d3aac34373c26d",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 45,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 5,
+      "tablesAMoi": 5,
+      "aMoiEprouvees": 5,
+      "ignorees": 8,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "c19dc4178f6897696bb17703b15764ac11834286",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 361 packages in 9s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 7,
+              "liste": [
+                "app/agencies/[agencyId]/members/page.tsx:9 app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/page.tsx:7 app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/trips/[tripId]/page.tsx:7 app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.",
+                "app/bookings/page.tsx:19 app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.",
+                "app/layout.tsx:27 app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/login/page.tsx:3 app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+                "app/page.tsx:6 app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+              ],
+              "fin": [
+                "app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.",
+                "app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.",
+                "app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+                "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "├   /agencies/[agencyId]",
+                "│ └ ◐ /agencies/[agencyId]",
+                "├   /agencies/[agencyId]/members",
+                "│ └ ◐ /agencies/[agencyId]/members",
+                "├   /agencies/[agencyId]/trips/[tripId]",
+                "│ └ ◐ /agencies/[agencyId]/trips/[tripId]",
+                "├ ƒ /auth/callback",
+                "├ ◐ /bookings",
+                "└ ◐ /login",
+                "ƒ Proxy (Middleware)",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content",
+                "ƒ  (Dynamic)            server-rendered on demand"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 361 packages in 9s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "51ce46e080481efecf321eada7d3aac34373c26d",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 362 packages in 10s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 7,
+              "liste": [
+                "app/agencies/[agencyId]/members/page.tsx:9 app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/page.tsx:7 app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/trips/[tripId]/page.tsx:7 app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.",
+                "app/bookings/page.tsx:19 app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.",
+                "app/layout.tsx:36 app/layout.tsx(36,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/login/page.tsx:3 app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+                "app/page.tsx:6 app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+              ],
+              "fin": [
+                "app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.",
+                "app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.",
+                "app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.",
+                "app/layout.tsx(36,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+                "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 11,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "├   /agencies/[agencyId]/members",
+                "│ └ ◐ /agencies/[agencyId]/members",
+                "├   /agencies/[agencyId]/trips/[tripId]",
+                "│ └ ◐ /agencies/[agencyId]/trips/[tripId]",
+                "├ ◐ /assistant",
+                "├ ƒ /auth/callback",
+                "├ ◐ /bookings",
+                "├ ◐ /login",
+                "└ ◐ /reglages",
+                "ƒ Proxy (Middleware)",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content",
+                "ƒ  (Dynamic)            server-rendered on demand"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 362 packages in 10s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-10T19:19:48.278Z"
+}

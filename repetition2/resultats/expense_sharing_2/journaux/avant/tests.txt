@@ -1,0 +1,15 @@
+$ npm run test
+(dossier : /work/expense_sharing_2/avant)
+
+
+> expense-sharing@1.0.0 test
+> jest
+
+PASS src/lib/__tests__/split.test.ts
+PASS src/lib/__tests__/debt.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        2.693 s
+Ran all test suites.

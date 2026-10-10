@@ -1,0 +1,17 @@
+{
+  "id": "budget_web_app_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origine du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne, que demande aussi « Quel fournisseur de modèle utiliser, et quelles origines autoriser ? » : comptée une fois ; « Elle propose ensuite la production » : la même exécution"
+    }
+  ],
+  "non_comptes": [
+    "« Questions que j'aurais posées » (fournisseur et origines, écriture, garde-fous financiers), suivies de « Je les ai tranchées comme décrit plus haut, sans attendre de réponse. » : la première est la valeur de la commande connect ; les deux autres sont tranchées par l'agent (« aucune écriture ni fonction », « pas de garde-fous (aucune règle validée par un professionnel) »), avec leur retour arrière. Compté par un lecteur plus strict (les garde-fous, comme « à faire valider par un professionnel » à budget_app_2), le total serait 2, sous le seuil",
+    "« À signaler : `doctor` avertit que des colonnes modifiables par l'utilisateur […] sont lues par les politiques RLS. C'est voulu pour les espaces partagés. » : signalement, aucune action demandée",
+    "« Tables laissées de côté (plafond de 8 tables) » : choix fait par l'agent, dit à l'humain (règle, point 4 : permis)"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "my_saas_boilerplate_1",
+  "etat_commite": "59acf23e76ed8807500da39bf46caa8a52b75808",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:48 : functions: {} ; les 5 fonctions de l'app sont dans ignore (agent.ts:62-66) : l'assistant n'en appelle aucune",
+      "agent.ts:22-46 : aucune règle create ni update sur les 2 tables (lecture seule)",
+      "agent.ts:68 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:68, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

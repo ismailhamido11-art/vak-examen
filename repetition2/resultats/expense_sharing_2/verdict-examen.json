@@ -1,0 +1,550 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "expense_sharing_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 889
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 40
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.26.1.tgz sha256 = préparation",
+        "8 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "settlements non prouvé (journal ligne 98)",
+        "settlements non prouvé (journal ligne 170)"
+      ],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 22040,
+          "derniereLigne": null,
+          "fin": [
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 44 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✓ groups éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✓ profiles éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - table du compte : l'assistant ne lit que la ligne de A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 2 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✗ settlements non prouvé",
+            "    - graine impossible : 23514 new row for relation \"settlements\" violates check constraint \"settlements_distinct_members\"",
+            "    - totaux de read_data non comparés (verdict non prouvé)",
+            "    → graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve ; ligne de A cachée par l'app (la note cite sa règle de lecture) : calibre la table de membres qu'elle lit, ou, lue des seuls administrateurs, dis-le à l'humain",
+            "base locale vak_prove_47c6c164 construite (12 migration(s)) puis supprimée",
+            "vak prove : preuve à deux comptes : non prouvé (5 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 140 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+          ],
+          "controles": [
+            "✓ expense_splits éprouvé",
+            "✓ expenses éprouvé",
+            "✓ group_members éprouvé",
+            "✓ groups éprouvé",
+            "✓ profiles éprouvé",
+            "✗ settlements non prouvé"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 20,
+            "erreurs": 8,
+            "avertissements": {
+              "problemes": 10,
+              "erreurs": 8,
+              "avertissements": 2
+            }
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 14,
+            "erreurs": 8,
+            "avertissements": {
+              "problemes": 10,
+              "erreurs": 8,
+              "avertissements": 2
+            }
+          },
+          "erreurs": {
+            "avant": 6,
+            "apres": 6,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "test": {
+          "avant": {
+            "commande": "npm run test",
+            "source": "script « test » : jest",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 20
+            }
+          },
+          "apres": {
+            "commande": "npm run test",
+            "source": "script « test » : jest",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 20
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ settlements non prouvé",
+        "✗ settlements non prouvé",
+        "- graine impossible : 23514 new row for relation \"settlements\" violates check constraint \"settlements_distinct_members\"",
+        "- totaux de read_data non comparés (verdict non prouvé)",
+        "→ graine refusée (la note nomme la colonne) : valeur d'essai dans values d'agent.ts ; jamais ignore pour faire passer la preuve ; ligne de A cachée par l'app (la note cite sa règle de lecture) : calibre la table de membres qu'elle lit, ou, lue des seuls administrateurs, dis-le à l'humain",
+        "base locale vak_prove_47c6c164 construite (12 migration(s)) puis supprimée",
+        "vak prove : preuve à deux comptes : non prouvé (5 éprouvée(s), 0 en échec, 1 non prouvée(s) ; 140 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+      ]
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/expense_sharing_2",
+    "preparation": {
+      "id": "expense_sharing_2",
+      "depot": "https://github.com/itejaskumbhar/Expense-Sharing",
+      "commit": "8e6020c14ba07f0fa55fb4883efa906be98b0a08",
+      "prepare": "38ef6363b96c8d34f9ad5e00af961bf629beeb33",
+      "archive": {
+        "nom": "vak-agent-0.26.1.tgz",
+        "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+      },
+      "debut": "2026-10-10T19:28:51Z"
+    },
+    "tip": "66cf008eeb83d942da29bfd766dc0922979918e7",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 64,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 6,
+      "tablesAMoi": 6,
+      "aMoiEprouvees": 6,
+      "ignorees": 7,
+      "verdictDuRecu": "non prouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "38ef6363b96c8d34f9ad5e00af961bf629beeb33",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+              "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+              "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+              "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+              "added 879 packages in 14s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> expense-sharing@1.0.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : expo lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 20,
+              "erreurs": 8,
+              "avertissements": {
+                "problemes": 10,
+                "erreurs": 8,
+                "avertissements": 2
+              },
+              "liste": [
+                "src/app/(app)/group/[id]/add-expense.tsx:57 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/add-expense.tsx 57:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/add-expense.tsx:64 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/add-expense.tsx 64:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/index.tsx:56 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/index.tsx 56:21  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/settle.tsx:48 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/settle.tsx 48:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/settle.tsx:124 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/settle.tsx 124:14  error  Error: Cannot create components during render",
+                "src/app/(app)/group/[id]/settle.tsx:129 /srv/verdicts/expense_sharing_2/clones/prep/src/app/(app)/group/[id]/settle.tsx 129:14  error  Error: Cannot create components during render",
+                "src/components/SplitEditor.tsx:116 /srv/verdicts/expense_sharing_2/clones/prep/src/components/SplitEditor.tsx 116:3  error  Error: Cannot access refs during render",
+                "src/hooks/use-color-scheme.web.ts:11 /srv/verdicts/expense_sharing_2/clones/prep/src/hooks/use-color-scheme.web.ts 11:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders"
+              ],
+              "fin": [
+                "* Subscribe for updates from some external system, calling setState in a callback function when external state changes.",
+                "Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).",
+                "/srv/verdicts/expense_sharing_2/clones/prep/src/hooks/use-color-scheme.web.ts:11:5",
+                "   9 |",
+                "  10 |   useEffect(() => {",
+                "> 11 |     setHasHydrated(true);",
+                "     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect",
+                "  12 |   }, []);",
+                "  13 |",
+                "  14 |   const colorScheme = useRNColorScheme();  react-hooks/set-state-in-effect",
+                "✖ 10 problems (8 errors, 2 warnings)",
+                "  0 errors and 2 warnings potentially fixable with the `--fix` option."
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : jest",
+              "code": 0,
+              "delai": false,
+              "secondes": 4,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 20
+              },
+              "liste": [],
+              "fin": [
+                "> expense-sharing@1.0.0 test",
+                "> jest",
+                "PASS src/lib/__tests__/split.test.ts",
+                "PASS src/lib/__tests__/debt.test.ts",
+                "Test Suites: 2 passed, 2 total",
+                "Tests:       20 passed, 20 total",
+                "Snapshots:   0 total",
+                "Time:        2.995 s",
+                "Ran all test suites."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "added 879 packages in 14s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "66cf008eeb83d942da29bfd766dc0922979918e7",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+              "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+              "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+              "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+              "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+              "added 880 packages in 13s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> expense-sharing@1.0.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : expo lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 14,
+              "erreurs": 8,
+              "avertissements": {
+                "problemes": 10,
+                "erreurs": 8,
+                "avertissements": 2
+              },
+              "liste": [
+                "src/app/(app)/group/[id]/add-expense.tsx:57 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/add-expense.tsx 57:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/add-expense.tsx:64 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/add-expense.tsx 64:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/index.tsx:56 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/index.tsx 56:21  error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/settle.tsx:48 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/settle.tsx 48:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders",
+                "src/app/(app)/group/[id]/settle.tsx:124 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/settle.tsx 124:14  error  Error: Cannot create components during render",
+                "src/app/(app)/group/[id]/settle.tsx:129 /srv/verdicts/expense_sharing_2/clones/head/src/app/(app)/group/[id]/settle.tsx 129:14  error  Error: Cannot create components during render",
+                "src/components/SplitEditor.tsx:116 /srv/verdicts/expense_sharing_2/clones/head/src/components/SplitEditor.tsx 116:3  error  Error: Cannot access refs during render",
+                "src/hooks/use-color-scheme.web.ts:11 /srv/verdicts/expense_sharing_2/clones/head/src/hooks/use-color-scheme.web.ts 11:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders"
+              ],
+              "fin": [
+                "* Subscribe for updates from some external system, calling setState in a callback function when external state changes.",
+                "Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).",
+                "/srv/verdicts/expense_sharing_2/clones/head/src/hooks/use-color-scheme.web.ts:11:5",
+                "   9 |",
+                "  10 |   useEffect(() => {",
+                "> 11 |     setHasHydrated(true);",
+                "     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect",
+                "  12 |   }, []);",
+                "  13 |",
+                "  14 |   const colorScheme = useRNColorScheme();  react-hooks/set-state-in-effect",
+                "✖ 10 problems (8 errors, 2 warnings)",
+                "  0 errors and 2 warnings potentially fixable with the `--fix` option."
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : jest",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 20
+              },
+              "liste": [],
+              "fin": [
+                "> expense-sharing@1.0.0 test",
+                "> jest",
+                "PASS src/lib/__tests__/split.test.ts",
+                "PASS src/lib/__tests__/debt.test.ts",
+                "Test Suites: 2 passed, 2 total",
+                "Tests:       20 passed, 20 total",
+                "Snapshots:   0 total",
+                "Time:        2.564 s",
+                "Ran all test suites."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting «e-mail»",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+          "added 880 packages in 13s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-10T19:37:16.264Z"
+}

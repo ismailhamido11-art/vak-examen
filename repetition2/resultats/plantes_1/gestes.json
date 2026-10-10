@@ -1,0 +1,17 @@
+{
+  "id": "plantes_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines du site) ; « Elle propose ensuite la production dans la foulée » : la même exécution, pas une seconde commande"
+    }
+  ],
+  "non_comptes": [
+    "« Quel fournisseur de modèle ? Il reste à choisir au moment de `connect`. » : la valeur `--provider` de la même ligne de commande (règle : « avec les valeurs que sa ligne demande »)",
+    "« Quels écrits ouvrir à l'assistant ? J'ai choisi plantes (création et modification) et arrosages (création seulement). Retour arrière : … » : question tranchée par l'agent, avec son retour arrière ; aucune action demandée",
+    "« Constat à vous signaler : tous les contrôles RLS sont verts, sans aucun « ! rls » ni « ! rien à éprouver ». » : signalement, aucune action demandée"
+  ]
+}

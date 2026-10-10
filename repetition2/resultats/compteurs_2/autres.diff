@@ -1,0 +1,139 @@
+diff --git a/src/app/(app)/index.tsx b/src/app/(app)/index.tsx
+index d33481b..ff0991f 100644
+--- a/src/app/(app)/index.tsx
++++ b/src/app/(app)/index.tsx
+@@ -37,6 +37,7 @@ export default function MetersScreen() {
+   return (
+     <Screen>
+       <Button title="Consommation du mois" onPress={() => router.push('/consumption')} />
++      <Button title="Réglages de l'assistant" variant="secondary" onPress={() => router.push('/reglages')} />
+       <ErrorText message={error} />
+       {loading && <Loading />}
+       {meters?.length === 0 && <ThemedText>Aucun compteur pour l&apos;instant.</ThemedText>}
+diff --git a/src/app/(app)/reading/edit.tsx b/src/app/(app)/reading/edit.tsx
+index 81f006b..7457f86 100644
+--- a/src/app/(app)/reading/edit.tsx
++++ b/src/app/(app)/reading/edit.tsx
+@@ -8,9 +8,14 @@ import { isValidIsoDate, parseValue, toIsoDate } from '@/lib/format';
+ 
+ /** Ajout d'un relevé (`meterId`) ou modification d'un relevé existant (`readingId`). */
+ export default function ReadingFormScreen() {
+-  const { meterId, readingId } = useLocalSearchParams<{ meterId: string; readingId?: string }>();
+-  const [date, setDate] = useState(toIsoDate(new Date()));
+-  const [value, setValue] = useState('');
++  const { meterId, readingId, date: presetDate, value: presetValue } = useLocalSearchParams<{
++    meterId: string;
++    readingId?: string;
++    date?: string;
++    value?: string;
++  }>();
++  const [date, setDate] = useState(presetDate ?? toIsoDate(new Date()));
++  const [value, setValue] = useState(presetValue ?? '');
+   const [busy, setBusy] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+ 
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index d4e7a6d..b39c165 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,6 +1,7 @@
+ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+ import { useColorScheme } from 'react-native';
+ 
++import { AssistantButton } from '@/components/assistant-button';
+ import { Loading } from '@/components/ui';
+ import { AuthProvider, useAuth } from '@/lib/auth';
+ 
+@@ -8,14 +9,19 @@ function Routes() {
+   const { session, loading } = useAuth();
+   if (loading) return <Loading />;
+   return (
+-    <Stack screenOptions={{ headerBackTitle: 'Retour' }}>
++    <>
++      <Stack screenOptions={{ headerBackTitle: 'Retour' }}>
+       <Stack.Protected guard={!session}>
+         <Stack.Screen name="login" options={{ title: 'Connexion' }} />
+       </Stack.Protected>
+       <Stack.Protected guard={!!session}>
+         <Stack.Screen name="(app)" options={{ headerShown: false }} />
++        <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++        <Stack.Screen name="reglages" options={{ title: "Réglages de l'assistant" }} />
+       </Stack.Protected>
+     </Stack>
++    {session ? <AssistantButton /> : null}
++    </>
+   );
+ }
+ 
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..444de91
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function ReglagesScreen() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/components/assistant-button.tsx b/src/components/assistant-button.tsx
+new file mode 100644
+index 0000000..13c6d99
+--- /dev/null
++++ b/src/components/assistant-button.tsx
+@@ -0,0 +1,41 @@
++import { router, usePathname } from 'expo-router';
++import { Pressable, StyleSheet } from 'react-native';
++
++import { ThemedText } from '@/components/themed-text';
++
++const HIDDEN_ON = ['/assistant', '/reglages', '/login'];
++
++/** Bouton flottant : ouvre l'assistant depuis tous les écrans connectés. */
++export function AssistantButton() {
++  const pathname = usePathname();
++  if (HIDDEN_ON.includes(pathname)) return null;
++  return (
++    <Pressable
++      accessibilityRole="button"
++      accessibilityLabel="Ouvrir l'assistant"
++      onPress={() => router.push('/assistant')}
++      style={styles.fab}>
++      <ThemedText type="smallBold" style={styles.label}>
++        Assistant
++      </ThemedText>
++    </Pressable>
++  );
++}
++
++const styles = StyleSheet.create({
++  fab: {
++    position: 'absolute',
++    right: 16,
++    bottom: 24,
++    paddingHorizontal: 18,
++    paddingVertical: 14,
++    borderRadius: 28,
++    backgroundColor: '#208AEF',
++    elevation: 6,
++    shadowColor: '#000',
++    shadowOpacity: 0.25,
++    shadowRadius: 6,
++    shadowOffset: { width: 0, height: 3 },
++  },
++  label: { color: '#ffffff' },
++});
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

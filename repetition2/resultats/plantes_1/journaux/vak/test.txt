@@ -1,0 +1,17 @@
+$ vak test
+(dossier : /work/plantes_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (2 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 8 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1705 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data plants exécuté sans validation → {"table":"plants","label":"Plantes","total":1,"shown":1,"complete":true,"rows":[{"id":"p1","name":"Ficus","species":n…
+✓ tour read_data waterings exécuté sans validation → {"table":"waterings","label":"Arrosages","total":1,"shown":1,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour create_plants validation demandée, puis une ligne écrite → {"saved":true,"table":"plants","id":"9cccbabb-1848-4413-a583-adbcd282b257","title":"name 5"}
+✓ tour update_plants validation demandée, puis une ligne écrite → {"saved":true,"table":"plants","id":"p1","title":"name 6"}
+✓ tour create_waterings validation demandée, puis une ligne écrite → {"saved":true,"table":"waterings","id":"0fca27b0-e469-4036-8fe1-23d017e50832"}
+✓ tour open_screen plante exécuté sans validation → {"href":"/plant/p1","label":"Fiche de la plante"}
+✓ tour open_screen liste exécuté sans validation → {"href":"/","label":"Mes plantes"}
+vak test : tout est vert [code 0]

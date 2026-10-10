@@ -1,0 +1,312 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/pups_supabase_2/apres",
+  "lecture": {
+    "fichier": "/work/pups_supabase_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.puppies",
+      "public.orders",
+      "public.profiles"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.profiles",
+      "colonne": "id",
+      "sql_en_tant_que_a": 1,
+      "attendu_json": 1,
+      "accord": true
+    },
+    {
+      "table": "public.orders",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 5,
+      "attendu_json": 5,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.profiles",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my profiles are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-33a8a523-7a2c-4297-a95f-c8ee7f85b717",
+        "question": "How many of my profiles are there?",
+        "texte": "You have **1 profile** — it's your own account: Alice Martin (alice.martin@example.test), member since October 10, 2026. 🐾",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "profiles",
+              "label": "Profile",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "b9c252c9-1967-40a7-8ed6-de189a88676f",
+                  "name": "Alice Martin",
+                  "email": "alice.martin@example.test",
+                  "created_at": "2026-10-10T19:43"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.profiles",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my profiles.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-c0848c86-4809-4eb2-88cf-ecf136ba27e3",
+        "question": "List my profiles.",
+        "texte": "Here's your account profile:\n\n- **Alice Martin** — alice.martin@example.test — member since 10 October 2026\n\nYou have just the one profile (it's your own account). Want me to open the puppy catalogue or your orders while you're here?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "profiles",
+              "label": "Profile",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "b9c252c9-1967-40a7-8ed6-de189a88676f",
+                  "name": "Alice Martin",
+                  "email": "alice.martin@example.test",
+                  "created_at": "2026-10-10T19:43"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 1,
+        "nombres_lus": [
+          2026,
+          1
+        ],
+        "ok": true,
+        "retenu": 1,
+        "source": "éléments de la liste",
+        "elements": 1
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.orders",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my orders are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-124311ff-4829-4332-b327-c1854a230507",
+        "question": "How many of my orders are there?",
+        "texte": "Vous avez **5 commandes** au total, Alice ! 🐾\n\nEn voici le détail :\n\n| Chiot | Montant | Statut | Date |\n|---|---|---|---|\n| Milo | 2 200,00 $ | payée | 18 juin 2026 |\n| Goldie | 1 800,00 $ | en attente | 2 mai 2026 |\n| Poppy | 1 950,00 $ | payée | 20 avril 2026 |\n| Milo | 2 200,00 $ | payée | 11 mars 2026 |\n| Goldie | 1 800,00 $ | payée | 3 février 2026 |\n\nSouhaitez-vous que je vous ouvre le catalogue ou votre panier pour continuer ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "orders",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "orders",
+              "label": "Orders",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "0be9e93b-f5fd-4ad4-b05b-83fdd5b60abc",
+                  "puppy_id": "Milo (id 70f8a019-4243-4dbb-8953-e259fd0a5b4c)",
+                  "amount_cents": 220000,
+                  "status": "paid",
+                  "created_at": "2026-06-18T11:00"
+                },
+                {
+                  "id": "cbfce7f6-4f81-4c5d-a4c6-61ea627a56e3",
+                  "puppy_id": "Goldie (id 11dbd9e5-a92f-4a4c-8a86-2488362b5a63)",
+                  "amount_cents": 180000,
+                  "status": "pending",
+                  "created_at": "2026-05-02T16:45"
+                },
+                {
+                  "id": "19298528-a403-426f-8ced-736e40599d92",
+                  "puppy_id": "Poppy (id 13d301c6-c737-4404-940a-14e6432cdecd)",
+                  "amount_cents": 195000,
+                  "status": "paid",
+                  "created_at": "2026-04-20T09:15"
+                },
+                {
+                  "id": "dd6890d3-5b01-468d-b21f-cafb546a35ca",
+                  "puppy_id": "Milo (id 70f8a019-4243-4dbb-8953-e259fd0a5b4c)",
+                  "amount_cents": 220000,
+                  "status": "paid",
+                  "created_at": "2026-03-11T14:30"
+                },
+                {
+                  "id": "9b9858bf-8ff2-4155-88b1-5aa14c957580",
+                  "puppy_id": "Goldie (id 11dbd9e5-a92f-4a4c-8a86-2488362b5a63)",
+                  "amount_cents": 180000,
+                  "status": "paid",
+                  "created_at": "2026-02-03T10:00"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          2200,
+          1800,
+          1950,
+          2200,
+          1800
+        ],
+        "ok": true,
+        "retenu": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.orders",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my orders.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ea110f2b-db25-4a82-8bd2-890b9d69d632",
+        "question": "List my orders.",
+        "texte": "Voici vos commandes, de la plus récente à la plus ancienne :\n\n| Chiot | Montant | Statut | Commandée le |\n|---|---|---|---|\n| Milo | $2,200.00 | payée | 18 juin 2026 |\n| Goldie | $1,800.00 | en attente | 2 mai 2026 |\n| Poppy | $1,950.00 | payée | 20 avr. 2026 |\n| Milo | $2,200.00 | payée | 11 mars 2026 |\n| Goldie | $1,800.00 | payée | 3 févr. 2026 |\n\nCela fait 5 commandes en tout. Souhaitez-vous ouvrir le détail d'un chiot ou aller au panier / paiement ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "orders",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "orders",
+              "label": "Orders",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "0be9e93b-f5fd-4ad4-b05b-83fdd5b60abc",
+                  "puppy_id": "Milo (id 70f8a019-4243-4dbb-8953-e259fd0a5b4c)",
+                  "amount_cents": 220000,
+                  "status": "paid",
+                  "created_at": "2026-06-18T11:00"
+                },
+                {
+                  "id": "cbfce7f6-4f81-4c5d-a4c6-61ea627a56e3",
+                  "puppy_id": "Goldie (id 11dbd9e5-a92f-4a4c-8a86-2488362b5a63)",
+                  "amount_cents": 180000,
+                  "status": "pending",
+                  "created_at": "2026-05-02T16:45"
+                },
+                {
+                  "id": "19298528-a403-426f-8ced-736e40599d92",
+                  "puppy_id": "Poppy (id 13d301c6-c737-4404-940a-14e6432cdecd)",
+                  "amount_cents": 195000,
+                  "status": "paid",
+                  "created_at": "2026-04-20T09:15"
+                },
+                {
+                  "id": "dd6890d3-5b01-468d-b21f-cafb546a35ca",
+                  "puppy_id": "Milo (id 70f8a019-4243-4dbb-8953-e259fd0a5b4c)",
+                  "amount_cents": 220000,
+                  "status": "paid",
+                  "created_at": "2026-03-11T14:30"
+                },
+                {
+                  "id": "9b9858bf-8ff2-4155-88b1-5aa14c957580",
+                  "puppy_id": "Goldie (id 11dbd9e5-a92f-4a4c-8a86-2488362b5a63)",
+                  "amount_cents": 180000,
+                  "status": "paid",
+                  "created_at": "2026-02-03T10:00"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 5,
+        "nombres_lus": [
+          2.2,
+          1.8,
+          1.95,
+          2.2,
+          1.8,
+          5
+        ],
+        "ok": true,
+        "retenu": 5,
+        "source": "éléments de la liste",
+        "elements": 5
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 6
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.profiles",
+        "lue": true
+      },
+      {
+        "table": "public.orders",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

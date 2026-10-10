@@ -1,0 +1,5 @@
+$ npm ci
+(dossier : /work/budget_web_app_1/avant)
+
+
+added 785 packages in 25s

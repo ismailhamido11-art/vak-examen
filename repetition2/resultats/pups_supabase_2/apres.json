@@ -1,0 +1,62 @@
+{
+  "dossier": "/work/pups_supabase_2/apres",
+  "commit": "64f44e7f3b6c8de6e8130b25e5c29fa0cd5f4ba8",
+  "debut": "2026-10-10T19:41:33.146Z",
+  "fin": "2026-10-10T19:41:43.106Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": false
+    }
+  ],
+  "journaux": "/work/pups_supabase_2/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/pups_supabase_2/apres",
+    "code": 0,
+    "duree_s": 10,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "added 603 packages in 9s"
+    ],
+    "journal": "/work/pups_supabase_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/pups_supabase_2/apres",
+      "code": 0,
+      "duree_s": 0,
+      "erreurs": [],
+      "fin": [
+        "> puppy-store@0.1.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/pups_supabase_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "absent": true,
+      "raison": "pas de script lint"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "absent": true,
+      "raison": "app Expo sans cible web : export sauté"
+    }
+  }
+}

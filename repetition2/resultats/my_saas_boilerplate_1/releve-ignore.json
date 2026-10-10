@@ -1,0 +1,76 @@
+{
+  "id": "my_saas_boilerplate_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "ad_banners",
+      "ligne": 50
+    },
+    {
+      "nom": "admin_analytics",
+      "ligne": 51
+    },
+    {
+      "nom": "admin_settings",
+      "ligne": 52
+    },
+    {
+      "nom": "api_keys",
+      "ligne": 53
+    },
+    {
+      "nom": "code_injections",
+      "ligne": 54
+    },
+    {
+      "nom": "feature_flags",
+      "ligne": 55
+    },
+    {
+      "nom": "payment_history",
+      "ligne": 56
+    },
+    {
+      "nom": "projects",
+      "ligne": 57
+    },
+    {
+      "nom": "social_presets",
+      "ligne": 58
+    },
+    {
+      "nom": "support_tickets",
+      "ligne": 59
+    },
+    {
+      "nom": "usage_tracking",
+      "ligne": 60
+    },
+    {
+      "nom": "watermark_templates",
+      "ligne": 61
+    },
+    {
+      "nom": "get_admin_analytics",
+      "ligne": 62
+    },
+    {
+      "nom": "get_user_plan_limits",
+      "ligne": 63
+    },
+    {
+      "nom": "is_admin",
+      "ligne": 64
+    },
+    {
+      "nom": "track_admin_metric",
+      "ligne": 65
+    },
+    {
+      "nom": "track_feature_usage",
+      "ligne": 66
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

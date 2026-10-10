@@ -1,0 +1,32 @@
+verdict plantes_2 : réussi
+{
+  "id": "plantes_2",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "2/2",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes plantes.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes arrosages.",
+        "attendu": 11,
+        "lu": 11,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

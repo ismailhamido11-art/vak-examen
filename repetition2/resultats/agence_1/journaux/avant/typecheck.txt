@@ -1,0 +1,10 @@
+$ tsc --noEmit
+(dossier : /work/agence_1/avant)
+
+app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.
+app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.
+app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.
+app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.
+app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.
+app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.
+app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'.

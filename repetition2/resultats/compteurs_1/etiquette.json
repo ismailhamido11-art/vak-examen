@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-10T18:15:07.665Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Compteurs (Nom, Type, Unité, Créé le) ; Relevés (Compteur, Date du relevé, Valeur relevée)",
+    "Peut proposer (après votre validation) : « Ajouter un relevé » (fonction de l'app) ; « Corriger un relevé » (fonction de l'app) ; « Créer ou modifier un compteur » (fonction de l'app) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Relevés du compteur, Consommation du mois, Nouveau relevé",
+    "Jamais : supprimer ou modifier hors de ces listes, sauf par « Ajouter un relevé » (fonction de l'app), « Corriger un relevé » (fonction de l'app), « Créer ou modifier un compteur » (fonction de l'app), retenir un souvenir (prise memory) ; appeler delete_reading",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:3912595d947b74ab763b53ef0501aa1cb014821dc0af68a8beb0079870c08f24",
+    "calibrage": "sha256:af7d6265fe491d8228f686094f95379b91d1ea7766ae74c9d351e827bdaa9f13"
+  }
+}

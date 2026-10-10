@@ -1,0 +1,47 @@
+{
+  "id": "agence_1",
+  "echecs_de_preuve": [
+    {
+      "table": "agency_invitations",
+      "verdict": "étroit",
+      "ligne": 104,
+      "texte": "✗ agency_invitations étroit"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "accept_invitations",
+      "ligne": 85
+    },
+    {
+      "nom": "agency_member_emails",
+      "ligne": 86
+    },
+    {
+      "nom": "agency_role",
+      "ligne": 87
+    },
+    {
+      "nom": "can_write_agency",
+      "ligne": 88
+    },
+    {
+      "nom": "create_agency",
+      "ligne": 89
+    },
+    {
+      "nom": "invite_member",
+      "ligne": 90
+    },
+    {
+      "nom": "is_agency_member",
+      "ligne": 91
+    },
+    {
+      "nom": "is_agency_owner",
+      "ligne": 92
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "pups_supabase_1",
+  "depot": "https://github.com/MarkMGill/pups-supabase",
+  "commit": "405d4df786d58a0c1519835085468806b77116ae",
+  "prepare": "5f3fbc5518722be6ae630856d060da69d71c515c",
+  "archive": {
+    "nom": "vak-agent-0.26.1.tgz",
+    "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+  },
+  "app": "/work/pups_supabase_1/app",
+  "avant": "/work/pups_supabase_1/avant.json",
+  "debut": "2026-10-10T18:24:49Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-10T18:25:08Z"
+}

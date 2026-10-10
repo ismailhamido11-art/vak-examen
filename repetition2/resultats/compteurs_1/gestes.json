@@ -1,0 +1,27 @@
+{
+  "id": "compteurs_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 3,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins http://localhost:8081`",
+      "note": "« seule commande à donner ; elle demande une clé de modèle » : avec les valeurs de sa ligne"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Faut-il adapter les messages d'erreur des RPC de l'app pour que la preuve passe ? »",
+      "note": "une décision demandée à l'humain (« Pour les rendre éprouvables, il faudrait changer le SQL des fonctions de l'app, ou les retirer de `functions`. Je ne l'ai pas fait, c'est à vous de trancher. »)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Ou faut-il retirer les écritures de l'assistant, qui deviendrait alors en lecture seule avec écrans pré-remplis ? »",
+      "note": "l'autre branche de la même décision ; comptée à part : dans le doute, c'est un geste (on pourrait n'y lire qu'une question à deux options, total 2)"
+    }
+  ],
+  "non_comptes": [
+    "« Ce qui bloque … c'est à vous de trancher. » : la décision des deux questions ci-dessus, comptée par elles",
+    "« Choix tranchés, avec leur retour arrière » (quota, garde-fous, vouvoiement) : choix faits par l'agent, aucune action demandée",
+    "« Une faute de ma part : j'ai mis ces trois fonctions en `ignore` pour faire passer la preuve … j'ai tout rétabli et ce n'est pas commité. » : signalement, aucune action demandée"
+  ]
+}

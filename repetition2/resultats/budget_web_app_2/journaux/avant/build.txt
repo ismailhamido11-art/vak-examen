@@ -1,0 +1,91 @@
+$ npm run build
+(dossier : /work/budget_web_app_2/avant)
+
+
+> budget_web_app@0.1.0 build
+> next build
+
+▲ Next.js 16.3.6 (Turbopack)
+✓ Running next.config.ts took 27ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.8s
+  Running TypeScript ...
+  Finished TypeScript in 11.4s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/44) ...
+  Generating static pages using 3 workers (11/44) 
+  Generating static pages using 3 workers (22/44) 
+  Generating static pages using 3 workers (33/44) 
+✓ Generating static pages using 3 workers (44/44) in 824ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /accounts
+├ ƒ /accounts/[id]
+├ ƒ /analytics
+├ ƒ /api/accounts
+├ ƒ /api/budgets
+├ ƒ /api/budgets/[id]
+├ ƒ /api/categories
+├ ƒ /api/categories/[id]
+├ ƒ /api/fixed-charges
+├ ƒ /api/fixed-charges/[id]
+├ ƒ /api/fixed-charges/[id]/pay
+├ ƒ /api/health
+├ ƒ /api/import-rules
+├ ƒ /api/import-rules/[id]
+├ ƒ /api/import-rules/[id]/apply-share
+├ ƒ /api/import-rules/reorder
+├ ƒ /api/import/confirm
+├ ƒ /api/import/preview
+├ ƒ /api/invitations
+├ ƒ /api/invitations/[id]
+├ ƒ /api/profile
+├ ƒ /api/savings-goals
+├ ƒ /api/savings-goals/[id]
+├ ƒ /api/settlements
+├ ƒ /api/settlements/[id]
+├ ƒ /api/settlements/candidates
+├ ƒ /api/shared-expenses
+├ ƒ /api/shared-expenses/[id]
+├ ƒ /api/spaces
+├ ƒ /api/spaces/[id]
+├ ƒ /api/spaces/[id]/categories
+├ ƒ /api/spaces/[id]/members/[userId]
+├ ƒ /api/spaces/active
+├ ƒ /api/transactions
+├ ƒ /api/transactions/[id]
+├ ƒ /api/transactions/apply-rules
+├ ƒ /api/transfers
+├ ƒ /api/transfers/[id]
+├ ƒ /balance
+├ ƒ /budget
+├ ○ /cgu
+├ ƒ /dashboard
+├ ○ /fixed-charges
+├ ○ /goals
+├ ○ /icon.svg
+├ ƒ /invitations
+├ ƒ /invite/[token]
+├ ƒ /login
+├ ○ /opengraph-image
+├ ○ /plan
+├ ○ /rgpd
+├ ○ /robots.txt
+├ ○ /settings
+├ ○ /settings/categories
+├ ƒ /settings/import-rules
+├ ƒ /settings/profile
+├ ƒ /signup
+├ ○ /sitemap.xml
+└ ƒ /transactions
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

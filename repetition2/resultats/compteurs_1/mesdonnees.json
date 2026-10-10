@@ -1,0 +1,433 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/compteurs_1/apres",
+  "lecture": {
+    "fichier": "/work/compteurs_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.meters",
+      "public.readings"
+    ],
+    "ignorees": [
+      "public.delete_reading"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.meters",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    },
+    {
+      "table": "public.readings",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 15,
+      "attendu_json": 15,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.meters",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes compteurs ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b599be05-fa4a-481a-a1ce-04545285d6eb",
+        "question": "Combien de mes compteurs ?",
+        "texte": "Vous avez 4 compteurs :\n\n- **Eau cuisine** (eau, m³)\n- **Électricité maison** (électricité, kWh)\n- **Gaz chaudière** (gaz, m³)\n- **Eau jardin** (eau, m³)\n\nSouhaitez-vous en consulter un en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "meters",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "meters",
+              "label": "Compteurs",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "50de8a0d-fc23-460c-8292-1d047fbd56b7",
+                  "name": "Eau cuisine",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "0e01534d-0488-4863-847a-efe400142a45",
+                  "name": "Électricité maison",
+                  "type": "electricite (Électricité)",
+                  "unit": "kWh",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "80fa4360-b29a-4a7b-89b7-c7e059b145af",
+                  "name": "Gaz chaudière",
+                  "type": "gaz (Gaz)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "aac96b7d-e56a-418f-81e4-58acbc757dfe",
+                  "name": "Eau jardin",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.meters",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes compteurs.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0217a715-51f1-47e9-bfc9-fd9d78fc946b",
+        "question": "Liste mes compteurs.",
+        "texte": "Vous avez 4 compteurs :\n\n- **Eau cuisine** — eau, en m³\n- **Électricité maison** — électricité, en kWh\n- **Gaz chaudière** — gaz, en m³\n- **Eau jardin** — eau, en m³\n\nSouhaitez-vous ouvrir l'un d'eux ou noter un relevé ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "meters",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "meters",
+              "label": "Compteurs",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "50de8a0d-fc23-460c-8292-1d047fbd56b7",
+                  "name": "Eau cuisine",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "0e01534d-0488-4863-847a-efe400142a45",
+                  "name": "Électricité maison",
+                  "type": "electricite (Électricité)",
+                  "unit": "kWh",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "80fa4360-b29a-4a7b-89b7-c7e059b145af",
+                  "name": "Gaz chaudière",
+                  "type": "gaz (Gaz)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "aac96b7d-e56a-418f-81e4-58acbc757dfe",
+                  "name": "Eau jardin",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.readings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes relevés ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-6b899827-1aa2-4df8-84ae-fd41e9e90b4e",
+        "question": "Combien de mes relevés ?",
+        "texte": "Vous avez **15 relevés** enregistrés. 😊\n\nSouhaitez-vous voir les derniers, ou la consommation d'un mois précis ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "readings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "readings",
+              "label": "Relevés",
+              "total": 15,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "029c8655-8d7c-477b-9c93-6c4af86a45cd",
+                  "meter_id": "Eau jardin (id aac96b7d-e56a-418f-81e4-58acbc757dfe)",
+                  "read_on": "2026-10-05",
+                  "value": 74
+                }
+              ],
+              "note": "1 ligne montrée sur 15 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 15,
+        "nombres_lus": [
+          15
+        ],
+        "ok": true,
+        "retenu": 15
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.readings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes relevés.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-8c3a211e-c03f-4c23-8a70-1628d8f42d4d",
+        "question": "Liste mes relevés.",
+        "texte": "Voici vos 15 relevés, du plus récent au plus ancien, groupés par compteur.\n\n**Eau jardin** (m³)\n- 05/10/2026 : 74\n- 01/10/2026 : 71\n- 01/09/2026 : 58\n- 01/08/2026 : 40\n\n**Eau cuisine** (m³)\n- 01/10/2026 : 150,2\n- 01/09/2026 : 142,8\n- 01/08/2026 : 131\n- 01/07/2026 : 120,5\n\n**Électricité maison** (kWh)\n- 01/10/2026 : 16 110\n- 01/09/2026 : 15 790\n- 01/08/2026 : 15 480\n- 01/07/2026 : 15 200\n\n**Gaz chaudière** (m³)\n- 01/09/2026 : 835\n- 01/08/2026 : 812\n- 01/07/2026 : 800\n\nSouhaitez-vous en ajouter un, ou voir la consommation du mois ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "meters",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "meters",
+              "label": "Compteurs",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "50de8a0d-fc23-460c-8292-1d047fbd56b7",
+                  "name": "Eau cuisine",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "0e01534d-0488-4863-847a-efe400142a45",
+                  "name": "Électricité maison",
+                  "type": "electricite (Électricité)",
+                  "unit": "kWh",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "80fa4360-b29a-4a7b-89b7-c7e059b145af",
+                  "name": "Gaz chaudière",
+                  "type": "gaz (Gaz)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                },
+                {
+                  "id": "aac96b7d-e56a-418f-81e4-58acbc757dfe",
+                  "name": "Eau jardin",
+                  "type": "eau (Eau)",
+                  "unit": "m³",
+                  "created_at": "2026-10-10T20:14"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "readings",
+              "order": "newest",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "readings",
+              "label": "Relevés",
+              "total": 15,
+              "shown": 15,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "029c8655-8d7c-477b-9c93-6c4af86a45cd",
+                  "meter_id": "Eau jardin (id aac96b7d-e56a-418f-81e4-58acbc757dfe)",
+                  "read_on": "2026-10-05",
+                  "value": 74
+                },
+                {
+                  "id": "6ebc0bb8-776c-4787-8069-23dce715c6b4",
+                  "meter_id": "Électricité maison (id 0e01534d-0488-4863-847a-efe400142a45)",
+                  "read_on": "2026-10-01",
+                  "value": 16110
+                },
+                {
+                  "id": "c4fcf9cd-c4ea-4733-b72b-91d2d7821813",
+                  "meter_id": "Eau cuisine (id 50de8a0d-fc23-460c-8292-1d047fbd56b7)",
+                  "read_on": "2026-10-01",
+                  "value": 150.2
+                },
+                {
+                  "id": "39cb00e8-4348-4837-8c40-f0e492868632",
+                  "meter_id": "Eau jardin (id aac96b7d-e56a-418f-81e4-58acbc757dfe)",
+                  "read_on": "2026-10-01",
+                  "value": 71
+                },
+                {
+                  "id": "7471e3a4-607d-48ee-80cf-114273632934",
+                  "meter_id": "Eau jardin (id aac96b7d-e56a-418f-81e4-58acbc757dfe)",
+                  "read_on": "2026-09-01",
+                  "value": 58
+                },
+                {
+                  "id": "ac9dcaba-a34f-43fd-82ad-0d39081529cf",
+                  "meter_id": "Électricité maison (id 0e01534d-0488-4863-847a-efe400142a45)",
+                  "read_on": "2026-09-01",
+                  "value": 15790
+                },
+                {
+                  "id": "c364486e-68f5-438d-a787-1020976b6bb7",
+                  "meter_id": "Eau cuisine (id 50de8a0d-fc23-460c-8292-1d047fbd56b7)",
+                  "read_on": "2026-09-01",
+                  "value": 142.8
+                },
+                {
+                  "id": "d0748ca3-81fd-492a-b758-2cd740c25db6",
+                  "meter_id": "Gaz chaudière (id 80fa4360-b29a-4a7b-89b7-c7e059b145af)",
+                  "read_on": "2026-09-01",
+                  "value": 835
+                },
+                {
+                  "id": "ededd698-8ef8-48b3-931b-c8b264f2852e",
+                  "meter_id": "Eau jardin (id aac96b7d-e56a-418f-81e4-58acbc757dfe)",
+                  "read_on": "2026-08-01",
+                  "value": 40
+                },
+                {
+                  "id": "016e0ae0-3b16-47a1-a3fc-57a7f3c5376e",
+                  "meter_id": "Eau cuisine (id 50de8a0d-fc23-460c-8292-1d047fbd56b7)",
+                  "read_on": "2026-08-01",
+                  "value": 131
+                },
+                {
+                  "id": "4e7dcf99-761e-4ade-9be1-6b1dc43eb649",
+                  "meter_id": "Électricité maison (id 0e01534d-0488-4863-847a-efe400142a45)",
+                  "read_on": "2026-08-01",
+                  "value": 15480
+                },
+                {
+                  "id": "0b122316-b728-4bc9-aae6-ca7a18362e88",
+                  "meter_id": "Gaz chaudière (id 80fa4360-b29a-4a7b-89b7-c7e059b145af)",
+                  "read_on": "2026-08-01",
+                  "value": 812
+                },
+                {
+                  "id": "2565d69b-fc77-4fb1-bac4-aea39b686c19",
+                  "meter_id": "Gaz chaudière (id 80fa4360-b29a-4a7b-89b7-c7e059b145af)",
+                  "read_on": "2026-07-01",
+                  "value": 800
+                },
+                {
+                  "id": "90209d6c-22bb-4c64-b6cc-f28a6c021f60",
+                  "meter_id": "Électricité maison (id 0e01534d-0488-4863-847a-efe400142a45)",
+                  "read_on": "2026-07-01",
+                  "value": 15200
+                },
+                {
+                  "id": "e8df6481-4d12-4b64-8b79-ac51d609308e",
+                  "meter_id": "Eau cuisine (id 50de8a0d-fc23-460c-8292-1d047fbd56b7)",
+                  "read_on": "2026-07-01",
+                  "value": 120.5
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 15,
+        "nombres_lus": [
+          15,
+          74,
+          71,
+          58,
+          40,
+          150.2,
+          142.8,
+          131,
+          120.5,
+          16110,
+          15790,
+          15480,
+          15200,
+          835,
+          812,
+          800
+        ],
+        "ok": true,
+        "retenu": 15,
+        "source": "nombre annoncé",
+        "elements": 15
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 4
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.meters",
+        "lue": true
+      },
+      {
+        "table": "public.readings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

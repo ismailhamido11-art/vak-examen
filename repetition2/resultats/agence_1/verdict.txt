@@ -1,0 +1,53 @@
+verdict agence_1 : réussi
+{
+  "id": "agence_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "5/5",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes agences.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes adhésions à une agence.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes dossiers de voyage.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes réservations.",
+        "attendu": 9,
+        "lu": 9,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes invitations en attente.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

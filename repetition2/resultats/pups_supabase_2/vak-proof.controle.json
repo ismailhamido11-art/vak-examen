@@ -1,0 +1,41 @@
+{
+  "vak": "0.26.1",
+  "at": "2026-10-10T19:40:23.225Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:b346a72f2f93a235d9dfd1a34788b2733837baee3fbada84998a743054adf6a4",
+  "schema": "sha256:09e82f6248dec4f590421a77be9019edc3f917248c06cb865452f6473a53170d",
+  "tables": {
+    "orders": "éprouvé",
+    "profiles": "éprouvé",
+    "puppies": "éprouvé"
+  },
+  "notes": {
+    "orders": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "profiles": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "table du compte : l'assistant ne lit que la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 2 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "puppies": [
+      "table partagée : l'assistant lit la ligne commune"
+    ]
+  },
+  "totals": 37,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Sees: Orders (Puppy, Amount (cents), Status, Ordered on) ; Profile (Name, Email, Member since) ; shared catalog Puppies (Name, Breed, Age (months), Price (cents), Description, Added on)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Browse puppies, Open puppy, Open checkout",
+    "Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory)"
+  ]
+}

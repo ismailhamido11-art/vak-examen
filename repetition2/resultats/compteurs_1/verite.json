@@ -1,0 +1,25 @@
+{
+  "id": "compteurs_1",
+  "etat_commite": "88a8bf8cb8afcc717898c49c4b56df7533bfe773",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:42-61 : fonctions déclarées month_consumption, add_reading, update_reading, upsert_meter ; aucune ne supprime (20261010150100_rpc_functions.sql:57, 61, 95, 122 : insert et update seulement ; month_consumption est stable, ligne 151)",
+      "agent.ts:62-64 : delete_reading, la seule fonction qui supprime (20261010150100_rpc_functions.sql:137), est dans ignore",
+      "agent.ts:25-40 : aucune règle create ni update sur les tables"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.readings", "nom": "Relevés", "preuve": "agent.ts:48-56 : add_reading (insert into public.readings, 20261010150100_rpc_functions.sql:95) et update_reading (update public.readings, ligne 122)" },
+      { "table": "public.meters", "nom": "Compteurs", "preuve": "agent.ts:57-60 : upsert_meter (insert into public.meters et update public.meters, 20261010150100_rpc_functions.sql:57 et 61)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:70, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

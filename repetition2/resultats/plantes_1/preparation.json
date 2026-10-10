@@ -1,0 +1,18 @@
+{
+  "id": "plantes_1",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/plantes.bundle",
+  "commit": "bea4192347a7ecf310391b23278294b6d841c56d",
+  "prepare": "fbb74339fc539aafc9af1575a2da1a1dae4ceb0a",
+  "archive": {
+    "nom": "vak-agent-0.26.1.tgz",
+    "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+  },
+  "app": "/work/plantes_1/app",
+  "avant": "/work/plantes_1/avant.json",
+  "debut": "2026-10-10T17:48:53Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-10T17:50:03Z"
+}

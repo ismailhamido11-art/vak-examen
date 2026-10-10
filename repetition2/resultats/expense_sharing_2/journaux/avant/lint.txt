@@ -1,0 +1,195 @@
+$ npm run lint
+(dossier : /work/expense_sharing_2/avant)
+
+
+> expense-sharing@1.0.0 lint
+> expo lint
+
+No ESLint config found. Configuring automatically.
+ESLint is required to lint your project. Installing eslint@^9.0.0,
+eslint-config-expo@~57.0.2
+
+- Installing eslint@^9.0.0, eslint-config-expo@~57.0.2
+› Installing 2 other packages using npm
+- Installing eslint@^9.0.0, eslint-config-expo@~57.0.2
+› Using ~57.0.2 instead of ~57.0.2 for eslint-config-expo because this version was explicitly provided. Packages excluded from dependency validation should be listed in expo.install.exclude in package.json. Learn more: https://docs.expo.dev/more/expo-cli/#configuring-dependency-validation
+- Installing eslint@^9.0.0, eslint-config-expo@~57.0.2
+> npm install
+- Installing eslint@^9.0.0, eslint-config-expo@~57.0.2
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 210 packages, and changed 1 package in 8s
+✔ Installed eslint@^9.0.0, eslint-config-expo@~57.0.2
+
+ESLint has been configured 🎉
+
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/add-expense.tsx
+  57:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/add-expense.tsx:57:5
+  55 |     if (payer || !members.data) return;
+  56 |     const mine = members.data.find((m) => m.user_id === user?.id);
+> 57 |     setPayer(mine?.id ?? members.data[0]?.id ?? null);
+     |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  58 |   }, [members.data, user?.id, payer]);
+  59 |
+  60 |   // Prefill basic fields when editing  react-hooks/set-state-in-effect
+  64:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/add-expense.tsx:64:5
+  62 |     if (!isEdit || !existing.data) return;
+  63 |     const e = existing.data;
+> 64 |     setDescription(e.description);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  65 |     setAmount(String(e.amount));
+  66 |     setPayer(e.paid_by);
+  67 |     setSpentAt(e.spent_at);                                           react-hooks/set-state-in-effect
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/add-member.tsx
+  42:5  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+  48:5  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/index.tsx
+  56:21  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/index.tsx:56:21
+  54 |   const [simplify, setSimplify] = useState(true);
+  55 |   useEffect(() => {
+> 56 |     if (group.data) setSimplify(group.data.simplify_debts);
+     |                     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  57 |     // eslint-disable-next-line react-hooks/exhaustive-deps
+  58 |   }, [group.data?.simplify_debts]);
+  59 |   const onToggleSimplify = (v: boolean) => {  react-hooks/set-state-in-effect
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx
+   48:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx:48:5
+  46 |     if (fromMember || !members.data) return;
+  47 |     const mine = members.data.find((m) => m.user_id === user?.id);
+> 48 |     setFromMember(mine?.id ?? members.data[0]?.id ?? null);
+     |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  49 |   }, [members.data, user?.id, fromMember]);
+  50 |
+  51 |   async function onSubmit() {  react-hooks/set-state-in-effect
+  124:14  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx:124:14
+  122 |           <View style={{ gap: Spacing.two }}>
+  123 |             <AppText variant="label">Who paid</AppText>
+> 124 |             <MemberChips value={fromMember} onChange={setFromMember} />
+      |              ^^^^^^^^^^^ This component is created during render
+  125 |           </View>
+  126 |
+  127 |           <View style={{ gap: Spacing.two }}>
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx:74:23
+   72 |   }
+   73 |
+>  74 |   const MemberChips = ({
+      |                       ^^
+>  75 |     value,
+      | ^^^^^^^^^^
+>  76 |     onChange,
+      …
+      | ^^^^^^^^^^
+> 109 |     </ScrollView>
+      | ^^^^^^^^^^
+> 110 |   );
+      | ^^^^ The component is created during render here
+  111 |
+  112 |   return (
+  113 |     <Screen scroll contentStyle={{ gap: Spacing.four }}>                                                                         react-hooks/static-components
+  129:14  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx:129:14
+  127 |           <View style={{ gap: Spacing.two }}>
+  128 |             <AppText variant="label">Who received</AppText>
+> 129 |             <MemberChips value={toMember} onChange={setToMember} />
+      |              ^^^^^^^^^^^ This component is created during render
+  130 |           </View>
+  131 |
+  132 |           <TextField
+
+/work/expense_sharing_2/avant/src/app/(app)/group/[id]/settle.tsx:74:23
+   72 |   }
+   73 |
+>  74 |   const MemberChips = ({
+      |                       ^^
+>  75 |     value,
+      | ^^^^^^^^^^
+>  76 |     onChange,
+      …
+      | ^^^^^^^^^^
+> 109 |     </ScrollView>
+      | ^^^^^^^^^^
+> 110 |   );
+      | ^^^^ The component is created during render here
+  111 |
+  112 |   return (
+  113 |     <Screen scroll contentStyle={{ gap: Spacing.four }}>                                                                                                  react-hooks/static-components
+
+/work/expense_sharing_2/avant/src/components/SplitEditor.tsx
+  116:3  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/work/expense_sharing_2/avant/src/components/SplitEditor.tsx:116:3
+  114 |   // Report changes upward without triggering render loops.
+  115 |   const onChangeRef = useRef(onChange);
+> 116 |   onChangeRef.current = onChange;
+      |   ^^^^^^^^^^^^^^^^^^^ Cannot update ref during render
+  117 |   const sig = JSON.stringify(result);
+  118 |   useEffect(() => {
+  119 |     onChangeRef.current(result);  react-hooks/refs
+
+/work/expense_sharing_2/avant/src/hooks/use-color-scheme.web.ts
+  11:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/work/expense_sharing_2/avant/src/hooks/use-color-scheme.web.ts:11:5
+   9 |
+  10 |   useEffect(() => {
+> 11 |     setHasHydrated(true);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  12 |   }, []);
+  13 |
+  14 |   const colorScheme = useRNColorScheme();  react-hooks/set-state-in-effect
+
+✖ 10 problems (8 errors, 2 warnings)
+  0 errors and 2 warnings potentially fixable with the `--fix` option.
+

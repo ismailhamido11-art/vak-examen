@@ -1,0 +1,56 @@
+diff --git a/src/app/(app)/(tabs)/_layout.tsx b/src/app/(app)/(tabs)/_layout.tsx
+index 425dcfd..c347566 100644
+--- a/src/app/(app)/(tabs)/_layout.tsx
++++ b/src/app/(app)/(tabs)/_layout.tsx
+@@ -30,6 +30,13 @@ export default function TabsLayout() {
+           tabBarIcon: ({ color }) => <Text style={{ fontSize: 18, color }}>🧾</Text>,
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          title: 'Assistant',
++          tabBarIcon: ({ color }) => <Text style={{ fontSize: 18, color }}>🤖</Text>,
++        }}
++      />
+       <Tabs.Screen
+         name="account"
+         options={{
+diff --git a/src/app/(app)/(tabs)/account.tsx b/src/app/(app)/(tabs)/account.tsx
+index 5821522..92bd1c0 100644
+--- a/src/app/(app)/(tabs)/account.tsx
++++ b/src/app/(app)/(tabs)/account.tsx
+@@ -1,10 +1,12 @@
+ import { useRouter } from 'expo-router';
+ import { View } from 'react-native';
++import { AgentSettings } from '@vak/agent/native';
+ 
+ import { AppText, Avatar, Button, Card, Screen } from '@/components/ui';
+ import { Spacing } from '@/constants/theme';
+ import { useAuth } from '@/lib/auth';
+ import { isSupabaseConfigured } from '@/lib/supabase';
++import { vak } from '@/lib/vak';
+ 
+ export default function AccountScreen() {
+   const router = useRouter();
+@@ -30,6 +32,8 @@ export default function AccountScreen() {
+         </Card>
+       ) : null}
+ 
++      <AgentSettings {...vak} />
++
+       <Button title="About SplitKaroo" variant="ghost" onPress={() => router.push('/about')} />
+       <Button title="Sign out" variant="secondary" onPress={() => signOut()} />
+     </Screen>
+diff --git a/tsconfig.json b/tsconfig.json
+index d6da3c9..e7074d2 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -14,5 +14,6 @@
+   "include": [
+     "**/*.ts",
+     "**/*.tsx"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

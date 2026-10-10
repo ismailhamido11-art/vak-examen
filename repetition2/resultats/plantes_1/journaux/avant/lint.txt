@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/plantes_1/avant)
+
+
+> carnet-plantes@1.0.0 lint
+> expo lint
+

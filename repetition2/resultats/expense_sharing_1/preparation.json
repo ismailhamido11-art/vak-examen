@@ -1,0 +1,18 @@
+{
+  "id": "expense_sharing_1",
+  "depot": "https://github.com/itejaskumbhar/Expense-Sharing",
+  "commit": "8e6020c14ba07f0fa55fb4883efa906be98b0a08",
+  "prepare": "38ef6363b96c8d34f9ad5e00af961bf629beeb33",
+  "archive": {
+    "nom": "vak-agent-0.26.1.tgz",
+    "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+  },
+  "app": "/work/expense_sharing_1/app",
+  "avant": "/work/expense_sharing_1/avant.json",
+  "debut": "2026-10-10T18:15:19Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-10T18:16:43Z"
+}

@@ -1,0 +1,7 @@
+$ npm run typecheck
+(dossier : /work/pups_supabase_2/apres)
+
+
+> puppy-store@0.1.0 typecheck
+> tsc --noEmit
+

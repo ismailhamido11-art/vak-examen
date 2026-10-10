@@ -1,0 +1,37 @@
+{
+  "vak": "0.26.1",
+  "at": "2026-10-10T19:07:07.701Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:d3fb3a4c3f0b65d1d8f8557253a006e72c3b71aea1abc39ff7a2450649c43207",
+  "schema": "sha256:30eefa17981ff0cef1caa9578be53e9f4a94486d91b3b33ff54c72fe95a236c0",
+  "tables": {
+    "plants": "éprouvé",
+    "waterings": "éprouvé"
+  },
+  "notes": {
+    "plants": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ],
+    "waterings": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "coéquipier de A non semé (23503 insert or update on table \"waterings\" violates foreign key constraint \"waterings_plant_id_owner_id_fkey\") : le partage entre membres n'est pas vérifié",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "totals": 82,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Plantes (Nom, Espèce, Pièce, Lumière, Intervalle d'arrosage (jours), Achetée le) ; Arrosages (Plante, Arrosée le, Quantité (ml), Note)",
+    "Peut proposer (après ta validation) : ajouter dans Arrosages (Plante, Arrosée le, Quantité (ml), Note) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Fiche plante, Nouvelle plante",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)"
+  ]
+}

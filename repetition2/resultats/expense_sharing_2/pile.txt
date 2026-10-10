@@ -1,0 +1,3 @@
+NOTICE:  role "examen_pile" has already been granted membership in role "anon" by role "postgres"
+NOTICE:  role "examen_pile" has already been granted membership in role "authenticated" by role "postgres"
+pile expense_sharing_2 prête : /work/expense_sharing_2/pile/pile.json (fonction http://127.0.0.1:38329/functions/v1/vak)

@@ -1,0 +1,43 @@
+{
+  "id": "expense_sharing_1",
+  "echecs_de_preuve": [
+    {
+      "table": "settlements",
+      "verdict": "non prouvé",
+      "ligne": 92,
+      "texte": "✗ settlements non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "create_expense",
+      "ligne": 71
+    },
+    {
+      "nom": "update_expense",
+      "ligne": 72
+    },
+    {
+      "nom": "create_group",
+      "ligne": 73
+    },
+    {
+      "nom": "find_user_by_email",
+      "ligne": 74
+    },
+    {
+      "nom": "is_group_member",
+      "ligne": 75
+    },
+    {
+      "nom": "is_group_owner",
+      "ligne": 76
+    },
+    {
+      "nom": "shares_group_with",
+      "ligne": 77
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

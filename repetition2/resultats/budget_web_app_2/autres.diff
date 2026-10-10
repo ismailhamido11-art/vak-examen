@@ -1,0 +1,105 @@
+diff --git a/app/(app)/layout.tsx b/app/(app)/layout.tsx
+index a924cf0..64410a3 100644
+--- a/app/(app)/layout.tsx
++++ b/app/(app)/layout.tsx
+@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
+ import Link from "next/link";
+ import { redirect } from "next/navigation";
+ 
++import { AssistantButton } from "@/components/layout/assistant-button";
+ import { BottomNav } from "@/components/layout/bottom-nav";
+ import { SIDEBAR_COOKIE } from "@/components/layout/nav-utils";
+ import { Sidebar } from "@/components/layout/sidebar";
+@@ -58,6 +59,7 @@ export default async function AppLayout({
+           </Link>
+         </footer>
+       </div>
++      <AssistantButton />
+     </div>
+   );
+ }
+diff --git a/app/(app)/settings/agent-settings.tsx b/app/(app)/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/app/(app)/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/app/(app)/settings/layout.tsx b/app/(app)/settings/layout.tsx
+index 91bab80..70a7fa4 100644
+--- a/app/(app)/settings/layout.tsx
++++ b/app/(app)/settings/layout.tsx
+@@ -10,6 +10,7 @@ const SETTINGS_NAV = [
+   { href: "/settings/categories", key: "categories" },
+   { href: "/settings/import-rules", key: "importRules" },
+   { href: "/settings/profile", key: "profile" },
++  { href: "/settings/assistant", key: "assistant" },
+ ] as const;
+ 
+ export default function SettingsLayout({ children }: { children: React.ReactNode }) {
+diff --git a/app/layout.tsx b/app/layout.tsx
+index cb1b51e..9072300 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
+ import { Geist } from "next/font/google";
+ import { SpeedInsights } from "@vercel/speed-insights/next";
+ import { Analytics } from "@vercel/analytics/next";
++import "@vak/agent/web/styles.css";
+ import { cn } from "@/lib/utils";
+ 
+ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+diff --git a/components/layout/assistant-button.tsx b/components/layout/assistant-button.tsx
+new file mode 100644
+index 0000000..39edb57
+--- /dev/null
++++ b/components/layout/assistant-button.tsx
+@@ -0,0 +1,20 @@
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++
++import { vak } from "@/lib/vak";
++
++/** Bouton flottant de l'assistant vak, monté dans le layout de l'app (tous les écrans connectés). */
++export function AssistantButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/login")}
++      theme={{ accent: "#0F766E", mode: "system" }}
++    />
++  );
++}
+diff --git a/lib/i18n/dictionaries/en/nav.ts b/lib/i18n/dictionaries/en/nav.ts
+index 479ef71..0a90c26 100644
+--- a/lib/i18n/dictionaries/en/nav.ts
++++ b/lib/i18n/dictionaries/en/nav.ts
+@@ -28,5 +28,6 @@ export const nav = {
+     categories: "Categories",
+     importRules: "Import Rules",
+     profile: "Profile",
++    assistant: "Assistant",
+   },
+ } as const;
+diff --git a/lib/i18n/dictionaries/fr/nav.ts b/lib/i18n/dictionaries/fr/nav.ts
+index b9eeefe..aaff2a7 100644
+--- a/lib/i18n/dictionaries/fr/nav.ts
++++ b/lib/i18n/dictionaries/fr/nav.ts
+@@ -28,5 +28,6 @@ export const nav = {
+     categories: "Catégories",
+     importRules: "Règles d'import",
+     profile: "Profil",
++    assistant: "Assistant",
+   },
+ } as const;

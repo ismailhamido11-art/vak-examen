@@ -1,0 +1,87 @@
+{
+  "dossier": "/work/agence_1/avant",
+  "commit": "fed608276a1fd66abfd4e6f24b84d08e8f5a9876",
+  "debut": "2026-10-10T17:57:27.489Z",
+  "fin": "2026-10-10T17:57:57.081Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/agence_1/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/agence_1/avant",
+    "code": 0,
+    "duree_s": 16,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 361 packages in 16s"
+    ],
+    "journal": "/work/agence_1/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/agence_1/avant",
+      "code": 2,
+      "duree_s": 2,
+      "erreurs": [
+        "app/agencies/[agencyId]/members/page.tsx(9,69): error TS2304: Cannot find name 'PageProps'.",
+        "app/agencies/[agencyId]/page.tsx(7,68): error TS2304: Cannot find name 'PageProps'.",
+        "app/agencies/[agencyId]/trips/[tripId]/page.tsx(7,66): error TS2304: Cannot find name 'PageProps'.",
+        "app/bookings/page.tsx(19,64): error TS2304: Cannot find name 'PageProps'.",
+        "app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.",
+        "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+        "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+      ],
+      "fin": [
+        "app/layout.tsx(27,50): error TS2304: Cannot find name 'LayoutProps'.",
+        "app/login/page.tsx(3,59): error TS2304: Cannot find name 'PageProps'.",
+        "app/page.tsx(6,58): error TS2304: Cannot find name 'PageProps'."
+      ],
+      "journal": "/work/agence_1/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/agence_1/avant",
+      "code": 0,
+      "duree_s": 3,
+      "erreurs": [],
+      "fin": [
+        "> app@0.1.0 lint",
+        "> eslint"
+      ],
+      "journal": "/work/agence_1/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/agence_1/avant",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "ƒ Proxy (Middleware)",
+        "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content",
+        "ƒ  (Dynamic)            server-rendered on demand"
+      ],
+      "journal": "/work/agence_1/avant-journaux/build.txt"
+    }
+  }
+}

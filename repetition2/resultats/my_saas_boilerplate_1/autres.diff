@@ -1,0 +1,99 @@
+diff --git a/app/(dashboard)/admin/settings/agent-settings.tsx b/app/(dashboard)/admin/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/app/(dashboard)/admin/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/app/(dashboard)/admin/settings/page.tsx b/app/(dashboard)/admin/settings/page.tsx
+index 17bd4b7..1045dd7 100644
+--- a/app/(dashboard)/admin/settings/page.tsx
++++ b/app/(dashboard)/admin/settings/page.tsx
+@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
+ import { Input } from '@/components/ui/input';
+ import { Switch } from '@/components/ui/switch';
+ import { Icon } from '@iconify/react';
++import { VakSettings } from './agent-settings';
+ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+ 
+ interface AdminSetting {
+@@ -471,6 +472,7 @@ export default function AdminSettings() {
+             </Card>
+           </div>
+         </div>
++        <VakSettings />
+       </div>
+     </div>
+   );
+diff --git a/app/(dashboard)/layout.tsx b/app/(dashboard)/layout.tsx
+index 918be02..d64f161 100644
+--- a/app/(dashboard)/layout.tsx
++++ b/app/(dashboard)/layout.tsx
+@@ -168,6 +168,11 @@ const navSettings = [
+     url: '/dashboard/activity',
+     icon: 'solar:chart-bold-duotone',
+   },
++  {
++    title: 'Assistant',
++    url: '/assistant',
++    icon: 'solar:chat-round-dots-bold-duotone',
++  },
+   {
+     title: 'Security',
+     url: '/dashboard/security',
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 4716e90..ccecd31 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,4 +1,5 @@
+ import './globals.css';
++import '@vak/agent/web/styles.css';
+ import type { Metadata, Viewport } from 'next';
+ import { Be_Vietnam_Pro } from 'next/font/google';
+ import { ToastProvider } from '@/components/ui/toast';
+@@ -6,6 +7,7 @@ import { AuthProvider } from '@/lib/auth/auth-context';
+ import { HeadCodeInjection, BodyStartCodeInjection, BodyEndCodeInjection } from '@/components/layout/code-injection';
+ import { PWAManager } from '@/components/layout/pwa-manager';
+ import { Toaster } from 'sonner';
++import { VakButton } from '@/components/layout/vak-button';
+ import { AuthDebug } from '@/components/debug/auth-debug';
+ 
+ export const metadata: Metadata = {
+@@ -78,6 +80,7 @@ export default function RootLayout({
+           <ToastProvider />
+           <Toaster position="top-right" richColors />
+           <AuthDebug />
++          <VakButton />
+         </AuthProvider>
+         <BodyEndCodeInjection />
+         <PWAManager />
+diff --git a/components/layout/vak-button.tsx b/components/layout/vak-button.tsx
+new file mode 100644
+index 0000000..0d0d010
+--- /dev/null
++++ b/components/layout/vak-button.tsx
+@@ -0,0 +1,18 @@
++'use client';
++
++import { AgentButton } from '@vak/agent/web';
++import { useRouter } from 'next/navigation';
++import { vak } from '@/lib/vak';
++
++export function VakButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push('/sign-in')}
++      theme={{ accent: '#0F766E', mode: 'system' }}
++    />
++  );
++}

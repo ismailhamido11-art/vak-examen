@@ -1,0 +1,21 @@
+{
+  "id": "budget_web_app_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne, que demande aussi « Quel fournisseur de modèle (`<fournisseur>`) et quelles origines du site ? » : comptée une fois"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Veux-tu des garde-fous pour ce domaine financier, avec des textes à faire valider ? »",
+      "note": "des textes à faire valider par l'humain (comme « Les garde-fous finance sont à faire valider par un professionnel », compté à budget_app_2) ; le choix « Garde-fous : aucun » est fait, mais la question reste posée sans « tranchée » : dans le doute, c'est un geste. Lu comme tranché (budget_web_app_1, où l'agent écrit « Je les ai tranchées […] sans attendre de réponse »), le total serait 1"
+    }
+  ],
+  "non_comptes": [
+    "« Veux-tu limiter l'assistant à une bêta (`access`) plutôt que de l'ouvrir à tous les comptes ? » et « Veux-tu ouvrir des écritures (créer ou modifier des opérations) ? Je suis resté en lecture seule par prudence. » : tranchées dans « Choix tranchés » (« Il n'y a pas de bêta », « Lecture seule »), avec leur retour arrière",
+    "« Avertissements de `doctor` à connaître » (VAK006, VAK108, VAK107) : signalements, aucune action demandée"
+  ]
+}

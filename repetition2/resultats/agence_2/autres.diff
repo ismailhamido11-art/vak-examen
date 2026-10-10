@@ -1,0 +1,110 @@
+diff --git a/app/assistant-button.tsx b/app/assistant-button.tsx
+new file mode 100644
+index 0000000..f35ca0c
+--- /dev/null
++++ b/app/assistant-button.tsx
+@@ -0,0 +1,17 @@
++"use client";
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++
++export function AssistantButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/login")}
++      theme={{ accent: "#1d4ed8", mode: "light", background: "#f6f7f9", surface: "#ffffff", text: "#1b1f24", mutedText: "#6b7280", border: "#e2e5ea", danger: "#b91c1c" }}
++    />
++  );
++}
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 86da799..4fa6b5c 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,9 +1,11 @@
+ import type { Metadata } from "next";
+ import Link from "next/link";
+ import { Suspense } from "react";
++import "@vak/agent/web/styles.css";
+ import "./globals.css";
+ import { signOut } from "./login/actions";
+ import { createClient } from "@/lib/supabase/server";
++import { AssistantButton } from "./assistant-button";
+ 
+ export const metadata: Metadata = {
+   title: "Dossiers de voyage",
+@@ -18,12 +20,19 @@ async function Nav() {
+     <nav>
+       <Link href="/">Mes agences</Link>
+       <Link href="/bookings">Mes réservations à confirmer</Link>
++      <Link href="/reglages">Réglages</Link>
+       <span className="muted">{data.user.email}</span>
+       <form action={signOut}><button className="link">Déconnexion</button></form>
+     </nav>
+   );
+ }
+ 
++async function Assistant() {
++  const supabase = await createClient();
++  const { data } = await supabase.auth.getUser();
++  return data.user ? <AssistantButton /> : null;
++}
++
+ export default function RootLayout({ children }: LayoutProps<"/">) {
+   return (
+     <html lang="fr">
+@@ -33,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
+           <Suspense fallback={null}><Nav /></Suspense>
+         </header>
+         <main><Suspense fallback={<p className="muted">Chargement…</p>}>{children}</Suspense></main>
++        <Suspense fallback={null}><Assistant /></Suspense>
+       </body>
+     </html>
+   );
+diff --git a/app/reglages/agent-settings.tsx b/app/reglages/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/app/reglages/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/app/reglages/page.tsx b/app/reglages/page.tsx
+new file mode 100644
+index 0000000..855e3f1
+--- /dev/null
++++ b/app/reglages/page.tsx
+@@ -0,0 +1,11 @@
++import { VakSettings } from "./agent-settings";
++
++export default function SettingsPage() {
++  return (
++    <>
++      <h1>Réglages</h1>
++      <h2>Assistant</h2>
++      <VakSettings />
++    </>
++  );
++}
+diff --git a/lib/supabase/client.ts b/lib/supabase/client.ts
+new file mode 100644
+index 0000000..4b3c1cb
+--- /dev/null
++++ b/lib/supabase/client.ts
+@@ -0,0 +1,7 @@
++import { createBrowserClient } from "@supabase/ssr";
++import { supabaseEnv } from "./env";
++
++export function createClient() {
++  const { url, anonKey } = supabaseEnv();
++  return createBrowserClient(url, anonKey);
++}

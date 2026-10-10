@@ -1,0 +1,17 @@
+{
+  "id": "pups_supabase_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur>`",
+      "note": "avec les valeurs de sa ligne"
+    }
+  ],
+  "non_comptes": [
+    "« `localdb --drop` n'est pas lancé : la base locale `vak_local_172f8f` existe encore. » : ménage facultatif (comme fonctions_2 et pups_supabase_1)",
+    "« Avertissement à signaler (VAK107) : la table `puppies` est lisible sans compte (anon). C'est voulu pour un catalogue public. » : signalement, aucune action demandée",
+    "« Questions que j'aurais posées : Aucune. »"
+  ]
+}

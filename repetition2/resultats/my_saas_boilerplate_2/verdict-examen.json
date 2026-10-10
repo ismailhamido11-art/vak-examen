@@ -1,0 +1,496 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "my_saas_boilerplate_2",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 630
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 49
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.26.1.tgz sha256 = préparation",
+        "4 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": [
+        {
+          "code": "lien-hors-depot",
+          "ligne": 162,
+          "heure": "19:51:57",
+          "detail": "ln -s $PWD/node_modules /tmp/base/node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules)",
+          "commande": "git worktree add -q /tmp/base HEAD && ln -s $PWD/node_modules /tmp/base/node_modules && cd /tmp/base && (timeout 500 npx next build 2>&1 | tail -4); cd /work/my_saas_boilerplate_2/app && git worktree remove --force /tmp/base; git status --short | grep -v \"^??\\| M\""
+        }
+      ]
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-10T19:45:39.474Z",
+      "demande": "2026-10-10T19:45:37.205Z",
+      "premierVakQuiRendZero": "2026-10-10T19:53:47.652Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 8.14,
+      "ligne": 170
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 38197,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (3 dans tables ; ignore : 11 tables, 5 fonctions) ; dans ignore, tables de l'utilisateur : « api_keys », « projects », « social_presets », « support_tickets », « usage_tracking », « watermark_templates »",
+            "    - « api_keys » : calibre-la, through: \"user_id\"",
+            "    - « projects » : calibre-la, through: \"user_id\"",
+            "    - « social_presets » : calibre-la, through: \"user_id\"",
+            "    - « support_tickets » : calibre-la, through: \"user_id\"",
+            "    - « usage_tracking » : calibre-la, through: \"user_id\"",
+            "    - « watermark_templates » : calibre-la, through: \"user_id\"",
+            "    → calibre-les comme indiqué : jamais ignore pour faire passer la preuve ; si l'assistant ne doit vraiment pas les voir, dis-le à l'humain comme un choix fait, en une ligne",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (4)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-10 : éprouvé (3 table(s), 111 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - users.is_admin : modifiable par l'utilisateur et lue par la politique « Admins can manage ad banners » : elle décide qui voit la ligne",
+            "    - activity_logs.user_id : modifiable par l'utilisateur et lue par la politique « Users can view own activity logs » : elle décide qui voit la ligne",
+            "    - payment_history.user_id : modifiable par l'utilisateur et lue par la politique « Users can view own payment history » : elle décide qui voit la ligne",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.26.1, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (3 dans tables ; ignore : 11 tables, 5 fonctions) ; dans ignore, tables de l'utilisateur : « api_keys », « projects », « social_presets », « support_tickets », « usa",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (4)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-10 : éprouvé (3 table(s), 111 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 15,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : next lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : next lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : cross-env NODE_OPTIONS=\"--max-old-space-size=8192 --max-semi-space-size=512\" next build && node scripts/fix-manifest-location.js",
+            "code": 1,
+            "delai": false,
+            "secondes": 68,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : cross-env NODE_OPTIONS=\"--max-old-space-size=8192 --max-semi-space-size=512\" next build && node scripts/fix-manifest-location.js",
+            "code": 1,
+            "delai": false,
+            "secondes": 69,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "lien symbolique tapé hors du dépôt de l'app (une mesure, pas un échec) : journal ligne 162 (19:51:57) : ln -s $PWD/node_modules /tmp/base/node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules) — commande : git worktree add -q /tmp/base HEAD && ln -s $PWD/node_modules /tmp/base/node_modules && cd /tmp/base && (timeout 500 npx next build 2>&1 | tail -4); cd /work/my_saas_boilerplate_2/app && git worktree…",
+    "lint : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie",
+    "build : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie"
+  ],
+  "entree": {
+    "essai": "/srv/essais/my_saas_boilerplate_2",
+    "preparation": {
+      "id": "my_saas_boilerplate_2",
+      "depot": "https://github.com/bluebridgetechnology/my-saas-boilerplate",
+      "commit": "bcb20492cdb7d079e294af738081f4685a43f484",
+      "prepare": "7a664aa83b5dd404a24176133890d3e5b4f58cb9",
+      "archive": {
+        "nom": "vak-agent-0.26.1.tgz",
+        "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+      },
+      "debut": "2026-10-10T19:43:41Z"
+    },
+    "tip": "a4c9adda44fe34a34cd8a3311d53702676969be9",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 67,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 14,
+      "tablesAMoi": 14,
+      "aMoiEprouvees": 3,
+      "ignorees": 16,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "7a664aa83b5dd404a24176133890d3e5b4f58cb9",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+              "npm warn deprecated npmlog@5.0.1: This package is no longer supported.",
+              "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+              "npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.",
+              "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+              "npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.",
+              "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+              "npm warn deprecated gauge@3.0.2: This package is no longer supported.",
+              "added 569 packages in 15s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : next lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 1,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> resizesuite@1.0.0 lint",
+                "> next lint",
+                "? How would you like to configure ESLint? https://nextjs.org/docs/basic-features/eslint",
+                "❯  Strict (recommended)",
+                "   Base",
+                "   Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : cross-env NODE_OPTIONS=\"--max-old-space-size=8192 --max-semi-space-size=512\" next build && node scripts/fix-manifest-location.js",
+              "code": 1,
+              "delai": false,
+              "secondes": 68,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "    at t (/srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/webpack-runtime.js:1:143)",
+                "    at 91772 (/srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/app/api/admin/analytics/recent-activity/route.js:1:1027)",
+                "    at t (/srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/webpack-runtime.js:1:143)",
+                "    at r (/srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/app/api/admin/analytics/recent-activity/route.js:1:5604)",
+                "    at /srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/app/api/admin/analytics/recent-activity/route.js:1:5646",
+                "    at t.X (/srv/verdicts/my_saas_boilerplate_2/clones/prep/.next/server/webpack-runtime.js:1:1350)",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /api/admin/analytics/recent-activity",
+                "    at /srv/verdicts/my_saas_boilerplate_2/clones/prep/node_modules/next/dist/build/utils.js:1268:15",
+                "    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {",
+                "  type: 'Error'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated npmlog@5.0.1: This package is no longer supported.",
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.",
+          "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+          "npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated gauge@3.0.2: This package is no longer supported.",
+          "added 569 packages in 15s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "a4c9adda44fe34a34cd8a3311d53702676969be9",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+              "npm warn deprecated npmlog@5.0.1: This package is no longer supported.",
+              "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+              "npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.",
+              "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+              "npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.",
+              "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+              "npm warn deprecated gauge@3.0.2: This package is no longer supported.",
+              "added 570 packages in 15s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 15,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : next lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 1,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> resizesuite@1.0.0 lint",
+                "> next lint",
+                "? How would you like to configure ESLint? https://nextjs.org/docs/basic-features/eslint",
+                "❯  Strict (recommended)",
+                "   Base",
+                "   Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : cross-env NODE_OPTIONS=\"--max-old-space-size=8192 --max-semi-space-size=512\" next build && node scripts/fix-manifest-location.js",
+              "code": 1,
+              "delai": false,
+              "secondes": 69,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "    at t (/srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/webpack-runtime.js:1:143)",
+                "    at 59821 (/srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/app/api/admin/ad-banners/[id]/route.js:1:735)",
+                "    at t (/srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/webpack-runtime.js:1:143)",
+                "    at t (/srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/app/api/admin/ad-banners/[id]/route.js:1:3698)",
+                "    at /srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/app/api/admin/ad-banners/[id]/route.js:1:3735",
+                "    at t.X (/srv/verdicts/my_saas_boilerplate_2/clones/head/.next/server/webpack-runtime.js:1:1350)",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /api/admin/ad-banners/[id]",
+                "    at /srv/verdicts/my_saas_boilerplate_2/clones/head/node_modules/next/dist/build/utils.js:1268:15",
+                "    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {",
+                "  type: 'Error'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.",
+          "npm warn deprecated npmlog@5.0.1: This package is no longer supported.",
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead",
+          "npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.",
+          "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+          "npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.",
+          "npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead",
+          "npm warn deprecated gauge@3.0.2: This package is no longer supported.",
+          "added 570 packages in 15s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-10T20:00:30.092Z"
+}

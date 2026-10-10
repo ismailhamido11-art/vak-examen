@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-10T17:57:15.026Z",
+  "langue": "fr",
+  "nom": "Assistant du carnet",
+  "etiquette": [
+    "Voit : Plantes (Nom, Espèce, Pièce, Lumière, Intervalle d'arrosage (jours), Date d'achat) ; Arrosages (Plante, Date d'arrosage, Quantité (ml), Note)",
+    "Peut proposer (après votre validation) : ajouter dans Plantes (Nom, Espèce, Pièce, Lumière, Intervalle d'arrosage (jours), Date d'achat) ; modifier dans Plantes (Nom, Espèce, Pièce, Lumière, Intervalle d'arrosage (jours)) ; ajouter dans Arrosages (Plante, Date d'arrosage, Quantité (ml), Note) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Fiche de la plante, Mes plantes",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:30eefa17981ff0cef1caa9578be53e9f4a94486d91b3b33ff54c72fe95a236c0",
+    "calibrage": "sha256:12d25711a46150ca115216a443a02e10f892120b7770d6ffa4fdf48dec055dfd"
+  }
+}

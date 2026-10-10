@@ -1,0 +1,18 @@
+{
+  "id": "compteurs_1",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/compteurs.bundle",
+  "commit": "5c12ec9ed61311cbd81103de20902210f22ca364",
+  "prepare": "61e90002c260933fb1893d9d4341c92b923d9592",
+  "archive": {
+    "nom": "vak-agent-0.26.1.tgz",
+    "sha256": "e0516efc36a307cf677a0ca223ae5682a74a0bb5fc35f115984b4804fc225db7"
+  },
+  "app": "/work/compteurs_1/app",
+  "avant": "/work/compteurs_1/avant.json",
+  "debut": "2026-10-10T18:07:36Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-10T18:08:08Z"
+}

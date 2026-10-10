@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-10T18:24:36.553Z",
+  "langue": "en",
+  "nom": "Assistant",
+  "etiquette": [
+    "Sees: Groups (Name, Currency, Created at, Simplify debts) ; Group members (Group, Display name, Role, Joined at) ; Expenses (Group, Description, Amount, Currency, Paid by, Split type, Spent at, Notes) ; Expense splits (Expense, Member, Amount owed, Share) ; Settlements (Group, From member, To member, Amount, Settled at, Note) ; Profile (Full name, Email)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Group, Add expense, Settle up, New group",
+    "Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; call create_expense, update_expense, create_group, find_user_by_email, is_group_member, is_group_owner, shares_group_with",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:eaa0fdfbaeda6cb0e5b332a3829f3b7e8ecdd5f440da57b6f0871b2d8f8e5987",
+    "calibrage": "sha256:eb074c2d9a109d3b7cd932a58989414f2863a6698ef890de0354abd065af413e"
+  }
+}

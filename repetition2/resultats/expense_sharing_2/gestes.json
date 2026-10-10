@@ -1,0 +1,21 @@
+{
+  "id": "expense_sharing_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Pour avancer, il faut soit un correctif du kit, soit votre décision d'exclure `settlements`. »",
+      "note": "reprise dans « Questions que j'aurais posées » (« Faut-il ignorer `settlements`, ou attendre un correctif du kit ? ») : une même décision, comptée une fois"
+    }
+  ],
+  "non_comptes": [
+    "« Faut-il autoriser l'écriture directe de dépenses ? » (rubrique « Questions que j'aurais posées ») : tranchée dans « Choix tranchés » (« Aucune écriture directe par l'assistant […] Pour revenir dessus : déclarer ces fonctions dans `functions`. »)",
+    "« Choix tranchés » (écran de règlement, quota et bêta, garde-fous, visibilité) : choix faits par l'agent"
+  ]
+}

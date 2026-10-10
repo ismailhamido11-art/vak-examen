@@ -1,0 +1,466 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/plantes_1/apres",
+  "lecture": {
+    "fichier": "/work/plantes_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.plants",
+      "public.waterings"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.plants",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.waterings",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 11,
+      "attendu_json": 11,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.plants",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes plantes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d0b6572b-9ead-4c81-b66d-db4a4a3614e7",
+        "question": "Combien de mes plantes ?",
+        "texte": "Vous avez **6 plantes** 🌿\n\nVoulez-vous que je vous en fasse la liste, ou que je regarde lesquelles sont à arroser ?\n\nSouhaitez-vous ouvrir la liste pour les parcourir ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "plants",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "plants",
+              "label": "Plantes",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "ada0c585-6efb-4c54-8550-17c4a400b53f",
+                  "name": "Aloe vera",
+                  "species": "Aloe barbadensis",
+                  "room": "Balcon",
+                  "light": "forte (Forte)",
+                  "watering_interval_days": 14,
+                  "purchased_on": "2025-08-09"
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "liste"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Mes plantes"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.plants",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes plantes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-92a70714-8d48-4fe3-be86-de75497b01e0",
+        "question": "Liste mes plantes.",
+        "texte": "Voici vos 6 plantes 🌿\n\n| Nom | Espèce | Pièce | Lumière | Arrosage |\n|---|---|---|---|---|\n| Monstera deliciosa | Monstera deliciosa | Salon | Moyenne | tous les 7 j |\n| Pothos | Epipremnum aureum | Cuisine | Faible | tous les 10 j |\n| Ficus lyrata | Ficus lyrata | Salon | Forte | tous les 7 j |\n| Sansevieria | Dracaena trifasciata | Chambre | Faible | tous les 21 j |\n| Calathea | Calathea orbifolia | Bureau | Moyenne | tous les 5 j |\n| Aloe vera | Aloe barbadensis | Balcon | Forte | tous les 14 j |\n\nVoulez-vous que je regarde lesquelles sont à arroser aujourd'hui, ou que j'ouvre la fiche d'une plante en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "plants",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "plants",
+              "label": "Plantes",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "name": "Monstera deliciosa",
+                  "species": "Monstera deliciosa",
+                  "room": "Salon",
+                  "light": "moyenne (Moyenne)",
+                  "watering_interval_days": 7,
+                  "purchased_on": "2025-03-02"
+                },
+                {
+                  "id": "306aa434-0b6f-4097-bf3a-488603f158a8",
+                  "name": "Pothos",
+                  "species": "Epipremnum aureum",
+                  "room": "Cuisine",
+                  "light": "faible (Faible)",
+                  "watering_interval_days": 10,
+                  "purchased_on": "2025-04-12"
+                },
+                {
+                  "id": "01c9d6d9-ca29-4158-8086-4163906d6e66",
+                  "name": "Ficus lyrata",
+                  "species": "Ficus lyrata",
+                  "room": "Salon",
+                  "light": "forte (Forte)",
+                  "watering_interval_days": 7,
+                  "purchased_on": "2025-05-20"
+                },
+                {
+                  "id": "d5e9865b-fec9-484f-aabb-c473f812cbbb",
+                  "name": "Sansevieria",
+                  "species": "Dracaena trifasciata",
+                  "room": "Chambre",
+                  "light": "faible (Faible)",
+                  "watering_interval_days": 21,
+                  "purchased_on": "2025-06-01"
+                },
+                {
+                  "id": "8e9c8c54-046e-4c18-9ac5-ebe6429c1f24",
+                  "name": "Calathea",
+                  "species": "Calathea orbifolia",
+                  "room": "Bureau",
+                  "light": "moyenne (Moyenne)",
+                  "watering_interval_days": 5,
+                  "purchased_on": "2025-07-15"
+                },
+                {
+                  "id": "ada0c585-6efb-4c54-8550-17c4a400b53f",
+                  "name": "Aloe vera",
+                  "species": "Aloe barbadensis",
+                  "room": "Balcon",
+                  "light": "forte (Forte)",
+                  "watering_interval_days": 14,
+                  "purchased_on": "2025-08-09"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          7,
+          10,
+          7,
+          21,
+          5,
+          14,
+          1
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.waterings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes arrosages ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-bb004e8f-e418-4e2f-9488-013348b77afc",
+        "question": "Combien de mes arrosages ?",
+        "texte": "Vous avez **11 arrosages** enregistrés au total. 🌿\n\nVoulez-vous que je vous les détaille (par plante ou par date), ou que j'ouvre la liste de vos plantes ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "waterings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "waterings",
+              "label": "Arrosages",
+              "total": 11,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "1d2c6f42-7b2b-4db9-a614-cbdc3bb3a08a",
+                  "plant_id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "watered_on": "2026-09-15",
+                  "quantity_ml": 250,
+                  "note": null
+                }
+              ],
+              "note": "1 ligne montrée sur 11 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 11,
+        "nombres_lus": [
+          11
+        ],
+        "ok": true,
+        "retenu": 11
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.waterings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes arrosages.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-a585fbb4-a180-44b3-bcac-c42cb6f13367",
+        "question": "Liste mes arrosages.",
+        "texte": "Voici vos **11 arrosages** enregistrés, du plus récent au plus ancien :\n\n| Date | Plante | Quantité | Note |\n|---|---|---|---|\n| 15/09/2026 | Monstera deliciosa | 250 ml | — |\n| 13/09/2026 | Pothos | 200 ml | — |\n| 10/09/2026 | Calathea | 180 ml | — |\n| 09/09/2026 | Ficus lyrata | 350 ml | — |\n| 08/09/2026 | Monstera deliciosa | 300 ml | Un peu plus |\n| 05/09/2026 | Calathea | 200 ml | Eau de pluie |\n| 03/09/2026 | Pothos | 150 ml | Terreau sec |\n| 02/09/2026 | Ficus lyrata | 400 ml | Bien arrosé |\n| 01/09/2026 | Aloe vera | 120 ml | Très léger |\n| 01/09/2026 | Monstera deliciosa | 250 ml | Arrosage du matin |\n| 20/08/2026 | Sansevieria | 100 ml | Arrosage rare |\n\nTout y est (la liste est complète). Voulez-vous que je vous ouvre la fiche d'une plante en particulier pour voir son historique ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "waterings",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "waterings",
+              "label": "Arrosages",
+              "total": 11,
+              "shown": 11,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "1d2c6f42-7b2b-4db9-a614-cbdc3bb3a08a",
+                  "plant_id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "watered_on": "2026-09-15",
+                  "quantity_ml": 250,
+                  "note": null
+                },
+                {
+                  "id": "768c6296-4c8b-48da-a53e-eff009819263",
+                  "plant_id": "306aa434-0b6f-4097-bf3a-488603f158a8",
+                  "watered_on": "2026-09-13",
+                  "quantity_ml": 200,
+                  "note": null
+                },
+                {
+                  "id": "02c30ecf-23ed-4468-aa2e-55e7221a1c39",
+                  "plant_id": "8e9c8c54-046e-4c18-9ac5-ebe6429c1f24",
+                  "watered_on": "2026-09-10",
+                  "quantity_ml": 180,
+                  "note": null
+                },
+                {
+                  "id": "3a5f60be-6b4f-42de-be09-ed1d627f73f2",
+                  "plant_id": "01c9d6d9-ca29-4158-8086-4163906d6e66",
+                  "watered_on": "2026-09-09",
+                  "quantity_ml": 350,
+                  "note": null
+                },
+                {
+                  "id": "7100721e-5b36-4da0-a3a4-391574964594",
+                  "plant_id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "watered_on": "2026-09-08",
+                  "quantity_ml": 300,
+                  "note": "Un peu plus"
+                },
+                {
+                  "id": "334c922f-bf16-4b28-a4ec-5ae41b8986e3",
+                  "plant_id": "8e9c8c54-046e-4c18-9ac5-ebe6429c1f24",
+                  "watered_on": "2026-09-05",
+                  "quantity_ml": 200,
+                  "note": "Eau de pluie"
+                },
+                {
+                  "id": "61958ba4-fac6-45aa-af2e-a308506b8d48",
+                  "plant_id": "306aa434-0b6f-4097-bf3a-488603f158a8",
+                  "watered_on": "2026-09-03",
+                  "quantity_ml": 150,
+                  "note": "Terreau sec"
+                },
+                {
+                  "id": "29117f52-53cc-422e-9c93-5d9ba096d302",
+                  "plant_id": "01c9d6d9-ca29-4158-8086-4163906d6e66",
+                  "watered_on": "2026-09-02",
+                  "quantity_ml": 400,
+                  "note": "Bien arrosé"
+                },
+                {
+                  "id": "787d6668-7232-4163-9c8d-72bc6626d903",
+                  "plant_id": "ada0c585-6efb-4c54-8550-17c4a400b53f",
+                  "watered_on": "2026-09-01",
+                  "quantity_ml": 120,
+                  "note": "Très léger"
+                },
+                {
+                  "id": "b3bd0383-c52c-4711-bfb2-44ea7c0c9a89",
+                  "plant_id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "watered_on": "2026-09-01",
+                  "quantity_ml": 250,
+                  "note": "Arrosage du matin"
+                },
+                {
+                  "id": "d127a6f2-853b-4d30-811d-7f4ffee4cd67",
+                  "plant_id": "d5e9865b-fec9-484f-aabb-c473f812cbbb",
+                  "watered_on": "2026-08-20",
+                  "quantity_ml": 100,
+                  "note": "Arrosage rare"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "plants",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "plants",
+              "label": "Plantes",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "ada0c585-6efb-4c54-8550-17c4a400b53f",
+                  "name": "Aloe vera",
+                  "species": "Aloe barbadensis",
+                  "room": "Balcon",
+                  "light": "forte (Forte)",
+                  "watering_interval_days": 14,
+                  "purchased_on": "2025-08-09"
+                },
+                {
+                  "id": "8e9c8c54-046e-4c18-9ac5-ebe6429c1f24",
+                  "name": "Calathea",
+                  "species": "Calathea orbifolia",
+                  "room": "Bureau",
+                  "light": "moyenne (Moyenne)",
+                  "watering_interval_days": 5,
+                  "purchased_on": "2025-07-15"
+                },
+                {
+                  "id": "d5e9865b-fec9-484f-aabb-c473f812cbbb",
+                  "name": "Sansevieria",
+                  "species": "Dracaena trifasciata",
+                  "room": "Chambre",
+                  "light": "faible (Faible)",
+                  "watering_interval_days": 21,
+                  "purchased_on": "2025-06-01"
+                },
+                {
+                  "id": "01c9d6d9-ca29-4158-8086-4163906d6e66",
+                  "name": "Ficus lyrata",
+                  "species": "Ficus lyrata",
+                  "room": "Salon",
+                  "light": "forte (Forte)",
+                  "watering_interval_days": 7,
+                  "purchased_on": "2025-05-20"
+                },
+                {
+                  "id": "306aa434-0b6f-4097-bf3a-488603f158a8",
+                  "name": "Pothos",
+                  "species": "Epipremnum aureum",
+                  "room": "Cuisine",
+                  "light": "faible (Faible)",
+                  "watering_interval_days": 10,
+                  "purchased_on": "2025-04-12"
+                },
+                {
+                  "id": "f4ea55e3-dc26-42d1-a68a-9dcfbf300ff5",
+                  "name": "Monstera deliciosa",
+                  "species": "Monstera deliciosa",
+                  "room": "Salon",
+                  "light": "moyenne (Moyenne)",
+                  "watering_interval_days": 7,
+                  "purchased_on": "2025-03-02"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 11,
+        "nombres_lus": [
+          11,
+          250,
+          200,
+          180,
+          350,
+          300,
+          200,
+          150,
+          400,
+          120,
+          250,
+          100
+        ],
+        "ok": true,
+        "retenu": 11,
+        "source": "nombre annoncé",
+        "elements": 11
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 18
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.plants",
+        "lue": true
+      },
+      {
+        "table": "public.waterings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}
