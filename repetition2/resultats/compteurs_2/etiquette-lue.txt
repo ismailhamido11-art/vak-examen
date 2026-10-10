@@ -1,0 +1,5 @@
+Voit : Compteurs (Nom, Type, Unité, Créé le) ; Relevés (Compteur, Date du relevé, Valeur)
+Peut proposer (après votre validation) : « Ajouter un relevé » (fonction de l'app) ; « Corriger un relevé » (fonction de l'app) ; « Créer ou modifier un compteur » (fonction de l'app) ; retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Nouveau relevé, Mes compteurs, Consommation du mois, Relevés
+Jamais : supprimer ou modifier hors de ces listes, sauf par « Ajouter un relevé » (fonction de l'app), « Corriger un relevé » (fonction de l'app), « Créer ou modifier un compteur » (fonction de l'app), retenir un souvenir (prise memory) ; appeler delete_reading
+Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

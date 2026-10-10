@@ -1,0 +1,11 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Ajouter un relevé",
+    "Corriger un relevé",
+    "Créer ou modifier un compteur",
+    "retenir un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer … hors de ces listes, sauf par » les quatre actions listées, et « Jamais … appeler delete_reading ». Aucune de ces actions n'est décrite comme une suppression, donc je réponds non, mais la formulation « sauf par » laisse un léger doute. Ces modifications sont seulement proposées et passent après validation de l'utilisateur. L'assistant peut aussi ouvrir Nouveau relevé, Mes compteurs, Consommation du mois et Relevés sans rien enregistrer. Les messages vont à DeepSeek (api.deepseek.com, Chine, selon ses conditions)."
+}

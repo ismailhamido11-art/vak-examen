@@ -1,0 +1,9 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "ajouter dans Arrosages (Plante, Arrosée le, Quantité (ml), Note), après validation de l'utilisateur",
+    "retenir un souvenir (prise memory), après validation de l'utilisateur"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer une ligne ». Elle dit aussi que rien d'autre n'est modifiable hors de ces listes, sauf le souvenir (prise memory). Elle peut ouvrir Fiche plante et Nouvelle plante sans rien enregistrer. L'étiquette précise que les messages partent en Chine, selon les conditions de DeepSeek. Elle ne dit rien de plus sur ce que contient un souvenir."
+}

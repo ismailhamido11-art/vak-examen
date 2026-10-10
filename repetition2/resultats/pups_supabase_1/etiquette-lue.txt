@@ -1,0 +1,5 @@
+Sees: Profile (Name, Member since) ; Orders (Puppy, Amount (cents), Status, Ordered on) ; shared catalog Puppies (Name, Breed, Age (months), Price (cents), Description, Added on)
+Can propose (after your approval): remember a memory (plugin memory)
+Can open (saves nothing): Puppy page, Catalogue, Checkout
+Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory)
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

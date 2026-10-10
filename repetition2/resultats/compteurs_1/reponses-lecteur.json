@@ -1,0 +1,11 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Ajouter un relevé (fonction de l'app)",
+    "Corriger un relevé (fonction de l'app)",
+    "Créer ou modifier un compteur (fonction de l'app)",
+    "retenir un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer ou modifier hors de ces listes » et « Jamais … appeler delete_reading », d'où « non » pour la suppression ; elle ne précise pas si « Corriger un relevé » ou « Créer ou modifier un compteur » peuvent supprimer quoi que ce soit en interne. Les modifications ne sont que proposées, après validation de l'utilisateur. Les données vues sont Compteurs (Nom, Type, Unité, Créé le) et Relevés (Compteur, Date du relevé, Valeur relevée). L'assistant peut aussi ouvrir, sans rien enregistrer : Relevés du compteur, Consommation du mois, Nouveau relevé. Messages envoyés à DeepSeek (api.deepseek.com, Chine, selon ses conditions) ; l'étiquette ne dit rien de plus sur ces conditions."
+}

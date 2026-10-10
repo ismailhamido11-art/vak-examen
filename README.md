@@ -5,7 +5,12 @@ essais, avec des seuils publiés avant la mesure. Dans chaque essai, un agent de
 qu'il n'a jamais vue, sans rien casser. L'assistant obtenu doit donner des chiffres exacts, et ne jamais montrer les
 données d'un autre compte.
 
-- **Le deuxième examen** (10/10/2026) :
+- **Le deuxième examen** (10/10/2026) : **échoué, 9 essais réussis sur 14** (il en fallait 12). Cinq seuils sur sept
+  sont tenus, dont aucune fuite et les étiquettes justes dans les 14 essais.
+  - le journal, le verdict et les défauts de vak qu'il a trouvés : [`vak-examen/EXAMEN.md`](vak-examen/EXAMEN.md) ;
+    la sortie du calcul : [`vak-examen/RESULTAT.json`](vak-examen/RESULTAT.json) ;
+  - les résultats de chaque essai : [`repetition2/resultats/`](repetition2/resultats/) ; les graines :
+    [`vak-examen/graines/`](vak-examen/graines/) ;
   - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 10/10/2026 ;
   - ce qui est figé avant le tirage : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
     empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le premier
@@ -23,5 +28,5 @@ publiées ici :
 - l'archive gelée, `vertical-agent-kit/releases/vak-agent-0.26.1.tgz` (deuxième examen) ;
 - sa page, `vertical-agent-kit/README.md`, d'où vient la demande.
 
-Les deux seront publiés si l'examen est réussi. Les graines des données de test seront publiées après les essais, et
-les résultats aussi, réussis ou non.
+Les deux ne sont publiés que si un examen est réussi. Les graines des données de test et les résultats sont publiés
+après les essais, réussis ou non.

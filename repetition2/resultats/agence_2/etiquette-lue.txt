@@ -1,0 +1,5 @@
+Voit : Agences (Nom, Créée le) ; Membres (Agence, Membre, Rôle, Depuis le) ; Invitations (Agence, Adresse e-mail, Rôle, Envoyée le) ; Dossiers de voyage (Agence, Client, Destination, Départ, Retour, Budget (€), Statut) ; Réservations (Dossier, Agence, Type, Fournisseur, Prix (€), Confirmée, Responsable, Créée le)
+Peut proposer (après votre validation) : retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Mes agences, Agence, Membres de l'agence, Dossier de voyage, Mes réservations à confirmer
+Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; appeler accept_invitations, agency_member_emails, agency_role, can_write_agency, create_agency, invite_member, is_agency_member, is_agency_owner
+Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

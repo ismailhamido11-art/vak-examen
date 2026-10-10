@@ -42,8 +42,10 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
 - [`scelle/GRAINES-TIREES.md`](scelle/GRAINES-TIREES.md) : la consigne des graines des 4 apps tirées (`TIREES=` du
   lanceur scellé) ; [`scelle/GRAINES-CONSTRUITES.md`](scelle/GRAINES-CONSTRUITES.md), celle des 3 apps construites
   du deuxième examen.
-- `graines/` : les graines A et B de chaque app, écrites par la même session. Elles seront publiées après les
-  essais ; leurs empreintes sont dans `PUBLICATION.md`.
+- [`graines/`](graines/) : les graines A et B de chaque app, écrites par des sessions scellées, publiées après les
+  essais ; leurs empreintes l'ont été avant (`PUBLICATION.md`, `EMPREINTES.sha256`, `AVANT-ESSAIS.md`).
+- [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du deuxième examen ;
+  les résultats de chaque essai sont dans `repetition2/resultats/<id>/`.
 
 Les étapes, dans l'ordre :
 1. La répétition privée, sur les apps de `repetition2/apps.tsv` : essais Claude Code par `repetition2/lancer.sh`,
@@ -60,4 +62,5 @@ Les étapes, dans l'ordre :
 
 Le deuxième examen (10/10) reprend ces étapes : 3 apps nouvelles construites et leurs graines, les 6 sabotages
 rejoués sur le contrôleur mis à jour le 08/10 (`controleur/verdicts-sabotages-10-10/`), la publication, le tirage,
-les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`).
+les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`). Verdict : échoué,
+9 essais réussis sur 14, cinq seuils sur sept tenus (`EXAMEN.md`).

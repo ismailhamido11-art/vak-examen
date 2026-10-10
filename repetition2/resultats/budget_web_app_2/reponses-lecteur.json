@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["retenir un souvenir (prise memory), seulement après votre validation"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer une ligne » et « modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ». Les champs « Supprimé le » / « Supprimée le » sont seulement des données que l'assistant voit, pas un pouvoir de suppression. Les messages partent vers DeepSeek (Chine, selon ses conditions). La liste des appels interdits est tronquée (« 1 autres ») : l'étiquette ne dit pas lequel."
+}
