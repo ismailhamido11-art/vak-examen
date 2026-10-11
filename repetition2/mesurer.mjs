@@ -288,6 +288,18 @@ export async function mesurer(dirArg, sortieArg) {
       console.log(`  pas de package.json à la racine : app mesurée dans ${relative(DIR, sous[0])}/`);
       DIR = sous[0];
       pkg = lireJson(join(DIR, "package.json"));
+    } else if (sous.length > 1) {
+      // Examen, 11/10 (panne de supabase_nextjs_template_1) : plusieurs apps en sous-dossiers, aucune à la racine ;
+      // celle qui reçoit vak ne se sait qu'après l'essai (verrou de vak). Mesure vide, écrite avec sa raison, pour que
+      // l'essai tourne : elle ne sert qu'au contrôle de la répétition (controle.mjs), qui ne compte pas ; le contrôleur
+      // scellé mesure lui-même, avant et après, le dossier de l'app que nomme le verrou.
+      const raison = `pas de package.json à la racine, ${sous.length} apps en sous-dossiers (${sous.map((s) => relative(DIR, s)).join(", ")}) : mesure laissée au contrôleur scellé`;
+      console.log(`  ${raison}`);
+      const commit = spawnSync("git", ["-C", DIR, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout?.trim() || undefined;
+      const vide = { dossier: DIR, commit, absente: raison, journaux: JOURNAUX, installation: { absent: true, raison }, controles: {} };
+      writeFileSync(SORTIE, `${JSON.stringify(vide, null, 2)}\n`);
+      console.log(`mesure écrite : ${SORTIE}`);
+      return vide;
     }
   }
   if (!pkg) throw new Error(`package.json absent ou illisible : ${DIR}`);
