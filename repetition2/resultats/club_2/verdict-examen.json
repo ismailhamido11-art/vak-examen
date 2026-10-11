@@ -1,0 +1,482 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "club_2",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 411
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 10
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.27.0.tgz sha256 = préparation",
+        "1 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "club_invitations non prouvé (journal ligne 97)"
+      ],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-11T02:29:45.495Z",
+      "demande": "2026-10-11T02:29:42.826Z",
+      "premierVakQuiRendZero": "2026-10-11T02:34:22.297Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 4.61,
+      "ligne": 133
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 33916,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 0 tables, 3 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-11 : éprouvé (5 table(s), 217 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - clubs.name : modifiable par l'utilisateur ; la politique « clubs_select » passe la ligne à une fonction : à vérifier",
+            "    - clubs.sport : modifiable par l'utilisateur ; la politique « clubs_select » passe la ligne à une fonction : à vérifier",
+            "    - clubs.created_by : modifiable par l'utilisateur ; la politique « clubs_select » passe la ligne à une fonction : à vérifier",
+            "    - clubs.created_at : modifiable par l'utilisateur ; la politique « clubs_select » passe la ligne à une fonction : à vérifier",
+            "    - trainings.club_id : modifiable par l'utilisateur et lue par la politique « trainings_select » : elle décide qui voit la ligne",
+            "    - attendances.training_id : modifiable par l'utilisateur et lue par la politique « attendances_select » : elle décide qui voit la ligne",
+            "    - club_members.role : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier",
+            "    - club_members.email : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier",
+            "    - club_members.created_at : modifiable par l'utilisateur ; la politique « members_select » passe la ligne à une fonction : à vérifier",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.27.0, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 0 tables, 3 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-11 : éprouvé (5 table(s), 217 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 8
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 8
+          },
+          "erreurs": {
+            "avant": 8,
+            "apres": 8,
+            "nouvelles": []
+          },
+          "etat": "identique (code 2)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/club_2",
+    "preparation": {
+      "id": "club_2",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/club.bundle",
+      "commit": "1b05281d58c9a209e1f118df054ff62377c69098",
+      "prepare": "f143aa2e934a093e9117c294f06daee8ebd06377",
+      "archive": {
+        "nom": "vak-agent-0.27.0.tgz",
+        "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+      },
+      "debut": "2026-10-11T02:29:12Z"
+    },
+    "tip": "ea126d3c58bf4a46c5adcb21111cd98f9db21606",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 50,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 5,
+      "tablesAMoi": 5,
+      "aMoiEprouvees": 5,
+      "ignorees": 3,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "f143aa2e934a093e9117c294f06daee8ebd06377",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 359 packages in 8s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 8,
+              "liste": [
+                "app/clubs/[id]/membres/page.tsx:132 app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/membres/page.tsx:133 app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/page.tsx:154 app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/page.tsx:155 app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:127 app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:128 app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:128 app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+                "app/layout.tsx:10 app/layout.tsx(10,50): error TS2304: Cannot find name 'LayoutProps'."
+              ],
+              "fin": [
+                "app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+                "app/layout.tsx(10,50): error TS2304: Cannot find name 'LayoutProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "┌ ○ /",
+                "├ ○ /_not-found",
+                "├   /clubs/[id]",
+                "│ └ ◐ /clubs/[id]",
+                "├   /clubs/[id]/membres",
+                "│ └ ◐ /clubs/[id]/membres",
+                "├   /clubs/[id]/trainings/[tid]",
+                "│ └ ◐ /clubs/[id]/trainings/[tid]",
+                "├ ○ /login",
+                "└ ○ /mes-entrainements",
+                "○  (Static)             prerendered as static content",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 359 packages in 8s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "ea126d3c58bf4a46c5adcb21111cd98f9db21606",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 360 packages in 10s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 8,
+              "liste": [
+                "app/clubs/[id]/membres/page.tsx:132 app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/membres/page.tsx:133 app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/page.tsx:154 app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/page.tsx:155 app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:127 app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:128 app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx:128 app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+                "app/layout.tsx:12 app/layout.tsx(12,50): error TS2304: Cannot find name 'LayoutProps'."
+              ],
+              "fin": [
+                "app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+                "app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+                "app/layout.tsx(12,50): error TS2304: Cannot find name 'LayoutProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "├ ◐ /assistant",
+                "├   /clubs/[id]",
+                "│ └ ◐ /clubs/[id]",
+                "├   /clubs/[id]/membres",
+                "│ └ ◐ /clubs/[id]/membres",
+                "├   /clubs/[id]/trainings/[tid]",
+                "│ └ ◐ /clubs/[id]/trainings/[tid]",
+                "├ ○ /login",
+                "├ ○ /mes-entrainements",
+                "└ ○ /reglages",
+                "○  (Static)             prerendered as static content",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 360 packages in 10s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-11T02:36:59.077Z"
+}

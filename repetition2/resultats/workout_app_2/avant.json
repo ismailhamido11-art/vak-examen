@@ -1,0 +1,84 @@
+{
+  "dossier": "/work/workout_app_2/avant",
+  "commit": "52599624243bc961b0906faeaf4ed6f89c76eca1",
+  "debut": "2026-10-11T03:06:24.884Z",
+  "fin": "2026-10-11T03:07:00.603Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "bun",
+    "version": null,
+    "lanceur": "bun",
+    "verrous": [
+      "bun.lock"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/workout_app_2/avant-journaux",
+  "installation": {
+    "commande": "bun install --frozen-lockfile",
+    "dossier": "/work/workout_app_2/avant",
+    "code": 0,
+    "duree_s": 0,
+    "erreurs": [],
+    "fin": [
+      "+ sonner@2.0.7",
+      "+ tailwind-merge@3.6.0",
+      "688 packages installed [427.00ms]"
+    ],
+    "journal": "/work/workout_app_2/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/workout_app_2/avant",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/workout_app_2/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "bun run lint",
+      "dossier": "/work/workout_app_2/avant",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [
+        "$ eslint"
+      ],
+      "journal": "/work/workout_app_2/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "bun run test",
+      "dossier": "/work/workout_app_2/avant",
+      "code": 0,
+      "duree_s": 7,
+      "erreurs": [],
+      "fin": [
+        "Tests  285 passed | 1 skipped (286)",
+        "Start at  03:06:33",
+        "Duration  6.32s (transform 901ms, setup 0ms, import 2.48s, tests 3.50s, environment 7.93s)"
+      ],
+      "journal": "/work/workout_app_2/avant-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "bun run build",
+      "dossier": "/work/workout_app_2/avant",
+      "code": 0,
+      "duree_s": 21,
+      "erreurs": [],
+      "fin": [
+        "┌ ○ /",
+        "└ ○ /_not-found",
+        "○  (Static)  prerendered as static content"
+      ],
+      "journal": "/work/workout_app_2/avant-journaux/build.txt"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "dossier": "/work/supabase_nextjs_template_1/apres",
+  "commit": "f204545da50015ca49d8a2bbd3ea96ca3ef0ca8d",
+  "debut": "2026-10-11T03:33:38.358Z",
+  "fin": "2026-10-11T03:33:39.313Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [],
+  "journaux": "/work/supabase_nextjs_template_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/supabase_nextjs_template_1/apres",
+    "code": 0,
+    "duree_s": 1,
+    "erreurs": [],
+    "fin": [
+      "added 2 packages in 874ms"
+    ],
+    "journal": "/work/supabase_nextjs_template_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "absent": true,
+      "raison": "ni script typecheck ni tsconfig.json"
+    },
+    "lint": {
+      "absent": true,
+      "raison": "pas de script lint"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "absent": true,
+      "raison": "ni Next ni Expo"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+$ npx -y bun@1 run test
+(dossier : /work/workout_app_2/apres)
+
+$ vitest run
+
+ RUN  v4.1.6 /work/workout_app_2/apres
+
+ ✓ scripts/lib/__tests__/ppl-sheet.test.ts (17 tests | 1 skipped) 27ms
+ ✓ src/lib/recovery/__tests__/authoring.test.ts (30 tests) 14ms
+ ✓ scripts/__tests__/parse-weight-csv.test.ts (23 tests) 9ms
+ ✓ scripts/lib/__tests__/exercise-name.test.ts (40 tests) 16ms
+ ✓ src/lib/recovery/__tests__/state.test.ts (17 tests) 9ms
+ ✓ scripts/lib/__tests__/pdf-program.test.ts (14 tests) 16ms
+ ✓ scripts/lib/__tests__/exercise-variant.test.ts (14 tests) 15ms
+ ✓ scripts/data/achilles/__tests__/exercises.test.ts (11 tests) 39ms
+ ✓ scripts/lib/__tests__/powerbuilding-pdf.test.ts (7 tests) 21ms
+ ✓ scripts/lib/__tests__/ppl1-pdf.test.ts (4 tests) 14ms
+ ✓ scripts/__tests__/migrations.test.ts (9 tests) 3560ms
+ ✓ scripts/lib/__tests__/arm-pdf.test.ts (4 tests) 13ms
+ ✓ scripts/data/programs/__tests__/schema.test.ts (10 tests) 13ms
+ ✓ scripts/data/achilles/__tests__/program.test.ts (8 tests) 9ms
+ ✓ src/lib/recovery/__tests__/dose.test.ts (19 tests) 13ms
+ ✓ src/lib/recovery/__tests__/frequency.test.ts (8 tests) 7ms
+ ✓ src/lib/recovery/__tests__/dates.test.ts (15 tests) 9ms
+ ✓ scripts/lib/__tests__/parse-prescription.test.ts (17 tests) 8ms
+ ✓ scripts/data/programs/__tests__/library.test.ts (3 tests) 22ms
+ ✓ scripts/lib/__tests__/template-name.test.ts (12 tests) 7ms
+ ✓ scripts/lib/__tests__/session-order.test.ts (4 tests) 4ms
+
+ Test Files  21 passed (21)
+      Tests  285 passed | 1 skipped (286)
+   Start at  03:16:35
+   Duration  6.01s (transform 898ms, setup 0ms, import 2.49s, tests 3.84s, environment 7.78s)
+

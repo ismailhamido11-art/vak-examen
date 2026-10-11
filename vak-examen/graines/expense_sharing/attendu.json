@@ -1,0 +1,58 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-E9A6EAA2",
+      "MARQUEUR-B-212E1359",
+      "MARQUEUR-B-5B97464C"
+    ]
+  },
+  {
+    "table": "public.groups",
+    "colonne": "created_by",
+    "nom": "groups",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-9B22B478",
+      "MARQUEUR-B-66C626FF"
+    ]
+  },
+  {
+    "table": "public.group_members",
+    "colonne": "user_id",
+    "nom": "group memberships",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-4F00D158",
+      "MARQUEUR-B-7AC1E7CE",
+      "MARQUEUR-B-F3149F16",
+      "MARQUEUR-B-6467F2AB",
+      "MARQUEUR-B-83044C2E"
+    ]
+  },
+  {
+    "table": "public.expenses",
+    "colonne": "created_by",
+    "nom": "expenses",
+    "langue": "en",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-CB2C00BA",
+      "MARQUEUR-B-C55BA991",
+      "MARQUEUR-B-3445B580",
+      "MARQUEUR-B-8A32FB70",
+      "MARQUEUR-B-83230522",
+      "MARQUEUR-B-130D2AC5",
+      "MARQUEUR-B-80FB2CC5",
+      "MARQUEUR-B-EC84C255",
+      "MARQUEUR-B-DA472C14",
+      "MARQUEUR-B-658D76D1"
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "id": "workout_app_2",
+  "depot": "https://github.com/quitefrank/workout-app",
+  "commit": "52599624243bc961b0906faeaf4ed6f89c76eca1",
+  "prepare": "353d6fd4eec9453c255680f81ecba8d678b8c998",
+  "archive": {
+    "nom": "vak-agent-0.27.0.tgz",
+    "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+  },
+  "app": "/work/workout_app_2/app",
+  "avant": "/work/workout_app_2/avant.json",
+  "debut": "2026-10-11T03:06:22Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-11T03:07:06Z"
+}

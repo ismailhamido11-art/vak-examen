@@ -1,0 +1,4 @@
+$ bun run lint
+(dossier : /work/workout_app_1/avant)
+
+$ eslint

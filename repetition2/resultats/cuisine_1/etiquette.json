@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-11T01:29:18.910Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Recettes (Titre, Catégorie, Préparation (min), Portions, Favorite, Mots-clés, Ajoutée le) ; Fois cuisinées (Recette, Cuisinée le, Note, Commentaire)",
+    "Peut proposer (après ta validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes recettes, Nouvelle recette, Fiche de la recette",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:3055493a29d76aed88fd1c29fb189c476f0ee0f3df7bad11a6bed81cbc6a83e5",
+    "calibrage": "sha256:bb4e67a8f2aa3b283c5d217c9f2de1e3ca1b37ffb0bcf3816a49a70b142b7fa6"
+  }
+}

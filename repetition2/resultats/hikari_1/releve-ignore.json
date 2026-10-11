@@ -1,0 +1,12 @@
+{
+  "id": "hikari_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "customers",
+      "ligne": 83
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

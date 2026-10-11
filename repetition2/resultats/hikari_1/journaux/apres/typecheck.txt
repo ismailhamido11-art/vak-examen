@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/hikari_1/apres)
+

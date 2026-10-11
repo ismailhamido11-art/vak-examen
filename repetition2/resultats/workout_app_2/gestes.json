@@ -1,0 +1,28 @@
+{
+  "id": "workout_app_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 3,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origine du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origine du site)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Faut-il garder les deux vues en échec, ou lever l'exigence de preuve pour elles ? »",
+      "note": "les deux vues « non prouvé » ; « Je les ai donc remises au calibrage et j'ai laissé l'échec » : la décision reste à l'humain"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Quelle sera la route de connexion ? »",
+      "note": "avec « Page `/login` : `onUnauthorized` pointe vers `/login`, qui n'existe pas encore. L'interface de connexion est prévue en Milestone 2. » : sans page de connexion, personne ne peut se connecter à l'assistant ; la route reste à décider ; dans le doute, c'est un geste"
+    }
+  ],
+  "non_comptes": [
+    "« L'assistant doit-il couvrir la couche de récupération d'Achille ? » : tranchée par l'agent dans « Choix que j'ai tranchés » (« Tables laissées de côté […] Pour revenir dessus, il faut les calibrer dans `agent.ts` »), aucune action demandée (à workout_app_1, « à vous de les confirmer » la laissait ouverte, et elle était comptée)",
+    "« Client Supabase : l'app n'en avait aucun. J'ai créé `src/lib/supabase/client.ts`, qui lit `NEXT_PUBLIC_SUPABASE_URL` et `NEXT_PUBLIC_SUPABASE_ANON_KEY`. » : choix fait ; ces deux variables sont déjà celles de l'app (`.env.local.example`, lignes 7 et 8, au commit tiré) : aucune valeur nouvelle à fournir",
+    "« Gestionnaire de paquets : `bun` est absent. J'ai installé avec `npm install --no-package-lock --legacy-peer-deps` […] » : signalement, aucune action demandée (le contournement lui-même est jugé au point 4)",
+    "« Langue et quotas », « Test des migrations », « Étiquette : elle a changé pendant le calibrage » : choix faits et signalements, aucune action demandée"
+  ]
+}

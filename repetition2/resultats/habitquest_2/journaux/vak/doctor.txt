@@ -1,0 +1,57 @@
+$ vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_4a79a0'
+(dossier : /work/habitquest_2/apres)
+
+✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)
+✓ VAK002 versions alignées (@vak/agent 0.27.0, bundle serveur et deno.json compris)
+✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md
+✓ VAK004 tsconfig.json exclut supabase/functions
+✓ VAK005 tsc -p supabase/functions/vak : aucune erreur
+! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements
+    - tables.profiles : la politique « Profiles are publicly readable » (using (true)) rend toutes les lignes lisibles par tout utilisateur connecté dans l'app ; l'assistant ne lit que les siennes (owner « id ») : si ce n'est pas voulu, corrigez la RLS de l'app ; jamais shared: true (vak prove dirait fuite)
+    → vérifie que c'est voulu
+✓ VAK007 lib/vak.ts sans vak:todo, persona écrite
+✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app
+✓ VAK009 aucun secret côté client
+✓ VAK010 [functions.vak] verify_jwt = false
+✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git
+! VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 28 tables, 51 fonctions) ; dans ignore, tables de l'utilisateur : « arc_weeks », « challenges », « daily_chests », « duels », « equipped_items », « friendships », « invite_codes », « kudos », « mood_logs », « notifications », « purchases », « push_tokens », « streak_freezes », « support_messages », « user_achievements », « user_runes », « weekly_boss_runs »
+    - « arc_weeks » : calibre-la, owner
+    - « arena_fights » : table serveur (illisible pour authenticated) : rien à faire
+    - « arena_members » : table serveur (illisible pour authenticated) : rien à faire
+    - « arena_players » : table serveur (illisible pour authenticated) : rien à faire
+    - « challenges » : calibre-la, owner
+    - « coop_challenges » : table serveur (illisible pour authenticated) : rien à faire
+    - « coop_members » : table serveur (illisible pour authenticated) : rien à faire
+    - « daily_chests » : calibre-la, owner
+    - « duels » : calibre-la, owner
+    - « equipped_items » : calibre-la, owner
+    - « friendships » : calibre-la, owner
+    - « invite_codes » : calibre-la, owner
+    - « kudos » : calibre-la, owner
+    - « mood_logs » : calibre-la, owner
+    - « notifications » : calibre-la, owner
+    - « purchases » : calibre-la, owner
+    - « push_tokens » : calibre-la, owner
+    - « streak_freezes » : calibre-la, owner
+    - « support_messages » : calibre-la, owner
+    - « user_achievements » : calibre-la, owner
+    - « user_runes » : calibre-la, owner
+    - « weekly_boss_runs » : calibre-la, owner
+    → calibre-les comme indiqué : jamais ignore pour faire passer la preuve ; si l'assistant ne doit vraiment pas les voir, dis-le à l'humain comme un choix fait, en une ligne
+✓ VAK014 photographie postérieure aux migrations de l'app (72)
+✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l'intégration n'est pas finie
+    → node node_modules/@vak/agent/bin/vak.mjs prove --db-url <base de TEST où les migrations de l'app sont appliquées ; sans Docker : node node_modules/@vak/agent/bin/vak.mjs localdb donne l'URL>
+✓ VAK011 photographie à jour (schema.gen.ts = base)
+✓ VAK101 migration vak appliquée (vak_schema_version = 4)
+✓ VAK102 droits des tables vak_ exactement ceux attendus
+✓ VAK103 RLS active sur les tables calibrées et vak_*
+✓ VAK105 vues calibrées en security_invoker
+✓ VAK106 capacités réelles conformes au calibrage
+! VAK107 avis de sécurité (avertissement)
+    - profiles : politique « Profiles are publicly readable » using (true) : publication par l'app : voulue ?
+    - fonction « feature_unlocked » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « username_available » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    - fonction « weekly_planned_validations » : security definer appelable sans compte (anon) : vérifie qu'elle refuse un auth.uid() nul
+    → vérifie chaque point ; corrige dans une migration de l'app si besoin
+✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne
+doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) [code 1]

@@ -1,0 +1,23 @@
+{
+  "id": "habitquest_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins https://habitquest.expo.app,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne : « Quel fournisseur de modèle pour `connect` ? » (« Questions que j'aurais posées ») est la valeur `--provider` de cette ligne ; « Elle propose ensuite la production : à n'accepter que si tu es d'accord » décrit la fin de cette même commande, sans ligne `connect --prod` à part (à habitquest_1, une ligne `connect --prod` distincte était citée, et comptée)"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« Pour la débloquer : soit tu acceptes que `streaks` quitte le périmètre, soit tu fais corriger le banc de preuve du kit. »",
+      "note": "une décision demandée à l'humain, reprise dans « Questions que j'aurais posées » : « Faut-il garder `streaks` dans le périmètre ? Sinon, le retirer débloque la preuve. » (la même décision, comptée une fois)"
+    }
+  ],
+  "non_comptes": [
+    "« Faut-il ouvrir à l'assistant les tables sociales (`friendships`, `challenges`, `duels`) ? Je les ai exclues par prudence » : tranchée par l'agent, retour arrière indiqué (« les décommenter dans `agent.ts` »), aucune action demandée (précédents agence_2 et budget_web_app_2 du deuxième examen)",
+    "« `! rls` sur `profiles` » : faille possible de l'app signalée (« Si les profils publics sont voulus […], il n'y a rien à faire »), aucune action demandée",
+    "« Tables « à moi » en `ignore` », « Aucune écriture ouverte à l'assistant », « Pas de garde-fous, pas de bêta » : choix faits par l'agent, avec leur retour arrière",
+    "« Pas d'ADR écrit : le CLAUDE.md demande une décision dans `docs/adr/` […], et je n'en ai pas rédigé » : signalement d'une convention de l'app, sans rien qui manque à l'assistant pour marcher"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-11T02:00:59.405Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Succès débloqués (Succès, Débloqué le) ; Quêtes (Nom, Catégorie, Fréquence, Jours, Pourquoi, Ancrage, Version mini, Emoji, Archivée, En pause) ; Accomplissements (Quête, Accompli le, XP gagnée, Note, Version mini) ; Séries (Quête, Série en cours, Plus longue série, Dernier accomplissement) ; Profil (Pseudo, XP, Niveau, Or, Rang, Meilleure série) ; catalogue partagé Succès (Nom, Description, Catégorie, Seuil, Récompense XP, Récompense or) ; catalogue partagé Boutique (Nom, Description, Catégorie, Prix en or, Rareté, Niveau requis, Disponible)",
+    "Peut proposer (après ta validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Quêtes du jour, Créer une quête, Statistiques, Boutique, Succès, Amis",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire arc_weeks, challenges, daily_chests, daily_quest_templates, duels, equipped_items, friendships, invite_codes, 18 autres ; appeler accept_invite, activate_streak_freeze, add_freeze_token, arc_of, arena_ack_result, arena_attack_power, arena_bot_name, arena_defense_power, 43 autres",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:5149452decd78032ae2e131f13f409d997987ac9a34abab33c56a4a265da4dce",
+    "calibrage": "sha256:26cdd7b7588ee9b60f01da327b2cb5e0ce730b87cdd40aadc2176c9769f1adf5"
+  }
+}

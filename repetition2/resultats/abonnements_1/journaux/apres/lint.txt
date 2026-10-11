@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/abonnements_1/apres)
+
+
+> suivi-abonnements@1.0.0 lint
+> expo lint
+

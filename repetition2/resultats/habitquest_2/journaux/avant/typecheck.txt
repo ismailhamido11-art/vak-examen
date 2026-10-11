@@ -1,0 +1,7 @@
+$ npm run typecheck
+(dossier : /work/habitquest_2/avant)
+
+
+> habitquest@0.1.0 typecheck
+> tsc --noEmit
+

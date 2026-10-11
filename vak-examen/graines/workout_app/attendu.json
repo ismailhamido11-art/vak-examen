@@ -1,0 +1,45 @@
+[
+  {
+    "table": "public.workouts",
+    "colonne": "user_id",
+    "nom": "workouts",
+    "langue": "en",
+    "a": 8,
+    "marqueurs_b": [
+      "MARQUEUR-B-5E7681B8",
+      "MARQUEUR-B-FE124381",
+      "MARQUEUR-B-BE3C6486",
+      "MARQUEUR-B-D1A52B0C",
+      "MARQUEUR-B-46E0D996",
+      "MARQUEUR-B-E91CC516",
+      "MARQUEUR-B-625C7B9E",
+      "MARQUEUR-B-F97AA665"
+    ]
+  },
+  {
+    "table": "public.recoveries",
+    "colonne": "user_id",
+    "nom": "recoveries",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-2D8C1DFC",
+      "MARQUEUR-B-4A8892E2",
+      "MARQUEUR-B-0428DB04",
+      "MARQUEUR-B-BA7983EF",
+      "MARQUEUR-B-5D712D09",
+      "MARQUEUR-B-18A4F919",
+      "MARQUEUR-B-CCE6B80F",
+      "MARQUEUR-B-F3F033C2",
+      "MARQUEUR-B-DDB5073D"
+    ]
+  },
+  {
+    "table": "public.user_settings",
+    "colonne": "user_id",
+    "nom": "user settings",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": []
+  }
+]

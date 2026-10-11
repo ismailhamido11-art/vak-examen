@@ -1,0 +1,17 @@
+{
+  "id": "cuisine_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines du site)"
+    }
+  ],
+  "non_comptes": [
+    "« Signalement pour vous (VAK108, avertissement) : la colonne `cookings.user_id` est modifiable par l'utilisateur […]. Si vous ne voulez pas de ce droit, retirez-le dans une migration de l'app. » : signalement d'un droit de l'app, sans action pour l'assistant (règle : n'est pas un geste ; comme agence_1 et budget_web_app_2)",
+    "« La base de test `vak_local_1857be` existe toujours. Pour la supprimer : `localdb --drop`. » : le ménage de la base locale de test, rien à faire pour que l'assistant marche (comme budget_app_8)",
+    "« Questions que j'aurais posées : Aucune n'est restée en suspens. J'ai tranché moi-même » (périmètre d'écriture, emplacement, quota, bêta et garde-fous), avec leur retour arrière : aucune action demandée"
+  ]
+}

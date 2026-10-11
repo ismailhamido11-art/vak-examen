@@ -1,0 +1,77 @@
+{
+  "dossier": "/work/hikari_2/apres",
+  "commit": "895570c8040e0b420f3224f738cb255c9f2df5e7",
+  "debut": "2026-10-11T03:23:28.802Z",
+  "fin": "2026-10-11T03:24:37.110Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": "10.15.1",
+    "lanceur": "corepack pnpm@10.15.1",
+    "verrous": [
+      "pnpm-lock.yaml"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/hikari_2/apres-journaux",
+  "installation": {
+    "commande": "corepack pnpm@10.15.1 install --frozen-lockfile",
+    "dossier": "/work/hikari_2/apres",
+    "code": 0,
+    "duree_s": 2,
+    "erreurs": [],
+    "fin": [
+      "+ prettier-plugin-tailwindcss 0.5.14",
+      "+ typescript 5.4.5",
+      "Done in 2s using pnpm v10.15.1"
+    ],
+    "journal": "/work/hikari_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/hikari_2/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/hikari_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "corepack pnpm@10.15.1 run lint",
+      "dossier": "/work/hikari_2/apres",
+      "code": 1,
+      "duree_s": 1,
+      "erreurs": [],
+      "fin": [
+        "Base",
+        "Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/hikari_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "corepack pnpm@10.15.1 run build",
+      "dossier": "/work/hikari_2/apres",
+      "code": 1,
+      "duree_s": 57,
+      "erreurs": [],
+      "fin": [
+        "type: 'Error'",
+        "}",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/hikari_2/apres-journaux/build.txt"
+    }
+  }
+}

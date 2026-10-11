@@ -1,0 +1,77 @@
+{
+  "dossier": "/work/hikari_1/avant",
+  "commit": "c1f16f54ecc0b804567728f922999ad463af39e6",
+  "debut": "2026-10-11T02:11:53.867Z",
+  "fin": "2026-10-11T02:13:12.887Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": "10.15.1",
+    "lanceur": "corepack pnpm@10.15.1",
+    "verrous": [
+      "pnpm-lock.yaml"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/hikari_1/avant-journaux",
+  "installation": {
+    "commande": "corepack pnpm@10.15.1 install --frozen-lockfile",
+    "dossier": "/work/hikari_1/avant",
+    "code": 0,
+    "duree_s": 19,
+    "erreurs": [],
+    "fin": [
+      "+ prettier-plugin-tailwindcss 0.5.14",
+      "+ typescript 5.4.5",
+      "Done in 17.8s using pnpm v10.15.1"
+    ],
+    "journal": "/work/hikari_1/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/hikari_1/avant",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/hikari_1/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "corepack pnpm@10.15.1 run lint",
+      "dossier": "/work/hikari_1/avant",
+      "code": 1,
+      "duree_s": 1,
+      "erreurs": [],
+      "fin": [
+        "Base",
+        "Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/hikari_1/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "corepack pnpm@10.15.1 run build",
+      "dossier": "/work/hikari_1/avant",
+      "code": 1,
+      "duree_s": 51,
+      "erreurs": [],
+      "fin": [
+        "type: 'Error'",
+        "}",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/hikari_1/avant-journaux/build.txt"
+    }
+  }
+}

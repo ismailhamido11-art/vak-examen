@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-11T01:46:32.016Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Abonnements (Identifiant, Nom, Catégorie, Montant mensuel (€), Jour de prélèvement, Actif, Créé le) ; Paiements (Identifiant, Abonnement, Payé le, Montant (€), Moyen de paiement)",
+    "Peut proposer (après ta validation) : « Nouvel abonnement » (fonction de l'app) ; « Modifier l'abonnement » (fonction de l'app) ; « Résilier l'abonnement » (fonction de l'app) ; « Noter un paiement » (fonction de l'app) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes abonnements, Dépense du mois, Paiements, Ajouter un paiement",
+    "Jamais : supprimer ou modifier hors de ces listes, sauf par « Nouvel abonnement » (fonction de l'app), « Modifier l'abonnement » (fonction de l'app), « Résilier l'abonnement » (fonction de l'app), « Noter un paiement » (fonction de l'app), retenir un souvenir (prise memory) ; appeler delete_payment, current_user_id",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:56586e16d0fc2135e342245eda4f71ca983026328180324f0b1a9b5a6b1cbd56",
+    "calibrage": "sha256:bf9fa3a18943a01eb23fc02ec861073c7c72ed63226f6d89532fdaf9cd92f019"
+  }
+}

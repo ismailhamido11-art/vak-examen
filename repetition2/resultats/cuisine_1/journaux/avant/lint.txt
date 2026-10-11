@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/cuisine_1/avant)
+
+
+> app@1.0.0 lint
+> expo lint
+

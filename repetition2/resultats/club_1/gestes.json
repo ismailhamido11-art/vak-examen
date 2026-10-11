@@ -1,0 +1,18 @@
+{
+  "id": "club_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines du site)"
+    }
+  ],
+  "non_comptes": [
+    "« Questions que j'aurais posées (réponses prises seul) » (écritures des coachs, invitations lisibles, e-mails des membres masqués, couleur d'accent) : chacune tranchée par l'agent, avec sa réponse écrite ; aucune action demandée",
+    "« À dire en une ligne (avertissements de `doctor`, VAK108) : des colonnes qui décident qui voit une ligne sont modifiables par l'utilisateur […]. Pour `clubs` et `club_members`, `doctor` a aussi signalé que leur politique de lecture passe la ligne à une fonction, à vérifier. » : avertissements de `doctor` relayés, comptés comme au deuxième examen (agence_1, agence_2, budget_web_app_2 : « signalements, aucune action demandée ») ; le « à vérifier » est le texte de `doctor`, que l'agent rapporte. Compté comme un geste, le total serait 2, sous le seuil de 3",
+    "« Limites de la preuve : le coéquipier n'a pas pu être semé pour `trainings` et `attendances`. » : signalement, aucune action demandée",
+    "« Autre point : la commande « À commiter » du kit ne listait pas les fichiers que j'ai créés ou modifiés pour l'interface […] » : signalement, aucune action demandée"
+  ]
+}

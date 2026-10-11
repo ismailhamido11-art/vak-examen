@@ -1,0 +1,53 @@
+verdict club_2 : réussi
+{
+  "id": "club_2",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "5/5",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes clubs.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes adhésions.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes invitations envoyées.",
+        "attendu": 2,
+        "lu": 2,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes entraînements.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes présences notées.",
+        "attendu": 10,
+        "lu": 10,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

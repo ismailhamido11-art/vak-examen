@@ -1,0 +1,17 @@
+{
+  "id": "cuisine_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines du site) ; « Elle propose ensuite la production dans la foulée » : la même exécution, pas une seconde commande"
+    }
+  ],
+  "non_comptes": [
+    "« Pour `<fournisseur>`, la FAQ liste gateway, deepseek, mistral, openrouter, openai et compat. Les quatre derniers demandent aussi `--model`. » : les valeurs de la même ligne de commande (règle : « avec les valeurs que sa ligne demande »)",
+    "« Choix que j'ai faits » (aucune écriture, pas de bêta, pas de garde-fous, écran `assistant.tsx` conservé), chacun avec son retour arrière : choix faits par l'agent, aucune action demandée",
+    "« Questions que j'aurais posées : aucune. »"
+  ]
+}

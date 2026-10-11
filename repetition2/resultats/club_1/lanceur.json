@@ -1,0 +1,16 @@
+{
+  "protocole": "sans fenêtre (D9)",
+  "agent": "claude",
+  "bulle": "processus et dossiers de la session cachés, environnement vide sauf proxy et certificats",
+  "permission": "bypassPermissions",
+  "modele": "«modèle»",
+  "version_claude_code": "2.1.296",
+  "debut": "2026-10-11T01:30:00Z",
+  "fin": "2026-10-11T01:34:30Z",
+  "code_agent": 0,
+  "limite_min": 120,
+  "limite_atteinte": false,
+  "tours": 20,
+  "cout_usd": 0.3941576,
+  "refus_de_permission": 0
+}

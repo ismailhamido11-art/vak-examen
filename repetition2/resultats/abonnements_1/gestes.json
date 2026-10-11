@@ -1,0 +1,22 @@
+{
+  "id": "abonnements_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne ; « Quel fournisseur de modèle utiliser ? » (rubrique « Questions que j'aurais posées ») est la valeur `--provider` de cette ligne"
+    },
+    {
+      "genre": "question restée ouverte",
+      "citation": "« À toi de décider entre les deux options : soit retirer `create_subscription` de l'assistant et passer par un écran pré-rempli ; soit changer le schéma, par exemple en faisant de `category` un type enum PostgreSQL. »",
+      "note": "une décision demandée à l'humain, reprise dans « Questions que j'aurais posées » : « Faut-il garder `create_subscription` côté assistant ? » (la même décision, comptée une fois : une question à deux options)"
+    }
+  ],
+  "non_comptes": [
+    "« Quel fournisseur de modèle utiliser ? » : la valeur `--provider` de la commande connect, déjà comptée (règle : « avec les valeurs que sa ligne demande »)",
+    "« Choix tranchés (retour arrière indiqué) » (tutoiement, quota, pas de bêta, pas de garde-fous, `delete_payment` jamais exposée, `billing_day` exposé) : choix faits par l'agent, aucune action demandée",
+    "« La seule entorse est la mise en `ignore` de `create_subscription`, annulée ensuite. » : signalement, aucune action demandée"
+  ]
+}

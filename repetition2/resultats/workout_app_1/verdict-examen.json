@@ -1,0 +1,204 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "workout_app_1",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "bun.lock",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 28
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": false,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.27.0.tgz sha256 = préparation",
+        "7 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "v_user_weekly_workouts non prouvé (journal ligne 168)",
+        "v_workout_exercise_tonnage non prouvé (journal ligne 168)",
+        "v_workout_exercise_top_set non prouvé (journal ligne 168)",
+        "v_user_weekly_workouts non prouvé (journal ligne 175)",
+        "v_workout_exercise_tonnage non prouvé (journal ligne 175)",
+        "v_workout_exercise_top_set non prouvé (journal ligne 175)",
+        "v_user_weekly_workouts non prouvé (journal ligne 180)",
+        "v_workout_exercise_tonnage non prouvé (journal ligne 180)",
+        "v_user_weekly_workouts non prouvé (journal ligne 197)",
+        "v_workout_exercise_tonnage non prouvé (journal ligne 197)",
+        "v_workout_exercise_top_set non prouvé (journal ligne 197)"
+      ],
+      "fuitesEcartees": [],
+      "journal": [
+        {
+          "code": "legacy-peer-deps",
+          "ligne": 40,
+          "heure": "02:02:56",
+          "detail": "npm … --legacy-peer-deps",
+          "commande": "npm install --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -8; ls node_modules | wc -l; git status --short"
+        },
+        {
+          "code": "legacy-peer-deps",
+          "ligne": 58,
+          "heure": "02:03:48",
+          "detail": "npm … --legacy-peer-deps",
+          "commande": "git diff package.json tsconfig.json; npm install --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -4; ls node_modules/@vak/agent/docs; git status --short | head -30"
+        }
+      ]
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false,
+      "raison": "installation impossible"
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": false
+        },
+        "apres": {
+          "ok": false
+        }
+      },
+      "verifs": {}
+    }
+  },
+  "raisons": [
+    {
+      "point": 4,
+      "code": "journal-legacy-peer-deps",
+      "resume": "--legacy-peer-deps tapé par l'agent (2 fois)",
+      "preuve": [
+        "journal ligne 40 (02:02:56) : npm … --legacy-peer-deps — commande : npm install --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -8; ls node_modules | wc -l; git status --short",
+        "journal ligne 58 (02:03:48) : npm … --legacy-peer-deps — commande : git diff package.json tsconfig.json; npm install --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -4; ls node_modules/@vak/agent/docs; git status --short | head -30"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "installation",
+      "resume": "les dépendances du HEAD ne s'installent pas : vak ne peut pas être lancé",
+      "preuve": [
+        "gestionnaire de paquets non géré (bun)"
+      ]
+    }
+  ],
+  "notes": [
+    "6 fichier(s) géré(s) par vak absent(s) du commit (ignorés par git ?) : .claude/skills/vak/SKILL.md, .claude/skills/vak/references/calibration.md, .claude/skills/vak/references/features.md… ; « vak doctor » (VAK001, VAK003) en juge au point 1",
+    "installation impossible avant et après : vérifications non comparables"
+  ],
+  "entree": {
+    "essai": "/srv/essais/workout_app_1",
+    "preparation": {
+      "id": "workout_app_1",
+      "depot": "https://github.com/quitefrank/workout-app",
+      "commit": "52599624243bc961b0906faeaf4ed6f89c76eca1",
+      "prepare": "353d6fd4eec9453c255680f81ecba8d678b8c998",
+      "archive": {
+        "nom": "vak-agent-0.27.0.tgz",
+        "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+      },
+      "debut": "2026-10-11T02:01:12Z"
+    },
+    "tip": "9c22d65848b7eca8e77aeea5fb24b30d7cf46f67",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 75,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 23,
+      "tablesAMoi": 8,
+      "aMoiEprouvees": 2,
+      "ignorees": 15,
+      "verdictDuRecu": "non prouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "353d6fd4eec9453c255680f81ecba8d678b8c998",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "bun",
+          "installation": {
+            "ok": false,
+            "raison": "gestionnaire de paquets non géré (bun)",
+            "nonGere": true
+          },
+          "verifs": {}
+        }
+      },
+      "installationRacine": {
+        "ok": false,
+        "raison": "gestionnaire de paquets non géré (bun)",
+        "nonGere": true
+      }
+    },
+    "head": {
+      "revision": "9c22d65848b7eca8e77aeea5fb24b30d7cf46f67",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "bun",
+          "installation": {
+            "ok": false,
+            "raison": "gestionnaire de paquets non géré (bun)",
+            "nonGere": true
+          },
+          "verifs": {}
+        }
+      },
+      "installationRacine": {
+        "ok": false,
+        "raison": "gestionnaire de paquets non géré (bun)",
+        "nonGere": true
+      }
+    }
+  },
+  "fin": "2026-10-11T02:11:20.819Z"
+}

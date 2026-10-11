@@ -1,0 +1,29 @@
+{
+  "id": "abonnements_1",
+  "echecs_de_preuve": [
+    {
+      "table": "create_subscription",
+      "verdict": "non prouvé",
+      "ligne": 100,
+      "texte": "✗ create_subscription() non prouvé"
+    },
+    {
+      "table": "create_subscription",
+      "verdict": "non prouvé",
+      "ligne": 168,
+      "texte": "✗ create_subscription() non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "delete_payment",
+      "ligne": 94
+    },
+    {
+      "nom": "current_user_id",
+      "ligne": 95
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

@@ -1,0 +1,23 @@
+$ vak test
+(dossier : /work/habitquest_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (7 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1647 tokens (maximum 5000)
+✓ evals 0 évaluations bien formées
+✓ tour read_data achievements exécuté sans validation → {"table":"achievements","label":"Succès","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour read_data user_achievements exécuté sans validation → {"table":"user_achievements","label":"Succès débloqués","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0…
+✓ tour read_data habits exécuté sans validation → {"table":"habits","label":"Quêtes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000020…
+✓ tour read_data completions exécuté sans validation → {"table":"completions","label":"Accomplissements","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-40…
+✓ tour read_data streaks exécuté sans validation → {"table":"streaks","label":"Séries","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000005…
+✓ tour read_data profiles exécuté sans validation → {"table":"profiles","label":"Profil","total":1,"shown":1,"complete":true,"rows":[{"id":"7e570000-0000-4000-8000-00000…
+✓ tour read_data shop_items exécuté sans validation → {"table":"shop_items","label":"Boutique","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour open_screen today exécuté sans validation → {"href":"/today","label":"Quêtes du jour"}
+✓ tour open_screen create exécuté sans validation → {"href":"/habit/create","label":"Créer une quête"}
+✓ tour open_screen stats exécuté sans validation → {"href":"/stats","label":"Statistiques"}
+✓ tour open_screen shop exécuté sans validation → {"href":"/shop","label":"Boutique"}
+✓ tour open_screen achievements exécuté sans validation → {"href":"/achievements","label":"Succès"}
+✓ tour open_screen social exécuté sans validation → {"href":"/social","label":"Amis"}
+vak test : tout est vert [code 0]

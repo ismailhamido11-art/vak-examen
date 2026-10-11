@@ -1,0 +1,43 @@
+$ corepack pnpm@10.15.1 run build
+(dossier : /work/hikari_1/apres)
+
+
+> @ build /work/hikari_1/apres
+> next build
+
+  ▲ Next.js 14.2.3
+
+   Creating an optimized production build ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+❌ Invalid environment variables: {
+  STRIPE_SECRET_KEY: [ 'Required' ],
+  STRIPE_WEBHOOK_SECRET: [ 'Required' ],
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: [ 'Required' ]
+}
+Error: Invalid environment variables
+    at c (/work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:1575)
+    at /work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:1751
+    at a (/work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:1880)
+    at 5655 (/work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:5:5200)
+    at t (/work/hikari_1/apres/.next/server/webpack-runtime.js:1:143)
+    at r (/work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:2021)
+    at /work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:2069
+    at t.X (/work/hikari_1/apres/.next/server/webpack-runtime.js:1:1285)
+    at /work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:2034
+    at Object.<anonymous> (/work/hikari_1/apres/.next/server/app/api/trpc/[trpc]/route.js:14:2096)
+
+> Build error occurred
+Error: Failed to collect page data for /api/trpc/[trpc]
+    at /work/hikari_1/apres/node_modules/.pnpm/next@14.2.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/utils.js:1268:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  type: 'Error'
+}
+ ELIFECYCLE  Command failed with exit code 1.

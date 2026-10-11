@@ -1,0 +1,4 @@
+$ npx -y bun@1 run lint
+(dossier : /work/workout_app_1/apres)
+
+$ eslint

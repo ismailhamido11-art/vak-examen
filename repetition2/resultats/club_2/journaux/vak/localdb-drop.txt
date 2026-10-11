@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/club_2/apres)
+
+base locale vak_local_74750c supprimée [code 0]

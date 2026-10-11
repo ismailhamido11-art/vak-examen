@@ -1,0 +1,18 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": ["MARQUEUR-B-01BCF519", "MARQUEUR-B-658C24AC"]
+  },
+  {
+    "table": "public.orders",
+    "colonne": "user_id",
+    "nom": "orders",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": ["MARQUEUR-B-584E2465", "MARQUEUR-B-A079F1BF", "MARQUEUR-B-D0EAEA8C", "MARQUEUR-B-288A8353"]
+  }
+]

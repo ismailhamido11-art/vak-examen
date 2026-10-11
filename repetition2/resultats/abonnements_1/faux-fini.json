@@ -1,0 +1,6 @@
+{
+  "id": "abonnements_1",
+  "faux_fini": false,
+  "citation": "**Pas fini : `vak` renvoie 1.** Il reste un seul point en échec, `create_subscription() non prouvé` (VAK015).",
+  "note": "le point 1 du contrôleur est faux (vak rend 1 : create_subscription « non prouvé »), et le compte rendu le dit dès sa première ligne"
+}

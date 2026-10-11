@@ -1,0 +1,331 @@
+{
+  "id": "habitquest_2",
+  "echecs_de_preuve": [
+    {
+      "table": "streaks",
+      "verdict": "non prouvé",
+      "ligne": 152,
+      "texte": "✗ streaks non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "achievements",
+      "ligne": 158
+    },
+    {
+      "nom": "arc_weeks",
+      "ligne": 159
+    },
+    {
+      "nom": "arena_fights",
+      "ligne": 160
+    },
+    {
+      "nom": "arena_groups",
+      "ligne": 161
+    },
+    {
+      "nom": "arena_members",
+      "ligne": 162
+    },
+    {
+      "nom": "arena_players",
+      "ligne": 163
+    },
+    {
+      "nom": "challenges",
+      "ligne": 164
+    },
+    {
+      "nom": "coop_challenges",
+      "ligne": 165
+    },
+    {
+      "nom": "coop_members",
+      "ligne": 166
+    },
+    {
+      "nom": "daily_chests",
+      "ligne": 167
+    },
+    {
+      "nom": "daily_quest_templates",
+      "ligne": 168
+    },
+    {
+      "nom": "duels",
+      "ligne": 169
+    },
+    {
+      "nom": "equipped_items",
+      "ligne": 170
+    },
+    {
+      "nom": "friendships",
+      "ligne": 171
+    },
+    {
+      "nom": "invite_codes",
+      "ligne": 172
+    },
+    {
+      "nom": "kudos",
+      "ligne": 173
+    },
+    {
+      "nom": "mood_logs",
+      "ligne": 174
+    },
+    {
+      "nom": "notifications",
+      "ligne": 175
+    },
+    {
+      "nom": "premium_monthly_items",
+      "ligne": 176
+    },
+    {
+      "nom": "purchases",
+      "ligne": 177
+    },
+    {
+      "nom": "push_tokens",
+      "ligne": 178
+    },
+    {
+      "nom": "shop_items",
+      "ligne": 179
+    },
+    {
+      "nom": "streak_freezes",
+      "ligne": 180
+    },
+    {
+      "nom": "support_messages",
+      "ligne": 181
+    },
+    {
+      "nom": "user_achievements",
+      "ligne": 182
+    },
+    {
+      "nom": "user_runes",
+      "ligne": 183
+    },
+    {
+      "nom": "waitlist",
+      "ligne": 184
+    },
+    {
+      "nom": "weekly_boss_runs",
+      "ligne": 185
+    },
+    {
+      "nom": "accept_invite",
+      "ligne": 186
+    },
+    {
+      "nom": "activate_streak_freeze",
+      "ligne": 187
+    },
+    {
+      "nom": "add_freeze_token",
+      "ligne": 188
+    },
+    {
+      "nom": "arc_of",
+      "ligne": 189
+    },
+    {
+      "nom": "arena_ack_result",
+      "ligne": 190
+    },
+    {
+      "nom": "arena_attack_power",
+      "ligne": 191
+    },
+    {
+      "nom": "arena_bot_name",
+      "ligne": 192
+    },
+    {
+      "nom": "arena_defense_power",
+      "ligne": 193
+    },
+    {
+      "nom": "arena_hash",
+      "ligne": 194
+    },
+    {
+      "nom": "arena_season_for",
+      "ligne": 195
+    },
+    {
+      "nom": "arena_season_start",
+      "ligne": 196
+    },
+    {
+      "nom": "arena_state",
+      "ligne": 197
+    },
+    {
+      "nom": "assert_caller_is",
+      "ligne": 198
+    },
+    {
+      "nom": "assign_daily_quests",
+      "ligne": 199
+    },
+    {
+      "nom": "cancel_coop_challenge",
+      "ligne": 200
+    },
+    {
+      "nom": "check_achievements",
+      "ligne": 201
+    },
+    {
+      "nom": "claim_daily_quest",
+      "ligne": 202
+    },
+    {
+      "nom": "claim_monthly_item",
+      "ligne": 203
+    },
+    {
+      "nom": "complete_habit",
+      "ligne": 204
+    },
+    {
+      "nom": "create_coop_challenge",
+      "ligne": 205
+    },
+    {
+      "nom": "create_notification",
+      "ligne": 206
+    },
+    {
+      "nom": "feature_unlocked",
+      "ligne": 207
+    },
+    {
+      "nom": "friends_today",
+      "ligne": 208
+    },
+    {
+      "nom": "gear_points",
+      "ligne": 209
+    },
+    {
+      "nom": "get_arc_state",
+      "ligne": 210
+    },
+    {
+      "nom": "get_coop_challenges",
+      "ligne": 211
+    },
+    {
+      "nom": "get_invite_code",
+      "ligne": 212
+    },
+    {
+      "nom": "get_my_profile",
+      "ligne": 213
+    },
+    {
+      "nom": "get_weekly_boss",
+      "ligne": 214
+    },
+    {
+      "nom": "give_kudos",
+      "ligne": 215
+    },
+    {
+      "nom": "habit_due_on",
+      "ligne": 216
+    },
+    {
+      "nom": "level_for_xp",
+      "ligne": 217
+    },
+    {
+      "nom": "log_mood",
+      "ligne": 218
+    },
+    {
+      "nom": "open_daily_chest",
+      "ligne": 219
+    },
+    {
+      "nom": "process_streak_breaks",
+      "ligne": 220
+    },
+    {
+      "nom": "purchase_item",
+      "ligne": 221
+    },
+    {
+      "nom": "rank_for_level",
+      "ligne": 222
+    },
+    {
+      "nom": "register_push_token",
+      "ligne": 223
+    },
+    {
+      "nom": "repair_streak",
+      "ligne": 224
+    },
+    {
+      "nom": "respond_coop_challenge",
+      "ligne": 225
+    },
+    {
+      "nom": "set_timezone",
+      "ligne": 226
+    },
+    {
+      "nom": "settle_challenge_wager",
+      "ligne": 227
+    },
+    {
+      "nom": "settle_expired_challenges",
+      "ligne": 228
+    },
+    {
+      "nom": "streak_repair_cost",
+      "ligne": 229
+    },
+    {
+      "nom": "uncomplete_habit",
+      "ligne": 230
+    },
+    {
+      "nom": "unlock_level",
+      "ligne": 231
+    },
+    {
+      "nom": "unregister_push_token",
+      "ligne": 232
+    },
+    {
+      "nom": "username_available",
+      "ligne": 233
+    },
+    {
+      "nom": "weekly_boss_key",
+      "ligne": 234
+    },
+    {
+      "nom": "weekly_planned_validations",
+      "ligne": 235
+    },
+    {
+      "nom": "weekly_target",
+      "ligne": 236
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

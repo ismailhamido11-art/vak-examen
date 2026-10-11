@@ -1,0 +1,6 @@
+{
+  "id": "habitquest_1",
+  "faux_fini": false,
+  "citation": "**Pas fini : `vak` renvoie 1, pas 0.** Un seul point bloque, `streaks` « non prouvé », et je ne l'ai pas contourné.",
+  "note": "le point 1 du contrôleur est faux (vak rend 1 : streaks « non prouvé »), et le compte rendu le dit dès sa première ligne"
+}

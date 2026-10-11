@@ -1,0 +1,10 @@
+$ vak localdb
+(dossier : /work/habitquest_1/apres)
+
+! substituts inertes (base de test seulement, jamais d'appel réseau ni de tâche) : pg_net
+URL : postgresql://root@127.0.0.1:5432/vak_local_fe8961
+ensuite : node node_modules/@vak/agent/bin/vak.mjs sync --db-url postgresql://root@127.0.0.1:5432/vak_local_fe8961
+puis : node node_modules/@vak/agent/bin/vak.mjs doctor --db --db-url postgresql://root@127.0.0.1:5432/vak_local_fe8961
+à la fin : node node_modules/@vak/agent/bin/vak.mjs localdb --drop
+rôles de l'API et de Supabase émulés (anon, authenticated, rôle de service, supabase_admin…) et postgres : communs au serveur PostgreSQL, sans connexion, ils restent après --drop (sans droits hors des bases de ce type)
+base locale vak_local_fe8961 prête : 76 migration(s) appliquée(s) [code 0]

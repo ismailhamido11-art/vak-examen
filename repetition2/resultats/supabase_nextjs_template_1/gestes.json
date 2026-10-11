@@ -1,0 +1,22 @@
+{
+  "id": "supabase_nextjs_template_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent), essai rejoué après la panne du lanceur",
+  "total": 2,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne : « Quel fournisseur de modèle pour `connect` ? » (« Questions que j'aurais posées ») est la valeur `--provider` de cette ligne"
+    },
+    {
+      "genre": "action demandée",
+      "citation": "« La RLS de l'app est sans doute correcte. C'est le kit qui ne sait pas la prouver. À transmettre à l'humain ou à l'éditeur du kit. »",
+      "note": "ce que l'humain doit faire pour que `vak` rende 0 (faire corriger le kit) ; reprise dans « Questions que j'aurais posées » : « Le blocage `aal` / `mfa_factors` vient-il d'une limite connue du kit, et existe-t-il une base de test avec la vraie pile Supabase ? » (le même blocage, compté une fois) ; dans le doute, un geste, comme à supabase_nextjs_template_2"
+    }
+  ],
+  "non_comptes": [
+    "« Quelle app équiper, Next.js ou Expo ? J'ai pris Expo, à cause de « mobile » et de « onglet ». » : tranchée par l'agent, aucune action demandée (précédents agence_2 et budget_web_app_2 du deuxième examen)",
+    "« Choix tranchés » (tables, écritures directes avec validation, quota, pas de bêta ni de garde-fous, `.git/info/exclude`) : choix faits par l'agent, avec leur retour arrière ; aucune action demandée",
+    "« Aucune contournée, sauf la table `auth.mfa_factors` ajoutée à la main dans une base d'essai jetable » et « `vak init` sans `--app` a rendu le code 1 » : signalements, aucune action demandée"
+  ]
+}

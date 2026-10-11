@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-11T02:53:08.718Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Tâches (Titre, Urgente, Description, Terminée, Terminée le)",
+    "Peut proposer (après votre validation) : ajouter dans Tâches (Titre, Urgente, Description) ; modifier dans Tâches (Titre, Urgente, Description, Terminée, Terminée le) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes tâches, Mes fichiers, Réglages",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:f41611f7a3502be0b6407cd39aaafa1d1e310fd0e78b63a5e2539e447e7c6b28",
+    "calibrage": "sha256:46f84452e7d88c931888b223977d12c0cf90978240689e0f6b32a187f35d6d41"
+  }
+}

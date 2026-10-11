@@ -1,0 +1,58 @@
+$ expo export --platform web
+(dossier : /work/habitquest_1/avant)
+
+Starting Metro Bundler
+
+Web node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| (node:14653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:14653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:14653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓░░░░░░░░░░░░ 28.4% (105/388)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓░░░░░░░░░░░ 32.9% (352/618)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 55.7% (684/919)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓░░░░░░ 65.2% ( 900/1115)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 80.7% (1208/1345)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 96.1% (1533/1571)
+Web Bundled 21804ms node_modules/expo-router/entry.js (1613 modules)
+
+› Assets (33):
+assets/sounds/all-done.c346992e8f4507ccf49c14819d81ebd6.m4a (10KB)
+assets/sounds/attack.2534eb81739f345aaae88ba7a66f3320.m4a (8.2KB)
+assets/sounds/coin.674dc6add8a28767a3c737011dad3315.m4a (12KB)
+assets/sounds/complete.f75efa50f01dd4f81e50e4944b2d0877.m4a (4.9KB)
+assets/sounds/defeat.8646ea469ebae11eb9a8a01dd8967d98.m4a (6.3KB)
+assets/sounds/duel-music.477ec7bf28723ba0940e6a02874e112d.m4a (2.6MB)
+assets/sounds/level-up.06a159488d9bd5b909d75ca4c8a9c0fe.m4a (12KB)
+assets/sounds/mission-done.8d8d1ecca35f5ce96f13d9dc4bb0e843.m4a (4.9KB)
+assets/sounds/missions-all.98af328271d8b9a708067c4290ddee27.m4a (10KB)
+assets/sounds/reward-coins.2b864519681c9deebd14344f69b1eaea.m4a (5.6KB)
+assets/sounds/streak-milestone.290b093340754bcfbed25668f5d84fee.m4a (15KB)
+assets/sounds/tap.db505a03b0d998b692f8d2a9e9dd1822.m4a (1.9KB)
+assets/sounds/victory.84b66f0b8f2b215ed04dd73711ee93d6.m4a (12KB)
+node_modules/@expo-google-fonts/dotgothic16/400Regular/DotGothic16_400Regular.6c52c4b44f10786745afda7bbfff0d85.ttf (2MB)
+node_modules/@expo-google-fonts/jersey-10/400Regular/Jersey10_400Regular.6f7ad3b500e63bf31a8fc20646ab4504.ttf (77KB)
+node_modules/@react-navigation/elements/lib/module/assets/back-icon-mask.0a328cd9c1afd0afe8e3b1ec5165b1b4.png (653B)
+node_modules/@react-navigation/elements/lib/module/assets/back-icon.35ba0eaec5a4f5ed12ca16fabeae451d.png (207B)
+node_modules/@react-navigation/elements/lib/module/assets/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)
+node_modules/@react-navigation/elements/lib/module/assets/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)
+node_modules/@react-navigation/elements/lib/module/assets/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)
+node_modules/expo-router/assets/arrow_down.017bc6ba3fc25503e5eb5e53826d48a8.png (9.5KB)
+node_modules/expo-router/assets/error.d1ea1496f9057eb392d5bbf3732a61b7.png (469B)
+node_modules/expo-router/assets/file.19eeb73b9593a38f8e9f418337fc7d10.png (138B)
+node_modules/expo-router/assets/forward.d8b800c443b8972542883e0b9de2bdc6.png (188B)
+node_modules/expo-router/assets/pkg.ab19f4cbc543357183a20571f68380a3.png (364B)
+node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)
+node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)
+
+› web bundles (1):
+_expo/static/js/web/entry-1f2478ecb9d00a1f3b7b4bb6534417e6.js (3.6MB)
+
+› Files (3):
+favicon.ico (15KB)
+index.html (1.7KB)
+metadata.json (49B)
+
+Exported: /tmp/mesure-export-4N89Ur

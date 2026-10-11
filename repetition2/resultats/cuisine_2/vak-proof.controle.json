@@ -1,0 +1,40 @@
+{
+  "vak": "0.27.0",
+  "at": "2026-10-11T02:25:13.322Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:5abe6d443b3e09bac04df9f517cd5c0adfbde21edecdb0f089696d1060af9098",
+  "schema": "sha256:3055493a29d76aed88fd1c29fb189c476f0ee0f3df7bad11a6bed81cbc6a83e5",
+  "tables": {
+    "cookings": "éprouvé",
+    "recipes": "éprouvé"
+  },
+  "notes": {
+    "cookings": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "modification de la ligne de B : refusée",
+      "création rattachée au parent de B (recipe_id) : refusée",
+      "coéquipier de A non semé (23503 recipe 40623bd2-ad06-4d48-b644-c001effc404f does not belong to user) : le partage entre membres n'est pas vérifié",
+      "totaux de read_data : 4 ligne(s) de A ajoutée(s) aux bornes des périodes ; 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "recipes": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "modification de la ligne de B : refusée",
+      "totaux de read_data : 19 ligne(s) de A ajoutée(s) aux bornes des périodes ; 54 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »"
+    ]
+  },
+  "totals": 89,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Recettes (Titre, Catégorie, Préparation (min), Portions, Favorite, Mots-clés, Ajoutée le) ; Fois cuisinées (Recette, Cuisinée le, Note (1 à 5), Commentaire)",
+    "Peut proposer (après votre validation) : modifier dans Recettes (Favorite) ; ajouter dans Fois cuisinées (Recette, Cuisinée le, Note (1 à 5), Commentaire) ; modifier dans Fois cuisinées (Note (1 à 5), Commentaire) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Recette, Nouvelle recette, Noter",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)"
+  ]
+}

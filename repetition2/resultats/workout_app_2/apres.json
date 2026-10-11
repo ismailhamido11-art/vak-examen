@@ -1,0 +1,91 @@
+{
+  "dossier": "/work/workout_app_2/apres",
+  "commit": "59f161639cb7a10491bf786f34f4f4475ed30f3a",
+  "debut": "2026-10-11T03:16:11.877Z",
+  "fin": "2026-10-11T03:17:09.408Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "bun",
+    "version": null,
+    "lanceur": "npx -y bun@1",
+    "verrous": [
+      "bun.lock"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/workout_app_2/apres-journaux",
+  "installation": {
+    "commande": "npx -y bun@1 install",
+    "dossier": "/work/workout_app_2/apres",
+    "code": 0,
+    "duree_s": 3,
+    "erreurs": [],
+    "fin": [
+      "+ sonner@2.0.7",
+      "+ tailwind-merge@3.6.0",
+      "689 packages installed [1.93s]"
+    ],
+    "journal": "/work/workout_app_2/apres-journaux/installation-repli.txt",
+    "verrouDesynchronise": {
+      "refus": "npx -y bun@1 install --frozen-lockfile",
+      "code": 1,
+      "details": [
+        "error: lockfile had changes, but lockfile is frozen"
+      ]
+    }
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/workout_app_2/apres",
+      "code": 0,
+      "duree_s": 3,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/workout_app_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npx -y bun@1 run lint",
+      "dossier": "/work/workout_app_2/apres",
+      "code": 0,
+      "duree_s": 11,
+      "erreurs": [],
+      "fin": [
+        "$ eslint"
+      ],
+      "journal": "/work/workout_app_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npx -y bun@1 run test",
+      "dossier": "/work/workout_app_2/apres",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [
+        "Tests  285 passed | 1 skipped (286)",
+        "Start at  03:16:35",
+        "Duration  6.01s (transform 898ms, setup 0ms, import 2.49s, tests 3.84s, environment 7.78s)"
+      ],
+      "journal": "/work/workout_app_2/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npx -y bun@1 run build",
+      "dossier": "/work/workout_app_2/apres",
+      "code": 0,
+      "duree_s": 28,
+      "erreurs": [],
+      "fin": [
+        "└ ○ /settings",
+        "○  (Static)   prerendered as static content",
+        "ƒ  (Dynamic)  server-rendered on demand"
+      ],
+      "journal": "/work/workout_app_2/apres-journaux/build.txt"
+    }
+  }
+}

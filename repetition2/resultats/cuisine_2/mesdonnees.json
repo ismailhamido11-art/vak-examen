@@ -1,0 +1,418 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/cuisine_2/apres",
+  "lecture": {
+    "fichier": "/work/cuisine_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.recipes",
+      "public.cookings"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.recipes",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 7,
+      "attendu_json": 7,
+      "accord": true
+    },
+    {
+      "table": "public.cookings",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 12,
+      "attendu_json": 12,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.recipes",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes recettes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d65ef47e-d96e-4c06-9f5d-0339f5345491",
+        "question": "Combien de mes recettes ?",
+        "texte": "Votre carnet compte **7** recettes. Souhaitez-vous en voir la liste, ou en ajouter une nouvelle ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "recipes",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "recipes",
+              "label": "Recettes",
+              "total": 7,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "73cab298-9285-47da-b503-92c61855ef93",
+                  "title": "Soupe à l'oignon",
+                  "category": "entree (Entrée)",
+                  "prep_minutes": 45,
+                  "servings": 4,
+                  "is_favorite": true,
+                  "keywords": "[\"soupe\",\"hiver\"]",
+                  "created_at": "2026-10-11T04:28"
+                }
+              ],
+              "note": "1 ligne montrée sur 7 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 7,
+        "nombres_lus": [
+          7
+        ],
+        "ok": true,
+        "retenu": 7
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.recipes",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes recettes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d2ef4762-ae05-4dc2-a409-7c638d30775b",
+        "question": "Liste mes recettes.",
+        "texte": "Voici vos 7 recettes 🍽️\n\n**Entrées**\n- Soupe à l'oignon — 45 min, 4 portions ⭐\n- Salade de chèvre chaud — 20 min, 2 portions\n\n**Plats**\n- Boeuf bourguignon — 180 min, 6 portions ⭐\n- Ratatouille — 60 min, 4 portions\n\n**Desserts**\n- Tarte tatin — 75 min, 8 portions ⭐\n- Mousse au chocolat — 30 min, 6 portions\n\n**Boissons**\n- Citronnade maison — 10 min, 4 portions\n\n⭐ = vos favorites. Voulez-vous en ouvrir une, ou lancer une recherche ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "recipes",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "recipes",
+              "label": "Recettes",
+              "total": 7,
+              "shown": 7,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "73cab298-9285-47da-b503-92c61855ef93",
+                  "title": "Soupe à l'oignon",
+                  "category": "entree (Entrée)",
+                  "prep_minutes": 45,
+                  "servings": 4,
+                  "is_favorite": true,
+                  "keywords": "[\"soupe\",\"hiver\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "efb0dbad-1a91-4e9a-a8f0-baf41eb3e8d8",
+                  "title": "Salade de chèvre chaud",
+                  "category": "entree (Entrée)",
+                  "prep_minutes": 20,
+                  "servings": 2,
+                  "is_favorite": false,
+                  "keywords": "[\"salade\",\"fromage\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "82510f37-4188-4990-b8b2-d46b1149b901",
+                  "title": "Boeuf bourguignon",
+                  "category": "plat (Plat)",
+                  "prep_minutes": 180,
+                  "servings": 6,
+                  "is_favorite": true,
+                  "keywords": "[\"mijoté\",\"viande\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "d04570d5-0986-4ba7-ae65-ec47d8526673",
+                  "title": "Ratatouille",
+                  "category": "plat (Plat)",
+                  "prep_minutes": 60,
+                  "servings": 4,
+                  "is_favorite": false,
+                  "keywords": "[\"légumes\",\"été\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "a9fdbf80-8fbd-4afb-8bc3-ecdb083b225f",
+                  "title": "Tarte tatin",
+                  "category": "dessert (Dessert)",
+                  "prep_minutes": 75,
+                  "servings": 8,
+                  "is_favorite": true,
+                  "keywords": "[\"pommes\",\"caramel\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "103935ee-b51c-4223-946d-df99d1bdb68e",
+                  "title": "Mousse au chocolat",
+                  "category": "dessert (Dessert)",
+                  "prep_minutes": 30,
+                  "servings": 6,
+                  "is_favorite": false,
+                  "keywords": "[\"chocolat\"]",
+                  "created_at": "2026-10-11T04:28"
+                },
+                {
+                  "id": "db977ea8-8db1-4768-b96e-80edf86e3f3c",
+                  "title": "Citronnade maison",
+                  "category": "boisson (Boisson)",
+                  "prep_minutes": 10,
+                  "servings": 4,
+                  "is_favorite": false,
+                  "keywords": "[\"citron\",\"été\"]",
+                  "created_at": "2026-10-11T04:28"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 7,
+        "nombres_lus": [
+          7,
+          45,
+          4,
+          20,
+          2,
+          180,
+          6,
+          60,
+          4,
+          75,
+          8,
+          30,
+          6,
+          10,
+          4
+        ],
+        "ok": true,
+        "retenu": 7,
+        "source": "nombre annoncé",
+        "elements": 7
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.cookings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes cuissons ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-991fbe5f-bd2b-4fdf-89de-b4312b8ef940",
+        "question": "Combien de mes cuissons ?",
+        "texte": "Vous avez **12 cuissons** enregistrées dans votre carnet. 🍳\n\nSouhaitez-vous en voir le détail, ou vos plus récentes ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "cookings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "cookings",
+              "label": "Fois cuisinées",
+              "total": 12,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "e51a30b3-2dce-4f5e-8d5e-0b5fc549a998",
+                  "recipe_id": "Tarte tatin (id a9fdbf80-8fbd-4afb-8bc3-ecdb083b225f)",
+                  "cooked_on": "2026-10-05",
+                  "rating": 4,
+                  "comment": "Pâte trop cuite"
+                }
+              ],
+              "note": "1 ligne montrée sur 12 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 12,
+        "nombres_lus": [
+          12
+        ],
+        "ok": true,
+        "retenu": 12
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.cookings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes cuissons.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-dc571e0a-f88a-4e45-830c-2c8cd4c77640",
+        "question": "Liste mes cuissons.",
+        "texte": "Voici vos 12 cuissons, de la plus récente à la plus ancienne :\n\n| Date | Recette | Note | Commentaire |\n|---|---|---|---|\n| 05/10/2026 | Tarte tatin | 4 | Pâte trop cuite |\n| 01/10/2026 | Tarte tatin | 5 | Caramel réussi |\n| 02/08/2026 | Ratatouille | 3 | Trop d'huile |\n| 20/07/2026 | Citronnade maison | 4 | Rafraîchissante |\n| 08/07/2026 | Ratatouille | 4 | Légumes du marché |\n| 09/05/2026 | Mousse au chocolat | 5 | Très onctueuse |\n| 12/04/2026 | Boeuf bourguignon | 5 | Pour les invités |\n| 22/03/2026 | Boeuf bourguignon | 4 | Cuisson un peu courte |\n| 03/03/2026 | Salade de chèvre chaud | 3 | Trop de vinaigre |\n| 14/02/2026 | Soupe à l'oignon | 5 | Parfaite |\n| 25/01/2026 | Boeuf bourguignon | 5 | Fondant |\n| 10/01/2026 | Soupe à l'oignon | 4 | Un peu salée |\n\nSouhaitez-vous en ajouter une, ou revoir le détail d'une recette ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "cookings",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "cookings",
+              "label": "Fois cuisinées",
+              "total": 12,
+              "shown": 12,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e51a30b3-2dce-4f5e-8d5e-0b5fc549a998",
+                  "recipe_id": "Tarte tatin (id a9fdbf80-8fbd-4afb-8bc3-ecdb083b225f)",
+                  "cooked_on": "2026-10-05",
+                  "rating": 4,
+                  "comment": "Pâte trop cuite"
+                },
+                {
+                  "id": "b87664cf-d501-4293-b21f-bcabfeddaf89",
+                  "recipe_id": "Tarte tatin (id a9fdbf80-8fbd-4afb-8bc3-ecdb083b225f)",
+                  "cooked_on": "2026-10-01",
+                  "rating": 5,
+                  "comment": "Caramel réussi"
+                },
+                {
+                  "id": "a643a8df-ebc5-438e-bcd6-6f902790833b",
+                  "recipe_id": "Ratatouille (id d04570d5-0986-4ba7-ae65-ec47d8526673)",
+                  "cooked_on": "2026-08-02",
+                  "rating": 3,
+                  "comment": "Trop d'huile"
+                },
+                {
+                  "id": "a6c6f8ff-7792-49aa-b420-be3a5ffc53aa",
+                  "recipe_id": "Citronnade maison (id db977ea8-8db1-4768-b96e-80edf86e3f3c)",
+                  "cooked_on": "2026-07-20",
+                  "rating": 4,
+                  "comment": "Rafraîchissante"
+                },
+                {
+                  "id": "45bd26b0-2bfa-4246-b10c-05e8a6513dc5",
+                  "recipe_id": "Ratatouille (id d04570d5-0986-4ba7-ae65-ec47d8526673)",
+                  "cooked_on": "2026-07-08",
+                  "rating": 4,
+                  "comment": "Légumes du marché"
+                },
+                {
+                  "id": "e88621de-70e5-4416-b724-555127348b87",
+                  "recipe_id": "Mousse au chocolat (id 103935ee-b51c-4223-946d-df99d1bdb68e)",
+                  "cooked_on": "2026-05-09",
+                  "rating": 5,
+                  "comment": "Très onctueuse"
+                },
+                {
+                  "id": "7ec9096e-26c1-4455-a1e7-8b3c888ff0f1",
+                  "recipe_id": "Boeuf bourguignon (id 82510f37-4188-4990-b8b2-d46b1149b901)",
+                  "cooked_on": "2026-04-12",
+                  "rating": 5,
+                  "comment": "Pour les invités"
+                },
+                {
+                  "id": "825a885f-e141-4c9a-a2a5-ea20590145d1",
+                  "recipe_id": "Boeuf bourguignon (id 82510f37-4188-4990-b8b2-d46b1149b901)",
+                  "cooked_on": "2026-03-22",
+                  "rating": 4,
+                  "comment": "Cuisson un peu courte"
+                },
+                {
+                  "id": "d4d50c8f-05bc-4783-9906-1babb09a5e12",
+                  "recipe_id": "Salade de chèvre chaud (id efb0dbad-1a91-4e9a-a8f0-baf41eb3e8d8)",
+                  "cooked_on": "2026-03-03",
+                  "rating": 3,
+                  "comment": "Trop de vinaigre"
+                },
+                {
+                  "id": "778ee953-4ae8-4881-b0d6-5e560e193119",
+                  "recipe_id": "Soupe à l'oignon (id 73cab298-9285-47da-b503-92c61855ef93)",
+                  "cooked_on": "2026-02-14",
+                  "rating": 5,
+                  "comment": "Parfaite"
+                },
+                {
+                  "id": "8797d8d9-b603-4477-aee4-85c7e2cde5ce",
+                  "recipe_id": "Boeuf bourguignon (id 82510f37-4188-4990-b8b2-d46b1149b901)",
+                  "cooked_on": "2026-01-25",
+                  "rating": 5,
+                  "comment": "Fondant"
+                },
+                {
+                  "id": "c084f0f4-8fd8-4af2-a710-613841c017c3",
+                  "recipe_id": "Soupe à l'oignon (id 73cab298-9285-47da-b503-92c61855ef93)",
+                  "cooked_on": "2026-01-10",
+                  "rating": 4,
+                  "comment": "Un peu salée"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 12,
+        "nombres_lus": [
+          12,
+          4,
+          5,
+          3,
+          4,
+          4,
+          5,
+          5,
+          4,
+          3,
+          5,
+          5,
+          4
+        ],
+        "ok": true,
+        "retenu": 12,
+        "source": "nombre annoncé",
+        "elements": 12
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 14
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.recipes",
+        "lue": true
+      },
+      {
+        "table": "public.cookings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

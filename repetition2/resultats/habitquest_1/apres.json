@@ -1,0 +1,90 @@
+{
+  "dossier": "/work/habitquest_1/apres",
+  "commit": "22a7131afae57063874a6eeae7083bb649ed1b65",
+  "debut": "2026-10-11T01:55:06.414Z",
+  "fin": "2026-10-11T01:56:20.039Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/habitquest_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/habitquest_1/apres",
+    "code": 0,
+    "duree_s": 15,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.",
+      "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "added 1181 packages in 15s"
+    ],
+    "journal": "/work/habitquest_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/habitquest_1/apres",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [
+        "> habitquest@0.1.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/habitquest_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/habitquest_1/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "59:6  warning  React Hook useEffect has a missing dependency: 'slideY'. Either include it or remove the dependency array  react-hooks/exhaustive-deps",
+        "✖ 256 problems (0 errors, 256 warnings)",
+        "0 errors and 113 warnings potentially fixable with the `--fix` option."
+      ],
+      "journal": "/work/habitquest_1/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/habitquest_1/apres",
+      "code": 0,
+      "duree_s": 24,
+      "erreurs": [],
+      "fin": [
+        "Snapshots:   0 total",
+        "Time:        23.492 s",
+        "Ran all test suites."
+      ],
+      "journal": "/work/habitquest_1/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/habitquest_1/apres",
+      "code": 0,
+      "duree_s": 17,
+      "erreurs": [],
+      "fin": [
+        "index.html (1.7KB)",
+        "metadata.json (49B)",
+        "Exported: /tmp/mesure-export-fp1K5V"
+      ],
+      "journal": "/work/habitquest_1/apres-journaux/build.txt"
+    }
+  }
+}

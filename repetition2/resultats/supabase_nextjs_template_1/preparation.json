@@ -1,0 +1,18 @@
+{
+  "id": "supabase_nextjs_template_1",
+  "depot": "https://github.com/Razikus/supabase-nextjs-template",
+  "commit": "d519bf18d747bc0956346910414db68adb5a45bf",
+  "prepare": "713c809171b2dccdf8372f8549d9b5270b0f4341",
+  "archive": {
+    "nom": "vak-agent-0.27.0.tgz",
+    "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+  },
+  "app": "/work/supabase_nextjs_template_1/app",
+  "avant": "/work/supabase_nextjs_template_1/avant.json",
+  "debut": "2026-10-11T03:28:46Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-11T03:28:49Z"
+}

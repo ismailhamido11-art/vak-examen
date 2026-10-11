@@ -1,0 +1,25 @@
+{
+  "id": "club_1",
+  "etat_commite": "0ec0f186c8fa75205e1a701f3460693a7dc4cdba",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions, l'assistant n'appelle aucune fonction de l'app ; agent.ts:81-85 : club_role, invite_member et training_club sont dans ignore",
+      "agent.ts:52-53 et 77-78 : seules create et update sont déclarées (trainings, attendances) ; aucune suppression",
+      "agent.ts:92 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.trainings", "nom": "Entraînements", "preuve": "agent.ts:52-53, create [\"club_id\", \"title\", \"starts_at\", \"duration_minutes\", \"location\", \"capacity\"], update [\"title\", \"starts_at\", \"duration_minutes\", \"location\", \"capacity\", \"status\"]" },
+      { "table": "public.attendances", "nom": "Présences", "preuve": "agent.ts:77-78, create [\"training_id\", \"participant_name\", \"present\"], update [\"present\", \"amount_paid\"]" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:92, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

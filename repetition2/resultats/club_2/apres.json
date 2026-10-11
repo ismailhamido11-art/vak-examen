@@ -1,0 +1,88 @@
+{
+  "dossier": "/work/club_2/apres",
+  "commit": "ea126d3c58bf4a46c5adcb21111cd98f9db21606",
+  "debut": "2026-10-11T02:34:36.026Z",
+  "fin": "2026-10-11T02:35:04.108Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/club_2/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/club_2/apres",
+    "code": 0,
+    "duree_s": 8,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 360 packages in 8s"
+    ],
+    "journal": "/work/club_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/club_2/apres",
+      "code": 2,
+      "duree_s": 3,
+      "erreurs": [
+        "app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.",
+        "app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+        "app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.",
+        "app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+        "app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.",
+        "app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+        "app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+        "app/layout.tsx(12,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "fin": [
+        "app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.",
+        "app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.",
+        "app/layout.tsx(12,50): error TS2304: Cannot find name 'LayoutProps'."
+      ],
+      "journal": "/work/club_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/club_2/apres",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [
+        "> app@0.1.0 lint",
+        "> eslint"
+      ],
+      "journal": "/work/club_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/club_2/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "└ ○ /reglages",
+        "○  (Static)             prerendered as static content",
+        "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+      ],
+      "journal": "/work/club_2/apres-journaux/build.txt"
+    }
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/abonnements_1/apres",
+  "lecture": {
+    "fichier": "/work/abonnements_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.subscriptions",
+      "public.payments"
+    ],
+    "ignorees": [
+      "public.delete_payment",
+      "public.current_user_id"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.subscriptions",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 5,
+      "attendu_json": 5,
+      "accord": true
+    },
+    {
+      "table": "public.payments",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.subscriptions",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes abonnements ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-3af2c960-7604-4cc9-9c07-d300a3322acd",
+        "question": "Combien de mes abonnements ?",
+        "texte": "Tu as 5 abonnements, tous actifs :\n\n- Netflix — 13,49 € (le 5)\n- Spotify — 10,99 € (le 12)\n- Loyer assurance habitation — 18,50 € (le 1er)\n- Abonnement fibre — 29,99 € (le 20)\n- Licence Notion — 8 € (le 15)\n\nTotal mensuel : 80,97 €. Tu veux voir le détail ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "subscriptions",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "subscriptions",
+              "label": "Abonnements",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e518e700-1b10-4283-ae46-409ea6d6aad9",
+                  "name": "Netflix",
+                  "category": "loisirs (Loisirs)",
+                  "monthly_amount": 13.49,
+                  "billing_day": 5,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "875e9e0f-4cc7-4f40-95be-6d7d371ee101",
+                  "name": "Spotify",
+                  "category": "loisirs (Loisirs)",
+                  "monthly_amount": 10.99,
+                  "billing_day": 12,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "abda2458-be29-48c0-b25f-36ee5c9ac8d1",
+                  "name": "Loyer assurance habitation",
+                  "category": "maison (Maison)",
+                  "monthly_amount": 18.5,
+                  "billing_day": 1,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "46f79b5a-2068-40e3-9c3d-9442c5d0d63c",
+                  "name": "Abonnement fibre",
+                  "category": "maison (Maison)",
+                  "monthly_amount": 29.99,
+                  "billing_day": 20,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "0ba3ac06-2621-4c05-b350-adba30219de5",
+                  "name": "Licence Notion",
+                  "category": "travail (Travail)",
+                  "monthly_amount": 8,
+                  "billing_day": 15,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          13.49,
+          5,
+          10.99,
+          12,
+          18.5,
+          29.99,
+          20,
+          8,
+          15,
+          80.97
+        ],
+        "ok": true,
+        "retenu": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.subscriptions",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes abonnements.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-676549b1-2f14-43cc-a0a5-41ab5154dd4f",
+        "question": "Liste mes abonnements.",
+        "texte": "Voici tes 5 abonnements :\n\n| Abonnement | Catégorie | Montant | Prélèvement |\n|---|---|---|---|\n| Netflix | Loisirs | 13,49 € | le 5 |\n| Spotify | Loisirs | 10,99 € | le 12 |\n| Loyer assurance habitation | Maison | 18,50 € | le 1 |\n| Abonnement fibre | Maison | 29,99 € | le 20 |\n| Licence Notion | Travail | 8,00 € | le 15 |\n\nTous sont actifs. Tu veux voir le détail d'un abonnement ou ta dépense du mois ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "subscriptions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "subscriptions",
+              "label": "Abonnements",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e518e700-1b10-4283-ae46-409ea6d6aad9",
+                  "name": "Netflix",
+                  "category": "loisirs (Loisirs)",
+                  "monthly_amount": 13.49,
+                  "billing_day": 5,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "875e9e0f-4cc7-4f40-95be-6d7d371ee101",
+                  "name": "Spotify",
+                  "category": "loisirs (Loisirs)",
+                  "monthly_amount": 10.99,
+                  "billing_day": 12,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "abda2458-be29-48c0-b25f-36ee5c9ac8d1",
+                  "name": "Loyer assurance habitation",
+                  "category": "maison (Maison)",
+                  "monthly_amount": 18.5,
+                  "billing_day": 1,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "46f79b5a-2068-40e3-9c3d-9442c5d0d63c",
+                  "name": "Abonnement fibre",
+                  "category": "maison (Maison)",
+                  "monthly_amount": 29.99,
+                  "billing_day": 20,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                },
+                {
+                  "id": "0ba3ac06-2621-4c05-b350-adba30219de5",
+                  "name": "Licence Notion",
+                  "category": "travail (Travail)",
+                  "monthly_amount": 8,
+                  "billing_day": 15,
+                  "active": true,
+                  "created_at": "2026-10-11T03:46"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          13.49,
+          5,
+          10.99,
+          12,
+          18.5,
+          1,
+          29.99,
+          20,
+          8,
+          15,
+          1
+        ],
+        "ok": true,
+        "retenu": 5,
+        "source": "nombre annoncé",
+        "elements": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.payments",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes paiements ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-688d4270-6f83-4a38-bef1-09b2512553fb",
+        "question": "Combien de mes paiements ?",
+        "texte": "Tu as **9 paiements** enregistrés au total.\n\nTu veux que je les affiche (par abonnement, par mois ou tous) ? Je peux aussi ouvrir la liste des paiements d'un abonnement précis.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "payments",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "payments",
+              "label": "Paiements",
+              "total": 9,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "2c8cf70f-0644-49f9-9777-cf02a1ed63f1",
+                  "subscription_id": "Licence Notion (id 0ba3ac06-2621-4c05-b350-adba30219de5)",
+                  "paid_on": "2026-10-01",
+                  "amount": 8,
+                  "method": "especes (Espèces)"
+                }
+              ],
+              "note": "1 ligne montrée sur 9 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.payments",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes paiements.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-88f3bee0-4a31-4163-8dbd-6e274c932156",
+        "question": "Liste mes paiements.",
+        "texte": "Voici tes 9 paiements enregistrés, du plus récent au plus ancien :\n\n| Date | Abonnement | Montant | Moyen |\n|---|---|---|---|\n| 01/10/2026 | Licence Notion | 8,00 € | Espèces |\n| 20/09/2026 | Abonnement fibre | 29,99 € | Prélèvement |\n| 15/09/2026 | Licence Notion | 8,00 € | Carte |\n| 12/09/2026 | Spotify | 10,99 € | Prélèvement |\n| 05/09/2026 | Netflix | 13,49 € | Carte |\n| 01/09/2026 | Loyer assurance habitation | 18,50 € | Prélèvement |\n| 15/08/2026 | Licence Notion | 8,00 € | Carte |\n| 05/08/2026 | Netflix | 13,49 € | Carte |\n| 01/08/2026 | Loyer assurance habitation | 18,50 € | Prélèvement |\n\nTu veux que je t'ouvre les paiements d'un abonnement en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "payments",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "payments",
+              "label": "Paiements",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "2c8cf70f-0644-49f9-9777-cf02a1ed63f1",
+                  "subscription_id": "Licence Notion (id 0ba3ac06-2621-4c05-b350-adba30219de5)",
+                  "paid_on": "2026-10-01",
+                  "amount": 8,
+                  "method": "especes (Espèces)"
+                },
+                {
+                  "id": "77157f68-9167-4bca-84d2-ac832b53f756",
+                  "subscription_id": "Abonnement fibre (id 46f79b5a-2068-40e3-9c3d-9442c5d0d63c)",
+                  "paid_on": "2026-09-20",
+                  "amount": 29.99,
+                  "method": "prelevement (Prélèvement)"
+                },
+                {
+                  "id": "59b0e2cf-492f-42cf-bdcf-74b1038cf0b2",
+                  "subscription_id": "Licence Notion (id 0ba3ac06-2621-4c05-b350-adba30219de5)",
+                  "paid_on": "2026-09-15",
+                  "amount": 8,
+                  "method": "carte (Carte)"
+                },
+                {
+                  "id": "4bac9108-f4e2-48de-a5dc-09d0f57e57f4",
+                  "subscription_id": "Spotify (id 875e9e0f-4cc7-4f40-95be-6d7d371ee101)",
+                  "paid_on": "2026-09-12",
+                  "amount": 10.99,
+                  "method": "prelevement (Prélèvement)"
+                },
+                {
+                  "id": "146a54b8-8ae3-4822-8ccc-afe793894605",
+                  "subscription_id": "Netflix (id e518e700-1b10-4283-ae46-409ea6d6aad9)",
+                  "paid_on": "2026-09-05",
+                  "amount": 13.49,
+                  "method": "carte (Carte)"
+                },
+                {
+                  "id": "5e0f856b-98c4-4ba9-a981-10992b5d0249",
+                  "subscription_id": "Loyer assurance habitation (id abda2458-be29-48c0-b25f-36ee5c9ac8d1)",
+                  "paid_on": "2026-09-01",
+                  "amount": 18.5,
+                  "method": "prelevement (Prélèvement)"
+                },
+                {
+                  "id": "a5df7ad1-69cd-46ca-bfb9-cc75fcf41367",
+                  "subscription_id": "Licence Notion (id 0ba3ac06-2621-4c05-b350-adba30219de5)",
+                  "paid_on": "2026-08-15",
+                  "amount": 8,
+                  "method": "carte (Carte)"
+                },
+                {
+                  "id": "cf627f82-7c09-407f-bf59-a14887f7466c",
+                  "subscription_id": "Netflix (id e518e700-1b10-4283-ae46-409ea6d6aad9)",
+                  "paid_on": "2026-08-05",
+                  "amount": 13.49,
+                  "method": "carte (Carte)"
+                },
+                {
+                  "id": "1ba1e681-7ce1-4084-9b0d-2617f6c65e70",
+                  "subscription_id": "Loyer assurance habitation (id abda2458-be29-48c0-b25f-36ee5c9ac8d1)",
+                  "paid_on": "2026-08-01",
+                  "amount": 18.5,
+                  "method": "prelevement (Prélèvement)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          8,
+          29.99,
+          8,
+          10.99,
+          13.49,
+          18.5,
+          8,
+          13.49,
+          18.5
+        ],
+        "ok": true,
+        "retenu": 9,
+        "source": "nombre annoncé",
+        "elements": 9
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 4
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.subscriptions",
+        "lue": true
+      },
+      {
+        "table": "public.payments",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

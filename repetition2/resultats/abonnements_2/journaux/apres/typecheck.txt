@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/abonnements_2/apres)
+

@@ -1,0 +1,18 @@
+{
+  "id": "habitquest_2",
+  "depot": "https://github.com/battisteb/habitquest",
+  "commit": "95784afbcf4fa01c00e60e595e60f154ad0e1a00",
+  "prepare": "16f896db615cf22e23a688e791254393dce41c26",
+  "archive": {
+    "nom": "vak-agent-0.27.0.tgz",
+    "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+  },
+  "app": "/work/habitquest_2/app",
+  "avant": "/work/habitquest_2/avant.json",
+  "debut": "2026-10-11T02:53:19Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-11T02:54:43Z"
+}

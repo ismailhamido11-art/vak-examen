@@ -1,0 +1,24 @@
+{
+  "id": "hikari_2",
+  "etat_commite": "895570c8040e0b420f3224f738cb255c9f2df5e7",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts : aucune clé functions, l'assistant n'appelle aucune fonction de l'app",
+      "agent.ts:79 : seule update [\"full_name\"] est déclarée (users) ; aucune suppression",
+      "agent.ts:98 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.users", "nom": "Profile", "preuve": "agent.ts:75-80, update [\"full_name\"] (supabase/migrations/20230530034630_init.sql:5)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:98, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

@@ -1,0 +1,400 @@
+(… 96 lignes coupées ; journal complet : /work/habitquest_1/avant-journaux/lint.txt)
+  31:1  warning  Import in body of module; reorder to top  import/first
+  32:1  warning  Import in body of module; reorder to top  import/first
+  33:1  warning  Import in body of module; reorder to top  import/first
+  34:1  warning  Import in body of module; reorder to top  import/first
+  35:1  warning  Import in body of module; reorder to top  import/first
+  36:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/arena/screens/arena-screen.tsx
+  107:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/auth/__tests__/auth-store.test.ts
+   47:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   53:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   56:24  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   67:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   72:24  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   78:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   82:24  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   94:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   97:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  104:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  113:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  124:27  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  131:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  135:27  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  143:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  147:33  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  156:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  160:33  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  170:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  171:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/auth/__tests__/oauth.test.ts
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/auth/__tests__/sync-language.test.ts
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/auth/__tests__/sync-timezone.test.ts
+  6:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/auth/components/auth-form.tsx
+  65:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/avatar/__tests__/avatar-config-store.test.ts
+  23:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/boss/__tests__/boss.test.tsx
+  17:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/companion/__tests__/companion-roles.test.tsx
+  19:1  warning  Import in body of module; reorder to top  import/first
+  20:1  warning  Import in body of module; reorder to top  import/first
+  21:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/coop/screens/coop-create-screen.tsx
+  104:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/coop/screens/coop-list-screen.tsx
+  109:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/daily-quests/__tests__/daily-quests-store.test.ts
+  124:36  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  141:36  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  160:30  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  182:30  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/daily-quests/__tests__/mission-chest.test.ts
+  16:1  warning  Import in body of module; reorder to top  import/first
+  17:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/daily-quests/__tests__/mission-sounds.test.ts
+  8:1  warning  Import in body of module; reorder to top  import/first
+  9:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/daily-quests/__tests__/missions-tile.test.tsx
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/daily-quests/components/daily-quest-card.tsx
+  130:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/daily-quests/components/daily-quests-section.tsx
+  117:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array       react-hooks/exhaustive-deps
+  125:6  warning  React Hook useEffect has a missing dependency: 'fetchDailyQuests'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  134:6  warning  React Hook useCallback has a missing dependency: 'claimQuest'. Either include it or remove the dependency array      react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/duels/__tests__/combat-engine.test.ts
+  107:11  warning  'blocked' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/work/habitquest_1/avant/src/features/duels/__tests__/duel-store.test.ts
+  45:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/gamification/__tests__/achievements-store.test.ts
+  15:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/gamification/__tests__/rank-card.test.tsx
+  16:1  warning  Import in body of module; reorder to top  import/first
+  17:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/gamification/components/achievement-card.tsx
+  119:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/gamification/components/rank-card.tsx
+  46:48  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/gamification/components/xp-bar.tsx
+  39:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/__tests__/all-done-sound.test.ts
+  15:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/burnout-detector.test.ts
+  10:1   warning  Import in body of module; reorder to top      import/first
+  14:10  warning  'buildSelectChain' is defined but never used  @typescript-eslint/no-unused-vars
+  52:13  warning  'eq2' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  53:13  warning  'eq3' is assigned a value but never used      @typescript-eslint/no-unused-vars
+
+/work/habitquest_1/avant/src/features/habits/__tests__/burnout-store.test.ts
+  4:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/comeback-banner.test.tsx
+  15:1  warning  Import in body of module; reorder to top  import/first
+  16:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/habit-card-undo.test.tsx
+   7:42  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+   8:44  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  16:1   warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/habit-why.test.tsx
+  11:1  warning  Import in body of module; reorder to top  import/first
+  12:1  warning  Import in body of module; reorder to top  import/first
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/habits-store.test.ts
+   88:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  103:31  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  123:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  126:31  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  136:26  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  141:31  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  159:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  164:35  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  176:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  178:35  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  184:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  186:35  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  195:36  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  205:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  207:32  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  218:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  220:32  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  239:42  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  249:28  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  251:33  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/habits/__tests__/identity.test.tsx
+   7:42  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+   8:44  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  13:1   warning  Import in body of module; reorder to top  import/first
+  14:1   warning  Import in body of module; reorder to top  import/first
+  15:1   warning  Import in body of module; reorder to top  import/first
+  16:1   warning  Import in body of module; reorder to top  import/first
+  17:1   warning  Import in body of module; reorder to top  import/first
+  18:1   warning  Import in body of module; reorder to top  import/first
+  19:1   warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/mini-quest.test.tsx
+   7:42  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+   8:44  warning  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  16:1   warning  Import in body of module; reorder to top  import/first
+  17:1   warning  Import in body of module; reorder to top  import/first
+  18:1   warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/pause.test.tsx
+  27:1  warning  Import in body of module; reorder to top  import/first
+  28:1  warning  Import in body of module; reorder to top  import/first
+  29:1  warning  Import in body of module; reorder to top  import/first
+  30:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/__tests__/streak-punishment.test.ts
+  8:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/habits/components/category-breakdown.tsx
+  67:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/content-picker.tsx
+  202:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/day-picker.tsx
+  25:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/emoji-picker.tsx
+  73:7  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/habit-card.tsx
+  224:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array                            react-hooks/exhaustive-deps
+  256:6  warning  React Hook useEffect has missing dependencies: 'entryOpacity', 'index', and 'slideY'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/habit-checklist.tsx
+  100:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/habit-list.tsx
+  62:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/habit-timer.tsx
+  133:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/habits/components/monthly-heatmap.tsx
+  110:19  warning  Array type using 'Array<T>' is forbidden. Use 'T[]' instead  @typescript-eslint/array-type
+
+/work/habitquest_1/avant/src/features/habits/components/weekly-chart.tsx
+  66:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/help/__tests__/how-it-helps.test.tsx
+  10:1  warning  Import in body of module; reorder to top  import/first
+  11:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/monetization/__tests__/ad-limits.test.ts
+  10:1  warning  Import in body of module; reorder to top  import/first
+  11:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/monetization/__tests__/paywall-trial.test.tsx
+  33:1  warning  Import in body of module; reorder to top  import/first
+  34:1  warning  Import in body of module; reorder to top  import/first
+  35:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/monetization/__tests__/premium.test.ts
+  10:1  warning  Import in body of module; reorder to top  import/first
+  11:1  warning  Import in body of module; reorder to top  import/first
+  12:1  warning  Import in body of module; reorder to top  import/first
+  13:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/monetization/__tests__/tracking-consent.test.ts
+  11:11  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/monetization/__tests__/trial-offer.test.ts
+   7:1  warning  Import in body of module; reorder to top  import/first
+  21:1  warning  Import in body of module; reorder to top  import/first
+  22:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/monetization/components/ad-banner.tsx
+  18:3   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  19:15  warning  A `require()` style import is forbidden                                                                         @typescript-eslint/no-require-imports
+  22:3   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  23:21  warning  A `require()` style import is forbidden                                                                         @typescript-eslint/no-require-imports
+  59:5   warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/monetization/stores/subscription-store.ts
+   8:16  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  95:29  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/monetization/utils/ad-service.ts
+   26:16  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   58:45  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   87:29  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  103:7   warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  127:50  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/monetization/utils/tracking-consent.ts
+  14:49  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/mood/__tests__/mood-components.test.tsx
+  24:1  warning  Import in body of module; reorder to top  import/first
+  25:1  warning  Import in body of module; reorder to top  import/first
+  26:1  warning  Import in body of module; reorder to top  import/first
+  27:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/notifications/__tests__/notification-budget.test.ts
+  15:1  warning  Import in body of module; reorder to top  import/first
+  21:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/notifications/__tests__/notifications-store.test.ts
+   17:22  warning  A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+   54:13  warning  'eqMock' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  112:30  warning  A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/notifications/__tests__/push-token.test.ts
+  32:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/notifications/__tests__/use-notification-count.test.ts
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/notifications/hooks/use-notification-observer.ts
+  52:6  warning  React Hook useEffect has a missing dependency: 'navigate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/notifications/utils/notification-service.ts
+  43:10  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/features/shop/__tests__/season-item.test.tsx
+  10:1  warning  Import in body of module; reorder to top  import/first
+  11:1  warning  Import in body of module; reorder to top  import/first
+  12:1  warning  Import in body of module; reorder to top  import/first
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/shop/__tests__/shop-store.test.ts
+  40:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/shop/components/rarity-badge.tsx
+  32:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/shop/components/shop-item-card.tsx
+  165:5  warning  React Hook useMemo has an unnecessary dependency: 'themeKey'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/social/__tests__/friends-store.test.ts
+  41:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/social/__tests__/invite.test.ts
+  25:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/social/__tests__/social-screen.test.tsx
+  55:1  warning  Import in body of module; reorder to top  import/first
+  56:1  warning  Import in body of module; reorder to top  import/first
+  57:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/social/hooks/use-leaderboard.ts
+  20:6  warning  React Hook useEffect has a missing dependency: 'loadLeaderboard'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/features/stats/__tests__/stats-components.test.tsx
+  13:1  warning  Import in body of module; reorder to top  import/first
+  14:1  warning  Import in body of module; reorder to top  import/first
+  15:1  warning  Import in body of module; reorder to top  import/first
+  16:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/stats/components/stats-charts.tsx
+  7:37  warning  'LOCKED_COLOR' is defined but never used  @typescript-eslint/no-unused-vars
+
+/work/habitquest_1/avant/src/features/support/__tests__/support-service.test.ts
+  24:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/features/unlocks/__tests__/unlocks.test.tsx
+  32:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/lib/__tests__/legal-links.test.ts
+  3:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/lib/haptics.ts
+  3:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any')
+
+/work/habitquest_1/avant/src/lib/i18n/__tests__/i18n.test.ts
+  17:11  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/lib/i18n/__tests__/japanese.test.ts
+  7:1  warning  Import in body of module; reorder to top  import/first
+  8:1  warning  Import in body of module; reorder to top  import/first
+  9:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/lib/i18n/__tests__/labels.test.ts
+  6:1  warning  Import in body of module; reorder to top  import/first
+  7:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/lib/i18n/__tests__/language-restart.test.ts
+  9:1  warning  Import in body of module; reorder to top  import/first
+
+/work/habitquest_1/avant/src/lib/restart-app.ts
+  15:21  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/lib/storage/__tests__/user-data.test.ts
+  6:11  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/lib/storage/mmkv.ts
+  17:20  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/lib/storage/persist.ts
+  15:9  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  21:7  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/lib/supabase/client.ts
+  16:20  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/work/habitquest_1/avant/src/ui/animations/achievement-toast.tsx
+  55:6  warning  React Hook useEffect has missing dependencies: 'dismiss', 'opacity', and 'translateY'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/animations/all-done-celebration.tsx
+  35:6  warning  React Hook useEffect has missing dependencies: 'opacity' and 'translateY'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/animations/completion-burst.tsx
+  39:6  warning  React Hook useEffect has missing dependencies: 'distance' and 'opacity'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/animations/level-up-overlay.tsx
+  66:6  warning  React Hook useEffect has missing dependencies: 'badgeScale', 'badgeY', 'onComplete', 'overlayOpacity', and 'starOpacity'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/animations/streak-milestone-overlay.tsx
+  105:6  warning  React Hook useEffect has missing dependencies: 'badgeRotate', 'badgeScale', 'flameOpacity', 'flameY', 'onComplete', and 'overlayOpacity'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/animations/xp-toast.tsx
+  48:6  warning  React Hook useEffect has missing dependencies: 'onComplete', 'opacity', and 'translateY'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/work/habitquest_1/avant/src/ui/components/offline-banner.tsx
+  59:6  warning  React Hook useEffect has a missing dependency: 'slideY'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 256 problems (0 errors, 256 warnings)
+  0 errors and 113 warnings potentially fixable with the `--fix` option.
+

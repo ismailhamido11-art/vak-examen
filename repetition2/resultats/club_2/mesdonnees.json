@@ -1,0 +1,1145 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "5/5 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/club_2/apres",
+  "lecture": {
+    "fichier": "/work/club_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.clubs",
+      "public.trainings",
+      "public.attendances",
+      "public.club_members",
+      "public.club_invitations"
+    ],
+    "ignorees": [
+      "public.club_role",
+      "public.invite_member",
+      "public.training_club"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.clubs",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.club_members",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.club_invitations",
+      "colonne": "invited_by",
+      "sql_en_tant_que_a": 2,
+      "attendu_json": 2,
+      "accord": true
+    },
+    {
+      "table": "public.trainings",
+      "colonne": "coach_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.attendances",
+      "colonne": "noted_by",
+      "sql_en_tant_que_a": 10,
+      "attendu_json": 10,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.clubs",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes clubs ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-45d3df01-5084-42ef-99ae-a04730c1933f",
+        "question": "Combien de mes clubs ?",
+        "texte": "Vous êtes membre de 3 clubs :\n\n- **FC Rivière** (football)\n- **Judo Club des Lilas** (judo)\n- **Tennis de table Pasteur** (tennis de table)\n\nBesoin d'un détail sur l'un d'eux ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "clubs",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "clubs",
+              "label": "Clubs",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "29b85de7-5236-43bb-878b-41c70ec8ffa8",
+                  "name": "FC Rivière",
+                  "sport": "football",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0b589452-1852-4e75-a160-880d12486fdd",
+                  "name": "Judo Club des Lilas",
+                  "sport": "judo",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "00680dd4-4219-460e-981e-111ebf260f1d",
+                  "name": "Tennis de table Pasteur",
+                  "sport": "tennis de table",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "clubs"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Mes clubs"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.clubs",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes clubs.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-88c7dd4e-87ac-44af-b2e8-75b5a4f61ef3",
+        "question": "Liste mes clubs.",
+        "texte": "Je regarde vos clubs.\n\nVous avez 3 clubs :\n\n1. **FC Rivière** — football\n2. **Judo Club des Lilas** — judo\n3. **Tennis de table Pasteur** — tennis de table\n\nBesoin du détail d'un club ou de ses entraînements ? Dites-moi lequel.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "clubs",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "clubs",
+              "label": "Clubs",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "29b85de7-5236-43bb-878b-41c70ec8ffa8",
+                  "name": "FC Rivière",
+                  "sport": "football",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0b589452-1852-4e75-a160-880d12486fdd",
+                  "name": "Judo Club des Lilas",
+                  "sport": "judo",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "00680dd4-4219-460e-981e-111ebf260f1d",
+                  "name": "Tennis de table Pasteur",
+                  "sport": "tennis de table",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "clubs"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Mes clubs"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          1
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.club_members",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes adhésions ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d12c736c-75b9-4d05-9056-e80e14f05945",
+        "question": "Combien de mes adhésions ?",
+        "texte": "Vous avez 3 adhésions de club : FC Rivière, Judo Club des Lilas et Tennis de table Pasteur — et vous êtes propriétaire des trois.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "club_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "club_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Tennis de table Pasteur (id 00680dd4-4219-460e-981e-111ebf260f1d)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.club_members",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes adhésions.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-f7f295fb-7a35-47c4-9c08-44d134467ff4",
+        "question": "Liste mes adhésions.",
+        "texte": "Vous êtes membre de 3 clubs, tous avec le rôle propriétaire :\n\n- **FC Rivière** — football\n- **Judo Club des Lilas** — judo\n- **Tennis de table Pasteur** — tennis de table\n\nVoulez-vous que je vous ouvre la liste de vos clubs pour voir le détail ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "clubs",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "clubs",
+              "label": "Clubs",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "29b85de7-5236-43bb-878b-41c70ec8ffa8",
+                  "name": "FC Rivière",
+                  "sport": "football",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0b589452-1852-4e75-a160-880d12486fdd",
+                  "name": "Judo Club des Lilas",
+                  "sport": "judo",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "00680dd4-4219-460e-981e-111ebf260f1d",
+                  "name": "Tennis de table Pasteur",
+                  "sport": "tennis de table",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "club_members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "club_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Tennis de table Pasteur (id 00680dd4-4219-460e-981e-111ebf260f1d)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "clubs"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Mes clubs"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.club_invitations",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes invitations envoyées ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b5ca8d4c-a903-49d2-bd80-14a3a3edae95",
+        "question": "Combien de mes invitations envoyées ?",
+        "texte": "2 invitations en attente :\n\n- **FC Rivière** → rôle proposé : encadrant\n- **Judo Club des Lilas** → rôle proposé : lecteur\n\n(Both sent today, Oct 11.) Tu veux que je t'ouvre un des clubs ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "club_invitations",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "club_invitations",
+              "label": "Invitations",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a1c612b1-6992-4323-9a96-06536bb170db",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "email": "<texte_tiers>claire.dupont@example.test</texte_tiers>",
+                  "role": "coach (Encadrant)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0d6a7028-5653-466c-ae5d-670f08293723",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "email": "<texte_tiers>omar.benali@example.test</texte_tiers>",
+                  "role": "viewer (Lecteur)",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.club_invitations",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes invitations envoyées.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-05758364-0479-4c9b-942e-d92883b6a2e4",
+        "question": "Liste mes invitations envoyées.",
+        "texte": "Vous avez 2 invitations en attente :\n\n- **FC Rivière** — claire.dupont@example.test, rôle Encadrant\n- **Judo Club des Lilas** — omar.benali@example.test, rôle Lecteur\n\nPour en envoyer ou en suivre d'autres, ça se passe depuis la fiche du club.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "clubs",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "clubs",
+              "label": "Clubs",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "29b85de7-5236-43bb-878b-41c70ec8ffa8",
+                  "name": "FC Rivière",
+                  "sport": "football",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0b589452-1852-4e75-a160-880d12486fdd",
+                  "name": "Judo Club des Lilas",
+                  "sport": "judo",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "00680dd4-4219-460e-981e-111ebf260f1d",
+                  "name": "Tennis de table Pasteur",
+                  "sport": "tennis de table",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "club_invitations",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "club_invitations",
+              "label": "Invitations",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a1c612b1-6992-4323-9a96-06536bb170db",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "email": "<texte_tiers>claire.dupont@example.test</texte_tiers>",
+                  "role": "coach (Encadrant)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0d6a7028-5653-466c-ae5d-670f08293723",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "email": "<texte_tiers>omar.benali@example.test</texte_tiers>",
+                  "role": "viewer (Lecteur)",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2,
+        "source": "nombre annoncé",
+        "elements": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.trainings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes entraînements ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-45a2fc23-6018-4f87-9e2e-1e5077147847",
+        "question": "Combien de mes entraînements ?",
+        "texte": "Vous animez **6 entraînements** au total :\n\n- 2 à venir (prévus) : « Passage de ceinture » (24/10, Judo Club des Lilas) et « Entraînement du jeudi » (15/10, FC Rivière)\n- 1 annulé : « Tournoi interne » (20/09)\n- 3 passés (faits)\n\nÀ noter : vous êtes propriétaire des 3 clubs concernés (FC Rivière, Judo Club des Lilas, Tennis de table Pasteur).\n\nVous pouvez ouvrir la liste ici pour le détail.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "club_members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "club_members",
+              "label": "Membres",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "club_id": "Tennis de table Pasteur (id 00680dd4-4219-460e-981e-111ebf260f1d)",
+                  "user_id": "aebee581-6574-4794-8332-39ddd1a9ad19",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "trainings",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "trainings",
+              "label": "Entraînements",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e3dcd2e9-fb2b-442c-add6-5ab1259ab80e",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "title": "Passage de ceinture",
+                  "starts_at": "2026-10-24T10:00",
+                  "duration_minutes": 180,
+                  "location": "Dojo des Lilas",
+                  "capacity": 15,
+                  "status": "prevu (Prévu)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "f4d927ec-3446-4f84-80c0-5ef79288e7d0",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Entraînement du jeudi",
+                  "starts_at": "2026-10-15T18:30",
+                  "duration_minutes": 90,
+                  "location": "Stade Rivière",
+                  "capacity": 20,
+                  "status": "prevu (Prévu)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "dabc192f-68f8-437d-899d-b57e6b3603e2",
+                  "club_id": "Tennis de table Pasteur (id 00680dd4-4219-460e-981e-111ebf260f1d)",
+                  "title": "Tournoi interne",
+                  "starts_at": "2026-09-20T14:00",
+                  "duration_minutes": 240,
+                  "location": "Gymnase Pasteur",
+                  "capacity": 16,
+                  "status": "annule (Annulé)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "54d17b75-020c-4eb7-952d-c3ad353fba60",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Match amical",
+                  "starts_at": "2026-09-12T15:00",
+                  "duration_minutes": 120,
+                  "location": "Stade Rivière",
+                  "capacity": 22,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "f02937ee-cebd-4d75-85e4-a4857bac6b96",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "title": "Randori du mercredi",
+                  "starts_at": "2026-09-02T19:00",
+                  "duration_minutes": 60,
+                  "location": "Dojo des Lilas",
+                  "capacity": 12,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "ff9483af-2446-4958-9b70-34dcaf59c726",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Entraînement du mardi",
+                  "starts_at": "2026-09-01T18:30",
+                  "duration_minutes": 90,
+                  "location": "Stade Rivière",
+                  "capacity": 20,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "mes_entrainements"
+            },
+            "sortie": {
+              "href": "/mes-entrainements",
+              "label": "Mes entraînements"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          2,
+          24,
+          15,
+          1,
+          20,
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.trainings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes entraînements.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-6faad861-83f4-45dd-897e-f7810c10f333",
+        "question": "Liste mes entraînements.",
+        "texte": "Voici tes 6 entraînements (tous ceux que tu animes) :\n\n**À venir**\n- Jeu. 15 oct. 18:30 — Entraînement du jeudi (FC Rivière), Stade Rivière, 90 min — Prévu\n- Sam. 24 oct. 10:00 — Passage de ceinture (Judo Club des Lilas), Dojo des Lilas, 180 min — Prévu\n\n**Passés**\n- Mar. 1er sept. 18:30 — Entraînement du mardi (FC Rivière), 90 min — Fait\n- Mer. 2 sept. 19:00 — Randori du mercredi (Judo Club des Lilas), 60 min — Fait\n- Sam. 12 sept. 15:00 — Match amical (FC Rivière), 120 min — Fait\n- Dim. 20 sept. 14:00 — Tournoi interne (Tennis de table Pasteur), 240 min — Annulé\n\nTu veux la liste des présents d'un de ces entraînements ?\n\nUn bouton « Mes entraînements » s'affiche pour ouvrir la liste dans l'app.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "entraînements"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "clubs",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "clubs",
+              "label": "Clubs",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "29b85de7-5236-43bb-878b-41c70ec8ffa8",
+                  "name": "FC Rivière",
+                  "sport": "football",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0b589452-1852-4e75-a160-880d12486fdd",
+                  "name": "Judo Club des Lilas",
+                  "sport": "judo",
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "00680dd4-4219-460e-981e-111ebf260f1d",
+                  "name": "Tennis de table Pasteur",
+                  "sport": "tennis de table",
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "trainings",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "trainings",
+              "label": "Entraînements",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e3dcd2e9-fb2b-442c-add6-5ab1259ab80e",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "title": "Passage de ceinture",
+                  "starts_at": "2026-10-24T10:00",
+                  "duration_minutes": 180,
+                  "location": "Dojo des Lilas",
+                  "capacity": 15,
+                  "status": "prevu (Prévu)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "f4d927ec-3446-4f84-80c0-5ef79288e7d0",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Entraînement du jeudi",
+                  "starts_at": "2026-10-15T18:30",
+                  "duration_minutes": 90,
+                  "location": "Stade Rivière",
+                  "capacity": 20,
+                  "status": "prevu (Prévu)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "dabc192f-68f8-437d-899d-b57e6b3603e2",
+                  "club_id": "Tennis de table Pasteur (id 00680dd4-4219-460e-981e-111ebf260f1d)",
+                  "title": "Tournoi interne",
+                  "starts_at": "2026-09-20T14:00",
+                  "duration_minutes": 240,
+                  "location": "Gymnase Pasteur",
+                  "capacity": 16,
+                  "status": "annule (Annulé)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "54d17b75-020c-4eb7-952d-c3ad353fba60",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Match amical",
+                  "starts_at": "2026-09-12T15:00",
+                  "duration_minutes": 120,
+                  "location": "Stade Rivière",
+                  "capacity": 22,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "f02937ee-cebd-4d75-85e4-a4857bac6b96",
+                  "club_id": "Judo Club des Lilas (id 0b589452-1852-4e75-a160-880d12486fdd)",
+                  "title": "Randori du mercredi",
+                  "starts_at": "2026-09-02T19:00",
+                  "duration_minutes": 60,
+                  "location": "Dojo des Lilas",
+                  "capacity": 12,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                },
+                {
+                  "id": "ff9483af-2446-4958-9b70-34dcaf59c726",
+                  "club_id": "FC Rivière (id 29b85de7-5236-43bb-878b-41c70ec8ffa8)",
+                  "title": "Entraînement du mardi",
+                  "starts_at": "2026-09-01T18:30",
+                  "duration_minutes": 90,
+                  "location": "Stade Rivière",
+                  "capacity": 20,
+                  "status": "fait (Fait)",
+                  "coach_id": "aebee581-6574-4794-8332-39ddd1a9ad19"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "mes_entrainements"
+            },
+            "sortie": {
+              "href": "/mes-entrainements",
+              "label": "Mes entraînements"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          90,
+          180,
+          30,
+          90,
+          60,
+          120,
+          240
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.attendances",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes présences notées ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-60a3fe48-f9a7-485d-9c75-f2cbbe96e61b",
+        "question": "Combien de mes présences notées ?",
+        "texte": "10 présences notées, toutes marquées présentes — réparties sur 4 entraînements :\n\n- Entraînement du mardi : 3 (Inès Moreau, Hugo Petit, Léa Martin)\n- Match amical : 2 (Hugo Petit, Léa Martin)\n- Randori du mercredi : 3 (Paul Lambert, Sofia Girard, Yanis Roux)\n- Tournoi interne : 2 (Noé Blanc, Chloé Fabre)\n\nVoulez-vous que j'ouvre l'un de ces entraînements pour voir le détail ?",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "nom participant présences"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "attendances",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "attendances",
+              "label": "Présents",
+              "total": 10,
+              "shown": 10,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7a4864bc-a2f9-47c6-8960-b0b2edbeb792",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Inès Moreau",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "7f20dfc0-68f7-4d23-9ced-386424e5b3cc",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Hugo Petit",
+                  "present": true,
+                  "amount_paid": 5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "74322507-7796-4fed-af8c-9acd9314864a",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Léa Martin",
+                  "present": true,
+                  "amount_paid": 5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "e172509c-5b82-4ea2-8c2e-e9260ccebc47",
+                  "training_id": "Match amical (id 54d17b75-020c-4eb7-952d-c3ad353fba60)",
+                  "participant_name": "Hugo Petit",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "4f87119a-5258-4d2a-bf01-622d0b8a9a17",
+                  "training_id": "Match amical (id 54d17b75-020c-4eb7-952d-c3ad353fba60)",
+                  "participant_name": "Léa Martin",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "85d0679d-14b9-4ea7-9c2d-018b5141cf44",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Paul Lambert",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "9d28c7eb-a07f-4973-a8d8-10ce06273d18",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Sofia Girard",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "55eaa3ba-990b-4557-bd77-39f9d36bd19d",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Yanis Roux",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0e443fc2-fb26-455d-9762-6fccce9c5b0e",
+                  "training_id": "Tournoi interne (id dabc192f-68f8-437d-899d-b57e6b3603e2)",
+                  "participant_name": "Noé Blanc",
+                  "present": true,
+                  "amount_paid": 3.5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "793208c9-f2ae-4d61-83ff-d00e54bca4ff",
+                  "training_id": "Tournoi interne (id dabc192f-68f8-437d-899d-b57e6b3603e2)",
+                  "participant_name": "Chloé Fabre",
+                  "present": true,
+                  "amount_paid": 3.5,
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 10,
+        "nombres_lus": [
+          10,
+          4,
+          3,
+          2,
+          3,
+          2
+        ],
+        "ok": true,
+        "retenu": 10
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.attendances",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes présences notées.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ffe20b40-bc1e-4bbf-b21c-5e0941b0dda4",
+        "question": "Liste mes présences notées.",
+        "texte": "Je regarde ça.\n\nVoici toutes les présences notées dans l'app : 10 au total, toutes marquées « présent ».\n\n**Entraînement du mardi** (3)\n- Inès Moreau, Hugo Petit, Léa Martin\n\n**Match amical** (2)\n- Hugo Petit, Léa Martin\n\n**Randori du mercredi** (3)\n- Paul Lambert, Sofia Girard, Yanis Roux\n\n**Tournoi interne** (2)\n- Noé Blanc, Chloé Fabre\n\nPetite précision : la liste des présents n'est pas rattachée à votre compte utilisateur (juste un nom de participant), je ne peux donc pas isoler « vos » présences à vous. Si vous cherchiez les entraînements que vous animez, c'est autre chose — dites-le moi.\n\nJe peux ouvrir la fiche d'un entraînement pour voir le détail.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "nom participant prénom"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "présences notées"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "attendances",
+              "order": "newest",
+              "limit": 25
+            },
+            "sortie": {
+              "table": "attendances",
+              "label": "Présents",
+              "total": 10,
+              "shown": 10,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7a4864bc-a2f9-47c6-8960-b0b2edbeb792",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Inès Moreau",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "7f20dfc0-68f7-4d23-9ced-386424e5b3cc",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Hugo Petit",
+                  "present": true,
+                  "amount_paid": 5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "74322507-7796-4fed-af8c-9acd9314864a",
+                  "training_id": "Entraînement du mardi (id ff9483af-2446-4958-9b70-34dcaf59c726)",
+                  "participant_name": "Léa Martin",
+                  "present": true,
+                  "amount_paid": 5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "e172509c-5b82-4ea2-8c2e-e9260ccebc47",
+                  "training_id": "Match amical (id 54d17b75-020c-4eb7-952d-c3ad353fba60)",
+                  "participant_name": "Hugo Petit",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "4f87119a-5258-4d2a-bf01-622d0b8a9a17",
+                  "training_id": "Match amical (id 54d17b75-020c-4eb7-952d-c3ad353fba60)",
+                  "participant_name": "Léa Martin",
+                  "present": true,
+                  "amount_paid": 0,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "85d0679d-14b9-4ea7-9c2d-018b5141cf44",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Paul Lambert",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "9d28c7eb-a07f-4973-a8d8-10ce06273d18",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Sofia Girard",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "55eaa3ba-990b-4557-bd77-39f9d36bd19d",
+                  "training_id": "Randori du mercredi (id f02937ee-cebd-4d75-85e4-a4857bac6b96)",
+                  "participant_name": "Yanis Roux",
+                  "present": true,
+                  "amount_paid": 8,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "0e443fc2-fb26-455d-9762-6fccce9c5b0e",
+                  "training_id": "Tournoi interne (id dabc192f-68f8-437d-899d-b57e6b3603e2)",
+                  "participant_name": "Noé Blanc",
+                  "present": true,
+                  "amount_paid": 3.5,
+                  "created_at": "2026-10-11T04:37"
+                },
+                {
+                  "id": "793208c9-f2ae-4d61-83ff-d00e54bca4ff",
+                  "training_id": "Tournoi interne (id dabc192f-68f8-437d-899d-b57e6b3603e2)",
+                  "participant_name": "Chloé Fabre",
+                  "present": true,
+                  "amount_paid": 3.5,
+                  "created_at": "2026-10-11T04:37"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 10,
+        "nombres_lus": [
+          10,
+          3,
+          2,
+          3,
+          2
+        ],
+        "ok": true,
+        "retenu": 10,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 18
+  },
+  "couverture": {
+    "lues": 5,
+    "total": 5,
+    "tables": [
+      {
+        "table": "public.clubs",
+        "lue": true
+      },
+      {
+        "table": "public.club_members",
+        "lue": true
+      },
+      {
+        "table": "public.club_invitations",
+        "lue": true
+      },
+      {
+        "table": "public.trainings",
+        "lue": true
+      },
+      {
+        "table": "public.attendances",
+        "lue": true
+      }
+    ],
+    "texte": "5/5"
+  }
+}

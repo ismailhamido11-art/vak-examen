@@ -1,0 +1,17 @@
+{
+  "id": "club_2",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origine du site>,http://localhost:3000`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origine du site) ; « Commande pour votre terminal, seule »"
+    }
+  ],
+  "non_comptes": [
+    "« Choix tranchés (retour arrière : modifier `agent.ts`, puis relancer `vak`) » (lecture seule, fonctions dans `ignore`, adresses e-mail, quota) : choix faits par l'agent, avec leur retour arrière ; « Pour retirer les e-mails d'invitation, il faudrait modifier la contrainte `email` de l'app » en fait partie : aucune action demandée",
+    "« Signalés en une ligne » (VAK108 « à vérifier », coéquipier non semé pour `attendances` et `trainings`, RLS de l'app verte) : avertissements de `doctor` et constats relayés, aucune action demandée (comme agence_1, budget_web_app_2 et club_1)",
+    "« Questions que j'aurais posées : aucune. »"
+  ]
+}

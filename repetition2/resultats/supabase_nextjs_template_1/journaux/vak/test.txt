@@ -1,0 +1,16 @@
+$ vak test
+(dossier : /work/supabase_nextjs_template_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (1 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 7 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1321 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data todo_list exécuté sans validation → {"table":"todo_list","label":"Tasks","total":2,"shown":2,"complete":true,"rows":[{"id":2,"title":"title 1","urgent":t…
+✓ tour create_todo_list validation demandée, puis une ligne écrite → {"saved":true,"table":"todo_list","id":"74b5d3cd-c738-433f-8c68-3b542bba41f4","title":"title 5"}
+✓ tour update_todo_list validation demandée, puis une ligne écrite → {"saved":true,"table":"todo_list","id":"1","title":"title 6"}
+✓ tour open_screen tasks exécuté sans validation → {"href":"/tasks","label":"Tasks"}
+✓ tour open_screen storage exécuté sans validation → {"href":"/storage","label":"Files"}
+✓ tour open_screen settings exécuté sans validation → {"href":"/settings","label":"Settings"}
+vak test : tout est vert [code 0]

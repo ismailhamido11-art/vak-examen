@@ -1,0 +1,73 @@
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+index c295461..9cae5f5 100644
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -152,6 +152,14 @@ export default function TabsLayout() {
+           tabBarLabel: T.tab_shop,
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          tabBarIcon: tabIcon('🧠', T.tab_assistant),
++          title: T.tab_assistant,
++          tabBarLabel: T.tab_assistant,
++        }}
++      />
+       <Tabs.Screen
+         name="profile"
+         options={{
+diff --git a/app/settings.tsx b/app/settings.tsx
+index fec3998..2dc8b80 100644
+--- a/app/settings.tsx
++++ b/app/settings.tsx
+@@ -25,6 +25,8 @@ import { use$ } from '@legendapp/state/react';
+ import { useT, setLang, lang$, LANGS } from '../src/lib/i18n';
+ import { openLegalPage } from '../src/lib/legal-links';
+ import Constants from 'expo-constants';
++import { AgentSettings } from '@vak/agent/native';
++import { vak } from '@/lib/vak';
+ import { resetTutorial } from '../src/features/onboarding/tutorial-state';
+ import { useOwnedThemes } from '../src/features/shop/hooks/use-owned-themes';
+ import { fetchShop, setActiveTheme } from '../src/features/shop/stores/shop-store';
+@@ -332,6 +334,8 @@ export default function SettingsScreen() {
+         </View>
+       </View>
+ 
++      <AgentSettings {...vak} />
++
+       {/* App info */}
+       <View style={styles.appInfo}>
+         <View style={styles.legalRow}>
+diff --git a/src/lib/i18n/index.ts b/src/lib/i18n/index.ts
+index 6ac9589..bd132d7 100644
+--- a/src/lib/i18n/index.ts
++++ b/src/lib/i18n/index.ts
+@@ -54,6 +54,7 @@ const FR = {
+   tab_quests: 'QUÊTES',
+   tab_social: 'SOCIAL',
+   tab_shop: 'BOUTIQUE',
++  tab_assistant: 'ASSISTANT',
+   tab_me: 'MOI',
+   // Settings
+   settings_back: '< Retour',
+@@ -1226,6 +1227,7 @@ const EN = {
+   tab_quests: 'QUESTS',
+   tab_social: 'SOCIAL',
+   tab_shop: 'SHOP',
++  tab_assistant: 'ASSISTANT',
+   tab_me: 'ME',
+   // Settings
+   settings_back: '< Back',
+diff --git a/src/lib/i18n/ja.ts b/src/lib/i18n/ja.ts
+index 56371bb..66ca1f9 100644
+--- a/src/lib/i18n/ja.ts
++++ b/src/lib/i18n/ja.ts
+@@ -9,6 +9,7 @@ export const JA: Strings = {
+   tab_quests: 'クエスト',
+   tab_social: 'ソーシャル',
+   tab_shop: 'ショップ',
++  tab_assistant: 'アシスタント',
+   tab_me: 'マイページ',
+   // Settings
+   settings_back: '< 戻る',

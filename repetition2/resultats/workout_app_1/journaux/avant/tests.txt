@@ -1,0 +1,13 @@
+$ bun run test
+(dossier : /work/workout_app_1/avant)
+
+$ vitest run
+
+ RUN  v4.1.6 /work/workout_app_1/avant
+
+
+ Test Files  21 passed (21)
+      Tests  285 passed | 1 skipped (286)
+   Start at  02:01:39
+   Duration  5.90s (transform 681ms, setup 0ms, import 2.13s, tests 3.55s, environment 7.46s)
+

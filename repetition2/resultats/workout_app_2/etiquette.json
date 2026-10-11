@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-11T03:17:55.669Z",
+  "langue": "en",
+  "nom": "Workout assistant",
+  "etiquette": [
+    "Sees: Workouts (Template, Machine location, Scheduled for, Started at, Completed at, Perceived effort (1 to 10), Notes) ; Workout exercises (Workout, Exercise, Position, Prescribed sets min, Prescribed sets max, Prescribed reps min, Prescribed reps max, Prescribed RIR min, Prescribed RIR max, Prescribed rest (seconds), Prescribed RPE, Notes) ; Sets (Workout exercise, Set number, Warm-up set, Weight, Reps, Seconds, RPE, Notes, Completed at) ; Settings (Weight unit, Default rest (seconds), Default machine location) ; Top sets (Workout, User, Workout exercise, Exercise, Set, Weight, Reps, Volume, Completed at, Workout completed at) ; Estimated 1RM (Workout, User, Workout exercise, Exercise, Weight, Reps, Workout completed at, Estimated 1RM) ; shared catalog Exercises (Name, Equipment, Machine location, Notes) ; shared catalog Templates (Name, Category, Variant, Estimated minutes, Notes)",
+    "Can propose (after your approval): add to Sets (Workout exercise, Set number, Warm-up set, Weight, Reps, Seconds, RPE, Notes, Completed at, including « Workout exercise », which decides who sees the row) ; edit in Sets (Warm-up set, Weight, Reps, Seconds, RPE, Notes, Completed at) ; remember a memory (plugin memory)",
+    "Can open (saves nothing): Home",
+    "Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read clearances, daily_checks, events, recoveries, rules, exercise_alternates, muscle_groups, program_phases, 7 others",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:c47960aab61aae0a19b18fb18e4e8eeb5593a13b5796be19c6fe8a97be467871",
+    "calibrage": "sha256:d4211a0e59186db0d959965578bf979d49cd48c3e619fef028431246396bd26b"
+  }
+}

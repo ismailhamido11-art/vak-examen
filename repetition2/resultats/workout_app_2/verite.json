@@ -1,0 +1,23 @@
+{
+  "id": "workout_app_2",
+  "etat_commite": "59f161639cb7a10491bf786f34f4f4475ed30f3a",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:27-161 : seule sets déclare create (ligne 81) et update (ligne 82) ; aucune table ne déclare de suppression",
+      "agent.ts : aucune fonction de l'app déclarée (pas de clé functions) ; agent.ts:182 : drafts() n'écrit rien"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.sets", "nom": "Sets", "preuve": "agent.ts:81-82 : create et update (supabase/migrations/0001_initial_schema.sql:236)" },
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:182, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

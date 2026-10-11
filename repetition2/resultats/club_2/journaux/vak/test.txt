@@ -1,0 +1,19 @@
+$ vak test
+(dossier : /work/club_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (5 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1382 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data clubs exécuté sans validation → {"table":"clubs","label":"Clubs","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000003000…
+✓ tour read_data trainings exécuté sans validation → {"table":"trainings","label":"Entraînements","total":1,"shown":1,"complete":true,"rows":[{"id":"t1","club_id":"name 0…
+✓ tour read_data attendances exécuté sans validation → {"table":"attendances","label":"Présents","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-…
+✓ tour read_data club_members exécuté sans validation → {"table":"club_members","label":"Membres","total":2,"shown":2,"complete":true,"rows":[{"club_id":"00000000-0000-4000-…
+✓ tour read_data club_invitations exécuté sans validation → {"table":"club_invitations","label":"Invitations","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-40…
+✓ tour open_screen clubs exécuté sans validation → {"href":"/","label":"Mes clubs"}
+✓ tour open_screen club exécuté sans validation → {"href":"/clubs/00000000-0000-4000-8000-000003000000","label":"Club"}
+✓ tour open_screen entrainement exécuté sans validation → {"href":"/clubs/test/trainings/test","label":"Entraînement"}
+✓ tour open_screen mes_entrainements exécuté sans validation → {"href":"/mes-entrainements","label":"Mes entraînements"}
+vak test : tout est vert [code 0]

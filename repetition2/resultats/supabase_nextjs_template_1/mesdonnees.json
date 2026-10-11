@@ -1,0 +1,35 @@
+{
+  "verdict": "erreur",
+  "raisons": [
+    "erreur du juge, aucun verdict sur l'essai : comptage SQL de public.todo_list impossible : ERROR:  relation \"auth.mfa_factors\" does not exist\nLINE 8:     FROM auth.mfa_factors\n                 ^\nQUERY:  \n  SELECT array[(select auth.jwt()->>'aal')] <@ (\n    SELECT\n      CASE\n        WHEN count(id) > 0 THEN array['aal2']\n        ELSE array['aal1', 'aal2']\n      END as aal\n    FROM auth.mfa_"
+  ],
+  "dossier": "/work/supabase_nextjs_template_1/apres",
+  "lecture": {
+    "fichier": "/work/supabase_nextjs_template_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.todo_list"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [],
+  "questions": [],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 8
+  },
+  "couverture": {
+    "lues": 1,
+    "total": 1,
+    "tables": [
+      {
+        "table": "public.todo_list",
+        "lue": true
+      }
+    ],
+    "texte": "1/1"
+  },
+  "erreurs_juge": [
+    "comptage SQL de public.todo_list impossible : ERROR:  relation \"auth.mfa_factors\" does not exist\nLINE 8:     FROM auth.mfa_factors\n                 ^\nQUERY:  \n  SELECT array[(select auth.jwt()->>'aal')] <@ (\n    SELECT\n      CASE\n        WHEN count(id) > 0 THEN array['aal2']\n        ELSE array['aal1', 'aal2']\n      END as aal\n    FROM auth.mfa_"
+  ]
+}

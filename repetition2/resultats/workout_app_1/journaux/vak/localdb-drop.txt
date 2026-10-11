@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/workout_app_1/apres)
+
+base locale vak_local_6be095 supprimée [code 0]

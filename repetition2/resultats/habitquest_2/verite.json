@@ -1,0 +1,23 @@
+{
+  "id": "habitquest_2",
+  "etat_commite": "dd7890a785c3df43d62f8bf5967c48198a96c9b3",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:105-154 : functions ne contient que des lignes en commentaire ; l'assistant n'appelle aucune fonction de l'app",
+      "agent.ts:15-102 : completions, habits, profiles, streaks et user_daily_quests ne déclarent ni create ni update ; aucune suppression",
+      "agent.ts:290 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:290, plugins : memory()" }
+    ]
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:145 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1)"
+  }
+}

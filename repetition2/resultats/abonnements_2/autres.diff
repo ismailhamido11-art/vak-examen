@@ -1,0 +1,92 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index f7f4d63..7bc1cb6 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,22 +1,36 @@
+-import { Stack } from 'expo-router';
++import { AgentButton } from '@vak/agent/native';
++import { type Href, router, Stack } from 'expo-router';
+ 
+ import { SessionProvider, useSession } from '@/lib/session';
++import { vak } from '@/lib/vak';
+ 
+ function Routes() {
+   const { session, loading } = useSession();
+   if (loading) return null;
+   return (
+-    <Stack>
+-      <Stack.Protected guard={!!session}>
+-        <Stack.Screen name="index" options={{ title: 'Mes abonnements' }} />
+-        <Stack.Screen name="spending" options={{ title: 'Dépense du mois' }} />
+-        <Stack.Screen name="subscription/[id]/index" options={{ title: 'Paiements' }} />
+-        <Stack.Screen name="subscription/[id]/payment" options={{ title: 'Ajouter un paiement' }} />
+-      </Stack.Protected>
+-      <Stack.Protected guard={!session}>
+-        <Stack.Screen name="sign-in" options={{ title: 'Connexion' }} />
+-      </Stack.Protected>
+-    </Stack>
++    <>
++      <Stack>
++        <Stack.Protected guard={!!session}>
++          <Stack.Screen name="index" options={{ title: 'Mes abonnements' }} />
++          <Stack.Screen name="spending" options={{ title: 'Dépense du mois' }} />
++          <Stack.Screen name="subscription/[id]/index" options={{ title: 'Paiements' }} />
++          <Stack.Screen name="subscription/[id]/payment" options={{ title: 'Ajouter un paiement' }} />
++          <Stack.Screen name="reglages" options={{ title: 'Réglages de l’assistant' }} />
++          <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++        </Stack.Protected>
++        <Stack.Protected guard={!session}>
++          <Stack.Screen name="sign-in" options={{ title: 'Connexion' }} />
++        </Stack.Protected>
++      </Stack>
++      {session && (
++        <AgentButton
++          {...vak}
++          label="Assistant"
++          navigate={(href) => router.push(href as Href)}
++          onUnauthorized={() => router.replace('/sign-in')}
++        />
++      )}
++    </>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 6b84e9c..192f780 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -73,6 +73,9 @@ export default function Subscriptions() {
+         <Link href="/spending" asChild>
+           <Button title="Dépense du mois" kind="secondary" onPress={() => {}} />
+         </Link>
++        <Link href="/reglages" asChild>
++          <Button title="Réglages IA" kind="secondary" onPress={() => {}} />
++        </Link>
+         <Button title="Déconnexion" kind="secondary" onPress={() => supabase.auth.signOut()} />
+       </View>
+       {adding && (
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

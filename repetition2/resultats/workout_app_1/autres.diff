@@ -1,0 +1,174 @@
+diff --git a/scripts/__tests__/migrations.test.ts b/scripts/__tests__/migrations.test.ts
+index 4f97efd..c97ef35 100644
+--- a/scripts/__tests__/migrations.test.ts
++++ b/scripts/__tests__/migrations.test.ts
+@@ -97,6 +97,10 @@ describe("supabase migrations on PGlite", () => {
+       "0005_recovery.sql",
+       "0006_programs_weekly.sql",
+       "0007_template_exercise_variant.sql",
++      "20261011020341_vak_0001_core.sql",
++      "20261011020342_vak_0002_feedback.sql",
++      "20261011020343_vak_0003_history.sql",
++      "20261011020344_vak_0004_quota_erase.sql",
+     ]);
+   });
+ 
+diff --git a/src/app/assistant-button.tsx b/src/app/assistant-button.tsx
+new file mode 100644
+index 0000000..85a42ae
+--- /dev/null
++++ b/src/app/assistant-button.tsx
+@@ -0,0 +1,17 @@
++"use client";
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++
++export function AssistantButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/login")}
++      theme={{ accent: "#18181b", mode: "system" }}
++    />
++  );
++}
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index cc9ed82..e09e7f6 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,6 +1,8 @@
+ import type { Metadata, Viewport } from "next";
+ import { Geist, Geist_Mono } from "next/font/google";
+ import "./globals.css";
++import "@vak/agent/web/styles.css";
++import { AssistantButton } from "./assistant-button";
+ 
+ const geistSans = Geist({
+   variable: "--font-geist-sans",
+@@ -59,7 +61,9 @@ export default function RootLayout({
+       lang="en"
+       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+     >
+-      <body className="min-h-full flex flex-col">{children}</body>
++      <body className="min-h-full flex flex-col">{children}
++        <AssistantButton />
++      </body>
+     </html>
+   );
+ }
+diff --git a/src/app/login/page.tsx b/src/app/login/page.tsx
+new file mode 100644
+index 0000000..675279c
+--- /dev/null
++++ b/src/app/login/page.tsx
+@@ -0,0 +1,37 @@
++"use client";
++import { useState } from "react";
++import { createClient } from "@/lib/supabase/client";
++
++export default function LoginPage() {
++  const [email, setEmail] = useState("");
++  const [message, setMessage] = useState("");
++
++  async function signIn(e: React.FormEvent) {
++    e.preventDefault();
++    const { error } = await createClient().auth.signInWithOtp({
++      email,
++      options: { emailRedirectTo: window.location.origin },
++    });
++    setMessage(error ? error.message : "Check your email for the sign-in link.");
++  }
++
++  return (
++    <main className="mx-auto flex w-full max-w-sm flex-col gap-3 p-6">
++      <h1 className="text-2xl font-semibold tracking-tight">Sign in</h1>
++      <form onSubmit={signIn} className="flex flex-col gap-3">
++        <input
++          type="email"
++          required
++          value={email}
++          onChange={(e) => setEmail(e.target.value)}
++          placeholder="you@example.com"
++          className="rounded border border-zinc-300 p-2 text-sm"
++        />
++        <button type="submit" className="rounded bg-zinc-900 p-2 text-sm text-white">
++          Send magic link
++        </button>
++      </form>
++      {message && <p className="text-sm text-zinc-500">{message}</p>}
++    </main>
++  );
++}
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 2749799..d05aaad 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -1,3 +1,5 @@
++import Link from "next/link";
++
+ export default function Home() {
+   return (
+     <main className="flex min-h-screen flex-col items-center justify-center gap-3 p-8 text-center">
+@@ -6,6 +8,10 @@ export default function Home() {
+         Milestone 1 scaffold. Database, seed, and PWA shell are up.
+         Screens land in Milestone 2.
+       </p>
++      <nav className="flex gap-4 text-sm underline">
++        <Link href="/assistant">Assistant</Link>
++        <Link href="/settings">Settings</Link>
++      </nav>
+     </main>
+   );
+ }
+diff --git a/src/app/settings/agent-settings.tsx b/src/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/src/app/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/app/settings/page.tsx b/src/app/settings/page.tsx
+new file mode 100644
+index 0000000..b8b0a96
+--- /dev/null
++++ b/src/app/settings/page.tsx
+@@ -0,0 +1,10 @@
++import { VakSettings } from "./agent-settings";
++
++export default function SettingsPage() {
++  return (
++    <main className="mx-auto flex w-full max-w-xl flex-col gap-4 p-6">
++      <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
++      <VakSettings />
++    </main>
++  );
++}
+diff --git a/src/lib/supabase/client.ts b/src/lib/supabase/client.ts
+new file mode 100644
+index 0000000..bd152d2
+--- /dev/null
++++ b/src/lib/supabase/client.ts
+@@ -0,0 +1,13 @@
++"use client";
++import { createClient as createSupabaseClient, type SupabaseClient } from "@supabase/supabase-js";
++
++let client: SupabaseClient | undefined;
++
++// One browser client for the whole app, so the session is shared with the assistant.
++export function createClient(): SupabaseClient {
++  client ??= createSupabaseClient(
++    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
++    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
++  );
++  return client;
++}

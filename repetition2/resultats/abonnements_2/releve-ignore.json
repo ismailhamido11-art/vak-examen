@@ -1,0 +1,35 @@
+{
+  "id": "abonnements_2",
+  "echecs_de_preuve": [
+    {
+      "table": "create_subscription",
+      "verdict": "non prouvé",
+      "ligne": 95,
+      "texte": "✗ create_subscription() non prouvé"
+    },
+    {
+      "table": "create_subscription",
+      "verdict": "non prouvé",
+      "ligne": 95,
+      "texte": "✗ create_subscription() non prouvé"
+    },
+    {
+      "table": "create_subscription",
+      "verdict": "non prouvé",
+      "ligne": 113,
+      "texte": "✗ create_subscription() non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "current_user_id",
+      "ligne": 81
+    },
+    {
+      "nom": "delete_payment",
+      "ligne": 82
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

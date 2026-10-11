@@ -1,0 +1,11 @@
+$ tsc --noEmit
+(dossier : /work/club_1/apres)
+
+app/clubs/[id]/membres/page.tsx(132,49): error TS2304: Cannot find name 'PageProps'.
+app/clubs/[id]/membres/page.tsx(133,11): error TS2339: Property 'id' does not exist on type 'unknown'.
+app/clubs/[id]/page.tsx(154,46): error TS2304: Cannot find name 'PageProps'.
+app/clubs/[id]/page.tsx(155,11): error TS2339: Property 'id' does not exist on type 'unknown'.
+app/clubs/[id]/trainings/[tid]/page.tsx(127,50): error TS2304: Cannot find name 'PageProps'.
+app/clubs/[id]/trainings/[tid]/page.tsx(128,11): error TS2339: Property 'id' does not exist on type 'unknown'.
+app/clubs/[id]/trainings/[tid]/page.tsx(128,15): error TS2339: Property 'tid' does not exist on type 'unknown'.
+app/layout.tsx(12,50): error TS2304: Cannot find name 'LayoutProps'.

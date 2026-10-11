@@ -1,0 +1,53 @@
+diff --git a/supabase-expo-template/app/(app)/_layout.tsx b/supabase-expo-template/app/(app)/_layout.tsx
+index 5d99b16..266bc40 100644
+--- a/supabase-expo-template/app/(app)/_layout.tsx
++++ b/supabase-expo-template/app/(app)/_layout.tsx
+@@ -1,7 +1,7 @@
+ import { Colors } from '@/constants/theme'
+ import { useColorScheme } from '@/hooks/use-color-scheme'
+ import { Tabs } from 'expo-router'
+-import { FolderOpen, Home, ListTodo, Settings } from 'lucide-react-native'
++import { FolderOpen, Home, ListTodo, Settings, Sparkles } from 'lucide-react-native'
+ import { useTranslation } from 'react-i18next'
+ 
+ export default function AppLayout() {
+@@ -39,6 +39,13 @@ export default function AppLayout() {
+           tabBarIcon: ({ color, size }) => <ListTodo size={size} color={color} />,
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          title: 'Assistant',
++          tabBarIcon: ({ color, size }) => <Sparkles size={size} color={color} />,
++        }}
++      />
+       <Tabs.Screen
+         name="settings"
+         options={{
+diff --git a/supabase-expo-template/app/(app)/settings.tsx b/supabase-expo-template/app/(app)/settings.tsx
+index b4ce75a..b8662c9 100644
+--- a/supabase-expo-template/app/(app)/settings.tsx
++++ b/supabase-expo-template/app/(app)/settings.tsx
+@@ -1,3 +1,4 @@
++import { AgentSettings } from '@vak/agent/native'
+ import { MFASetup } from '@/components/MFASetup'
+ import { Alert } from '@/components/ui/alert'
+ import { Button } from '@/components/ui/button'
+@@ -7,6 +8,7 @@ import { Colors } from '@/constants/theme'
+ import { useColorScheme } from '@/hooks/use-color-scheme'
+ import { storage } from '@/lib/storage'
+ import { supabase } from '@/lib/supabase'
++import { vak } from '@/lib/vak'
+ import { useRouter } from 'expo-router'
+ import { ChevronRight, Globe, Key, Shield, User } from 'lucide-react-native'
+ import { useEffect, useState } from 'react'
+@@ -205,6 +207,8 @@ export default function SettingsScreen() {
+           </Card>
+         </TouchableOpacity>
+ 
++        <AgentSettings {...vak} />
++
+         {/* Logout */}
+         <Button
+           title={t('auth.logout')}

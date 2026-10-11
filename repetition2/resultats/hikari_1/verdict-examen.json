@@ -1,0 +1,506 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "hikari_1",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 88
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "genre": "verrou",
+          "ajouts": 2,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 802
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.27.0.tgz sha256 = préparation",
+        "2 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": [
+        {
+          "code": "lien-hors-depot",
+          "ligne": 39,
+          "heure": "02:14:07",
+          "detail": "ln -s /work/hikari_1/app/node_modules node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules)",
+          "commande": "git worktree add /tmp/base HEAD -f >/dev/null 2>&1; cd /tmp/base && ln -s /work/hikari_1/app/node_modules node_modules && (npx tsc --noEmit 2>&1 | tail -15; echo TSC=$?; npx next lint 2>&1 | tail -15)"
+        }
+      ]
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-11T02:13:23.199Z",
+      "demande": "2026-10-11T02:13:20.567Z",
+      "premierVakQuiRendZero": "2026-10-11T02:16:58.866Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 3.59,
+      "ligne": 113
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 33614,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "! VAK009 variable publique à vérifier : clé ou jeton inclus dans l'app",
+            "    - utils/stripe/client.ts:8 : NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE",
+            "    → une clé faite pour le navigateur (publishable, anon) peut rester ; un secret se retire de l'app, côté serveur (fonction Supabase et ses secrets), et se révoque s'il a été publié",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 1 tables, 0 fonctions)",
+            "    - « customers » : table serveur (illisible pour authenticated) : rien à faire",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (2)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-11 : éprouvé (5 table(s), 100 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "    - prices : table calibrée lisible sans compte (anon) : faille de l'app, sauf contenu public voulu",
+            "    - products : table calibrée lisible sans compte (anon) : faille de l'app, sauf contenu public voulu",
+            "    → vérifie chaque point ; corrige dans une migration de l'app si besoin",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "À vérifier (modifiés hors de l'intégration ; git add -- <fichier> seulement pour ceux que tu as modifiés pour brancher l'assistant) : tsconfig.tsbuildinfo",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.27.0, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "! VAK005 typecheck d'agent.ts sauté : TypeScript 5.4.5 de l'app < 5.8 ; agent.ts reste vérifié par vak test",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (5 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "! VAK009 variable publique à vérifier : clé ou jeton inclus dans l'app",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 1 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (2)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-11 : éprouvé (5 table(s), 100 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "! VAK107 avis de sécurité (avertissement)",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : next lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : next lint",
+            "code": 1,
+            "delai": false,
+            "secondes": 1,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 53,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 55,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "lien symbolique tapé hors du dépôt de l'app (une mesure, pas un échec) : journal ligne 39 (02:14:07) : ln -s /work/hikari_1/app/node_modules node_modules (créé hors du dépôt de l'app, dans /tmp/base/node_modules) — commande : git worktree add /tmp/base HEAD -f >/dev/null 2>&1; cd /tmp/base && ln -s /work/hikari_1/app/node_modules node_modules && (npx tsc --noEmit 2>&1 | tail -15; echo TSC=$?; npx next lint 2>&1 | tail -15)",
+    "lint : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie",
+    "build : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie"
+  ],
+  "entree": {
+    "essai": "/srv/essais/hikari_1",
+    "preparation": {
+      "id": "hikari_1",
+      "depot": "https://github.com/antoineross/Hikari",
+      "commit": "c1f16f54ecc0b804567728f922999ad463af39e6",
+      "prepare": "68cf129999b549f698d38e72a624195ac9334b6b",
+      "archive": {
+        "nom": "vak-agent-0.27.0.tgz",
+        "sha256": "8e695dc7571b18db7bf60967b9e2994b4d8367f102854fe8f83f92fbc7de3284"
+      },
+      "debut": "2026-10-11T02:11:51Z"
+    },
+    "tip": "8a5c618ef157e21e9e64f19c383c0b772b633e9a",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 45,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 6,
+      "tablesAMoi": 4,
+      "aMoiEprouvees": 3,
+      "ignorees": 1,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "68cf129999b549f698d38e72a624195ac9334b6b",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "pnpm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "pnpm install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "pnpm install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ @types/uuid 10.0.0",
+              "+ autoprefixer 10.4.19",
+              "+ eslint 8.57.0",
+              "+ eslint-config-next 14.1.0",
+              "+ eslint-config-prettier 9.1.0",
+              "+ eslint-plugin-react 7.34.2",
+              "+ eslint-plugin-tailwindcss 3.17.3",
+              "+ postcss 8.4.38",
+              "+ prettier 3.3.1",
+              "+ prettier-plugin-tailwindcss 0.5.14",
+              "+ typescript 5.4.5",
+              "Done in 18.2s using pnpm v10.15.1"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "pnpm run lint",
+              "source": "script « lint » : next lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 1,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> @ lint /srv/verdicts/hikari_1/clones/prep",
+                "> next lint",
+                "? How would you like to configure ESLint? https://nextjs.org/docs/basic-features/eslint",
+                "❯  Strict (recommended)",
+                "   Base",
+                "   Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config",
+                " ELIFECYCLE  Command failed with exit code 1."
+              ]
+            },
+            "build": {
+              "commande": "pnpm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 53,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "    at 10273 (/srv/verdicts/hikari_1/clones/prep/.next/server/app/_not-found/page.js:1:877)",
+                "    at t (/srv/verdicts/hikari_1/clones/prep/.next/server/webpack-runtime.js:1:143)",
+                "    at n (/srv/verdicts/hikari_1/clones/prep/.next/server/app/_not-found/page.js:1:2910)",
+                "    at /srv/verdicts/hikari_1/clones/prep/.next/server/app/_not-found/page.js:1:2958",
+                "    at t.X (/srv/verdicts/hikari_1/clones/prep/.next/server/webpack-runtime.js:1:1285)",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /_not-found",
+                "    at /srv/verdicts/hikari_1/clones/prep/node_modules/.pnpm/next@14.2.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/utils.js:1268:15",
+                "    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {",
+                "  type: 'Error'",
+                "}",
+                " ELIFECYCLE  Command failed with exit code 1."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ @types/uuid 10.0.0",
+          "+ autoprefixer 10.4.19",
+          "+ eslint 8.57.0",
+          "+ eslint-config-next 14.1.0",
+          "+ eslint-config-prettier 9.1.0",
+          "+ eslint-plugin-react 7.34.2",
+          "+ eslint-plugin-tailwindcss 3.17.3",
+          "+ postcss 8.4.38",
+          "+ prettier 3.3.1",
+          "+ prettier-plugin-tailwindcss 0.5.14",
+          "+ typescript 5.4.5",
+          "Done in 18.2s using pnpm v10.15.1"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "8a5c618ef157e21e9e64f19c383c0b772b633e9a",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "pnpm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "pnpm install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "pnpm install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ @types/uuid 10.0.0",
+              "+ autoprefixer 10.4.19",
+              "+ eslint 8.57.0",
+              "+ eslint-config-next 14.1.0",
+              "+ eslint-config-prettier 9.1.0",
+              "+ eslint-plugin-react 7.34.2",
+              "+ eslint-plugin-tailwindcss 3.17.3",
+              "+ postcss 8.4.38",
+              "+ prettier 3.3.1",
+              "+ prettier-plugin-tailwindcss 0.5.14",
+              "+ typescript 5.4.5",
+              "Done in 2.1s using pnpm v10.15.1"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "pnpm run lint",
+              "source": "script « lint » : next lint",
+              "code": 1,
+              "delai": false,
+              "secondes": 1,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> @ lint /srv/verdicts/hikari_1/clones/head",
+                "> next lint",
+                "? How would you like to configure ESLint? https://nextjs.org/docs/basic-features/eslint",
+                "❯  Strict (recommended)",
+                "   Base",
+                "   Cancel ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/basic-features/eslint#migrating-existing-config",
+                " ELIFECYCLE  Command failed with exit code 1."
+              ]
+            },
+            "build": {
+              "commande": "pnpm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 55,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "    at 2962 (/srv/verdicts/hikari_1/clones/head/.next/server/app/_not-found/page.js:1:1292)",
+                "    at t (/srv/verdicts/hikari_1/clones/head/.next/server/webpack-runtime.js:1:143)",
+                "    at r (/srv/verdicts/hikari_1/clones/head/.next/server/app/_not-found/page.js:1:3325)",
+                "    at /srv/verdicts/hikari_1/clones/head/.next/server/app/_not-found/page.js:1:3372",
+                "    at t.X (/srv/verdicts/hikari_1/clones/head/.next/server/webpack-runtime.js:1:1285)",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /_not-found",
+                "    at /srv/verdicts/hikari_1/clones/head/node_modules/.pnpm/next@14.2.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/utils.js:1268:15",
+                "    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {",
+                "  type: 'Error'",
+                "}",
+                " ELIFECYCLE  Command failed with exit code 1."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ @types/uuid 10.0.0",
+          "+ autoprefixer 10.4.19",
+          "+ eslint 8.57.0",
+          "+ eslint-config-next 14.1.0",
+          "+ eslint-config-prettier 9.1.0",
+          "+ eslint-plugin-react 7.34.2",
+          "+ eslint-plugin-tailwindcss 3.17.3",
+          "+ postcss 8.4.38",
+          "+ prettier 3.3.1",
+          "+ prettier-plugin-tailwindcss 0.5.14",
+          "+ typescript 5.4.5",
+          "Done in 2.1s using pnpm v10.15.1"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-11T02:21:52.659Z"
+}
