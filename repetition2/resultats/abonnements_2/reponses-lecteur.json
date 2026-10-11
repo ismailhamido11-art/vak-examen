@@ -1,0 +1,12 @@
+{
+  "supprimer": "l'étiquette ne le dit pas",
+  "modifier": [
+    "« Nouvel abonnement » (fonction de l'app)",
+    "« Modifier un abonnement » (fonction de l'app)",
+    "« Résilier un abonnement » (fonction de l'app)",
+    "« Enregistrer un paiement » (fonction de l'app)",
+    "retenir un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette interdit de supprimer ou modifier hors de ces actions (et d'appeler delete_payment et current_user_id), mais elle ne dit pas si « Résilier un abonnement » supprime des données ou seulement les désactive. Ces actions ne sont que proposées, après validation de l'utilisateur. Les messages vont en Chine, selon les conditions de DeepSeek. L'étiquette ne dit rien de plus sur ce qui est conservé là-bas."
+}

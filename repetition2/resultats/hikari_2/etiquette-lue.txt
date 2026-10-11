@@ -1,0 +1,5 @@
+Sees: Subscriptions (Status, Price, Quantity, Cancel at period end, Created, Current period start, Current period end, Ended at, Cancel at, Canceled at, Trial start, Trial end) ; Posts (Title, Content, Created at) ; Profile (Full name) ; shared catalog Prices (Product, Active, Description, Unit amount, Currency, Type, Interval, Interval count, Trial period days) ; shared catalog Products (Active, Name, Description)
+Can propose (after your approval): edit in Profile (Full name) ; remember a memory (plugin memory)
+Can open (saves nothing): no screen
+Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read customers
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

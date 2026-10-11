@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
+  "envoyer": { "editeur": "DeepSeek (Chine, selon ses propres conditions)", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Never: delete a row ». Elle dit aussi qu'aucune modification n'est possible en dehors des listes, sauf via « remember a memory (plugin memory) ». Les données listées sous « Sees » sont seulement lues. « Can open » indique « no screen » et rien n'est enregistré. L'étiquette mentionne aussi des tables qu'il ne peut pas lire : clearances, daily_checks, events, recoveries, rules, user_settings, exercise_alternates, program_phases et 7 autres."
+}

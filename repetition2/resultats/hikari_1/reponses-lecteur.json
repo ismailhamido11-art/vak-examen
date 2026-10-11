@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["Account (Full name)", "remember a memory (plugin memory)"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Suppression : l'étiquette dit « Never: delete a row ». Modification : la ligne « Can propose (after your approval) » contient « edit in Account (Full name) (without your approval) », ce qui se contredit : on ne sait pas si la modification du nom complet demande ou non l'approbation de l'utilisateur. L'étiquette exclut toute autre modification, sauf via la mémoire du plugin. Envoi : l'étiquette indique la Chine et précise que DeepSeek applique ses propres conditions."
+}

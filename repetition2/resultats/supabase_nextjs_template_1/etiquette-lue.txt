@@ -1,0 +1,5 @@
+Sees: Tasks (Title, Urgent, Description, Done, Done at)
+Can propose (after your approval): add to Tasks (Title, Urgent, Description) ; edit in Tasks (Title, Urgent, Description, Done, Done at) ; remember a memory (plugin memory)
+Can open (saves nothing): Tasks, Files, Settings
+Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory)
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

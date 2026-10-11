@@ -1,0 +1,10 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Sets: add a row (Workout exercise, Set number, Warm-up set, Weight, Reps, Seconds, RPE, Notes, Completed at), after your approval",
+    "Sets: edit (Warm-up set, Weight, Reps, Seconds, RPE, Notes, Completed at), after your approval",
+    "remember a memory (plugin memory), after your approval"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Never: delete a row » : suppression exclue. Toute modification passe par une approbation préalable. « Workout exercise » décide qui voit la ligne ajoutée. Les messages partent vers DeepSeek (api.deepseek.com, Chine, selon ses propres conditions). « Can open: Home » ne sauvegarde rien. L'étiquette ne détaille pas 7 autres tables qu'elle dit ne pas lire."
+}

@@ -46,9 +46,10 @@ sont dans l'historique.
   des deuxième et troisième examens.
 - [`graines/`](graines/) : les graines A et B de chaque app, écrites par des sessions scellées, publiées après les
   essais ; leurs empreintes l'ont été avant (`PUBLICATION.md`, `EMPREINTES.sha256`, `AVANT-ESSAIS.md`).
-- `EXAMEN.md` et `RESULTAT.json` : le journal et le verdict du troisième examen, publiés après ses essais ; les
-  résultats de chaque essai seront dans `repetition2/resultats/<id>/`. Ceux des deux premiers examens sont dans
-  l'historique.
+- [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du troisième examen,
+  publiés après ses essais ; les résultats de chaque essai sont dans `repetition2/resultats/<id>/`. Ceux des deux
+  premiers examens sont dans l'historique. `resultat-corrige.mjs` : `resultat.mjs` à une ligne près (`EXAMEN.md`,
+  « Ce qui a été fait pendant l'examen »).
 
 Les étapes, dans l'ordre :
 1. La répétition privée, sur les apps de `repetition2/apps.tsv` : essais Claude Code par `repetition2/lancer.sh`,
@@ -70,4 +71,5 @@ les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas 
 
 Le troisième examen (11/10) reprend ces étapes avec vak 0.27.0 gelé : 3 apps nouvelles construites et leurs graines,
 les 6 sabotages rejoués sur le contrôleur figé (`controleur/verdicts-sabotages-11-10/`), la publication, le tirage,
-les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`).
+les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`). Verdict : échoué,
+6 essais réussis sur 14, deux seuils sur sept tenus (`EXAMEN.md`).

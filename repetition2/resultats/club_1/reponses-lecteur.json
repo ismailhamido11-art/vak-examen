@@ -1,0 +1,12 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "ajouter dans Entraînements (Club, Titre, Début, Durée (min), Lieu, Places)",
+    "modifier dans Entraînements (Titre, Début, Durée (min), Lieu, Places, Statut)",
+    "ajouter dans Présences (Entraînement, Participant, Présent)",
+    "modifier dans Présences (Présent, Montant payé (€))",
+    "retenir un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Les ajouts et modifications ne sont que proposés : ils ne se font qu'après validation de l'utilisateur. L'étiquette dit « Jamais : supprimer une ligne ». Elle dit aussi que l'assistant ne modifie rien en dehors de ces listes, sauf en retenant un souvenir (prise memory). Les prises club_role, invite_member et training_club ne sont jamais appelées. Les ouvertures (Ouvrir le club, Membres du club, Ouvrir l'entraînement, Mes entraînements) n'enregistrent rien. Pour les messages, l'étiquette précise : Chine, selon les conditions de DeepSeek. Elle ne dit pas ce que contient un souvenir ni comment il peut être effacé."
+}
