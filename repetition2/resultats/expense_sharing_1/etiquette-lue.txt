@@ -1,5 +1,0 @@
-Sees: Groups (Name, Currency, Created at, Simplify debts) ; Group members (Group, Display name, Role, Joined at) ; Expenses (Group, Description, Amount, Currency, Paid by, Split type, Spent at, Notes) ; Expense splits (Expense, Member, Amount owed, Share) ; Settlements (Group, From member, To member, Amount, Settled at, Note) ; Profile (Full name, Email)
-Can propose (after your approval): remember a memory (plugin memory)
-Can open (saves nothing): Group, Add expense, Settle up, New group
-Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; call create_expense, update_expense, create_group, find_user_by_email, is_group_member, is_group_owner, shares_group_with
-Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

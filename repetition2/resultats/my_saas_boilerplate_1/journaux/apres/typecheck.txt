@@ -1,3 +1,0 @@
-$ tsc --noEmit
-(dossier : /work/my_saas_boilerplate_1/apres)
-

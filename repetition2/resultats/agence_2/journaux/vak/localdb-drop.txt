@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/agence_2/apres)
-
-base locale vak_local_54841f supprimée [code 0]

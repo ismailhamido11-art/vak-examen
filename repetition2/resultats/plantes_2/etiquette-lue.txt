@@ -1,5 +1,0 @@
-Voit : Plantes (Nom, Espèce, Pièce, Lumière, Intervalle d'arrosage (jours), Achetée le) ; Arrosages (Plante, Arrosée le, Quantité (ml), Note)
-Peut proposer (après ta validation) : ajouter dans Arrosages (Plante, Arrosée le, Quantité (ml), Note) ; retenir un souvenir (prise memory)
-Peut ouvrir (sans rien enregistrer) : Fiche plante, Nouvelle plante
-Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)
-Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

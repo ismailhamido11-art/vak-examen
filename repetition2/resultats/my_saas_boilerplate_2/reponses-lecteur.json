@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek (Chine, selon ses propres conditions)", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Never: delete a row ». Elle indique que l'assistant ne peut modifier que via « remember a memory (plugin memory) » (après approbation) ; les pages Pricing, Account settings et Activity peuvent seulement être ouvertes, sans rien enregistrer. L'étiquette est en anglais pour l'essentiel ; les termes sont repris tels quels."
-}

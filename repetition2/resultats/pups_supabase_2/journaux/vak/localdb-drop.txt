@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/pups_supabase_2/apres)
-
-base locale vak_local_e4a2ec supprimée [code 0]

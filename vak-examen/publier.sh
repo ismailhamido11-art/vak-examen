@@ -18,8 +18,9 @@ fail() { echo "✗ $*" >&2; exit 1; }
 [ -d "$DEST/.git" ] || fail "$DEST n'est pas un dépôt git"
 [ "$(cd "$DEST" && pwd)" != "$(pwd)" ] || fail "$DEST est le dépôt de vak lui-même"
 # Ce qui est déjà publié ne s'efface pas par oubli d'une variable : sans elle, la copie l'enlèverait du clone public.
-# NOUVEL_EXAMEN=1 (deuxième examen, 10/10) : les résultats et les graines de l'examen précédent quittent l'arbre public
-# exprès (ils restent dans son historique) ; les graines du nouvel examen ne sont publiées qu'après ses essais.
+# NOUVEL_EXAMEN=1 (deuxième examen, 10/10 ; troisième, 11/10) : les résultats et les graines de l'examen précédent
+# quittent l'arbre public exprès (ils restent dans son historique) ; les graines du nouvel examen ne sont publiées
+# qu'après ses essais.
 if [ "${NOUVEL_EXAMEN:-0}" != 1 ] && [ "${RESULTATS:-0}" != 1 ] && [ -n "$(git -C "$DEST" ls-files repetition2/resultats | head -1)" ]; then
   fail "$DEST publie déjà des résultats : relancer avec RESULTATS=1 pour ne pas les effacer"
 fi

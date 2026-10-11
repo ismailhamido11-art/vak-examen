@@ -1,22 +1,15 @@
-# Essais du deuxième examen (REGLE.md) : id, dépôt (URL, ou archive git depuis la racine du dépôt), commit, métier,
-# emplacement. Les champs de la demande (métier, emplacement) sont fixés avant le premier essai et publiés (10/10) : le
-# métier reprend la phrase de la fiche de forme (fiches-2/) ; l'emplacement suit la règle de champs-candidats.tsv (un
+# Essais du troisième examen (REGLE.md) : id, dépôt (URL, ou archive git depuis la racine du dépôt), commit, métier,
+# emplacement. Les champs de la demande (métier, emplacement) sont fixés avant le premier essai et publiés (11/10) : le
+# métier reprend la phrase de la fiche de forme (fiches-3/) ; l'emplacement suit la règle de champs-candidats.tsv (un
 # onglet « Assistant » pour une app Expo à onglets ; les 3 apps construites naviguent par pile : un bouton flottant).
-# Les 4 apps tirées s'ajoutent après le tirage (liste-essais.mjs). Le premier examen (06/10) est dans l'historique.
+# Les 4 apps tirées s'ajoutent après le tirage (liste-essais.mjs). Les deux premiers examens (06/10, 10/10) sont dans
+# l'historique.
 # Usage : APPS=vak-examen/essais.tsv bash vak-examen/repetition/jouer.sh <id>…
 # Un id n'a que des minuscules, des chiffres et « _ » (<app>_<n>) : la pile nomme sa base examen_<id>, et vak localdb
 # refuse tout autre caractère (06/10).
-plantes_1	vak-examen/apps/plantes.bundle	bea4192347a7ecf310391b23278294b6d841c56d	Le carnet des plantes d'intérieur d'une personne : ses plantes, et chaque arrosage.	un bouton flottant sur tous les écrans
-plantes_2	vak-examen/apps/plantes.bundle	bea4192347a7ecf310391b23278294b6d841c56d	Le carnet des plantes d'intérieur d'une personne : ses plantes, et chaque arrosage.	un bouton flottant sur tous les écrans
-agence_1	vak-examen/apps/agence.bundle	fed608276a1fd66abfd4e6f24b84d08e8f5a9876	Les dossiers de voyage d'une petite agence : l'équipe partage ses dossiers clients et leurs réservations, et chacun suit celles qu'on lui a confiées.	un bouton flottant sur tous les écrans
-agence_2	vak-examen/apps/agence.bundle	fed608276a1fd66abfd4e6f24b84d08e8f5a9876	Les dossiers de voyage d'une petite agence : l'équipe partage ses dossiers clients et leurs réservations, et chacun suit celles qu'on lui a confiées.	un bouton flottant sur tous les écrans
-compteurs_1	vak-examen/apps/compteurs.bundle	5c12ec9ed61311cbd81103de20902210f22ca364	Les relevés de compteurs d'un logement : on note ses relevés d'eau, d'électricité et de gaz, et on suit la consommation du mois.	un bouton flottant sur tous les écrans
-compteurs_2	vak-examen/apps/compteurs.bundle	5c12ec9ed61311cbd81103de20902210f22ca364	Les relevés de compteurs d'un logement : on note ses relevés d'eau, d'électricité et de gaz, et on suit la consommation du mois.	un bouton flottant sur tous les écrans
-expense_sharing_1	https://github.com/itejaskumbhar/Expense-Sharing	8e6020c14ba07f0fa55fb4883efa906be98b0a08	Le partage de dépenses à plusieurs : on y crée des groupes, on y partage des dépenses et on règle ses dettes.	un onglet « Assistant »
-expense_sharing_2	https://github.com/itejaskumbhar/Expense-Sharing	8e6020c14ba07f0fa55fb4883efa906be98b0a08	Le partage de dépenses à plusieurs : on y crée des groupes, on y partage des dépenses et on règle ses dettes.	un onglet « Assistant »
-pups_supabase_1	https://github.com/MarkMGill/pups-supabase	405d4df786d58a0c1519835085468806b77116ae	Une boutique de chiots : on y parcourt un catalogue de chiots, on remplit son panier et on commande.	un bouton flottant sur tous les écrans
-pups_supabase_2	https://github.com/MarkMGill/pups-supabase	405d4df786d58a0c1519835085468806b77116ae	Une boutique de chiots : on y parcourt un catalogue de chiots, on remplit son panier et on commande.	un bouton flottant sur tous les écrans
-my_saas_boilerplate_1	https://github.com/bluebridgetechnology/my-saas-boilerplate	bcb20492cdb7d079e294af738081f4685a43f484	Un modèle d'app SaaS par abonnement : on y gère son compte, son abonnement et le journal de ses actions.	un bouton flottant sur tous les écrans
-my_saas_boilerplate_2	https://github.com/bluebridgetechnology/my-saas-boilerplate	bcb20492cdb7d079e294af738081f4685a43f484	Un modèle d'app SaaS par abonnement : on y gère son compte, son abonnement et le journal de ses actions.	un bouton flottant sur tous les écrans
-budget_web_app_1	https://github.com/Ant3xes/budget_web_app	88061f2c29e971375c72c7cc216025f3c78264c3	Un suivi budgétaire et bancaire personnel : chacun y suit ses comptes et ses opérations, dans son propre espace.	un bouton flottant sur tous les écrans
-budget_web_app_2	https://github.com/Ant3xes/budget_web_app	88061f2c29e971375c72c7cc216025f3c78264c3	Un suivi budgétaire et bancaire personnel : chacun y suit ses comptes et ses opérations, dans son propre espace.	un bouton flottant sur tous les écrans
+cuisine_1	vak-examen/apps/cuisine.bundle	791c04db1ba499b0ebe535cd6551045340912555	Le carnet de cuisine d'une personne : ses recettes, et chaque fois qu'elle en a cuisiné une.	un bouton flottant sur tous les écrans
+cuisine_2	vak-examen/apps/cuisine.bundle	791c04db1ba499b0ebe535cd6551045340912555	Le carnet de cuisine d'une personne : ses recettes, et chaque fois qu'elle en a cuisiné une.	un bouton flottant sur tous les écrans
+club_1	vak-examen/apps/club.bundle	1b05281d58c9a209e1f118df054ff62377c69098	Le planning d'un club de sport amateur : les encadrants partagent les entraînements de leurs clubs et la liste des présents, et chacun suit les entraînements qu'il anime.	un bouton flottant sur tous les écrans
+club_2	vak-examen/apps/club.bundle	1b05281d58c9a209e1f118df054ff62377c69098	Le planning d'un club de sport amateur : les encadrants partagent les entraînements de leurs clubs et la liste des présents, et chacun suit les entraînements qu'il anime.	un bouton flottant sur tous les écrans
+abonnements_1	vak-examen/apps/abonnements.bundle	9ee8a7855a713d15c02b61c9e7774e25027ffc0e	Le suivi des abonnements d'une personne (musique, sport, téléphone…) : ses abonnements, chaque paiement, et la dépense du mois.	un bouton flottant sur tous les écrans
+abonnements_2	vak-examen/apps/abonnements.bundle	9ee8a7855a713d15c02b61c9e7774e25027ffc0e	Le suivi des abonnements d'une personne (musique, sport, téléphone…) : ses abonnements, chaque paiement, et la dépense du mois.	un bouton flottant sur tous les écrans

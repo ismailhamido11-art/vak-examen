@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/my_saas_boilerplate_2/apres)
-
-base locale vak_local_f64ca4 supprimée [code 0]

@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/compteurs_2/apres)
-
-
-> compteurs@1.0.0 lint
-> expo lint
-

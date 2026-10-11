@@ -1,3 +1,0 @@
-$ tsc --noEmit
-(dossier : /work/plantes_1/apres)
-

@@ -1,5 +1,0 @@
-Sees: Mon compte (E-mail, Nom, Formule, Dernière activité, Dernière connexion, Nombre de connexions) ; Journal d'activité (Action, Date, Adresse IP) ; Paiements (Montant, Devise, Statut, Description, Date)
-Can propose (after your approval): remember a memory (plugin memory)
-Can open (saves nothing): Pricing, Account settings, Activity
-Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read ad_banners, admin_analytics, admin_settings, api_keys, code_injections, feature_flags, projects, social_presets, 3 others ; call get_admin_analytics, get_user_plan_limits, is_admin, track_admin_metric, track_feature_usage
-Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

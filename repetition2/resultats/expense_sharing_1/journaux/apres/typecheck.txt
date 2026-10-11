@@ -1,7 +1,0 @@
-$ npm run typecheck
-(dossier : /work/expense_sharing_1/apres)
-
-
-> expense-sharing@1.0.0 typecheck
-> tsc --noEmit
-

@@ -24,3 +24,11 @@ https://github.com/AndrerezaMedya/budget-app
 https://github.com/aprescod12/track-training-app
 https://github.com/AndreuCrespo/workout-plan-companion
 https://github.com/xtshepana/company-invoicing
+#
+# Deuxième examen (10/10) : ses 4 apps tirées ont été vues de vak, et vak a été corrigé sur deux d'entre elles (F2 et F3
+# de vak 0.27.0). Exclues du troisième examen, avec leurs copies et leurs propriétaires (ajouté le 10/10, avant le
+# tirage).
+https://github.com/itejaskumbhar/Expense-Sharing
+https://github.com/MarkMGill/pups-supabase
+https://github.com/bluebridgetechnology/my-saas-boilerplate
+https://github.com/Ant3xes/budget_web_app

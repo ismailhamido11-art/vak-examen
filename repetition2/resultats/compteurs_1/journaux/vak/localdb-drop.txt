@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/compteurs_1/apres)
-
-base locale vak_local_0acfd2 supprimée [code 0]

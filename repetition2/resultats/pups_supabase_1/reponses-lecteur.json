@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["remember a memory (plugin memory)"],
-  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
-  "remarques": "Suppression : l'étiquette dit « Never: delete a row ». Modification : seulement « remember a memory (plugin memory) », proposé et soumis à votre approbation ; toute modification en dehors des listes est exclue, sauf par ce biais. Il peut aussi ouvrir les pages Puppy page, Catalogue et Checkout (rien n'est enregistré). Envoi : les messages vont à DeepSeek (api.deepseek.com), situé en Chine, sous ses propres conditions."
-}

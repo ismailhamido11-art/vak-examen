@@ -57,3 +57,31 @@ Vérifications du 10/10, par la session de travail, sur un clone neuf de chaque 
   premier examen. Les apps sont gardées telles quelles ;
 - **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
   flottant sur tous les écrans (`../essais.tsv`).
+
+## Troisième examen : 3 apps nouvelles (10/10, au soir)
+
+Construites le 10/10/2026, de 23:40 à 23:46 UTC, chacune par une session Claude Code scellée (`../scelle/lancer.sh`,
+mode « fiche »), qui n'a reçu que [`../scelle/CONSTRUIRE.md`](../scelle/CONSTRUIRE.md) et sa fiche de forme : ni vak,
+ni la règle, ni le dépôt du kit. Les fiches (`../fiches-3/`) étaient commitées depuis 23:40:44 UTC le même jour.
+
+| forme | app | plateforme | commit | session |
+|---|---|---|---|---|
+| [démarre](../fiches-3/demarre.md) | carnet de cuisine : recettes et fois cuisinées | Expo 57 | `791c04d` | 15 tours, 0,30 $, 4 min |
+| [équipe](../fiches-3/equipe.md) | planning d'un club de sport : entraînements et présents | Next.js 16.4 | `1b05281` | 18 tours, 0,55 $, 5 min |
+| [fonctions](../fiches-3/fonctions.md) | suivi des abonnements, écritures par RPC | Expo 57 | `9ee8a78` | 17 tours, 0,45 $, 5 min |
+
+- Chaque app est un fichier `<nom>.bundle` (`cuisine`, `club`, `abonnements`) : `git clone <nom>.bundle <dossier>`.
+- Les comptes rendus des sessions sont recopiés tels quels dans [`rapports/`](rapports/).
+
+Vérifications du 10/10, par la session de travail, sur un clone neuf de chaque archive, dans un environnement vide :
+- **critères d'une app publique** (`../candidats/verifier.mjs`, `SOURCE=` un clone de l'archive) : les trois sont
+  éligibles, leurs migrations passent sur un PostgreSQL 16 neuf. Tables « à moi » : cuisine : `cookings`, `recipes` ;
+  club : `attendances`, `club_invitations`, `club_members`, `clubs`, `trainings` ; abonnements : `payments`,
+  `subscriptions` ;
+- **ce que demande la fiche** : `npm ci` passe ; `package-lock.json` et `.env.example` sont commités ; aucun `.env` ni
+  secret n'est commité. cuisine et abonnements : `npx tsc --noEmit` et `npx expo export -p web` passent. club :
+  `npm run lint` et `npm run build` passent ; `npx tsc --noEmit` rend 8 erreurs sur un clone neuf (`PageProps`,
+  `LayoutProps` : des types que Next 16 génère au build), puis 0 après `npm run build`, comme les apps d'équipe des
+  deux premiers examens. Les apps sont gardées telles quelles ;
+- **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
+  flottant sur tous les écrans (`../essais.tsv`).

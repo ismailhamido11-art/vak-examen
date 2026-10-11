@@ -1,8 +1,9 @@
-# Examen public de vak : la règle (deuxième examen)
+# Examen public de vak : la règle (troisième examen)
 
 **À figer avant le tirage des apps.** Son empreinte SHA-256 sera publiée dans [`PUBLICATION.md`](PUBLICATION.md),
-avec celle de l'archive du kit et le tour drand choisi. Après cette publication, plus rien ne change. La règle du
-premier examen (06/10/2026, échoué : 2 essais réussis sur 14) reste lisible dans l'historique de ce dépôt.
+avec celle de l'archive du kit et le tour drand choisi. Après cette publication, plus rien ne change. Les règles des
+deux premiers examens (06/10/2026, échoué : 2 essais réussis sur 14 ; 10/10/2026, échoué : 9 sur 14) restent lisibles
+dans l'historique de ce dépôt.
 
 ## Ce que l'examen mesure
 
@@ -14,8 +15,8 @@ autre compte. L'examen dit si c'est vrai, sur 14 essais, avec des seuils publié
 
 - **4 vraies apps publiques**, tirées au sort parmi les apps éligibles.
 - **3 apps construites par un tiers** qui n'a jamais vu vak : une session Claude Code scellée (sans le dépôt de vak,
-  sans mémoire). Ce sont trois apps nouvelles : celles du premier examen ont servi aux répétitions. Chacune suit une
-  fiche de forme d'une page (`fiches-2/`), écrite avant sa construction et publiée avec son empreinte :
+  sans mémoire). Ce sont trois apps nouvelles : celles des deux premiers examens ont servi à corriger vak. Chacune
+  suit une fiche de forme d'une page (`fiches-3/`), écrite avant sa construction et publiée avec son empreinte :
   - une app qui démarre (peu de tables, peu de code) ;
   - une app d'équipe (des données partagées entre membres) ;
   - une app « tout par fonctions », qui écrit par des fonctions SQL, avec du JSON.
@@ -31,7 +32,8 @@ La liste des apps éligibles est `candidats/historique.tsv` (colonne `eligible`)
 de `candidats/candidats.tsv`.
 
 **Exclusions :**
-- les 7 apps du premier examen (06/10) : vak a été corrigé sur elles depuis, en répétition ;
+- les 14 apps des deux premiers examens (06/10 et 10/10) : vak les a vues, et a été corrigé depuis sur ce qu'elles
+  ont montré ;
 - les apps des répétitions, dont celles où le kit a été développé et testé (liste publiée :
   `candidats/exclusions.txt`), leurs copies et leurs propriétaires. Une copie se reconnaît mécaniquement : un commit
   commun, ou plus de la moitié des fichiers identiques octet pour octet (`candidats/historique.mjs`). Deux apps
@@ -82,7 +84,7 @@ a pris fin le 03/10.)
   - la CLI Supabase à la version que fixe l'archive gelée ; pas de Docker ;
   - les versions exactes sont dans `PUBLICATION.md` ;
   - l'agent : Claude Code en mode non interactif, avec le modèle par défaut de sa version ; la version est consignée
-    pour chaque essai (2.1.296 à la répétition du 10/10) ;
+    pour chaque essai (2.1.296 au deuxième examen, le 10/10) ;
   - pour l'assistant, un vrai modèle (DeepSeek) avec une clé plafonnée.
 
 ## Un essai réussit si tout est vrai
@@ -243,9 +245,9 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 
 ## Le groupe témoin « sans vak »
 
-Il n'est pas rejoué pour ce deuxième examen (choix du propriétaire, 10/10). Celui du premier examen (06/10 : 7
-essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de ce dépôt et dans son
-`EXAMEN.md`. Il ne décidait pas de l'examen.
+Il n'est pas rejoué pour ce troisième examen, pas plus qu'au deuxième (choix du propriétaire, 10/10). Celui du
+premier examen (06/10 : 7 essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de
+ce dépôt et dans son `EXAMEN.md`. Il ne décidait pas de l'examen.
 
 ## La publication
 

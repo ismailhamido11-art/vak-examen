@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/expense_sharing_2/apres)
-
-base locale vak_local_8a5c73 supprimée [code 0]
