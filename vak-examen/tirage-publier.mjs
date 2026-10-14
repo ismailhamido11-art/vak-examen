@@ -36,9 +36,10 @@ const md = [
   "# Le tirage",
   "",
   `Tour **${t.tour}** de la chaîne drand « quicknet », produit le ${quand}. Il a été annoncé avant d'exister :`,
-  // Troisième examen (11/10) ; au deuxième : commit `cfa018f`, poussé le 10/10/2026 à 16:46 UTC, ticket #2 ; au
-  // premier : commit `698f07b`, poussé le 06/10/2026 à 09:54:30 UTC, ticket #1.
-  "`PUBLICATION.md` (commit `b86b760`, poussé le 11/10/2026 à 00:24 UTC) et le ticket #3 du dépôt.",
+  // Quatrième examen (14/10) ; au troisième : commit `b86b760`, poussé le 11/10/2026 à 00:24 UTC, ticket #3 ; au
+  // deuxième : commit `cfa018f`, poussé le 10/10/2026 à 16:46 UTC, ticket #2 ; au premier : commit `698f07b`, poussé
+  // le 06/10/2026 à 09:54:30 UTC, ticket #1.
+  "`PUBLICATION.md` (commit `6f47e5e`, poussé le 14/10/2026 à 14:00 UTC) et le ticket #4 du dépôt.",
   "",
   `- Chaîne : \`${t.chaine}\`.`,
   `- Aléa : \`${t.aleas}\`.`,
