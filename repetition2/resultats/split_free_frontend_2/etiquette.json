@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-14T17:43:39.733Z",
+  "langue": "en",
+  "nom": "Assistant",
+  "etiquette": [
+    "Sees: Groups (Created at, Title, Description, Total of all expenses, Settled, Currency) ; Members (Member, Name, Group, Role, Balance (positive: is owed money, negative: owes money), Created at) ; Expenses (Expense, Title, Description, Amount, Date, Group, Settled, Category) ; Transfers (Transfer, Created at, Sender, Receiver, Amount, Group, Description) ; Debts (Debt, Created at, Amount, Debtor, Creditor, Group) ; Profile (Full name, Total owed to the user, Total the user owes, Overall balance, Language) ; Friends (Friendship, Created at, User, Friend)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Groups, Group, Statistics, Add an expense",
+    "Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read debts_per_expense, expense_payers, expense_participants, friend_requests, group_invitations, invite_tokens ; call accept_friend_request, create_expense, create_group, deleteuser, exit_group, generate_invite_token, get_group_expense_stats, get_groups_summary, 11 others",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:2d49df5fad7a5aaccd34e321415c9fdd4edf5f290ba411b8cfd4b2c64ef53990",
+    "calibrage": "sha256:8119ae2d39d29e7c5d5dc15520933a699ada0a3e2aac23ee5ecc66847bb50f85"
+  }
+}

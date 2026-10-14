@@ -1,0 +1,78 @@
+$ expo export --platform web
+(dossier : /work/split_free_frontend_2/apres)
+
+Using src/app as the root directory for Expo Router.
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+Web node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+λ node_modules/expo-router/node/render.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| (node:257) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓░░░░░░░░░░░░ 25.0% ( 43/133)
+λ node_modules/expo-router/node/render.js ▓░░░░░░░░░░░░░░░  9.0% ( 16/126)
+Web node_modules/expo-router/entry.js ▓▓▓▓░░░░░░░░░░░░ 25.0% ( 77/170)
+λ node_modules/expo-router/node/render.js ▓▓▓▓░░░░░░░░░░░░ 25.0% (121/332)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓░░░░░░░░░ 49.4% (168/239)
+λ node_modules/expo-router/node/render.js ▓▓▓▓░░░░░░░░░░░░ 25.0% (202/416)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 50.3% (213/372)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓░░░░░░░░░░ 39.7% (342/543)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 50.3% (249/403)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓░░░░░░░░ 51.0% (424/594)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 50.3% (300/452)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 58.4% (542/766)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 51.1% (399/560)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 58.4% ( 724/1013)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 53.8% (563/775)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 58.4% ( 859/1150)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 53.8% (563/775)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 76.1% (1085/1244)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 53.8% (666/954)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 77.0% (1105/1259)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 53.8% ( 712/1051)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 80.3% (1192/1360)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓░░░░░░ 64.2% ( 943/1186)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 80.3% (1248/1394)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓░░░░░ 73.2% (1043/1219)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 90.0% (1349/1422)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 79.3% (1132/1276)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 90.4% (1394/1479)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 82.3% (1303/1436)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 91.1% (1478/1586)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 87.5% (1362/1456)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 91.1% (1524/1689)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 89.0% (1457/1581)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 96.5% (1720/1751)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 90.6% (1618/1700)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 98.6% (1749/1761)
+λ Bundled 64454ms node_modules/expo-router/node/render.js (1763 modules)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1705/1705)
+
+Metro error: Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Copy .env.sample to .env and set both values.
+
+  Error: Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Copy .env.sample to .env and set both values.
+    at factory (/work/split_free_frontend_2/apres/src/lib/supabase.ts:34:9)
+    at loadModuleImplementation (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)
+    at guardedLoadModule (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:163:16)
+    at r (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:74:75)
+    at factory (/work/split_free_frontend_2/apres/src/providers/AuthProvider.tsx:8:1)
+    at loadModuleImplementation (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)
+    at guardedLoadModule (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:163:16)
+    at r (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:74:75)
+    at factory (/work/split_free_frontend_2/apres/src/app/(auth)/_layout.tsx:2:1)
+    at f (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)
+Error: Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Copy .env.sample to .env and set both values.
+Error: Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Copy .env.sample to .env and set both values.
+    at factory (/work/split_free_frontend_2/apres/src/lib/supabase.ts:34:9)
+    at loadModuleImplementation (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)
+    at guardedLoadModule (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:163:16)
+    at r (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:74:75)
+    at factory (/work/split_free_frontend_2/apres/src/providers/AuthProvider.tsx:8:1)
+    at loadModuleImplementation (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)
+    at guardedLoadModule (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:163:16)
+    at r (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:74:75)
+    at factory (/work/split_free_frontend_2/apres/src/app/(auth)/_layout.tsx:2:1)
+    at f (/work/split_free_frontend_2/apres/node_modules/expo/node_modules/@expo/cli/build/metro-require/require.js:248:36)

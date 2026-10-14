@@ -1,0 +1,81 @@
+{
+  "dossier": "/work/streakmates_1/apres",
+  "commit": "c2924deaef5ab1cf54e11766a1555beac097ee4d",
+  "debut": "2026-10-14T16:53:15.375Z",
+  "fin": "2026-10-14T16:53:58.634Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/streakmates_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/streakmates_1/apres",
+    "code": 0,
+    "duree_s": 18,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "added 634 packages in 18s"
+    ],
+    "journal": "/work/streakmates_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/streakmates_1/apres",
+      "code": 0,
+      "duree_s": 6,
+      "erreurs": [],
+      "fin": [
+        "> streakmates@1.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/streakmates_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "absent": true,
+      "raison": "pas de script lint"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/streakmates_1/apres",
+      "code": 0,
+      "duree_s": 1,
+      "erreurs": [],
+      "fin": [
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 1221.023874"
+      ],
+      "journal": "/work/streakmates_1/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/streakmates_1/apres",
+      "code": 0,
+      "duree_s": 18,
+      "erreurs": [],
+      "fin": [
+        "index.html (3.9KB)",
+        "metadata.json (49B)",
+        "Exported: /tmp/mesure-export-CJE2fE"
+      ],
+      "journal": "/work/streakmates_1/apres-journaux/build.txt"
+    }
+  }
+}

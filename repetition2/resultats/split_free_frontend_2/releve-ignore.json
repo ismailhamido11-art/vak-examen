@@ -1,0 +1,108 @@
+{
+  "id": "split_free_frontend_2",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "debts_per_expense",
+      "ligne": 120
+    },
+    {
+      "nom": "expense_payers",
+      "ligne": 121
+    },
+    {
+      "nom": "expense_participants",
+      "ligne": 122
+    },
+    {
+      "nom": "friend_requests",
+      "ligne": 123
+    },
+    {
+      "nom": "group_invitations",
+      "ligne": 124
+    },
+    {
+      "nom": "invite_tokens",
+      "ligne": 125
+    },
+    {
+      "nom": "accept_friend_request",
+      "ligne": 126
+    },
+    {
+      "nom": "create_expense",
+      "ligne": 127
+    },
+    {
+      "nom": "create_group",
+      "ligne": 128
+    },
+    {
+      "nom": "deleteuser",
+      "ligne": 129
+    },
+    {
+      "nom": "exit_group",
+      "ligne": 130
+    },
+    {
+      "nom": "generate_invite_token",
+      "ligne": 131
+    },
+    {
+      "nom": "get_group_expense_stats",
+      "ligne": 132
+    },
+    {
+      "nom": "get_groups_summary",
+      "ligne": 133
+    },
+    {
+      "nom": "get_invite_group_id",
+      "ligne": 134
+    },
+    {
+      "nom": "get_unbound_members_for_token",
+      "ligne": 135
+    },
+    {
+      "nom": "join_group_with_token",
+      "ligne": 136
+    },
+    {
+      "nom": "search_friends",
+      "ligne": 137
+    },
+    {
+      "nom": "self_assign_to",
+      "ligne": 138
+    },
+    {
+      "nom": "settle_expense",
+      "ligne": 139
+    },
+    {
+      "nom": "settle_group",
+      "ligne": 140
+    },
+    {
+      "nom": "sum_group_expenses",
+      "ligne": 141
+    },
+    {
+      "nom": "update_expense",
+      "ligne": 142
+    },
+    {
+      "nom": "update_group",
+      "ligne": 143
+    },
+    {
+      "nom": "use_expense",
+      "ligne": 144
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

@@ -1,0 +1,138 @@
+{
+  "dossier": "/work/smart_budget_application_2/avant",
+  "commit": "d8173d6acceda25588b8b9f38ce9956aade38935",
+  "debut": "2026-10-14T17:44:00.354Z",
+  "fin": "2026-10-14T17:45:55.102Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/smart_budget_application_2/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/smart_budget_application_2/avant",
+    "code": 0,
+    "duree_s": 29,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained",
+      "npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 1382 packages in 29s"
+    ],
+    "journal": "/work/smart_budget_application_2/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run type-check",
+      "dossier": "/work/smart_budget_application_2/avant",
+      "code": 0,
+      "duree_s": 26,
+      "erreurs": [],
+      "fin": [
+        "> smart-budget-application@0.1.0 type-check",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/smart_budget_application_2/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/smart_budget_application_2/avant",
+      "code": 0,
+      "duree_s": 20,
+      "erreurs": [],
+      "fin": [
+        "> smart-budget-application@0.1.0 lint",
+        "> eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0"
+      ],
+      "journal": "/work/smart_budget_application_2/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/smart_budget_application_2/avant",
+      "code": 0,
+      "duree_s": 37,
+      "erreurs": [
+        "at Object.error (src/lib/utils/logger.ts:54:15)",
+        "at error (src/lib/services/goalService.ts:214:14)",
+        "at error (src/app/api/categories/route.ts:105:14)",
+        "at error (src/lib/services/settingsService.ts:30:14)",
+        "at error (src/lib/services/settingsService.ts:106:12)",
+        "at error (src/lib/services/settingsService.ts:85:14)",
+        "at error (src/lib/services/settingsService.ts:263:14)",
+        "at error (src/lib/services/settingsService.ts:282:12)",
+        "at error (src/lib/services/settingsService.ts:320:14)",
+        "at error (src/lib/services/settingsService.ts:335:12)",
+        "at error (src/components/settings/ProfilePictureUpload.tsx:167:15)",
+        "at error (src/components/settings/ProfilePictureUpload.tsx:234:15)",
+        "at error (src/app/api/user/account/route.ts:151:12)",
+        "at error (src/app/api/user/account/route.ts:108:14)",
+        "at error (src/lib/services/exportService.ts:468:12)",
+        "at error (src/app/api/insights/route.ts:146:14)",
+        "at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)",
+        "console.error Error exporting PDF: Error: Failed to fetch transactions",
+        "at error (src/components/settings/sections/DataSection.tsx:138:15)",
+        "console.error Error exporting PDF: Error: PDF generation failed",
+        "at error (src/lib/services/exportService.ts:252:12)",
+        "at error (src/lib/services/insightService.ts:78:14)",
+        "at error (src/lib/services/insightService.ts:114:12)",
+        "at error (src/app/api/transactions/route.ts:182:14)",
+        "at error (src/lib/services/exchangeRateService.ts:73:14)",
+        "at error (src/app/api/user/profile/route.ts:48:12)",
+        "at error (src/app/api/user/profile/route.ts:112:12)",
+        "at error (src/app/api/dashboard/stats/route.ts:117:14)",
+        "at error (src/lib/services/exchangeRateService.ts:81:14)",
+        "at error (src/lib/services/exchangeRateService.ts:94:12)",
+        "at error (src/lib/hooks/useOnlineStatus.ts:48:13)",
+        "console.error Error refreshing insights: Error: Internal server error",
+        "at error (src/components/insights/RefreshInsightsButton.tsx:143:15)",
+        "console.error Error refreshing insights: Error: boom",
+        "at error (src/app/api/analytics/track/route.ts:122:14)",
+        "at error (src/app/auth/callback/route.ts:37:14)",
+        "at error (src/app/api/cron/generate-insights/route.ts:64:14)",
+        "at error (src/app/api/cron/generate-insights/route.ts:166:12)",
+        "at error (src/app/api/user/sessions/route.ts:162:14)",
+        "at error (src/app/api/insights/generate/route.ts:90:12)",
+        "at error (src/app/api/auth/onboarding/route.ts:53:14)",
+        "at error (src/app/api/auth/onboarding/route.ts:62:14)",
+        "at error (src/app/api/auth/onboarding/route.ts:77:12)",
+        "console.error Error updating preferences: Error: Failed to update preferences",
+        "at error (src/lib/hooks/useSettingsProfile.ts:222:17)",
+        "at error (src/app/api/exchange-rates/route.ts:56:12)",
+        "console.error Error: Not implemented: window.scrollTo",
+        "at error (src/lib/services/seedCategoriesService.ts:56:14)",
+        "at error (src/lib/services/seedCategoriesService.ts:105:12)"
+      ],
+      "fin": [
+        "Snapshots:   0 total",
+        "Time:        34.99 s",
+        "Ran all test suites."
+      ],
+      "journal": "/work/smart_budget_application_2/avant-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/smart_budget_application_2/avant",
+      "code": 1,
+      "duree_s": 2,
+      "erreurs": [],
+      "fin": [
+        "> Build error occurred",
+        "Error: NEXT_PUBLIC_SUPABASE_URL is not set. Refusing to build: the image remotePatterns allowlist would silently widen to every *.supabase.co host, and NEXT_PUBLIC_* values are inlined into the client bundle, so this build would also ship an app that cannot reach Supabase.",
+        "at Object.<anonymous> (next.config.compiled.js:171:11)"
+      ],
+      "journal": "/work/smart_budget_application_2/avant-journaux/build.txt"
+    }
+  }
+}

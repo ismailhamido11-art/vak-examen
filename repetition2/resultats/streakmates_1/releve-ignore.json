@@ -1,0 +1,159 @@
+{
+  "id": "streakmates_1",
+  "echecs_de_preuve": [
+    {
+      "table": "group_members",
+      "verdict": "étroit",
+      "ligne": 97,
+      "texte": "✗ group_members étroit"
+    },
+    {
+      "table": "habits",
+      "verdict": "étroit",
+      "ligne": 97,
+      "texte": "✗ habits étroit"
+    },
+    {
+      "table": "task_completions",
+      "verdict": "étroit",
+      "ligne": 97,
+      "texte": "✗ task_completions étroit"
+    },
+    {
+      "table": "tasks",
+      "verdict": "étroit",
+      "ligne": 97,
+      "texte": "✗ tasks étroit"
+    },
+    {
+      "table": "check_ins",
+      "verdict": "étroit",
+      "ligne": 106,
+      "texte": "✗ check_ins étroit"
+    },
+    {
+      "table": "group_members",
+      "verdict": "étroit",
+      "ligne": 106,
+      "texte": "✗ group_members étroit"
+    },
+    {
+      "table": "habits",
+      "verdict": "étroit",
+      "ligne": 106,
+      "texte": "✗ habits étroit"
+    },
+    {
+      "table": "task_completions",
+      "verdict": "étroit",
+      "ligne": 106,
+      "texte": "✗ task_completions étroit"
+    },
+    {
+      "table": "tasks",
+      "verdict": "étroit",
+      "ligne": 106,
+      "texte": "✗ tasks étroit"
+    },
+    {
+      "table": "group_members",
+      "verdict": "non prouvé",
+      "ligne": 121,
+      "texte": "✗ group_members non prouvé"
+    },
+    {
+      "table": "task_completions",
+      "verdict": "non prouvé",
+      "ligne": 121,
+      "texte": "✗ task_completions non prouvé"
+    },
+    {
+      "table": "group_members",
+      "verdict": "non prouvé",
+      "ligne": 125,
+      "texte": "✗ group_members non prouvé"
+    },
+    {
+      "table": "task_completions",
+      "verdict": "non prouvé",
+      "ligne": 125,
+      "texte": "✗ task_completions non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "habit_order",
+      "ligne": 78
+    },
+    {
+      "nom": "nudges",
+      "ligne": 79
+    },
+    {
+      "nom": "profiles",
+      "ligne": 80
+    },
+    {
+      "nom": "reactions",
+      "ligne": 81
+    },
+    {
+      "nom": "invite_code_attempts",
+      "ligne": 82
+    },
+    {
+      "nom": "can_see_check_in",
+      "ligne": 83
+    },
+    {
+      "nom": "can_see_habit",
+      "ligne": 84
+    },
+    {
+      "nom": "can_see_task",
+      "ligne": 85
+    },
+    {
+      "nom": "is_group_member",
+      "ligne": 86
+    },
+    {
+      "nom": "is_group_owner",
+      "ligne": 87
+    },
+    {
+      "nom": "is_shared_once_task",
+      "ligne": 88
+    },
+    {
+      "nom": "shares_group_with",
+      "ligne": 89
+    },
+    {
+      "nom": "create_group",
+      "ligne": 90
+    },
+    {
+      "nom": "delete_my_account",
+      "ligne": 91
+    },
+    {
+      "nom": "join_group_with_code",
+      "ligne": 92
+    },
+    {
+      "nom": "preview_group_by_code",
+      "ligne": 93
+    },
+    {
+      "nom": "rotate_invite_code",
+      "ligne": 94
+    },
+    {
+      "nom": "set_username",
+      "ligne": 95
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

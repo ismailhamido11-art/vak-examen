@@ -1,0 +1,21 @@
+{
+  "id": "prets_1",
+  "source": "chrono.json, reponse_finale_texte (compte rendu final de l'agent ; identique au dernier texte de la transcription)",
+  "total": 1,
+  "gestes": [
+    {
+      "genre": "commande",
+      "citation": "`node node_modules/@vak/agent/bin/vak.mjs connect --provider <fournisseur> --origins <origines du site>,http://localhost:8081`",
+      "note": "avec les valeurs de sa ligne (fournisseur, origines du site), sous « **Commande pour le propriétaire (non lancée : clé et déploiement, donc hors essai).** Dans votre terminal, depuis `/work/prets_1/app` : » ; « Elle demande la clé masquée, déploie la fonction et joue trois vrais tours. Elle propose ensuite la production : à ne valider qu'avec votre accord. » : ce que fait la même exécution, pas une seconde ligne de commande (comme cuisine_1 : « Elle propose ensuite la production dans la foulée »)"
+    }
+  ],
+  "non_comptes": [
+    "« Elle demande la clé masquée, déploie la fonction et joue trois vrais tours. Elle propose ensuite la production : à ne valider qu'avec votre accord. » : la clé et la production sont ce que demande la commande connect, déjà comptée (règle : « avec les valeurs que sa ligne demande ») ; aucune autre commande n'est écrite (à la différence de habitquest_1, « Production : `connect --prod` », une seconde ligne)",
+    "« **Questions que j'aurais posées** », puis « Aucune. L'emplacement du chat, le quota (15 messages par jour pour un compte gratuit, 150 pour un premium), l'absence de bêta (`access`) et l'absence de garde-fous sont des choix par défaut, faute de règles validées. Pour revenir en arrière, on édite `plugins` dans `agent.ts`. » : aucune question restée ouverte ; choix faits par l'agent, avec leur retour arrière, aucune action demandée (comme cuisine_1 et abonnements_10)",
+    "« Si `access` est retiré, tout compte peut utiliser l'assistant. » : signalement, aucune action demandée ; la phrase est d'ailleurs sans objet à l'état commité : `plugins` n'a pas d'`access()` (agent.ts:100), la bêta n'y est qu'en commentaire (agent.ts:101), et le compte rendu dit lui-même « l'absence de bêta (`access`) » : il n'y a rien à retirer",
+    "« Effet à connaître : cette entrée `values` vit dans `agent.ts`, donc le libellé « 31/12/2099 » existe pour cette colonne. » : signalement d'un choix fait par l'agent (la valeur d'essai de `due_on` pour la preuve), aucune action demandée",
+    "« **Fini côté agent de code.** `node node_modules/@vak/agent/bin/vak.mjs` renvoie 0 (sync, doctor, test, prove). VAK015 est ✓ et le reçu de preuve est commité. L'arbre git est propre après le commit. », « **Étapes** » (lecture de l'archive, mesure avant installation, base locale, calibrage, branchement de l'app, preuve à deux comptes, commit) et « **Aucun « ! rls » ni « ! rien à éprouver »** n'est apparu. » : constats de ce qui est fait, aucune action demandée",
+    "« **Commandes contournées ou refusées :** aucune. Les seuls échecs ont été le `prove` initial (corrigé ci-dessus), et une erreur de type puis une erreur de lint de ma part […], toutes deux corrigées. » : constat, aucune action demandée",
+    "« La base de travail `vak_local_1f564b` existe toujours. `node node_modules/@vak/agent/bin/vak.mjs localdb --drop` la supprime. » : le ménage de la base locale de test, rien à faire pour que l'assistant marche (règle : un geste est « ce que le compte rendu demande à l'humain pour que l'assistant marche » ; comme habitquest_1 et budget_app_8). Compté comme un geste, le total serait 2, sous le seuil de 3"
+  ]
+}

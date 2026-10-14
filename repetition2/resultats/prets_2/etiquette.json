@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-14T17:30:12.952Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Objets (Nom, Catégorie, Nombre de prêts, Ajouté le) ; Prêts (Objet, Emprunteur, Prêté le, À rendre le, Rendu le, État au retour)",
+    "Peut proposer (après ta validation) : « Ajouter un objet » (fonction de l'app) ; « Modifier un objet » (fonction de l'app) ; « Prêter un objet » (fonction de l'app) ; « Enregistrer un retour » (fonction de l'app) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Fiche de l'objet, Nouveau prêt, Prêts en retard",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par « Ajouter un objet » (fonction de l'app), « Modifier un objet » (fonction de l'app), « Prêter un objet » (fonction de l'app), « Enregistrer un retour » (fonction de l'app), retenir un souvenir (prise memory) ; appeler forget_item",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:9d5575ae84de42273e166f21072c5502e0fa7954ef3254231304a1f467469916",
+    "calibrage": "sha256:1d13956a87f50372f41180d67ff5f7425c9b55877a9b55d337d6b152e53bda86"
+  }
+}

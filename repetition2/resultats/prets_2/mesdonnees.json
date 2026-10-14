@@ -1,0 +1,570 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/prets_2/apres",
+  "lecture": {
+    "fichier": "/work/prets_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.items",
+      "public.loans"
+    ],
+    "ignorees": [
+      "public.forget_item"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.items",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 10,
+      "attendu_json": 10,
+      "accord": true
+    },
+    {
+      "table": "public.loans",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 8,
+      "attendu_json": 8,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.items",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes objets ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0756f8d1-604b-4384-9bfc-5ab073411e1e",
+        "question": "Combien de mes objets ?",
+        "texte": "Tu as **10 objets** dans ta liste. 📚🔧🎲\n\nTu veux les voir par catégorie, ou savoir lesquels sont prêtés en ce moment ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "items",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "items",
+              "label": "Objets",
+              "total": 10,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "3aef90dc-ea2e-4a83-bc6d-312bba595493",
+                  "name": "Sapiens",
+                  "category": "livre (Livre)",
+                  "times_lent": 0,
+                  "created_at": "2026-10-14T19:29"
+                }
+              ],
+              "note": "1 ligne montrée sur 10 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 10,
+        "nombres_lus": [
+          10
+        ],
+        "ok": true,
+        "retenu": 10
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.items",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes objets.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-8f876284-0a27-4a46-9701-b5cb1cdd0056",
+        "question": "Liste mes objets.",
+        "texte": "Je regarde ta liste d'objets.\n\nVoici tes 10 objets :\n\n**Livres**\n- Sapiens\n- Le Comte de Monte-Cristo\n- Dune\n\n**Jeux**\n- Dixit\n- Catan\n\n**Outils**\n- Perceuse sans fil\n- Scie sauteuse\n- Échelle pliante\n\n**Autres**\n- Tente deux places\n- Projecteur vidéo\n\nTu veux que je t'ouvre la fiche d'un objet en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "items",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "items",
+              "label": "Objets",
+              "total": 10,
+              "shown": 10,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "3aef90dc-ea2e-4a83-bc6d-312bba595493",
+                  "name": "Sapiens",
+                  "category": "livre (Livre)",
+                  "times_lent": 0,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "79349678-4ee3-4320-899a-b75d180de947",
+                  "name": "Dixit",
+                  "category": "jeu (Jeu)",
+                  "times_lent": 0,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "14dec169-4ae4-49aa-b121-b5148a4e9df5",
+                  "name": "Perceuse sans fil",
+                  "category": "outil (Outil)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "aca7a65b-e8d4-426e-a5f7-f1341138d488",
+                  "name": "Scie sauteuse",
+                  "category": "outil (Outil)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "c029c312-1dd8-4db5-87e8-1a8d0c00a278",
+                  "name": "Échelle pliante",
+                  "category": "outil (Outil)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "b547045c-c490-4b85-af95-60a4dcfbc9ab",
+                  "name": "Le Comte de Monte-Cristo",
+                  "category": "livre (Livre)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "c7fedde5-bfa7-432f-b9bb-0c791b55da76",
+                  "name": "Dune",
+                  "category": "livre (Livre)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "4fe45ed7-1b4c-455f-8348-6a2590ba0f99",
+                  "name": "Catan",
+                  "category": "jeu (Jeu)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "fcfae262-674d-4dbb-9c2c-3282be13339c",
+                  "name": "Tente deux places",
+                  "category": "autre (Autre)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                },
+                {
+                  "id": "ba9a6287-23a9-48f9-ad2c-13c2d8267e24",
+                  "name": "Projecteur vidéo",
+                  "category": "autre (Autre)",
+                  "times_lent": 1,
+                  "created_at": "2026-10-14T19:29"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 10,
+        "nombres_lus": [
+          10,
+          2,
+          1
+        ],
+        "ok": true,
+        "retenu": 10,
+        "source": "nombre annoncé",
+        "elements": 10
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.loans",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes prêts ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-3613074a-8d4e-4879-81fe-00bc94950f50",
+        "question": "Combien de mes prêts ?",
+        "texte": "Tu as 8 prêts en tout — et les 8 sont encore en cours (aucun retour enregistré).\n\nTu veux que je regarde lesquels sont en retard ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "loans",
+              "where": [
+                {
+                  "column": "returned_on",
+                  "op": "is_null"
+                }
+              ],
+              "limit": 1
+            },
+            "sortie": {
+              "table": "loans",
+              "label": "Prêts",
+              "total": 8,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "e8ffea01-9d49-4801-9cef-f98354689aac",
+                  "item_id": "Tente deux places (id fcfae262-674d-4dbb-9c2c-3282be13339c)",
+                  "borrower": "Nadia",
+                  "lent_on": "2026-10-05",
+                  "due_on": "2026-11-02",
+                  "returned_on": null,
+                  "condition_note": null
+                }
+              ],
+              "note": "1 ligne montrée sur 8 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "loans",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "loans",
+              "label": "Prêts",
+              "total": 8,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "e8ffea01-9d49-4801-9cef-f98354689aac",
+                  "item_id": "Tente deux places (id fcfae262-674d-4dbb-9c2c-3282be13339c)",
+                  "borrower": "Nadia",
+                  "lent_on": "2026-10-05",
+                  "due_on": "2026-11-02",
+                  "returned_on": null,
+                  "condition_note": null
+                }
+              ],
+              "note": "1 ligne montrée sur 8 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "loans",
+              "where": [
+                {
+                  "column": "returned_on",
+                  "op": "not_null"
+                }
+              ],
+              "limit": 5
+            },
+            "sortie": {
+              "table": "loans",
+              "label": "Prêts",
+              "total": 0,
+              "shown": 0,
+              "complete": true,
+              "rows": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "loans",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "loans",
+              "label": "Prêts",
+              "total": 8,
+              "shown": 8,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e8ffea01-9d49-4801-9cef-f98354689aac",
+                  "item_id": "Tente deux places (id fcfae262-674d-4dbb-9c2c-3282be13339c)",
+                  "borrower": "Nadia",
+                  "lent_on": "2026-10-05",
+                  "due_on": "2026-11-02",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "61566156-6990-4390-867d-26823b303712",
+                  "item_id": "Dune (id c7fedde5-bfa7-432f-b9bb-0c791b55da76)",
+                  "borrower": "Léa",
+                  "lent_on": "2026-09-28",
+                  "due_on": "2026-10-26",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "8aa9b425-9189-4230-bddc-44ab3748990b",
+                  "item_id": "Projecteur vidéo (id ba9a6287-23a9-48f9-ad2c-13c2d8267e24)",
+                  "borrower": "Hugo",
+                  "lent_on": "2026-10-08",
+                  "due_on": "2026-10-22",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "de99a664-f02f-48ea-b45c-792b44ee8850",
+                  "item_id": "Le Comte de Monte-Cristo (id b547045c-c490-4b85-af95-60a4dcfbc9ab)",
+                  "borrower": "Marc",
+                  "lent_on": "2026-09-15",
+                  "due_on": "2026-10-15",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "757b2c00-3af5-4dcf-a1f8-ff80554bfaa7",
+                  "item_id": "Catan (id 4fe45ed7-1b4c-455f-8348-6a2590ba0f99)",
+                  "borrower": "Thomas",
+                  "lent_on": "2026-10-01",
+                  "due_on": "2026-10-15",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "8c8031e0-bf7d-45fc-9c2e-35a2f26932b9",
+                  "item_id": "Échelle pliante (id c029c312-1dd8-4db5-87e8-1a8d0c00a278)",
+                  "borrower": "Sophie",
+                  "lent_on": "2026-09-10",
+                  "due_on": "2026-09-24",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "e143ea2f-a498-4b2a-b9b1-2e7c28b557c5",
+                  "item_id": "Scie sauteuse (id aca7a65b-e8d4-426e-a5f7-f1341138d488)",
+                  "borrower": "Julien",
+                  "lent_on": "2026-08-20",
+                  "due_on": "2026-09-03",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "41710e05-f5df-409e-ae7c-c6835429fd36",
+                  "item_id": "Perceuse sans fil (id 14dec169-4ae4-49aa-b121-b5148a4e9df5)",
+                  "borrower": "Camille",
+                  "lent_on": "2026-08-01",
+                  "due_on": "2026-08-15",
+                  "returned_on": null,
+                  "condition_note": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 8,
+        "nombres_lus": [
+          8,
+          8
+        ],
+        "ok": true,
+        "retenu": 8
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.loans",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes prêts.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-40672a0a-19f3-4e4e-9b34-c17f2880d635",
+        "question": "Liste mes prêts.",
+        "texte": "Voilà tes prêts en cours (8 au total) :\n\n**En retard**\n- Perceuse sans fil → Camille, à rendre le 15/08 (60 jours de retard)\n- Scie sauteuse → Julien, à rendre le 03/09 (41 jours)\n- Échelle pliante → Sophie, à rendre le 24/09 (20 jours)\n\n**À venir**\n- Le Comte de Monte-Cristo → Marc, à rendre le 15/10 (demain !)\n- Catan → Thomas, à rendre le 15/10 (demain !)\n- Projecteur vidéo → Hugo, à rendre le 22/10\n- Dune → Léa, à rendre le 26/10\n- Tente deux places → Nadia, à rendre le 02/11\n\nTu veux que je t'ouvre la liste des retards, ou enregistrer un retour ?",
+        "outils": [
+          {
+            "nom": "call_overdue_loans",
+            "entree": {
+              "as_of": "2026-10-14"
+            },
+            "sortie": {
+              "function": "overdue_loans",
+              "label": "Prêts en retard",
+              "result": [
+                {
+                  "loan_id": "41710e05-f5df-409e-ae7c-c6835429fd36",
+                  "item_name": "Perceuse sans fil",
+                  "borrower": "Camille",
+                  "due_on": "2026-08-15",
+                  "days_late": 60
+                },
+                {
+                  "loan_id": "e143ea2f-a498-4b2a-b9b1-2e7c28b557c5",
+                  "item_name": "Scie sauteuse",
+                  "borrower": "Julien",
+                  "due_on": "2026-09-03",
+                  "days_late": 41
+                },
+                {
+                  "loan_id": "8c8031e0-bf7d-45fc-9c2e-35a2f26932b9",
+                  "item_name": "Échelle pliante",
+                  "borrower": "Sophie",
+                  "due_on": "2026-09-24",
+                  "days_late": 20
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "loans",
+              "order": "newest",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "loans",
+              "label": "Prêts",
+              "total": 8,
+              "shown": 8,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "e8ffea01-9d49-4801-9cef-f98354689aac",
+                  "item_id": "Tente deux places (id fcfae262-674d-4dbb-9c2c-3282be13339c)",
+                  "borrower": "Nadia",
+                  "lent_on": "2026-10-05",
+                  "due_on": "2026-11-02",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "61566156-6990-4390-867d-26823b303712",
+                  "item_id": "Dune (id c7fedde5-bfa7-432f-b9bb-0c791b55da76)",
+                  "borrower": "Léa",
+                  "lent_on": "2026-09-28",
+                  "due_on": "2026-10-26",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "8aa9b425-9189-4230-bddc-44ab3748990b",
+                  "item_id": "Projecteur vidéo (id ba9a6287-23a9-48f9-ad2c-13c2d8267e24)",
+                  "borrower": "Hugo",
+                  "lent_on": "2026-10-08",
+                  "due_on": "2026-10-22",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "de99a664-f02f-48ea-b45c-792b44ee8850",
+                  "item_id": "Le Comte de Monte-Cristo (id b547045c-c490-4b85-af95-60a4dcfbc9ab)",
+                  "borrower": "Marc",
+                  "lent_on": "2026-09-15",
+                  "due_on": "2026-10-15",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "757b2c00-3af5-4dcf-a1f8-ff80554bfaa7",
+                  "item_id": "Catan (id 4fe45ed7-1b4c-455f-8348-6a2590ba0f99)",
+                  "borrower": "Thomas",
+                  "lent_on": "2026-10-01",
+                  "due_on": "2026-10-15",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "8c8031e0-bf7d-45fc-9c2e-35a2f26932b9",
+                  "item_id": "Échelle pliante (id c029c312-1dd8-4db5-87e8-1a8d0c00a278)",
+                  "borrower": "Sophie",
+                  "lent_on": "2026-09-10",
+                  "due_on": "2026-09-24",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "e143ea2f-a498-4b2a-b9b1-2e7c28b557c5",
+                  "item_id": "Scie sauteuse (id aca7a65b-e8d4-426e-a5f7-f1341138d488)",
+                  "borrower": "Julien",
+                  "lent_on": "2026-08-20",
+                  "due_on": "2026-09-03",
+                  "returned_on": null,
+                  "condition_note": null
+                },
+                {
+                  "id": "41710e05-f5df-409e-ae7c-c6835429fd36",
+                  "item_id": "Perceuse sans fil (id 14dec169-4ae4-49aa-b121-b5148a4e9df5)",
+                  "borrower": "Camille",
+                  "lent_on": "2026-08-01",
+                  "due_on": "2026-08-15",
+                  "returned_on": null,
+                  "condition_note": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 8,
+        "nombres_lus": [
+          8,
+          15,
+          60,
+          3,
+          41,
+          24,
+          20,
+          15,
+          15,
+          22,
+          26,
+          2,
+          2
+        ],
+        "ok": true,
+        "retenu": 8,
+        "source": "nombre annoncé",
+        "elements": 8
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 10
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.items",
+        "lue": true
+      },
+      {
+        "table": "public.loans",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

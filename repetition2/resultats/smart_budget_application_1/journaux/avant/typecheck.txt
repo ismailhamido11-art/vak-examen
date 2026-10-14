@@ -1,0 +1,7 @@
+$ npm run type-check
+(dossier : /work/smart_budget_application_1/avant)
+
+
+> smart-budget-application@0.1.0 type-check
+> tsc --noEmit
+

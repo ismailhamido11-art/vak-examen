@@ -1,0 +1,19 @@
+disques_1 : contrôle à la main du quatrième examen (REPRISE.md, « Quatrième examen », étape 5) : relire toute réponse à « combien » dont le premier nombre lu vient du mot « neuf ».
+
+Source : repetition2/resultats/disques_1/mesdonnees.json (un seul lancement du juge, verdict « juste », 2/2 tables lues).
+
+1. « Combien de mes disques ? » (public.vinyls, attendu 6, comptage SQL de A 6)
+   Texte : « Vous avez **6 disques** dans votre collection. 🎶 »
+   Nombres lus : [6] ; retenu 6, du chiffre « 6 ». Le mot « neuf » n'est pas dans le texte. Juste.
+
+2. « Combien de mes écoutes ? » (public.listenings, attendu 9, comptage SQL de A 9)
+   Texte : « Vous avez **9 écoutes** enregistrées dans votre collection. 🎧 Souhaitez-vous en voir le détail, par exemple les plus récentes ? »
+   Nombres lus : [9] ; retenu 9, du chiffre « 9 ». Le mot « neuf » n'est pas dans le texte (l'attendu, 9, est celui que donnerait « neuf » : relu, le 9 est bien le chiffre du total). Juste ; l'outil read_data avait rendu total 9.
+
+Résultat : aucune réponse à « combien » dont le premier nombre lu vient du mot « neuf ». Les deux réponses sont justes par leur chiffre.
+
+Hors « combien », pour mémoire (ne décide pas, règle point 5) : dans « Liste mes disques. », le juge lit deux fois 9 (nombres_lus [6, 1959, 1969, 1982, 9, 1977, 1957, 2013, 9]) : ce sont les deux « Neuf » de la colonne État (Thriller, Random Access Memories). Le nombre retenu est 6, annoncé avant la liste (« Voici vos 6 disques : »), égal aux 6 éléments. « Liste mes écoutes. » : retenu 9, annoncé (« Voici vos 9 écoutes »), 9 éléments.
+
+Marqueurs de B : aucun dans les quatre réponses (17 marqueurs connus, fuites : []).
+
+Contre-vérification : nombresDe de vak-examen/mesdonnees/juger.mjs relancé sur les quatre textes (sans pile ni base) rend, pour chaque nombre lu, son texte : « 6 » et « 9 » (chiffres) pour les deux « combien » ; « Neuf » pour les deux 9 de « Liste mes disques. ». Les 17 marqueurs de vak-examen/graines/disques/attendu.json (12 + 5) cherchés dans tout mesdonnees.json : aucun. Un seul lancement du juge : /srv/journaux/examen-4.log, « === disques_1 : pile et juge « mes données » », une seule ligne « juste (couverture 2/2) ».

@@ -1,0 +1,19 @@
+$ vak test
+(dossier : /work/disques_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (2 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 9 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1845 tokens (maximum 5000)
+✓ evals 0 évaluations bien formées
+✓ tour read_data vinyls exécuté sans validation → {"table":"vinyls","label":"Disques","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000001…
+✓ tour read_data listenings exécuté sans validation → {"table":"listenings","label":"Écoutes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00…
+✓ tour create_vinyls validation demandée, puis une ligne écrite → {"saved":true,"table":"vinyls","id":"f2c9e661-7ac2-43c9-85e7-87e3ee3cf816","title":"titre 5"}
+✓ tour update_vinyls validation demandée, puis une ligne écrite → {"saved":true,"table":"vinyls","id":"00000000-0000-4000-8000-000001000000","title":"titre 6"}
+✓ tour create_listenings validation demandée, puis une ligne écrite → {"saved":true,"table":"listenings","id":"1cb348ae-fae6-43f5-8845-4f3c9b4979c4","title":"commentaire 5"}
+✓ tour update_listenings validation demandée, puis une ligne écrite → {"saved":true,"table":"listenings","id":"00000000-0000-4000-8000-000000000000","title":"commentaire 0"}
+✓ tour open_screen fiche exécuté sans validation → {"href":"/vinyl/00000000-0000-4000-8000-000001000000","label":"Fiche du disque"}
+✓ tour open_screen nouveauDisque exécuté sans validation → {"href":"/vinyl/new","label":"Ajouter un disque"}
+✓ tour open_screen nouvelleEcoute exécuté sans validation → {"href":"/listening/new","label":"Ajouter une écoute"}
+vak test : tout est vert [code 0]

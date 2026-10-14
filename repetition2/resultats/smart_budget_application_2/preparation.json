@@ -1,0 +1,18 @@
+{
+  "id": "smart_budget_application_2",
+  "depot": "https://github.com/NikolayAngelov90/Smart-Budget-Application",
+  "commit": "d8173d6acceda25588b8b9f38ce9956aade38935",
+  "prepare": "e184d3b4d1b1ffd09c8d8f3e75b3f997e5af620b",
+  "archive": {
+    "nom": "vak-agent-0.28.1.tgz",
+    "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+  },
+  "app": "/work/smart_budget_application_2/app",
+  "avant": "/work/smart_budget_application_2/avant.json",
+  "debut": "2026-10-14T17:43:56Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-14T17:46:16Z"
+}

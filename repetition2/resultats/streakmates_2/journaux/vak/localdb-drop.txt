@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/streakmates_2/apres)
+
+base locale vak_local_153d22 supprimée [code 0]

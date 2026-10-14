@@ -1,0 +1,64 @@
+{
+  "vak": "0.28.1",
+  "at": "2026-10-14T15:49:32.075Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:765fd6424c55015301971e35e136fdaaacd787e9697c5c3122f8ffaa18cfdb0d",
+  "schema": "sha256:2d49df5fad7a5aaccd34e321415c9fdd4edf5f290ba411b8cfd4b2c64ef53990",
+  "tables": {
+    "debts": "éprouvé",
+    "expenses": "éprouvé",
+    "groups": "éprouvé",
+    "members": "éprouvé",
+    "transfers": "éprouvé"
+  },
+  "notes": {
+    "debts": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 34 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "expenses": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »"
+    ],
+    "groups": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »"
+    ],
+    "members": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ],
+    "transfers": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "totals": 187,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Sees: Groups (Title, Description, Total of all expenses, Settled, Currency, Created at) ; Members (Name, Group, Role, Balance in the group, Joined at) ; Expenses (Title, Description, Amount, Date, Group, Settled, Category) ; Debts (Amount, Borrower, Lender, Group, Created at) ; Transfers (Sender, Receiver, Amount, Group, Created at)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Open group, Group statistics, New expense",
+    "Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read debts_per_expense, expense_participants, expense_payers, friend_requests, friends, group_invitations, profiles, invite_tokens ; call get_group_expense_stats, accept_friend_request, create_expense, create_group, deleteuser, exit_group, generate_invite_token, get_groups_summary, 11 others"
+  ]
+}

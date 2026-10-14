@@ -1,0 +1,470 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/disques_2/apres",
+  "lecture": {
+    "fichier": "/work/disques_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.vinyls",
+      "public.listenings"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.vinyls",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.listenings",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.vinyls",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes disques ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-28f19c5f-35ad-4d3b-98db-d067f247b61e",
+        "question": "Combien de mes disques ?",
+        "texte": "Tu as **6 disques** dans ta collection ! 🎶\n\nTu veux que je t'en montre la liste, ou que je te sorte un détail (par genre, état…) ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "vinyls",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "vinyls",
+              "label": "Disques",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "9217b26c-9b4e-4e15-bc40-cfd56b6cf5fc",
+                  "titre": "Kind of Blue",
+                  "artiste": "Miles Davis",
+                  "annee": 1959,
+                  "etat": "tres_bon (Très bon)",
+                  "genres": "[\"jazz\"]",
+                  "prix_achat": 25,
+                  "created_at": "2026-01-01T11:00"
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.vinyls",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes disques.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-127c3bb5-3be6-41bd-9041-9cdaed27f9a0",
+        "question": "Liste mes disques.",
+        "texte": "Voici tes 6 disques 🎶\n\n| Titre | Artiste | Année | État | Prix |\n|---|---|---|---|---|\n| Kind of Blue | Miles Davis | 1959 | Très bon | 25 € |\n| Abbey Road | The Beatles | 1969 | Bon | 18,50 € |\n| Thriller | Michael Jackson | 1982 | Neuf | 30 € |\n| Rumours | Fleetwood Mac | 1977 | Bon | — |\n| Blue Train | John Coltrane | 1957 | Abîmé | 12 € |\n| Random Access Memories | Daft Punk | 2013 | Neuf | 45,90 € |\n\nTu veux que je t'ouvre la fiche d'un de ces disques ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "vinyls",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "vinyls",
+              "label": "Disques",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "9217b26c-9b4e-4e15-bc40-cfd56b6cf5fc",
+                  "titre": "Kind of Blue",
+                  "artiste": "Miles Davis",
+                  "annee": 1959,
+                  "etat": "tres_bon (Très bon)",
+                  "genres": "[\"jazz\"]",
+                  "prix_achat": 25,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "08baf88d-2edf-4b3d-8322-60c4f1f8d96b",
+                  "titre": "Abbey Road",
+                  "artiste": "The Beatles",
+                  "annee": 1969,
+                  "etat": "bon (Bon)",
+                  "genres": "[\"rock\",\"pop\"]",
+                  "prix_achat": 18.5,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "a70e931f-88de-4d08-91f6-df7a73e91fd9",
+                  "titre": "Thriller",
+                  "artiste": "Michael Jackson",
+                  "annee": 1982,
+                  "etat": "neuf (Neuf)",
+                  "genres": "[\"pop\",\"funk\"]",
+                  "prix_achat": 30,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "b3992698-e868-4885-9f37-910feedec279",
+                  "titre": "Rumours",
+                  "artiste": "Fleetwood Mac",
+                  "annee": 1977,
+                  "etat": "bon (Bon)",
+                  "genres": "[\"rock\"]",
+                  "prix_achat": null,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "0e1a197e-6b46-4cae-9099-4ac4a204c7f1",
+                  "titre": "Blue Train",
+                  "artiste": "John Coltrane",
+                  "annee": 1957,
+                  "etat": "abime (Abîmé)",
+                  "genres": "[\"jazz\"]",
+                  "prix_achat": 12,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "e87edacf-c657-439d-bb03-0d1093f65ab3",
+                  "titre": "Random Access Memories",
+                  "artiste": "Daft Punk",
+                  "annee": 2013,
+                  "etat": "neuf (Neuf)",
+                  "genres": "[\"electro\",\"disco\"]",
+                  "prix_achat": 45.9,
+                  "created_at": "2026-01-01T11:00"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          1959,
+          25,
+          1969,
+          18.5,
+          1982,
+          9,
+          30,
+          1977,
+          1957,
+          12,
+          2013,
+          9,
+          45.9
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.listenings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes écoutes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d307ec3a-7386-45aa-a935-b5e077f4814a",
+        "question": "Combien de mes écoutes ?",
+        "texte": "Tu as 9 écoutes enregistrées dans ta collection 🎧\n\nTu veux que je t'en montre une en particulier, ou le détail de la plus récente ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "listenings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "listenings",
+              "label": "Écoutes",
+              "total": 9,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "5e5c0a89-50f6-45c9-882c-866927127d29",
+                  "vinyl_id": "e87edacf-c657-439d-bb03-0d1093f65ab3",
+                  "ecoute_le": "2026-04-10T22:10",
+                  "face": "A (Face A)",
+                  "note": 5,
+                  "commentaire": "Get Lucky en boucle"
+                }
+              ],
+              "note": "1 ligne montrée sur 9 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.listenings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes écoutes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-42f6a90d-fa94-44cb-96c4-80abcdb6891b",
+        "question": "Liste mes écoutes.",
+        "texte": "Voici tes 9 écoutes, de la plus récente à la plus ancienne :\n\n| Date | Disque | Face | Note | Commentaire |\n|---|---|---|---|---|\n| 10/04/2026 | Random Access Memories — Daft Punk | A | 5/5 | Get Lucky en boucle |\n| 01/04/2026 | Random Access Memories — Daft Punk | AB | 4/5 | Très bien produit |\n| 15/03/2026 | Blue Train — John Coltrane | B | 2/5 | Craque un peu |\n| 07/03/2026 | Rumours — Fleetwood Mac | A | 3/5 | Correct |\n| 21/02/2026 | Thriller — Michael Jackson | AB | 5/5 | Pour danser |\n| 09/02/2026 | Abbey Road — The Beatles | B | 4/5 | Medley final |\n| 02/02/2026 | Abbey Road — The Beatles | A | 4/5 | Face A superbe |\n| 18/01/2026 | Kind of Blue — Miles Davis | AB | 5/5 | Toujours aussi bon |\n| 04/01/2026 | Kind of Blue — Miles Davis | A | 5/5 | Un classique |\n\nTu veux le détail d'un disque en particulier, ou ajouter une écoute ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "listenings",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "listenings",
+              "label": "Écoutes",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "5e5c0a89-50f6-45c9-882c-866927127d29",
+                  "vinyl_id": "e87edacf-c657-439d-bb03-0d1093f65ab3",
+                  "ecoute_le": "2026-04-10T22:10",
+                  "face": "A (Face A)",
+                  "note": 5,
+                  "commentaire": "Get Lucky en boucle"
+                },
+                {
+                  "id": "a93d2726-6b68-46fe-9f86-391a7b5d35b0",
+                  "vinyl_id": "e87edacf-c657-439d-bb03-0d1093f65ab3",
+                  "ecoute_le": "2026-04-01T23:00",
+                  "face": "AB (Les deux faces)",
+                  "note": 4,
+                  "commentaire": "Très bien produit"
+                },
+                {
+                  "id": "d9474eaf-fb47-443f-b327-2bd00143a293",
+                  "vinyl_id": "0e1a197e-6b46-4cae-9099-4ac4a204c7f1",
+                  "ecoute_le": "2026-03-15T21:20",
+                  "face": "B (Face B)",
+                  "note": 2,
+                  "commentaire": "Craque un peu"
+                },
+                {
+                  "id": "a8c6e06e-00f2-44fc-a074-7f549a74e963",
+                  "vinyl_id": "b3992698-e868-4885-9f37-910feedec279",
+                  "ecoute_le": "2026-03-07T18:45",
+                  "face": "A (Face A)",
+                  "note": 3,
+                  "commentaire": "Correct"
+                },
+                {
+                  "id": "95cffdb6-1d6b-4388-b2fb-8db856aa05b2",
+                  "vinyl_id": "a70e931f-88de-4d08-91f6-df7a73e91fd9",
+                  "ecoute_le": "2026-02-21T23:00",
+                  "face": "AB (Les deux faces)",
+                  "note": 5,
+                  "commentaire": "Pour danser"
+                },
+                {
+                  "id": "4b727048-db48-4b89-b959-0248ca199def",
+                  "vinyl_id": "08baf88d-2edf-4b3d-8322-60c4f1f8d96b",
+                  "ecoute_le": "2026-02-09T20:00",
+                  "face": "B (Face B)",
+                  "note": 4,
+                  "commentaire": "Medley final"
+                },
+                {
+                  "id": "b04d7799-6a6b-4b32-ba92-78460e27b848",
+                  "vinyl_id": "08baf88d-2edf-4b3d-8322-60c4f1f8d96b",
+                  "ecoute_le": "2026-02-02T19:15",
+                  "face": "A (Face A)",
+                  "note": 4,
+                  "commentaire": "Face A superbe"
+                },
+                {
+                  "id": "ff43b2d1-497c-46ec-936f-f2bbb48c7a99",
+                  "vinyl_id": "9217b26c-9b4e-4e15-bc40-cfd56b6cf5fc",
+                  "ecoute_le": "2026-01-18T22:30",
+                  "face": "AB (Les deux faces)",
+                  "note": 5,
+                  "commentaire": "Toujours aussi bon"
+                },
+                {
+                  "id": "8fded4c7-a63d-498e-b096-76c19d34a010",
+                  "vinyl_id": "9217b26c-9b4e-4e15-bc40-cfd56b6cf5fc",
+                  "ecoute_le": "2026-01-04T21:00",
+                  "face": "A (Face A)",
+                  "note": 5,
+                  "commentaire": "Un classique"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "vinyls",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "vinyls",
+              "label": "Disques",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "9217b26c-9b4e-4e15-bc40-cfd56b6cf5fc",
+                  "titre": "Kind of Blue",
+                  "artiste": "Miles Davis",
+                  "annee": 1959,
+                  "etat": "tres_bon (Très bon)",
+                  "genres": "[\"jazz\"]",
+                  "prix_achat": 25,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "08baf88d-2edf-4b3d-8322-60c4f1f8d96b",
+                  "titre": "Abbey Road",
+                  "artiste": "The Beatles",
+                  "annee": 1969,
+                  "etat": "bon (Bon)",
+                  "genres": "[\"rock\",\"pop\"]",
+                  "prix_achat": 18.5,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "a70e931f-88de-4d08-91f6-df7a73e91fd9",
+                  "titre": "Thriller",
+                  "artiste": "Michael Jackson",
+                  "annee": 1982,
+                  "etat": "neuf (Neuf)",
+                  "genres": "[\"pop\",\"funk\"]",
+                  "prix_achat": 30,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "b3992698-e868-4885-9f37-910feedec279",
+                  "titre": "Rumours",
+                  "artiste": "Fleetwood Mac",
+                  "annee": 1977,
+                  "etat": "bon (Bon)",
+                  "genres": "[\"rock\"]",
+                  "prix_achat": null,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "0e1a197e-6b46-4cae-9099-4ac4a204c7f1",
+                  "titre": "Blue Train",
+                  "artiste": "John Coltrane",
+                  "annee": 1957,
+                  "etat": "abime (Abîmé)",
+                  "genres": "[\"jazz\"]",
+                  "prix_achat": 12,
+                  "created_at": "2026-01-01T11:00"
+                },
+                {
+                  "id": "e87edacf-c657-439d-bb03-0d1093f65ab3",
+                  "titre": "Random Access Memories",
+                  "artiste": "Daft Punk",
+                  "annee": 2013,
+                  "etat": "neuf (Neuf)",
+                  "genres": "[\"electro\",\"disco\"]",
+                  "prix_achat": 45.9,
+                  "created_at": "2026-01-01T11:00"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          5,
+          4,
+          2,
+          3,
+          5,
+          4,
+          4,
+          5,
+          5,
+          1
+        ],
+        "ok": true,
+        "retenu": 9,
+        "source": "nombre annoncé",
+        "elements": 9
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 17
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.vinyls",
+        "lue": true
+      },
+      {
+        "table": "public.listenings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

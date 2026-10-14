@@ -1,0 +1,39 @@
+verdict flow_finance_1 : réussi
+{
+  "id": "flow_finance_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "3/18",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes comptes bancaires.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes catégories.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes livrets d'épargne.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

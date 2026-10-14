@@ -1,0 +1,32 @@
+[
+  {
+    "table": "public.user_info",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-3C754150",
+      "MARQUEUR-B-C0FBEBC3",
+      "MARQUEUR-B-507F5555",
+      "MARQUEUR-B-8714C6FE",
+      "MARQUEUR-B-DE3FD0DF",
+      "MARQUEUR-B-8A3BE189"
+    ]
+  },
+  {
+    "table": "public.pending_licenses",
+    "colonne": "claimed_by",
+    "nom": "licenses",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-93CF81C6",
+      "MARQUEUR-B-CA2CDC0E",
+      "MARQUEUR-B-3F92C104",
+      "MARQUEUR-B-D82D2A88",
+      "MARQUEUR-B-63A5A876",
+      "MARQUEUR-B-E356F3A7"
+    ]
+  }
+]

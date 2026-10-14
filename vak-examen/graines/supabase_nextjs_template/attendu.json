@@ -1,0 +1,19 @@
+[
+  {
+    "table": "public.todo_list",
+    "colonne": "owner",
+    "nom": "tasks",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-40B4AEB4",
+      "MARQUEUR-B-8945C646",
+      "MARQUEUR-B-E1640823",
+      "MARQUEUR-B-2477EA2B",
+      "MARQUEUR-B-5CB2FBFD",
+      "MARQUEUR-B-D338521A",
+      "MARQUEUR-B-5056709A",
+      "MARQUEUR-B-BF4C18BD"
+    ]
+  }
+]

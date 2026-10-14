@@ -1,0 +1,77 @@
+$ npm run build
+(dossier : /work/flow_finance_1/avant)
+
+
+> flow-finance@0.1.0 build
+> next build
+
+▲ Next.js 16.2.9 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.0s
+  Running TypeScript ...
+  Finished TypeScript in 11.5s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/39) ...
+  Generating static pages using 3 workers (9/39) 
+  Generating static pages using 3 workers (19/39) 
+  Generating static pages using 3 workers (29/39) 
+✓ Generating static pages using 3 workers (39/39) in 885ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ● /[locale]
+│ ├ /fr
+│ └ /en
+├ ● /[locale]/analytics
+│ ├ /fr/analytics
+│ └ /en/analytics
+├ ● /[locale]/categories
+│ ├ /fr/categories
+│ └ /en/categories
+├ ● /[locale]/crypto
+│ ├ /fr/crypto
+│ └ /en/crypto
+├ ● /[locale]/goals
+│ ├ /fr/goals
+│ └ /en/goals
+├ ● /[locale]/investments
+│ ├ /fr/investments
+│ └ /en/investments
+├ ● /[locale]/investments/crypto
+│ ├ /fr/investments/crypto
+│ └ /en/investments/crypto
+├ ● /[locale]/investments/pea
+│ ├ /fr/investments/pea
+│ └ /en/investments/pea
+├ ƒ /[locale]/login
+├ ● /[locale]/privacy
+│ ├ /fr/privacy
+│ └ /en/privacy
+├ ● /[locale]/savings
+│ ├ /fr/savings
+│ └ /en/savings
+├ ƒ /[locale]/settings
+├ ● /[locale]/terms
+│ ├ /fr/terms
+│ └ /en/terms
+├ ● /[locale]/transactions
+│ ├ /fr/transactions
+│ └ /en/transactions
+├ ƒ /api/bank/callback
+├ ƒ /api/bank/connect
+├ ƒ /api/bank/sync
+├ ƒ /api/crypto/prices
+├ ƒ /api/health
+├ ƒ /api/pea/prices
+├ ƒ /auth/callback
+└ ƒ /auth/signout
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

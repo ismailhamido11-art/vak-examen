@@ -1,0 +1,74 @@
+{
+  "vak": "0.28.1",
+  "at": "2026-10-14T16:09:35.873Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:3fe48859a3e1ba9ece653371ca979f19b7effd66492178b76b0f448471d7e665",
+  "schema": "sha256:43f50520367336dab97d3848d4a4f6e0d8573fc8628e6f168cb0f001573d066a",
+  "tables": {
+    "categories": "éprouvé",
+    "category_budgets": "éprouvé",
+    "goals": "éprouvé",
+    "household_members": "éprouvé",
+    "households": "éprouvé",
+    "transactions": "éprouvé"
+  },
+  "notes": {
+    "categories": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 11 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+      "graine des totaux refusée par l'app (22001 value too long for type character varying(7)) : totaux vérifiés sur les lignes de la preuve seules"
+    ],
+    "category_budgets": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "goals": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 39 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ],
+    "household_members": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "households": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 38 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "transactions": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 41 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "totals": 204,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Transactions (Catégorie, Montant, Type, Date, Notes, Devise (code ISO 4217), Foyer (renseigné si la dépense est partagée)) ; Catégories (Nom, Type, Foyer (renseigné si la catégorie est partagée), Visibilité pour le foyer) ; Budgets par catégorie (Catégorie, Période, Plafond, Foyer, Créé le) ; Objectifs d'épargne (Nom, Montant cible, Montant déjà épargné, Échéance, Foyer (renseigné si l'objectif est partagé)) ; Foyers (Nom, Créé le) ; Membres du foyer (Foyer, Rôle, Arrivé le)",
+    "Peut proposer (après ta validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Tableau de bord, Transactions, Catégories, Objectifs, Foyer, Réglages",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire analytics_events, comeback_challenges, detected_subscriptions, exchange_rates_cache, goal_contributions, household_invitations, insights, notification_deliveries, 12 autres ; appeler avg_views_before_dismissal, detect_browser, detect_device_type, generate_device_name, household_category_period_totals, household_category_totals, household_contributions, household_goal_breakdown, 5 autres"
+  ]
+}

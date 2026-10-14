@@ -1,0 +1,77 @@
+{
+  "id": "journal_2",
+  "echecs_de_preuve": [
+    {
+      "table": "article_photos",
+      "verdict": "non prouvé",
+      "ligne": 78,
+      "texte": "✗ article_photos non prouvé"
+    },
+    {
+      "table": "articles",
+      "verdict": "non prouvé",
+      "ligne": 78,
+      "texte": "✗ articles non prouvé"
+    },
+    {
+      "table": "article_photos",
+      "verdict": "non prouvé",
+      "ligne": 93,
+      "texte": "✗ article_photos non prouvé"
+    },
+    {
+      "table": "articles",
+      "verdict": "non prouvé",
+      "ligne": 93,
+      "texte": "✗ articles non prouvé"
+    },
+    {
+      "table": "article_photos",
+      "verdict": "non prouvé",
+      "ligne": 99,
+      "texte": "✗ article_photos non prouvé"
+    },
+    {
+      "table": "articles",
+      "verdict": "non prouvé",
+      "ligne": 99,
+      "texte": "✗ articles non prouvé"
+    },
+    {
+      "table": "article_photos",
+      "verdict": "non prouvé",
+      "ligne": 103,
+      "texte": "✗ article_photos non prouvé"
+    },
+    {
+      "table": "articles",
+      "verdict": "non prouvé",
+      "ligne": 103,
+      "texte": "✗ articles non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "newspaper_invitations",
+      "ligne": 79
+    },
+    {
+      "nom": "claim_invitations",
+      "ligne": 80
+    },
+    {
+      "nom": "create_newspaper",
+      "ligne": 81
+    },
+    {
+      "nom": "invite_member",
+      "ligne": 82
+    },
+    {
+      "nom": "remove_member",
+      "ligne": 83
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

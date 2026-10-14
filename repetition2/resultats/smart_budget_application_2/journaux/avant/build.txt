@@ -1,0 +1,12 @@
+$ npm run build
+(dossier : /work/smart_budget_application_2/avant)
+
+
+> smart-budget-application@0.1.0 build
+> next build
+
+ ⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error
+
+> Build error occurred
+Error: NEXT_PUBLIC_SUPABASE_URL is not set. Refusing to build: the image remotePatterns allowlist would silently widen to every *.supabase.co host, and NEXT_PUBLIC_* values are inlined into the client bundle, so this build would also ship an app that cannot reach Supabase.
+    at Object.<anonymous> (next.config.compiled.js:171:11)

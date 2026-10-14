@@ -1,0 +1,44 @@
+$ vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_451286'
+(dossier : /work/flow_finance_1/apres)
+
+✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)
+✓ VAK002 versions alignées (@vak/agent 0.28.1, bundle serveur et deno.json compris)
+✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md
+✓ VAK004 tsconfig.json exclut supabase/functions
+✓ VAK005 tsc -p supabase/functions/vak : aucune erreur
+✓ VAK006 supabase/functions/vak/agent.ts se charge (4 table(s) calibrée(s), écrans trouvés dans l'app)
+✓ VAK007 lib/vak.ts sans vak:todo, persona écrite
+✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app
+✓ VAK009 aucun secret côté client
+✓ VAK010 [functions.vak] verify_jwt = false
+✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git
+! VAK013 chaque table de l'app est calibrée ou ignorée (4 dans tables ; ignore : 15 tables, 0 fonctions) ; dans ignore, tables de l'utilisateur : « bank_connections », « crypto_holdings », « crypto_portfolio_settings », « crypto_transactions », « pea_holdings », « pea_investment_plans », « pea_settings », « pea_transactions », « profiles », « recurring_payments », « recurring_suggestion_dismissals », « savings_adjustments », « savings_goal_allocations », « savings_goals », « spaces »
+    - « bank_connections » : calibre-la, owner
+    - « crypto_holdings » : calibre-la, owner
+    - « crypto_portfolio_settings » : calibre-la, owner
+    - « crypto_transactions » : calibre-la, owner
+    - « pea_holdings » : calibre-la, owner
+    - « pea_investment_plans » : calibre-la, owner
+    - « pea_settings » : calibre-la, owner
+    - « pea_transactions » : calibre-la, owner
+    - « profiles » : calibre-la, owner
+    - « recurring_payments » : calibre-la, owner
+    - « recurring_suggestion_dismissals » : calibre-la, owner
+    - « savings_adjustments » : calibre-la, owner
+    - « savings_goal_allocations » : calibre-la, owner
+    - « savings_goals » : calibre-la, owner
+    - « spaces » : calibre-la, owner
+    → calibre-les comme indiqué : jamais ignore pour faire passer la preuve ; si l'assistant ne doit vraiment pas les voir, dis-le à l'humain comme un choix fait, en une ligne
+✓ VAK014 photographie postérieure aux migrations de l'app (32)
+✓ VAK015 preuve à deux comptes du 2026-10-14 : éprouvé (4 table(s), 161 totaux de read_data exacts), empreintes à jour
+✓ VAK011 photographie à jour (schema.gen.ts = base)
+✓ VAK101 migration vak appliquée (vak_schema_version = 4)
+✓ VAK102 droits des tables vak_ exactement ceux attendus
+✓ VAK103 RLS active sur les tables calibrées et vak_*
+✓ VAK105 vues calibrées en security_invoker
+✓ VAK106 capacités réelles conformes au calibrage
+✓ VAK107 aucun avis de sécurité bloquant
+! VAK108 colonnes qui décident des droits (avertissement)
+    - transactions.account_id : modifiable par l'utilisateur et lue par la politique « transactions_select_own » : elle décide qui voit la ligne
+    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app
+doctor : aucun échec, mais des avertissements (!) à lire [code 0]

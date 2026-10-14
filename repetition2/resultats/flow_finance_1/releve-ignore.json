@@ -1,0 +1,68 @@
+{
+  "id": "flow_finance_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "bank_connections",
+      "ligne": 89
+    },
+    {
+      "nom": "crypto_holdings",
+      "ligne": 90
+    },
+    {
+      "nom": "crypto_portfolio_settings",
+      "ligne": 91
+    },
+    {
+      "nom": "crypto_transactions",
+      "ligne": 92
+    },
+    {
+      "nom": "pea_holdings",
+      "ligne": 93
+    },
+    {
+      "nom": "pea_investment_plans",
+      "ligne": 94
+    },
+    {
+      "nom": "pea_settings",
+      "ligne": 95
+    },
+    {
+      "nom": "pea_transactions",
+      "ligne": 96
+    },
+    {
+      "nom": "profiles",
+      "ligne": 97
+    },
+    {
+      "nom": "recurring_payments",
+      "ligne": 98
+    },
+    {
+      "nom": "recurring_suggestion_dismissals",
+      "ligne": 99
+    },
+    {
+      "nom": "savings_adjustments",
+      "ligne": 100
+    },
+    {
+      "nom": "savings_goal_allocations",
+      "ligne": 101
+    },
+    {
+      "nom": "savings_goals",
+      "ligne": 102
+    },
+    {
+      "nom": "spaces",
+      "ligne": 103
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

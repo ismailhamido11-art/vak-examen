@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-14T17:19:15.207Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Journaux (Nom, Quartier, Créé le) ; Articles (Journal, Titre, Rubrique, Signes prévus, Statut, À rendre le, Confié à, Créé le) ; Photos (Article, Légende, Photographe, Largeur (px), Ajoutée le) ; Membres (Journal, Membre, Rôle, Depuis le) ; Profils (Nom affiché, E-mail)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes journaux, Mes articles à rendre, Ouvrir le journal, Ouvrir l'article, Membres du journal",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire newspaper_invitations ; appeler claim_invitations, create_newspaper, invite_member, remove_member",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:34d4885fd135db120ad6a003848dcf00d54902eb3911fb0f00b883ef7294c030",
+    "calibrage": "sha256:1635439b0301c23180737d746d027edfcd6a05afef3daa38a4090b818ab10986"
+  }
+}

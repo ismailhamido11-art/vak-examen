@@ -1,0 +1,1381 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "7/11 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/streakmates_1/apres",
+  "lecture": {
+    "fichier": "/work/streakmates_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.habits",
+      "public.check_ins",
+      "public.tasks",
+      "public.task_completions",
+      "public.focus_sessions",
+      "public.group_members",
+      "public.groups"
+    ],
+    "ignorees": [
+      "public.habit_order",
+      "public.nudges",
+      "public.profiles",
+      "public.reactions",
+      "public.invite_code_attempts",
+      "public.can_see_check_in",
+      "public.can_see_habit",
+      "public.can_see_task",
+      "public.is_group_member",
+      "public.is_group_owner",
+      "public.is_shared_once_task",
+      "public.shares_group_with",
+      "public.create_group",
+      "public.delete_my_account",
+      "public.join_group_with_code",
+      "public.preview_group_by_code",
+      "public.rotate_invite_code",
+      "public.set_username"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.groups",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 2,
+      "attendu_json": 2,
+      "accord": true
+    },
+    {
+      "table": "public.group_members",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 2,
+      "attendu_json": 2,
+      "accord": true
+    },
+    {
+      "table": "public.habits",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.check_ins",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 15,
+      "attendu_json": 15,
+      "accord": true
+    },
+    {
+      "table": "public.tasks",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 5,
+      "attendu_json": 5,
+      "accord": true
+    },
+    {
+      "table": "public.task_completions",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.focus_sessions",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.groups",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my groups are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-747bda97-a096-41a2-98ad-af8091c0363e",
+        "question": "How many of my groups are there?",
+        "texte": "You're in **2** groups: Run Club and Book Club (you're the owner of both). 🎉\n\nWant to see them?\n\nYou can open your groups list with the button above anytime.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "group_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "group_members",
+              "label": "Group memberships",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                },
+                {
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "groups"
+            },
+            "sortie": {
+              "href": "/groups",
+              "label": "Groups"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.groups",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my groups.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-7b9255d6-7bcd-4f2e-b919-82b04244b311",
+        "question": "List my groups.",
+        "texte": "You're in 2 groups:\n\n- 🏃 **Run Club** — you're the owner\n- 📚 **Book Club** — you're the owner\n\nWant to open one of them to see everyone's progress?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "85131d31-5e0d-4188-87c1-d5dbfbd09eea",
+                  "name": "Run Club",
+                  "emoji": "🏃",
+                  "created_at": "2026-10-14T16:56"
+                },
+                {
+                  "id": "3b991e8a-dad8-4523-bc2b-88f0ed53bfcf",
+                  "name": "Book Club",
+                  "emoji": "📚",
+                  "created_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "group_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "group_members",
+              "label": "Group memberships",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                },
+                {
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2,
+        "source": "nombre annoncé",
+        "elements": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.group_members",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my group memberships are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-9a3fcc5e-7d40-4e45-8caf-ade8d490f0fb",
+        "question": "How many of my group memberships are there?",
+        "texte": "You have 2 group memberships: Run Club and Book Club, and you're the owner of both. 🎉\n\nWant me to open your groups?\n\nThere it is — the **Groups** button above takes you straight to them.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "group_members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "group_members",
+              "label": "Group memberships",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                },
+                {
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "groups"
+            },
+            "sortie": {
+              "href": "/groups",
+              "label": "Groups"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.group_members",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my group memberships.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-41d1f55b-dab1-47c0-bdac-200c40ace122",
+        "question": "List my group memberships.",
+        "texte": "You're in 2 groups, and you're the owner of both:\n\n- 🏃 **Run Club**\n- 📚 **Book Club**\n\nWant me to open any of them?\n\nTap **Groups** above to see them both.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "85131d31-5e0d-4188-87c1-d5dbfbd09eea",
+                  "name": "Run Club",
+                  "emoji": "🏃",
+                  "created_at": "2026-10-14T16:56"
+                },
+                {
+                  "id": "3b991e8a-dad8-4523-bc2b-88f0ed53bfcf",
+                  "name": "Book Club",
+                  "emoji": "📚",
+                  "created_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "group_members",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "group_members",
+              "label": "Group memberships",
+              "total": 2,
+              "shown": 2,
+              "complete": true,
+              "rows": [
+                {
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                },
+                {
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "role": "owner (Owner)",
+                  "joined_at": "2026-10-14T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "groups"
+            },
+            "sortie": {
+              "href": "/groups",
+              "label": "Groups"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 2,
+        "nombres_lus": [
+          2
+        ],
+        "ok": true,
+        "retenu": 2,
+        "source": "nombre annoncé",
+        "elements": 2
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.habits",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my habits are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-74b88262-9d8e-4a89-a188-837f220f69e6",
+        "question": "How many of my habits are there?",
+        "texte": "You have **6 habits** in total, and none of them are archived — so 6 active ones.\n\n- 4 personal: Morning run 🏃, Read 20 pages 📖, Meditate 🧘, Water the plants 🌱\n- 2 shared with a group: Team stretch 🤸 (Run Club), Weekly review 📝 (Book Club)\n\nWant to see them all on your Today screen?\n\nHere's your Today screen if you'd like to tick something off 👆",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "habits",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "habits",
+              "label": "Habits",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a5d248d4-aabc-4cb7-97e6-ff3356ff2b5a",
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "title": "Team stretch",
+                  "emoji": "🤸",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "5389c1d2-4a94-478b-9d11-3c0480479352",
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "title": "Weekly review",
+                  "emoji": "📝",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "2c39c78e-ee72-4a89-85dd-290dd71aee30",
+                  "group_id": null,
+                  "title": "Water the plants",
+                  "emoji": "🌱",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 2,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "543dc186-1fa9-4c88-8bcc-941d149b7997",
+                  "group_id": null,
+                  "title": "Meditate",
+                  "emoji": "🧘",
+                  "cadence": "days (Days)",
+                  "target_days": "[1,3,5]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "ca0f6356-b26b-462e-b200-cabb5d2d2fa1",
+                  "group_id": null,
+                  "title": "Read 20 pages",
+                  "emoji": "📖",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "4b699818-611b-46f4-9f44-1882d3056081",
+                  "group_id": null,
+                  "title": "Morning run",
+                  "emoji": "🏃",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "habits",
+              "where": [
+                {
+                  "column": "archived_at",
+                  "op": "is_null"
+                }
+              ],
+              "limit": 50
+            },
+            "sortie": {
+              "table": "habits",
+              "label": "Habits",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a5d248d4-aabc-4cb7-97e6-ff3356ff2b5a",
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "title": "Team stretch",
+                  "emoji": "🤸",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "5389c1d2-4a94-478b-9d11-3c0480479352",
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "title": "Weekly review",
+                  "emoji": "📝",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "2c39c78e-ee72-4a89-85dd-290dd71aee30",
+                  "group_id": null,
+                  "title": "Water the plants",
+                  "emoji": "🌱",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 2,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "543dc186-1fa9-4c88-8bcc-941d149b7997",
+                  "group_id": null,
+                  "title": "Meditate",
+                  "emoji": "🧘",
+                  "cadence": "days (Days)",
+                  "target_days": "[1,3,5]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "ca0f6356-b26b-462e-b200-cabb5d2d2fa1",
+                  "group_id": null,
+                  "title": "Read 20 pages",
+                  "emoji": "📖",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "4b699818-611b-46f4-9f44-1882d3056081",
+                  "group_id": null,
+                  "title": "Morning run",
+                  "emoji": "🏃",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "today"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Today"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          6,
+          4,
+          20,
+          2
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.habits",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my habits.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0ef745d9-24da-477c-ab7e-a76c4116d77f",
+        "question": "List my habits.",
+        "texte": "Here are your 6 habits:\n\n**Personal**\n- 🏃 Morning run — daily\n- 📖 Read 20 pages — daily\n- 🧘 Meditate — on days 1, 3, 5 (Mon/Wed/Fri)\n- 🌱 Water the plants — 2× per week\n\n**Shared with a group**\n- 🤸 Team stretch — daily (Run Club)\n- 📝 Weekly review — weekly (Book Club)\n\nWant me to open your Today screen so you can tick them off?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "habits",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "habits",
+              "label": "Habits",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a5d248d4-aabc-4cb7-97e6-ff3356ff2b5a",
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "title": "Team stretch",
+                  "emoji": "🤸",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "5389c1d2-4a94-478b-9d11-3c0480479352",
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "title": "Weekly review",
+                  "emoji": "📝",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "2c39c78e-ee72-4a89-85dd-290dd71aee30",
+                  "group_id": null,
+                  "title": "Water the plants",
+                  "emoji": "🌱",
+                  "cadence": "weekly (Weekly)",
+                  "target_days": "[]",
+                  "target_per_week": 2,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "543dc186-1fa9-4c88-8bcc-941d149b7997",
+                  "group_id": null,
+                  "title": "Meditate",
+                  "emoji": "🧘",
+                  "cadence": "days (Days)",
+                  "target_days": "[1,3,5]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "ca0f6356-b26b-462e-b200-cabb5d2d2fa1",
+                  "group_id": null,
+                  "title": "Read 20 pages",
+                  "emoji": "📖",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                },
+                {
+                  "id": "4b699818-611b-46f4-9f44-1882d3056081",
+                  "group_id": null,
+                  "title": "Morning run",
+                  "emoji": "🏃",
+                  "cadence": "daily (Daily)",
+                  "target_days": "[]",
+                  "target_per_week": 1,
+                  "reminder_at": null,
+                  "archived_at": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          20,
+          1,
+          3,
+          5,
+          2
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.check_ins",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my check-ins are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-4b94f101-c086-481c-9270-fa8ad17c4e6a",
+        "question": "How many of my check-ins are there?",
+        "texte": "You have **15** check-ins in total. Nice work building that history! 🎉\n\nWant me to break it down by habit?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "check_ins",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "check_ins",
+              "label": "Check-ins",
+              "total": 15,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "11f5244a-3fe2-4c44-af85-c0c9f7cabd79",
+                  "habit_id": "Read 20 pages (id ca0f6356-b26b-462e-b200-cabb5d2d2fa1)",
+                  "local_date": "2026-10-14",
+                  "note": null
+                }
+              ],
+              "note": "1 ligne montrée sur 15 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 15,
+        "nombres_lus": [
+          15
+        ],
+        "ok": true,
+        "retenu": 15
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.check_ins",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my check-ins.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d839b661-1f74-4f39-b58d-66fb53a0b3e0",
+        "question": "List my check-ins.",
+        "texte": "Here are your check-ins — 15 in total, newest first:\n\n**Today, Oct 14**\n- Meditate\n- Morning run — *\"Easy pace, felt good\"*\n- Read 20 pages\n\n**Tue, Oct 13**\n- Morning run\n- Read 20 pages\n- Water the plants\n\n**Mon, Oct 12**\n- Morning run\n- Meditate\n- Read 20 pages\n\n**Sun, Oct 11**\n- Morning run\n- Read 20 pages\n- Water the plants\n\n**Sat, Oct 10**\n- Morning run\n- Meditate\n\n**Fri, Oct 9**\n- Morning run\n\nNice steady rhythm — Morning run shows up on 6 of these days. Want to open a habit to see its streak and full history?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "check_ins",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "check_ins",
+              "label": "Check-ins",
+              "total": 15,
+              "shown": 15,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "11f5244a-3fe2-4c44-af85-c0c9f7cabd79",
+                  "habit_id": "Read 20 pages (id ca0f6356-b26b-462e-b200-cabb5d2d2fa1)",
+                  "local_date": "2026-10-14",
+                  "note": null
+                },
+                {
+                  "id": "0d7b4761-f4b9-4fe3-bf97-9ae0363e90a4",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-14",
+                  "note": "Easy pace, felt good"
+                },
+                {
+                  "id": "7aaead11-c443-4edf-a0cf-0e8a5ebba8f6",
+                  "habit_id": "Meditate (id 543dc186-1fa9-4c88-8bcc-941d149b7997)",
+                  "local_date": "2026-10-14",
+                  "note": null
+                },
+                {
+                  "id": "adce3d09-aff2-4997-b2b6-1f31a958e01c",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-13",
+                  "note": null
+                },
+                {
+                  "id": "e69cdbf9-bd83-4602-b402-3828a2886ce2",
+                  "habit_id": "Read 20 pages (id ca0f6356-b26b-462e-b200-cabb5d2d2fa1)",
+                  "local_date": "2026-10-13",
+                  "note": null
+                },
+                {
+                  "id": "4df6aad0-d6cd-4b85-8031-7269eb850c1d",
+                  "habit_id": "Water the plants (id 2c39c78e-ee72-4a89-85dd-290dd71aee30)",
+                  "local_date": "2026-10-13",
+                  "note": null
+                },
+                {
+                  "id": "165b7da8-3975-4da2-a03e-c06274ff0c5a",
+                  "habit_id": "Read 20 pages (id ca0f6356-b26b-462e-b200-cabb5d2d2fa1)",
+                  "local_date": "2026-10-12",
+                  "note": null
+                },
+                {
+                  "id": "82436ec5-c228-47f6-8fb1-1fe52e4a434d",
+                  "habit_id": "Meditate (id 543dc186-1fa9-4c88-8bcc-941d149b7997)",
+                  "local_date": "2026-10-12",
+                  "note": null
+                },
+                {
+                  "id": "dcbc908d-0fed-4fd5-b273-0fdc0080761b",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-12",
+                  "note": null
+                },
+                {
+                  "id": "ec7cc56e-d063-4366-9f37-9e8ba190c1a1",
+                  "habit_id": "Water the plants (id 2c39c78e-ee72-4a89-85dd-290dd71aee30)",
+                  "local_date": "2026-10-11",
+                  "note": null
+                },
+                {
+                  "id": "8d5a50ec-70bd-45c6-a4ce-a3dbfcaaba03",
+                  "habit_id": "Read 20 pages (id ca0f6356-b26b-462e-b200-cabb5d2d2fa1)",
+                  "local_date": "2026-10-11",
+                  "note": null
+                },
+                {
+                  "id": "c9c7dcb1-e844-4d5a-af62-b83daec5ff54",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-11",
+                  "note": null
+                },
+                {
+                  "id": "72a2a758-748f-4c7c-96e2-f3c8322fa50c",
+                  "habit_id": "Meditate (id 543dc186-1fa9-4c88-8bcc-941d149b7997)",
+                  "local_date": "2026-10-10",
+                  "note": null
+                },
+                {
+                  "id": "e08995bc-1c5a-46ef-8e0d-2d3b18e9b23c",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-10",
+                  "note": null
+                },
+                {
+                  "id": "025f0c7c-191b-4da7-8e5b-9a2d04367036",
+                  "habit_id": "Morning run (id 4b699818-611b-46f4-9f44-1882d3056081)",
+                  "local_date": "2026-10-09",
+                  "note": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 15,
+        "nombres_lus": [
+          15,
+          20,
+          20,
+          20,
+          20,
+          6
+        ],
+        "ok": true,
+        "retenu": 15,
+        "source": "nombre annoncé",
+        "elements": 15
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.tasks",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my tasks are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b9854a0b-f262-4e87-aea6-b3dff58a13da",
+        "question": "How many of my tasks are there?",
+        "texte": "You have 5 tasks. 💪\n\nWant to see them or check off something?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tasks",
+              "total": 5,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "8bab90d6-454f-4bfb-815b-5e04c93900e2",
+                  "title": "Register for the 10k",
+                  "done_at": null,
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "completion": "once (Once)"
+                }
+              ],
+              "note": "1 ligne montrée sur 5 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 5,
+        "nombres_lus": [
+          5
+        ],
+        "ok": true,
+        "retenu": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.tasks",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my tasks.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-f29f37cb-0b1f-4a70-ace8-3dec0f887f11",
+        "question": "List my tasks.",
+        "texte": "Here are your 5 tasks:\n\n**To do**\n- Register for the 10k — Run Club\n- Renew passport\n\n**Done**\n- Pick next book — Book Club (done Oct 13)\n- Book dentist (done Oct 13)\n- Email the landlord (done Oct 13)\n\nAnything you'd like to tackle first?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tasks",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8bab90d6-454f-4bfb-815b-5e04c93900e2",
+                  "title": "Register for the 10k",
+                  "done_at": null,
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "cd9c39f2-4a68-4a5b-a179-8e2816987f87",
+                  "title": "Renew passport",
+                  "done_at": null,
+                  "group_id": null,
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "695346b1-0b7e-4923-abec-c04d87f54806",
+                  "title": "Pick next book",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "completion": "everyone (Everyone)"
+                },
+                {
+                  "id": "875ebaa2-124e-4b4c-8ff2-090d76505674",
+                  "title": "Book dentist",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": null,
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "8360e110-53ab-4907-b091-7f47806f4f08",
+                  "title": "Email the landlord",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": null,
+                  "completion": "once (Once)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 5,
+        "nombres_lus": [
+          5
+        ],
+        "ok": true,
+        "retenu": 5,
+        "source": "nombre annoncé",
+        "elements": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.task_completions",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my task completions are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-907ab2d5-0ecc-472f-8de3-b206a23ed785",
+        "question": "How many of my task completions are there?",
+        "texte": "You have 3 task completions. 🎉\n\nWant me to show you which tasks they were, or open one of your groups to see how everyone's doing?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "task_completions",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "task_completions",
+              "label": "Task completions",
+              "total": 3,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "task_id": "Pick next book (id 695346b1-0b7e-4923-abec-c04d87f54806)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "done_at": "2026-10-13T16:56"
+                }
+              ],
+              "note": "1 ligne montrée sur 3 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.task_completions",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my task completions.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-790ee7c4-0068-4e96-9c87-9fe3edbac160",
+        "question": "List my task completions.",
+        "texte": "I'll look that up for you.\n\nHere are your task completions — 3 in total, all on **October 13, 2026 at 16:56**:\n\n- **Pick next book** — shared with Book Club (everyone)\n- **Book dentist** — personal\n- **Email the landlord** — personal\n\nNice batch done in one go! 🎉 Two tasks are still open: *Register for the 10k* (Run Club) and *Renew passport*.\n\nWant me to open your Today screen so you can keep going?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "task_completions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "task_completions",
+              "label": "Task completions",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "task_id": "Pick next book (id 695346b1-0b7e-4923-abec-c04d87f54806)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "done_at": "2026-10-13T16:56"
+                },
+                {
+                  "task_id": "Book dentist (id 875ebaa2-124e-4b4c-8ff2-090d76505674)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "done_at": "2026-10-13T16:56"
+                },
+                {
+                  "task_id": "Email the landlord (id 8360e110-53ab-4907-b091-7f47806f4f08)",
+                  "user_id": "2f7dc620-9cb7-4ac7-91e8-0d2a70b6ef1f",
+                  "done_at": "2026-10-13T16:56"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "tasks",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "tasks",
+              "label": "Tasks",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8bab90d6-454f-4bfb-815b-5e04c93900e2",
+                  "title": "Register for the 10k",
+                  "done_at": null,
+                  "group_id": "Run Club (id 85131d31-5e0d-4188-87c1-d5dbfbd09eea)",
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "cd9c39f2-4a68-4a5b-a179-8e2816987f87",
+                  "title": "Renew passport",
+                  "done_at": null,
+                  "group_id": null,
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "695346b1-0b7e-4923-abec-c04d87f54806",
+                  "title": "Pick next book",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": "Book Club (id 3b991e8a-dad8-4523-bc2b-88f0ed53bfcf)",
+                  "completion": "everyone (Everyone)"
+                },
+                {
+                  "id": "875ebaa2-124e-4b4c-8ff2-090d76505674",
+                  "title": "Book dentist",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": null,
+                  "completion": "once (Once)"
+                },
+                {
+                  "id": "8360e110-53ab-4907-b091-7f47806f4f08",
+                  "title": "Email the landlord",
+                  "done_at": "2026-10-13T16:56",
+                  "group_id": null,
+                  "completion": "once (Once)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          2
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.focus_sessions",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my focus sessions are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-c9dfe699-8115-45f8-bb5e-5066c2aa0602",
+        "question": "How many of my focus sessions are there?",
+        "texte": "You have 4 focus sessions in total. 💪 That's 145 minutes of focused work — nice going!",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "focus_sessions",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "focus_sessions",
+              "label": "Focus sessions",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "99fa71ed-70ab-4d93-933b-a072e0bd733b",
+                  "task_id": "Email the landlord (id 8360e110-53ab-4907-b091-7f47806f4f08)",
+                  "started_at": "2026-10-14T14:56",
+                  "minutes": 25
+                },
+                {
+                  "id": "0e13f8b5-fa34-444c-8105-3c5904bdc902",
+                  "task_id": "Renew passport (id cd9c39f2-4a68-4a5b-a179-8e2816987f87)",
+                  "started_at": "2026-10-14T11:56",
+                  "minutes": 50
+                },
+                {
+                  "id": "fa3f37cd-8fca-44e3-9df5-c6c6d7189692",
+                  "task_id": "Renew passport (id cd9c39f2-4a68-4a5b-a179-8e2816987f87)",
+                  "started_at": "2026-10-14T08:56",
+                  "minutes": 25
+                },
+                {
+                  "id": "28205f35-5ac7-41a0-8706-a62cfe7ec322",
+                  "task_id": null,
+                  "started_at": "2026-10-14T06:56",
+                  "minutes": 45
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          145
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.focus_sessions",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my focus sessions.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-866f5802-d6e5-4ddf-8194-0626cc498285",
+        "question": "List my focus sessions.",
+        "texte": "You have 4 focus sessions — all from today. 💪\n\n- **14:56** — Email the landlord · 25 min\n- **11:56** — Renew passport · 50 min\n- **08:56** — Renew passport · 25 min\n- **06:56** — no task · 45 min\n\nThat's 145 minutes of focus today. Nice work! Want to start another one?\n\nTap the button above to open the focus timer. 🎯",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "focus_sessions",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "focus_sessions",
+              "label": "Focus sessions",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "99fa71ed-70ab-4d93-933b-a072e0bd733b",
+                  "task_id": "Email the landlord (id 8360e110-53ab-4907-b091-7f47806f4f08)",
+                  "started_at": "2026-10-14T14:56",
+                  "minutes": 25
+                },
+                {
+                  "id": "0e13f8b5-fa34-444c-8105-3c5904bdc902",
+                  "task_id": "Renew passport (id cd9c39f2-4a68-4a5b-a179-8e2816987f87)",
+                  "started_at": "2026-10-14T11:56",
+                  "minutes": 50
+                },
+                {
+                  "id": "fa3f37cd-8fca-44e3-9df5-c6c6d7189692",
+                  "task_id": "Renew passport (id cd9c39f2-4a68-4a5b-a179-8e2816987f87)",
+                  "started_at": "2026-10-14T08:56",
+                  "minutes": 25
+                },
+                {
+                  "id": "28205f35-5ac7-41a0-8706-a62cfe7ec322",
+                  "task_id": null,
+                  "started_at": "2026-10-14T06:56",
+                  "minutes": 45
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "focus"
+            },
+            "sortie": {
+              "href": "/focus",
+              "label": "Focus"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          25,
+          50,
+          25,
+          45,
+          145
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 14
+  },
+  "couverture": {
+    "lues": 7,
+    "total": 11,
+    "tables": [
+      {
+        "table": "public.profiles",
+        "lue": false
+      },
+      {
+        "table": "public.groups",
+        "lue": true
+      },
+      {
+        "table": "public.group_members",
+        "lue": true
+      },
+      {
+        "table": "public.habits",
+        "lue": true
+      },
+      {
+        "table": "public.habit_order",
+        "lue": false
+      },
+      {
+        "table": "public.check_ins",
+        "lue": true
+      },
+      {
+        "table": "public.reactions",
+        "lue": false
+      },
+      {
+        "table": "public.nudges",
+        "lue": false
+      },
+      {
+        "table": "public.tasks",
+        "lue": true
+      },
+      {
+        "table": "public.task_completions",
+        "lue": true
+      },
+      {
+        "table": "public.focus_sessions",
+        "lue": true
+      }
+    ],
+    "texte": "7/11"
+  }
+}

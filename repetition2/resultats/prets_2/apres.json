@@ -1,0 +1,77 @@
+{
+  "dossier": "/work/prets_2/apres",
+  "commit": "b75c7ae3725df9e9b314eac9c9cb48631736b603",
+  "debut": "2026-10-14T17:26:11.918Z",
+  "fin": "2026-10-14T17:26:54.696Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/prets_2/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/prets_2/apres",
+    "code": 0,
+    "duree_s": 18,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 855 packages in 18s"
+    ],
+    "journal": "/work/prets_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/prets_2/apres",
+      "code": 0,
+      "duree_s": 2,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/prets_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/prets_2/apres",
+      "code": 0,
+      "duree_s": 17,
+      "erreurs": [],
+      "fin": [
+        "> prets@1.0.0 lint",
+        "> expo lint"
+      ],
+      "journal": "/work/prets_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/prets_2/apres",
+      "code": 0,
+      "duree_s": 5,
+      "erreurs": [],
+      "fin": [
+        "/item/[id] (19KB)",
+        "/+not-found (19KB)",
+        "Exported: /tmp/mesure-export-5uGEfP"
+      ],
+      "journal": "/work/prets_2/apres-journaux/build.txt"
+    }
+  }
+}

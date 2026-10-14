@@ -1,0 +1,100 @@
+diff --git a/src/app/[locale]/(dashboard)/layout.tsx b/src/app/[locale]/(dashboard)/layout.tsx
+index 8090281..74dd669 100644
+--- a/src/app/[locale]/(dashboard)/layout.tsx
++++ b/src/app/[locale]/(dashboard)/layout.tsx
+@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
+ import { DemoBanner } from "@/components/features/demo-banner";
+ import { AppSidebar } from "@/components/features/app-sidebar";
+ import { SpaceSwitcher } from "@/components/features/space-switcher";
++import { VakAssistant } from "@/components/features/vak-assistant";
+ import { MobileNav } from "@/components/features/mobile-nav";
+ import { getAppUser } from "@/lib/auth";
+ import { getActiveSpace, getSpaces } from "@/lib/get-active-space";
+@@ -60,6 +61,7 @@ export default async function DashboardLayout({
+           />
+         </header>
+         <main className="flex-1 p-4 md:p-6">{children}</main>
++        {user && !user.isDemo ? <VakAssistant /> : null}
+       </div>
+     </div>
+   );
+diff --git a/src/app/[locale]/(dashboard)/settings/agent-settings.tsx b/src/app/[locale]/(dashboard)/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..6ab281d
+--- /dev/null
++++ b/src/app/[locale]/(dashboard)/settings/agent-settings.tsx
+@@ -0,0 +1,8 @@
++"use client";
++
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/app/[locale]/(dashboard)/settings/page.tsx b/src/app/[locale]/(dashboard)/settings/page.tsx
+index 9d7ddb5..b34de40 100644
+--- a/src/app/[locale]/(dashboard)/settings/page.tsx
++++ b/src/app/[locale]/(dashboard)/settings/page.tsx
+@@ -15,6 +15,7 @@ import { getProfileSettings } from "@/lib/get-profile-settings";
+ import { listRecurringClusterSuggestions } from "@/lib/finance/recurring-suggestions";
+ import { isEnableBankingConfigured } from "@/lib/enable-banking/jwt";
+ import { isSupabaseConfigured } from "@/lib/supabase/client";
++import { VakSettings } from "./agent-settings";
+ 
+ export default async function SettingsPage({
+   params,
+@@ -207,6 +208,8 @@ export default async function SettingsPage({
+         schemaReady={categoriesSchemaReady}
+       />
+ 
++      {isSupabaseConfigured() && user && !user.isDemo ? <VakSettings /> : null}
++
+       <Card>
+         <CardHeader>
+           <CardTitle className="text-base">{t("account")}</CardTitle>
+diff --git a/src/app/[locale]/layout.tsx b/src/app/[locale]/layout.tsx
+index 8bf0086..86ca4ed 100644
+--- a/src/app/[locale]/layout.tsx
++++ b/src/app/[locale]/layout.tsx
+@@ -5,6 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
+ import { ThemeProvider } from "@/components/providers/theme-provider";
+ import { Toaster } from "@/components/ui/sonner";
+ import { routing } from "@/i18n/routing";
++import "@vak/agent/web/styles.css";
+ import "../globals.css";
+ 
+ const ibmPlex = IBM_Plex_Sans({
+diff --git a/src/components/features/vak-assistant.tsx b/src/components/features/vak-assistant.tsx
+new file mode 100644
+index 0000000..7b40938
+--- /dev/null
++++ b/src/components/features/vak-assistant.tsx
+@@ -0,0 +1,27 @@
++/**
++ * @file vak-assistant.tsx
++ * @description Bouton flottant de l'assistant IA vak, monté sur tous les écrans du dashboard.
++ */
++
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useLocale } from "next-intl";
++import { useRouter } from "@/i18n/navigation";
++import { vak } from "@/lib/vak";
++
++export function VakAssistant() {
++  const router = useRouter();
++  const locale = useLocale();
++
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      lang={locale}
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/login")}
++      theme={{ accent: "#0F766E", mode: "system" }}
++    />
++  );
++}

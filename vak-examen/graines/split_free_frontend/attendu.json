@@ -1,0 +1,42 @@
+[
+  {
+    "table": "public.groups",
+    "colonne": "owner",
+    "nom": "groups",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": ["MARQUEUR-B-D25A861E", "MARQUEUR-B-1BF1E493", "MARQUEUR-B-C9C10F78", "MARQUEUR-B-F61A9AA3"]
+  },
+  {
+    "table": "public.members",
+    "colonne": "profile",
+    "nom": "group memberships",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": ["MARQUEUR-B-8A9710EA", "MARQUEUR-B-AC67D349"]
+  },
+  {
+    "table": "public.friends",
+    "colonne": "profile",
+    "nom": "friends",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.friend_requests",
+    "colonne": "sender",
+    "nom": "friend requests",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.group_invitations",
+    "colonne": "sender",
+    "nom": "group invitations",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": ["MARQUEUR-B-390FC04D", "MARQUEUR-B-1DEC0C99"]
+  }
+]

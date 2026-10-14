@@ -1,0 +1,61 @@
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+index 0eb05ad..5943579 100644
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -19,6 +19,7 @@ const TITLES: Record<string, string> = {
+   index: 'Today',
+   groups: 'Groups',
+   focus: 'Focus',
++  assistant: 'Assistant',
+ };
+ 
+ /**
+@@ -111,6 +112,7 @@ export default function TabsLayout() {
+       <Tabs.Screen name="index" />
+       <Tabs.Screen name="groups" />
+       <Tabs.Screen name="focus" />
++      <Tabs.Screen name="assistant" options={{ title: 'Assistant' }} />
+     </Tabs>
+   );
+ }
+diff --git a/app/you.tsx b/app/you.tsx
+index 06569a5..3758757 100644
+--- a/app/you.tsx
++++ b/app/you.tsx
+@@ -1,6 +1,7 @@
+ import { useCallback, useMemo, useState } from 'react';
+ import { StyleSheet, Text, View } from 'react-native';
+ import { useRouter } from 'expo-router';
++import { AgentSettings } from '@vak/agent/native';
+ import { Avatar } from '@/components/Avatar';
+ import { Button } from '@/components/ui';
+ import { Choice } from '@/components/Choice';
+@@ -16,6 +17,7 @@ import { StatTrio } from '@/components/StatTrio';
+ import { Tag } from '@/components/Tag';
+ import { useAuth } from '@/auth/AuthProvider';
+ import { confirm } from '@/lib/confirm';
++import { vak } from '@/lib/vak';
+ import { handle } from '@/lib/identity';
+ import {
+   byHabit,
+@@ -278,6 +280,8 @@ export default function YouScreen() {
+         </FieldRow>
+       </Section>
+ 
++      <AgentSettings {...vak} />
++
+       <Button title="Sign out" variant="outline" onPress={() => signOut()} />
+ 
+       {error ? <Notice label="Could not delete">{error}</Notice> : null}
+diff --git a/tsconfig.json b/tsconfig.json
+index 784e5ff..df984fd 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -19,5 +19,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

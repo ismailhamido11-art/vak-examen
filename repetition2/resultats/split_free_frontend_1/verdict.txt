@@ -1,0 +1,32 @@
+verdict split_free_frontend_1 : réussi
+{
+  "id": "split_free_frontend_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "2/5",
+    "listes_sans_decider": [
+      {
+        "question": "List my groups.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my group memberships.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

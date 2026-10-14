@@ -1,0 +1,25 @@
+{
+  "id": "disques_1",
+  "etat_commite": "4ef6448ced07f3a03d83a8115650035581bffa31",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:7-68 : aucune clé functions, l'assistant n'appelle aucune fonction de l'app ; agent.ts:54 : ignore: {}",
+      "agent.ts:18-53 : vinyls (lignes 19-36) et listenings (lignes 37-52) ne déclarent ni create ni update ; aucune table ne déclare de suppression",
+      "supabase/migrations/20260101000000_collection_vinyles.sql:1-49 : la seule migration de l'app ne crée ni fonction ni déclencheur ; ses « on delete cascade » (lignes 7, 23 et 31) ne jouent que si un compte ou un disque est supprimé, ce que l'assistant ne peut pas faire. La suppression d'un disque est un geste de l'écran de l'app (src/app/vinyl/[id].tsx:31, supabase.from('vinyls').delete()) : l'outil open_screen (agent.ts:57, écran disque) ne fait que proposer le lien (vendor/vak/vak-agent-0.28.1.tgz, docs/HTTP.md:92, OpenScreenOutput { href, label })",
+      "agent.ts:61 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même ; package/dist/index.js:243 « readOnly: true ») ; memory() ajoute un souvenir sans jamais en supprimer (package/dist/index.js:343 « neverDeletes: true ») ; DELETE memory/:id (package/dist/index.js:359) et DELETE data (vak_erase_data, supabase/migrations/20261014151116_vak_0004_quota_erase.sql:220-243, suppressions lignes 237-242) sont des routes de l'utilisateur, dans ses réglages, pas des outils de l'assistant (docs/HTTP.md:27 et :29 ; outils : docs/HTTP.md:90-91)"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      { "table": "public.vak_memories", "nom": "sa mémoire (prise memory)", "preuve": "agent.ts:61, plugins : memory() (supabase/migrations/20261014151113_vak_0001_core.sql:38)" }
+    ],
+    "note": "agent.ts:18-53 : aucune table de l'app ne déclare create ni update, et aucune fonction n'est déclarée ; la migration de l'app n'a ni fonction ni déclencheur (supabase/migrations/20260101000000_collection_vinyles.sql:1-49), et aucune migration de vak n'en pose sur une table de l'app. L'historique des conversations (vak_save_messages, supabase/migrations/20261014151113_vak_0001_core.sql:204-242, dont le delete des messages retirés ligne 238), l'usage (prise quota), l'accord (prise consent), les avis (POST feedback) et le journal des validations (vak_actions et son empreinte dans vak_usage, posés par vak_claim_action et vak_deny_action, supabase/migrations/20261014151116_vak_0004_quota_erase.sql:163-189 et 192-214, quand l'utilisateur répond à la carte de memory_save ; insertions seulement) sont écrits par le module à chaque tour ou par l'utilisateur, pas par un outil de l'assistant, comme aux examens précédents (etiquettes/README.md : de vak, seule la mémoire compte) ; aucune autre table"
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:147 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1, VAK_OPENAI_COMPAT_NAME=DeepSeek) et :150 (--allow-net … api.deepseek.com), pile.sh inchangé depuis f2abc19 (13/10), l'essai a tourné le 14/10 ; preparation.json, acces_admis : DEEPSEEK_API_KEY ; pile.txt : « pile disques_1 prête »"
+  }
+}

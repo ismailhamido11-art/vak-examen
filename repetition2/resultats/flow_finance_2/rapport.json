@@ -1,0 +1,281 @@
+{
+  "id": "flow_finance_2",
+  "verdict": "réussi",
+  "raisons": [],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)",
+    "table(s) « à moi » écartée(s) par l'agent (ignore), sans échec de preuve au journal : choix de périmètre, à dire à l'humain : bank_connections, crypto_holdings, crypto_portfolio_settings, crypto_transactions, pea_holdings, pea_investment_plans, pea_settings, pea_transactions, profiles, recurring_payments, recurring_suggestion_dismissals, savings_adjustments, savings_goal_allocations, spaces, bank_connections, crypto_holdings, crypto_portfolio_settings, crypto_transactions, pea_holdings, pea_investment_plans, pea_settings, pea_transactions, profiles, recurring_payments, recurring_suggestion_dismissals, savings_adjustments, savings_goal_allocations, spaces"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/Alexandre-Pascal/flow-finance",
+  "commit": "642880178c93a8206834b1a1b5ca1de9bcd9c7a0",
+  "prepare": "7b90bc9e2ce35d30ddb5b5435e790f49dff4a418",
+  "head": "1ccc79b2a660c366a81bb48854c3d882d37d3337",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "1ccc79b2a660c366a81bb48854c3d882d37d3337",
+      "date": "2026-10-14T18:17:15+00:00",
+      "sujet": "feat: assistant IA vak (bouton flottant, page et réglages)"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "7b90bc9e2ce35d30ddb5b5435e790f49dff4a418",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.28.1.tgz",
+      "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.28.1.tgz",
+        "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+      }
+    ],
+    "vakInstalle": "0.28.1"
+  },
+  "controle": {
+    "debut": "2026-10-14T18:19:19.944Z",
+    "fin": "2026-10-14T18:21:23.165Z",
+    "duree_s": 123,
+    "node": "v22.22.0"
+  },
+  "vak": {
+    "test": {
+      "commande": "vak test",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "vak test : tout est vert [code 0]",
+      "signaux": []
+    },
+    "localdb": {
+      "commande": "vak localdb",
+      "code": 0,
+      "duree_s": 4,
+      "resume": "base locale vak_local_ebaa13 prête : 36 migration(s) appliquée(s) [code 0]",
+      "signaux": []
+    },
+    "doctor": {
+      "commande": "vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_ebaa13'",
+      "code": 0,
+      "duree_s": 16,
+      "resume": "doctor : aucun échec, mais des avertissements (!) à lire [code 0]",
+      "signaux": [
+        "! VAK013 chaque table de l'app est calibrée ou ignorée (5 dans tables ; ignore : 14 tables, 0 fonctions) ; dans ignore, tables de l'utilisateur : « bank_connections », « crypto_holdings », « crypto_portfolio_settings », « crypto_transactions », « pea_holdings », « pea_investment_plans », « pea_settings », « pea_transactions », « profiles », « recurring_payments », « recurring_suggestion_dismissals », « savings_adjustments », « savings_goal_allocations », « spaces » (« bank_connections » : calibre-la, owner ; « crypto_holdings » : calibre-la, owner ; « crypto_portfolio_settings » : calibre-la, owner ; « crypto_transactions » : calibre-la, owner ; « pea_holdings » : calibre-la, owner ; « pea_investment_plans » : calibre-la, owner ; « pea_settings » : calibre-la, owner ; « pea_transactions » : calibre-la, owner ; « profiles » : calibre-la, owner ; « recurring_payments » : calibre-la, owner ; « recurring_suggestion_dismissals » : calibre-la, owner ; « savings_adjustments » : calibre-la, owner ; « savings_goal_allocations » : calibre-la, owner ; « spaces » : calibre-la, owner)",
+        "! VAK108 colonnes qui décident des droits (avertissement) (transactions.account_id : modifiable par l'utilisateur et lue par la politique « transactions_select_own » : elle décide qui voit la ligne)"
+      ]
+    },
+    "localdb-drop": {
+      "commande": "vak localdb --drop",
+      "code": 0,
+      "duree_s": 0,
+      "resume": "base locale vak_local_ebaa13 supprimée [code 0]",
+      "signaux": []
+    },
+    "prove": {
+      "commande": "vak prove",
+      "code": 0,
+      "duree_s": 5,
+      "resume": "preuve à deux comptes : éprouvé (5 éprouvée(s), 0 en échec, 0 non prouvée(s) ; 200 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]",
+      "signaux": []
+    }
+  },
+  "preuve": {
+    "commite": {
+      "verdict": "éprouvé",
+      "vak": "0.28.1",
+      "at": "2026-10-14T18:15:54.988Z",
+      "tables": {
+        "accounts": "éprouvé",
+        "categories": "éprouvé",
+        "savings_accounts": "éprouvé",
+        "savings_goals": "éprouvé",
+        "transactions": "éprouvé"
+      },
+      "fonctions": {}
+    },
+    "controle": {
+      "verdict": "éprouvé",
+      "vak": "0.28.1",
+      "at": "2026-10-14T18:15:54.988Z",
+      "tables": {
+        "accounts": "éprouvé",
+        "categories": "éprouvé",
+        "savings_accounts": "éprouvé",
+        "savings_goals": "éprouvé",
+        "transactions": "éprouvé"
+      },
+      "fonctions": {}
+    }
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 16,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 19,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "tsc --noEmit",
+        "code": 0,
+        "duree_s": 10,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "tsc --noEmit",
+        "code": 0,
+        "duree_s": 11,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 14,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 38,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run test",
+        "code": 1,
+        "duree_s": 5,
+        "erreurs": 1,
+        "fin": [
+          "Tests  1 failed | 152 passed (153)",
+          "Start at  18:08:13",
+          "Duration  3.85s (transform 969ms, setup 0ms, collect 1.88s, tests 293ms, environment 5ms, prepare 2.58s)"
+        ]
+      },
+      "apres": {
+        "commande": "npm run test",
+        "code": 1,
+        "duree_s": 4,
+        "erreurs": 1,
+        "fin": [
+          "Tests  1 failed | 152 passed (153)",
+          "Start at  18:20:28",
+          "Duration  2.80s (transform 807ms, setup 0ms, collect 1.57s, tests 286ms, environment 5ms, prepare 2.01s)"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run build",
+        "code": 0,
+        "duree_s": 25,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run build",
+        "code": 0,
+        "duree_s": 26,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          902,
+          926
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A .agents/skills/vak/SKILL.md",
+      "A .agents/skills/vak/references/calibration.md",
+      "A .agents/skills/vak/references/features.md",
+      "A .agents/skills/vak/references/guardrails.md",
+      "A .agents/skills/vak/references/local-first.md",
+      "A .agents/skills/vak/references/ui.md",
+      "A .claude/skills/vak/SKILL.md",
+      "A .claude/skills/vak/references/calibration.md",
+      "A .claude/skills/vak/references/features.md",
+      "A .claude/skills/vak/references/guardrails.md",
+      "A .claude/skills/vak/references/local-first.md",
+      "A .claude/skills/vak/references/ui.md",
+      "M AGENTS.md",
+      "M package-lock.json",
+      "M package.json",
+      "A src/app/[locale]/(dashboard)/assistant/assistant.tsx",
+      "A src/app/[locale]/(dashboard)/assistant/page.tsx",
+      "A src/lib/vak.ts",
+      "M supabase/.gitignore",
+      "M supabase/config.toml",
+      "A supabase/functions/vak/agent.ts",
+      "A supabase/functions/vak/deno.json",
+      "A supabase/functions/vak/index.ts",
+      "A supabase/functions/vak/schema.gen.ts",
+      "A supabase/functions/vak/tsconfig.json",
+      "A supabase/functions/vak/vak-proof.json",
+      "A supabase/functions/vak/vak-server.mjs",
+      "A supabase/functions/vak/vak.lock.json",
+      "A supabase/migrations/20261014181048_vak_0001_core.sql",
+      "A supabase/migrations/20261014181049_vak_0002_feedback.sql",
+      "A supabase/migrations/20261014181050_vak_0003_history.sql",
+      "A supabase/migrations/20261014181051_vak_0004_quota_erase.sql",
+      "M tsconfig.json",
+      "A vendor/vak/vak-agent-0.28.1.tgz"
+    ],
+    "aRelire": [
+      "M messages/en.json",
+      "M messages/fr.json",
+      "M src/app/[locale]/(dashboard)/layout.tsx",
+      "A src/app/[locale]/(dashboard)/settings/agent-settings.tsx (branchement : cite vak)",
+      "M src/app/[locale]/(dashboard)/settings/page.tsx",
+      "M src/app/[locale]/layout.tsx (branchement : cite vak)",
+      "M src/components/features/app-sidebar.tsx",
+      "A src/components/features/assistant-button.tsx (branchement : cite vak)",
+      "M src/components/features/mobile-nav.tsx"
+    ]
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/5 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/split_free_frontend_1/apres",
+  "lecture": {
+    "fichier": "/work/split_free_frontend_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.groups",
+      "public.members",
+      "public.expenses",
+      "public.debts",
+      "public.transfers"
+    ],
+    "ignorees": [
+      "public.get_group_expense_stats",
+      "public.debts_per_expense",
+      "public.expense_participants",
+      "public.expense_payers",
+      "public.friend_requests",
+      "public.friends",
+      "public.group_invitations",
+      "public.profiles",
+      "public.invite_tokens",
+      "public.accept_friend_request",
+      "public.create_expense",
+      "public.create_group",
+      "public.deleteuser",
+      "public.exit_group",
+      "public.generate_invite_token",
+      "public.get_groups_summary",
+      "public.get_invite_group_id",
+      "public.get_unbound_members_for_token",
+      "public.join_group_with_token",
+      "public.search_friends",
+      "public.self_assign_to",
+      "public.settle_expense",
+      "public.settle_group",
+      "public.sum_group_expenses",
+      "public.update_expense",
+      "public.update_group",
+      "public.use_expense"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.groups",
+      "colonne": "owner",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    },
+    {
+      "table": "public.members",
+      "colonne": "profile",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.groups",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my groups are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-e70c4bcf-8912-4d19-8ced-c75f7f7197a2",
+        "question": "How many of my groups are there?",
+        "texte": "You have 4 groups: **Weekend in Lisbon**, **Flatshare 2026**, **Ski trip** and **Office lunches** (all in EUR).\n\nWant me to open any of them?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": 1,
+                  "title": "Weekend in Lisbon",
+                  "description": "Flights, hotel and dinners",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 2,
+                  "title": "Flatshare 2026",
+                  "description": "Rent, internet and groceries",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 3,
+                  "title": "Ski trip",
+                  "description": "Chalet and lift passes",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 4,
+                  "title": "Office lunches",
+                  "description": "Friday lunches with the team",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          2026
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.groups",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my groups.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0193c718-e3dd-4113-ba1e-d194367b7732",
+        "question": "List my groups.",
+        "texte": "I'll pull up your groups for you.\n\nYou have 4 groups (all in EUR):\n\n1. **Weekend in Lisbon** — Flights, hotel and dinners\n2. **Flatshare 2026** — Rent, internet and groceries\n3. **Ski trip** — Chalet and lift passes\n4. **Office lunches** — Friday lunches with the team\n\nAll 4 are currently settled, with no expenses recorded yet.\n\nWould you like to open one of them?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": 1,
+                  "title": "Weekend in Lisbon",
+                  "description": "Flights, hotel and dinners",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 2,
+                  "title": "Flatshare 2026",
+                  "description": "Rent, internet and groceries",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 3,
+                  "title": "Ski trip",
+                  "description": "Chalet and lift passes",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 4,
+                  "title": "Office lunches",
+                  "description": "Friday lunches with the team",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          2026,
+          4
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.members",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my group memberships are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d48a6c77-6111-4418-94a2-e01bead9fb12",
+        "question": "How many of my group memberships are there?",
+        "texte": "I'll look that up.\n\nYou have 4 group memberships — and you're the owner in all of them:\n\n- Weekend in Lisbon\n- Flatshare 2026\n- Ski trip\n- Office lunches\n\nAll 4 are marked as settled, with no expenses recorded so far.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": 1,
+                  "title": "Weekend in Lisbon",
+                  "description": "Flights, hotel and dinners",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 2,
+                  "title": "Flatshare 2026",
+                  "description": "Rent, internet and groceries",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 3,
+                  "title": "Ski trip",
+                  "description": "Chalet and lift passes",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 4,
+                  "title": "Office lunches",
+                  "description": "Friday lunches with the team",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "members",
+              "label": "Members",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": 1,
+                  "name": "Alex",
+                  "group_id": "Weekend in Lisbon (id 1)",
+                  "role": "owner",
+                  "total_balance": 0,
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 2,
+                  "name": "Alex",
+                  "group_id": "Flatshare 2026 (id 2)",
+                  "role": "owner",
+                  "total_balance": 0,
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 3,
+                  "name": "Alex",
+                  "group_id": "Ski trip (id 3)",
+                  "role": "owner",
+                  "total_balance": 0,
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 4,
+                  "name": "Alex",
+                  "group_id": "Office lunches (id 4)",
+                  "role": "owner",
+                  "total_balance": 0,
+                  "created_at": "2026-10-14T15:58"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          2026,
+          4
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.members",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my group memberships.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-597238c1-bbd5-4542-b5d5-4354fccc3dd2",
+        "question": "List my group memberships.",
+        "texte": "Here are your 4 group memberships:\n\n1. **Weekend in Lisbon** — Flights, hotel and dinners (EUR, settled)\n2. **Flatshare 2026** — Rent, internet and groceries (EUR, settled)\n3. **Ski trip** — Chalet and lift passes (EUR, settled)\n4. **Office lunches** — Friday lunches with the team (EUR, settled)\n\nAll four are currently settled. Would you like to open a group's details?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "groups",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "groups",
+              "label": "Groups",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": 1,
+                  "title": "Weekend in Lisbon",
+                  "description": "Flights, hotel and dinners",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 2,
+                  "title": "Flatshare 2026",
+                  "description": "Rent, internet and groceries",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 3,
+                  "title": "Ski trip",
+                  "description": "Chalet and lift passes",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                },
+                {
+                  "id": 4,
+                  "title": "Office lunches",
+                  "description": "Friday lunches with the team",
+                  "expense_total": 0,
+                  "settled": true,
+                  "currency": "EUR",
+                  "created_at": "2026-10-14T15:58"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          2026,
+          4
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 8
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 5,
+    "tables": [
+      {
+        "table": "public.groups",
+        "lue": true
+      },
+      {
+        "table": "public.members",
+        "lue": true
+      },
+      {
+        "table": "public.friends",
+        "lue": false
+      },
+      {
+        "table": "public.friend_requests",
+        "lue": false
+      },
+      {
+        "table": "public.group_invitations",
+        "lue": false
+      }
+    ],
+    "texte": "2/5"
+  }
+}

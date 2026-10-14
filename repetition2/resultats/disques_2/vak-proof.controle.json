@@ -1,0 +1,39 @@
+{
+  "vak": "0.28.1",
+  "at": "2026-10-14T17:01:12.696Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:adb50986623a1bded320d610c72fc50e40381893f038da12b5369a5ce1fcbe13",
+  "schema": "sha256:ee1edc7ed85e44270ec1172d38381142f4f7502e7b6675b96bfdfbda1358d8b4",
+  "tables": {
+    "listenings": "éprouvé",
+    "vinyls": "éprouvé"
+  },
+  "notes": {
+    "listenings": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "modification de la ligne de B : refusée",
+      "coéquipier de A non semé (23503 insert or update on table \"listenings\" violates foreign key constraint \"listenings_vinyl_id_user_id_fkey\") : le partage entre membres n'est pas vérifié",
+      "totaux de read_data : 4 ligne(s) de A ajoutée(s) aux bornes des périodes ; 44 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "vinyls": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "modification de la ligne de B : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 53 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « titre 0 a »"
+    ]
+  },
+  "totals": 97,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Disques (Titre, Artiste, Année, État, Genres, Prix d'achat (€), Ajouté le) ; Écoutes (Disque, Écoutée le, Face, Note (1 à 5), Commentaire)",
+    "Peut proposer (après ta validation) : ajouter dans Disques (Titre, Artiste, Année, État, Prix d'achat (€)) ; modifier dans Disques (Titre, Artiste, Année, État, Prix d'achat (€)) ; ajouter dans Écoutes (Disque, Écoutée le, Face, Note (1 à 5), Commentaire) ; modifier dans Écoutes (Écoutée le, Face, Note (1 à 5), Commentaire) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Fiche du disque, Ajouter un disque, Ajouter une écoute",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)"
+  ]
+}

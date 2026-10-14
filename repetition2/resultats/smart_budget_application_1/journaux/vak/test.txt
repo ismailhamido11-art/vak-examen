@@ -1,0 +1,22 @@
+$ vak test
+(dossier : /work/smart_budget_application_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (6 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1729 tokens (maximum 5000)
+✓ evals 2 évaluations bien formées
+✓ tour read_data transactions exécuté sans validation → {"table":"transactions","label":"Transactions","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-…
+✓ tour read_data categories exécuté sans validation → {"table":"categories","label":"Catégories","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000…
+✓ tour read_data category_budgets exécuté sans validation → {"table":"category_budgets","label":"Budgets par catégorie","total":2,"shown":2,"complete":true,"rows":[{"id":"000000…
+✓ tour read_data goals exécuté sans validation → {"table":"goals","label":"Objectifs d'épargne","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-…
+✓ tour read_data households exécuté sans validation → {"table":"households","label":"Foyers","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000…
+✓ tour read_data household_members exécuté sans validation → {"table":"household_members","label":"Membres du foyer","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0…
+✓ tour open_screen tableau_de_bord exécuté sans validation → {"href":"/dashboard","label":"Tableau de bord"}
+✓ tour open_screen transactions exécuté sans validation → {"href":"/transactions","label":"Transactions"}
+✓ tour open_screen categories exécuté sans validation → {"href":"/categories","label":"Catégories"}
+✓ tour open_screen objectifs exécuté sans validation → {"href":"/goals","label":"Objectifs"}
+✓ tour open_screen foyer exécuté sans validation → {"href":"/household","label":"Foyer"}
+✓ tour open_screen reglages exécuté sans validation → {"href":"/settings","label":"Réglages"}
+vak test : tout est vert [code 0]

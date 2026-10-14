@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/flow_finance_2/apres)
+
+base locale vak_local_ebaa13 supprimée [code 0]

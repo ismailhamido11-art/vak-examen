@@ -1,0 +1,19 @@
+$ vak test
+(dossier : /work/streakmates_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (5 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1371 tokens (maximum 5000)
+✓ evals 0 évaluations bien formées
+✓ tour read_data habits exécuté sans validation → {"table":"habits","label":"Habits","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000030…
+✓ tour read_data check_ins exécuté sans validation → {"table":"check_ins","label":"Check-ins","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour read_data tasks exécuté sans validation → {"table":"tasks","label":"Tasks","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000005000…
+✓ tour read_data focus_sessions exécuté sans validation → {"table":"focus_sessions","label":"Focus sessions","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4…
+✓ tour read_data profiles exécuté sans validation → {"table":"profiles","label":"Profile","total":1,"shown":1,"complete":true,"rows":[{"id":"7e570000-0000-4000-8000-0000…
+✓ tour open_screen habit_new exécuté sans validation → {"href":"/habit/new","label":"New habit"}
+✓ tour open_screen habit_detail exécuté sans validation → {"href":"/habit/00000000-0000-4000-8000-000003000000","label":"Habit"}
+✓ tour open_screen focus exécuté sans validation → {"href":"/focus","label":"Focus"}
+✓ tour open_screen groups exécuté sans validation → {"href":"/groups","label":"Groups"}
+vak test : tout est vert [code 0]

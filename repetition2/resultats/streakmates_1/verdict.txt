@@ -1,0 +1,67 @@
+verdict streakmates_1 : réussi
+{
+  "id": "streakmates_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "7/11",
+    "listes_sans_decider": [
+      {
+        "question": "List my groups.",
+        "attendu": 2,
+        "lu": 2,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my group memberships.",
+        "attendu": 2,
+        "lu": 2,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my habits.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my check-ins.",
+        "attendu": 15,
+        "lu": 15,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my tasks.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my task completions.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my focus sessions.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

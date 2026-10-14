@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/split_free_frontend_1/apres)
+
+base locale vak_local_968504 supprimée [code 0]

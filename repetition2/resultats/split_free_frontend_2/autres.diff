@@ -1,0 +1,72 @@
+diff --git a/CODEBASE.md b/CODEBASE.md
+index 06ee835..4ffff2a 100644
+--- a/CODEBASE.md
++++ b/CODEBASE.md
+@@ -78,7 +78,7 @@ SplitFree is a collaborative, real-time bill-splitting mobile application built
+ │   │       └── group/             # Dynamic routes and screens for group details, expenses, and stats
+ │   ├── components/                # Reusable UI (NativeWind); KeyboardAvoidingScreen for centered forms; FetchError for query retry
+ │   ├── constants/                 # Static configuration files, styling constants, and core theme colors
+-│   ├── lib/                       # Client initializations (Supabase clients, realtime channel names, SecureStore adapters)
++│   ├── lib/                       # vak.ts (assistant client config); client initializations (Supabase clients, realtime channel names, SecureStore adapters)
+ │   │   ├── supabase.ts            # Typed supabase-js client and Expo SecureStore auth adapter
+ │   │   └── realtime.ts            # Unique channel topics so postgres_changes is not added after subscribe()
+ │   ├── modals/                    # App-wide overlay modals (group forms, participant selectors)
+@@ -92,7 +92,8 @@ SplitFree is a collaborative, real-time bill-splitting mobile application built
+     ├── config.toml                # Supabase system configuration
+     ├── seed.sql                   # Empty seed; integration tests create their own rows
+     ├── functions/                 # Backend edge functions (Deno-based Gemini and OpenAI APIs)
+-    └── migrations/                # Database migrations (PostgreSQL schema, RPCs, auth profile trigger, invite token mint, parameterized debt recalc)
++    │   └── vak/                   # vak AI assistant edge function (agent.ts = only hand-edited file; rest managed by vak)
++    └── migrations/                # Database migrations (PostgreSQL schema, RPCs, auth profile trigger, invite token mint, parameterized debt recalc, vak_000x assistant tables)
+ ```
+ 
+ ---
+@@ -101,6 +102,7 @@ SplitFree is a collaborative, real-time bill-splitting mobile application built
+ 
+ ### Core Modules
+ - **`.agents/skills/` (Agent Skills):** Official [Supabase agent skills](https://github.com/supabase/agent-skills) installed at project scope. Load `supabase` for Auth, Realtime, Edge Functions, CLI, MCP, and client-library work. Load `supabase-postgres-best-practices` before writing or changing Postgres schema, migrations, RLS, indexes, or SQL. `.grok/skills/` are relative symlinks to the same folders. Refresh with `npx skills update`.
++- **Assistant (vak):** `@vak/agent` is installed from `vendor/vak/*.tgz`; the "Assistant" tab is `src/app/(tabs)/assistant.tsx`, privacy controls are `<AgentSettings>` in account settings, `.agents/skills/vak` and `.claude/skills/vak` hold the integration skill. CLI: `node node_modules/@vak/agent/bin/vak.mjs`.
+ - **`src/app/` (Routing):** Utilizes Expo Router to drive app screens. Organized into `(auth)` for registration and magic-link actions, `(tabs)` for main app experiences, and nested dynamic subfolders like `group/[group_id]` representing detailed functional views.
+ - **`src/api/` (Data Fetching & Subscriptions):** Separated cleanly by entity (e.g., `groups`, `expenses`). Contains:
+   - `index.ts`: Custom React hooks wrapping `@tanstack/react-query`'s `useQuery` and `useMutation` to encapsulate API interactions.
+diff --git a/src/app/(tabs)/_layout.tsx b/src/app/(tabs)/_layout.tsx
+index 419cdfd..e4c7964 100644
+--- a/src/app/(tabs)/_layout.tsx
++++ b/src/app/(tabs)/_layout.tsx
+@@ -52,6 +52,15 @@ export default function TabLayout() {
+           tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
+         }}
+       />
++      <Tabs.Screen
++        name="assistant"
++        options={{
++          title: t("Assistant"),
++          tabBarIcon: ({ color }) => (
++            <TabBarIcon name="message-circle" color={color} />
++          ),
++        }}
++      />
+       <Tabs.Screen
+         name="friend"
+         options={{
+diff --git a/src/app/(tabs)/account/settings/index.tsx b/src/app/(tabs)/account/settings/index.tsx
+index e96288e..e60e160 100644
+--- a/src/app/(tabs)/account/settings/index.tsx
++++ b/src/app/(tabs)/account/settings/index.tsx
+@@ -5,6 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
+ import { Feather } from "@expo/vector-icons";
+ import { supabase } from "@/src/lib/supabase";
+ import { Link, useNavigation } from "expo-router";
++import { AgentSettings } from "@vak/agent/native";
++import { vak } from "@/src/lib/vak";
+ 
+ type SettingsPage =
+   "notifications" | "language" | "faq" | "terms" | "password" | "delete";
+@@ -90,6 +92,7 @@ const SettingsScreen = () => {
+           iconName="lock"
+           title="DELETE ACCOUNT"
+         />
++        <AgentSettings {...vak} />
+       </View>
+       <View className="absolute bottom-0 left-0 right-0 p-4 gap-2 mb-4">
+         <Text

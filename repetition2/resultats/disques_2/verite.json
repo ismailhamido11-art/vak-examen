@@ -1,0 +1,39 @@
+{
+  "id": "disques_2",
+  "etat_commite": "cb1b884a2b1770fc42af698b545be56fd9702dc1",
+  "methode": "vak-examen/etiquettes/README.md, établie sans l'étiquette, d'après supabase/functions/vak/agent.ts et les migrations de l'état commité (reconstruit par etiquettes/etat.sh), et la pile",
+  "supprimer": {
+    "reponse": "non",
+    "preuves": [
+      "agent.ts:7-75 : aucune clé functions ni ignore, l'assistant n'appelle aucune fonction de l'app (vendor/vak/vak-agent-0.28.1.tgz, package/dist/chunks/chunk-GQAYNYLA.js:1394-1407, buildTools : les outils de l'app sont read_data, create_ et update_ des seules tables qui les déclarent, un outil par fonction déclarée, et open_screen) ; l'app n'a d'ailleurs aucune fonction : supabase/migrations/20260101000000_collection_vinyles.sql:1-49, sa seule migration, ne crée ni fonction, ni déclencheur, ni règle, ni vue",
+      "agent.ts:36-37 (vinyls) et agent.ts:53-54 (listenings) : seules create et update sont déclarées ; aucune table ne déclare de suppression. create_<table> (chunk-GQAYNYLA.js:1298-1309) passe par ctx.data.create, un insert (:818-831, backend.insert :1745-1747) ; update_<table> (:1310-1322) par ctx.data.update, un update filtré par le propriétaire (:833-848, backend.update :1748-1751) ; la couche de données n'a aucune méthode de suppression (les mentions de « delete » du fichier sont l'étiquette, textes et drapeaux « deletes », lignes 1465 à 1541, et la reconnaissance d'un message d'erreur de PostgreSQL, ligne 1684)",
+      "supabase/migrations/20260101000000_collection_vinyles.sql : les « on delete cascade » (ligne 7, vinyls vers auth.users ; ligne 23, listenings vers auth.users ; ligne 31, listenings vers vinyls) ne jouent que si un compte ou un disque est supprimé, ce que l'assistant ne peut pas faire ; la clé étrangère composée de la ligne 31 n'a pas de clause « on update », et ni id ni user_id ne sont dans les colonnes modifiables (agent.ts:37 et :54) ; la photographie commitée n'a pas de writesMayDelete (supabase/functions/vak/schema.gen.ts:1-49). La suppression d'un disque est un geste de l'écran de l'app (src/app/vinyl/[id].tsx:31, supabase.from('vinyls').delete()) : l'outil open_screen (agent.ts:58-64, écran fiche ; chunk-GQAYNYLA.js:1373-1393) lit au plus la ligne de l'écran et ne fait que proposer le lien (package/docs/HTTP.md:92, OpenScreenOutput { href, label })",
+      "agent.ts:68 : drafts() n'écrit rien (outil de brouillon en lecture seule, l'utilisateur envoie lui-même ; package/dist/index.js:243 « readOnly: true ») ; read_data (chunk-GQAYNYLA.js:1266 « readOnly: true ») et memory_search (package/dist/index.js:353 « readOnly: true ») lisent ; memory_save ajoute un souvenir sans jamais en supprimer (package/dist/index.js:343 « neverDeletes: true ») ; DELETE memory/:id (package/dist/index.js:359), DELETE chats/:id (route : package/dist/chunks/chunk-HKBVSJKT.js:2615-2616, qui appelle deleteChat, package/dist/index.js:511-513) et DELETE data (route : chunk-HKBVSJKT.js:2624 ; package/dist/index.js:684, vak_erase_data, supabase/migrations/20261014165932_vak_0004_quota_erase.sql:220-243, suppressions lignes 237-242) sont des routes de l'utilisateur, dans ses réglages, pas des outils de l'assistant (package/docs/HTTP.md:24, :27 et :29 ; outils : docs/HTTP.md:90-91) ; la suppression de vak_save_messages (supabase/migrations/20261014165929_vak_0001_core.sql:238 ; appelée aussi par vak_save_messages_if, supabase/migrations/20261014165931_vak_0003_history.sql:77) est le module qui range l'historique de la conversation à chaque tour, pas un outil"
+    ]
+  },
+  "modifier": {
+    "tables": [
+      {
+        "table": "public.vinyls",
+        "nom": "Disques",
+        "preuve": "agent.ts:36, create [\"titre\", \"artiste\", \"annee\", \"etat\", \"prix_achat\"] ; agent.ts:37, update [\"titre\", \"artiste\", \"annee\", \"etat\", \"prix_achat\"] (outils create_vinyls et update_vinyls, chunk-GQAYNYLA.js:1399-1400) ; label de la table : agent.ts:20 ; table : supabase/migrations/20260101000000_collection_vinyles.sql:5"
+      },
+      {
+        "table": "public.listenings",
+        "nom": "Écoutes",
+        "preuve": "agent.ts:53, create [\"vinyl_id\", \"ecoute_le\", \"face\", \"note\", \"commentaire\"] ; agent.ts:54, update [\"ecoute_le\", \"face\", \"note\", \"commentaire\"] (outils create_listenings et update_listenings, chunk-GQAYNYLA.js:1399-1400) ; label de la table : agent.ts:40 ; table : supabase/migrations/20260101000000_collection_vinyles.sql:21"
+      },
+      {
+        "table": "public.vak_memories",
+        "nom": "sa mémoire (prise memory)",
+        "preuve": "agent.ts:68, plugins : memory() (supabase/migrations/20261014165929_vak_0001_core.sql:38)"
+      }
+    ],
+    "note": "chaque écriture est soumise à la validation de l'utilisateur : agent.ts n'a pas de clé confirm (agent.ts:19-55), donc confirm vaut vrai (vendor/vak/vak-agent-0.28.1.tgz, package/dist/chunks/chunk-GQAYNYLA.js:411, « confirm: rule.confirm !== false » ; :1300 et :1314, « Soumis à la validation de l'utilisateur ») ; le compte rendu le dit aussi (« Toute écriture passe par une carte de confirmation »). Aucune autre table de l'app : l'app n'en a que deux (supabase/migrations/20260101000000_collection_vinyles.sql:5 et 21), sans déclencheur, et aucune migration de vak ne pose de déclencheur sur une table de l'app (déclencheurs de vak : supabase/migrations/20261014165929_vak_0001_core.sql:110-111, supabase/migrations/20261014165932_vak_0004_quota_erase.sql:60 et 154, sur ses propres tables) ; les écrans nouveauDisque et nouvelleEcoute (agent.ts:65-66) ouvrent les formulaires de l'app, où l'utilisateur écrit lui-même. L'historique des conversations (vak_save_messages, supabase/migrations/20261014165929_vak_0001_core.sql:204-242), l'usage (prise quota), l'accord (prise consent), les avis et le journal des validations (vak_claim_action et vak_deny_action, supabase/migrations/20261014165932_vak_0004_quota_erase.sql:163-189 et 192-214) sont écrits par le module à chaque tour ou par l'utilisateur, pas par un outil de l'assistant, comme aux examens précédents (etiquettes/README.md : de vak, seule la mémoire compte) ; aucune autre table"
+  },
+  "envoyer": {
+    "editeur": "DeepSeek",
+    "hote": "api.deepseek.com",
+    "preuve": "vak-examen/pile/pile.sh:147 (VAK_OPENAI_COMPAT_BASE_URL=https://api.deepseek.com/v1, VAK_OPENAI_COMPAT_NAME=DeepSeek) et :150 (--allow-net … api.deepseek.com), pile.sh inchangé depuis f2abc19 (13/10), l'essai a tourné le 14/10 ; preparation.json, acces_admis : DEEPSEEK_API_KEY et SUPABASE_ACCESS_TOKEN (rapport.md:9 : accès du compte d'essai, restés hors de la bulle de l'agent ; la pile passe DEEPSEEK_API_KEY à la fonction, pile.sh:147) ; pile.txt : « pile disques_2 prête »"
+  }
+}

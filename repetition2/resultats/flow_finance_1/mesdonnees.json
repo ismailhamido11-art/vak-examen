@@ -1,0 +1,664 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "3/18 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/flow_finance_1/apres",
+  "lecture": {
+    "fichier": "/work/flow_finance_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.accounts",
+      "public.savings_accounts",
+      "public.transactions",
+      "public.categories"
+    ],
+    "ignorees": [
+      "public.bank_connections",
+      "public.crypto_holdings",
+      "public.crypto_portfolio_settings",
+      "public.crypto_transactions",
+      "public.pea_holdings",
+      "public.pea_investment_plans",
+      "public.pea_settings",
+      "public.pea_transactions",
+      "public.profiles",
+      "public.recurring_payments",
+      "public.recurring_suggestion_dismissals",
+      "public.savings_adjustments",
+      "public.savings_goal_allocations",
+      "public.savings_goals",
+      "public.spaces"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.accounts",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.categories",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.savings_accounts",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.accounts",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes comptes bancaires ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-48b8e946-43e2-4946-bf2a-bf8b33841312",
+        "question": "Combien de mes comptes bancaires ?",
+        "texte": "Vous avez 3 comptes bancaires :\n\n- **Courant perso** (compte courant) : 1 520,40 €\n- **Joint foyer** (compte courant) : 830,15 €\n- **Compte secondaire** (compte courant) : 210,00 €\n\nSouhaitez-vous que j'ouvre la liste des transactions ou l'écran d'épargne ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "accounts",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "accounts",
+              "label": "Comptes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a3000000-0000-4000-8000-000000000001",
+                  "name": "Compte courant",
+                  "display_name": "Courant perso",
+                  "type": "checking (Compte courant)",
+                  "balance": 1520.4,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000002",
+                  "name": "Compte joint",
+                  "display_name": "Joint foyer",
+                  "type": "checking (Compte courant)",
+                  "balance": 830.15,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000003",
+                  "name": "Compte secondaire",
+                  "display_name": null,
+                  "type": "checking (Compte courant)",
+                  "balance": 210,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          1520.4,
+          830.15,
+          210
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.accounts",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes comptes bancaires.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ef004a18-8468-4a8a-a5bc-7e97c1b7cb37",
+        "question": "Liste mes comptes bancaires.",
+        "texte": "Voici vos 3 comptes bancaires :\n\n- **Courant perso** (compte courant) : 1 520,40 €\n- **Joint foyer** (compte courant) : 830,15 €\n- **Compte secondaire** (compte courant) : 210,00 €\n\nSouhaitez-vous voir le détail des transactions d'un de ces comptes ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "accounts",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "accounts",
+              "label": "Comptes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a3000000-0000-4000-8000-000000000001",
+                  "name": "Compte courant",
+                  "display_name": "Courant perso",
+                  "type": "checking (Compte courant)",
+                  "balance": 1520.4,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000002",
+                  "name": "Compte joint",
+                  "display_name": "Joint foyer",
+                  "type": "checking (Compte courant)",
+                  "balance": 830.15,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000003",
+                  "name": "Compte secondaire",
+                  "display_name": null,
+                  "type": "checking (Compte courant)",
+                  "balance": 210,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          1520.4,
+          830.15,
+          210
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.categories",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes catégories ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-2a87a751-bd6a-4e9e-b66f-00127b668a6f",
+        "question": "Combien de mes catégories ?",
+        "texte": "Vous avez 6 catégories : Courses, Loyer, Transports, Restaurants, Santé et Loisirs.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "categories",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "categories",
+              "label": "Catégories",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a4000000-0000-4000-8000-000000000001",
+                  "name": "Courses",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000002",
+                  "name": "Loyer",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000003",
+                  "name": "Transports",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000004",
+                  "name": "Restaurants",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000005",
+                  "name": "Santé",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000006",
+                  "name": "Loisirs",
+                  "created_at": "2026-10-14T18:44"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.categories",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes catégories.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-c38b1053-349d-45ce-8124-c9ee4dcba98d",
+        "question": "Liste mes catégories.",
+        "texte": "Vous avez 6 catégories :\n\n1. Courses\n2. Loyer\n3. Transports\n4. Restaurants\n5. Santé\n6. Loisirs\n\nVoulez-vous que j'ouvre la liste des transactions pour les retrouver en contexte ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "categories",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "categories",
+              "label": "Catégories",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a4000000-0000-4000-8000-000000000001",
+                  "name": "Courses",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000002",
+                  "name": "Loyer",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000003",
+                  "name": "Transports",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000004",
+                  "name": "Restaurants",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000005",
+                  "name": "Santé",
+                  "created_at": "2026-10-14T18:44"
+                },
+                {
+                  "id": "a4000000-0000-4000-8000-000000000006",
+                  "name": "Loisirs",
+                  "created_at": "2026-10-14T18:44"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.savings_accounts",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes livrets d'épargne ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-731b7daa-a5e0-4c9b-9b01-100e2c80b98e",
+        "question": "Combien de mes livrets d'épargne ?",
+        "texte": "Vous avez 3 livrets suivis : **Livret A**, **LDDS** et **PEL**. Aucun livret n'apparaît côté comptes bancaires synchronisés (vos 3 comptes synchronisés sont des comptes courants).\n\nJe vous ouvre l'écran Épargne si vous voulez voir le détail (soldes de départ, taux et plafonds).",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "savings_accounts",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "savings_accounts",
+              "label": "Livrets suivis",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a6000000-0000-4000-8000-000000000001",
+                  "name": "Livret A",
+                  "kind": "livret_a",
+                  "base_balance": 5000,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 1.7,
+                  "ceiling": 22950,
+                  "opening_date": "2018-05-01"
+                },
+                {
+                  "id": "a6000000-0000-4000-8000-000000000002",
+                  "name": "LDDS",
+                  "kind": "ldd",
+                  "base_balance": 2500,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 1.7,
+                  "ceiling": 12000,
+                  "opening_date": "2019-02-01"
+                },
+                {
+                  "id": "a6000000-0000-4000-8000-000000000003",
+                  "name": "PEL",
+                  "kind": "pel",
+                  "base_balance": 8000,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 2,
+                  "ceiling": 61200,
+                  "opening_date": "2020-09-01"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "accounts",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "accounts",
+              "label": "Comptes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a3000000-0000-4000-8000-000000000001",
+                  "name": "Compte courant",
+                  "display_name": "Courant perso",
+                  "type": "checking (Compte courant)",
+                  "balance": 1520.4,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000002",
+                  "name": "Compte joint",
+                  "display_name": "Joint foyer",
+                  "type": "checking (Compte courant)",
+                  "balance": 830.15,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                },
+                {
+                  "id": "a3000000-0000-4000-8000-000000000003",
+                  "name": "Compte secondaire",
+                  "display_name": null,
+                  "type": "checking (Compte courant)",
+                  "balance": 210,
+                  "currency": "EUR",
+                  "last_transactions_synced_at": null
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "savings"
+            },
+            "sortie": {
+              "href": "/savings",
+              "label": "Épargne"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.savings_accounts",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes livrets d'épargne.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-45285eaf-9cfb-46cd-b054-eeb597b90b87",
+        "question": "Liste mes livrets d'épargne.",
+        "texte": "Voici vos livrets suivis (3 au total) :\n\n| Livret | Taux | Solde de départ | Plafond |\n|---|---|---|---|\n| Livret A | 1,7 % | 5 000 € (au 01/01/2026) | 22 950 € |\n| LDDS | 1,7 % | 2 500 € (au 01/01/2026) | 12 000 € |\n| PEL | 2 % | 8 000 € (au 01/01/2026) | 61 200 € |\n\nCe sont des livrets suivis à la main (soldes de départ au 1er janvier 2026). Aucun livret synchronisé depuis une banque n'apparaît pour l'instant.\n\nVoulez-vous que j'ouvre l'écran Livrets et épargne ?\n\nJ'ai préparé le lien vers l'écran Épargne — cliquez dessus pour y accéder.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "accounts",
+              "where": [
+                {
+                  "column": "type",
+                  "op": "eq",
+                  "value": "savings"
+                }
+              ],
+              "limit": 20
+            },
+            "sortie": {
+              "table": "accounts",
+              "label": "Comptes",
+              "total": 0,
+              "shown": 0,
+              "complete": true,
+              "rows": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "savings_accounts",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "savings_accounts",
+              "label": "Livrets suivis",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "a6000000-0000-4000-8000-000000000001",
+                  "name": "Livret A",
+                  "kind": "livret_a",
+                  "base_balance": 5000,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 1.7,
+                  "ceiling": 22950,
+                  "opening_date": "2018-05-01"
+                },
+                {
+                  "id": "a6000000-0000-4000-8000-000000000002",
+                  "name": "LDDS",
+                  "kind": "ldd",
+                  "base_balance": 2500,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 1.7,
+                  "ceiling": 12000,
+                  "opening_date": "2019-02-01"
+                },
+                {
+                  "id": "a6000000-0000-4000-8000-000000000003",
+                  "name": "PEL",
+                  "kind": "pel",
+                  "base_balance": 8000,
+                  "base_date": "2026-01-01",
+                  "interest_rate": 2,
+                  "ceiling": 61200,
+                  "opening_date": "2020-09-01"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "savings"
+            },
+            "sortie": {
+              "href": "/savings",
+              "label": "Épargne"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          1.7,
+          5000,
+          22950,
+          1.7,
+          2500,
+          12000,
+          2,
+          8000,
+          61200
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 84
+  },
+  "couverture": {
+    "lues": 3,
+    "total": 18,
+    "tables": [
+      {
+        "table": "public.spaces",
+        "lue": false
+      },
+      {
+        "table": "public.bank_connections",
+        "lue": false
+      },
+      {
+        "table": "public.accounts",
+        "lue": true
+      },
+      {
+        "table": "public.categories",
+        "lue": true
+      },
+      {
+        "table": "public.recurring_payments",
+        "lue": false
+      },
+      {
+        "table": "public.recurring_suggestion_dismissals",
+        "lue": false
+      },
+      {
+        "table": "public.savings_accounts",
+        "lue": true
+      },
+      {
+        "table": "public.savings_adjustments",
+        "lue": false
+      },
+      {
+        "table": "public.savings_goals",
+        "lue": false
+      },
+      {
+        "table": "public.savings_goal_allocations",
+        "lue": false
+      },
+      {
+        "table": "public.pea_holdings",
+        "lue": false
+      },
+      {
+        "table": "public.pea_investment_plans",
+        "lue": false
+      },
+      {
+        "table": "public.pea_transactions",
+        "lue": false
+      },
+      {
+        "table": "public.pea_settings",
+        "lue": false
+      },
+      {
+        "table": "public.crypto_holdings",
+        "lue": false
+      },
+      {
+        "table": "public.crypto_transactions",
+        "lue": false
+      },
+      {
+        "table": "public.crypto_portfolio_settings",
+        "lue": false
+      },
+      {
+        "table": "public.profiles",
+        "lue": false
+      }
+    ],
+    "texte": "3/18"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-14T16:44:54.208Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Comptes (Nom, Nom affiché, Type, Solde (€), Devise, Dernière synchronisation) ; Livrets suivis (Nom, Type, Solde de départ (€), Date du solde de départ, Taux d'intérêt, Plafond (€), Date d'ouverture) ; Transactions (Compte, Date, Montant (€), Devise, Libellé, Statut, Catégorie, Note) ; Catégories (Nom, Créée le)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Transactions, Épargne, Analyses",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire bank_connections, crypto_holdings, crypto_portfolio_settings, crypto_transactions, pea_holdings, pea_investment_plans, pea_settings, pea_transactions, 7 autres",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:bd5023da9ab1ce1813d800051bead8585f241712006463e6bd4e8d758dc96832",
+    "calibrage": "sha256:9fefef18a15166b1ff138ba8a4b077ed9e960df0761d502e07039633703c9bcb"
+  }
+}

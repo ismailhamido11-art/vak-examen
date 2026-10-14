@@ -1,0 +1,23 @@
+[
+  {
+    "table": "public.meters",
+    "colonne": "owner_id",
+    "nom": "compteurs",
+    "langue": "fr",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-262941FF",
+      "MARQUEUR-B-E76F3029",
+      "MARQUEUR-B-E6D195F6",
+      "MARQUEUR-B-A4E8CC4E"
+    ]
+  },
+  {
+    "table": "public.readings",
+    "colonne": "owner_id",
+    "nom": "relevés",
+    "langue": "fr",
+    "a": 15,
+    "marqueurs_b": []
+  }
+]

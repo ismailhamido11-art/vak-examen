@@ -1,0 +1,150 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-FD15C006"
+    ]
+  },
+  {
+    "table": "public.accounts",
+    "colonne": "user_id",
+    "nom": "accounts",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-AA19E2F9",
+      "MARQUEUR-B-22478F9A"
+    ]
+  },
+  {
+    "table": "public.categories",
+    "colonne": "user_id",
+    "nom": "categories",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-C781F611",
+      "MARQUEUR-B-B881E1D7",
+      "MARQUEUR-B-C682FFC4"
+    ]
+  },
+  {
+    "table": "public.tags",
+    "colonne": "user_id",
+    "nom": "tags",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-DCDBA2E5",
+      "MARQUEUR-B-9DAAF235",
+      "MARQUEUR-B-E37FEB96"
+    ]
+  },
+  {
+    "table": "public.payees",
+    "colonne": "user_id",
+    "nom": "payees",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-FB46EBD8",
+      "MARQUEUR-B-4591B846",
+      "MARQUEUR-B-EADC0DB9",
+      "MARQUEUR-B-AB12D351"
+    ]
+  },
+  {
+    "table": "public.transactions",
+    "colonne": "user_id",
+    "nom": "transactions",
+    "langue": "en",
+    "a": 14,
+    "marqueurs_b": [
+      "MARQUEUR-B-A4351C60",
+      "MARQUEUR-B-052C2B51",
+      "MARQUEUR-B-C6719424",
+      "MARQUEUR-B-5A3F1AFE",
+      "MARQUEUR-B-5D09209D",
+      "MARQUEUR-B-CE539F92",
+      "MARQUEUR-B-2C1D9422",
+      "MARQUEUR-B-B7500C0B",
+      "MARQUEUR-B-67BE4B27",
+      "MARQUEUR-B-CB515D84"
+    ]
+  },
+  {
+    "table": "public.budgets",
+    "colonne": "user_id",
+    "nom": "budgets",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.category_monthly_summaries",
+    "colonne": "user_id",
+    "nom": "category monthly summaries",
+    "langue": "en",
+    "a": 12,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.account_daily_summaries",
+    "colonne": "user_id",
+    "nom": "account daily summaries",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.daily_cashflow_summaries",
+    "colonne": "user_id",
+    "nom": "daily cashflow summaries",
+    "langue": "en",
+    "a": 14,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.receipt_ingestion_jobs",
+    "colonne": "user_id",
+    "nom": "receipt ingestion jobs",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-4FEF1EDA",
+      "MARQUEUR-B-1E05662E",
+      "MARQUEUR-B-CA2F14E1",
+      "MARQUEUR-B-1D0251D7",
+      "MARQUEUR-B-11716485"
+    ]
+  },
+  {
+    "table": "public.receipts",
+    "colonne": "user_id",
+    "nom": "receipts",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-9F707CAA",
+      "MARQUEUR-B-6E12A222",
+      "MARQUEUR-B-0D0BBEDD",
+      "MARQUEUR-B-589FFD5A",
+      "MARQUEUR-B-2686F565",
+      "MARQUEUR-B-7B7DBEAB",
+      "MARQUEUR-B-AE336855",
+      "MARQUEUR-B-B2A14CA6",
+      "MARQUEUR-B-B1FA04D1",
+      "MARQUEUR-B-2F31F69B",
+      "MARQUEUR-B-34DED477",
+      "MARQUEUR-B-BEE757F7",
+      "MARQUEUR-B-0CB40809",
+      "MARQUEUR-B-D124B2BC",
+      "MARQUEUR-B-15420BCC",
+      "MARQUEUR-B-42541454"
+    ]
+  }
+]

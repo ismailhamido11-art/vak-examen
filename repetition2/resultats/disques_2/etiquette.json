@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-14T17:07:24.396Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Disques (Titre, Artiste, Année, État, Genres, Prix d'achat (€), Ajouté le) ; Écoutes (Disque, Écoutée le, Face, Note (1 à 5), Commentaire)",
+    "Peut proposer (après ta validation) : ajouter dans Disques (Titre, Artiste, Année, État, Prix d'achat (€)) ; modifier dans Disques (Titre, Artiste, Année, État, Prix d'achat (€)) ; ajouter dans Écoutes (Disque, Écoutée le, Face, Note (1 à 5), Commentaire) ; modifier dans Écoutes (Écoutée le, Face, Note (1 à 5), Commentaire) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Fiche du disque, Ajouter un disque, Ajouter une écoute",
+    "Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:ee1edc7ed85e44270ec1172d38381142f4f7502e7b6675b96bfdfbda1358d8b4",
+    "calibrage": "sha256:adb50986623a1bded320d610c72fc50e40381893f038da12b5369a5ce1fcbe13"
+  }
+}

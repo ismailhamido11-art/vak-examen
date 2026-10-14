@@ -1,0 +1,3 @@
+NOTICE:  role "examen_pile" has already been granted membership in role "anon" by role "postgres"
+NOTICE:  role "examen_pile" has already been granted membership in role "authenticated" by role "postgres"
+pile split_free_frontend_2 prête : /work/split_free_frontend_2/pile/pile.json (fonction http://127.0.0.1:43781/functions/v1/vak)

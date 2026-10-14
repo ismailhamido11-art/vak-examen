@@ -1,0 +1,18 @@
+{
+  "id": "disques_2",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/disques.bundle",
+  "commit": "398bb03d983fe88fe3e97d720c90dfea67d9269a",
+  "prepare": "55da21565b8a3ef49307c884bc14f35657ef7fb3",
+  "archive": {
+    "nom": "vak-agent-0.28.1.tgz",
+    "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+  },
+  "app": "/work/disques_2/app",
+  "avant": "/work/disques_2/avant.json",
+  "debut": "2026-10-14T16:57:51Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-14T16:58:31Z"
+}

@@ -1,0 +1,57 @@
+$ npm run test
+(dossier : /work/flow_finance_2/apres)
+
+
+> flow-finance@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.6 /work/flow_finance_2/apres
+
+ ✓ src/lib/finance/savings-goals.test.ts (17 tests) 10ms
+ ✓ src/lib/finance/account-transfers.test.ts (22 tests) 14ms
+ ✓ src/lib/finance/recurring-payments.test.ts (20 tests) 54ms
+ ✓ src/lib/finance/spending-flow.test.ts (18 tests) 12ms
+ ✓ src/lib/finance/tracked-transfers.test.ts (15 tests) 10ms
+ ✓ src/lib/finance/contribution-flow.test.ts (4 tests) 26ms
+ ✓ src/lib/finance/savings.test.ts (4 tests) 8ms
+ ✓ src/lib/finance/recurring-detection.test.ts (4 tests) 16ms
+ ✓ src/lib/finance/payroll-budget.test.ts (8 tests) 6ms
+ ✓ src/lib/finance/category-analytics.test.ts (4 tests) 20ms
+ ❯ src/lib/pea/import.test.ts (3 tests | 1 failed) 24ms
+   ✓ parsePeaImportFile > parse un export Trade Republic FR et reconstruit les positions 15ms
+   ✓ parsePeaImportFile > parse l'export officiel TR : filtre PEA, ISIN via symbol, parts entières 2ms
+   × parsePeaImportFile > parse le fichier d'export réel téléchargé 6ms
+     → ENOENT: no such file or directory, open '/Users/alexandre-pascal/Downloads/Exportation de transactions 3.csv'
+ ✓ src/lib/finance/recurring-labels.test.ts (5 tests) 6ms
+ ✓ src/lib/finance/transaction-mapping.test.ts (3 tests) 12ms
+ ✓ src/lib/profile-settings.test.ts (4 tests) 7ms
+ ✓ src/lib/pea/transfers.test.ts (4 tests) 5ms
+ ✓ src/lib/finance/expense-categories-colors.test.ts (4 tests) 22ms
+ ✓ src/lib/enable-banking/sync-date.test.ts (4 tests) 7ms
+ ✓ src/lib/crypto/import.test.ts (2 tests) 6ms
+ ✓ src/lib/pea/tax.test.ts (2 tests) 4ms
+ ✓ src/lib/enable-banking/transaction-sign.test.ts (2 tests) 3ms
+ ✓ src/lib/crypto/valuation.test.ts (2 tests) 9ms
+ ✓ src/lib/crypto/flat-tax.test.ts (2 tests) 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/pea/import.test.ts > parsePeaImportFile > parse le fichier d'export réel téléchargé
+Error: ENOENT: no such file or directory, open '/Users/alexandre-pascal/Downloads/Exportation de transactions 3.csv'
+ ❯ src/lib/pea/import.test.ts:66:21
+     64| 
+     65|   it("parse le fichier d'export réel téléchargé", () => {
+     66|     const content = readFileSync(
+       |                     ^
+     67|       "/Users/alexandre-pascal/Downloads/Exportation de transactions 3…
+     68|       "utf8",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 21 passed (22)
+      Tests  1 failed | 152 passed (153)
+   Start at  18:20:28
+   Duration  2.80s (transform 807ms, setup 0ms, collect 1.57s, tests 286ms, environment 5ms, prepare 2.01s)
+

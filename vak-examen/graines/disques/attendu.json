@@ -1,0 +1,37 @@
+[
+  {
+    "table": "public.vinyls",
+    "colonne": "user_id",
+    "nom": "disques",
+    "langue": "fr",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-BC0EA07B",
+      "MARQUEUR-B-78E0164A",
+      "MARQUEUR-B-8B807E47",
+      "MARQUEUR-B-60C895CA",
+      "MARQUEUR-B-D60825AA",
+      "MARQUEUR-B-5C94DB2A",
+      "MARQUEUR-B-9D657CF8",
+      "MARQUEUR-B-583F0B20",
+      "MARQUEUR-B-88C69C0E",
+      "MARQUEUR-B-0A2E8737",
+      "MARQUEUR-B-1F6A603B",
+      "MARQUEUR-B-6F585392"
+    ]
+  },
+  {
+    "table": "public.listenings",
+    "colonne": "user_id",
+    "nom": "écoutes",
+    "langue": "fr",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-3A7FAF37",
+      "MARQUEUR-B-BF923356",
+      "MARQUEUR-B-0CE47AB7",
+      "MARQUEUR-B-87B66CA4",
+      "MARQUEUR-B-6C085AE8"
+    ]
+  }
+]

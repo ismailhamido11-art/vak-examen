@@ -1,0 +1,42 @@
+[
+  {
+    "table": "public.users",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-3F9A1C07",
+      "MARQUEUR-B-B2D84E61",
+      "MARQUEUR-B-7C05A9DE"
+    ]
+  },
+  {
+    "table": "public.posts",
+    "colonne": "user_id",
+    "nom": "posts",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-91E3B4F8",
+      "MARQUEUR-B-A60D2C75",
+      "MARQUEUR-B-4E8F17B3",
+      "MARQUEUR-B-D15C93A0",
+      "MARQUEUR-B-28B7E6F4",
+      "MARQUEUR-B-C3A04D19"
+    ]
+  },
+  {
+    "table": "public.subscriptions",
+    "colonne": "user_id",
+    "nom": "subscriptions",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-5F61E8B2",
+      "MARQUEUR-B-E94B7A30",
+      "MARQUEUR-B-0D7C25F6",
+      "MARQUEUR-B-8A3E91C4"
+    ]
+  }
+]

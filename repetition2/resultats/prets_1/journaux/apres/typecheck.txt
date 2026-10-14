@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/prets_1/apres)
+

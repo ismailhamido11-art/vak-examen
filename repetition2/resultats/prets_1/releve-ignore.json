@@ -1,0 +1,49 @@
+{
+  "id": "prets_1",
+  "echecs_de_preuve": [
+    {
+      "table": "lend_item",
+      "verdict": "non prouvé",
+      "ligne": 94,
+      "texte": "✗ lend_item() non prouvé"
+    },
+    {
+      "table": "overdue_loans",
+      "verdict": "non prouvé",
+      "ligne": 94,
+      "texte": "✗ overdue_loans() non prouvé"
+    },
+    {
+      "table": "return_loan",
+      "verdict": "non prouvé",
+      "ligne": 94,
+      "texte": "✗ return_loan() non prouvé"
+    },
+    {
+      "table": "loans",
+      "verdict": "non prouvé",
+      "ligne": 99,
+      "texte": "✗ loans non prouvé"
+    },
+    {
+      "table": "lend_item",
+      "verdict": "non prouvé",
+      "ligne": 99,
+      "texte": "✗ lend_item() non prouvé"
+    },
+    {
+      "table": "overdue_loans",
+      "verdict": "non prouvé",
+      "ligne": 99,
+      "texte": "✗ overdue_loans() non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "forget_item",
+      "ligne": 86
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

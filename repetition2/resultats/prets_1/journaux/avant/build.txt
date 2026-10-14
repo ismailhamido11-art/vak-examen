@@ -1,0 +1,26 @@
+$ expo export --platform web
+(dossier : /work/prets_1/avant)
+
+Using src/app as the root directory for Expo Router.
+React Compiler enabled
+Starting Metro Bundler
+
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/web/static-rendering/
+| (node:16495) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 1755ms node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/node/render.js (859 modules)
+Web Bundled 2104ms node_modules/expo-router/entry.js (837 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-1fdcf5df87024ed6e9705cc6f8b42fa8.js (1.4MB)
+
+› Static routes (7):
+/ (index) (18KB)
+/login (18KB)
+/overdue (18KB)
+/new-loan (18KB)
+/_sitemap (18KB)
+/item/[id] (18KB)
+/+not-found (18KB)
+
+Exported: /tmp/mesure-export-BRvgX3

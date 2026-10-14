@@ -1,0 +1,167 @@
+$ npm run test
+(dossier : /work/split_free_frontend_1/apres)
+
+
+> splitfree@1.0.5 test
+> jest
+
+PASS __tests__/api/pairwiseDebt.test.js
+PASS __tests__/utils/expenseFormDefaults.test.js
+PASS __tests__/utils/activityFrontier.test.js
+--------------------------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+File                                                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                               
+--------------------------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+All files                                                     |    3.07 |     7.02 |    2.28 |    3.02 |                                                 
+ apres                                                        |       0 |        0 |       0 |       0 |                                                 
+  TermsOfUse.ts                                               |       0 |      100 |     100 |       0 | 1                                               
+  babel.config.js                                             |       0 |      100 |       0 |       0 | 1-3                                             
+  eslint.config.js                                            |       0 |      100 |     100 |       0 | 1-6                                             
+  faq.ts                                                      |       0 |      100 |     100 |       0 | 1                                               
+  index.js                                                    |       0 |      100 |     100 |       0 | 8                                               
+  jest.config.js                                              |       0 |      100 |     100 |       0 | 1                                               
+  jest.setup.js                                               |       0 |        0 |     100 |       0 | 1-33                                            
+  jest.supabase.config.js                                     |       0 |      100 |     100 |       0 | 1-3                                             
+  metro.config.js                                             |       0 |      100 |     100 |       0 | 2-8                                             
+  nativewind-env.d.ts                                         |       0 |        0 |       0 |       0 |                                                 
+  tailwind.config.js                                          |       0 |      100 |     100 |       0 | 2                                               
+ apres/__tests__                                              |       0 |        0 |       0 |       0 |                                                 
+  App.test.js                                                 |       0 |      100 |       0 |       0 | 5-8                                             
+  InMemoryStorageAdapter.js                                   |       0 |        0 |       0 |       0 | 4-20                                            
+ apres/__tests__/usecase                                      |       0 |        0 |       0 |       0 |                                                 
+  complete_flow.test.js                                       |       0 |        0 |       0 |       0 | 1-914                                           
+ apres/src                                                    |       0 |      100 |     100 |       0 |                                                 
+  database.types.ts                                           |       0 |      100 |     100 |       0 | 886                                             
+  log.ts                                                      |       0 |      100 |     100 |       0 | 3                                               
+ apres/src/api/debts                                          |   22.22 |        0 |   33.33 |   22.22 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 5-18                                            
+  pairwise.ts                                                 |     100 |      100 |     100 |     100 |                                                 
+ apres/src/api/expenses                                       |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 42-495                                          
+  subscriptions.ts                                            |       0 |        0 |       0 |       0 | 6-34                                            
+ apres/src/api/groups                                         |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 15-160                                          
+  subscriptions.ts                                            |       0 |        0 |       0 |       0 | 6-56                                            
+ apres/src/api/invites                                        |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 3-19                                            
+ apres/src/api/members                                        |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 4-104                                           
+  subscriptions.ts                                            |       0 |        0 |       0 |       0 | 6-31                                            
+ apres/src/api/profiles                                       |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 10-226                                          
+  subscriptions.ts                                            |       0 |        0 |       0 |       0 | 6-31                                            
+ apres/src/api/transfers                                      |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 5-74                                            
+ apres/src/app                                                |       0 |        0 |       0 |       0 |                                                 
+  +html.tsx                                                   |       0 |      100 |       0 |       0 | 8-33                                            
+  +not-found.tsx                                              |       0 |      100 |       0 |       0 | 7                                               
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 15-32                                           
+  index.tsx                                                   |       0 |      100 |       0 |       0 | 4-5                                             
+  join.tsx                                                    |       0 |        0 |       0 |       0 | 20-309                                          
+ apres/src/app/(auth)                                         |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |        0 |       0 |       0 | 6-12                                            
+  forgot.tsx                                                  |       0 |        0 |       0 |       0 | 10-67                                           
+  magic.tsx                                                   |       0 |        0 |       0 |       0 | 10-54                                           
+  reset.tsx                                                   |       0 |        0 |       0 |       0 | 10-60                                           
+  sign-in.tsx                                                 |       0 |        0 |       0 |       0 | 13-106                                          
+  sign-up.tsx                                                 |       0 |        0 |       0 |       0 | 11-97                                           
+ apres/src/app/(global)                                       |       0 |      100 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 4                                               
+  terms.tsx                                                   |       0 |      100 |       0 |       0 | 9-13                                            
+ apres/src/app/(tabs)                                         |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |        0 |       0 |       0 | 12-76                                           
+  assistant.tsx                                               |       0 |        0 |       0 |       0 | 9-16                                            
+  friend.tsx                                                  |       0 |        0 |       0 |       0 | 46-414                                          
+ apres/src/app/(tabs)/account                                 |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  index.tsx                                                   |       0 |        0 |       0 |       0 | 17-52                                           
+ apres/src/app/(tabs)/account/profile                         |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 6-8                                             
+  index.tsx                                                   |       0 |        0 |       0 |       0 | 10-29                                           
+  update.tsx                                                  |       0 |        0 |       0 |       0 | 12-70                                           
+ apres/src/app/(tabs)/account/settings                        |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 6-8                                             
+  delete.tsx                                                  |       0 |        0 |       0 |       0 | 11-81                                           
+  faq.tsx                                                     |       0 |      100 |       0 |       0 | 9-14                                            
+  index.tsx                                                   |       0 |      100 |       0 |       0 | 21-54                                           
+  language.tsx                                                |       0 |        0 |       0 |       0 | 15-148                                          
+  notifications.tsx                                           |       0 |        0 |       0 |       0 | 12-88                                           
+  password.tsx                                                |       0 |        0 |       0 |       0 | 13-125                                          
+  terms.tsx                                                   |       0 |      100 |       0 |       0 | 9-14                                            
+ apres/src/app/(tabs)/group                                   |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  index.tsx                                                   |       0 |        0 |       0 |       0 | 16-185                                          
+ apres/src/app/(tabs)/group/[group_id]                        |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  details.tsx                                                 |       0 |        0 |       0 |       0 | 70-792                                          
+  stats.tsx                                                   |       0 |        0 |       0 |       0 | 36-277                                          
+  update.tsx                                                  |       0 |        0 |       0 |       0 | 24-235                                          
+ apres/src/app/(tabs)/group/[group_id]/expense                |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  create.tsx                                                  |       0 |        0 |       0 |       0 | 7-12                                            
+ apres/src/app/(tabs)/group/[group_id]/expense/[expense_id]   |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  details.tsx                                                 |       0 |        0 |       0 |       0 | 29-298                                          
+  update.tsx                                                  |       0 |        0 |       0 |       0 | 11-33                                           
+ apres/src/app/(tabs)/group/[group_id]/member                 |       0 |      100 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+ apres/src/app/(tabs)/group/[group_id]/member/[member_id]     |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  details.tsx                                                 |       0 |        0 |       0 |       0 | 27-267                                          
+ apres/src/app/(tabs)/group/[group_id]/transfer               |       0 |      100 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+ apres/src/app/(tabs)/group/[group_id]/transfer/[transfer_id] |       0 |        0 |       0 |       0 |                                                 
+  _layout.tsx                                                 |       0 |      100 |       0 |       0 | 5                                               
+  details.tsx                                                 |       0 |        0 |       0 |       0 | 20-87                                           
+ apres/src/components                                         |       0 |        0 |       0 |       0 |                                                 
+  Button.tsx                                                  |       0 |        0 |       0 |       0 | 19-26                                           
+  CollapsibleHeader.tsx                                       |       0 |      100 |       0 |       0 | 11-25                                           
+  CustomHeader.tsx                                            |       0 |      100 |       0 |       0 | 13-38                                           
+  Debug.tsx                                                   |       0 |        0 |       0 |       0 | 6-16                                            
+  DropdownComponent.tsx                                       |       0 |        0 |       0 |       0 | 18-59                                           
+  ExpenseForm.tsx                                             |       0 |        0 |       0 |       0 | 68-510                                          
+  ExpenseItem.tsx                                             |       0 |        0 |       0 |       0 | 25-79                                           
+  FetchError.tsx                                              |       0 |        0 |       0 |       0 | 11-58                                           
+  GroupItem.tsx                                               |       0 |        0 |       0 |       0 | 21-30                                           
+  KeyboardAvoidingScreen.tsx                                  |       0 |        0 |       0 |       0 | 12-20                                           
+  MultiSelectComponent.tsx                                    |       0 |        0 |       0 |       0 | 14-81                                           
+  Person.tsx                                                  |       0 |        0 |       0 |       0 | 32-356                                          
+  TransferItem.tsx                                            |       0 |        0 |       0 |       0 | 33-76                                           
+  Translated.tsx                                              |       0 |        0 |       0 |       0 | 27-237                                          
+  UnderlinedText.tsx                                          |       0 |      100 |       0 |       0 | 11-16                                           
+  useClientOnlyValue.ts                                       |       0 |      100 |       0 |       0 | 3                                               
+  useClientOnlyValue.web.ts                                   |       0 |      100 |       0 |       0 | 6-11                                            
+ apres/src/constants                                          |       0 |      100 |     100 |       0 |                                                 
+  Colors.ts                                                   |       0 |      100 |     100 |       0 | 2-3                                             
+  index.ts                                                    |       0 |      100 |     100 |       0 | 1                                               
+ apres/src/lib                                                |       0 |        0 |       0 |       0 |                                                 
+  realtime.ts                                                 |       0 |      100 |       0 |       0 | 2-3                                             
+  supabase.ts                                                 |       0 |        0 |       0 |       0 | 7-39                                            
+  vak.ts                                                      |       0 |      100 |     100 |       0 | 6                                               
+ apres/src/modals                                             |       0 |        0 |       0 |       0 |                                                 
+  CreateGroup.tsx                                             |       0 |        0 |       0 |       0 | 18-181                                          
+  CreateGroupParticipants.tsx                                 |       0 |        0 |       0 |       0 | 12-145                                          
+ apres/src/providers                                          |       0 |        0 |       0 |       0 |                                                 
+  AuthProvider.tsx                                            |       0 |        0 |       0 |       0 | 17-71                                           
+  QueryProvider.tsx                                           |       0 |      100 |       0 |       0 | 4-7                                             
+  SettingsProvider.tsx                                        |       0 |        0 |       0 |       0 | 33-102                                          
+ apres/src/translations                                       |   15.38 |        0 |       0 |   15.38 |                                                 
+  index.ts                                                    |   15.38 |        0 |       0 |   15.38 | 1552-1559,1565-1583                             
+ apres/src/utils                                              |   63.28 |    72.22 |    62.5 |    62.9 |                                                 
+  expenseFormDefaults.ts                                      |   97.29 |    92.85 |     100 |   97.22 | 26                                              
+  expense_categories.ts                                       |       0 |        0 |       0 |       0 | 18-217                                          
+  helpers.ts                                                  |   51.13 |    57.35 |   52.94 |      50 | 15-18,37-51,56,69,82-86,168-193,197-199,205-221 
+ apres/supabase/functions/gemini                              |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 | 3-65                                            
+ apres/supabase/functions/openai                              |       0 |      100 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |      100 |       0 |       0 | 4-25                                            
+ apres/supabase/functions/vak                                 |       0 |      100 |     100 |       0 |                                                 
+  agent.ts                                                    |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                                    |       0 |        0 |       0 |       0 |                                                 
+  schema.gen.ts                                               |       0 |      100 |     100 |       0 | 4                                               
+--------------------------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+
+Test Suites: 3 passed, 3 total
+Tests:       26 passed, 26 total
+Snapshots:   0 total
+Time:        9.677 s
+Ran all test suites.

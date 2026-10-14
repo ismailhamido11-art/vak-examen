@@ -1,0 +1,18 @@
+$ vak test
+(dossier : /work/flow_finance_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (5 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1551 tokens (maximum 5000)
+✓ evals 2 évaluations bien formées
+✓ tour read_data accounts exécuté sans validation → {"table":"accounts","label":"Comptes","total":1,"shown":1,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000…
+✓ tour read_data savings_accounts exécuté sans validation → {"table":"savings_accounts","label":"Livrets","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8…
+✓ tour read_data transactions exécuté sans validation → {"table":"transactions","label":"Transactions","total":1,"shown":1,"complete":true,"rows":[{"id":"00000000-0000-4000-…
+✓ tour read_data categories exécuté sans validation → {"table":"categories","label":"Catégories","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000…
+✓ tour read_data savings_goals exécuté sans validation → {"table":"savings_goals","label":"Objectifs d'épargne","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-00…
+✓ tour open_screen transactions exécuté sans validation → {"href":"/transactions","label":"Transactions"}
+✓ tour open_screen epargne exécuté sans validation → {"href":"/savings","label":"Épargne"}
+✓ tour open_screen analyses exécuté sans validation → {"href":"/analytics","label":"Analyses"}
+vak test : tout est vert [code 0]

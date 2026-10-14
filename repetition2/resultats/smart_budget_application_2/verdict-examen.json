@@ -1,0 +1,558 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "smart_budget_application_2",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 1475
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 56
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.28.1.tgz sha256 = préparation",
+        "46 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-14T17:46:25.996Z",
+      "demande": "2026-10-14T17:46:18.307Z",
+      "premierVakQuiRendZero": "2026-10-14T17:58:57.527Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 12.53,
+      "ligne": 158
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 51085,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK015 preuve à deux comptes du 2026-10-14 : éprouvé (6 table(s), 248 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)",
+            "    - categories.user_id : modifiable par l'utilisateur et lue par la politique « Users can view their own categories » : elle décide qui voit la ligne",
+            "    - categories.household_id : modifiable par l'utilisateur et lue par la politique « Users can view their own categories » : elle décide qui voit la ligne",
+            "    - categories.visibility_level : modifiable par l'utilisateur et lue par la politique « Users can view their own categories » : elle décide qui voit la ligne",
+            "    - transactions.user_id : modifiable par l'utilisateur et lue par la politique « Users can view their own transactions » : elle décide qui voit la ligne",
+            "    - transactions.category_id : modifiable par l'utilisateur et lue par la politique « Users can view their own transactions » : elle décide qui voit la ligne",
+            "    - transactions.household_id : modifiable par l'utilisateur et lue par la politique « Users can view their own transactions » : elle décide qui voit la ligne",
+            "    - goals.user_id : modifiable par l'utilisateur et lue par la politique « Users can read own goals » : elle décide qui voit la ligne",
+            "    - goals.household_id : modifiable par l'utilisateur et lue par la politique « Users can read own goals » : elle décide qui voit la ligne",
+            "    - households.name : modifiable par l'utilisateur ; la politique « Members can view their household » passe la ligne à une fonction : à vérifier",
+            "    - households.created_by : modifiable par l'utilisateur ; la politique « Members can view their household » passe la ligne à une fonction : à vérifier",
+            "    - households.created_at : modifiable par l'utilisateur ; la politique « Members can view their household » passe la ligne à une fonction : à vérifier",
+            "    - households.updated_at : modifiable par l'utilisateur ; la politique « Members can view their household » passe la ligne à une fonction : à vérifier",
+            "    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.28.1, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements",
+            "✓ VAK007 lib/vak.ts sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "! VAK013 chaque table de l'app est calibrée ou ignorée (6 dans tables ; ignore : 20 tables, 13 fonctions) ; dans ignore, tables de l'utilisateur : « analytics_events », « comeback_challenges », « detected_subscriptions »",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (46)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-14 : éprouvé (6 table(s), 248 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "! VAK108 colonnes qui décident des droits (avertissement)"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run type-check",
+            "source": "script « type-check » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 24,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run type-check",
+            "source": "script « type-check » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 25,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+            "code": 0,
+            "delai": false,
+            "secondes": 20,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+            "code": 0,
+            "delai": false,
+            "secondes": 20,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "npm run test",
+            "source": "script « test » : jest",
+            "code": 1,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0,
+            "tests": null
+          },
+          "apres": {
+            "commande": "npm run test",
+            "source": "script « test » : jest",
+            "code": 1,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0,
+            "tests": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "test : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie",
+    "build : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie"
+  ],
+  "entree": {
+    "essai": "/srv/essais/smart_budget_application_2",
+    "preparation": {
+      "id": "smart_budget_application_2",
+      "depot": "https://github.com/NikolayAngelov90/Smart-Budget-Application",
+      "commit": "d8173d6acceda25588b8b9f38ce9956aade38935",
+      "prepare": "e184d3b4d1b1ffd09c8d8f3e75b3f997e5af620b",
+      "archive": {
+        "nom": "vak-agent-0.28.1.tgz",
+        "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+      },
+      "debut": "2026-10-14T17:43:56Z"
+    },
+    "tip": "b49d484dcdbdb13fcd97e1cb170ce38029e69b31",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 62,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 26,
+      "tablesAMoi": 25,
+      "aMoiEprouvees": 6,
+      "ignorees": 33,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "e184d3b4d1b1ffd09c8d8f3e75b3f997e5af620b",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser",
+              "npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead",
+              "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+              "npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead",
+              "npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead",
+              "npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0",
+              "npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions",
+              "npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained",
+              "npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 1382 packages in 32s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run type-check",
+              "source": "script « type-check » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 24,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 type-check",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+              "code": 0,
+              "delai": false,
+              "secondes": 20,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 lint",
+                "> eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0"
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : jest",
+              "code": 1,
+              "delai": false,
+              "secondes": 2,
+              "erreurs": 0,
+              "tests": null,
+              "liste": [],
+              "fin": [
+                "> jest",
+                "TypeError: Invalid URL",
+                "    at new URL (node:internal/url:827:25)",
+                "    at Object.<anonymous> (/srv/verdicts/smart_budget_application_2/clones/prep/next.config.compiled.js:173:63)",
+                "    at Module._compile (node:internal/modules/cjs/loader:1706:14)",
+                "    at requireFromString (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/next/dist/build/next-config-ts/require-hook.js:81:7)",
+                "    at transpileConfig (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/next/dist/build/next-config-ts/transpile-config.js:98:51)",
+                "    at async loadConfig (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/next/dist/server/config.js:1088:36)",
+                "    at async getConfig (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/next/dist/build/jest/jest.js:86:18)",
+                "    at async /srv/verdicts/smart_budget_application_2/clones/prep/node_modules/next/dist/build/jest/jest.js:127:30",
+                "    at async readConfigFileAndSetRootDir (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/@jest/core/node_modules/jest-config/build/index.js:2284:20)",
+                "    at async readInitialOptions (/srv/verdicts/smart_budget_application_2/clones/prep/node_modules/@jest/core/node_modules/jest-config/build/index.js:1147:13)"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 2,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 build",
+                "> next build",
+                " ⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error",
+                "> Build error occurred",
+                "TypeError: Invalid URL",
+                "    at Object.<anonymous> (next.config.compiled.js:173:63) {",
+                "  code: 'ERR_INVALID_URL',",
+                "  input: 'your_supabase_project_url'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser",
+          "npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead",
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+          "npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead",
+          "npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead",
+          "npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0",
+          "npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions",
+          "npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained",
+          "npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 1382 packages in 32s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "b49d484dcdbdb13fcd97e1cb170ce38029e69b31",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser",
+              "npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead",
+              "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+              "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+              "npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead",
+              "npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead",
+              "npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0",
+              "npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions",
+              "npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained",
+              "npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 1383 packages in 29s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run type-check",
+              "source": "script « type-check » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 25,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 type-check",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+              "code": 0,
+              "delai": false,
+              "secondes": 20,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 lint",
+                "> eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0"
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : jest",
+              "code": 1,
+              "delai": false,
+              "secondes": 2,
+              "erreurs": 0,
+              "tests": null,
+              "liste": [],
+              "fin": [
+                "> jest",
+                "TypeError: Invalid URL",
+                "    at new URL (node:internal/url:827:25)",
+                "    at Object.<anonymous> (/srv/verdicts/smart_budget_application_2/clones/head/next.config.compiled.js:173:63)",
+                "    at Module._compile (node:internal/modules/cjs/loader:1706:14)",
+                "    at requireFromString (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/next/dist/build/next-config-ts/require-hook.js:81:7)",
+                "    at transpileConfig (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/next/dist/build/next-config-ts/transpile-config.js:98:51)",
+                "    at async loadConfig (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/next/dist/server/config.js:1088:36)",
+                "    at async getConfig (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/next/dist/build/jest/jest.js:86:18)",
+                "    at async /srv/verdicts/smart_budget_application_2/clones/head/node_modules/next/dist/build/jest/jest.js:127:30",
+                "    at async readConfigFileAndSetRootDir (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/@jest/core/node_modules/jest-config/build/index.js:2284:20)",
+                "    at async readInitialOptions (/srv/verdicts/smart_budget_application_2/clones/head/node_modules/@jest/core/node_modules/jest-config/build/index.js:1147:13)"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 2,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> smart-budget-application@0.1.0 build",
+                "> next build",
+                " ⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error",
+                "> Build error occurred",
+                "TypeError: Invalid URL",
+                "    at Object.<anonymous> (next.config.compiled.js:173:63) {",
+                "  code: 'ERR_INVALID_URL',",
+                "  input: 'your_supabase_project_url'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser",
+          "npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead",
+          "npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported",
+          "npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported",
+          "npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead",
+          "npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead",
+          "npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0",
+          "npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions",
+          "npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained",
+          "npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 1383 packages in 29s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-14T18:06:02.173Z"
+}

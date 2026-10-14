@@ -1,0 +1,18 @@
+{
+  "id": "split_free_frontend_2",
+  "depot": "https://github.com/abdullahozer11/split-free-frontend",
+  "commit": "74b661256ea210cccb9aa5bdaa8d5bb55c08abcd",
+  "prepare": "b2397246a5283fca1c4e971a58df4bae64f8feec",
+  "archive": {
+    "nom": "vak-agent-0.28.1.tgz",
+    "sha256": "b95df736c5b65e317856976d4754e9497ce9868743b4725c141ea584da636d26"
+  },
+  "app": "/work/split_free_frontend_2/app",
+  "avant": "/work/split_free_frontend_2/avant.json",
+  "debut": "2026-10-14T17:30:28Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-14T17:32:21Z"
+}

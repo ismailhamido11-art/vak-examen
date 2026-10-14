@@ -1,0 +1,205 @@
+diff --git a/messages/bg.json b/messages/bg.json
+index 75e26cf..6f2ff15 100644
+--- a/messages/bg.json
++++ b/messages/bg.json
+@@ -217,6 +217,7 @@
+     "household": "Домакинство",
+     "insights": "Прегледи",
+     "settings": "Настройки",
++    "assistant": "Асистент",
+     "add": "Добави",
+     "expandSidebar": "Разгъни странично меню",
+     "collapseSidebar": "Свий странично меню",
+diff --git a/messages/en.json b/messages/en.json
+index 4368f6a..fa449e0 100644
+--- a/messages/en.json
++++ b/messages/en.json
+@@ -217,6 +217,7 @@
+     "household": "Household",
+     "insights": "Insights",
+     "settings": "Settings",
++    "assistant": "Assistant",
+     "add": "Add",
+     "expandSidebar": "Expand sidebar",
+     "collapseSidebar": "Collapse sidebar",
+diff --git a/src/app/(dashboard)/settings/__tests__/index-page.test.tsx b/src/app/(dashboard)/settings/__tests__/index-page.test.tsx
+index 66d0ad9..09ad25a 100644
+--- a/src/app/(dashboard)/settings/__tests__/index-page.test.tsx
++++ b/src/app/(dashboard)/settings/__tests__/index-page.test.tsx
+@@ -18,6 +18,9 @@ jest.mock('@/components/layout/AppLayout', () => ({
+ jest.mock('@/components/settings/sections/DangerZoneSection', () => ({
+   DangerZoneSection: () => <div>danger-zone</div>,
+ }));
++jest.mock('@/app/(dashboard)/settings/agent-settings', () => ({
++  VakSettings: () => <div>vak-settings</div>,
++}));
+ jest.mock('next/link', () => {
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   const MockLink = ({ children, href, ...rest }: any) => (
+diff --git a/src/app/(dashboard)/settings/agent-settings.tsx b/src/app/(dashboard)/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..bbe301b
+--- /dev/null
++++ b/src/app/(dashboard)/settings/agent-settings.tsx
+@@ -0,0 +1,8 @@
++'use client';
++
++import { AgentSettings } from '@vak/agent/web';
++import { vak } from '@/lib/vak';
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/app/(dashboard)/settings/page.tsx b/src/app/(dashboard)/settings/page.tsx
+index 9f8eec0..1afd2af 100644
+--- a/src/app/(dashboard)/settings/page.tsx
++++ b/src/app/(dashboard)/settings/page.tsx
+@@ -30,6 +30,7 @@ import { useTranslations } from 'next-intl';
+ import type { ComponentType } from 'react';
+ import { AppLayout } from '@/components/layout/AppLayout';
+ import { DangerZoneSection } from '@/components/settings/sections/DangerZoneSection';
++import { VakSettings } from './agent-settings';
+ 
+ interface SettingsGroup {
+   href: string;
+@@ -144,6 +145,8 @@ export default function SettingsPage() {
+             </CardBody>
+           </Card>
+ 
++          <VakSettings />
++
+           <DangerZoneSection />
+         </VStack>
+       </Container>
+diff --git a/src/app/globals.css b/src/app/globals.css
+index a8471c9..8d680b4 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -65,3 +65,15 @@ a {
+     scroll-behavior: auto !important;
+   }
+ }
++
++/* Assistant vak : le bouton flottant se place au-dessus de la barre du bas (mobile)
++   et du bouton « + » d'ajout de transaction (tablette et bureau). */
++.vak-launcher {
++  bottom: calc(88px + env(safe-area-inset-bottom));
++}
++@media (min-width: 48em) {
++  .vak-launcher {
++    right: 32px;
++    bottom: 108px;
++  }
++}
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 39b0362..a7e0873 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -4,9 +4,11 @@ import { getLocale, getMessages } from 'next-intl/server';
+ import localFont from 'next/font/local';
+ import { Providers } from './providers';
+ import './globals.css';
++import '@vak/agent/web/styles.css';
+ import { SpeedInsights } from '@vercel/speed-insights/next';
+ import { Analytics } from '@vercel/analytics/next';
+ import { ServiceWorkerRegistrar } from '@/components/pwa/ServiceWorkerRegistrar';
++import { AssistantLauncher } from '@/components/assistant/AssistantLauncher';
+ 
+ /**
+  * Quiet Ledger type system (redesign).
+@@ -120,6 +122,7 @@ try{localStorage.setItem('chakra-ui-color-mode',m);}catch(e){}
+         <NextIntlClientProvider messages={messages}>
+           <Providers>{children}</Providers>
+         </NextIntlClientProvider>
++        <AssistantLauncher />
+         <ServiceWorkerRegistrar />
+         <SpeedInsights />
+         <Analytics />
+diff --git a/src/components/assistant/AssistantLauncher.tsx b/src/components/assistant/AssistantLauncher.tsx
+new file mode 100644
+index 0000000..99b164a
+--- /dev/null
++++ b/src/components/assistant/AssistantLauncher.tsx
+@@ -0,0 +1,37 @@
++'use client';
++
++import { AgentButton } from '@vak/agent/web';
++import { usePathname, useRouter } from 'next/navigation';
++import { useLocale } from 'next-intl';
++import { vak } from '@/lib/vak';
++
++// Écrans sans session (ou déjà occupés par le chat) : pas de bouton flottant.
++const HIDDEN_PREFIXES = [
++  '/login',
++  '/signup',
++  '/forgot-password',
++  '/reset-password',
++  '/verify-email',
++  '/join',
++  '/assistant',
++  '/offline',
++];
++
++export function AssistantLauncher() {
++  const pathname = usePathname();
++  const router = useRouter();
++  const lang = useLocale();
++
++  if (pathname === '/' || HIDDEN_PREFIXES.some((p) => pathname.startsWith(p))) return null;
++
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      lang={lang}
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push('/login')}
++      theme={{ accent: '#0F766E', mode: 'system' }}
++    />
++  );
++}
+diff --git a/src/components/layout/MoreSheet.tsx b/src/components/layout/MoreSheet.tsx
+index 6ec2f7e..f38dc50 100644
+--- a/src/components/layout/MoreSheet.tsx
++++ b/src/components/layout/MoreSheet.tsx
+@@ -25,7 +25,7 @@ import {
+   Text,
+   VStack,
+ } from '@chakra-ui/react';
+-import { AddIcon, SettingsIcon, AtSignIcon, StarIcon } from '@chakra-ui/icons';
++import { AddIcon, ChatIcon, SettingsIcon, AtSignIcon, StarIcon } from '@chakra-ui/icons';
+ import type { ComponentType } from 'react';
+ import Link from 'next/link';
+ import { usePathname } from 'next/navigation';
+@@ -63,6 +63,7 @@ export function MoreSheet({ isOpen, onClose }: MoreSheetProps) {
+       add: { href: '/goals?new=1', label: t('addGoal') },
+     },
+     { href: '/household', label: t('household'), icon: HouseholdIcon },
++    { href: '/assistant', label: t('assistant'), icon: ChatIcon },
+     { href: '/settings', label: t('settings'), icon: SettingsIcon },
+   ];
+ 
+diff --git a/src/components/layout/Sidebar.tsx b/src/components/layout/Sidebar.tsx
+index ea8bfc5..57093c0 100644
+--- a/src/components/layout/Sidebar.tsx
++++ b/src/components/layout/Sidebar.tsx
+@@ -16,6 +16,7 @@ import {
+   EditIcon,
+   AtSignIcon,
+   InfoIcon,
++  ChatIcon,
+   SettingsIcon,
+   StarIcon,
+   ChevronLeftIcon,
+@@ -36,7 +37,10 @@ const primaryNav = [
+   { key: 'goals' as const, href: '/goals', icon: StarIcon },
+   { key: 'household' as const, href: '/household', icon: HouseholdIcon },
+ ];
+-const footerNav = [{ key: 'settings' as const, href: '/settings', icon: SettingsIcon }];
++const footerNav = [
++  { key: 'assistant' as const, href: '/assistant', icon: ChatIcon },
++  { key: 'settings' as const, href: '/settings', icon: SettingsIcon },
++];
+ 
+ interface SidebarProps {
+   isCollapsed?: boolean;

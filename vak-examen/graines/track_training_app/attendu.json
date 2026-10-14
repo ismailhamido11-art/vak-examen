@@ -1,0 +1,105 @@
+[
+  {
+    "table": "public.workouts",
+    "colonne": "user_id",
+    "nom": "workouts",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-730E027A",
+      "MARQUEUR-B-54832922",
+      "MARQUEUR-B-1830F78A",
+      "MARQUEUR-B-4E7886AB",
+      "MARQUEUR-B-BA8A3B9C",
+      "MARQUEUR-B-06BC0257",
+      "MARQUEUR-B-61658550",
+      "MARQUEUR-B-33B01628"
+    ]
+  },
+  {
+    "table": "public.workout_entries",
+    "colonne": "user_id",
+    "nom": "workout entries",
+    "langue": "en",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-659C557F",
+      "MARQUEUR-B-DE0EB7F4",
+      "MARQUEUR-B-0FF949DF",
+      "MARQUEUR-B-D40A275A",
+      "MARQUEUR-B-F99EA23F",
+      "MARQUEUR-B-E2DCD2CA",
+      "MARQUEUR-B-C14B1793",
+      "MARQUEUR-B-A050AB53",
+      "MARQUEUR-B-F1832CB4",
+      "MARQUEUR-B-A2177D25",
+      "MARQUEUR-B-8C8CDCB8",
+      "MARQUEUR-B-837A465C",
+      "MARQUEUR-B-C87F85A5",
+      "MARQUEUR-B-755BCBB0",
+      "MARQUEUR-B-61C96470"
+    ]
+  },
+  {
+    "table": "public.calendar_events",
+    "colonne": "user_id",
+    "nom": "calendar events",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-78DBE3BD",
+      "MARQUEUR-B-9F287CDC",
+      "MARQUEUR-B-4C405FF5",
+      "MARQUEUR-B-D89B224C",
+      "MARQUEUR-B-BBD30E72",
+      "MARQUEUR-B-B7729EBD"
+    ]
+  },
+  {
+    "table": "public.achievements",
+    "colonne": "user_id",
+    "nom": "achievements",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-380C3F62",
+      "MARQUEUR-B-BE595664",
+      "MARQUEUR-B-2FE2E810"
+    ]
+  },
+  {
+    "table": "public.exercise_prs",
+    "colonne": "user_id",
+    "nom": "personal records",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-4B8C1557",
+      "MARQUEUR-B-D6BC5713"
+    ]
+  },
+  {
+    "table": "public.teams",
+    "colonne": "created_by",
+    "nom": "teams",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-422726C2",
+      "MARQUEUR-B-E497EF25",
+      "MARQUEUR-B-078706DC",
+      "MARQUEUR-B-71E561F6"
+    ]
+  },
+  {
+    "table": "public.team_memberships",
+    "colonne": "user_id",
+    "nom": "team memberships",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-C1EC6E72",
+      "MARQUEUR-B-782EBC59"
+    ]
+  }
+]

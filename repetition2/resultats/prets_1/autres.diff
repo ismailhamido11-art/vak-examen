@@ -1,0 +1,110 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index a3fdc27..e859dae 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,5 +1,6 @@
+ import { Redirect, Stack, useSegments } from 'expo-router';
+ 
++import { AssistantButton } from '@/lib/assistant-button';
+ import { SessionProvider, useSession } from '@/lib/session';
+ 
+ function Guard() {
+@@ -10,13 +11,18 @@ function Guard() {
+   if (!session && !onLogin) return <Redirect href="/login" />;
+   if (session && onLogin) return <Redirect href="/" />;
+   return (
++    <>
+     <Stack>
+       <Stack.Screen name="index" options={{ title: 'Mes objets' }} />
+       <Stack.Screen name="login" options={{ title: 'Connexion' }} />
+       <Stack.Screen name="item/[id]" options={{ title: 'Prêts' }} />
+       <Stack.Screen name="new-loan" options={{ title: 'Nouveau prêt' }} />
+       <Stack.Screen name="overdue" options={{ title: 'Prêts en retard' }} />
++      <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++      <Stack.Screen name="reglages" options={{ title: "Réglages de l'assistant" }} />
+     </Stack>
++    {session && !onLogin && <AssistantButton />}
++    </>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 4cac251..5fc400b 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -40,6 +40,7 @@ export default function Items() {
+       <Button title="Ajouter" onPress={add} disabled={!name.trim()} />
+       {error && <ErrorText>{error}</ErrorText>}
+       <Link href="/overdue" style={s.title}>Prêts en retard</Link>
++      <Link href="/reglages" style={s.muted}>Réglages de l&apos;assistant</Link>
+       <FlatList
+         data={items}
+         keyExtractor={(i) => i.id}
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/lib/assistant-button.tsx b/src/lib/assistant-button.tsx
+new file mode 100644
+index 0000000..7f859b1
+--- /dev/null
++++ b/src/lib/assistant-button.tsx
+@@ -0,0 +1,37 @@
++import { router, useSegments } from 'expo-router';
++import { Pressable, StyleSheet, Text } from 'react-native';
++
++// Bouton flottant vers l'assistant, présent sur tous les écrans (sauf la connexion et l'assistant lui-même).
++export function AssistantButton() {
++  const segments = useSegments() as string[];
++  if (segments[0] === 'login' || segments[0] === 'assistant') return null;
++  return (
++    <Pressable
++      accessibilityRole="button"
++      accessibilityLabel="Ouvrir l'assistant"
++      onPress={() => router.push('/assistant')}
++      style={styles.fab}>
++      <Text style={styles.text}>IA</Text>
++    </Pressable>
++  );
++}
++
++const styles = StyleSheet.create({
++  fab: {
++    position: 'absolute',
++    right: 20,
++    bottom: 28,
++    width: 56,
++    height: 56,
++    borderRadius: 28,
++    backgroundColor: '#208AEF',
++    alignItems: 'center',
++    justifyContent: 'center',
++    elevation: 6,
++    shadowColor: '#000',
++    shadowOpacity: 0.25,
++    shadowRadius: 4,
++    shadowOffset: { width: 0, height: 2 },
++  },
++  text: { color: '#fff', fontWeight: '700', fontSize: 16 },
++});
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }
