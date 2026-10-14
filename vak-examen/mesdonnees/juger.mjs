@@ -5,6 +5,7 @@
 // Codes de sortie : 0 juste, 1 faux, 2 usage, 3 erreur du juge (le verdict de l'essai n'est alors pas rendu).
 // La règle exacte est dans README.md, à côté.
 import { spawnSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -254,6 +255,27 @@ const NOMBRES_ES = nombresRe({ ...MOTS, ...MOTS_ES });
 const FORMES_UN = /(?<![\p{L}])(?:un seul|une seule|un unique|une unique|seulement un|seulement une|only one|just one|exactly one|a single|one single|single)(?![\p{L}])/giu;
 const FORMES_UN_ES = /(?<![\p{L}])(?:un solo|una sola|s[oó]lo uno|s[oó]lo una|únicamente uno|únicamente una)(?![\p{L}])/giu;
 
+const QU_UN = /(?<![\p{L}])(qu['’])(une?)(?![\p{L}])/giu;
+const NEGATION = /(?<![\p{L}])(?:ne(?![\p{L}'’])|n['’])/giu;
+const MOT = /\p{L}+(?:['’]\p{L}+)*(?:-\p{L}+)*/gu;
+
+// « qu'un » (de `debut` à `fin` dans `t`) est-il restrictif ? Une négation « ne » / « n' » dans la même phrase, au plus
+// quatre mots avant, sans « pas » ni « jamais » entre les deux ; et il est suivi d'une ponctuation, de la fin du texte,
+// de « seul(e) » ou du nom compté.
+function restrictive(t, debut, fin, mot) {
+  const apres = t.slice(fin);
+  const racine = mot.replace(/s$/i, "");
+  const suite = /^(?:[ \t]*[^\p{L}\p{N}\s]|\s*$)/u.test(apres) || /^\s+seules?(?![\p{L}])/iu.test(apres)
+    || (racine.length > 2 && new RegExp(`^\\s+${racine.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "iu").test(apres));
+  if (!suite) return false;
+  const phrase = t.slice(Math.max(t.lastIndexOf(".", debut - 1), t.lastIndexOf("!", debut - 1), t.lastIndexOf("?", debut - 1), t.lastIndexOf(";", debut - 1), t.lastIndexOf(":", debut - 1), t.lastIndexOf("\n", debut - 1)) + 1, debut);
+  for (const n of phrase.matchAll(NEGATION)) {
+    const mots = phrase.slice(n.index + n[0].length).match(MOT) ?? [];
+    if (mots.length <= 4 && !mots.some((w) => /^(?:pas|jamais)$/i.test(w))) return true;
+  }
+  return false;
+}
+
 // Retire ce qui ressemble à un nombre sans en être un : dates, heures, identifiants, numérotation de liste.
 export function nettoyer(texte) {
   return String(texte ?? "")
@@ -290,6 +312,12 @@ export function nombresDe(texteBrut, nom = "", langue = null) {
     const alt = racines.map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
     const re = new RegExp(`(?<![\\p{L}])(?:un|une|one${es ? "|una|uno" : ""})\\s+(?:\\p{L}+\\s+)?(?:${alt})`, "giu");
     for (const m of t.matchAll(re)) trouves.push({ pos: m.index, valeur: 1, texte: m[0] });
+  }
+  // « qu'un » / « qu'une » : 1 seulement dans la tournure restrictive (« il n'y en a qu'un »).
+  for (const m of t.matchAll(QU_UN)) {
+    const pos = m.index + m[0].length - m[2].length;
+    if (!restrictive(t, m.index, pos + m[2].length, mot) || trouves.some((x) => x.pos === pos)) continue;
+    trouves.push({ pos, valeur: 1, texte: m[0] });
   }
   return trouves.sort((x, y) => x.pos - y.pos).map(({ valeur, texte: tx }) => ({ valeur, texte: tx }));
 }
@@ -383,9 +411,21 @@ const ident = (s) => {
   return parts.map((p) => `"${p}"`).join(".");
 };
 
+// Les revendications du jeton que la pile signe après une connexion par mot de passe, sans second facteur.
+export function revendications(a, email) {
+  const maintenant = Math.floor(Date.now() / 1000);
+  return {
+    sub: a, role: "authenticated", aud: "authenticated", email, aal: "aal1",
+    amr: [{ method: "password", timestamp: maintenant }], session_id: randomUUID(), is_anonymous: false,
+    iat: maintenant, exp: maintenant + 3600,
+  };
+}
+
 export function compterSousA(pile, a, table, colonne) {
   if (!UUID.test(a)) throw new Error(`identifiant de A invalide : ${a}`);
-  const claims = JSON.stringify({ sub: a, role: "authenticated" });
+  const email = pile?.comptes?.A?.email;
+  if (typeof email !== "string" || !email) throw new Error("pile.json : `comptes.A.email` est requis");
+  const claims = JSON.stringify(revendications(a, email)).replace(/'/g, "''");
   const sql = `begin; set local role authenticated; select set_config('request.jwt.claims', '${claims}', true); select count(*) from ${ident(table)} where ${ident(colonne)} = '${a}'; rollback;`;
   const r = spawnSync(process.env.JUGE_PSQL || "psql", [pile.db, "-X", "-q", "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], { encoding: "utf8", timeout: 60000 });
   if (r.error || r.status !== 0) throw new Error(`comptage SQL de ${table} impossible : ${(r.error?.message ?? r.stderr ?? "").trim().slice(0, 300)}`);
@@ -429,7 +469,7 @@ function chargerAttendu(fichier) {
 export function juger(fichierPile, fichierAttendu, dossier) {
   const pile = JSON.parse(readFileSync(fichierPile, "utf8"));
   const idA = pile?.comptes?.A?.id;
-  if (!pile.db || !idA) throw new Error("pile.json : `db` et `comptes.A.id` sont requis");
+  if (!pile.db || !idA || !pile?.comptes?.A?.email) throw new Error("pile.json : `db`, `comptes.A.id` et `comptes.A.email` sont requis");
   const { tables, langue: langueGlobale } = chargerAttendu(fichierAttendu);
   const lecture = tablesLues(dossier);
   const connus = [...new Set(tables.flatMap((t) => t.marqueurs_b))];

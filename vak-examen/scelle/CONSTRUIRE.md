@@ -27,8 +27,9 @@ note-le dans ton compte rendu.
    - Écris d'abord le minimum de Supabase que les migrations attendent : les rôles `anon`, `authenticated` et
      `service_role` ; le schéma `auth`, avec `users`, `uid()`, `role()` et `jwt()`.
    - Applique les migrations, puis supprime la base.
-3. La RLS fait ce que dit la fiche. Sur cette base, avec deux utilisateurs (rôle `authenticated`,
-   `request.jwt.claims` posé), vérifie qu'aucun ne voit ni ne modifie les lignes de l'autre. Pour une équipe :
+3. La RLS et les fonctions SQL font ce que dit la fiche. Sur cette base, avec deux utilisateurs (rôle
+   `authenticated`, `request.jwt.claims` posé), vérifie qu'aucun ne voit ni ne modifie les lignes de l'autre, ni
+   directement ni par une fonction, et appelle chaque fonction de la fiche au moins une fois. Pour une équipe :
    celles d'une autre équipe.
 
 ## Interdits

@@ -331,30 +331,99 @@ export function legacyPoseParVak(journal) {
 // Premier « vak » (sans commande, éventuellement avec options, mais pas --help) qui rend 0 d'après le journal. Preuve
 // de premier rang : la dernière ligne de vak, « vak : fini (…) [code 0] ». Si l'agent a filtré la sortie (grep, tail),
 // deux preuves de repli, signalées dans `source` : la phrase « Fini pour l'agent de code » (que `vak init` et la page
-// d'aide affichent aussi), ou un « rc=0 » / « code 0 » écrit après la commande.
+// d'aide affichent aussi), ou un « rc=0 » / « code 0 » écrit après la commande. Une ligne finale de vak qui rend un
+// code non nul dans la même sortie (« vak doctor : … [code 1] ») annule les deux replis ; le « rc=0 » ne compte que
+// si c'est la sortie d'un `echo` qui suit directement vak et qui écrit le code de vak (voir `echoDuCodeDeVak`).
+const RE_LIGNE_NON_NULLE = /^vak(?: \S+)? : .*\[code (\d+)\]\s*$/gm;
+const vakEnEchec = (t) => [...t.matchAll(RE_LIGNE_NON_NULLE)].some((m) => Number(m[1]) !== 0);
+
 export function premierVakOk(journal) {
   const preuves = [
-    ['ligne finale de vak', (t) => /^vak : fini \(.*\) \[code 0\]\s*$/m.exec(t)],
-    ['phrase « Fini pour l\'agent de code »', (t) => /^Fini pour l['’]agent de code :.*$/m.exec(t)],
-    ['rc=0 écrit par l\'agent', (t) => /^\s*(?:rc|code|exit|status)=0\s*$/m.exec(t)],
+    ['ligne finale de vak', () => (t) => /^vak : fini \(.*\) \[code 0\]\s*$/m.exec(t)],
+    ['phrase « Fini pour l\'agent de code »', () => (t) => (vakEnEchec(t) ? null : /^Fini pour l['’]agent de code :.*$/m.exec(t))],
+    ['rc=0 écrit par l\'agent', (commande) => {
+      const etiquette = echoDuCodeDeVak(commande);
+      return (t) => {
+        if (!etiquette || vakEnEchec(t)) return null;
+        return new RegExp(`^\\s*${etiquette}=0\\s*$`, 'm').exec(t);
+      };
+    }],
   ];
   const candidats = [];
   for (const evt of journal.evts) {
     if (evt.genre !== 'resultat') continue;
     const outil = journal.outils.get(evt.id);
     if (!outil || outil.nom !== 'Bash') continue;
-    if (invocationsVak(outil.entree.command || '').some((i) => i.sansCommande && !i.aide)) candidats.push(evt);
+    if (invocationsVak(outil.entree.command || '').some((i) => i.sansCommande && !i.aide)) candidats.push({ evt, commande: outil.entree.command || '' });
   }
   let meilleur = null;
-  for (const [source, test] of preuves) {
-    for (const evt of candidats) {
-      const m = test(evt.texte);
+  for (const [source, fabrique] of preuves) {
+    for (const { evt, commande } of candidats) {
+      const m = fabrique(commande)(evt.texte);
       if (m && (!meilleur || evt.ts < meilleur.ts)) meilleur = { ligne: evt.n, ts: evt.ts, heure: hms(evt.ts), texte: m[0], source };
     }
     // la ligne finale de vak fait foi ; on ne passe au repli que s'il n'y en a aucune
     if (meilleur) return meilleur;
   }
   return null;
+}
+
+// Découpe une commande en pipelines : { unites: [texte des commandes reliées par « | »], avant: séparateur qui précède
+// le pipeline (« ; », « && », « || », « & » ou « \n », vide au début) }. Guillemets et heredocs respectés.
+function pipelines(cmd) {
+  const { out } = sortirHeredocs(cmd);
+  const res = [];
+  let courant = { unites: [], avant: '' };
+  let texte = '';
+  let q = null;
+  const unite = () => { courant.unites.push(texte.trim()); texte = ''; };
+  const fermer = (sep) => { unite(); if (courant.unites.some((u) => u)) res.push(courant); courant = { unites: [], avant: sep }; };
+  for (let i = 0; i < out.length; i++) {
+    const ch = out[i];
+    if (q) { texte += ch; if (ch === '\\' && q === '"' && i + 1 < out.length) texte += out[++i]; else if (ch === q) q = null; continue; }
+    if (ch === '"' || ch === "'") { q = ch; texte += ch; continue; }
+    if (ch === '\\' && i + 1 < out.length) { if (out[i + 1] === '\n') i++; else texte += ch + out[++i]; continue; }
+    if (ch === '#' && /(^|\s)$/.test(texte)) { while (i < out.length && out[i] !== '\n') i++; i--; continue; }
+    if (ch === '$' && out[i + 1] === '{') { const f = out.indexOf('}', i); if (f > 0) { texte += out.slice(i, f + 1); i = f; continue; } }
+    if (ch === '\n' || ch === ';') { fermer(ch === ';' ? ';' : '\n'); continue; }
+    if (ch === '&' && out[i + 1] === '&') { fermer('&&'); i++; continue; }
+    if (ch === '|' && out[i + 1] === '|') { fermer('||'); i++; continue; }
+    if (ch === '|') { unite(); if (out[i + 1] === '&') i++; continue; }
+    if (ch === '&' && out[i - 1] !== '>' && out[i - 1] !== '<' && out[i + 1] !== '>') { fermer('&'); continue; }
+    texte += ch;
+  }
+  fermer('');
+  return res;
+}
+
+// Le « rc=0 » écrit par l'agent compte seulement si c'est le code de vak : l'étiquette (`rc`, `code`, `exit` ou
+// `status`) de l'unique `echo` de code de la commande, qui suit directement le lancement de vak (par `;`, `&&` ou une
+// nouvelle ligne) et écrit `$?` — vak seul, sans `!`, `||` ni `&` —, `${PIPESTATUS[0]}` — vak en tête du tube qui
+// précède —, ou `$?` après un tube si `set -o pipefail` est posé plus tôt. Sinon null.
+const RE_ECHO_CODE = /^echo\b.*?\b(rc|code|exit|status)=/;
+export function echoDuCodeDeVak(commande) {
+  const ps = pipelines(commande);
+  const affectations = ps.flatMap((p) => p.unites).filter((u) => RE_AFFECTATION.test(u) && RE_CLI_VAK.test(RE_AFFECTATION.exec(u)[2].replace(/^["']|["']$/g, '')));
+  const estVak = (u) => invocationsVak([...affectations, u].join('\n')).some((i, k, tout) => k === tout.length - 1 && i.sansCommande && !i.aide);
+  const echos = [];
+  ps.forEach((p, i) => p.unites.forEach((u) => { if (RE_ECHO_CODE.test(u)) echos.push(i); }));
+  if (echos.length !== 1) return null; // plusieurs echo de code : le repli ne compte pas
+  const i = echos[0];
+  const echo = ps[i];
+  if (i === 0 || echo.unites.length !== 1 || !['\n', ';', '&&'].includes(echo.avant)) return null;
+  const e = RE_ECHO_CODE.exec(echo.unites[0]);
+  const valeur = new RegExp(`\\b${e[1]}=(["']?)(\\$\\?|\\$\\{PIPESTATUS\\[0\\]\\})\\1(?=[\\s"';]|$)`).exec(echo.unites[0]);
+  if (!valeur) return null;
+  const vak = ps[i - 1];
+  const rang = vak.unites.findIndex((u) => !/^!/.test(u) && estVak(u));
+  if (rang < 0 || vak.unites.some((u) => /^!/.test(u))) return null;
+  if (vak.avant === '||') return null; // `x || vak; echo $?` : le code peut être celui de x
+  const pipefail = ps.slice(0, i).some((p) => p.unites.some((u) => /^set\s+-[a-z]*o\s+pipefail\b/.test(u)));
+  let ecrit = true;
+  if (vak.unites.length === 1) ecrit = true; // `$?` ou `${PIPESTATUS[0]}` : le code de vak
+  else if (rang !== 0) ecrit = false; // vak n'est pas en tête du tube
+  else ecrit = valeur[2] !== '$?' || pipefail;
+  return ecrit ? e[1] : null;
 }
 
 // Les lancements de la CLI de vak (…/vak.mjs) d'une commande : sans commande (options seules) ou non, et avec --help

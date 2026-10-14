@@ -3,13 +3,13 @@
 `node controleur/controler.mjs <dossier d'un essai> <dossier de travail>` juge un essai selon `REGLE.md` (points 1, 2, 3, 4, 6 et 7 ; le point 5 est à la pile locale).
 Il écrit `<travail>/verdict.json` (raisons et preuves : diffs, lignes d'erreur, lignes du journal ; commandes brutes dans `journaux/`)
 et termine par `verdict <id> : réussi`, `… : échec (<raisons>)` ou `… : refus propre (<raison>)`. Code de sortie : 0 réussi, 1 sinon, 3 plantage.
-Node 22, git, npm/pnpm/yarn, psql ; aucun module npm. Aucune IA : des comparaisons et des comptes. `app/` n'est jamais touché : tout se joue dans
+Node 22, git, npm/pnpm/yarn/bun, psql ; aucun module npm. Aucune IA : des comparaisons et des comptes. `app/` n'est jamais touché : tout se joue dans
 des clones propres de `refs/heads/essai` (état commité), supprimés à la fin (`CONTROLEUR_GARDER=1` pour les garder). Délais : `CONTROLEUR_DELAI_MIN`
 (20, par vérification), `CONTROLEUR_INSTALL_MIN` (30), `CONTROLEUR_VAK_MIN` (25). Tests : `node --test controleur/tests/*.test.mjs`.
 
 ## Ce qu'il vérifie, et comment
 
-- **Point 1.** Installe les dépendances du HEAD à la racine, comme un développeur (`npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable|--frozen-lockfile`),
+- **Point 1.** Installe les dépendances du HEAD à la racine, comme un développeur (`npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable|--frozen-lockfile`, `bun install --frozen-lockfile`, puis `bun install` si la stricte échoue),
   puis lance `node …/node_modules/@vak/agent/bin/vak.mjs` sans commande, dans le dossier de chaque `supabase/functions/vak/vak.lock.json` (monorepo compris).
   Réussi si le code est 0 **et** si vak ne réécrit aucun fichier suivi : un `vak-proof.json` réécrit, c'est un reçu périmé. Les bases de test créées sont supprimées.
 - **Point 2.** Sur le commit de préparation puis sur le HEAD, chacun dans un clone neuf : typecheck, lint, tests, build. Cela se mesure dans le dossier de l'app : la racine, ou, si
@@ -32,7 +32,7 @@ des clones propres de `refs/heads/essai` (état commité), supprimés à la fin 
   Journal (commandes `Bash`, shell découpé : pas de faux positif sur `grep "--force"`) : `--force`, `--legacy-peer-deps`, `ln -s` (voir ci-dessous), `CREATE ROLE|EXTENSION|TABLE` tapé, écriture
   sur un fichier géré ou une migration existante.
 - **Point 6.** Du premier message de l'agent à la première sortie `vak : fini (…) [code 0]` d'une commande vak sans sous-commande (replis signalés : la phrase « Fini pour l'agent de code »,
-  puis un `rc=0`). Au plus 120 min. `vak --help` / `-h` (ou `<commande> --help`) n'est pas un `vak` sans commande : sa sortie, qui cite « Fini pour l'agent de code », ne compte pas. Une variable qui
+  puis un `rc=0` écrit par un `echo` qui donne le code de vak : voir « Mise à jour 3 »). Au plus 120 min. `vak --help` / `-h` (ou `<commande> --help`) n'est pas un `vak` sans commande : sa sortie, qui cite « Fini pour l'agent de code », ne compte pas. Une variable qui
   porte la CLI est suivie (`V="node …/vak.mjs"; $V --help` est de l'aide, `$V 2>&1 | tail` est un `vak`, `$V doctor` n'en est pas un ; l'affectation seule n'est pas un lancement).
 - **Point 7.** HEAD = commit de préparation, arbre propre, dernier message de l'agent disant « non pris en charge » : `refus propre` (compte comme un échec, noté à part).
 
@@ -66,6 +66,27 @@ lien-hors-depot passe ; refus = refus propre. Non rejoués : migration, recu-per
 et je n'ai pas pu vérifier qu'aucune de leurs conclusions ne change (rien dans leur sabotage « ignore », qui vise `tags étroit`, ne passe à permis).
 Durées : inchangées sur ces trois essais (5,4 min, 6,4 min, et jamais fini), aucun d'eux ne tombait dans le piège de l'aide.
 
+## Mise à jour 3 (examens du 10/10 et du 11/10 → prochain examen)
+
+Trois défauts relevés ; chacun a son test, qui échoue sans la correction.
+
+1. **Une app bun** (workout_app_1 : `bun.lock`, pas de `packageManager`). Le gestionnaire se décide sur le commit de préparation (`pmDe` : `bun.lock` ou `bun.lockb`, après pnpm, yarn et npm) :
+   un verrou d'un autre gestionnaire ajouté au HEAD reste une note du point 3 et l'installation reste bun des deux côtés. Installation `bun install --frozen-lockfile`, puis `bun install` si elle échoue ;
+   vérifications par `bun run <script>`. bun : `bun` s'il est sur la machine, sinon `npx -y --package=bun@<version> bun`, `<version>` = `packageManager` (`bun@x.y.z`) du `package.json` de l'app au commit
+   de préparation, sinon 1.3.11 (`BUN_PAR_DEFAUT`). La version utilisée est dans `verdict.json` (`bun`, et une note). Point 3 : `bun.lock` (JSON à virgules finales) est lu ; chaque entrée de `packages`
+   garde son `nom@version` et son `sha512-…`, chaque spécificateur de `workspaces` garde sa valeur, seuls des ajouts passent (`version changée`, `retiré`). Tests : `unitaires` « dépendances : bun.lock »,
+   `synthetique` « une app bun s'installe… » (npx réel, réseau requis). À workout_app_1 le point 2 devient `verrou` (`bun install --frozen-lockfile` → code 1 au HEAD, 0 avant), comme prévu.
+2. **Le chemin du clone dans les erreurs.** Dans la signature d'une erreur (fichier et message), le dossier du clone (`…/clones/prep`, `…/clones/head`) est remplacé par `<clone>`, partout dans le texte ;
+   rien d'autre n'est changé. Test : `unitaires` « le dossier du clone, cité dans le message… ». supabase_nextjs_template_1 n'a plus d'erreur nouvelle au point 2.
+3. **« code=0 » écrit par une autre commande.** Une ligne `vak[ <commande>] : … [code N]` (N ≠ 0) dans la même sortie annule la phrase « Fini pour l'agent de code » et le repli « rc=0 » pour cette commande.
+   Le repli « rc=0 » (`rc|code|exit|status=0`) ne compte que si la ligne est la sortie d'un `echo` qui suit directement vak (`;`, `&&`, nouvelle ligne) et écrit le code de vak : `$?` si vak est seul (ni tube,
+   ni `!`, `||` avant, `&`) ; `${PIPESTATUS[0]}` si vak est en tête du tube précédent ; `$?` après un tube seulement avec `set -o pipefail` (`-eo`, `-euo`) plus tôt dans la commande. Plusieurs `echo` de code :
+   pas de repli. La ligne finale `vak : fini (…) [code 0]` fait toujours foi. Code : `echoDuCodeDeVak` (`lib/journal.mjs`). Tests : `unitaires` « abonnements_1… » (commande et sortie de l'essai) et « le repli rc=0… ».
+
+Rejeu des essais (`verdicts-examen-11-10/`) : **wacrm** réussi (inchangé) ; **abonnements_1** échec (point 6 `jamais-fini` : « code=0 » n'est plus pris pour vak ; point 1 : vak rend 1) ;
+**supabase_nextjs_template_1** échec (points 6 et 1 ; plus d'erreur nouvelle au point 2) ; **workout_app_1** échec (point 2 `verrou`, point 1 : vak rend 1, point 6, point 4 : `--legacy-peer-deps` tapé deux fois).
+`verdicts-repetition/` n'est pas touché (maybewe et makerkit ne sont pas rejouables).
+
 ## Décisions que la règle ne tranche pas (à relire)
 
 - **Liens symboliques (règle, point 4, précisée).** Un lien commité dans le dépôt, ou tapé dans le dépôt (sa racine, ses dossiers), est un échec. Un lien tapé **hors du dépôt**
@@ -81,7 +102,7 @@ Durées : inchangées sur ces trois essais (5,4 min, 6,4 min, et jamais fini), a
 
 ## Limites connues
 
-- **Non éprouvé** : app Expo seule (hors monorepo), yarn et bun en conditions réelles (yarn par tests unitaires ; bun non comparé), Windows, installation du HEAD impossible,
+- **Non éprouvé** : app Expo seule (hors monorepo), yarn en conditions réelles (par tests unitaires) ; bun l'est depuis la mise à jour 3 (workout_app_1, npx), Windows, installation du HEAD impossible,
   nouvelle tentative `--legacy-peer-deps`, délai dépassé sur une vraie app. Les sabotages n'ont été plantés que dans wacrm (npm, Next).
 - Le journal est jugé par motifs : une sortie que l'agent a filtrée (`tail`, `grep`) peut cacher un échec de preuve (le contrôle `ignore` ne le voit pas) ; un script Python ou Node qui
   écrit un chemin construit à l'exécution échappe à la détection d'écriture. Le shell est découpé simplement (pas de `$(…)` imbriqué).

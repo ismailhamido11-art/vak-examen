@@ -1,5 +1,0 @@
-Voit : Clubs (Nom, Sport, Créé le) ; Entraînements (Club, Titre, Début, Durée (minutes), Lieu, Capacité, Statut, Encadrant) ; Présents (Entraînement, Participant, Présent, Montant réglé, Ajouté le) ; Membres (Club, Utilisateur, Rôle, Arrivé le) ; Invitations (Club, Adresse invitée, Rôle, Envoyée le)
-Peut proposer (après votre validation) : retenir un souvenir (prise memory)
-Peut ouvrir (sans rien enregistrer) : Mes clubs, Club, Entraînement, Mes entraînements
-Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; appeler club_role, invite_member, training_club
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

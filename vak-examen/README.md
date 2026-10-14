@@ -1,12 +1,12 @@
 # Examen public de vak
 
 Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://github.com/ismailhamido11-art/vak-examen
-(publié le 06/10/2026 pour le premier examen, le 10/10/2026 pour le deuxième, le 11/10/2026 pour le troisième), avec
-le lanceur des essais (`repetition2/`). C'est [`publier.sh`](publier.sh) qui le recopie. Les deux premiers examens
-sont dans l'historique.
+(publié le 06/10/2026 pour le premier examen, le 10/10/2026 pour le deuxième, le 11/10/2026 pour le troisième, le
+14/10/2026 pour le quatrième), avec le lanceur des essais (`repetition2/`). C'est [`publier.sh`](publier.sh) qui le
+recopie. Les trois premiers examens sont dans l'historique.
 
 - [`REGLE.md`](REGLE.md) : la règle. Elle dit ce qui est mesuré, quelles apps sont choisies, ce qu'est un essai réussi
-  et quels sont les seuils. Celle du troisième examen est figée le 11/10/2026.
+  et quels sont les seuils. Celle du quatrième examen est figée le 14/10/2026.
 - [`PUBLICATION.md`](PUBLICATION.md) : ce qui est figé avant le tirage (empreintes, texte de la demande,
   environnement, tour drand).
 - [`pile/`](pile/) : la vérification « mes données » d'un essai fini.
@@ -19,22 +19,24 @@ sont dans l'historique.
   - `repetition/saboter.sh <id>` éprouve le contrôleur : sur un essai réussi, il plante tour à tour 6 sabotages et
     vérifie que le contrôleur rend « échec » pour la bonne raison.
 
-- [`candidats/`](candidats/) : les apps publiques éligibles (23 au 06/10 ; 19 au 10/10, sans les 7 apps du premier
-  examen ; 15 au 11/10, sans les 4 apps tirées du deuxième), constituées en tiers par une session scellée
-  (`verifier.mjs`), puis passées au critère « pas une copie » et à la liste d'exclusion complète (`historique.mjs`,
-  06/10).
+- [`candidats/`](candidats/) : les apps publiques éligibles (23 au 06/10 ; 19 au 10/10, sans les 4 apps tirées du
+  premier examen ; 15 au 11/10, sans les 4 apps tirées du deuxième ; 11 au 14/10, sans les 4 apps tirées du troisième),
+  constituées en tiers par une session scellée (`verifier.mjs`), puis passées au critère « pas une copie » et à la
+  liste d'exclusion complète (`historique.mjs`, 06/10).
 - [`tirage.mjs`](tirage.mjs) : le tirage des 4 apps publiques. `node tirage.mjs <tour drand>` lit l'aléa du tour
   « quicknet » fixé d'avance, le contrôle, classe les éligibles par le SHA-256 du texte « aléa, saut de ligne, url » et prend les 2 premières apps
   Expo et les 2 premières apps Next ; les suivantes forment la réserve de chaque plateforme.
-- [`apps/`](apps/) : les 3 apps construites du premier examen (06/10, `fiches/`), celles du deuxième (10/10 :
-  plantes, agence, compteurs, `fiches-2/`) et celles du troisième (10/10 au soir : cuisine, club, abonnements,
-  `fiches-3/`), chacune par une session scellée qui n'a reçu que sa fiche ; leurs archives git, leurs empreintes et
-  les vérifications.
+- [`apps/`](apps/) : les 3 apps construites du premier examen (06/10, `fiches/`), celles du deuxième (10/10 : plantes,
+  agence, compteurs, `fiches-2/`), celles du troisième (10/10 au soir : cuisine, club, abonnements, `fiches-3/`) et
+  celles du quatrième (14/10 : disques, journal, prets, `fiches-4/`), chacune par une session scellée qui n'a reçu que
+  sa fiche ; leurs archives git, leurs empreintes et les vérifications.
 - [`controleur/`](controleur/) : le contrôleur de l'examen. Une session Claude Code scellée l'a écrit le 04/10, sans
-  le dépôt de vak, d'après `REGLE.md`, la page publique et [`scelle/CAHIER.md`](scelle/CAHIER.md) ; le lanceur est
+  le dépôt de vak, d'après `REGLE.md`, la page publique et [`scelle/CAHIER.md`](scelle/CAHIER.md) ; d'autres sessions
+  scellées l'ont mis à jour (`scelle/MISE-A-JOUR-1.md` à `-3.md`, la dernière le 13/10). Le lanceur est
   [`scelle/lancer.sh`](scelle/lancer.sh). `controleur/juger.sh` le lance, dans la bulle des essais.
 - [`mesdonnees/`](mesdonnees/) : le juge « mes données » (point 5 de la règle), écrit le 06/10 par une session
-  scellée. [`verdict.mjs`](verdict.mjs) assemble le verdict d'un essai (contrôleur et point 5).
+  scellée, mis à jour par d'autres le 08/10 et le 13/10 (`scelle/JUGE-1.md`, `scelle/JUGE-2.md`) ; les cas de ses
+  tests sont dans [`cas/`](cas/). [`verdict.mjs`](verdict.mjs) assemble le verdict d'un essai (contrôleur et point 5).
 - [`essais.tsv`](essais.tsv) : les essais de l'examen et les champs de leur demande (métier, emplacement), lus par le
   lanceur avec `APPS=`. [`essai.sh`](essai.sh) joue un essai de bout en bout : essai, contrôleur, pile, juge,
   étiquette, verdict, puis ménage du disque. Le groupe témoin passe par `TEMOIN=1` (sans l'archive de vak, avec la
@@ -43,13 +45,12 @@ sont dans l'historique.
   ([`scelle/ETIQUETTE.md`](scelle/ETIQUETTE.md)) et la comparaison.
 - [`scelle/GRAINES-TIREES.md`](scelle/GRAINES-TIREES.md) : la consigne des graines des 4 apps tirées (`TIREES=` du
   lanceur scellé) ; [`scelle/GRAINES-CONSTRUITES.md`](scelle/GRAINES-CONSTRUITES.md), celle des 3 apps construites
-  des deuxième et troisième examens.
+  des deuxième, troisième et quatrième examens.
 - [`graines/`](graines/) : les graines A et B de chaque app, écrites par des sessions scellées, publiées après les
   essais ; leurs empreintes l'ont été avant (`PUBLICATION.md`, `EMPREINTES.sha256`, `AVANT-ESSAIS.md`).
-- [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du troisième examen,
-  publiés après ses essais ; les résultats de chaque essai sont dans `repetition2/resultats/<id>/`. Ceux des deux
-  premiers examens sont dans l'historique. `resultat-corrige.mjs` : `resultat.mjs` à une ligne près (`EXAMEN.md`,
-  « Ce qui a été fait pendant l'examen »).
+- `EXAMEN.md` et `RESULTAT.json` : le journal et le verdict du quatrième examen, publiés après ses essais ; les
+  résultats de chaque essai seront dans `repetition2/resultats/<id>/`. Ceux des trois premiers examens sont dans
+  l'historique (au troisième, `resultat-corrige.mjs`, `resultat.mjs` à une ligne près, corrigé depuis).
 
 Les étapes, dans l'ordre :
 1. La répétition privée, sur les apps de `repetition2/apps.tsv` : essais Claude Code par `repetition2/lancer.sh`,
@@ -73,3 +74,8 @@ Le troisième examen (11/10) reprend ces étapes avec vak 0.27.0 gelé : 3 apps 
 les 6 sabotages rejoués sur le contrôleur figé (`controleur/verdicts-sabotages-11-10/`), la publication, le tirage,
 les graines des 4 apps tirées, puis les 14 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`). Verdict : échoué,
 6 essais réussis sur 14, deux seuils sur sept tenus (`EXAMEN.md`).
+
+Le quatrième examen (14/10) reprend ces étapes avec vak 0.28.1 gelé et les outils corrigés le 13/10 (`PUBLICATION.md`,
+« Ce qui a changé ») : 3 apps nouvelles construites et leurs graines, les 6 sabotages rejoués sur le contrôleur mis à
+jour (`controleur/verdicts-sabotages-13-10/`), la publication, le tirage, les graines des 4 apps tirées, puis les 14
+essais. Le groupe témoin n'est pas rejoué (`REGLE.md`).

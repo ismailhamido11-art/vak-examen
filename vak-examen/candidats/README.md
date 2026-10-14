@@ -47,8 +47,9 @@ Critères tels qu'appliqués :
 
 - **Fork non vérifié pour la plupart.** L'API GitHub non authentifiée était refusée ou limitée en débit depuis cette
   machine, et les pages github.com renvoyaient 403. Quand elle ne répond pas, `verifier.mjs` le note
-  (`fork non vérifiable`) et ne conclut pas. 19 des 24 éligibles portent cette note (les 5 autres ont eu une réponse de l'API : pas des forks) : à contrôler avec un
-  jeton GitHub avant le tirage.
+  (`fork non vérifiable`) et ne conclut pas. 19 des 24 éligibles portent cette note (les 5 autres ont eu une
+  réponse de l'API : pas des forks) ; ce contrôle par jeton n'a pas été fait : il est remplacé par le critère
+  mécanique de `historique.mjs` (commit commun ou contenu copié, plus bas).
 - Les extensions de PostgreSQL disponibles sont celles du paquet Ubuntu 16 (contrib) : `vector` et les autres de la
   liste manquent. Les migrations qui s'appuient sur elles ne sont donc jugées qu'en partie (erreurs consécutives
   tolérées par une règle simple, qui peut cacher une vraie erreur).
@@ -95,3 +96,6 @@ fichiers (`--filter=blob:none`), compare, puis supprime les clones.
 
 Limite : un fork d'un dépôt hors de cette liste (un modèle public, par exemple) n'est pas vu. Il reste éligible,
 comme toute app qui remplit les critères.
+
+Refait le 10/10, le 11/10 et le 14/10, avec les 4 apps tirées de l'examen précédent ajoutées à `exclusions.txt` :
+19, 15, puis 11 éligibles (8 Expo, 3 Next) ; seules leurs 4 lignes changent à chaque fois.

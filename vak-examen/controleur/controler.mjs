@@ -3,6 +3,7 @@
 //   node controleur/controler.mjs <dossier d'un essai> <dossier de travail>
 // Écrit <dossier de travail>/verdict.json ; dernière ligne : « verdict <id> : réussi | échec (…) | refus propre (…) ».
 // Node 22, aucune dépendance npm. Aucune IA : des comparaisons et des comptes.
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -67,18 +68,34 @@ function gestionnaire(dossier) {
   return pm || (a('package.json') ? 'npm' : null);
 }
 
-function commandesInstall(pm, dossier, legacy) {
+// bun : `bun` s'il est sur la machine, sinon `npx -y --package=bun@<version> bun`, où <version> est celle de `packageManager`
+// (`bun@x.y.z`) de l'app, sinon BUN_PAR_DEFAUT. La version utilisée est écrite dans verdict.json (`bun`).
+const BUN_PAR_DEFAUT = '1.3.11';
+let bunSurLaMachine = null;
+function bunPresent() {
+  if (bunSurLaMachine === null) bunSurLaMachine = spawnSync('bun', ['--version'], { encoding: 'utf8', timeout: 20_000 }).status === 0;
+  return bunSurLaMachine;
+}
+const versionBunDe = (packageManager) => /^bun@(\d+\.\d+\.\d+(?:[-+][\w.-]+)?)/.exec(String(packageManager ?? ''))?.[1] ?? null;
+function commandeBun(version) {
+  if (bunPresent()) return { commande: 'bun', source: 'bun de la machine' };
+  return { commande: `npx -y --package=bun@${version ?? BUN_PAR_DEFAUT} bun`, source: `npx, bun@${version ?? BUN_PAR_DEFAUT}` };
+}
+
+function commandesInstall(pm, dossier, legacy, bun = commandeBun(null).commande) {
   const berry = pm === 'yarn' && (fs.existsSync(path.join(dossier, '.yarnrc.yml')) || /__metadata:/.test(safeRead(path.join(dossier, 'yarn.lock'))));
   const fl = legacy ? ' --legacy-peer-deps' : '';
+  if (pm === 'bun') return { strict: `${bun} install --frozen-lockfile`, souple: `${bun} install` };
   if (pm === 'npm') return { strict: `npm ci --no-audit --no-fund${fl}`, souple: `npm install --no-audit --no-fund${fl}` };
   if (pm === 'pnpm') return { strict: 'pnpm install --frozen-lockfile', souple: 'pnpm install --no-frozen-lockfile' };
   if (pm === 'yarn') return berry ? { strict: 'yarn install --immutable', souple: 'yarn install' } : { strict: 'yarn install --frozen-lockfile', souple: 'yarn install' };
   return null;
 }
+const versionLocaleBun = () => spawnSync('bun', ['--version'], { encoding: 'utf8' }).stdout?.trim() || 'inconnue';
 const safeRead = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } };
 
-async function installer(dossier, pm, logs, nom, legacy) {
-  const cmds = commandesInstall(pm, dossier, false);
+async function installer(dossier, pm, logs, nom, legacy, bun) {
+  const cmds = commandesInstall(pm, dossier, false, bun);
   if (!cmds) return { ok: false, raison: `gestionnaire de paquets non géré (${pm ?? 'aucun'})`, nonGere: true };
   const essai = async (cmd, suffixe) => sh(cmd, { cwd: dossier, env: ENV_MESURE, timeoutMs: DELAI_INSTALL, logFile: path.join(logs, `${nom}-install-${suffixe}.log`) });
   let r = await essai(cmds.strict, 'strict');
@@ -110,8 +127,8 @@ const CANDIDATS = {
   build: ['build', 'export', 'build:web', 'export:web'],
 };
 
-function detecterVerifs(dossier, pm) {
-  const run = (s) => (pm === 'pnpm' ? `pnpm run ${s}` : pm === 'yarn' ? `yarn run ${s}` : `npm run ${s}`);
+function detecterVerifs(dossier, pm, bun) {
+  const run = (s) => (pm === 'pnpm' ? `pnpm run ${s}` : pm === 'yarn' ? `yarn run ${s}` : pm === 'bun' ? `${bun} run ${s}` : `npm run ${s}`);
   let scripts = {};
   try { scripts = lireJson(path.join(dossier, 'package.json')).scripts ?? {}; } catch { /* aucun */ }
   const out = {};
@@ -160,14 +177,14 @@ function testsSansSurveillance(dossier) {
   };
 }
 
-async function mesurerVerifs(dossier, verifs, logs, nom, envApp = {}) {
+async function mesurerVerifs(dossier, verifs, logs, nom, envApp = {}, clone = dossier) {
   const res = {};
   for (const [genre, def] of Object.entries(verifs)) {
     log(`${nom} : ${genre} (${def.commande})`);
     const r = await sh(def.commande, { cwd: dossier, env: { ...envApp, ...ENV_MESURE }, timeoutMs: DELAI_VERIF, logFile: path.join(logs, `${nom}-${genre}.log`) });
-    let erreurs = extraireErreurs(r.out, dossier);
+    let erreurs = extraireErreurs(r.out, dossier, clone);
     let generique = false;
-    if (erreurs.length === 0 && r.code !== 0 && !r.timedOut) { erreurs = extraireGenerique(r.out, dossier); generique = erreurs.length > 0; }
+    if (erreurs.length === 0 && r.code !== 0 && !r.timedOut) { erreurs = extraireGenerique(r.out, dossier, clone); generique = erreurs.length > 0; }
     res[genre] = {
       commande: def.commande, source: def.source, code: r.code, delai: r.timedOut, ms: r.ms, erreurs, generique,
       avertissements: genre === 'lint' ? compterAvertissements(r.out) : undefined,
@@ -499,8 +516,18 @@ async function main() {
     if (arbPrep.has(`${pre}pnpm-lock.yaml`)) return 'pnpm';
     if (arbPrep.has(`${pre}yarn.lock`)) return 'yarn';
     if (arbPrep.has(`${pre}package-lock.json`) || arbPrep.has(`${pre}npm-shrinkwrap.json`)) return 'npm';
+    if (arbPrep.has(`${pre}bun.lock`) || arbPrep.has(`${pre}bun.lockb`)) return 'bun';
     return null;
   };
+  // version de bun : `packageManager` (bun@x.y.z) du package.json de l'app au commit de préparation, sinon celui de la racine
+  const bunDe = (dir) => {
+    const pre = dir === '.' ? '' : `${dir}/`;
+    for (const f of [`${pre}package.json`, 'package.json']) {
+      try { const ver = versionBunDe(JSON.parse(gitShow(app, sPrep, f)).packageManager); if (ver) return ver; } catch { /* pas de package.json */ }
+    }
+    return null;
+  };
+  const bunUtilise = new Map();
   const legacyVakLignes = legacyPoseParVak(journal);
   const mesures = {};
   const exemples = {};
@@ -520,19 +547,23 @@ async function main() {
       d.pm = pmDe(dir) ?? gestionnaire(cible);
       if (!d.pm) { d.installation = { ok: false, raison: 'aucun verrou ni package.json' }; continue; }
       log(`${nom} : installation (${d.pm})${lieu(dir)}`);
-      d.installation = await installer(cible, d.pm, logs, nomLog, nom === 'head' && legacyVakLignes.length > 0);
+      const bun = d.pm === 'bun' ? commandeBun(bunDe(dir)) : null;
+      if (bun) { d.bun = bun; bunUtilise.set(bun.commande, bun.source); }
+      d.installation = await installer(cible, d.pm, logs, nomLog, nom === 'head' && legacyVakLignes.length > 0, bun?.commande);
       if (d.installation.ok) {
         // chaque côté détecte ses propres vérifications : une vérification qui existait avant et plus après est « disparue »
-        d.detectees = detecterVerifs(cible, d.pm);
+        d.detectees = detecterVerifs(cible, d.pm, bun?.commande);
         if (nom === 'prep') { exemples[dir] = envExemple(cible); d.envExemple = exemples[dir].fichier; }
-        d.verifs = await mesurerVerifs(cible, d.detectees, logs, nomLog, exemples[dir]?.env ?? {});
+        d.verifs = await mesurerVerifs(cible, d.detectees, logs, nomLog, exemples[dir]?.env ?? {}, dossier);
       }
     }
     // vak se lance depuis la racine de son verrou : ses dépendances s'y installent, même si l'app est dans un sous-dossier
     m.racine = m.dossiers['.']?.installation;
     if (!m.racine) {
-      const pm = gestionnaire(dossier);
-      m.racine = pm ? await installer(dossier, pm, logs, `${nom}-racine`, nom === 'head' && legacyVakLignes.length > 0) : { ok: false, raison: 'aucun verrou ni package.json' };
+      const pm = pmDe('.') ?? gestionnaire(dossier);
+      const bun = pm === 'bun' ? commandeBun(bunDe('.')) : null;
+      if (bun) bunUtilise.set(bun.commande, bun.source);
+      m.racine = pm ? await installer(dossier, pm, logs, `${nom}-racine`, nom === 'head' && legacyVakLignes.length > 0, bun?.commande) : { ok: false, raison: 'aucun verrou ni package.json' };
     }
     return { dossier, m };
   }
@@ -632,6 +663,10 @@ async function main() {
     }
   }
 
+  if (bunUtilise.size) {
+    v.bun = [...bunUtilise].map(([commande, source]) => ({ commande, version: /bun@([^\s]+)/.exec(commande)?.[1] ?? versionLocaleBun(), source }));
+    note(`bun utilisé : ${v.bun.map((b) => `${b.version} (${b.source})`).join(', ')}`);
+  }
   if (!GARDER) supprimer(path.join(travail, 'clones'));
   return terminer(travail);
 }

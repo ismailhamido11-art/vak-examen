@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/club_1/apres)
-
-base locale vak_local_f62bfa supprimée [code 0]

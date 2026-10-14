@@ -1,5 +1,0 @@
-Voit : Tâches (Titre, Urgente, Description, Terminée, Terminée le)
-Peut proposer (après votre validation) : ajouter dans Tâches (Titre, Urgente, Description) ; modifier dans Tâches (Titre, Urgente, Description, Terminée, Terminée le) ; retenir un souvenir (prise memory)
-Peut ouvrir (sans rien enregistrer) : Mes tâches, Mes fichiers, Réglages
-Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory)
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

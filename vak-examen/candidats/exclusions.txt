@@ -32,3 +32,11 @@ https://github.com/itejaskumbhar/Expense-Sharing
 https://github.com/MarkMGill/pups-supabase
 https://github.com/bluebridgetechnology/my-saas-boilerplate
 https://github.com/Ant3xes/budget_web_app
+#
+# Troisième examen (11/10) : ses 4 apps tirées ont été vues de vak, et vak a été corrigé sur trois d'entre elles (G2,
+# G3, G4 et MFA de vak 0.28.0), puis rejoué sur elles en répétition privée (14/10). Exclues du quatrième examen, avec
+# leurs copies et leurs propriétaires (ajouté le 14/10, avant le tirage).
+https://github.com/Razikus/supabase-nextjs-template
+https://github.com/battisteb/habitquest
+https://github.com/quitefrank/workout-app
+https://github.com/antoineross/Hikari

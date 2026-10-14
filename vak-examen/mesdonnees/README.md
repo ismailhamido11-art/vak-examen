@@ -13,7 +13,11 @@ Il lance `pile/demander.mjs` (toujours en tant que A) et `psql` ; pour les épre
    - fr : « Combien de mes *nom* ? » puis « Liste mes *nom*. » ; en : « How many of my *nom* are there? » puis « List my *nom*. » ;
      es : « ¿Cuántos de mis *nom* hay? » puis « Lista mis *nom*. » ; une langue inconnue reçoit les questions anglaises.
 4. **Nombre attendu** : `select count(*) from <table> where <colonne> = <A>` exécuté au moment du jugement, dans une
-   transaction annulée, rôle `authenticated`, `request.jwt.claims` = `{sub: A, role: authenticated}`. S'il diffère de `a`
+   transaction annulée, rôle `authenticated`, `request.jwt.claims` posé avec les revendications du jeton de la pile
+   (connexion par mot de passe, sans second facteur) : `sub` (A), `role` et `aud` = `authenticated`, `email`
+   (`comptes.A.email` de `pile.json`), `aal: "aal1"`, `amr: [{method: "password", timestamp: <maintenant>}]`, `session_id`
+   (UUID tiré au hasard), `is_anonymous: false`, `iat`, `exp`. `pile.json` doit donc porter `db`, `comptes.A.id` et
+   `comptes.A.email` (sinon, erreur du juge). S'il diffère de `a`
    (`attendu.json`), c'est une erreur du juge (`erreur`, code 3), jamais un échec de l'essai.
 5. **Lire un nombre dans un texte.** On retire d'abord ce qui n'en est pas un : UUID, URL, dates (`2026-10-06`,
    `6/10/2026`, `6 octobre 2026`, `October 6`), heures, numérotation de liste (`1.` en début de ligne). Restent, dans
@@ -21,7 +25,12 @@ Il lance `pile/demander.mjs` (toujours en tant que A) et `psql` ; pour les épre
    décimal, donc jamais égal à un entier), les nombres en toutes lettres de zéro à vingt (français et anglais, `dix-sept`
    compris), « un seul / une seule / un unique / only one / just one / exactly one / a single », et « un / une / one »
    suivi du nom compté (« un livre », « one profile » ; une épithète permise entre les deux). « un », « une », « one » seuls
-   ne sont pas des nombres. **Quand la langue de la table est `es`**, s'y ajoutent : les nombres en toutes lettres de
+   ne sont pas des nombres. **« qu'un » / « qu'une »** (apostrophe droite ou typographique) valent 1 seulement dans la
+   tournure restrictive : une négation « ne » ou « n' » les précède d'au plus quatre mots, dans la même phrase (qui finit à
+   `.`, `!`, `?`, `;`, `:` ou à un retour à la ligne), sans « pas » ni « jamais » entre les deux ; et ils sont suivis d'une
+   ponctuation, de la fin du texte, de « seul(e) » ou du nom compté. « il n'y en a qu'un », « vous n'en avez qu'une » : 1 ;
+   « vous n'avez pas qu'un profil », « n'oubliez pas qu'un compte… », « parce qu'une erreur… » : aucun nombre (sauf que
+   « un / une + nom compté » joue toujours : « parce qu'une table » vaut 1 pour des tables, « qu'un profil » pour des profils). **Quand la langue de la table est `es`**, s'y ajoutent : les nombres en toutes lettres de
    `cero` à `veinte` (`dieciséis` compris), « un solo / una sola / solo uno / solo una / únicamente uno / únicamente una »,
    et « un / una / uno » suivi du nom compté (« un perfil » pour `perfiles`, « un ejercicio » pour `ejercicios` ; une épithète
    permise entre les deux). « un », « una », « uno » seuls ne sont pas des nombres. Ces formes ne sont lues que pour une
@@ -82,7 +91,8 @@ tables de la clé `ignore` (hors de `tables`) sont retirées. Seules comptent le
 ## Épreuves
 
 - `node --test mesdonnees/tests/juger.test.mjs` : sans pile ni base (faux `demander.mjs` et faux `psql`) : nombre juste, faux,
-  marqueur dans le texte, dans une sortie d'outil, aucune table lue, réponse sans nombre, et la règle de lecture.
+  marqueur dans le texte, dans une sortie d'outil, aucune table lue, réponse sans nombre, revendications posées par le comptage SQL
+  (faux `psql` qui les journalise), et la règle de lecture (« qu'un » compris).
 - `node mesdonnees/tests/bout-en-bout.mjs` : sur une base PostgreSQL neuve par app (graines réelles, `psql` réel), avec trois
   assistants simulés : fidèle, fuyard, menteur.
 - `node graines/eprouver.mjs` : épreuve des graines (voir `RAPPORT.md`).

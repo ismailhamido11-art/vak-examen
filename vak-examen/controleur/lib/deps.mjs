@@ -44,6 +44,31 @@ const aplatirCartes = (obj, prefixe = '', out = new Map()) => {
   return out;
 };
 
+// bun.lock : du JSON avec virgules finales (et parfois des commentaires de ligne). On retire les virgules qui précèdent
+// « } » ou « ] », hors des chaînes.
+function jsonSansVirguleFinale(texte) {
+  let out = '';
+  let dansChaine = false;
+  for (let i = 0; i < texte.length; i++) {
+    const c = texte[i];
+    if (dansChaine) {
+      out += c;
+      if (c === '\\') out += texte[++i] ?? '';
+      else if (c === '"') dansChaine = false;
+      continue;
+    }
+    if (c === '"') { dansChaine = true; out += c; continue; }
+    if (c === '/' && texte[i + 1] === '/') { while (i < texte.length && texte[i] !== '\n') i++; out += '\n'; continue; }
+    if (c === ',') {
+      let j = i + 1;
+      while (j < texte.length && /\s/.test(texte[j])) j++;
+      if (texte[j] === '}' || texte[j] === ']') continue;
+    }
+    out += c;
+  }
+  return out;
+}
+
 // ── verrous → Map id → "version [empreinte]" ──
 function lireVerrou(nom, texte) {
   const m = new Map();
@@ -62,6 +87,20 @@ function lireVerrou(nom, texte) {
         }
       };
       parcourir(j.dependencies, '');
+    }
+  } else if (nom === 'bun.lock') {
+    const j = JSON.parse(jsonSansVirguleFinale(texte));
+    // chaque entrée de `packages` : [ "nom@version", registre, { méta }, "sha512-…" ] → son nom@version et son empreinte
+    for (const [cle, e] of Object.entries(j.packages || {})) {
+      const t = Array.isArray(e) ? e : [e];
+      const empreinte = t.find((x) => typeof x === 'string' && /^sha\d+-/.test(x));
+      m.set(`paquet ${cle}`, `${t[0]}${empreinte ? ` ${empreinte}` : ''}`);
+    }
+    // chaque spécificateur de `workspaces`
+    for (const [ws, def] of Object.entries(j.workspaces || {})) {
+      for (const sec of ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies']) {
+        for (const [n, spec] of Object.entries(def?.[sec] || {})) m.set(`workspace ${ws || '.'} › ${sec} › ${n}`, String(spec));
+      }
     }
   } else if (nom === 'pnpm-lock.yaml') {
     const y = yamlLite(texte);

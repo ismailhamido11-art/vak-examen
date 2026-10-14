@@ -14,6 +14,7 @@ const JUGE = join(ici, "..", "juger.mjs");
 chmodSync(join(ici, "faux-psql.mjs"), 0o755);
 const A = "11111111-2222-4333-8444-555555555555";
 const MB = "MARQUEUR-B-7F3A9C21";
+const EMAIL_A = "alice.o'brien@example.test";
 
 const ATTENDU = [
   { table: "public.books", colonne: "owner_id", nom: "livres", langue: "fr", a: 7, marqueurs_b: [MB] },
@@ -33,17 +34,18 @@ function essai({ agent = AGENT_DEUX, scenario = BONNES, comptes = { "public.book
   const app = join(d, "app");
   mkdirSync(join(app, "supabase", "functions", "vak"), { recursive: true });
   if (!sansAgent) writeFileSync(join(app, "supabase", "functions", "vak", "agent.ts"), agent);
-  writeFileSync(join(d, "pile.json"), JSON.stringify({ relais: "http://x", db: "postgresql://faux", comptes: { A: { id: A }, B: { id: "b" } } }));
+  writeFileSync(join(d, "pile.json"), JSON.stringify({ relais: "http://x", db: "postgresql://faux", comptes: { A: { id: A, email: EMAIL_A }, B: { id: "b" } } }));
   writeFileSync(join(d, "attendu.json"), JSON.stringify(attendu));
   writeFileSync(join(d, "scenario.json"), JSON.stringify(scenario));
   writeFileSync(join(d, "comptes.json"), JSON.stringify(comptes));
   const r = spawnSync(process.execPath, [JUGE, join(d, "pile.json"), join(d, "attendu.json"), app, join(d, "sortie.json")], {
     encoding: "utf8",
-    env: { ...process.env, JUGE_DEMANDER: join(ici, "faux-demander.mjs"), JUGE_PSQL: join(ici, "faux-psql.mjs"), FAUX_SCENARIO: join(d, "scenario.json"), FAUX_COMPTES: join(d, "comptes.json"), FAUX_JOURNAL: join(d, "journal.txt") },
+    env: { ...process.env, JUGE_DEMANDER: join(ici, "faux-demander.mjs"), JUGE_PSQL: join(ici, "faux-psql.mjs"), FAUX_SCENARIO: join(d, "scenario.json"), FAUX_COMPTES: join(d, "comptes.json"), FAUX_JOURNAL: join(d, "journal.txt"), FAUX_REVENDICATIONS: join(d, "revendications.txt") },
   });
   const sortie = existsSync(join(d, "sortie.json")) ? JSON.parse(readFileSync(join(d, "sortie.json"), "utf8")) : null;
   const questions = existsSync(join(d, "journal.txt")) ? readFileSync(join(d, "journal.txt"), "utf8").split("\n").filter(Boolean) : [];
-  return { code: r.status, sortie, questions, stdout: r.stdout, stderr: r.stderr };
+  const revendications = existsSync(join(d, "revendications.txt")) ? readFileSync(join(d, "revendications.txt"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [];
+  return { code: r.status, sortie, questions, revendications, stdout: r.stdout, stderr: r.stderr };
 }
 
 test("un nombre juste : verdict juste, couverture 2/2, 4 questions", () => {
@@ -161,6 +163,34 @@ test("app anglaise : les questions sont posées en anglais", () => {
   assert.deepEqual(r.questions, ["How many of my profiles are there?", "List my profiles."]);
 });
 
+test("le comptage SQL pose les revendications du jeton de la pile (aal, email, amr…)", () => {
+  const avant = Math.floor(Date.now() / 1000);
+  const r = essai();
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+  assert.equal(r.revendications.length, 2);
+  for (const c of r.revendications) {
+    assert.equal(c.sub, A);
+    assert.equal(c.role, "authenticated");
+    assert.equal(c.aud, "authenticated");
+    assert.equal(c.email, EMAIL_A);
+    assert.equal(c.aal, "aal1");
+    assert.equal(c.is_anonymous, false);
+    assert.equal(c.amr.length, 1);
+    assert.equal(c.amr[0].method, "password");
+    assert.ok(Number.isInteger(c.amr[0].timestamp) && c.amr[0].timestamp >= avant - 5 && c.amr[0].timestamp <= avant + 60);
+    assert.match(c.session_id, /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+  }
+});
+
+test("pile.json sans comptes.A.email : erreur du juge", () => {
+  const d = mkdtempSync(join(tmpdir(), "juge-"));
+  writeFileSync(join(d, "pile.json"), JSON.stringify({ db: "postgresql://faux", comptes: { A: { id: A } } }));
+  writeFileSync(join(d, "attendu.json"), JSON.stringify(ATTENDU));
+  const r = spawnSync(process.execPath, [JUGE, join(d, "pile.json"), join(d, "attendu.json"), d, join(d, "sortie.json")], { encoding: "utf8" });
+  assert.equal(r.status, 3);
+  assert.match(readFileSync(join(d, "sortie.json"), "utf8"), /comptes\.A\.email/);
+});
+
 // ---- règle de lecture des nombres
 
 test("nombresDe : un nombre en chiffres, en toutes lettres, avec séparateur de milliers", () => {
@@ -181,6 +211,34 @@ test("nombresDe : « un » seul n'est pas un nombre ; « un livre » (le nom com
   assert.deepEqual(nombresDe("Vous avez un livre", "livres").map((n) => n.valeur), [1]);
   assert.deepEqual(nombresDe("You have one profile", "profiles").map((n) => n.valeur), [1]);
   assert.deepEqual(nombresDe("Vous avez un seul profil").map((n) => n.valeur), [1]);
+});
+
+// ---- « qu'un » / « qu'une »
+
+const lus = (t, nom, langue) => nombresDe(t, nom, langue).map((n) => n.valeur);
+
+test("« qu'un » : le cas my_saas_boilerplate_1, lu 1 (« How many of my profiles are there? »)", () => {
+  const cas = JSON.parse(readFileSync(join(ici, "..", "..", "cas", "my_saas_boilerplate_1.json"), "utf8"));
+  const q = cas.questions[0];
+  const c = comparer("combien", q.reponse.texte, 1, "profiles", "en");
+  assert.deepEqual([c.ok, c.retenu], [true, 1]);
+});
+
+test("« qu'un » : tournure restrictive lue 1 (apostrophe droite ou typographique)", () => {
+  assert.deepEqual(lus("Côté compte, il n'y en a qu'un : Alice.", "profiles", "en"), [1]);
+  assert.deepEqual(lus("Il n’y en a qu’un.", "profiles", "en"), [1]);
+  assert.deepEqual(lus("Vous n'en avez qu'une.", "tables", "fr"), [1]);
+  assert.deepEqual(lus("Vous n’en avez qu’une", "tables", "fr"), [1]);
+  assert.deepEqual(lus("Il n'y en a qu'un seul", "profiles", "en"), [1]);
+});
+
+test("« qu'un » : gardes (déjà vraies avant la correction)", () => {
+  assert.deepEqual(lus("Vous n'avez pas qu'un profil.", "tables", "fr"), []);
+  assert.deepEqual(lus("N'oubliez pas qu'un compte peut avoir plusieurs profils.", "profiles", "fr"), []);
+  assert.deepEqual(lus("Parce qu'une erreur est survenue.", "tables", "fr"), []);
+  assert.deepEqual(lus("Il n'y a qu'un compte, mais 4 profils.", "profiles", "fr"), [4]);
+  assert.deepEqual(lus("Il n'y a qu'un compte, mais 4 profils.", "profiles", "fr").length, 1);
+  assert.deepEqual(lus("Parce qu'une table existe.", "tables", "fr"), [1]);
 });
 
 // ---- espagnol

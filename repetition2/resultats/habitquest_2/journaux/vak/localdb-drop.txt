@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/habitquest_2/apres)
-
-base locale vak_local_4a79a0 supprimée [code 0]

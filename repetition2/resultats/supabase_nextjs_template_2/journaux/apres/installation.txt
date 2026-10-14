@@ -1,5 +1,0 @@
-$ npm ci
-(dossier : /work/supabase_nextjs_template_2/apres)
-
-
-added 2 packages in 875ms

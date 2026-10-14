@@ -1,5 +1,0 @@
-{
-  "id": "abonnements_1",
-  "minutes": null,
-  "preuve": "aucune ligne « vak : fini (…) [code 0] » dans le journal ; le repli du contrôleur (« rc=0 écrit par l'agent : code=0 », journal ligne 55) vient de la commande `node node_modules/@vak/agent/bin/vak.mjs 2>&1 | tail -60; echo code=$?` (ligne 54) : `$?` y est le code de `tail`, et la sortie de vak montre « ✗ VAK008 ». Aucun `vak` n'a rendu 0 : durée infinie (dans le doute, contre vak), comme compteurs_2 au deuxième examen"
-}

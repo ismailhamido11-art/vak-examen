@@ -5,17 +5,16 @@ essais, avec des seuils publiés avant la mesure. Dans chaque essai, un agent de
 qu'il n'a jamais vue, sans rien casser. L'assistant obtenu doit donner des chiffres exacts, et ne jamais montrer les
 données d'un autre compte.
 
-- **Le troisième examen** (11/10/2026), avec vak 0.27.0 gelé : **échoué, 6 essais réussis sur 14** (il en fallait
-  12), aucune fuite.
-  - son journal, essai par essai, et les six défauts de vak qu'il a trouvés :
-    [`vak-examen/EXAMEN.md`](vak-examen/EXAMEN.md) ;
-  - son verdict : [`vak-examen/RESULTAT.json`](vak-examen/RESULTAT.json) ;
-  - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 11/10/2026 ;
+- **Le quatrième examen** (14/10/2026), avec vak 0.28.1 gelé :
+  - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 14/10/2026 ;
   - ce qui est figé avant le tirage : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
-    empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le deuxième
-    examen ;
-  - les résultats de chaque essai : [`repetition2/resultats/`](repetition2/resultats/) ; les graines :
-    [`vak-examen/graines/`](vak-examen/graines/).
+    empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le
+    troisième examen ;
+  - son journal, son verdict, les résultats de chaque essai et les graines seront publiés ici après les essais,
+    réussis ou non.
+- **Le troisième examen** (11/10/2026) : échoué, 6 essais réussis sur 14 (il en fallait 12), aucune fuite. Sa règle,
+  sa publication, son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`), les résultats de
+  chaque essai et ses graines restent dans l'historique de ce dépôt (commit `b3e8c89` et avant).
 - **Le deuxième examen** (10/10/2026) : échoué, 9 essais réussis sur 14 (il en fallait 12), aucune fuite. Sa règle,
   sa publication, son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`), les résultats de
   chaque essai et ses graines restent dans l'historique de ce dépôt (commit `e7cf599` et avant).
@@ -27,9 +26,10 @@ données d'un autre compte.
 - **Le lanceur des essais** : [`repetition2/`](repetition2/) (`lancer.sh`, `preparer.sh`, `messages.sh`…).
 
 Ce dépôt reprend, aux mêmes chemins, les fichiers de l'examen tenus dans le dépôt de vak (`vak-examen/publier.sh` les
-recopie). Le dépôt de vak n'est pas public. Les scripts y lisent deux fichiers du kit, dont seules les empreintes sont
-publiées ici :
-- l'archive gelée, `vertical-agent-kit/releases/vak-agent-0.27.0.tgz` (troisième examen) ;
+recopie). Le dépôt de vak n'est pas public. Les scripts de l'examen y lisent deux fichiers du kit, dont seules les
+empreintes sont publiées ici (un outil de développement, `vak-examen/etiquettes/rejouer.sh`, lit en plus le code
+source du kit, non publié) :
+- l'archive gelée, `vertical-agent-kit/releases/vak-agent-0.28.1.tgz` (quatrième examen) ;
 - sa page, `vertical-agent-kit/README.md`, d'où vient la demande.
 
 Les deux ne sont publiés que si un examen est réussi. Les graines des données de test et les résultats sont publiés

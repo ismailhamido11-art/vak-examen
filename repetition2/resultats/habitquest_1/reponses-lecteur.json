@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["retenir un souvenir (prise memory), seulement après validation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek (Chine, selon ses conditions)", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Jamais : supprimer une ligne », donc suppression exclue. Elle interdit aussi toute modification hors de la liste, sauf retenir un souvenir. Les écrans (Quêtes du jour, Créer une quête, Statistiques, Boutique, Succès, Amis) s'ouvrent sans rien enregistrer. Les listes d'éléments interdits sont tronquées (« 18 autres », « 43 autres ») : le détail complet n'est pas donné."
-}

@@ -1,5 +1,0 @@
-Sees: Account (Full name, Avatar URL) ; Posts (Title, Content, Created at) ; Subscriptions (Status, Price, Quantity, Cancel at period end, Created, Current period start, Current period end, Ended at, Cancel at, Canceled at, Trial start, Trial end) ; shared catalog Prices (Product, Active, Description, Unit amount, Currency, Type, Interval, Interval count, Trial period days) ; shared catalog Products (Active, Name, Description)
-Can propose (after your approval): edit in Account (Full name) (without your approval) ; remember a memory (plugin memory)
-Can open (saves nothing): Dashboard, Account, Settings, Pricing
-Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read customers
-Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

@@ -8,7 +8,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { comparerDependances } from '../lib/deps.mjs';
 import { comparerErreurs, extraireErreurs, extraireGenerique } from '../lib/erreurs.mjs';
-import { contournements, echecsDePreuve, premierVakOk } from '../lib/journal.mjs';
+import { contournements, echecsDePreuve, echoDuCodeDeVak, premierVakOk } from '../lib/journal.mjs';
 import { cleIgnore, lireIgnore, lireSchema, tablesAMoi } from '../lib/schema.mjs';
 
 const ici = path.dirname(fileURLToPath(import.meta.url));
@@ -223,4 +223,118 @@ export const schema = { version: 1, tables: {
 test('schéma : ignore garde la ligne et la raison écrite', () => {
   const ig = lireIgnore('export default defineAgent({\n  ignore: {\n    notes: "messages privés, jamais vus de l\'assistant",\n    "lignes": \'x "y"\', // c\n    vide: "",\n    fn: 3,\n  },\n});');
   assert.deepEqual([...ig].map(([k, x]) => [k, x.ligne, x.raison]), [['notes', 3, "messages privés, jamais vus de l'assistant"], ['lignes', 4, 'x "y"'], ['vide', 5, ''], ['fn', 6, null]]);
+});
+
+// ── point 3 de la mise à jour : « code=0 » écrit par une autre commande que vak ──
+const ABONNEMENTS_CMD = 'node node_modules/@vak/agent/bin/vak.mjs 2>&1 | tail -60; echo code=$?; cat supabase/migrations/20261010100000_create_tables.sql supabase/migrations/20261010100100_create_functions.sql';
+const ABONNEMENTS_SORTIE = [
+  '✓ VAK011 photographie à jour (schema.gen.ts = base)',
+  '✗ VAK015 preuve à deux comptes jamais faite (reçu absent) : l\'intégration n\'est pas finie',
+  'À commiter (fichiers de l\'intégration, et eux seuls) : git add -- AGENTS.md package.json',
+  'vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1]',
+  'code=0',
+  '-- Tables du suivi des abonnements.',
+  'create table public.subscriptions (',
+  '  id uuid primary key default gen_random_uuid()',
+  ');',
+].join('\n');
+
+test('journal : abonnements_1, « code=0 » est le code de tail, et une ligne [code 1] de vak annule le repli', () => {
+  assert.equal(premierVakOk(journalDeSorties([ABONNEMENTS_CMD, ABONNEMENTS_SORTIE, 300])), null);
+  // même commande sans la ligne de vak en échec : `$?` après un tube sans pipefail reste le code de tail
+  assert.equal(premierVakOk(journalDeSorties([ABONNEMENTS_CMD, ABONNEMENTS_SORTIE.replace(/^vak doctor.*\n/m, ''), 300])), null);
+  // la phrase « Fini pour l'agent de code » est annulée aussi par une ligne [code N] de vak
+  const phrase = ["Fini pour l'agent de code : `vak` → 0", 'vak doctor : doctor : à corriger (…) [code 1]'].join('\n');
+  assert.equal(premierVakOk(journalDeSorties([`${VAK} 2>&1 | tail -4`, phrase, 60])), null);
+  assert.equal(premierVakOk(journalDeSorties([`${VAK} 2>&1 | tail -4`, "Fini pour l'agent de code : `vak` → 0", 60])).source.startsWith('phrase'), true);
+  // « vak : fini (…) [code 0] » fait toujours foi
+  assert.equal(premierVakOk(journalDeSorties([ABONNEMENTS_CMD, `${ABONNEMENTS_SORTIE}\nvak : fini (sync, doctor, test, prove) [code 0]`, 300])).ligne, 2);
+});
+
+test('journal : le repli « rc=0 » ne compte que si l\'echo écrit le code de vak', () => {
+  const sortie = (commande, ligne = 'code=0') => premierVakOk(journalDeSorties([commande, `un peu de sortie\n${ligne}\nla suite`, 60]));
+  // vak seul : `$?` est le sien
+  assert.equal(sortie(`cd app && ${VAK}; echo code=$?`).source, 'rc=0 écrit par l\'agent');
+  assert.equal(sortie(`${VAK} && echo rc=$?`, 'rc=0').source, 'rc=0 écrit par l\'agent');
+  assert.equal(sortie(`${VAK}\necho exit=$?`, 'exit=0').source, 'rc=0 écrit par l\'agent');
+  assert.equal(sortie(`${VAK} 2>&1; echo status=$?`, 'status=0').source, 'rc=0 écrit par l\'agent');
+  // vak en tête d'un tube : PIPESTATUS[0] dans l'echo, ou `$?` avec pipefail posé plus tôt
+  assert.ok(sortie(`${VAK} 2>&1 | tail -5; echo code=\${PIPESTATUS[0]}`));
+  for (const pf of ['set -o pipefail', 'set -eo pipefail', 'set -euo pipefail']) assert.ok(sortie(`${pf}; ${VAK} 2>&1 | tail -5; echo code=$?`), pf);
+  assert.ok(sortie(`set -o pipefail\n${VAK} 2>&1 | tail -5\necho code=$?`));
+  // `$?` après un tube sans pipefail : celui de tail
+  assert.equal(sortie(`${VAK} 2>&1 | tail -5; echo code=$?`), null);
+  assert.equal(sortie(`set -e; ${VAK} 2>&1 | tail -5; echo code=$?`), null);
+  // vak pas en tête du tube, `!`, `||`, `&`, code écrit en dur
+  assert.equal(sortie(`cat x | ${VAK}; echo code=\${PIPESTATUS[0]}`), null);
+  assert.equal(sortie(`! ${VAK}; echo code=$?`), null);
+  assert.equal(sortie(`${VAK} || true; echo code=$?`), null);
+  assert.equal(sortie(`x || ${VAK}; echo code=$?`), null);
+  assert.equal(sortie(`${VAK} & echo code=$?`), null);
+  assert.equal(sortie(`${VAK}; echo code=0`), null);
+  // l'echo ne suit pas directement vak, ou il y en a plusieurs
+  assert.equal(sortie(`${VAK}; ls; echo code=$?`), null);
+  assert.equal(sortie(`${VAK}; echo code=$?; echo rc=$?`), null);
+  assert.equal(sortie(`${VAK}; echo rc=$?; echo code=$?`), null);
+  // la ligne écrite doit être celle de l'echo
+  assert.equal(sortie(`${VAK}; echo rc=$?`, 'code=0'), null);
+  assert.equal(echoDuCodeDeVak(`${VAK}; echo code=$?`), 'code');
+});
+
+// ── mise à jour 3, point 2 : le chemin du clone dans le texte d'une erreur ──
+test('erreurs : le dossier du clone, cité dans le message, est un même repère avant et après', () => {
+  const tsc = (clone) => `lib/i18n.ts(10,37): error TS2307: Cannot find module '${clone}/node_modules/foo/dist/index.d.ts' or its corresponding type declarations.`;
+  const a = extraireErreurs(tsc('/w/clones/prep'), '/w/clones/prep');
+  const b = extraireErreurs(tsc('/w/clones/head'), '/w/clones/head');
+  assert.equal(a.length, 1);
+  const c = comparerErreurs(a, b);
+  assert.equal(c.allonge, false, JSON.stringify(c.nouvelles));
+  assert.equal(c.avant, 1);
+  // app dans un sous-dossier : le chemin cité peut être celui du clone, pas celui du dossier mesuré
+  const sous = (clone) => `lib/i18n.ts(10,37): error TS2307: Cannot find module '${clone}/node_modules/foo' (vu depuis ${clone}/mobile/lib).`;
+  assert.equal(comparerErreurs(extraireErreurs(sous('/w/clones/prep'), '/w/clones/prep/mobile', '/w/clones/prep'), extraireErreurs(sous('/w/clones/head'), '/w/clones/head/mobile', '/w/clones/head')).allonge, false);
+  // la lecture générique aussi
+  const gen = (clone) => `Build error occurred\nsrc/a.ts:3:1 error: unable to resolve ${clone}/node_modules/x`;
+  assert.equal(comparerErreurs(extraireGenerique(gen('/w/clones/prep'), '/w/clones/prep'), extraireGenerique(gen('/w/clones/head'), '/w/clones/head')).allonge, false);
+  // rien d'autre n'est ramené : un autre chemin ou un autre message reste une erreur nouvelle
+  const autre = extraireErreurs(tsc('/ailleurs/node_modules'), '/w/clones/head');
+  assert.equal(comparerErreurs(a, autre).allonge, true);
+  assert.equal(comparerErreurs(a, extraireErreurs("lib/i18n.ts(10,37): error TS2307: Cannot find module '/w/clones/head/node_modules/bar'.", '/w/clones/head')).allonge, true);
+});
+
+// ── mise à jour 3, point 1 : bun.lock ──
+const bunLock = ({ version = '1.0.0', hash = 'sha512-AAA', spec = '^1.0.0', extra = '' } = {}) => `{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "x",
+      "dependencies": {
+        "a": "${spec}",
+      },
+    },
+  },
+  "packages": {
+    "a": ["a@${version}", "", {}, "${hash}"],
+${extra}
+  }
+}
+`;
+
+test('dépendances : bun.lock (JSON à virgules finales)', () => {
+  const dif = (avant, apres) => verdictDeps({ 'bun.lock': avant }, { 'bun.lock': apres });
+  assert.equal(dif(bunLock(), bunLock({ extra: '    "b": ["b@2.0.0", "", {}, "sha512-BBB"],' })).length, 0); // ajout permis
+  const v = dif(bunLock(), bunLock({ version: '1.1.0' }));
+  assert.equal(v.length, 1);
+  assert.equal(v[0].type, 'version changée');
+  assert.match(v[0].detail, /a@1\.0\.0 sha512-AAA → a@1\.1\.0 sha512-AAA/);
+  assert.equal(dif(bunLock(), bunLock({ hash: 'sha512-ZZZ' }))[0].type, 'version changée'); // empreinte changée
+  assert.equal(dif(bunLock(), bunLock({ spec: '^2.0.0' }))[0].type, 'version changée'); // spécificateur de workspaces
+  assert.equal(dif(bunLock(), bunLock().replace('"a": ["a@1.0.0", "", {}, "sha512-AAA"],', ''))[0].type, 'retiré');
+  // un verrou d'un autre gestionnaire ajouté : une note, pas un problème
+  const { d, a, b } = depot({ 'bun.lock': bunLock() }, { 'bun.lock': bunLock(), 'package-lock.json': '{}' });
+  try {
+    const r = comparerDependances(d, a, b);
+    assert.deepEqual(r.problemes, []);
+    assert.ok(r.notes.some((n) => /verrou ajouté : package-lock\.json/.test(n)));
+  } finally { fs.rmSync(d, { recursive: true, force: true }); }
 });

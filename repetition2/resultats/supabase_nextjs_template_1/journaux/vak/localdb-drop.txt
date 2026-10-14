@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/supabase_nextjs_template_1/apres)
-
-base locale vak_local_afd86e supprimée [code 0]

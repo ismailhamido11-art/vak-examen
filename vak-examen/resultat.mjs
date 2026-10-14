@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Corrigé le 13/10/2026, pour le prochain examen, comme resultat-corrige.mjs au troisième : le JSON de verdict.mjs est
+// pris à partir de sa première ligne « { » (une ligne de verdict peut tenir sur plusieurs lignes). Rien d'autre ne change.
 // Verdict de l'examen (REGLE.md, « Les seuils de l'examen » et « Comment on compte les seuils »), sans IA, à partir des
 // résultats des essais (repetition2/resultats/<id>/). Node 22, aucune dépendance. Écrit avant le premier essai.
 // Usage : node vak-examen/resultat.mjs [<essais.tsv> [<dossier des résultats>]]  →  JSON, puis une ligne de verdict.
@@ -63,7 +65,7 @@ const essais = ids.map((id) => {
     e.pile = "sert";
     const v = spawnSync(process.execPath, [join(ICI, "verdict.mjs"), fichier("verdict-examen.json"), fichier("mesdonnees.json")], { encoding: "utf8" });
     const sortie = v.stdout.split("\n");
-    const detail = JSON.parse(sortie.slice(1).join("\n"));
+    const detail = JSON.parse(sortie.slice(sortie.indexOf("{")).join("\n"));
     e.verdict = detail.verdict;
     e.raisons = detail.raisons;
     const j = lire(fichier("mesdonnees.json"));

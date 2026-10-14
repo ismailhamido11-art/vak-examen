@@ -1,8 +1,0 @@
-$ npx -y bun@1 install --frozen-lockfile
-(dossier : /work/workout_app_2/apres)
-
-bun install v1.4.3 (c6da4a4d3)
-Resolving dependencies
-Resolved, downloaded and extracted [47]
-error: lockfile had changes, but lockfile is frozen
-note: try re-running without --frozen-lockfile and commit the updated lockfile

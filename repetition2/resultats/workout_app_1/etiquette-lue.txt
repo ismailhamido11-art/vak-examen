@@ -1,5 +1,0 @@
-Sees: Workouts (Template, Machine location, Scheduled for, Started at, Completed at, Perceived effort, Notes) ; Workout exercises (Workout, Exercise, Position, Prescribed sets min, Prescribed sets max, Prescribed reps min, Prescribed reps max, Prescribed rest (seconds), Notes, Created at) ; Sets (Workout exercise, Set number, Is warm up, Weight, Reps, Seconds, RPE, Notes, Completed at) ; Top sets (Workout, User, Exercise, Weight, Reps, Volume, Completed at, Workout completed at) ; Tonnage (Workout, User, Exercise, Tonnage, Working sets) ; Weekly workouts (User, Week start, Workout count) ; shared catalog Exercises (Name, Muscle group, Equipment type, Machine location, Notes) ; shared catalog Muscle groups (Name, Display order)
-Can propose (after your approval): remember a memory (plugin memory)
-Can open (saves nothing): no screen
-Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read clearances, daily_checks, events, recoveries, rules, user_settings, exercise_alternates, program_phases, 7 others
-Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

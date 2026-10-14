@@ -12,6 +12,24 @@ import { fileURLToPath } from 'node:url';
 const ici = path.dirname(fileURLToPath(import.meta.url));
 const controleur = path.join(ici, '..', 'controler.mjs');
 
+// bun.lock tel que bun 1.3.11 l'écrit pour une seule dépendance (left-pad 1.3.0).
+const BUN_LOCK = `{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "synthetique",
+      "dependencies": {
+        "left-pad": "1.3.0",
+      },
+    },
+  },
+  "packages": {
+    "left-pad": ["left-pad@1.3.0", "", {}, "sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA=="],
+  }
+}
+`;
+
 // opts.dossier : l'app est dans ce sous-dossier (rien à la racine) ; opts.journal : appels Bash de l'agent, [commande, sortie].
 function essai(prepScripts, agentScripts, fichiersAgent = {}, opts = {}) {
   const pre = opts.dossier ? `${opts.dossier}/` : '';
@@ -21,9 +39,10 @@ function essai(prepScripts, agentScripts, fichiersAgent = {}, opts = {}) {
   const g = (...a) => execFileSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@t', ...a], { cwd: app, stdio: 'pipe' }).toString().trim();
   const ecrire = (f, t) => { fs.mkdirSync(path.dirname(path.join(app, f)), { recursive: true }); fs.writeFileSync(path.join(app, f), t); };
   g('init', '-q', '-b', 'essai');
-  const pj = (scripts) => JSON.stringify({ name: 'synthetique', version: '1.0.0', scripts }, null, 2);
+  const pj = (scripts) => JSON.stringify({ name: 'synthetique', version: '1.0.0', scripts, ...(opts.bun ? { dependencies: { 'left-pad': '1.3.0' } } : {}) }, null, 2);
   ecrire(`${pre}package.json`, pj(prepScripts.scripts));
-  ecrire(`${pre}package-lock.json`, JSON.stringify({ name: 'synthetique', version: '1.0.0', lockfileVersion: 3, requires: true, packages: { '': { name: 'synthetique', version: '1.0.0' } } }));
+  if (opts.bun) ecrire(`${pre}bun.lock`, BUN_LOCK);
+  else ecrire(`${pre}package-lock.json`, JSON.stringify({ name: 'synthetique', version: '1.0.0', lockfileVersion: 3, requires: true, packages: { '': { name: 'synthetique', version: '1.0.0' } } }));
   for (const [f, t] of Object.entries(prepScripts.fichiers ?? {})) ecrire(f, t);
   g('add', '-A'); g('commit', '-q', '-m', 'app d\'origine');
   const commit = g('rev-parse', 'HEAD');
@@ -111,6 +130,30 @@ test('point 2 : une erreur déjà présente, imprimée deux fois après, reste a
     assert.deepEqual(codes(verdict), []);
     assert.equal(verdict.points.p2.verifs.build.etat, 'identique (code 2)');
     assert.equal(verdict.points.p2.verifs.build.apres.erreurs, 2);
+  } finally { fs.rmSync(racine, { recursive: true, force: true }); }
+});
+
+// ── une app bun : bun.lock au commit de préparation, pas de packageManager ──
+test('point 1 et 2 : une app bun s\'installe et se mesure avec bun, même si l\'agent a ajouté un verrou npm', () => {
+  const racine = essai(
+    { scripts: { typecheck: 'node -e "process.exit(0)"' } },
+    { typecheck: `node -e '${TSC1}'` },
+    { 'package-lock.json': JSON.stringify({ name: 'synthetique', lockfileVersion: 3, packages: { '': { name: 'synthetique' } } }) },
+    { bun: true },
+  );
+  try {
+    const { verdict } = controler(racine, { CONTROLEUR_DELAI_MIN: '5', CONTROLEUR_INSTALL_MIN: '10' });
+    const inst = verdict.points.p2.installation;
+    assert.match(inst.avant.commande, /bun install --frozen-lockfile$/);
+    assert.match(inst.apres.commande, /bun install --frozen-lockfile$/); // l'installation reste bun après
+    assert.equal(inst.avant.ok, true);
+    assert.equal(inst.apres.ok, true);
+    assert.equal(verdict.mesures.prep.dossiers['.'].gestionnaire, 'bun');
+    assert.equal(verdict.mesures.head.dossiers['.'].gestionnaire, 'bun');
+    assert.match(verdict.mesures.head.dossiers['.'].verifs.typecheck.commande, /bun run typecheck$/);
+    assert.deepEqual(codes(verdict), ['typecheck-code']); // l'erreur nouvelle est vue : la mesure a bien tourné
+    assert.match(verdict.bun[0].version, /^\d+\.\d+\.\d+/);
+    assert.ok(verdict.notes.some((n) => /verrou ajouté : package-lock\.json/.test(n)));
   } finally { fs.rmSync(racine, { recursive: true, force: true }); }
 });
 

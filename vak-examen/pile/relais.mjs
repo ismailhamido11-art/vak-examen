@@ -6,7 +6,7 @@
 //  - /functions/v1/*       → la fonction vak servie par Deno, réponse relayée en flux.
 // Usage : node relais.mjs <config.json> ; écrit « relais prêt : <url> » quand il écoute.
 // config : { port, postgrest, fonction, secret, comptes: { "<adresse>": { id, password } } }
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { Readable } from "node:stream";
@@ -72,7 +72,10 @@ async function traiter(req, res) {
     const { email, password } = JSON.parse((await lire(req)).toString("utf8") || "{}");
     const compte = email ? config.comptes[email] : undefined;
     if (!compte || compte.password !== password) return envoyer(res, 400, { error: "invalid_grant", error_description: "Invalid login credentials" });
-    const jeton = signer({ sub: compte.id, role: "authenticated", aud: "authenticated", email, exp: now() + 3600 });
+    // Comme Supabase Auth après une connexion par mot de passe, sans second facteur (13/10, examen du 11/10 : une RLS
+    // par niveau MFA lit aal) : aal1, amr, session_id, is_anonymous.
+    const jeton = signer({ sub: compte.id, role: "authenticated", aud: "authenticated", email, exp: now() + 3600, aal: "aal1",
+      amr: [{ method: "password", timestamp: now() }], session_id: randomUUID(), is_anonymous: false });
     return envoyer(res, 200, { access_token: jeton, token_type: "bearer", expires_in: 3600, user: { id: compte.id, email } });
   }
   if (url.startsWith("/auth/v1/user")) {

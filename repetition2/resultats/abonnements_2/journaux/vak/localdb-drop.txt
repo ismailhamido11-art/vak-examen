@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/abonnements_2/apres)
-
-base locale vak_local_5800b0 supprimée [code 0]

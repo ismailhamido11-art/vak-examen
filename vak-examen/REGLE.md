@@ -1,9 +1,9 @@
-# Examen public de vak : la règle (troisième examen)
+# Examen public de vak : la règle (quatrième examen)
 
 **À figer avant le tirage des apps.** Son empreinte SHA-256 sera publiée dans [`PUBLICATION.md`](PUBLICATION.md),
 avec celle de l'archive du kit et le tour drand choisi. Après cette publication, plus rien ne change. Les règles des
-deux premiers examens (06/10/2026, échoué : 2 essais réussis sur 14 ; 10/10/2026, échoué : 9 sur 14) restent lisibles
-dans l'historique de ce dépôt.
+trois premiers examens (06/10/2026, échoué : 2 essais réussis sur 14 ; 10/10/2026, échoué : 9 sur 14 ; 11/10/2026,
+échoué : 6 sur 14) restent lisibles dans l'historique de ce dépôt.
 
 ## Ce que l'examen mesure
 
@@ -15,8 +15,9 @@ autre compte. L'examen dit si c'est vrai, sur 14 essais, avec des seuils publié
 
 - **4 vraies apps publiques**, tirées au sort parmi les apps éligibles.
 - **3 apps construites par un tiers** qui n'a jamais vu vak : une session Claude Code scellée (sans le dépôt de vak,
-  sans mémoire). Ce sont trois apps nouvelles : celles des deux premiers examens ont servi à corriger vak. Chacune
-  suit une fiche de forme d'une page (`fiches-3/`), écrite avant sa construction et publiée avec son empreinte :
+  sans mémoire). Ce sont trois apps nouvelles : vak a vu celles des trois premiers examens, et a été corrigé depuis
+  sur ce que plusieurs d'entre elles ont montré. Chacune suit une fiche de forme d'une page (`fiches-4/`), écrite
+  avant sa construction et publiée avec son empreinte :
   - une app qui démarre (peu de tables, peu de code) ;
   - une app d'équipe (des données partagées entre membres) ;
   - une app « tout par fonctions », qui écrit par des fonctions SQL, avec du JSON.
@@ -32,8 +33,9 @@ La liste des apps éligibles est `candidats/historique.tsv` (colonne `eligible`)
 de `candidats/candidats.tsv`.
 
 **Exclusions :**
-- les 14 apps des deux premiers examens (06/10 et 10/10) : vak les a vues, et a été corrigé depuis sur ce qu'elles
-  ont montré ;
+- les 21 apps des trois premiers examens (06/10, 10/10 et 11/10), leurs copies et leurs propriétaires : vak les a
+  vues, et a été corrigé depuis sur ce qu'elles ont montré. Les 12 apps tirées sont dans `candidats/exclusions.txt`
+  (`historique.mjs` les note « app des répétitions ») ; les 9 apps construites ne sont pas des candidates ;
 - les apps des répétitions, dont celles où le kit a été développé et testé (liste publiée :
   `candidats/exclusions.txt`), leurs copies et leurs propriétaires. Une copie se reconnaît mécaniquement : un commit
   commun, ou plus de la moitié des fichiers identiques octet pour octet (`candidats/historique.mjs`). Deux apps
@@ -58,9 +60,9 @@ régularité : un succès de hasard ne suffit pas. (Codex était prévu comme se
 a pris fin le 03/10.)
 
 - **Le kit est gelé** : une seule archive `vak-agent-<version>.tgz`, dont l'empreinte est publiée avant le tirage.
-- **La demande** est celle du README de vak, mot pour mot, avec ses trois champs remplis. Le lanceur la place entre
-  une phrase d'introduction et les règles de l'essai (`repetition2/messages.sh`). Les champs sont fixés avant
-  l'essai :
+- **La demande** est celle du README de vak, mot pour mot, avec ses trois champs remplis. Le lanceur la place après
+  trois phrases d'introduction (l'essai, personne ne répond, où est l'app) et avant les règles de l'essai et la
+  consigne du compte rendu (`repetition2/messages.sh`). Les champs sont fixés avant l'essai :
   - le métier de l'app ;
   - l'emplacement de l'assistant ;
   - le chemin de l'archive.
@@ -84,7 +86,8 @@ a pris fin le 03/10.)
   - la CLI Supabase à la version que fixe l'archive gelée ; pas de Docker ;
   - les versions exactes sont dans `PUBLICATION.md` ;
   - l'agent : Claude Code en mode non interactif, avec le modèle par défaut de sa version ; la version est consignée
-    pour chaque essai (2.1.296 au deuxième examen, le 10/10) ;
+    pour chaque essai (2.1.296 aux deuxième et troisième examens ; celle de ce quatrième examen est dans
+    `PUBLICATION.md`) ;
   - pour l'assistant, un vrai modèle (DeepSeek) avec une clé plafonnée.
 
 ## Un essai réussit si tout est vrai
@@ -229,7 +232,10 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 ## Le contrôleur
 
 - Il est écrit par une session Claude Code scellée, qui n'est pas celle qui a écrit vak. Elle n'a pas le dépôt de
-  vak : seulement cette règle, la définition de la réussite et la page publique de vak.
+  vak : seulement cette règle, la définition de la réussite et la page publique de vak. Il a été mis à jour depuis
+  (08/10 et 13/10) par d'autres sessions scellées, sans le dépôt de vak, d'après des consignes publiées
+  (`scelle/MISE-A-JOUR-1.md` à `-3.md`) écrites par la session qui écrit vak ; elles avaient en plus son code et des
+  essais passés (leur journal et leur état commité, qui contient l'archive de vak de l'essai).
 - Limite assumée : c'est la même famille de modèles que l'agent des essais. C'est pourquoi le contrôleur est publié
   et éprouvé avant l'examen : chacun peut le relire. Le rejouer sur les essais demande leur état commité, qui
   contient vak : il est publié avec vak, si l'examen est réussi.
@@ -245,9 +251,11 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 
 ## Le groupe témoin « sans vak »
 
-Il n'est pas rejoué pour ce troisième examen, pas plus qu'au deuxième (choix du propriétaire, 10/10). Celui du
-premier examen (06/10 : 7 essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de
-ce dépôt et dans son `EXAMEN.md`. Il ne décidait pas de l'examen.
+Il n'est pas rejoué pour ce quatrième examen, pas plus qu'aux deuxième et troisième. C'est le choix du propriétaire du
+10/10, reconduit sans nouvelle décision : son accord du 14/10 au quatrième examen ne portait pas sur le groupe témoin.
+Sans témoin, l'examen ne dit pas ce qu'un agent de code ferait sans vak sur ces apps. Celui du premier examen (06/10 :
+7 essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de ce dépôt et dans son
+`EXAMEN.md`. Il ne décidait pas de l'examen.
 
 ## La publication
 

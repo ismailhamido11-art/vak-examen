@@ -10,6 +10,14 @@ const relatif = (f, racine) => {
   }
   return r.replace(/^\.\//, '');
 };
+// Le dossier du clone (…/clones/prep, …/clones/head) est remplacé par un même repère dans tout le texte d'une erreur :
+// un message qui cite un fichier de node_modules par son chemin absolu dit la même chose avant et après.
+const REPERE = '<clone>';
+const sansClone = (t, clone) => {
+  if (!clone) return t;
+  const c = clone.replace(/\\/g, '/').replace(/\/+$/, '');
+  return c ? t.split(c).join(REPERE).split(clone.replace(/\/+$/, '')).join(REPERE) : t;
+};
 const nettoyerMessage = (m) => m.replace(/\s+/g, ' ').replace(/\b\d+(?::\d+)?\b/g, '#').trim().slice(0, 160);
 
 // turbo préfixe chaque ligne par « paquet:tâche: » (« app:typecheck: », « @kit/ui:lint: »).
@@ -19,13 +27,13 @@ const EXT = String.raw`(?:[cm]?[jt]sx?|vue|svelte|astro|json|css|scss)`;
 const horsOutils = (f) => !/(^|\/)node_modules\//.test(f) && !/^node:/.test(f);
 
 // Renvoie [{ fichier, ligne, sig, brut, genre }]
-export function extraireErreurs(sortie, racine) {
+export function extraireErreurs(sortie, racine, clone = racine) {
   const lignes = sansCouleurs(sortie).split('\n').map(sansPrefixeTurbo);
   const out = [];
   const ajouter = (genre, fichier, ligne, msg, brut) => {
     const f = relatif(fichier, racine);
     if (!horsOutils(f)) return;
-    out.push({ genre, fichier: f, ligne: ligne ? Number(ligne) : 0, sig: `${f}|${nettoyerMessage(msg)}`, brut: brut.trim().slice(0, 260) });
+    out.push({ genre, fichier: f, ligne: ligne ? Number(ligne) : 0, sig: `${sansClone(f, clone)}|${nettoyerMessage(sansClone(msg, clone))}`, brut: brut.trim().slice(0, 260) });
   };
   let fichierLint = null;
   let fichierTest = null;
@@ -71,7 +79,7 @@ export function extraireErreurs(sortie, racine) {
 }
 
 // Quand rien de structuré n'est reconnu et que la commande a échoué : lignes « … erreur … fichier:ligne ».
-export function extraireGenerique(sortie, racine) {
+export function extraireGenerique(sortie, racine, clone = racine) {
   const out = [];
   const lignes = sansCouleurs(sortie).split('\n').map(sansPrefixeTurbo);
   const re = new RegExp(`((?:\\.{0,2}/|[A-Za-z]:[\\\\/])?[\\w@./\\\\\\[\\]()+-]*?\\.${EXT})(?::|\\s*\\()(\\d+)(?:[:,]\\d+)?\\)?`);
@@ -83,7 +91,7 @@ export function extraireGenerique(sortie, racine) {
     const contexte = `${l} ${lignes[i + 1] ?? ''}`;
     if (!/error|erreur|failed|unable to resolve|cannot find|not found|unexpected/i.test(contexte)) continue;
     const f = relatif(m[1], racine);
-    out.push({ genre: 'generique', fichier: f, ligne: Number(m[2]), sig: `${f}|${nettoyerMessage(contexte.replace(m[0], ''))}`, brut: l.trim().slice(0, 260) });
+    out.push({ genre: 'generique', fichier: f, ligne: Number(m[2]), sig: `${sansClone(f, clone)}|${nettoyerMessage(sansClone(contexte.replace(m[0], ''), clone))}`, brut: l.trim().slice(0, 260) });
   }
   return out;
 }

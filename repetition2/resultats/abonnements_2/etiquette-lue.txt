@@ -1,5 +1,0 @@
-Voit : Abonnements (Nom, Catégorie, Montant mensuel (€), Jour de prélèvement, Actif, Créé le) ; Paiements (Abonnement, Payé le, Montant (€), Moyen de paiement)
-Peut proposer (après votre validation) : « Nouvel abonnement » (fonction de l'app) ; « Modifier un abonnement » (fonction de l'app) ; « Résilier un abonnement » (fonction de l'app) ; « Enregistrer un paiement » (fonction de l'app) ; retenir un souvenir (prise memory)
-Peut ouvrir (sans rien enregistrer) : aucun écran
-Jamais : supprimer ou modifier hors de ces listes, sauf par « Nouvel abonnement » (fonction de l'app), « Modifier un abonnement » (fonction de l'app), « Résilier un abonnement » (fonction de l'app), « Enregistrer un paiement » (fonction de l'app), retenir un souvenir (prise memory) ; appeler current_user_id, delete_payment
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

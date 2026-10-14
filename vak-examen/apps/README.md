@@ -1,4 +1,8 @@
-# Les 3 apps construites de l'examen
+# Les apps construites des examens
+
+Celles du quatrième examen (disques, journal, prets) sont plus bas, section « Quatrième examen ».
+
+## Premier examen : 3 apps (06/10)
 
 Construites le 06/10/2026, entre 00:15 et 00:21 UTC. Chacune l'a été par une session Claude Code scellée
 (`../scelle/lancer.sh`, mode « fiche »), qui n'a reçu que [`../scelle/CONSTRUIRE.md`](../scelle/CONSTRUIRE.md) et sa
@@ -14,7 +18,7 @@ fiche de forme : ni vak, ni la règle, ni le dépôt du kit. Les fiches étaient
 - Les empreintes des archives et des fiches sont dans [`SHA256SUMS`](SHA256SUMS).
 - Le compte rendu de chaque session est recopié tel quel dans [`rapports/`](rapports/).
 
-## Vérifications du 06/10
+### Vérifications du 06/10
 
 Faites par la session de travail, sur un clone neuf de chaque archive.
 
@@ -83,5 +87,56 @@ Vérifications du 10/10, par la session de travail, sur un clone neuf de chaque 
   `npm run lint` et `npm run build` passent ; `npx tsc --noEmit` rend 8 erreurs sur un clone neuf (`PageProps`,
   `LayoutProps` : des types que Next 16 génère au build), puis 0 après `npm run build`, comme les apps d'équipe des
   deux premiers examens. Les apps sont gardées telles quelles ;
+- **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
+  flottant sur tous les écrans (`../essais.tsv`).
+
+## Quatrième examen : 3 apps nouvelles (14/10)
+
+Construites le 14/10/2026, de 12:51:54 à 12:59 UTC, chacune par une session Claude Code scellée (`../scelle/lancer.sh`,
+mode « fiche »), qui n'a reçu que [`../scelle/CONSTRUIRE.md`](../scelle/CONSTRUIRE.md) et sa fiche de forme : ni vak,
+ni la règle, ni le dépôt du kit. Les fiches (`../fiches-4/`) étaient commitées depuis 12:51:28 UTC, et leurs
+empreintes publiées sur le ticket n°4 du dépôt public avant la construction. Depuis cet examen, la consigne demande
+aussi d'appeler chaque fonction de la fiche et de vérifier qu'aucun utilisateur n'atteint les lignes de l'autre par
+une fonction.
+
+| forme | app | plateforme | commit | session |
+|---|---|---|---|---|
+| [démarre](../fiches-4/demarre.md) | collection de disques vinyles et écoutes | Expo 57 | `398bb03` | 15 tours, 0,32 $, 5 min |
+| [équipe](../fiches-4/equipe.md) | rédaction d'un journal de quartier : articles et photos | Next.js 16.4 | `af3d891` | 20 tours, 0,73 $, 7 min |
+| [fonctions](../fiches-4/fonctions.md) | prêts d'objets, écritures par RPC | Expo 57 | `9c8fe30` | 18 tours, 0,36 $, 5 min |
+
+- Chaque app est un fichier `<nom>.bundle` (`disques`, `journal`, `prets`) : `git clone <nom>.bundle <dossier>`.
+- Les comptes rendus des sessions sont recopiés tels quels dans [`rapports/`](rapports/).
+- **Messages de commit** : les sessions signaient leurs commits d'une ligne `Co-Authored-By` qui nomme le modèle.
+  La session de travail a retiré cette seule ligne des messages (`git filter-branch --msg-filter`), sans toucher aux
+  fichiers : arbres, auteurs et dates de chaque commit sont identiques à ceux des sessions ; seuls les identifiants des
+  commits réécrits changent (le premier commit de disques et de journal, celui du gabarit, garde le sien). Les
+  archives des examens passés gardent cette ligne : déjà publiées avec leurs empreintes, elles ne peuvent plus être
+  réécrites. C'est la ligne d'attribution que Claude Code met à ses commits, comme celle des commits de ce dépôt.
+- Les gabarits de `create-expo-app` et `create-next-app` apportaient un `AGENTS.md` (et, pour Expo, un dossier
+  `.claude/`) : les sessions les ont retirés de l'app, comme le veut la fiche (« aucune mention d'un kit
+  d'assistant »). Pour disques, ils restent dans le premier commit, celui du gabarit ; pour journal, `AGENTS.md` reste
+  dans les deux premiers (le gabarit, puis le schéma) et n'est retiré qu'au dernier ; la session de prets a recréé son
+  dépôt sans eux.
+- **Écarts aux fiches**, gardés tels quels (détail dans [`rapports/`](rapports/)) : disques supprime un disque (ses
+  écoutes partent en cascade), ce que sa fiche ne demande pas ; une écoute vise un disque par la clé composite
+  `(vinyl_id, user_id)`. journal a deux tables « à moi » de plus que sa fiche : `profiles` (une ligne par compte,
+  posée par un déclencheur sur `auth.users`, visible des co-membres) et `newspaper_invitations` (invitations en
+  attente, vues du seul propriétaire) ; sa RLS passe par des fonctions `security definer` d'un schéma `private` ; ses
+  droits de mise à jour sont donnés colonne par colonne ; journaux et invitations ne s'écrivent que par fonctions
+  (`create_newspaper`, `invite_member`, `remove_member`, `claim_invitations`) ; il commite un test SQL
+  (`supabase/tests/`). prets n'admet qu'un prêt ouvert par objet (index unique partiel), ses fonctions sont
+  `security definer`, et `forget_item` est sa seule suppression.
+
+Vérifications du 14/10, par la session de travail, sur un clone neuf de chaque archive, dans un environnement vide :
+- **critères d'une app publique** (`../candidats/verifier.mjs`, `SOURCE=` un clone de l'archive) : les trois sont
+  éligibles, leurs migrations passent sur un PostgreSQL 16 neuf. Tables « à moi » : disques : `listenings`,
+  `vinyls` ; journal : `article_photos`, `articles`, `newspaper_invitations`, `newspaper_members`, `newspapers`,
+  `profiles` ; prets : `items`, `loans` ;
+- **ce que demande la fiche** : `npm ci` passe ; `package-lock.json` et `.env.example` sont commités ; aucun `.env` ni
+  secret n'est commité. disques et prets : `npx tsc --noEmit` et `npx expo export -p web` passent. journal :
+  `npm run lint` et `npm run build` passent ; `npx tsc --noEmit` rend 1 erreur sur un clone neuf (`LayoutProps`, un
+  type que Next 16 génère au build), puis 0 après `npm run build`, comme les apps d'équipe des examens passés. Les
+  apps sont gardées telles quelles ;
 - **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
   flottant sur tous les écrans (`../essais.tsv`).

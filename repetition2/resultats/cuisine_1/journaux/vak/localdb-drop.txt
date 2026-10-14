@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/cuisine_1/apres)
-
-base locale vak_local_e45812 supprimée [code 0]

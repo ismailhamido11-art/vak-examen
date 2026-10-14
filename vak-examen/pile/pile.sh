@@ -77,6 +77,8 @@ arreter
 SORTIE="$(cd "$APP" && "${VAK[@]}" localdb --db-name "examen_$ID" 2>&1)" || { echo "$SORTIE" >&2; fail "vak localdb a échoué"; }
 DB="$(sed -n 's/^.*URL : //p' <<<"$SORTIE" | head -1)"
 [ -n "$DB" ] || fail "URL de la base introuvable dans la sortie de vak localdb"
+# auth.mfa_factors, si le vak de l'app ne l'a pas posée (mfa.sql ; 13/10, examen du 11/10 : RLS par niveau MFA).
+psql -X -q -v ON_ERROR_STOP=1 -f "$HERE/mfa.sql" "$DB" >/dev/null || fail "auth.mfa_factors refusée par la base"
 node -e '
 const c = require("crypto");
 const compte = (n) => ({ email: `${n.toLowerCase()}-${c.randomBytes(3).toString("hex")}@examen-vak.test`, password: c.randomBytes(18).toString("base64url"), id: c.randomUUID() });

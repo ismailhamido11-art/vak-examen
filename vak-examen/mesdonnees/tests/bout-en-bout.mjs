@@ -56,7 +56,7 @@ for (const app of apps) {
     const tables = JSON.parse(readFileSync(attendu, "utf8"));
     mkdirSync(join(d, "app", "supabase", "functions", "vak"), { recursive: true });
     writeFileSync(join(d, "app", "supabase", "functions", "vak", "agent.ts"), `export default { tables: { ${tables.map((t) => `${t.table.split(".")[1]}: {}`).join(", ")}, ${"autre_table"}: {} } };\n`);
-    writeFileSync(join(d, "pile.json"), JSON.stringify({ relais: "http://x", db: `postgresql://root@127.0.0.1:5432/${db}`, comptes: { A: { id: a }, B: { id: b } } }));
+    writeFileSync(join(d, "pile.json"), JSON.stringify({ relais: "http://x", db: `postgresql://root@127.0.0.1:5432/${db}`, comptes: { A: { id: a, email: "a@example.test" }, B: { id: b } } }));
     const wrapper = join(d, "demander.mjs");
     writeFileSync(wrapper, `#!/usr/bin/env node\nprocess.argv.splice(2, 0, "--demander");\nawait import(${JSON.stringify(join(ici, "bout-en-bout.mjs"))});\n`);
     chmodSync(wrapper, 0o755);

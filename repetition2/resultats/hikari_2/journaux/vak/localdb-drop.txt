@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/hikari_2/apres)
-
-base locale vak_local_bab15d supprimée [code 0]
