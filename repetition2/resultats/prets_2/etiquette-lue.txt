@@ -1,0 +1,5 @@
+Voit : Objets (Nom, Catégorie, Nombre de prêts, Ajouté le) ; Prêts (Objet, Emprunteur, Prêté le, À rendre le, Rendu le, État au retour)
+Peut proposer (après ta validation) : « Ajouter un objet » (fonction de l'app) ; « Modifier un objet » (fonction de l'app) ; « Prêter un objet » (fonction de l'app) ; « Enregistrer un retour » (fonction de l'app) ; retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Fiche de l'objet, Nouveau prêt, Prêts en retard
+Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par « Ajouter un objet » (fonction de l'app), « Modifier un objet » (fonction de l'app), « Prêter un objet » (fonction de l'app), « Enregistrer un retour » (fonction de l'app), retenir un souvenir (prise memory) ; appeler forget_item
+Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

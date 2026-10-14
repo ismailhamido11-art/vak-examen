@@ -5,13 +5,20 @@ essais, avec des seuils publiés avant la mesure. Dans chaque essai, un agent de
 qu'il n'a jamais vue, sans rien casser. L'assistant obtenu doit donner des chiffres exacts, et ne jamais montrer les
 données d'un autre compte.
 
-- **Le quatrième examen** (14/10/2026), avec vak 0.28.1 gelé :
+- **Le quatrième examen** (14/10/2026), avec vak 0.28.1 gelé : **échoué**. 12 essais réussis sur 14 (il en fallait
+  12), une durée médiane de 6 minutes (45 au plus), aucune fuite, des chiffres exacts, aucun faux « c'est fait » :
+  cinq seuils sur sept tenus. Manquent deux seuils : les gestes demandés à l'humain (4 à 6 dans trois essais, pour 3
+  au plus : des cas de doute, comptés contre vak ; deux de ces trois totaux viennent d'un recompte strict fait une
+  fois le résultat connu) et les étiquettes (l'étiquette dit à l'utilisateur ce que l'assistant voit, ce qu'il peut
+  modifier ou supprimer, et où partent ses messages ; à deux essais, un lecteur qui n'a qu'elle ne sait pas dire tout
+  ce que l'assistant peut modifier).
+  - son journal : [`vak-examen/EXAMEN.md`](vak-examen/EXAMEN.md) ; son verdict :
+    [`vak-examen/RESULTAT.json`](vak-examen/RESULTAT.json) ; les résultats de chaque essai :
+    [`repetition2/resultats/`](repetition2/resultats/) ; les graines : [`vak-examen/graines/`](vak-examen/graines/) ;
   - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 14/10/2026 ;
   - ce qui est figé avant le tirage : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
     empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le
-    troisième examen ;
-  - son journal, son verdict, les résultats de chaque essai et les graines seront publiés ici après les essais,
-    réussis ou non.
+    troisième examen.
 - **Le troisième examen** (11/10/2026) : échoué, 6 essais réussis sur 14 (il en fallait 12), aucune fuite. Sa règle,
   sa publication, son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`), les résultats de
   chaque essai et ses graines restent dans l'historique de ce dépôt (commit `b3e8c89` et avant).

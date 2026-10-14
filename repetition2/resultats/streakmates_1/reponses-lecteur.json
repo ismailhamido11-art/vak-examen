@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["remember a memory (plugin memory) — seulement après votre approbation"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Suppression : l'étiquette dit « Never: delete a row ». Modification : la seule action d'écriture nommée est « remember a memory (plugin memory) », proposée « after your approval ». L'étiquette dit aussi « Never: edit outside these lists, except through remember a memory », mais ne dit pas clairement si les données de la ligne « Sees » (Habits, Check-ins, Tasks, etc.) comptent comme modifiables ; je ne les ai donc pas listées. « Can open (saves nothing) » ne modifie rien. Envoi : « Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms) » ; le pays est la Chine, selon les conditions propres à DeepSeek."
+}

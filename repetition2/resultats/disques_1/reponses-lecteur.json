@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["retenir un souvenir (prise memory)"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer une ligne ». Retenir un souvenir n'est que proposé, après validation de l'utilisateur. Hors de cela, l'assistant ne peut rien modifier : il voit les Disques et les Écoutes, et peut ouvrir Ma collection, Voir le disque, Ajouter un disque et Ajouter une écoute sans rien enregistrer. Les messages partent vers DeepSeek (api.deepseek.com, Chine, selon ses conditions). L'étiquette ne dit pas ce que contient un souvenir."
+}

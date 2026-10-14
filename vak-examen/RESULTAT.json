@@ -1,0 +1,260 @@
+{
+  "verdict": "échoué",
+  "manque": [],
+  "seuils": {
+    "reussis": {
+      "valeur": "12/14",
+      "vrai": true
+    },
+    "mediane_minutes": {
+      "valeur": 6.195,
+      "vrai": true
+    },
+    "gestes_au_plus_3": {
+      "valeur": "disques_1:1 disques_2:1 journal_1:2 journal_2:4 prets_1:1 prets_2:2 split_free_frontend_1:4 split_free_frontend_2:6 smart_budget_application_1:1 smart_budget_application_2:3 flow_finance_1:1 flow_finance_2:2 streakmates_1:2 streakmates_2:2",
+      "vrai": false
+    },
+    "aucune_fuite": {
+      "valeur": [],
+      "vrai": true
+    },
+    "chiffres_exacts": {
+      "valeur": [],
+      "vrai": true
+    },
+    "jamais_faux_fini": {
+      "valeur": [],
+      "vrai": true
+    },
+    "etiquettes": {
+      "valeur": [
+        "prets_1",
+        "prets_2"
+      ],
+      "vrai": false
+    }
+  },
+  "essais": [
+    {
+      "id": "disques_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 4.13,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "disques_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 4.46,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "journal_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .)"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; les quatre `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 56 (sortie ligne 59 : « vak doctor : doctor : à corriger […] (passé : localdb, sync) [code 1] »), ligne 97 (sortie ligne 98), ligne 130 (sortie ligne 133) et ligne 155, après le commit (sortie ligne 156) : « vak prove : preuve à deux comptes : non prouvé […] [code 1] » ; les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 36, sortie ligne 37 : « vak 0.28.1 installé (., serveur edge) [code 0] ») et `vak test` (ligne 81, sortie ligne 82 : « vak test : tout est vert [code 0] ») ; le « vak test : tout est vert [code 0] » de la ligne 53 est le texte du skill lu par `sed` (ligne 52), pas une sortie de vak. Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme abonnements_1 au troisième examen",
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "journal_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .)"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; les deux `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 77 (sortie ligne 78 : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s) ; 85 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] ») et ligne 140, après le premier commit (sortie ligne 141 : la même ligne, [code 1]) ; les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 27, sortie ligne 29 : « vak 0.28.1 installé (., serveur edge) [code 0] »), `vak localdb` (ligne 48, sortie ligne 49 : « base locale vak_local_082e9a prête : 9 migration(s) appliquée(s) [code 0] »), `vak sync` (ligne 51, sortie ligne 52 : « photographie du schéma écrite [code 0] ») et `vak test` (ligne 131, sortie ligne 132 : « vak test : tout est vert [code 0] ») ; le « vak test : tout est vert [code 0] » de la ligne 33 est le texte du skill lu par `cat` (ligne 32), pas une sortie de vak. Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme journal_1, et abonnements_1 au troisième examen",
+      "gestes": 4,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": [
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : « vak » rend 1 dans ."
+      ]
+    },
+    {
+      "id": "prets_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 5.67,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": []
+    },
+    {
+      "id": "prets_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 5.82,
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": false,
+      "raisons_controleur": []
+    },
+    {
+      "id": "split_free_frontend_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 5.1,
+      "duree_note": null,
+      "gestes": 4,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "split_free_frontend_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 4.44,
+      "duree_note": null,
+      "gestes": 6,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "smart_budget_application_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 16.15,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "smart_budget_application_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 12.53,
+      "duree_note": null,
+      "gestes": 3,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "flow_finance_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 7.95,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "flow_finance_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 9.16,
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "streakmates_1",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 6.57,
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "streakmates_2",
+      "verdict": "réussi",
+      "raisons": [],
+      "releve": null,
+      "minutes": 5.04,
+      "duree_note": null,
+      "gestes": 2,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    }
+  ]
+}
+examen : échoué

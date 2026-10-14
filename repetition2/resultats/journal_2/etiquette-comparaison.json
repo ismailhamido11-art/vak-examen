@@ -1,0 +1,12 @@
+{
+ "id": "journal_2",
+ "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+ "supprimer": true,
+ "modifier": true,
+ "envoyer": true,
+ "notes": {
+  "supprimer": "vérité « non » ; lecteur « non » ; l'étiquette dit « Jamais : supprimer une ligne » : la même réponse que la vérité (les trois fonctions de l'app qui suppriment, invite_member, remove_member et claim_invitations, sont dans ignore, et l'étiquette dit « Jamais : … appeler claim_invitations, create_newspaper, invite_member, remove_member »)",
+  "modifier": "vérité : public.vak_memories (sa mémoire (prise memory)) ; lecteur : « retenir un souvenir (prise memory) » ; sa mémoire nommée par l'étiquette (« retenir un souvenir » / « remember a memory », prise memory) : la seule table, aucune autre (le lecteur ne nomme ni Journaux, ni Articles, ni Photos, ni Membres, ni Profils, que l'étiquette range sous « Voit », ni les écrans de « Peut ouvrir (sans rien enregistrer) », ni les quatre fonctions de l'app, qu'il écarte dans ses remarques : « Elle exclut toute autre modification, ainsi que claim_invitations, create_newspaper, invite_member et remove_member », comme la vérité, où elles sont dans ignore)",
+  "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek, api.deepseek.com"
+ }
+}

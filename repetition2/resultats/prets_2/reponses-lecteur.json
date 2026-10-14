@@ -1,0 +1,12 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Ajouter un objet (fonction de l'app)",
+    "Modifier un objet (fonction de l'app)",
+    "Prêter un objet (fonction de l'app)",
+    "Enregistrer un retour (fonction de l'app)",
+    "retenir un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "L'étiquette dit « Jamais : supprimer une ligne » et « appeler forget_item ». Les modifications ne se font qu'après validation de l'utilisateur. Les écrans Fiche de l'objet, Nouveau prêt et Prêts en retard s'ouvrent sans rien enregistrer. L'étiquette précise que DeepSeek est en Chine et que l'envoi se fait « selon ses conditions ». Elle ne dit pas ce que contient « un souvenir » ni combien de temps il est gardé."
+}

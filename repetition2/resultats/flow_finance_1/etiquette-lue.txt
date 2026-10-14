@@ -1,0 +1,5 @@
+Voit : Comptes (Nom, Nom affiché, Type, Solde (€), Devise, Dernière synchronisation) ; Livrets suivis (Nom, Type, Solde de départ (€), Date du solde de départ, Taux d'intérêt, Plafond (€), Date d'ouverture) ; Transactions (Compte, Date, Montant (€), Devise, Libellé, Statut, Catégorie, Note) ; Catégories (Nom, Créée le)
+Peut proposer (après votre validation) : retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Transactions, Épargne, Analyses
+Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire bank_connections, crypto_holdings, crypto_portfolio_settings, crypto_transactions, pea_holdings, pea_investment_plans, pea_settings, pea_transactions, 7 autres
+Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

@@ -1,0 +1,5 @@
+Sees: Groups (Title, Description, Total of all expenses, Settled, Currency, Created at) ; Members (Name, Group, Role, Balance in the group, Joined at) ; Expenses (Title, Description, Amount, Date, Group, Settled, Category) ; Debts (Amount, Borrower, Lender, Group, Created at) ; Transfers (Sender, Receiver, Amount, Group, Created at)
+Can propose (after your approval): remember a memory (plugin memory)
+Can open (saves nothing): Open group, Group statistics, New expense
+Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read debts_per_expense, expense_participants, expense_payers, friend_requests, friends, group_invitations, profiles, invite_tokens ; call get_group_expense_stats, accept_friend_request, create_expense, create_group, deleteuser, exit_group, generate_invite_token, get_groups_summary, 11 others
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)
