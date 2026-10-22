@@ -1,0 +1,26 @@
+$ vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_75f8a1'
+(dossier : /work/randonnee_2/apres)
+
+✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)
+✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)
+✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md
+✓ VAK004 tsconfig.json exclut supabase/functions
+✓ VAK005 tsc -p supabase/functions/vak : aucune erreur
+✓ VAK006 supabase/functions/vak/agent.ts se charge (2 table(s) calibrée(s), écrans trouvés dans l'app)
+✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite
+✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app
+✓ VAK009 aucun secret côté client
+✓ VAK010 [functions.vak] verify_jwt = false
+✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git
+✓ VAK013 chaque table de l'app est calibrée ou ignorée (2 dans tables ; ignore : 0 tables, 0 fonctions)
+✓ VAK014 photographie postérieure aux migrations de l'app (1)
+✓ VAK015 preuve à deux comptes du 2026-10-22 : éprouvé (2 table(s), 103 totaux de read_data exacts), empreintes à jour
+✓ VAK011 photographie à jour (schema.gen.ts = base)
+✓ VAK101 migration vak appliquée (vak_schema_version = 4)
+✓ VAK102 droits des tables vak_ exactement ceux attendus
+✓ VAK103 RLS active sur les tables calibrées et vak_*
+✓ VAK105 vues calibrées en security_invoker
+✓ VAK106 capacités réelles conformes au calibrage
+✓ VAK107 aucun avis de sécurité bloquant
+✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne
+doctor : tout est vert [code 0]

@@ -1,0 +1,12 @@
+{
+  "id": "prep_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "get_quiz_attempt_counts",
+      "ligne": 90
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

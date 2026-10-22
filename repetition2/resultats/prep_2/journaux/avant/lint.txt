@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/prep_2/avant)
+
+
+> prep@0.0.0 lint
+> eslint .
+

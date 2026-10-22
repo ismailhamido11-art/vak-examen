@@ -1,0 +1,57 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T17:03:38.368Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:272715bf754e73be39ccfbf8123fd96c329979af864f3ca98e6b2c2058b709a9",
+  "schema": "sha256:4a9f447c40e00a9ce954efa254fb4a2f397e1c1780ac6c23da9c1490b535aea1",
+  "tables": {
+    "questions": "éprouvé",
+    "quiz_attempts": "éprouvé",
+    "quiz_ratings": "éprouvé",
+    "quizzes": "éprouvé"
+  },
+  "notes": {
+    "questions": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "ligne de A sans parent (quiz_id vide) : l'app ne la montre pas",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 58 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 3 : sans filtre ; sans filtre, limit 5 ; search « Question 0 a »"
+    ],
+    "quiz_attempts": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 36 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 2 : sans filtre ; sans filtre, limit 5"
+    ],
+    "quiz_ratings": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 35 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+      "graine des totaux refusée par l'app (23514 new row for relation \"quiz_ratings\" violates check constraint \"quiz_ratings_rating_check\") : totaux vérifiés sur les lignes de la preuve seules"
+    ],
+    "quizzes": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 89 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « title 0 a »"
+    ]
+  },
+  "totals": 218,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Sees: Quizzes (Title, Description, Created at, Time limit, Visibility, Category, Difficulty, Times taken, Average rating, Share code, Status) ; Questions (Quiz, Question, Option A, Option B, Option C, Option D, Correct answer, Points, Created at) ; Quiz attempts (Quiz, Score, Total points, Elapsed seconds, Completed at) ; Quiz ratings (Quiz, Rating, Created at)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Create a quiz, My quizzes, Quiz details, Quiz bank, Results",
+    "Never: delete a row ; edit anything other than what « Can propose » lists ; call get_quiz_attempt_counts"
+  ]
+}

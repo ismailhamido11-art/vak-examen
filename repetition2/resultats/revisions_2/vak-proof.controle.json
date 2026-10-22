@@ -1,0 +1,53 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T18:02:18.139Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:3aacb7574e8230929f1a12c5d19e59027737825731c45d0701f42d98851b8460",
+  "schema": "sha256:c01be95aab26043dc5952840bb6e4310bbeb9c9bdb58ec3de68c824dd41c8d23",
+  "tables": {
+    "cards": "éprouvé",
+    "decks": "éprouvé",
+    "reviews": "éprouvé"
+  },
+  "notes": {
+    "cards": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « front 0 a »"
+    ],
+    "decks": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 50 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ],
+    "reviews": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 43 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "functions": {
+    "add_card": "éprouvé",
+    "cards_due": "éprouvé",
+    "create_deck": "éprouvé",
+    "edit_card": "éprouvé",
+    "review_card": "éprouvé"
+  },
+  "totals": 133,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Paquets (Nom, Matière, Révisions faites, Créé le) ; Cartes (Paquet, Recto, Verso, Intervalle (jours), À revoir le, Série de réussites) ; Révisions (Carte, Révisée le, Réponse, Note)",
+    "Peut proposer (après ta validation) : « Créer un paquet » (fonction de l'app : Paquets) ; « Ajouter une carte » (fonction de l'app : Cartes) ; « Modifier une carte » (fonction de l'app : Cartes) ; « Réviser une carte » (fonction de l'app : Cartes, Paquets, Révisions) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes paquets, Ouvrir le paquet, À revoir aujourd'hui, Nouvelle carte",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer » ; appeler delete_deck"
+  ]
+}

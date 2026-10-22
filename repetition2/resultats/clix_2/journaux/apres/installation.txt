@@ -1,0 +1,36 @@
+$ pnpm install --frozen-lockfile
+(dossier : /work/clix_2/apres)
+
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +356
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 356, reused 356, downloaded 0, added 356, done
+
+dependencies:
++ @supabase/ssr 0.12.0
++ @supabase/supabase-js 2.108.1
++ @tanstack/react-table 8.21.3
++ @vak/agent 0.29.2
++ class-variance-authority 0.7.1
++ clsx 2.1.1
++ lucide-react 1.17.0
++ next 16.2.7
++ react 19.2.4
++ react-dom 19.2.4
+
+devDependencies:
++ @types/node 26.6.5
++ @types/react 19.3.0
++ eslint 9.39.4
++ eslint-config-next 16.2.7
++ typescript 5.9.3
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: sharp@0.34.5, unrs-resolver@1.12.2.                 │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 2s using pnpm v10.28.0

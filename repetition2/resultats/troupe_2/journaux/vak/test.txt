@@ -1,0 +1,17 @@
+$ vak test
+(dossier : /work/troupe_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (4 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 6 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1410 tokens (maximum 5000)
+✓ evals 1 évaluations bien formées
+✓ tour read_data troupes exécuté sans validation → {"table":"troupes","label":"Troupes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000…
+✓ tour read_data troupe_members exécuté sans validation → {"table":"troupe_members","label":"Membres des troupes","total":2,"shown":2,"complete":true,"rows":[{"troupe_id":"000…
+✓ tour read_data shows exécuté sans validation → {"table":"shows","label":"Spectacles","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000…
+✓ tour read_data characters exécuté sans validation → {"table":"characters","label":"Personnages","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-800…
+✓ tour open_screen troupe exécuté sans validation → {"href":"/troupes/00000000-0000-4000-8000-000003000000","label":"Troupe"}
+✓ tour open_screen spectacle exécuté sans validation → {"href":"/spectacles/00000000-0000-4000-8000-000001000000","label":"Spectacle"}
+✓ tour open_screen mes_personnages exécuté sans validation → {"href":"/mes-personnages","label":"Mes personnages"}
+vak test : tout est vert [code 0]

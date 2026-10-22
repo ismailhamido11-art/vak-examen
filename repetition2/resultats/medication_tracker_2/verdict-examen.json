@@ -1,0 +1,469 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "medication_tracker_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "bun.lock",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.29.2.tgz sha256 = préparation",
+        "1 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "bun install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "bun install --frozen-lockfile",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "bun run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "bun run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "bun run lint",
+            "source": "script « lint » : biome lint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "bun run lint",
+            "source": "script « lint » : biome lint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 0,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "bun run test",
+            "source": "script « test » : jest",
+            "code": 0,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 936
+            }
+          },
+          "apres": {
+            "commande": "bun run test",
+            "source": "script « test » : jest",
+            "code": 0,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 936
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 1,
+      "code": "rien-livre",
+      "resume": "l'agent n'a rien écrit et n'a pas dit que l'app n'est pas prise en charge",
+      "preuve": [
+        "HEAD = commit de préparation bafe9c82"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    }
+  ],
+  "notes": [
+    "bun utilisé : 1.4.4 (bun de la machine)"
+  ],
+  "entree": {
+    "essai": "/srv/essais/medication_tracker_2",
+    "preparation": {
+      "id": "medication_tracker_2",
+      "depot": "https://github.com/PanagiotisKaraliolios/medication-tracker",
+      "commit": "cfad84170a40378b684a115b6afe7486fa5f5a2a",
+      "prepare": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T18:32:42Z"
+    },
+    "tip": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+    "commitsAgent": 0,
+    "appsVak": [],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 46,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "bun",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "bun install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "bun install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ react-native-android-widget@0.20.1",
+              "+ react-native-autocomplete-dropdown@5.0.0",
+              "+ react-native-gesture-handler@2.30.0",
+              "+ react-native-google-mobile-ads@16.3.0",
+              "+ react-native-safe-area-context@5.6.2",
+              "+ react-native-screens@4.23.0",
+              "+ react-native-svg@15.15.3",
+              "+ react-native-toast-message@2.3.3",
+              "+ react-native-url-polyfill@3.0.0",
+              "+ react-native-web@0.21.2",
+              "+ zustand@5.0.12",
+              "988 packages installed [427.00ms]"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "bun run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "$ tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "bun run lint",
+              "source": "script « lint » : biome lint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 0,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "  > 203 │   }, [selectedISO]);",
+                "        │       ^^^^^^^^^^^",
+                "    204 │ ",
+                "    205 │   const doses = useMemo(() => {",
+                "  i React relies on hook dependencies to determine when to re-compute Effects.",
+                "    Specifying more dependencies than required can lead to unnecessary re-rendering",
+                "    and degraded performance.",
+                "  i Unsafe fix: Remove the extra dependencies from the list.",
+                "    203 │ ··},·[selectedISO]);",
+                "        │       -----------   ",
+                "Checked 144 files in 240ms. No fixes applied.",
+                "Found 1 warning."
+              ]
+            },
+            "test": {
+              "commande": "bun run test",
+              "source": "script « test » : jest",
+              "code": 0,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 936
+              },
+              "liste": [],
+              "fin": [
+                "PASS Web utils/symptom.test.ts",
+                "PASS Node utils/snooze.test.ts",
+                "PASS Node hooks/useResponsive.test.ts",
+                "PASS Web utils/snooze.test.ts",
+                "PASS Web hooks/useResponsive.test.ts",
+                "PASS Node utils/string.test.ts",
+                "PASS Web utils/string.test.ts",
+                "Test Suites: 42 passed, 42 total",
+                "Tests:       936 passed, 936 total",
+                "Snapshots:   0 total",
+                "Time:        15.269 s",
+                "Ran all test suites in 2 projects."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "bun install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "bun install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ react-native-android-widget@0.20.1",
+          "+ react-native-autocomplete-dropdown@5.0.0",
+          "+ react-native-gesture-handler@2.30.0",
+          "+ react-native-google-mobile-ads@16.3.0",
+          "+ react-native-safe-area-context@5.6.2",
+          "+ react-native-screens@4.23.0",
+          "+ react-native-svg@15.15.3",
+          "+ react-native-toast-message@2.3.3",
+          "+ react-native-url-polyfill@3.0.0",
+          "+ react-native-web@0.21.2",
+          "+ zustand@5.0.12",
+          "988 packages installed [427.00ms]"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "bun",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "bun install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "bun install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ react-native-android-widget@0.20.1",
+              "+ react-native-autocomplete-dropdown@5.0.0",
+              "+ react-native-gesture-handler@2.30.0",
+              "+ react-native-google-mobile-ads@16.3.0",
+              "+ react-native-safe-area-context@5.6.2",
+              "+ react-native-screens@4.23.0",
+              "+ react-native-svg@15.15.3",
+              "+ react-native-toast-message@2.3.3",
+              "+ react-native-url-polyfill@3.0.0",
+              "+ react-native-web@0.21.2",
+              "+ zustand@5.0.12",
+              "988 packages installed [746.00ms]"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "bun run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "$ tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "bun run lint",
+              "source": "script « lint » : biome lint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 0,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "  > 203 │   }, [selectedISO]);",
+                "        │       ^^^^^^^^^^^",
+                "    204 │ ",
+                "    205 │   const doses = useMemo(() => {",
+                "  i React relies on hook dependencies to determine when to re-compute Effects.",
+                "    Specifying more dependencies than required can lead to unnecessary re-rendering",
+                "    and degraded performance.",
+                "  i Unsafe fix: Remove the extra dependencies from the list.",
+                "    203 │ ··},·[selectedISO]);",
+                "        │       -----------   ",
+                "Checked 144 files in 235ms. No fixes applied.",
+                "Found 1 warning."
+              ]
+            },
+            "test": {
+              "commande": "bun run test",
+              "source": "script « test » : jest",
+              "code": 0,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 936
+              },
+              "liste": [],
+              "fin": [
+                "PASS Web hooks/useNetworkStatus.test.ts",
+                "PASS Node utils/snooze.test.ts",
+                "PASS Web utils/snooze.test.ts",
+                "PASS Web hooks/useResponsive.test.ts",
+                "PASS Node utils/string.test.ts",
+                "PASS Web utils/string.test.ts",
+                "PASS Node hooks/useResponsive.test.ts",
+                "Test Suites: 42 passed, 42 total",
+                "Tests:       936 passed, 936 total",
+                "Snapshots:   0 total",
+                "Time:        14.565 s",
+                "Ran all test suites in 2 projects."
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "bun install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "bun install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ react-native-android-widget@0.20.1",
+          "+ react-native-autocomplete-dropdown@5.0.0",
+          "+ react-native-gesture-handler@2.30.0",
+          "+ react-native-google-mobile-ads@16.3.0",
+          "+ react-native-safe-area-context@5.6.2",
+          "+ react-native-screens@4.23.0",
+          "+ react-native-svg@15.15.3",
+          "+ react-native-toast-message@2.3.3",
+          "+ react-native-url-polyfill@3.0.0",
+          "+ react-native-web@0.21.2",
+          "+ zustand@5.0.12",
+          "988 packages installed [746.00ms]"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "bun": [
+    {
+      "commande": "bun",
+      "version": "1.4.4",
+      "source": "bun de la machine"
+    }
+  ],
+  "fin": "2026-10-22T18:38:20.699Z"
+}

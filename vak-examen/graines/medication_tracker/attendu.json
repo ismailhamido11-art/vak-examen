@@ -1,0 +1,91 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-A9A1FB4E"
+    ]
+  },
+  {
+    "table": "public.medications",
+    "colonne": "user_id",
+    "nom": "medications",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-BD751748",
+      "MARQUEUR-B-B4FA25F7",
+      "MARQUEUR-B-0EE59F80",
+      "MARQUEUR-B-7C236067",
+      "MARQUEUR-B-098D27F2",
+      "MARQUEUR-B-73BE21DD",
+      "MARQUEUR-B-37E08968",
+      "MARQUEUR-B-BE6DEDEC",
+      "MARQUEUR-B-845D067C",
+      "MARQUEUR-B-1060FD39",
+      "MARQUEUR-B-DA805825",
+      "MARQUEUR-B-2A724215"
+    ]
+  },
+  {
+    "table": "public.schedules",
+    "colonne": "user_id",
+    "nom": "schedules",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-A58E43D9",
+      "MARQUEUR-B-340FF942",
+      "MARQUEUR-B-375B2035",
+      "MARQUEUR-B-88791D89"
+    ]
+  },
+  {
+    "table": "public.dose_logs",
+    "colonne": "user_id",
+    "nom": "dose logs",
+    "langue": "en",
+    "a": 10,
+    "marqueurs_b": [
+      "MARQUEUR-B-410F1CB9",
+      "MARQUEUR-B-8614ADDA",
+      "MARQUEUR-B-31A0F5EE",
+      "MARQUEUR-B-0854F18E",
+      "MARQUEUR-B-DC543A8C"
+    ]
+  },
+  {
+    "table": "public.symptoms",
+    "colonne": "user_id",
+    "nom": "symptoms",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-FE4D3816",
+      "MARQUEUR-B-47ADF799",
+      "MARQUEUR-B-5B4EA088",
+      "MARQUEUR-B-36BC7E39",
+      "MARQUEUR-B-269A4AAD",
+      "MARQUEUR-B-D6531B03"
+    ]
+  },
+  {
+    "table": "public.inventory",
+    "colonne": "user_id",
+    "nom": "inventory records",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.adherence_logs",
+    "colonne": "user_id",
+    "nom": "adherence logs",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": []
+  }
+]

@@ -1,0 +1,12 @@
+$ bun run test
+(dossier : /work/medication_tracker_2/avant)
+
+$ jest
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+
+Test Suites: 42 passed, 42 total
+Tests:       936 passed, 936 total
+Snapshots:   0 total
+Time:        14.976 s
+Ran all test suites in 2 projects.

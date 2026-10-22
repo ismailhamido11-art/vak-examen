@@ -1,0 +1,291 @@
+{
+  "id": "prep_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/Truella/prep",
+  "commit": "341c8dc5727f0cd7f3bd4d0db7a099384fdc60af",
+  "prepare": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+  "head": "f9dc68f5086c3c132701b2e5b1decaac12d30407",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "f9dc68f5086c3c132701b2e5b1decaac12d30407",
+      "date": "2026-10-22T17:09:51+00:00",
+      "sujet": "Intègre l'assistant vak : bouton flottant, page /assistant, réglages, calibrage"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.29.2.tgz",
+      "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      }
+    ],
+    "vakInstalle": "0.29.2"
+  },
+  "controle": {
+    "debut": "2026-10-22T17:11:36.493Z",
+    "fin": "2026-10-22T17:13:17.627Z",
+    "duree_s": 101,
+    "node": "v22.22.0"
+  },
+  "vak": {
+    "test": {
+      "commande": "vak test",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "vak test : tout est vert [code 0]",
+      "signaux": []
+    },
+    "localdb": {
+      "commande": "vak localdb",
+      "code": 0,
+      "duree_s": 2,
+      "resume": "base locale vak_local_5b6949 prête : 12 migration(s) appliquée(s) [code 0]",
+      "signaux": []
+    },
+    "doctor": {
+      "commande": "vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_5b6949'",
+      "code": 0,
+      "duree_s": 18,
+      "resume": "doctor : aucun échec, mais des avertissements (!) à lire [code 0]",
+      "signaux": [
+        "! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements (tables.questions.through : la colonne « quiz_id » accepte null : les lignes sans parent sont ignorées par l'assistant)",
+        "! VAK108 colonnes qui décident des droits (avertissement) (quizzes.status : modifiable par l'utilisateur et lue par la politique « Anyone can read published questions » : elle décide qui voit la ligne)"
+      ]
+    },
+    "localdb-drop": {
+      "commande": "vak localdb --drop",
+      "code": 0,
+      "duree_s": 0,
+      "resume": "base locale vak_local_5b6949 supprimée [code 0]",
+      "signaux": []
+    },
+    "prove": {
+      "commande": "vak prove",
+      "code": 0,
+      "duree_s": 4,
+      "resume": "preuve à deux comptes : éprouvé (4 éprouvée(s), 0 en échec, 0 non prouvée(s) ; 218 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]",
+      "signaux": []
+    }
+  },
+  "preuve": {
+    "commite": {
+      "verdict": "éprouvé",
+      "vak": "0.29.2",
+      "at": "2026-10-22T17:03:38.368Z",
+      "tables": {
+        "questions": "éprouvé",
+        "quiz_attempts": "éprouvé",
+        "quiz_ratings": "éprouvé",
+        "quizzes": "éprouvé"
+      },
+      "fonctions": {}
+    },
+    "controle": {
+      "verdict": "éprouvé",
+      "vak": "0.29.2",
+      "at": "2026-10-22T17:03:38.368Z",
+      "tables": {
+        "questions": "éprouvé",
+        "quiz_attempts": "éprouvé",
+        "quiz_ratings": "éprouvé",
+        "quizzes": "éprouvé"
+      },
+      "fonctions": {}
+    }
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 28,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 20,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 8,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 12,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 18,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 17,
+        "erreurs": 0,
+        "fin": [
+          "at ignore-listed frames {",
+          "type: 'Error'",
+          "}"
+        ]
+      },
+      "apres": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 19,
+        "erreurs": 0,
+        "fin": [
+          "at ignore-listed frames {",
+          "type: 'Error'",
+          "}"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          590,
+          614
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A .agents/skills/vak/SKILL.md",
+      "A .agents/skills/vak/references/calibration.md",
+      "A .agents/skills/vak/references/features.md",
+      "A .agents/skills/vak/references/guardrails.md",
+      "A .agents/skills/vak/references/local-first.md",
+      "A .agents/skills/vak/references/ui.md",
+      "A .claude/skills/vak/SKILL.md",
+      "A .claude/skills/vak/references/calibration.md",
+      "A .claude/skills/vak/references/features.md",
+      "A .claude/skills/vak/references/guardrails.md",
+      "A .claude/skills/vak/references/local-first.md",
+      "A .claude/skills/vak/references/ui.md",
+      "A AGENTS.md",
+      "A CLAUDE.md",
+      "A app/assistant/assistant.tsx",
+      "A app/assistant/page.tsx",
+      "M package-lock.json",
+      "M package.json",
+      "A src/lib/vak.ts",
+      "M supabase/.gitignore",
+      "M supabase/config.toml",
+      "A supabase/functions/vak/agent.ts",
+      "A supabase/functions/vak/deno.json",
+      "A supabase/functions/vak/index.ts",
+      "A supabase/functions/vak/schema.gen.ts",
+      "A supabase/functions/vak/tsconfig.json",
+      "A supabase/functions/vak/vak-proof.json",
+      "A supabase/functions/vak/vak-server.mjs",
+      "A supabase/functions/vak/vak.lock.json",
+      "A supabase/migrations/20261022170010_vak_0001_core.sql",
+      "A supabase/migrations/20261022170011_vak_0002_feedback.sql",
+      "A supabase/migrations/20261022170012_vak_0003_history.sql",
+      "A supabase/migrations/20261022170013_vak_0004_quota_erase.sql",
+      "M tsconfig.json",
+      "A vendor/vak/vak-agent-0.29.2.tgz"
+    ],
+    "aRelire": [
+      "A app/assistant/layout.tsx",
+      "M app/layout.tsx (branchement : cite vak)",
+      "A app/settings/agent-settings.tsx (branchement : cite vak)",
+      "A app/settings/layout.tsx",
+      "A app/settings/page.tsx",
+      "M src/features/dashboard/constants/navItems.ts",
+      "A src/lib/vak-theme.ts",
+      "A src/shared/components/VakButton.tsx (branchement : cite vak)",
+      "A supabase/test-migrations/20260722100406_create_quizzes_and_questions.sql",
+      "A supabase/test-migrations/20260726041331_add_time_limit_to_quizzes.sql",
+      "A supabase/test-migrations/20260726050000_add_quiz_bank_tables.sql",
+      "A supabase/test-migrations/20260728000000_add_code_to_quizzes.sql",
+      "A supabase/test-migrations/20260728000001_create_quizzes_code_index.sql",
+      "A supabase/test-migrations/20260728100000_create_quiz_attempts.sql",
+      "A supabase/test-migrations/20260728120000_add_attempt_counts_rpc.sql",
+      "A supabase/test-migrations/20260729000000_add_quiz_lifecycle.sql",
+      "A supabase/test-migrations/20261022170010_vak_0001_core.sql (branchement : cite vak)",
+      "A supabase/test-migrations/20261022170011_vak_0002_feedback.sql (branchement : cite vak)",
+      "A supabase/test-migrations/20261022170012_vak_0003_history.sql (branchement : cite vak)",
+      "A supabase/test-migrations/20261022170013_vak_0004_quota_erase.sql (branchement : cite vak)",
+      "A supabase/test-migrations/README.md (branchement : cite vak)"
+    ]
+  }
+}

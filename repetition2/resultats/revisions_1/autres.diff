@@ -1,0 +1,84 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index c87bc34..c4c024b 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,7 +1,9 @@
+-import { Stack } from 'expo-router';
++import { AgentButton } from '@vak/agent/native';
++import { type Href, router, Stack } from 'expo-router';
+ import { StatusBar } from 'expo-status-bar';
+ 
+ import { colors } from '@/components/ui';
++import { vak } from '@/lib/vak';
+ import { SessionProvider, useSession } from '@/lib/session';
+ 
+ function Routes() {
+@@ -9,6 +11,7 @@ function Routes() {
+   if (loading) return null;
+   const signedIn = session !== null;
+   return (
++    <>
+     <Stack screenOptions={{ contentStyle: { backgroundColor: colors.bg } }}>
+       <Stack.Protected guard={!signedIn}>
+         <Stack.Screen name="login" options={{ title: 'Connexion' }} />
+@@ -18,8 +21,20 @@ function Routes() {
+         <Stack.Screen name="deck/[id]" options={{ title: 'Paquet' }} />
+         <Stack.Screen name="new-card" options={{ title: 'Nouvelle carte' }} />
+         <Stack.Screen name="due" options={{ title: "À revoir aujourd'hui" }} />
++        <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++        <Stack.Screen name="reglages" options={{ title: 'Réglages' }} />
+       </Stack.Protected>
+     </Stack>
++    {signedIn && (
++      <AgentButton
++        {...vak}
++        label="Assistant"
++        navigate={(href) => router.push(href as Href)}
++        onUnauthorized={() => router.replace('/login')}
++        theme={{ accent: colors.primary, mode: 'light' }}
++      />
++    )}
++    </>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 748d257..38b4df7 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -50,6 +50,10 @@ export default function Decks() {
+         <Text style={styles.muted}>{dueCount} carte(s)</Text>
+       </Pressable>
+ 
++      <Pressable onPress={() => router.push('/reglages')} accessibilityRole="link">
++        <Text style={styles.muted}>Réglages de l’assistant</Text>
++      </Pressable>
++
+       <View style={[styles.card, { gap: 8 }]}>
+         <Field label="Nouveau paquet" value={name} onChangeText={setName} placeholder="Nom du paquet" />
+         <View style={styles.row}>
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..444de91
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function ReglagesScreen() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index ec96c84..1702748 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -6,5 +6,6 @@
+       "@/*": ["./src/*"]
+     }
+   },
+-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
++  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

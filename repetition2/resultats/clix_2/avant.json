@@ -1,0 +1,71 @@
+{
+  "dossier": "/work/clix_2/avant",
+  "commit": "03a71b82743471a694b04259bbb4143b3a299b28",
+  "debut": "2026-10-22T18:12:03.322Z",
+  "fin": "2026-10-22T18:12:20.902Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": null,
+    "lanceur": "pnpm",
+    "verrous": [
+      "pnpm-lock.yaml"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/clix_2/avant-journaux",
+  "installation": {
+    "commande": "pnpm install --frozen-lockfile",
+    "dossier": "/work/clix_2/avant",
+    "code": 0,
+    "duree_s": 2,
+    "erreurs": [],
+    "fin": [
+      "│                                                                              │",
+      "╰──────────────────────────────────────────────────────────────────────────────╯",
+      "Done in 1.8s using pnpm v10.28.0"
+    ],
+    "journal": "/work/clix_2/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "absent": true,
+      "raison": "ni script typecheck ni tsconfig.json"
+    },
+    "lint": {
+      "commande": "pnpm run lint",
+      "dossier": "/work/clix_2/avant",
+      "code": 0,
+      "duree_s": 6,
+      "erreurs": [],
+      "fin": [
+        "> clix@0.1.0 lint /work/clix_2/avant",
+        "> eslint"
+      ],
+      "journal": "/work/clix_2/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "pnpm run build",
+      "dossier": "/work/clix_2/avant",
+      "code": 1,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "Export encountered an error on /admin/leads/page: /admin/leads, exiting the build.",
+        "⨯ Next.js build worker exited with code: 1 and signal: null",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/clix_2/avant-journaux/build.txt"
+    }
+  }
+}

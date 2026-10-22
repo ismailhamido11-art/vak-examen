@@ -1,0 +1,78 @@
+$ vak prove
+(dossier : /work/revisions_1/apres)
+
+[vak:host] appel add_card (P0002) : paquet introuvable
+[vak:host] appel edit_card (P0002) : carte introuvable
+[vak:host] appel review_card (P0002) : carte introuvable
+[vak:host] appel add_card (P0002) : paquet introuvable
+[vak:host] appel edit_card (P0002) : carte introuvable
+[vak:host] appel review_card (P0002) : carte introuvable
+[vak:host] appel add_card (P0002) : paquet introuvable
+[vak:host] appel edit_card (P0002) : carte introuvable
+[vak:host] appel review_card (P0002) : carte introuvable
+[vak:host] appel add_card (P0002) : paquet introuvable
+[vak:host] appel edit_card (P0002) : carte introuvable
+[vak:host] appel review_card (P0002) : carte introuvable
+✓ base base éprouvée = photographie (schema.gen.ts), fonctions de politique comprises
+✓ cards éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « front 0 a »
+✓ decks éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 50 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »
+✓ reviews éprouvé
+    - RLS de l'app : la ligne de B est invisible pour A
+    - lecture par l'assistant : jamais la ligne de B
+    - lecture par l'assistant : la ligne de A
+    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A
+    - lecture de la ligne de B par son identifiant : refusée
+    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 43 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A
+✓ add_card() éprouvé
+    - appel par l'assistant avec une ligne de B : refusé
+    - modification par l'assistant de A (sa ligne) : aucune ligne de B changée
+    - effet de A inchangé quand les 24 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites
+    - appel direct avec une ligne de B : aucune ligne de B changée
+    - argument « p_front » (non vérifié par le kit) : 10 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « p_back » (non vérifié par le kit) : 10 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « p_today » (non vérifié par le kit) : 2 valeur(s) visant B essayée(s), rien de B atteint
+    - sortie différente à chaque appel (clé générée, heure) : seule l'absence de données de B y est vérifiée
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+✓ cards_due() éprouvé
+    - appel par l'assistant de A : aucune donnée de B
+    - résultat de A inchangé quand les 24 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites
+    - argument « as_of » (non vérifié par le kit) : 2 valeur(s) visant B essayée(s), rien de B atteint
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+✓ create_deck() éprouvé
+    - modification par l'assistant de A (ses propres valeurs) : aucune ligne de B changée
+    - effet de A inchangé quand les 24 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites
+    - argument « p_name » (non vérifié par le kit) : 10 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « p_subject » (non vérifié par le kit) : 10 valeur(s) visant B essayée(s), rien de B atteint
+    - sortie différente à chaque appel (clé générée, heure) : seule l'absence de données de B y est vérifiée
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+✓ edit_card() éprouvé
+    - appel par l'assistant avec une ligne de B : refusé
+    - modification par l'assistant de A (sa ligne) : aucune ligne de B changée
+    - effet de A inchangé quand les 24 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites
+    - appel direct avec une ligne de B : aucune ligne de B changée
+    - argument « changes.front » (non vérifié par le kit) : 4 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « changes.back » (non vérifié par le kit) : 4 valeur(s) visant B essayée(s), rien de B atteint
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+✓ review_card() éprouvé
+    - appel par l'assistant avec une ligne de B : refusé
+    - modification par l'assistant de A (sa ligne) : aucune ligne de B changée
+    - effet de A inchangé quand les 24 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites
+    - appel direct avec une ligne de B : aucune ligne de B changée
+    - argument « result.answer » (non vérifié par le kit) : 4 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « result.date » (non vérifié par le kit) : 4 valeur(s) visant B essayée(s), rien de B atteint
+    - argument « result.note » (non vérifié par le kit) : 4 valeur(s) visant B essayée(s), rien de B atteint
+    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue
+base locale vak_prove_9d7ae63f construite (6 migration(s)) puis supprimée
+preuve à deux comptes : éprouvé (8 éprouvée(s), 0 en échec, 0 non prouvée(s), fonctions comprises (5) ; 133 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]

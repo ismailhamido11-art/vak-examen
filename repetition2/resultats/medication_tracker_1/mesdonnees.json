@@ -1,0 +1,893 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "4/7 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/medication_tracker_1/apres",
+  "lecture": {
+    "fichier": "/work/medication_tracker_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.medications",
+      "public.schedules",
+      "public.dose_logs",
+      "public.symptoms"
+    ],
+    "ignorees": [
+      "public.adherence_logs",
+      "public.inventory",
+      "public.profiles"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.medications",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 5,
+      "attendu_json": 5,
+      "accord": true
+    },
+    {
+      "table": "public.schedules",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.dose_logs",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 10,
+      "attendu_json": 10,
+      "accord": true
+    },
+    {
+      "table": "public.symptoms",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.medications",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my medications are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-db240c3d-bf94-449f-aa01-dca3efd6eec6",
+        "question": "How many of my medications are there?",
+        "texte": "You have 5 medications recorded: Metformin 500 mg, Lisinopril 10 mg, Atorvastatin 20 mg, Ibuprofen 200 mg (as needed) and Vitamin D3 1000 IU.\n\nThat's your full list — I've added a button to open it if you want to see the details.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "medications",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "medications",
+              "label": "Medications",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7c655a39-e0fb-4f30-a317-7a2ce981c26e",
+                  "name": "Metformin",
+                  "dosage": "500 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 20,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Metformin hydrochloride"
+                },
+                {
+                  "id": "37d0bd60-0558-4fe5-bc66-7fae923ff0a4",
+                  "name": "Lisinopril",
+                  "dosage": "10 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 25,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Lisinopril"
+                },
+                {
+                  "id": "e0261e6a-de3d-46c5-8b9e-2d8e199081bb",
+                  "name": "Atorvastatin",
+                  "dosage": "20 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 30,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Atorvastatin calcium"
+                },
+                {
+                  "id": "ae0fd37f-325a-4940-9e35-d761436d9998",
+                  "name": "Ibuprofen",
+                  "dosage": "200 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 35,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": true,
+                  "generic_name": "Ibuprofen"
+                },
+                {
+                  "id": "f5d72d6d-4031-4f85-beef-1800ae95af51",
+                  "name": "Vitamin D3",
+                  "dosage": "1000 IU",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "capsule",
+                  "current_supply": 40,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Cholecalciferol"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "medications"
+            },
+            "sortie": {
+              "href": "/medications",
+              "label": "My medications"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          500,
+          10,
+          20,
+          200,
+          1000
+        ],
+        "ok": true,
+        "retenu": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.medications",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my medications.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ea2d7d60-e7d8-4ff8-b89f-6ca1681269a9",
+        "question": "List my medications.",
+        "texte": "Here are your 5 medications:\n\n| Name | Dosage | Form | Remaining supply | Notes |\n|---|---|---|---|---|\n| Metformin | 500 mg | tablet | 20 | |\n| Lisinopril | 10 mg | tablet | 25 | |\n| Atorvastatin | 20 mg | tablet | 30 | |\n| Ibuprofen | 200 mg | tablet | 35 | as-needed (PRN) |\n| Vitamin D3 | 1000 IU | capsule | 40 | |\n\nAll 5 are marked as active, and none are below your low-supply threshold (10). Would you like me to open the medication list or a specific medication's details?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "medications",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "medications",
+              "label": "Medications",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "7c655a39-e0fb-4f30-a317-7a2ce981c26e",
+                  "name": "Metformin",
+                  "dosage": "500 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 20,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Metformin hydrochloride"
+                },
+                {
+                  "id": "37d0bd60-0558-4fe5-bc66-7fae923ff0a4",
+                  "name": "Lisinopril",
+                  "dosage": "10 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 25,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Lisinopril"
+                },
+                {
+                  "id": "e0261e6a-de3d-46c5-8b9e-2d8e199081bb",
+                  "name": "Atorvastatin",
+                  "dosage": "20 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 30,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Atorvastatin calcium"
+                },
+                {
+                  "id": "ae0fd37f-325a-4940-9e35-d761436d9998",
+                  "name": "Ibuprofen",
+                  "dosage": "200 mg",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "tablet",
+                  "current_supply": 35,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": true,
+                  "generic_name": "Ibuprofen"
+                },
+                {
+                  "id": "f5d72d6d-4031-4f85-beef-1800ae95af51",
+                  "name": "Vitamin D3",
+                  "dosage": "1000 IU",
+                  "created_at": "2026-10-22T17:33",
+                  "form": "capsule",
+                  "current_supply": 40,
+                  "is_active": true,
+                  "low_supply_threshold": 10,
+                  "is_prn": false,
+                  "generic_name": "Cholecalciferol"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          500,
+          20,
+          10,
+          25,
+          20,
+          30,
+          200,
+          35,
+          1000,
+          40,
+          5,
+          10
+        ],
+        "ok": true,
+        "retenu": 5,
+        "source": "nombre annoncé",
+        "elements": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.schedules",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my schedules are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0c3123ba-2421-46f7-8930-7229d133c1b4",
+        "question": "How many of my schedules are there?",
+        "texte": "You have **6** reminder schedules in total — all 6 of them are marked active.\n\nWant to see the full list?\n\nI've opened the button above to your medications list, where you can see the schedules for each one.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "schedules",
+              "where": [
+                {
+                  "column": "is_active",
+                  "op": "eq",
+                  "value": true
+                }
+              ],
+              "limit": 1
+            },
+            "sortie": {
+              "table": "schedules",
+              "label": "Reminders",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "8a7077d2-f2e2-4b62-883e-a65cf840aa65",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Noon\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Extra dose at lunch",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "schedules",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "schedules",
+              "label": "Reminders",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "8a7077d2-f2e2-4b62-883e-a65cf840aa65",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Noon\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Extra dose at lunch",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "medications"
+            },
+            "sortie": {
+              "href": "/medications",
+              "label": "My medications"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          6
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.schedules",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my schedules.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-65241c58-171d-43c2-8c36-6d944bd49038",
+        "question": "List my schedules.",
+        "texte": "Here are your 6 reminder schedules, all daily and active:\n\n| Medication | Time(s) | Units per dose | Instructions |\n|---|---|---|---|\n| Metformin | Morning, Evening | 1 | With meals |\n| Metformin | Noon | 1 | Extra dose at lunch |\n| Lisinopril | Morning | 1 | Take in the morning |\n| Lisinopril | Evening | 1 | Second dose if needed |\n| Atorvastatin | Evening | 1 | Before bed |\n| Vitamin D3 | Morning | 1 | With breakfast |\n\nAll run from January 1, 2026 with no end date, and push reminders are on for each. Want me to open any medication's detail?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "schedules",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "schedules",
+              "label": "Reminders",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8a7077d2-f2e2-4b62-883e-a65cf840aa65",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Noon\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Extra dose at lunch",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                },
+                {
+                  "id": "ec8bf812-6c4e-40e1-8aae-fe8c9a9f0af6",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Morning\",\"Evening\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "With meals",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                },
+                {
+                  "id": "78e22ff7-699e-4bbc-a247-a2bda819da21",
+                  "medication_id": "Lisinopril (id 37d0bd60-0558-4fe5-bc66-7fae923ff0a4)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Evening\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Second dose if needed",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                },
+                {
+                  "id": "401263da-385d-418f-a62c-11d6cc742734",
+                  "medication_id": "Lisinopril (id 37d0bd60-0558-4fe5-bc66-7fae923ff0a4)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Morning\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Take in the morning",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                },
+                {
+                  "id": "b34c7f44-c936-48f4-abbf-d69dad406286",
+                  "medication_id": "Atorvastatin (id e0261e6a-de3d-46c5-8b9e-2d8e199081bb)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Evening\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "Before bed",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                },
+                {
+                  "id": "55025e27-a768-43d1-988d-1af0e0752e95",
+                  "medication_id": "Vitamin D3 (id f5d72d6d-4031-4f85-beef-1800ae95af51)",
+                  "frequency": "daily",
+                  "selected_days": "[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]",
+                  "times_of_day": "[\"Morning\"]",
+                  "dosage_per_dose": 1,
+                  "push_notifications": true,
+                  "instructions": "With breakfast",
+                  "is_active": true,
+                  "start_date": "2026-01-01",
+                  "end_date": null,
+                  "interval_days": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.dose_logs",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my dose logs are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-46bd4518-4448-4ed0-ad51-d81bfa10e7a4",
+        "question": "How many of my dose logs are there?",
+        "texte": "You have 10 dose logs in MediTrack.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "dose_logs",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "dose_logs",
+              "label": "Doses taken",
+              "total": 10,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "89ff072a-2fea-4cc0-ba3f-588587922f95",
+                  "schedule_id": "daily (id 55025e27-a768-43d1-988d-1af0e0752e95)",
+                  "medication_id": "Vitamin D3 (id f5d72d6d-4031-4f85-beef-1800ae95af51)",
+                  "scheduled_date": "2026-02-02",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                }
+              ],
+              "note": "1 ligne montrée sur 10 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 10,
+        "nombres_lus": [
+          10
+        ],
+        "ok": true,
+        "retenu": 10
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.dose_logs",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my dose logs.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ecd391f0-9b0c-4cfc-9afa-76457101f776",
+        "question": "List my dose logs.",
+        "texte": "You have 10 dose logs, most recent first:\n\n**Feb 2, 2026**\n- Atorvastatin — Evening — **Skipped** (reason: fell asleep early)\n- Lisinopril — Morning — **Taken**\n- Vitamin D3 — Morning — **Taken**\n- Metformin — Morning — **Skipped** (reason: felt nauseous)\n\n**Feb 1, 2026**\n- Atorvastatin — Evening — **Taken**\n- Metformin — Noon — **Taken**\n- Vitamin D3 — Morning — **Taken**\n- Metformin — Evening — **Taken**\n- Metformin — Morning — **Taken**\n- Lisinopril — Morning — **Taken**\n\nThat's 8 taken and 2 skipped. Want me to open the adherence report or a specific medication?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "dose_logs",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "dose_logs",
+              "label": "Doses taken",
+              "total": 10,
+              "shown": 10,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "2a3a70c6-a86e-4c37-86b2-59188da4b968",
+                  "schedule_id": "daily (id b34c7f44-c936-48f4-abbf-d69dad406286)",
+                  "medication_id": "Atorvastatin (id e0261e6a-de3d-46c5-8b9e-2d8e199081bb)",
+                  "scheduled_date": "2026-02-02",
+                  "time_label": "Evening",
+                  "status": "skipped (Skipped)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": "Fell asleep early"
+                },
+                {
+                  "id": "daafd17a-36df-4c84-bcdc-9e24b37727be",
+                  "schedule_id": "daily (id 401263da-385d-418f-a62c-11d6cc742734)",
+                  "medication_id": "Lisinopril (id 37d0bd60-0558-4fe5-bc66-7fae923ff0a4)",
+                  "scheduled_date": "2026-02-02",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "89ff072a-2fea-4cc0-ba3f-588587922f95",
+                  "schedule_id": "daily (id 55025e27-a768-43d1-988d-1af0e0752e95)",
+                  "medication_id": "Vitamin D3 (id f5d72d6d-4031-4f85-beef-1800ae95af51)",
+                  "scheduled_date": "2026-02-02",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "3db80c99-a065-40df-830b-e67d634ed71b",
+                  "schedule_id": "daily (id ec8bf812-6c4e-40e1-8aae-fe8c9a9f0af6)",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "scheduled_date": "2026-02-02",
+                  "time_label": "Morning",
+                  "status": "skipped (Skipped)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": "Felt nauseous"
+                },
+                {
+                  "id": "7c733529-6e1e-43bf-8220-4644e70aa07f",
+                  "schedule_id": "daily (id b34c7f44-c936-48f4-abbf-d69dad406286)",
+                  "medication_id": "Atorvastatin (id e0261e6a-de3d-46c5-8b9e-2d8e199081bb)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Evening",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "5fa5bd70-7d7b-4554-ae67-c31c8fb6e6d9",
+                  "schedule_id": "daily (id 8a7077d2-f2e2-4b62-883e-a65cf840aa65)",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Noon",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "2948a41a-7d32-4595-9e3a-7f9b83b4f7d6",
+                  "schedule_id": "daily (id 55025e27-a768-43d1-988d-1af0e0752e95)",
+                  "medication_id": "Vitamin D3 (id f5d72d6d-4031-4f85-beef-1800ae95af51)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "6e3b78be-2e6f-43af-9c4e-9fed3cf9e4c3",
+                  "schedule_id": "daily (id ec8bf812-6c4e-40e1-8aae-fe8c9a9f0af6)",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Evening",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "ad317bdc-5e1e-431e-9b5b-150c5fc0d3ce",
+                  "schedule_id": "daily (id ec8bf812-6c4e-40e1-8aae-fe8c9a9f0af6)",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                },
+                {
+                  "id": "49fc462f-1376-4a9c-95f5-e5bd0ec76ef9",
+                  "schedule_id": "daily (id 401263da-385d-418f-a62c-11d6cc742734)",
+                  "medication_id": "Lisinopril (id 37d0bd60-0558-4fe5-bc66-7fae923ff0a4)",
+                  "scheduled_date": "2026-02-01",
+                  "time_label": "Morning",
+                  "status": "taken (Taken)",
+                  "logged_at": "2026-10-22T17:33",
+                  "reason": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 10,
+        "nombres_lus": [
+          10,
+          8,
+          2
+        ],
+        "ok": true,
+        "retenu": 10,
+        "source": "nombre annoncé",
+        "elements": 10
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.symptoms",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my symptoms are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-11a81ef6-9187-4e5c-8f7e-a88a773e5071",
+        "question": "How many of my symptoms are there?",
+        "texte": "You have 4 symptoms logged in MediTrack. The most recent one shown is a severe headache (no clear cause).\n\nWould you like to see them all on the medication/symptom screens? I can open the symptom log screen for you.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "symptoms",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "symptoms",
+              "label": "Symptoms",
+              "total": 4,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "df220895-d73c-4a12-8a6e-54f2c14a84d2",
+                  "medication_id": null,
+                  "name": "Headache",
+                  "severity": "severe (Severe)",
+                  "notes": "No clear cause",
+                  "logged_at": "2026-02-05T00:00",
+                  "logged_date": "2026-02-05"
+                }
+              ],
+              "note": "1 ligne montrée sur 4 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.symptoms",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my symptoms.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ecd331fb-a08a-4182-b6a7-29b81d23164a",
+        "question": "List my symptoms.",
+        "texte": "You have 4 symptoms logged:\n\n| Date | Symptom | Severity | Related to | Notes |\n|---|---|---|---|---|\n| Feb 5, 2026 | Headache | Severe | — | No clear cause |\n| Feb 4, 2026 | Muscle ache | Mild | Atorvastatin | Legs |\n| Feb 3, 2026 | Dry cough | Moderate | Lisinopril | Worse at night |\n| Feb 2, 2026 | Nausea | Mild | Metformin | After lunch |\n\nYou can add another one from the symptom log screen if you'd like.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "symptoms"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "symptoms",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "symptoms",
+              "label": "Symptoms",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "df220895-d73c-4a12-8a6e-54f2c14a84d2",
+                  "medication_id": null,
+                  "name": "Headache",
+                  "severity": "severe (Severe)",
+                  "notes": "No clear cause",
+                  "logged_at": "2026-02-05T00:00",
+                  "logged_date": "2026-02-05"
+                },
+                {
+                  "id": "15e6d083-04a6-4568-90e7-673b37f04789",
+                  "medication_id": "Atorvastatin (id e0261e6a-de3d-46c5-8b9e-2d8e199081bb)",
+                  "name": "Muscle ache",
+                  "severity": "mild (Mild)",
+                  "notes": "Legs",
+                  "logged_at": "2026-02-04T00:00",
+                  "logged_date": "2026-02-04"
+                },
+                {
+                  "id": "9bc0cd5f-6512-4520-8700-c069c4274f14",
+                  "medication_id": "Lisinopril (id 37d0bd60-0558-4fe5-bc66-7fae923ff0a4)",
+                  "name": "Dry cough",
+                  "severity": "moderate (Moderate)",
+                  "notes": "Worse at night",
+                  "logged_at": "2026-02-03T00:00",
+                  "logged_date": "2026-02-03"
+                },
+                {
+                  "id": "57d7dc87-f2fd-4170-aeca-cad30cc50779",
+                  "medication_id": "Metformin (id 7c655a39-e0fb-4f30-a317-7a2ce981c26e)",
+                  "name": "Nausea",
+                  "severity": "mild (Mild)",
+                  "notes": "After lunch",
+                  "logged_at": "2026-02-02T00:00",
+                  "logged_date": "2026-02-02"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 28
+  },
+  "couverture": {
+    "lues": 4,
+    "total": 7,
+    "tables": [
+      {
+        "table": "public.profiles",
+        "lue": false
+      },
+      {
+        "table": "public.medications",
+        "lue": true
+      },
+      {
+        "table": "public.schedules",
+        "lue": true
+      },
+      {
+        "table": "public.dose_logs",
+        "lue": true
+      },
+      {
+        "table": "public.symptoms",
+        "lue": true
+      },
+      {
+        "table": "public.inventory",
+        "lue": false
+      },
+      {
+        "table": "public.adherence_logs",
+        "lue": false
+      }
+    ],
+    "texte": "4/7"
+  }
+}

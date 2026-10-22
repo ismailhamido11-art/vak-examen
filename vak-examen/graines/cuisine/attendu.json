@@ -1,0 +1,34 @@
+[
+  {
+    "table": "public.recipes",
+    "colonne": "user_id",
+    "nom": "recettes",
+    "langue": "fr",
+    "a": 7,
+    "marqueurs_b": [
+      "MARQUEUR-B-4F1A9C20",
+      "MARQUEUR-B-0B7D3E51",
+      "MARQUEUR-B-C83E27D4",
+      "MARQUEUR-B-92A6F1B8",
+      "MARQUEUR-B-5D90B6AE",
+      "MARQUEUR-B-E1347C0F",
+      "MARQUEUR-B-A2C45E19",
+      "MARQUEUR-B-7F08D5C3"
+    ]
+  },
+  {
+    "table": "public.cookings",
+    "colonne": "user_id",
+    "nom": "cuissons",
+    "langue": "fr",
+    "a": 12,
+    "marqueurs_b": [
+      "MARQUEUR-B-18D2E6A7",
+      "MARQUEUR-B-B49053FC",
+      "MARQUEUR-B-6C7A10E2",
+      "MARQUEUR-B-D5F38B94",
+      "MARQUEUR-B-3E81A7C6",
+      "MARQUEUR-B-F0924D1B"
+    ]
+  }
+]

@@ -1,0 +1,109 @@
+[
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-A73A0C9C"
+    ]
+  },
+  {
+    "table": "public.groups",
+    "colonne": "created_by",
+    "nom": "groups",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-FD728C68"
+    ]
+  },
+  {
+    "table": "public.group_members",
+    "colonne": "user_id",
+    "nom": "group memberships",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.habits",
+    "colonne": "owner_id",
+    "nom": "habits",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-49DFAB62",
+      "MARQUEUR-B-8D323832",
+      "MARQUEUR-B-F698D0A0",
+      "MARQUEUR-B-7B0B7ABC"
+    ]
+  },
+  {
+    "table": "public.habit_order",
+    "colonne": "user_id",
+    "nom": "habit order entries",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.check_ins",
+    "colonne": "user_id",
+    "nom": "check-ins",
+    "langue": "en",
+    "a": 15,
+    "marqueurs_b": [
+      "MARQUEUR-B-E6E67E80",
+      "MARQUEUR-B-6A307099",
+      "MARQUEUR-B-7498979E",
+      "MARQUEUR-B-F23446F3",
+      "MARQUEUR-B-D5DFFF47"
+    ]
+  },
+  {
+    "table": "public.reactions",
+    "colonne": "user_id",
+    "nom": "reactions",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.nudges",
+    "colonne": "from_user",
+    "nom": "sent nudges",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.tasks",
+    "colonne": "user_id",
+    "nom": "tasks",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-8F2C8443",
+      "MARQUEUR-B-185BAC35",
+      "MARQUEUR-B-2891C76F"
+    ]
+  },
+  {
+    "table": "public.task_completions",
+    "colonne": "user_id",
+    "nom": "task completions",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.focus_sessions",
+    "colonne": "user_id",
+    "nom": "focus sessions",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": []
+  }
+]

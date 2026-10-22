@@ -1,0 +1,42 @@
+$ expo export --platform web
+(dossier : /work/randonnee_1/apres)
+
+Using src/app as the root directory for Expo Router.
+React Compiler enabled
+Starting Metro Bundler
+
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/web/static-rendering/
+| (node:104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 17631ms node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/node/render.js (1019 modules)
+Web Bundled 22187ms node_modules/expo-router/entry.js (955 modules)
+
+› web bundles (11):
+_expo/static/js/web/__common-75dd7a90707a2288a1d179d8834d6e45.js (1.5MB)
+_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js (3.8KB)
+_expo/static/js/web/_layout-e4fce34339e8c1c42e6224a292527ddc.js (4.4KB)
+_expo/static/js/web/[id]-82023c26c6a4e6720cf5261081aefc37.js (2.8KB)
+_expo/static/js/web/assistant-19c9cebe7ac6e695cda54a5889f87d69.js (631B)
+_expo/static/js/web/entry-24c281f592fd5de0779c1ec363508ff3.js (1.1MB)
+_expo/static/js/web/index-2c2b37a2c12a55e18176f34ff1d95008.js (2.2KB)
+_expo/static/js/web/login-ed1d2ff2236e1150cd4f1baf49ac2de9.js (2.2KB)
+_expo/static/js/web/new-5008472e8e8ad6ad722a043b29309910.js (2.7KB)
+_expo/static/js/web/new-7488712f9329c4f92ead12308f1c4f6d.js (2.9KB)
+_expo/static/js/web/reglages-41070c21c98ef9042e38481405ed4644.js (384B)
+
+› Static routes (9):
+/ (index) (23KB)
+/login (24KB)
+/reglages (22KB)
+/_sitemap (20KB)
+/assistant (25KB)
+/trail/new (25KB)
+/+not-found (20KB)
+/outing/new (26KB)
+/trail/[id] (22KB)
+
+Exported: /tmp/mesure-export-rgEBHD

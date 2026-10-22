@@ -1,0 +1,1 @@
+✗ /work/splitbill_1/apres/supabase/functions/vak absent : lance d'abord le contrôleur (clone propre de l'état commité)

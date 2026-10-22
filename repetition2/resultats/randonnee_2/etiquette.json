@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-22T17:45:34.643Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Itinéraires (Nom, Région, Distance (km), Dénivelé positif (m), Difficulté, Boucle, Ajouté le) ; Sorties (Itinéraire, Date, Durée (min), Météo, Note (1 à 5), Compagnons, Commentaire)",
+    "Peut proposer (après ta validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Nouvel itinéraire, Fiche itinéraire, Nouvelle sortie",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer »",
+    "Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:7a8afb943459cfac0f6a0d8db1a8495fd890947b34c8d982c9c5e1da54f8880c",
+    "calibrage": "sha256:6fa729bded6e42bd6b641ed83fc5feacc3b596c6403a83d148444e35ba916aca"
+  }
+}

@@ -1,0 +1,66 @@
+verdict medication_tracker_1 : échec (contrôleur : échec (point 4 : --legacy-peer-deps tapé par l'agent (2 fois) ; point 4 : migration de l'app modifiée à la main (1 fois)))
+{
+  "id": "medication_tracker_1",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec (point 4 : --legacy-peer-deps tapé par l'agent (2 fois) ; point 4 : migration de l'app modifiée à la main (1 fois))"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 4,
+        "code": "journal-legacy-peer-deps",
+        "resume": "--legacy-peer-deps tapé par l'agent (2 fois)",
+        "preuve": [
+          "journal ligne 133 (17:21:32) : npm … --legacy-peer-deps — commande : npm install --no-package-lock --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -5; git status --short | head",
+          "journal ligne 136 (?) : npm … --legacy-peer-deps — commande : cd /work/medication_tracker_1/app && npm install --no-package-lock --no-audit --no-fund --legacy-peer-deps 2>&1 | tail -5; git status --short | head"
+        ]
+      },
+      {
+        "point": 4,
+        "code": "journal-migration",
+        "resume": "migration de l'app modifiée à la main (1 fois)",
+        "preuve": [
+          "journal ligne 156 (17:23:08) : écriture sur une migration de l'app : supabase/migrations/00000000000000_initial.sql — commande : cd /work/medication_tracker_1/app/supabase/migrations && mv 00000000000000_initial.sql 20200101000000_initial.sql && cd ../.. && npx -y --package=\"/work/vak-agent.tgz\" vak init 2>&1 | tail -40; mv su…"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "4/7",
+    "listes_sans_decider": [
+      {
+        "question": "List my medications.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my schedules.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my dose logs.",
+        "attendu": 10,
+        "lu": 10,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my symptoms.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

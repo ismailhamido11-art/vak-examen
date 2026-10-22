@@ -1,0 +1,503 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/randonnee_2/apres",
+  "lecture": {
+    "fichier": "/work/randonnee_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.trails",
+      "public.outings"
+    ],
+    "ignorees": []
+  },
+  "comptages_sql": [
+    {
+      "table": "public.trails",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.outings",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.trails",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes itinéraires ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-0acebc6f-e217-4b06-91db-2c33b8f5483a",
+        "question": "Combien de mes itinéraires ?",
+        "texte": "Tu as 6 itinéraires dans ton carnet. 🥾\n\nTu veux en voir la liste, ou comparer deux d'entre eux ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "trails",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "trails",
+              "label": "Itinéraires",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "81c4eb0f-f9a8-408f-a3f3-f9c5e38a1b4a",
+                  "name": "Tour du lac Blanc",
+                  "region": "Alpes",
+                  "distance_km": 9.5,
+                  "elevation_gain_m": 520,
+                  "difficulty": "moyenne (Moyenne)",
+                  "is_loop": true,
+                  "created_at": "2026-10-22T19:45"
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          2
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.trails",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes itinéraires.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-4ecd64fb-93f8-433a-90e2-3427561c1ae2",
+        "question": "Liste mes itinéraires.",
+        "texte": "Je regarde ton carnet.\n\nVoici tes 6 itinéraires au carnet :\n\n| Itinéraire | Région | Distance | Dénivelé | Difficulté | Boucle |\n|---|---|---|---|---|---|\n| Tour du lac Blanc | Alpes | 9,5 km | 520 m | Moyenne | oui |\n| Sentier des Crêtes | Vosges | 14,2 km | 780 m | Difficile | non |\n| Gorges du Verdon | Provence | 18 km | 650 m | Difficile | non |\n| Boucle de la Dune du Pilat | Aquitaine | 6,3 km | 110 m | Facile | oui |\n| Mont Aiguille | Vercors | 12,8 km | 1150 m | Experte | non |\n| Chemin des Douaniers | Bretagne | 11 km | 300 m | Facile | non |\n\nTu veux en ouvrir un, ou en ajouter un nouveau ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "trails",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "trails",
+              "label": "Itinéraires",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "81c4eb0f-f9a8-408f-a3f3-f9c5e38a1b4a",
+                  "name": "Tour du lac Blanc",
+                  "region": "Alpes",
+                  "distance_km": 9.5,
+                  "elevation_gain_m": 520,
+                  "difficulty": "moyenne (Moyenne)",
+                  "is_loop": true,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "f4349d97-81a4-4751-b8aa-3c6978f20fb0",
+                  "name": "Sentier des Crêtes",
+                  "region": "Vosges",
+                  "distance_km": 14.2,
+                  "elevation_gain_m": 780,
+                  "difficulty": "difficile (Difficile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "850901c9-98e4-47d6-9518-dacb09f2d824",
+                  "name": "Gorges du Verdon",
+                  "region": "Provence",
+                  "distance_km": 18,
+                  "elevation_gain_m": 650,
+                  "difficulty": "difficile (Difficile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "14dd540f-c9da-4ace-ad18-9e1f09402285",
+                  "name": "Boucle de la Dune du Pilat",
+                  "region": "Aquitaine",
+                  "distance_km": 6.3,
+                  "elevation_gain_m": 110,
+                  "difficulty": "facile (Facile)",
+                  "is_loop": true,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "f9b73d30-6bbe-436f-8621-8eeb2351f416",
+                  "name": "Mont Aiguille",
+                  "region": "Vercors",
+                  "distance_km": 12.8,
+                  "elevation_gain_m": 1150,
+                  "difficulty": "experte (Experte)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "a41c4472-c235-4abe-8106-d034d5c035e1",
+                  "name": "Chemin des Douaniers",
+                  "region": "Bretagne",
+                  "distance_km": 11,
+                  "elevation_gain_m": 300,
+                  "difficulty": "facile (Facile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          9.5,
+          520,
+          14.2,
+          780,
+          18,
+          650,
+          6.3,
+          110,
+          12.8,
+          1150,
+          11,
+          300
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.outings",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes sorties ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-fbd6380f-70cc-4bfc-a975-e141e1c5243f",
+        "question": "Combien de mes sorties ?",
+        "texte": "Tu as **9 sorties** dans ton carnet. 🌿\n\nTu veux que je te les liste, ou qu'on en regarde une en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "outings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "outings",
+              "label": "Sorties",
+              "total": 9,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "c57f5076-5dfa-4ea5-bdcb-aefceffa2f25",
+                  "trail_id": "a41c4472-c235-4abe-8106-d034d5c035e1",
+                  "started_at": "2026-10-04T12:30",
+                  "duration_min": 170,
+                  "weather": "soleil (Soleil)",
+                  "rating": 5,
+                  "companions": "[\"Camille\"]",
+                  "comment": "Mer calme"
+                }
+              ],
+              "note": "1 ligne montrée sur 9 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.outings",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes sorties.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-78cd669d-8f3e-4dac-b46d-f572933cfc79",
+        "question": "Liste mes sorties.",
+        "texte": "Voici tes 9 sorties, de la plus récente à la plus ancienne :\n\n| Date | Itinéraire | Durée | Météo | Note | Compagnons |\n|---|---|---|---|---|---|\n| 4 oct. 2026 | Chemin des Douaniers (Bretagne) | 2 h 50 | Soleil | 5/5 | Camille |\n| 20 sept. 2026 | Sentier des Crêtes (Vosges) | 6 h | Pluie | 3/5 | Julien |\n| 23 août 2026 | Mont Aiguille (Vercors) | 9 h | Nuages | 4/5 | Julien |\n| 2 août 2026 | Boucle de la Dune du Pilat (Aquitaine) | 2 h | Soleil | 4/5 | Inès |\n| 12 juil. 2026 | Tour du lac Blanc (Alpes) | 3 h 15 | Nuages | 4/5 | Camille |\n| 14 juin 2026 | Gorges du Verdon (Provence) | 7 h | Soleil | 5/5 | Camille, Julien, Inès |\n| 1 juin 2026 | Sentier des Crêtes (Vosges) | 5 h 30 | Soleil | 5/5 | seul |\n| 3 mai 2026 | Tour du lac Blanc (Alpes) | 3 h 30 | Soleil | 5/5 | Camille, Julien |\n| 11 avr. 2026 | Chemin des Douaniers (Bretagne) | 3 h | Pluie | 3/5 | seul |\n\nQuelques notes au passage : « Mer calme » au Douaniers, « Sentier glissant » aux Crêtes sous la pluie, « Coucher de soleil sur la dune » au Pilat.\n\nTu veux que je te fasse un bilan (totaux de durée, kilomètres, moyennes) ou que je te détaille une sortie en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "trails",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "trails",
+              "label": "Itinéraires",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "81c4eb0f-f9a8-408f-a3f3-f9c5e38a1b4a",
+                  "name": "Tour du lac Blanc",
+                  "region": "Alpes",
+                  "distance_km": 9.5,
+                  "elevation_gain_m": 520,
+                  "difficulty": "moyenne (Moyenne)",
+                  "is_loop": true,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "f4349d97-81a4-4751-b8aa-3c6978f20fb0",
+                  "name": "Sentier des Crêtes",
+                  "region": "Vosges",
+                  "distance_km": 14.2,
+                  "elevation_gain_m": 780,
+                  "difficulty": "difficile (Difficile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "850901c9-98e4-47d6-9518-dacb09f2d824",
+                  "name": "Gorges du Verdon",
+                  "region": "Provence",
+                  "distance_km": 18,
+                  "elevation_gain_m": 650,
+                  "difficulty": "difficile (Difficile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "14dd540f-c9da-4ace-ad18-9e1f09402285",
+                  "name": "Boucle de la Dune du Pilat",
+                  "region": "Aquitaine",
+                  "distance_km": 6.3,
+                  "elevation_gain_m": 110,
+                  "difficulty": "facile (Facile)",
+                  "is_loop": true,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "f9b73d30-6bbe-436f-8621-8eeb2351f416",
+                  "name": "Mont Aiguille",
+                  "region": "Vercors",
+                  "distance_km": 12.8,
+                  "elevation_gain_m": 1150,
+                  "difficulty": "experte (Experte)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                },
+                {
+                  "id": "a41c4472-c235-4abe-8106-d034d5c035e1",
+                  "name": "Chemin des Douaniers",
+                  "region": "Bretagne",
+                  "distance_km": 11,
+                  "elevation_gain_m": 300,
+                  "difficulty": "facile (Facile)",
+                  "is_loop": false,
+                  "created_at": "2026-10-22T19:45"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "outings",
+              "order": "newest",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "outings",
+              "label": "Sorties",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "c57f5076-5dfa-4ea5-bdcb-aefceffa2f25",
+                  "trail_id": "a41c4472-c235-4abe-8106-d034d5c035e1",
+                  "started_at": "2026-10-04T12:30",
+                  "duration_min": 170,
+                  "weather": "soleil (Soleil)",
+                  "rating": 5,
+                  "companions": "[\"Camille\"]",
+                  "comment": "Mer calme"
+                },
+                {
+                  "id": "9ce771b8-6888-44ce-a0ba-c56aec79868a",
+                  "trail_id": "f4349d97-81a4-4751-b8aa-3c6978f20fb0",
+                  "started_at": "2026-09-20T10:00",
+                  "duration_min": 360,
+                  "weather": "pluie (Pluie)",
+                  "rating": 3,
+                  "companions": "[\"Julien\"]",
+                  "comment": "Sentier glissant"
+                },
+                {
+                  "id": "a18c635a-6d64-43fa-8e0e-51b42bc5dd43",
+                  "trail_id": "f9b73d30-6bbe-436f-8621-8eeb2351f416",
+                  "started_at": "2026-08-23T08:00",
+                  "duration_min": 540,
+                  "weather": "nuages (Nuages)",
+                  "rating": 4,
+                  "companions": "[\"Julien\"]",
+                  "comment": "Passage exposé"
+                },
+                {
+                  "id": "6898ba06-1bbc-4969-ae18-d7bd6a8b139b",
+                  "trail_id": "14dd540f-c9da-4ace-ad18-9e1f09402285",
+                  "started_at": "2026-08-02T19:00",
+                  "duration_min": 120,
+                  "weather": "soleil (Soleil)",
+                  "rating": 4,
+                  "companions": "[\"Inès\"]",
+                  "comment": "Coucher de soleil sur la dune"
+                },
+                {
+                  "id": "aa5c1752-c002-470b-a8f4-71720fd76347",
+                  "trail_id": "81c4eb0f-f9a8-408f-a3f3-f9c5e38a1b4a",
+                  "started_at": "2026-07-12T11:00",
+                  "duration_min": 195,
+                  "weather": "nuages (Nuages)",
+                  "rating": 4,
+                  "companions": "[\"Camille\"]",
+                  "comment": "Un peu de brume"
+                },
+                {
+                  "id": "3fbe917c-a7ac-44f7-a2ec-b256917e10d4",
+                  "trail_id": "850901c9-98e4-47d6-9518-dacb09f2d824",
+                  "started_at": "2026-06-14T11:30",
+                  "duration_min": 420,
+                  "weather": "soleil (Soleil)",
+                  "rating": 5,
+                  "companions": "[\"Camille\",\"Julien\",\"Inès\"]",
+                  "comment": "Eau turquoise"
+                },
+                {
+                  "id": "c0774d3a-66e4-407f-872c-f2ce5978a9e4",
+                  "trail_id": "f4349d97-81a4-4751-b8aa-3c6978f20fb0",
+                  "started_at": "2026-06-01T09:45",
+                  "duration_min": 330,
+                  "weather": "soleil (Soleil)",
+                  "rating": 5,
+                  "companions": "[]",
+                  "comment": "Vue dégagée sur toute la vallée"
+                },
+                {
+                  "id": "db6e16eb-0550-4746-bf83-2a7ae0f81cf2",
+                  "trail_id": "81c4eb0f-f9a8-408f-a3f3-f9c5e38a1b4a",
+                  "started_at": "2026-05-03T10:30",
+                  "duration_min": 210,
+                  "weather": "soleil (Soleil)",
+                  "rating": 5,
+                  "companions": "[\"Camille\",\"Julien\"]",
+                  "comment": "Lac superbe au lever du jour"
+                },
+                {
+                  "id": "f145e8a3-20a8-4d39-987e-0f7bb7b95fe4",
+                  "trail_id": "a41c4472-c235-4abe-8106-d034d5c035e1",
+                  "started_at": "2026-04-11T12:00",
+                  "duration_min": 180,
+                  "weather": "pluie (Pluie)",
+                  "rating": 3,
+                  "companions": "[]",
+                  "comment": "Embruns et vent"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          2,
+          50,
+          5,
+          6,
+          3,
+          9,
+          4,
+          2,
+          4,
+          3,
+          15,
+          4,
+          7,
+          5,
+          5,
+          30,
+          5,
+          3,
+          30,
+          5,
+          3,
+          3,
+          1
+        ],
+        "ok": true,
+        "retenu": 9,
+        "source": "nombre annoncé",
+        "elements": 9
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 18
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.trails",
+        "lue": true
+      },
+      {
+        "table": "public.outings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

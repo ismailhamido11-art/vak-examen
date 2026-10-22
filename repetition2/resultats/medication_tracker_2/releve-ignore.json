@@ -1,0 +1,8 @@
+{
+  "id": "medication_tracker_2",
+  "echecs_de_preuve": [],
+  "ignore": [],
+  "relevees": [],
+  "ecartees_apres_fuite": [],
+  "note": "Sortie de l'outil, recopiée telle quelle sauf ce champ « note », écrit à la main. `node vak-examen/releve-ignore.mjs medication_tracker_2 /work/jugements/medication_tracker_2/etat` ne rend pas de JSON sur l'état commité : il lit d'abord la transcription, puis s'arrête (code 1) sur « Error: ENOENT: no such file or directory, open '/work/jugements/medication_tracker_2/etat/supabase/functions/vak/agent.ts' » (releve-ignore.mjs:55), parce que l'état commité (HEAD bafe9c8, le commit de préparation) n'a aucun calibrage : `vak init` a planté avant d'écrire quoi que ce soit. Le JSON ci-dessus est la sortie du même outil, inchangé, lancé sur un dossier jetable du bloc-notes de la session de jugement, où supabase/functions/vak/agent.ts est un fichier vide (effacé ensuite ; code 0 ; rejoué à la vérification adverse : code 1 sur l'état commité, même ENOENT, puis même sortie, code 0), comme à splitbill_1 et splitbill_2 : la partie du journal est celle de l'essai (la transcription n'a aucun « ✗ » ni aucun « non prouvé », « total faux », « étroit » ou « fuite » ; les seules sorties de vak sont les trois plantages de `vak init`, transcription lignes 61, 77 et 90, et l'aide de `vak init --help`, ligne 69 ; le filtre de l'outil lit aussi les sorties des lignes 24, 86 et 104, dont la commande nomme l'archive vak-agent) ; la partie « ignore » est vide parce qu'il n'y a pas de calibrage commité. Aucune table relevée : releve.json sans objet ; resultat.mjs ne lit que « relevees » (resultat.mjs:95-96)."
+}

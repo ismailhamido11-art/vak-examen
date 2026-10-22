@@ -1,0 +1,86 @@
+{
+  "dossier": "/work/prep_1/avant",
+  "commit": "341c8dc5727f0cd7f3bd4d0db7a099384fdc60af",
+  "debut": "2026-10-22T16:57:16.100Z",
+  "fin": "2026-10-22T16:58:29.178Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/prep_1/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/prep_1/avant",
+    "code": 0,
+    "duree_s": 28,
+    "erreurs": [],
+    "fin": [
+      "added 492 packages in 28s"
+    ],
+    "journal": "/work/prep_1/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/prep_1/avant",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [
+        "> prep@0.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/prep_1/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/prep_1/avant",
+      "code": 0,
+      "duree_s": 12,
+      "erreurs": [],
+      "fin": [
+        "> prep@0.0.0 lint",
+        "> eslint ."
+      ],
+      "journal": "/work/prep_1/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/prep_1/avant",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "Tests  119 passed (119)",
+        "Start at  16:58:04",
+        "Duration  7.89s (transform 1.27s, setup 0ms, import 3.46s, tests 2.41s, environment 14.56s)"
+      ],
+      "journal": "/work/prep_1/avant-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/prep_1/avant",
+      "code": 1,
+      "duree_s": 17,
+      "erreurs": [],
+      "fin": [
+        "at ignore-listed frames {",
+        "type: 'Error'",
+        "}"
+      ],
+      "journal": "/work/prep_1/avant-journaux/build.txt"
+    }
+  }
+}

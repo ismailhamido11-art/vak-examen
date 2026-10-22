@@ -1,0 +1,18 @@
+{
+  "id": "prep_1",
+  "depot": "https://github.com/Truella/prep",
+  "commit": "341c8dc5727f0cd7f3bd4d0db7a099384fdc60af",
+  "prepare": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/prep_1/app",
+  "avant": "/work/prep_1/avant.json",
+  "debut": "2026-10-22T16:57:13Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T16:58:43Z"
+}

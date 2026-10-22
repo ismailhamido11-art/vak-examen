@@ -1,0 +1,72 @@
+verdict troupe_2 : échec (contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .))
+{
+  "id": "troupe_2",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .)"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 6,
+        "code": "jamais-fini",
+        "resume": "aucun « vak » ne rend 0 dans le journal",
+        "preuve": [
+          "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+        ]
+      },
+      {
+        "point": 1,
+        "code": "vak-non-nul",
+        "resume": "« vak » rend 1 dans .",
+        "preuve": [
+          "✗ characters non prouvé",
+          "✗ mes_personnages() non prouvé",
+          "- fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue",
+          "→ lis les notes : argument sans valeur d'essai, ligne non semée ou appel refusé par l'app ; la preuve ne se prononce pas",
+          "base locale vak_prove_7d39550d construite (8 migration(s)) puis supprimée",
+          "Si tu t'arrêtes là : `vak` n'a pas rendu 0 ; dis-le en tête du compte rendu, avec sa ligne finale telle quelle et ce qui reste ; pas de `connect`.",
+          "Compte rendu : `connect` seule, sans rechange ; tes questions : « aucune », chaque choix tranché dit comme fait (« j'ai … ; pour revenir dessus : <son fichier> »), jamais « à confirmer », « à vous de », supposé ni en question ; si le dépôt exige un circuit de contribution (issue, branche, demande de",
+          "vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "4/4",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes troupes.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes adhésions à une troupe.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes spectacles.",
+        "attendu": 5,
+        "lu": 5,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes personnages.",
+        "attendu": 9,
+        "lu": 9,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

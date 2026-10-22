@@ -1,0 +1,4 @@
+{
+  "cause": "etat",
+  "preuve": "l'agent n'a rien commité (HEAD = commit de préparation 03f0648 ; contrôleur, point 1 : « vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD ») : `vak` s'arrête sur « vak localdb : migration supabase/migrations/20260728000001_create_quizzes_code_index.sql refusée par la base locale [code 1] », la limite publiée avant les essais (AVANT-ESSAIS.md) ; la pile n'a pas d'assistant à servir (pile.txt : « /work/prep_2/apres/supabase/functions/vak absent »)"
+}

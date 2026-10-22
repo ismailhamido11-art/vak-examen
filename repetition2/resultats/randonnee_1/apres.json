@@ -1,0 +1,76 @@
+{
+  "dossier": "/work/randonnee_1/apres",
+  "commit": "60ab763908c21d60775c9065827c12cf7782a245",
+  "debut": "2026-10-22T16:14:06.029Z",
+  "fin": "2026-10-22T16:14:56.491Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/randonnee_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/randonnee_1/apres",
+    "code": 0,
+    "duree_s": 19,
+    "erreurs": [],
+    "fin": [
+      "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+      "added 795 packages in 18s"
+    ],
+    "journal": "/work/randonnee_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/randonnee_1/apres",
+      "code": 0,
+      "duree_s": 3,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/randonnee_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/randonnee_1/apres",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [
+        "> app@1.0.0 lint",
+        "> expo lint"
+      ],
+      "journal": "/work/randonnee_1/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/randonnee_1/apres",
+      "code": 0,
+      "duree_s": 25,
+      "erreurs": [],
+      "fin": [
+        "/outing/new (26KB)",
+        "/trail/[id] (22KB)",
+        "Exported: /tmp/mesure-export-rgEBHD"
+      ],
+      "journal": "/work/randonnee_1/apres-journaux/build.txt"
+    }
+  }
+}

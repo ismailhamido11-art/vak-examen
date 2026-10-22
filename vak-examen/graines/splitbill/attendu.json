@@ -1,0 +1,121 @@
+[
+  {
+    "table": "public.groups",
+    "colonne": "created_by",
+    "nom": "groups",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-631245AD",
+      "MARQUEUR-B-9C2AAAE6",
+      "MARQUEUR-B-7D62DA73"
+    ]
+  },
+  {
+    "table": "public.group_members",
+    "colonne": "user_id",
+    "nom": "group memberships",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.expenses",
+    "colonne": "paid_by",
+    "nom": "group expenses",
+    "langue": "en",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-59AF2176",
+      "MARQUEUR-B-7C831E50",
+      "MARQUEUR-B-E05F18B5",
+      "MARQUEUR-B-C8A8D2A0",
+      "MARQUEUR-B-CF0AA0FD",
+      "MARQUEUR-B-76140359",
+      "MARQUEUR-B-0918106C",
+      "MARQUEUR-B-03866F5E",
+      "MARQUEUR-B-56BE4E1F",
+      "MARQUEUR-B-7BB4B7C7"
+    ]
+  },
+  {
+    "table": "public.expense_splits",
+    "colonne": "user_id",
+    "nom": "group expense splits",
+    "langue": "en",
+    "a": 9,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.payments",
+    "colonne": "paid_by",
+    "nom": "group payments",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-6F611C6A",
+      "MARQUEUR-B-52F5C5B9"
+    ]
+  },
+  {
+    "table": "public.group_simplify_debts_events",
+    "colonne": "actor_id",
+    "nom": "debt simplification changes",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.contacts",
+    "colonne": "owner_id",
+    "nom": "contacts",
+    "langue": "en",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.contact_requests",
+    "colonne": "requester_id",
+    "nom": "contact requests",
+    "langue": "en",
+    "a": 5,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.contact_expenses",
+    "colonne": "paid_by",
+    "nom": "contact expenses",
+    "langue": "en",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-29D11805",
+      "MARQUEUR-B-CF7C675C",
+      "MARQUEUR-B-B4117160",
+      "MARQUEUR-B-5ED48C1D",
+      "MARQUEUR-B-F9E7DBD4",
+      "MARQUEUR-B-0F116D92",
+      "MARQUEUR-B-DF105782",
+      "MARQUEUR-B-A3B9B4F4"
+    ]
+  },
+  {
+    "table": "public.contact_payments",
+    "colonne": "paid_by",
+    "nom": "contact payments",
+    "langue": "en",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-42DEF012",
+      "MARQUEUR-B-55D97CB6",
+      "MARQUEUR-B-C55E2C8F"
+    ]
+  },
+  {
+    "table": "public.contact_pair_settings",
+    "colonne": "user_lo",
+    "nom": "contact currency settings",
+    "langue": "en",
+    "a": 2,
+    "marqueurs_b": []
+  }
+]

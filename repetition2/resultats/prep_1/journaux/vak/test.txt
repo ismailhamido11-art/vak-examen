@@ -1,0 +1,19 @@
+$ vak test
+(dossier : /work/prep_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (4 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1531 tokens (maximum 5000)
+✓ evals 0 évaluations bien formées
+✓ tour read_data quizzes exécuté sans validation → {"table":"quizzes","label":"Quizzes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000…
+✓ tour read_data questions exécuté sans validation → {"table":"questions","label":"Questions","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour read_data quiz_attempts exécuté sans validation → {"table":"quiz_attempts","label":"Quiz attempts","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-400…
+✓ tour read_data quiz_ratings exécuté sans validation → {"table":"quiz_ratings","label":"Quiz ratings","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-…
+✓ tour open_screen create_quiz exécuté sans validation → {"href":"/dashboard/create","label":"Create a quiz"}
+✓ tour open_screen my_quizzes exécuté sans validation → {"href":"/dashboard/my-quizzes","label":"My quizzes"}
+✓ tour open_screen quiz_detail exécuté sans validation → {"href":"/dashboard/quiz/00000000-0000-4000-8000-000003000000","label":"Quiz details"}
+✓ tour open_screen quiz_bank exécuté sans validation → {"href":"/quiz-bank","label":"Quiz bank"}
+✓ tour open_screen results exécuté sans validation → {"href":"/results","label":"Results"}
+vak test : tout est vert [code 0]

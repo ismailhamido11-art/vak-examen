@@ -1,0 +1,4 @@
+{
+  "cause": "etat",
+  "preuve": "l'agent n'a rien commité (contrôleur, point 1 : « vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD ») : `vak init` plante à chaque essai sur « erreur inattendue : Invalid time value [code 1] » (la migration de l'app 00000000000000_initial.sql, défaut de vak H7 vu à medication_tracker_1) et n'écrit rien ; la pile n'a pas d'assistant à servir (pile.txt : « /work/medication_tracker_2/apres/supabase/functions/vak absent »)"
+}

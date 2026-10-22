@@ -1,0 +1,52 @@
+[
+  {
+    "table": "public.troupes",
+    "colonne": "created_by",
+    "nom": "troupes",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-9F4044E8",
+      "MARQUEUR-B-5519AEEC",
+      "MARQUEUR-B-54861542",
+      "MARQUEUR-B-250B90DC"
+    ]
+  },
+  {
+    "table": "public.troupe_members",
+    "colonne": "user_id",
+    "nom": "adhésions à une troupe",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.shows",
+    "colonne": "created_by",
+    "nom": "spectacles",
+    "langue": "fr",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-5E950C2E",
+      "MARQUEUR-B-CF43A180",
+      "MARQUEUR-B-CE45BD0F",
+      "MARQUEUR-B-C4FA87C7",
+      "MARQUEUR-B-A1D2CAED",
+      "MARQUEUR-B-10D801B1"
+    ]
+  },
+  {
+    "table": "public.characters",
+    "colonne": "titulaire_id",
+    "nom": "personnages",
+    "langue": "fr",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-BA9F384D",
+      "MARQUEUR-B-B46886BC",
+      "MARQUEUR-B-C2EFC804",
+      "MARQUEUR-B-C45B8158",
+      "MARQUEUR-B-2BCE609B"
+    ]
+  }
+]

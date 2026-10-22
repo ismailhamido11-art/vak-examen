@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/troupe_1/apres)
+
+base locale vak_local_ba80d7 supprimée [code 0]

@@ -1,0 +1,39 @@
+$ vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_ba80d7'
+(dossier : /work/troupe_1/apres)
+
+✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)
+✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)
+✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md
+✓ VAK004 tsconfig.json exclut supabase/functions
+✓ VAK005 tsc -p supabase/functions/vak : aucune erreur
+! VAK006 supabase/functions/vak/agent.ts se charge, avec des avertissements
+    - tables.troupes : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « troupes_select » : équipe ou rôle ? sinon owner: "created_by"
+    - tables.troupe_members : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « members_select » : équipe ou rôle ? sinon owner: "user_id"
+    - tables.shows : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « shows_select » : équipe ou rôle ? sinon owner: "created_by"
+    - tables.characters : ni propriétaire ni through : lue sous la seule RLS de l'app (le moteur ne vérifie pas ses lignes ; vak prove vérifie cette RLS) ; politique « characters_select » : équipe ou rôle ? sinon owner: "titulaire_id"
+    → vérifie que c'est voulu
+✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite
+✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app
+✓ VAK009 aucun secret côté client
+✓ VAK010 [functions.vak] verify_jwt = false
+✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git
+✓ VAK013 chaque table de l'app est calibrée ou ignorée (4 dans tables ; ignore : 0 tables, 9 fonctions)
+✓ VAK014 photographie postérieure aux migrations de l'app (4)
+✗ VAK015 preuve à deux comptes du 2026-10-22 : non prouvé
+    - characters : non prouvé
+    - mes_personnages() : non prouvé
+    → corrige d'après les notes de node node_modules/@vak/agent/bin/vak.mjs prove (table par table), puis relance-le
+✓ VAK011 photographie à jour (schema.gen.ts = base)
+✓ VAK101 migration vak appliquée (vak_schema_version = 4)
+✓ VAK102 droits des tables vak_ exactement ceux attendus
+✓ VAK103 RLS active sur les tables calibrées et vak_*
+✓ VAK105 vues calibrées en security_invoker
+✓ VAK106 capacités réelles conformes au calibrage
+✓ VAK107 aucun avis de sécurité bloquant
+! VAK108 colonnes qui décident des droits (avertissement)
+    - troupes.nom : modifiable par l'utilisateur ; la politique « troupes_select » passe la ligne à une fonction : à vérifier
+    - troupes.ville : modifiable par l'utilisateur ; la politique « troupes_select » passe la ligne à une fonction : à vérifier
+    - shows.troupe_id : modifiable par l'utilisateur et lue par la politique « shows_select » : elle décide qui voit la ligne
+    - characters.show_id : modifiable par l'utilisateur et lue par la politique « characters_select » : elle décide qui voit la ligne
+    → voulu (partage, publication) : à dire à l'humain en une ligne, l'étiquette la nomme ; sinon retire le droit de modifier cette colonne dans une migration de l'app
+doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) [code 1]

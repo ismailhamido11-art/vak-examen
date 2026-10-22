@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/randonnee_2/apres)
+

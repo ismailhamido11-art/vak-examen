@@ -1,0 +1,30 @@
+[
+  {
+    "table": "public.decks",
+    "colonne": "owner_id",
+    "nom": "paquets",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": ["MARQUEUR-B-CB5416C6", "MARQUEUR-B-7F9A5DB1", "MARQUEUR-B-1756481E"]
+  },
+  {
+    "table": "public.cards",
+    "colonne": "owner_id",
+    "nom": "cartes",
+    "langue": "fr",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-FB4653C2", "MARQUEUR-B-E15A911C", "MARQUEUR-B-59EB0F34", "MARQUEUR-B-B83B7AA6",
+      "MARQUEUR-B-974313E2", "MARQUEUR-B-87BED15F", "MARQUEUR-B-923A5F1D", "MARQUEUR-B-54B82924",
+      "MARQUEUR-B-2CF36C74", "MARQUEUR-B-50BCE2B6"
+    ]
+  },
+  {
+    "table": "public.reviews",
+    "colonne": "owner_id",
+    "nom": "révisions",
+    "langue": "fr",
+    "a": 12,
+    "marqueurs_b": ["MARQUEUR-B-F367CAF9", "MARQUEUR-B-8E9FAD0F", "MARQUEUR-B-ABACCB4A", "MARQUEUR-B-02221CC9"]
+  }
+]

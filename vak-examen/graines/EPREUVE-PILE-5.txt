@@ -1,0 +1,112 @@
+
+=== randonnee (base graine_randonnee_c24005)
+ok   public.trails : 6 lignes de A sous owner_id (attendu.json : 6)
+ok   public.trails : a > 0
+ok   public.trails : aucune ligne de A ne porte de marqueur
+ok   public.trails : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-18695D91 présent dans la base
+ok   MARQUEUR-B-4B1F0E0A présent dans la base
+ok   MARQUEUR-B-CFA22916 présent dans la base
+ok   MARQUEUR-B-51F5EE22 présent dans la base
+ok   MARQUEUR-B-CD01991B présent dans la base
+ok   MARQUEUR-B-E63C9472 présent dans la base
+ok   MARQUEUR-B-898A3687 présent dans la base
+ok   MARQUEUR-B-98F53143 présent dans la base
+ok   public.trails : forme des marqueurs
+ok   public.outings : 9 lignes de A sous owner_id (attendu.json : 9)
+ok   public.outings : a > 0
+ok   public.outings : aucune ligne de A ne porte de marqueur
+ok   public.outings : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-4150E6FD présent dans la base
+ok   MARQUEUR-B-37BE0D2A présent dans la base
+ok   MARQUEUR-B-ADE19193 présent dans la base
+ok   MARQUEUR-B-CE943A4F présent dans la base
+ok   MARQUEUR-B-D1C0E26A présent dans la base
+ok   MARQUEUR-B-4F7B378F présent dans la base
+ok   MARQUEUR-B-5186C40A présent dans la base
+ok   MARQUEUR-B-3E955481 présent dans la base
+ok   MARQUEUR-B-2E6FF68D présent dans la base
+ok   MARQUEUR-B-6587468C présent dans la base
+ok   public.outings : forme des marqueurs
+ok   marqueurs tous distincts
+ok   18 marqueurs distincts dans la base (dont 0 hors tables « à moi », ex. chantiers)
+ok   aucun autre motif MARQUEUR- dans la base
+
+=== troupe (base graine_troupe_c580c5)
+ok   public.troupes : 3 lignes de A sous created_by (attendu.json : 3)
+ok   public.troupes : a > 0
+ok   public.troupes : aucune ligne de A ne porte de marqueur
+ok   public.troupes : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-9F4044E8 présent dans la base
+ok   MARQUEUR-B-5519AEEC présent dans la base
+ok   MARQUEUR-B-54861542 présent dans la base
+ok   MARQUEUR-B-250B90DC présent dans la base
+ok   public.troupes : forme des marqueurs
+ok   public.troupe_members : 3 lignes de A sous user_id (attendu.json : 3)
+ok   public.troupe_members : a > 0
+ok   public.troupe_members : aucune ligne de A ne porte de marqueur
+ok   public.troupe_members : A ne voit aucun marqueur de B (RLS active)
+ok   public.troupe_members : forme des marqueurs
+ok   public.shows : 5 lignes de A sous created_by (attendu.json : 5)
+ok   public.shows : a > 0
+ok   public.shows : aucune ligne de A ne porte de marqueur
+ok   public.shows : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-5E950C2E présent dans la base
+ok   MARQUEUR-B-CF43A180 présent dans la base
+ok   MARQUEUR-B-CE45BD0F présent dans la base
+ok   MARQUEUR-B-C4FA87C7 présent dans la base
+ok   MARQUEUR-B-A1D2CAED présent dans la base
+ok   MARQUEUR-B-10D801B1 présent dans la base
+ok   public.shows : forme des marqueurs
+ok   public.characters : 9 lignes de A sous titulaire_id (attendu.json : 9)
+ok   public.characters : a > 0
+ok   public.characters : aucune ligne de A ne porte de marqueur
+ok   public.characters : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-BA9F384D présent dans la base
+ok   MARQUEUR-B-B46886BC présent dans la base
+ok   MARQUEUR-B-C2EFC804 présent dans la base
+ok   MARQUEUR-B-C45B8158 présent dans la base
+ok   MARQUEUR-B-2BCE609B présent dans la base
+ok   public.characters : forme des marqueurs
+ok   marqueurs tous distincts
+ok   15 marqueurs distincts dans la base (dont 0 hors tables « à moi », ex. chantiers)
+ok   aucun autre motif MARQUEUR- dans la base
+
+=== revisions (base graine_revisions_e9ada1)
+ok   public.decks : 3 lignes de A sous owner_id (attendu.json : 3)
+ok   public.decks : a > 0
+ok   public.decks : aucune ligne de A ne porte de marqueur
+ok   public.decks : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-CB5416C6 présent dans la base
+ok   MARQUEUR-B-7F9A5DB1 présent dans la base
+ok   MARQUEUR-B-1756481E présent dans la base
+ok   public.decks : forme des marqueurs
+ok   public.cards : 9 lignes de A sous owner_id (attendu.json : 9)
+ok   public.cards : a > 0
+ok   public.cards : aucune ligne de A ne porte de marqueur
+ok   public.cards : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-FB4653C2 présent dans la base
+ok   MARQUEUR-B-E15A911C présent dans la base
+ok   MARQUEUR-B-59EB0F34 présent dans la base
+ok   MARQUEUR-B-B83B7AA6 présent dans la base
+ok   MARQUEUR-B-974313E2 présent dans la base
+ok   MARQUEUR-B-87BED15F présent dans la base
+ok   MARQUEUR-B-923A5F1D présent dans la base
+ok   MARQUEUR-B-54B82924 présent dans la base
+ok   MARQUEUR-B-2CF36C74 présent dans la base
+ok   MARQUEUR-B-50BCE2B6 présent dans la base
+ok   public.cards : forme des marqueurs
+ok   public.reviews : 12 lignes de A sous owner_id (attendu.json : 12)
+ok   public.reviews : a > 0
+ok   public.reviews : aucune ligne de A ne porte de marqueur
+ok   public.reviews : A ne voit aucun marqueur de B (RLS active)
+ok   MARQUEUR-B-F367CAF9 présent dans la base
+ok   MARQUEUR-B-8E9FAD0F présent dans la base
+ok   MARQUEUR-B-ABACCB4A présent dans la base
+ok   MARQUEUR-B-02221CC9 présent dans la base
+ok   public.reviews : forme des marqueurs
+ok   marqueurs tous distincts
+ok   17 marqueurs distincts dans la base (dont 0 hors tables « à moi », ex. chantiers)
+ok   aucun autre motif MARQUEUR- dans la base
+
+tout est conforme

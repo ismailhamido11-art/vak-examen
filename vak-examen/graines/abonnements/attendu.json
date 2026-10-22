@@ -1,0 +1,23 @@
+[
+  {
+    "table": "public.subscriptions",
+    "colonne": "owner_id",
+    "nom": "abonnements",
+    "langue": "fr",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-5C0E91A4",
+      "MARQUEUR-B-B27D4F60",
+      "MARQUEUR-B-0A98E3D1",
+      "MARQUEUR-B-F6413C7B"
+    ]
+  },
+  {
+    "table": "public.payments",
+    "colonne": "owner_id",
+    "nom": "paiements",
+    "langue": "fr",
+    "a": 9,
+    "marqueurs_b": []
+  }
+]

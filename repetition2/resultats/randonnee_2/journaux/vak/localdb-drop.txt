@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/randonnee_2/apres)
+
+base locale vak_local_75f8a1 supprimée [code 0]

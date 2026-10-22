@@ -1,0 +1,20 @@
+{
+  "id": "medication_tracker_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "adherence_logs",
+      "ligne": 113
+    },
+    {
+      "nom": "inventory",
+      "ligne": 114
+    },
+    {
+      "nom": "profiles",
+      "ligne": 115
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

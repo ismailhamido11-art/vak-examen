@@ -1,0 +1,53 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T16:25:15.888Z",
+  "verdict": "non prouvé",
+  "calibration": "sha256:254423ca2e1f2b90df43e4c9b227f65cecd82a7fe7e0752eca8f2f32bee8be5c",
+  "schema": "sha256:ea5188de2cc3b49c55e828ab357c743601a860e0f29de54fef9951f1dc08fd9b",
+  "tables": {
+    "characters": "non prouvé",
+    "shows": "éprouvé",
+    "troupe_members": "éprouvé",
+    "troupes": "éprouvé"
+  },
+  "notes": {
+    "characters": [
+      "graine impossible : 23514 new row for relation \"characters\" violates check constraint \"characters_check\"",
+      "totaux de read_data non comparés (verdict non prouvé)"
+    ],
+    "shows": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 49 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « titre 0 a »"
+    ],
+    "troupe_members": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+      "totaux de read_data : 43 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "troupes": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "functions": {
+    "mes_personnages": "non prouvé"
+  },
+  "totals": 132,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Troupes (Nom, Ville, Créée le) ; Membres des troupes (Troupe, Membre, Rôle, Entrée le) ; Spectacles (Troupe, Titre, Auteur, Première, Statut) ; Personnages (Spectacle, Nom, Nombre de répliques, Avancement, Titulaire, Doublure)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes personnages, Fiche du spectacle, Fiche de la troupe",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer » ; appeler can_edit, create_troupe, invite_member, is_member, is_owner, remove_member, set_member_role, show_troupe, 1 autres"
+  ]
+}

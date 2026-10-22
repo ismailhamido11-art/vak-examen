@@ -1,0 +1,138 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "1/1 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/clix_2/apres",
+  "lecture": {
+    "fichier": "/work/clix_2/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.admin_profiles"
+    ],
+    "ignorees": [
+      "public.launch_leads",
+      "public.booking_requests",
+      "public.leads",
+      "public.membership_inquiries"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.admin_profiles",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 1,
+      "attendu_json": 1,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.admin_profiles",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my admin profiles are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-3fe9e41b-86a0-43f0-9ae3-32be2aed3202",
+        "question": "How many of my admin profiles are there?",
+        "texte": "You have 1 admin profile — role **admin**, created today (October 22, 2026).\n\nAnything else I can help you with — plan details, or the waitlist?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "admin_profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "admin_profiles",
+              "label": "Admin profile",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "9723589d-1ab0-4af7-aeca-2018ce80b025",
+                  "role": "admin",
+                  "created_at": "2026-10-22T14:22"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.admin_profiles",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my admin profiles.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-46ff49d0-2e71-4a4a-95f1-a32376311344",
+        "question": "List my admin profiles.",
+        "texte": "You have 1 admin profile:\n\n- **Role:** admin — created October 22, 2026 at 2:22 PM",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "admin_profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "admin_profiles",
+              "label": "Admin profile",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "9723589d-1ab0-4af7-aeca-2018ce80b025",
+                  "role": "admin",
+                  "created_at": "2026-10-22T14:22"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1,
+        "source": "nombre annoncé",
+        "elements": 1
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 8
+  },
+  "couverture": {
+    "lues": 1,
+    "total": 1,
+    "tables": [
+      {
+        "table": "public.admin_profiles",
+        "lue": true
+      }
+    ],
+    "texte": "1/1"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "1/1 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/clix_1/apres",
+  "lecture": {
+    "fichier": "/work/clix_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.admin_profiles"
+    ],
+    "ignorees": [
+      "public.booking_requests",
+      "public.launch_leads",
+      "public.leads",
+      "public.membership_inquiries"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.admin_profiles",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 1,
+      "attendu_json": 1,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.admin_profiles",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my admin profiles are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-2acb845a-850d-4cab-9cf0-c873b04fb890",
+        "question": "How many of my admin profiles are there?",
+        "texte": "You have 1 team access profile, with the admin role.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "admin_profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "admin_profiles",
+              "label": "Team access",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8e52a141-bcee-468b-9807-d5cfd568635e",
+                  "role": "admin",
+                  "created_at": "2026-10-22T12:56"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.admin_profiles",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my admin profiles.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-6801fc95-866a-4d5f-b354-eca4b197403f",
+        "question": "List my admin profiles.",
+        "texte": "You have 1 admin profile:\n\n- **Role:** admin — created October 22, 2026 at 12:56 PM\n\nAnything else you'd like to check?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "admin_profiles",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "admin_profiles",
+              "label": "Team access",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8e52a141-bcee-468b-9807-d5cfd568635e",
+                  "role": "admin",
+                  "created_at": "2026-10-22T12:56"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 1,
+        "nombres_lus": [
+          1
+        ],
+        "ok": true,
+        "retenu": 1,
+        "source": "nombre annoncé",
+        "elements": 1
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 8
+  },
+  "couverture": {
+    "lues": 1,
+    "total": 1,
+    "tables": [
+      {
+        "table": "public.admin_profiles",
+        "lue": true
+      }
+    ],
+    "texte": "1/1"
+  }
+}

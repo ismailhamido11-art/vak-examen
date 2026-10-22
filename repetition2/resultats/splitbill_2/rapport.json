@@ -1,0 +1,157 @@
+{
+  "id": "splitbill_2",
+  "verdict": "échec",
+  "raisons": [
+    "aucun commit de l'essai",
+    "vak non installé : supabase/functions/vak/vak.lock.json absent du commit final"
+  ],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/j769chen/splitbill",
+  "commit": "59a168392ccbf4b43a93b9005d7e5d1868a26251",
+  "prepare": "bfeb3b077e33be7c6c46f6a4c24f576b7d6966c5",
+  "head": "bfeb3b077e33be7c6c46f6a4c24f576b7d6966c5",
+  "branche": "essai",
+  "commits": [],
+  "restes": [],
+  "bundle": null,
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.29.2.tgz",
+      "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      }
+    ],
+    "vakInstalle": null
+  },
+  "controle": {
+    "debut": "2026-10-22T18:10:42.730Z",
+    "fin": "2026-10-22T18:11:47.520Z",
+    "duree_s": 65,
+    "node": "v22.22.0"
+  },
+  "vak": {},
+  "preuve": {
+    "commite": null,
+    "controle": null
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 16,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 17,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "tsc --noEmit",
+        "code": 0,
+        "duree_s": 6,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "tsc --noEmit",
+        "code": 0,
+        "duree_s": 6,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 4,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 3,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 28,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 29,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "expo export --platform web",
+        "code": 0,
+        "duree_s": 8,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "expo export --platform web",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          1098,
+          1098
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A vendor/vak/vak-agent-0.29.2.tgz"
+    ],
+    "aRelire": []
+  }
+}

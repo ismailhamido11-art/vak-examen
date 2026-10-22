@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-22T17:33:43.810Z",
+  "langue": "en",
+  "nom": "Assistant",
+  "etiquette": [
+    "Sees: Medications (Name, Dosage, Added on, Form, Remaining supply, Active, Low supply threshold, As needed (PRN), Generic name) ; Reminders (Medication, Frequency, Days, Times of day, Units per dose, Push reminder, Instructions, Active, Start date, End date, Interval (days)) ; Doses taken (Reminder, Medication, Scheduled date, Time of day, Status, Logged at, Reason) ; Symptoms (Medication, Symptom, Severity, Notes, Logged at, Date)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): Medication, My medications, Add a medication, Log a dose, Log a symptom, Reports",
+    "Never: delete a row ; edit anything other than what « Can propose » lists ; read adherence_logs, inventory, profiles",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:6672081044cab356caecd811073ad046a370ef35beb2cc70597a5c8ed7ba0476",
+    "calibrage": "sha256:33abef5f751645a2dbb179dbb7c40c4149169f750ceba054734e6aaed20606c7"
+  }
+}

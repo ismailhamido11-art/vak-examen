@@ -1,0 +1,178 @@
+diff --git a/app/layout.js b/app/layout.js
+index df8be1f..0711bfd 100644
+--- a/app/layout.js
++++ b/app/layout.js
+@@ -1,5 +1,7 @@
+ import { Inter, Sora } from "next/font/google";
++import "@vak/agent/web/styles.css";
+ import "./globals.css";
++import AssistantLauncher from "@/components/layout/AssistantLauncher";
+ 
+ const inter = Inter({
+   subsets: ["latin"],
+@@ -45,6 +47,7 @@ export default function RootLayout({ children }) {
+     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+       <body className={inter.className}>
+         {children}
++        <AssistantLauncher />
+       </body>
+     </html>
+   );
+diff --git a/app/settings/agent-settings.tsx b/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..67ac5bd
+--- /dev/null
++++ b/app/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "../../lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} theme={{ accent: "#0056F3", mode: "dark" }} />;
++}
+diff --git a/app/settings/page.tsx b/app/settings/page.tsx
+new file mode 100644
+index 0000000..4e41627
+--- /dev/null
++++ b/app/settings/page.tsx
+@@ -0,0 +1,13 @@
++import { VakSettings } from "./agent-settings";
++
++export const metadata = {
++  title: "Assistant settings",
++};
++
++export default function SettingsPage() {
++  return (
++    <main>
++      <VakSettings />
++    </main>
++  );
++}
+diff --git a/components/layout/AssistantLauncher/index.jsx b/components/layout/AssistantLauncher/index.jsx
+new file mode 100644
+index 0000000..8e2812c
+--- /dev/null
++++ b/components/layout/AssistantLauncher/index.jsx
+@@ -0,0 +1,18 @@
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++
++export default function AssistantLauncher() {
++  const router = useRouter();
++
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      theme={{ accent: "#0056F3", mode: "dark" }}
++    />
++  );
++}
+diff --git a/components/layout/Footer/Footer.module.css b/components/layout/Footer/Footer.module.css
+index b2170a6..4768538 100644
+--- a/components/layout/Footer/Footer.module.css
++++ b/components/layout/Footer/Footer.module.css
+@@ -20,6 +20,20 @@
+   height: auto;
+ }
+ 
++.links {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-3);
++}
++
++.links a {
++  display: inline-flex;
++  align-items: center;
++  min-height: 2.75rem;
++  color: inherit;
++  text-decoration: underline;
++}
++
+ .tagline,
+ .positioning,
+ .copyright {
+diff --git a/components/layout/Footer/index.jsx b/components/layout/Footer/index.jsx
+index e5a4c9c..21f2e4d 100644
+--- a/components/layout/Footer/index.jsx
++++ b/components/layout/Footer/index.jsx
+@@ -22,6 +22,10 @@ export default function Footer() {
+           </a>
+           <p className={styles.tagline}>{brand.tagline}</p>
+         </div>
++        <nav className={styles.links} aria-label="Assistant">
++          <a href="/assistant">Ask the assistant</a>
++          <a href="/settings">Assistant settings</a>
++        </nav>
+         <p className={styles.positioning}>{brand.positioning}</p>
+         <p className={styles.copyright}>
+           © {new Date().getFullYear()} {brand.shortName}. All rights reserved.
+diff --git a/jsconfig.json b/jsconfig.json
+deleted file mode 100644
+index 2a2e4b3..0000000
+--- a/jsconfig.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-{
+-  "compilerOptions": {
+-    "paths": {
+-      "@/*": ["./*"]
+-    }
+-  }
+-}
+diff --git a/tsconfig.json b/tsconfig.json
+new file mode 100644
+index 0000000..3349a87
+--- /dev/null
++++ b/tsconfig.json
+@@ -0,0 +1,43 @@
++{
++  "compilerOptions": {
++    "paths": {
++      "@/*": [
++        "./*"
++      ]
++    },
++    "target": "ES2017",
++    "lib": [
++      "dom",
++      "dom.iterable",
++      "esnext"
++    ],
++    "allowJs": true,
++    "skipLibCheck": true,
++    "strict": false,
++    "noEmit": true,
++    "incremental": true,
++    "module": "esnext",
++    "esModuleInterop": true,
++    "moduleResolution": "bundler",
++    "resolveJsonModule": true,
++    "isolatedModules": true,
++    "jsx": "react-jsx",
++    "plugins": [
++      {
++        "name": "next"
++      }
++    ]
++  },
++  "exclude": [
++    "node_modules",
++    "supabase/functions"
++  ],
++  "include": [
++    "next-env.d.ts",
++    ".next/types/**/*.ts",
++    ".next/dev/types/**/*.ts",
++    "**/*.mts",
++    "**/*.ts",
++    "**/*.tsx"
++  ]
++}

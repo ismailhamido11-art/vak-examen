@@ -1,0 +1,89 @@
+{
+  "dossier": "/work/medication_tracker_2/apres",
+  "commit": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+  "debut": "2026-10-22T18:36:49.456Z",
+  "fin": "2026-10-22T18:37:18.194Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "bun",
+    "version": null,
+    "lanceur": "bun",
+    "verrous": [
+      "bun.lock"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/medication_tracker_2/apres-journaux",
+  "installation": {
+    "commande": "bun install --frozen-lockfile",
+    "dossier": "/work/medication_tracker_2/apres",
+    "code": 0,
+    "duree_s": 0,
+    "erreurs": [],
+    "fin": [
+      "+ react-native-web@0.21.2",
+      "+ zustand@5.0.12",
+      "988 packages installed [371.00ms]"
+    ],
+    "journal": "/work/medication_tracker_2/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "bun run typecheck",
+      "dossier": "/work/medication_tracker_2/apres",
+      "code": 0,
+      "duree_s": 7,
+      "erreurs": [],
+      "fin": [
+        "$ tsc --noEmit"
+      ],
+      "journal": "/work/medication_tracker_2/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "bun run lint",
+      "dossier": "/work/medication_tracker_2/apres",
+      "code": 0,
+      "duree_s": 0,
+      "erreurs": [],
+      "fin": [
+        "│       -----------",
+        "Checked 144 files in 202ms. No fixes applied.",
+        "Found 1 warning."
+      ],
+      "journal": "/work/medication_tracker_2/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "bun run test",
+      "dossier": "/work/medication_tracker_2/apres",
+      "code": 0,
+      "duree_s": 16,
+      "erreurs": [],
+      "fin": [
+        "Snapshots:   0 total",
+        "Time:        15.163 s",
+        "Ran all test suites in 2 projects."
+      ],
+      "journal": "/work/medication_tracker_2/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/medication_tracker_2/apres",
+      "code": 1,
+      "duree_s": 5,
+      "erreurs": [],
+      "fin": [
+        "app/(tabs)/index.tsx",
+        "| import \"../../components/ui/AdBanner\"",
+        "app (require.context)"
+      ],
+      "journal": "/work/medication_tracker_2/apres-journaux/build.txt"
+    }
+  }
+}

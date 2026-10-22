@@ -1,0 +1,275 @@
+{
+  "id": "medication_tracker_1",
+  "verdict": "réussi",
+  "raisons": [],
+  "notes": [
+    "vérification build : échec avant et après sans ligne fichier:ligne : fins des journaux différentes, à comparer",
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)",
+    "table(s) « à moi » écartée(s) par l'agent (ignore), sans échec de preuve au journal : choix de périmètre, à dire à l'humain : adherence_logs, inventory, profiles, adherence_logs, inventory, profiles"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/PanagiotisKaraliolios/medication-tracker",
+  "commit": "cfad84170a40378b684a115b6afe7486fa5f5a2a",
+  "prepare": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+  "head": "e5f16c7e1429a6cb8e37f9f2f383c662001ce7c1",
+  "branche": "essai",
+  "commits": [
+    {
+      "sha": "e5f16c7e1429a6cb8e37f9f2f383c662001ce7c1",
+      "date": "2026-10-22T17:29:01+00:00",
+      "sujet": "feat: intégrer l'assistant vak (onglet Assistant)"
+    }
+  ],
+  "restes": [],
+  "bundle": {
+    "fichier": "essai.bundle",
+    "prerequis": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+    "commits": 1
+  },
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.29.2.tgz",
+      "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      }
+    ],
+    "vakInstalle": "0.29.2"
+  },
+  "controle": {
+    "debut": "2026-10-22T17:30:14.724Z",
+    "fin": "2026-10-22T17:31:17.932Z",
+    "duree_s": 63,
+    "node": "v22.22.0"
+  },
+  "vak": {
+    "test": {
+      "commande": "vak test",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "vak test : tout est vert [code 0]",
+      "signaux": []
+    },
+    "localdb": {
+      "commande": "vak localdb",
+      "code": 0,
+      "duree_s": 1,
+      "resume": "base locale vak_local_80e276 prête : 5 migration(s) appliquée(s) [code 0]",
+      "signaux": []
+    },
+    "doctor": {
+      "commande": "vak doctor --db --db-url 'postgresql://root@127.0.0.1:5432/vak_local_80e276'",
+      "code": 0,
+      "duree_s": 17,
+      "resume": "doctor : aucun échec, mais des avertissements (!) à lire [code 0]",
+      "signaux": [
+        "! VAK009 variable publique à vérifier : clé ou jeton inclus dans l'app (app/privacy-security.tsx:148 : EXPO_PUBLIC_SUPABASE_KEY ; app/set-password.tsx:66 : EXPO_PUBLIC_SUPABASE_KEY ; lib/supabase.ts:6 : EXPO_PUBLIC_SUPABASE_KEY)",
+        "! VAK013 chaque table de l'app est calibrée ou ignorée (4 dans tables ; ignore : 3 tables, 0 fonctions) ; dans ignore, tables de l'utilisateur : « adherence_logs », « inventory », « profiles » (« adherence_logs » : calibre-la, owner ; « inventory » : calibre-la, owner ; « profiles » : calibre-la, owner)"
+      ]
+    },
+    "localdb-drop": {
+      "commande": "vak localdb --drop",
+      "code": 0,
+      "duree_s": 0,
+      "resume": "base locale vak_local_80e276 supprimée [code 0]",
+      "signaux": []
+    },
+    "prove": {
+      "commande": "vak prove",
+      "code": 0,
+      "duree_s": 3,
+      "resume": "preuve à deux comptes : éprouvé (4 éprouvée(s), 0 en échec, 0 non prouvée(s) ; 171 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte [code 0]",
+      "signaux": []
+    }
+  },
+  "preuve": {
+    "commite": {
+      "verdict": "éprouvé",
+      "vak": "0.29.2",
+      "at": "2026-10-22T17:25:31.519Z",
+      "tables": {
+        "dose_logs": "éprouvé",
+        "medications": "éprouvé",
+        "schedules": "éprouvé",
+        "symptoms": "éprouvé"
+      },
+      "fonctions": {}
+    },
+    "controle": {
+      "verdict": "éprouvé",
+      "vak": "0.29.2",
+      "at": "2026-10-22T17:25:31.519Z",
+      "tables": {
+        "dose_logs": "éprouvé",
+        "medications": "éprouvé",
+        "schedules": "éprouvé",
+        "symptoms": "éprouvé"
+      },
+      "fonctions": {}
+    }
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun install --frozen-lockfile",
+        "code": 0,
+        "duree_s": 11,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun install --frozen-lockfile",
+        "code": 0,
+        "duree_s": 1,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run typecheck",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run typecheck",
+        "code": 0,
+        "duree_s": 7,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run lint",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run lint",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run test",
+        "code": 0,
+        "duree_s": 18,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run test",
+        "code": 0,
+        "duree_s": 14,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "detail": "échec avant et après sans ligne fichier:ligne : fins des journaux différentes, à comparer",
+      "avant": {
+        "commande": "expo export --platform web",
+        "code": 1,
+        "duree_s": 31,
+        "erreurs": 0,
+        "fin": [
+          "app/(tabs)/profile.tsx",
+          "| import \"../../components/ui/AdBanner\"",
+          "app (require.context)"
+        ]
+      },
+      "apres": {
+        "commande": "expo export --platform web",
+        "code": 1,
+        "duree_s": 17,
+        "erreurs": 0,
+        "fin": [
+          "app/(tabs)/index.tsx",
+          "| import \"../../components/ui/AdBanner\"",
+          "app (require.context)"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "bun.lock",
+        "supprime": false,
+        "entrees": [
+          1351,
+          1376
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A .agents/skills/vak/SKILL.md",
+      "A .agents/skills/vak/references/calibration.md",
+      "A .agents/skills/vak/references/features.md",
+      "A .agents/skills/vak/references/guardrails.md",
+      "A .agents/skills/vak/references/local-first.md",
+      "A .agents/skills/vak/references/ui.md",
+      "A .claude/skills/vak/SKILL.md",
+      "A .claude/skills/vak/references/calibration.md",
+      "A .claude/skills/vak/references/features.md",
+      "A .claude/skills/vak/references/guardrails.md",
+      "A .claude/skills/vak/references/local-first.md",
+      "A .claude/skills/vak/references/ui.md",
+      "A AGENTS.md",
+      "A CLAUDE.md",
+      "A app/(tabs)/assistant.tsx",
+      "M bun.lock",
+      "A lib/vak.ts",
+      "M package.json",
+      "A supabase/.gitignore",
+      "A supabase/config.toml",
+      "A supabase/functions/vak/agent.ts",
+      "A supabase/functions/vak/deno.json",
+      "A supabase/functions/vak/index.ts",
+      "A supabase/functions/vak/schema.gen.ts",
+      "A supabase/functions/vak/tsconfig.json",
+      "A supabase/functions/vak/vak-proof.json",
+      "A supabase/functions/vak/vak-server.mjs",
+      "A supabase/functions/vak/vak.lock.json",
+      "A supabase/migrations/20261022172312_vak_0001_core.sql",
+      "A supabase/migrations/20261022172313_vak_0002_feedback.sql",
+      "A supabase/migrations/20261022172314_vak_0003_history.sql",
+      "A supabase/migrations/20261022172315_vak_0004_quota_erase.sql",
+      "M tsconfig.json",
+      "A vendor/vak/vak-agent-0.29.2.tgz"
+    ],
+    "aRelire": [
+      "M app/(tabs)/_layout.tsx",
+      "M app/(tabs)/profile.tsx (branchement : cite vak)",
+      "M biome.json (branchement : cite vak)"
+    ]
+  }
+}

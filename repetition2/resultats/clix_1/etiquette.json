@@ -1,0 +1,31 @@
+{
+  "lue_le": "2026-10-22T16:57:03.128Z",
+  "langue": "en",
+  "nom": "CLIX Assistant",
+  "etiquette": [
+    "Sees: Team access (Role, Created at)",
+    "Can propose (after your approval): nothing",
+    "Can open (saves nothing): CLIX MX home, Plans and resets",
+    "Never: delete a row ; edit anything other than what « Can propose » lists ; read booking_requests, launch_leads, leads, membership_inquiries",
+    "Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "China",
+      "retention": "under its own terms"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota"
+  ],
+  "empreintes": {
+    "schema": "sha256:3c3fc0c3dea2d6ea6246e685eab841e0818294fb6cd373ba8c77c15509dfedc1",
+    "calibrage": "sha256:67c72bd3c98650cec0844fde66de1e78069ee7f45ac4235e16aa64fd554cbd93"
+  }
+}

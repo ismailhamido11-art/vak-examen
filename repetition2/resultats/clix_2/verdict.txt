@@ -1,0 +1,37 @@
+verdict clix_2 : échec (contrôleur : échec (point 3 : une dépendance existante a bougé (1 version changée, 1 retiré)))
+{
+  "id": "clix_2",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec (point 3 : une dépendance existante a bougé (1 version changée, 1 retiré))"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 3,
+        "code": "dependances",
+        "resume": "une dépendance existante a bougé (1 version changée, 1 retiré)",
+        "preuve": [
+          "pnpm-lock.yaml : . › devDependencies › eslint-config-next : 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3) → 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)",
+          "pnpm-lock.yaml : paquet typescript@6.0.3 ({integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}) n'est plus là"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "1/1",
+    "listes_sans_decider": [
+      {
+        "question": "List my admin profiles.",
+        "attendu": 1,
+        "lu": 1,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

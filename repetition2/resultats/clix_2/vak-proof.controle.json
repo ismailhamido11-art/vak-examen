@@ -1,0 +1,28 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T18:17:37.243Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:b5621af008b60c7529ea1283e3f071caf3666e1994848c0573b8f28ab2225d55",
+  "schema": "sha256:3c3fc0c3dea2d6ea6246e685eab841e0818294fb6cd373ba8c77c15509dfedc1",
+  "tables": {
+    "admin_profiles": "éprouvé"
+  },
+  "notes": {
+    "admin_profiles": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 34 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "totals": 34,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Sees: Admin profile (Role, Created at)",
+    "Can propose (after your approval): remember a memory (plugin memory)",
+    "Can open (saves nothing): See plans, Join the Waitlist",
+    "Never: delete a row ; edit anything other than what « Can propose » lists ; read launch_leads, booking_requests, leads, membership_inquiries"
+  ]
+}

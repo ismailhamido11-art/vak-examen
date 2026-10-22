@@ -1,0 +1,24 @@
+{
+  "id": "clix_1",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "booking_requests",
+      "ligne": 37
+    },
+    {
+      "nom": "launch_leads",
+      "ligne": 38
+    },
+    {
+      "nom": "leads",
+      "ligne": 39
+    },
+    {
+      "nom": "membership_inquiries",
+      "ligne": 40
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

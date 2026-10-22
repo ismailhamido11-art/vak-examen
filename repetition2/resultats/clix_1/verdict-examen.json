@@ -1,0 +1,485 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "clix_1",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": false,
+      "fichiers": [
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 4,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 11
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "genre": "verrou",
+          "ajouts": 10,
+          "modifies": 1,
+          "retires": 1,
+          "entrees": 414
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": [],
+      "problemes": [
+        {
+          "fichier": "pnpm-lock.yaml",
+          "type": "version changée",
+          "detail": "pnpm-lock.yaml : . › devDependencies › eslint-config-next : 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3) → 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)"
+        },
+        {
+          "fichier": "pnpm-lock.yaml",
+          "type": "retiré",
+          "detail": "pnpm-lock.yaml : paquet typescript@6.0.3 ({integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}) n'est plus là"
+        }
+      ]
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.29.2.tgz sha256 = préparation",
+        "5 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-22T16:47:14.784Z",
+      "demande": "2026-10-22T16:47:09.536Z",
+      "premierVakQuiRendZero": "2026-10-22T16:53:23.075Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 6.14,
+      "ligne": 281
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 39960,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (1 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (1 dans tables ; ignore : 4 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (5)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-22 : éprouvé (1 table(s), 34 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "Compte rendu : `connect` seule, sans rechange ; tes questions : « aucune », chaque choix tranché dit comme fait (« j'ai … ; pour revenir dessus : <son fichier> »), jamais « à confirmer », « à vous de », supposé ni en question ; si le dépôt exige un circuit de contribution (issue, branche, demande de",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (1 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (1 dans tables ; ignore : 4 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (5)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-22 : éprouvé (1 table(s), 34 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "pnpm install --frozen-lockfile",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "etat": "ajoutée"
+        },
+        "lint": {
+          "avant": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 6,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "pnpm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 17,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 9,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "pnpm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 14,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 3,
+      "code": "dependances",
+      "resume": "une dépendance existante a bougé (1 version changée, 1 retiré)",
+      "preuve": [
+        "pnpm-lock.yaml : . › devDependencies › eslint-config-next : 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3) → 16.2.7 → 16.2.7(@typescript-eslint/parser@8.61.0(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)",
+        "pnpm-lock.yaml : paquet typescript@6.0.3 ({integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}) n'est plus là"
+      ]
+    }
+  ],
+  "notes": [
+    "typecheck : absente avant, présente après (npx --no-install tsc --noEmit) : rien à comparer"
+  ],
+  "entree": {
+    "essai": "/srv/essais/clix_1",
+    "preparation": {
+      "id": "clix_1",
+      "depot": "https://github.com/dmayes77/CLIX",
+      "commit": "03a71b82743471a694b04259bbb4143b3a299b28",
+      "prepare": "e82e922d578b016741c3847476134c983ff4e5d2",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T16:46:18Z"
+    },
+    "tip": "42b061aa88ecaaa470227c5bb96b5e7e16fba4cc",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 105,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 5,
+      "tablesAMoi": 1,
+      "aMoiEprouvees": 1,
+      "ignorees": 4,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "e82e922d578b016741c3847476134c983ff4e5d2",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "pnpm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "pnpm install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "pnpm install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ react-dom 19.2.4",
+              "devDependencies:",
+              "+ eslint 9.39.4",
+              "+ eslint-config-next 16.2.7",
+              "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+              "│                                                                              │",
+              "│   Ignored build scripts: sharp@0.34.5, unrs-resolver@1.12.2.                 │",
+              "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+              "│   to run scripts.                                                            │",
+              "│                                                                              │",
+              "╰──────────────────────────────────────────────────────────────────────────────╯",
+              "Done in 13.3s using pnpm v10.28.0"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "lint": {
+              "commande": "pnpm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 6,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> clix@0.1.0 lint /srv/verdicts/clix_1/clones/prep",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "pnpm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 9,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "├ ○ /apple-icon.png",
+                "├ ○ /icon.png",
+                "├ ○ /icon.svg",
+                "├ ○ /lx",
+                "├ ○ /manifest.webmanifest",
+                "├ ○ /mx",
+                "├ ○ /mx/plans",
+                "├ ○ /robots.txt",
+                "└ ○ /sitemap.xml",
+                "ƒ Proxy (Middleware)",
+                "○  (Static)   prerendered as static content",
+                "ƒ  (Dynamic)  server-rendered on demand"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ react-dom 19.2.4",
+          "devDependencies:",
+          "+ eslint 9.39.4",
+          "+ eslint-config-next 16.2.7",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.34.5, unrs-resolver@1.12.2.                 │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 13.3s using pnpm v10.28.0"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "42b061aa88ecaaa470227c5bb96b5e7e16fba4cc",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "pnpm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "pnpm install --frozen-lockfile",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "pnpm install --frozen-lockfile",
+            "souple": false,
+            "fin": [
+              "+ @types/react 19.3.0",
+              "+ eslint 9.39.4",
+              "+ eslint-config-next 16.2.7",
+              "+ typescript 5.9.3",
+              "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+              "│                                                                              │",
+              "│   Ignored build scripts: sharp@0.34.5, unrs-resolver@1.12.2.                 │",
+              "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+              "│   to run scripts.                                                            │",
+              "│                                                                              │",
+              "╰──────────────────────────────────────────────────────────────────────────────╯",
+              "Done in 2.3s using pnpm v10.28.0"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "pnpm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 17,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> clix@0.1.0 lint /srv/verdicts/clix_1/clones/head",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "pnpm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 14,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "├ ○ /icon.png",
+                "├ ○ /icon.svg",
+                "├ ○ /lx",
+                "├ ○ /manifest.webmanifest",
+                "├ ○ /mx",
+                "├ ○ /mx/plans",
+                "├ ○ /robots.txt",
+                "├ ○ /settings",
+                "└ ○ /sitemap.xml",
+                "ƒ Proxy (Middleware)",
+                "○  (Static)   prerendered as static content",
+                "ƒ  (Dynamic)  server-rendered on demand"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "pnpm install --frozen-lockfile",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "pnpm install --frozen-lockfile",
+        "souple": false,
+        "fin": [
+          "+ @types/react 19.3.0",
+          "+ eslint 9.39.4",
+          "+ eslint-config-next 16.2.7",
+          "+ typescript 5.9.3",
+          "╭ Warning ─────────────────────────────────────────────────────────────────────╮",
+          "│                                                                              │",
+          "│   Ignored build scripts: sharp@0.34.5, unrs-resolver@1.12.2.                 │",
+          "│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │",
+          "│   to run scripts.                                                            │",
+          "│                                                                              │",
+          "╰──────────────────────────────────────────────────────────────────────────────╯",
+          "Done in 2.3s using pnpm v10.28.0"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-22T16:56:44.205Z"
+}

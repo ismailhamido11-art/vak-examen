@@ -1,0 +1,18 @@
+{
+  "id": "medication_tracker_1",
+  "depot": "https://github.com/PanagiotisKaraliolios/medication-tracker",
+  "commit": "cfad84170a40378b684a115b6afe7486fa5f5a2a",
+  "prepare": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/medication_tracker_1/app",
+  "avant": "/work/medication_tracker_1/avant.json",
+  "debut": "2026-10-22T17:17:55Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T17:19:14Z"
+}

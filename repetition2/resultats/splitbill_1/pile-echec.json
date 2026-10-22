@@ -1,0 +1,4 @@
+{
+  "cause": "etat",
+  "preuve": "refus propre (point 7 du contrôleur) : « vak init » n'a rien écrit (« react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ; vak ne change jamais une dépendance de l'app ») ; l'état commité est le commit de préparation, sans supabase/functions/vak, et la pile n'a pas d'assistant à servir (pile.txt : « /work/splitbill_1/apres/supabase/functions/vak absent »)"
+}

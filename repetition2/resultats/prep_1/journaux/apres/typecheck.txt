@@ -1,0 +1,7 @@
+$ npm run typecheck
+(dossier : /work/prep_1/apres)
+
+
+> prep@0.0.0 typecheck
+> tsc --noEmit
+

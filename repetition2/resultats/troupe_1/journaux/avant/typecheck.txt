@@ -1,0 +1,8 @@
+$ tsc --noEmit
+(dossier : /work/troupe_1/avant)
+
+app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'.
+app/spectacles/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.
+app/spectacles/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.
+app/troupes/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.
+app/troupes/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.

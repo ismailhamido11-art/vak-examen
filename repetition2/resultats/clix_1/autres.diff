@@ -1,0 +1,199 @@
+diff --git a/app/layout.js b/app/layout.js
+index df8be1f..0711bfd 100644
+--- a/app/layout.js
++++ b/app/layout.js
+@@ -1,5 +1,7 @@
+ import { Inter, Sora } from "next/font/google";
++import "@vak/agent/web/styles.css";
+ import "./globals.css";
++import AssistantLauncher from "@/components/layout/AssistantLauncher";
+ 
+ const inter = Inter({
+   subsets: ["latin"],
+@@ -45,6 +47,7 @@ export default function RootLayout({ children }) {
+     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+       <body className={inter.className}>
+         {children}
++        <AssistantLauncher />
+       </body>
+     </html>
+   );
+diff --git a/app/settings/agent-settings.tsx b/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..a3739e0
+--- /dev/null
++++ b/app/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/app/settings/page.tsx b/app/settings/page.tsx
+new file mode 100644
+index 0000000..21033ce
+--- /dev/null
++++ b/app/settings/page.tsx
+@@ -0,0 +1,15 @@
++import type { Metadata } from "next";
++import { VakSettings } from "./agent-settings";
++
++export const metadata: Metadata = {
++  title: "Assistant settings",
++  robots: { index: false },
++};
++
++export default function SettingsPage() {
++  return (
++    <main style={{ maxWidth: "40rem", margin: "0 auto", padding: "2rem 1rem" }}>
++      <VakSettings />
++    </main>
++  );
++}
+diff --git a/components/layout/AssistantLauncher/AssistantLauncher.module.css b/components/layout/AssistantLauncher/AssistantLauncher.module.css
+new file mode 100644
+index 0000000..64e2dbd
+--- /dev/null
++++ b/components/layout/AssistantLauncher/AssistantLauncher.module.css
+@@ -0,0 +1,15 @@
++/* Mobile : au-dessus de la barre CTA collante et de la zone de sécurité. */
++.launcher:global(.vak-launcher) {
++  right: var(--container-padding, 1rem);
++  bottom: calc(5rem + env(safe-area-inset-bottom));
++}
++
++.launcher :global(.vak-fab) {
++  min-height: 2.75rem;
++}
++
++@media (min-width: 48rem) {
++  .launcher:global(.vak-launcher) {
++    bottom: 1.25rem;
++  }
++}
+diff --git a/components/layout/AssistantLauncher/index.jsx b/components/layout/AssistantLauncher/index.jsx
+new file mode 100644
+index 0000000..c798f93
+--- /dev/null
++++ b/components/layout/AssistantLauncher/index.jsx
+@@ -0,0 +1,20 @@
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++import styles from "./AssistantLauncher.module.css";
++
++export default function AssistantLauncher() {
++  const router = useRouter();
++
++  return (
++    <AgentButton
++      {...vak}
++      label="Ask CLIX"
++      className={styles.launcher}
++      navigate={(href) => router.push(href)}
++      theme={{ accent: "#0056F3", mode: "dark" }}
++    />
++  );
++}
+diff --git a/components/layout/Footer/Footer.module.css b/components/layout/Footer/Footer.module.css
+index b2170a6..d42f570 100644
+--- a/components/layout/Footer/Footer.module.css
++++ b/components/layout/Footer/Footer.module.css
+@@ -42,3 +42,16 @@
+     text-align: right;
+   }
+ }
++
++.links {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-1, 0.5rem) var(--space-3, 1rem);
++}
++
++.links a {
++  display: inline-flex;
++  align-items: center;
++  min-height: 2.75rem;
++  color: inherit;
++}
+diff --git a/components/layout/Footer/index.jsx b/components/layout/Footer/index.jsx
+index e5a4c9c..2342d5c 100644
+--- a/components/layout/Footer/index.jsx
++++ b/components/layout/Footer/index.jsx
+@@ -23,6 +23,10 @@ export default function Footer() {
+           <p className={styles.tagline}>{brand.tagline}</p>
+         </div>
+         <p className={styles.positioning}>{brand.positioning}</p>
++        <nav className={styles.links} aria-label="Assistant">
++          <a href="/assistant">Assistant</a>
++          <a href="/settings">Assistant settings</a>
++        </nav>
+         <p className={styles.copyright}>
+           © {new Date().getFullYear()} {brand.shortName}. All rights reserved.
+         </p>
+diff --git a/jsconfig.json b/jsconfig.json
+deleted file mode 100644
+index 2a2e4b3..0000000
+--- a/jsconfig.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-{
+-  "compilerOptions": {
+-    "paths": {
+-      "@/*": ["./*"]
+-    }
+-  }
+-}
+diff --git a/tsconfig.json b/tsconfig.json
+new file mode 100644
+index 0000000..3349a87
+--- /dev/null
++++ b/tsconfig.json
+@@ -0,0 +1,43 @@
++{
++  "compilerOptions": {
++    "paths": {
++      "@/*": [
++        "./*"
++      ]
++    },
++    "target": "ES2017",
++    "lib": [
++      "dom",
++      "dom.iterable",
++      "esnext"
++    ],
++    "allowJs": true,
++    "skipLibCheck": true,
++    "strict": false,
++    "noEmit": true,
++    "incremental": true,
++    "module": "esnext",
++    "esModuleInterop": true,
++    "moduleResolution": "bundler",
++    "resolveJsonModule": true,
++    "isolatedModules": true,
++    "jsx": "react-jsx",
++    "plugins": [
++      {
++        "name": "next"
++      }
++    ]
++  },
++  "exclude": [
++    "node_modules",
++    "supabase/functions"
++  ],
++  "include": [
++    "next-env.d.ts",
++    ".next/types/**/*.ts",
++    ".next/dev/types/**/*.ts",
++    "**/*.mts",
++    "**/*.ts",
++    "**/*.tsx"
++  ]
++}

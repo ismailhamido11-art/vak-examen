@@ -1,0 +1,400 @@
+(… 109 lignes coupées ; journal complet : /work/medication_tracker_1/apres-journaux/tests.txt)
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Re-registered reminders for 2 schedule(s)
+
+      at log (lib/notifications.ts:454:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sch-unknown
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Re-registered reminders for 1 schedule(s)
+
+      at log (lib/notifications.ts:454:13)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for LowMed (med-low)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply check complete for 2 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Low-supply check complete for 1 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Low-supply check complete for 1 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 2 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 2 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-ad-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-ad-2
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 7 reminder(s) for schedule sched-ad-3
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 1 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+PASS Node hooks/useQueryHooks.test.tsx (7.035 s)
+PASS Web hooks/useQueryHooks.test.tsx (7.342 s)
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+PASS Web lib/notifications.test.ts
+  ● Console
+
+    console.log
+      [Notifications] Category registered: snooze-actions
+
+      at log (lib/notifications.ts:71:17)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 2 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 2 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 4 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Cancelled 1 reminder(s) for schedule sched-1
+
+      at log (lib/notifications.ts:431:15)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply reminder cancelled for medication med-1 (1 scheduled, 1 presented)
+
+      at log (lib/notifications.ts:576:15)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 1 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+    console.log
+      [Notifications] Category registered: snooze-actions
+
+      at log (lib/notifications.ts:71:17)
+
+    console.log
+      [Notifications] Scheduled 6 reminder(s) for schedule sch-interval-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 6 reminder(s) for schedule sch-interval-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 6 reminder(s) for schedule sch-interval-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sch-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sch-2
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Re-registered reminders for 2 schedule(s)
+
+      at log (lib/notifications.ts:454:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sch-unknown
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Re-registered reminders for 1 schedule(s)
+
+      at log (lib/notifications.ts:454:13)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for LowMed (med-low)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply check complete for 2 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Low-supply check complete for 1 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Low-supply check complete for 1 medication(s)
+
+      at log (lib/notifications.ts:608:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 2 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 2 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-ad-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-ad-2
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 7 reminder(s) for schedule sched-ad-3
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Low-supply reminder scheduled for Aspirin (med-1)
+
+      at log (lib/notifications.ts:526:11)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Scheduled 1 reminder(s) for schedule sched-time-1
+
+      at log (lib/notifications.ts:396:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Fired 1 missed-dose catch-up notification(s)
+
+      at log (lib/notifications.ts:693:13)
+
+    console.log
+      [Notifications] Deduplicated: removed 1 ghost notification(s)
+
+      at log (lib/notifications.ts:751:13)
+
+PASS Node hooks/useSnooze.test.ts
+PASS Node lib/drugApi.test.ts
+PASS Web lib/drugApi.test.ts
+PASS Web hooks/useSnooze.test.ts
+PASS Node utils/adherence.test.ts
+PASS Web utils/adherence.test.ts
+PASS Node utils/notificationHelpers.test.ts
+PASS Node contexts/AuthContext.test.tsx
+PASS Web utils/notificationHelpers.test.ts
+PASS Web utils/report.test.ts
+PASS Node utils/report.test.ts
+PASS Node utils/dose.test.ts
+PASS Web utils/dose.test.ts
+PASS Node utils/calendar.test.ts
+PASS Web utils/calendar.test.ts
+PASS Web contexts/AuthContext.test.tsx
+PASS Web hooks/useCalendar.test.ts
+PASS Node hooks/useCalendar.test.ts
+PASS Node lib/queryKeys.test.ts
+PASS Web lib/queryKeys.test.ts
+PASS Node stores/draftStores.test.ts
+PASS Node contexts/ThemeContext.test.tsx
+PASS Web stores/draftStores.test.ts
+PASS Node stores/adPreferencesStore.test.ts
+PASS Web stores/adPreferencesStore.test.ts
+PASS Node hooks/useNetworkStatus.test.ts
+PASS Node utils/date.test.ts
+PASS Web utils/date.test.ts
+PASS Web hooks/useNetworkStatus.test.ts
+PASS Web utils/symptom.test.ts
+PASS Node utils/symptom.test.ts
+PASS Web contexts/ThemeContext.test.tsx
+PASS Node hooks/useResponsive.test.ts
+PASS Node utils/snooze.test.ts
+PASS Web hooks/useResponsive.test.ts
+PASS Web utils/snooze.test.ts
+PASS Node utils/string.test.ts
+PASS Web utils/string.test.ts
+
+Test Suites: 42 passed, 42 total
+Tests:       936 passed, 936 total
+Snapshots:   0 total
+Time:        13.446 s
+Ran all test suites in 2 projects.

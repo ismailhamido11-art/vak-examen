@@ -1,0 +1,4 @@
+$ bun run typecheck
+(dossier : /work/medication_tracker_2/apres)
+
+$ tsc --noEmit

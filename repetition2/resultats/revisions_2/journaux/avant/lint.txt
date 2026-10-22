@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/revisions_2/avant)
+
+
+> cartes-de-revision@1.0.0 lint
+> expo lint
+

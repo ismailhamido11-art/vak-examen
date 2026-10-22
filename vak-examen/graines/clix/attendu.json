@@ -1,0 +1,19 @@
+[
+  {
+    "table": "public.admin_profiles",
+    "colonne": "user_id",
+    "nom": "admin profiles",
+    "langue": "en",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-46FD8101",
+      "MARQUEUR-B-6B69F033",
+      "MARQUEUR-B-8270EE0B",
+      "MARQUEUR-B-828C0EC6",
+      "MARQUEUR-B-8B5D2002",
+      "MARQUEUR-B-8C5A031D",
+      "MARQUEUR-B-99E3B27F",
+      "MARQUEUR-B-E9FD8140"
+    ]
+  }
+]

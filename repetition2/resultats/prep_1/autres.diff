@@ -1,0 +1,1195 @@
+diff --git a/app/assistant/layout.tsx b/app/assistant/layout.tsx
+new file mode 100644
+index 0000000..7a11ff9
+--- /dev/null
++++ b/app/assistant/layout.tsx
+@@ -0,0 +1,12 @@
++"use client";
++
++import { RequireAuth } from "@/features/auth/components/RequireAuth";
++import DashboardLayout from "@/features/dashboard/components/DashboardLayout";
++
++export default function Layout({ children }: { children: React.ReactNode }) {
++	return (
++		<RequireAuth>
++			<DashboardLayout>{children}</DashboardLayout>
++		</RequireAuth>
++	);
++}
+diff --git a/app/layout.tsx b/app/layout.tsx
+index c29d06a..c58ad8d 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -3,9 +3,11 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+ import { ThemeProvider } from "@/lib/theme";
+ import { AuthProvider } from "@/features/auth/context/AuthContext";
+ import { Toaster } from "react-hot-toast";
++import VakButton from "@/shared/components/VakButton";
+ import ErrorBoundary from "@/shared/components/ErrorBoundary";
+ import ReactQueryProvider from "@/shared/providers/ReactQueryProvider";
+ import "./globals.css";
++import "@vak/agent/web/styles.css";
+ 
+ const inter = Inter({
+   subsets: ["latin"],
+@@ -79,6 +81,7 @@ export default function RootLayout({
+           <ReactQueryProvider>
+             <AuthProvider>
+               <ErrorBoundary>{children}</ErrorBoundary>
++              <VakButton />
+               <Toaster position="top-right" reverseOrder={false} />
+             </AuthProvider>
+           </ReactQueryProvider>
+diff --git a/app/settings/agent-settings.tsx b/app/settings/agent-settings.tsx
+new file mode 100644
+index 0000000..b09f829
+--- /dev/null
++++ b/app/settings/agent-settings.tsx
+@@ -0,0 +1,7 @@
++"use client";
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++	return <AgentSettings {...vak} />;
++}
+diff --git a/app/settings/layout.tsx b/app/settings/layout.tsx
+new file mode 100644
+index 0000000..7a11ff9
+--- /dev/null
++++ b/app/settings/layout.tsx
+@@ -0,0 +1,12 @@
++"use client";
++
++import { RequireAuth } from "@/features/auth/components/RequireAuth";
++import DashboardLayout from "@/features/dashboard/components/DashboardLayout";
++
++export default function Layout({ children }: { children: React.ReactNode }) {
++	return (
++		<RequireAuth>
++			<DashboardLayout>{children}</DashboardLayout>
++		</RequireAuth>
++	);
++}
+diff --git a/app/settings/page.tsx b/app/settings/page.tsx
+new file mode 100644
+index 0000000..1fd7419
+--- /dev/null
++++ b/app/settings/page.tsx
+@@ -0,0 +1,5 @@
++import { VakSettings } from "./agent-settings";
++
++export default function SettingsPage() {
++	return <VakSettings />;
++}
+diff --git a/src/features/dashboard/constants/navItems.ts b/src/features/dashboard/constants/navItems.ts
+index 14dc4cc..2fbd568 100644
+--- a/src/features/dashboard/constants/navItems.ts
++++ b/src/features/dashboard/constants/navItems.ts
+@@ -3,6 +3,8 @@ import {
+ 	DashboardSquare01Icon,
+ 	PlusSignIcon,
+ 	TaskEdit01Icon,
++	AiChat02Icon,
++	Settings02Icon,
+ } from "@hugeicons/core-free-icons";
+ 
+ export interface NavItem {
+@@ -15,4 +17,6 @@ export const NAV_ITEMS: NavItem[] = [
+ 	{ label: "Dashboard", path: "/dashboard", icon: DashboardSquare01Icon },
+ 	{ label: "Create Quiz", path: "/dashboard/create", icon: PlusSignIcon },
+ 	{ label: "My Quizzes", path: "/dashboard/my-quizzes", icon: TaskEdit01Icon },
++	{ label: "Assistant", path: "/assistant", icon: AiChat02Icon },
++	{ label: "Settings", path: "/settings", icon: Settings02Icon },
+ ];
+diff --git a/src/lib/vak-theme.ts b/src/lib/vak-theme.ts
+new file mode 100644
+index 0000000..f8b6a7e
+--- /dev/null
++++ b/src/lib/vak-theme.ts
+@@ -0,0 +1,8 @@
++"use client";
++import { useTheme } from "@/lib/theme";
++
++// Couleur principale de l'app (--color-accent) et mode clair/sombre suivi par ThemeProvider.
++export function useVakTheme() {
++	const { resolvedTheme } = useTheme();
++	return { accent: "#5B8CFF", mode: resolvedTheme === "light" ? ("light" as const) : ("dark" as const) };
++}
+diff --git a/src/shared/components/VakButton.tsx b/src/shared/components/VakButton.tsx
+new file mode 100644
+index 0000000..a366784
+--- /dev/null
++++ b/src/shared/components/VakButton.tsx
+@@ -0,0 +1,19 @@
++"use client";
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++import { useVakTheme } from "@/lib/vak-theme";
++
++export default function VakButton() {
++	const router = useRouter();
++	const theme = useVakTheme();
++	return (
++		<AgentButton
++			{...vak}
++			label="Assistant"
++			theme={theme}
++			navigate={(href) => router.push(href)}
++			onUnauthorized={() => router.push("/auth")}
++		/>
++	);
++}
+diff --git a/supabase/test-migrations/20260722100406_create_quizzes_and_questions.sql b/supabase/test-migrations/20260722100406_create_quizzes_and_questions.sql
+new file mode 100644
+index 0000000..af575a5
+--- /dev/null
++++ b/supabase/test-migrations/20260722100406_create_quizzes_and_questions.sql
+@@ -0,0 +1,45 @@
++create table public.quizzes (
++  id          uuid primary key default gen_random_uuid(),
++  title       text not null,
++  description text,
++  created_by  uuid references auth.users(id) on delete cascade,
++  created_at  timestamptz default now()
++);
++
++alter table public.quizzes enable row level security;
++
++create policy "Users can manage own quizzes"
++  on public.quizzes for all
++  using (auth.uid() = created_by);
++
++create policy "Anyone can read quizzes"
++  on public.quizzes for select
++  using (true);
++
++create table public.questions (
++  id             uuid primary key default gen_random_uuid(),
++  quiz_id        uuid references public.quizzes(id) on delete cascade,
++  "Question"     text not null,
++  "Option_A"     text not null,
++  "Option_B"     text not null,
++  "Option_C"     text not null,
++  "Option_D"     text not null,
++  "Correct_Answer" text check ("Correct_Answer" in ('A','B','C','D')) not null,
++  "Points"       integer default 1,
++  created_at     timestamptz default now()
++);
++
++alter table public.questions enable row level security;
++
++create policy "Anyone can read questions"
++  on public.questions for select
++  using (true);
++
++create policy "Quiz owner can insert questions"
++  on public.questions for insert
++  with check (
++    exists (
++      select 1 from public.quizzes
++      where id = quiz_id and created_by = auth.uid()
++    )
++  );
+diff --git a/supabase/test-migrations/20260726041331_add_time_limit_to_quizzes.sql b/supabase/test-migrations/20260726041331_add_time_limit_to_quizzes.sql
+new file mode 100644
+index 0000000..d526d4a
+--- /dev/null
++++ b/supabase/test-migrations/20260726041331_add_time_limit_to_quizzes.sql
+@@ -0,0 +1 @@
++alter table quizzes add column time_limit integer check (time_limit is null or time_limit between 1 and 180);
+\ No newline at end of file
+diff --git a/supabase/test-migrations/20260726050000_add_quiz_bank_tables.sql b/supabase/test-migrations/20260726050000_add_quiz_bank_tables.sql
+new file mode 100644
+index 0000000..276c369
+--- /dev/null
++++ b/supabase/test-migrations/20260726050000_add_quiz_bank_tables.sql
+@@ -0,0 +1,67 @@
++alter table quizzes add column visibility text not null default 'private'
++  check (visibility in ('private', 'public', 'unlisted'));
++alter table quizzes add column category text
++  check (category in ('General Knowledge', 'Science', 'History', 'Mathematics', 'Language & Literature', 'Technology', 'Arts & Culture', 'Geography', 'Health & Medicine', 'Business & Economics'));
++alter table quizzes add column difficulty text
++  check (difficulty in ('Beginner', 'Intermediate', 'Advanced'));
++alter table quizzes add column times_taken integer not null default 0;
++alter table quizzes add column average_rating numeric;
++
++create table quiz_ratings (
++  id uuid primary key default gen_random_uuid(),
++  quiz_id uuid references quizzes(id) on delete cascade not null,
++  user_id uuid references auth.users(id) on delete cascade not null,
++  rating integer not null check (rating between 1 and 5),
++  created_at timestamptz default now(),
++  unique (quiz_id, user_id)
++);
++
++alter table quiz_ratings enable row level security;
++create policy "Users can read own ratings" on quiz_ratings for select using (auth.uid() = user_id);
++create policy "Auth users can rate public quizzes" on quiz_ratings for insert
++  with check (
++    auth.uid() = user_id AND
++    exists (select 1 from quizzes where id = quiz_id and visibility = 'public')
++  );
++create policy "Auth users can update own rating on public quizzes" on quiz_ratings for update
++  using (
++    auth.uid() = user_id AND
++    exists (select 1 from quizzes where id = quiz_id and visibility = 'public')
++  );
++
++create or replace function update_quiz_average_rating()
++returns trigger as $$
++begin
++  if TG_OP = 'INSERT' then
++    update quizzes
++    set average_rating = (
++      select avg(rating)::numeric from quiz_ratings where quiz_id = NEW.quiz_id
++    )
++    where id = NEW.quiz_id;
++  elsif TG_OP = 'UPDATE' then
++    update quizzes
++    set average_rating = (
++      select avg(rating)::numeric from quiz_ratings where quiz_id = NEW.quiz_id
++    )
++    where id = NEW.quiz_id;
++    if NEW.quiz_id <> OLD.quiz_id then
++      update quizzes
++      set average_rating = (
++        select avg(rating)::numeric from quiz_ratings where quiz_id = OLD.quiz_id
++      )
++      where id = OLD.quiz_id;
++    end if;
++  elsif TG_OP = 'DELETE' then
++    update quizzes
++    set average_rating = (
++      select avg(rating)::numeric from quiz_ratings where quiz_id = OLD.quiz_id
++    )
++    where id = OLD.quiz_id;
++  end if;
++  return null;
++end;
++$$ language plpgsql;
++
++create trigger on_quiz_rating_change
++after insert or update or delete on quiz_ratings
++for each row execute function update_quiz_average_rating();
+diff --git a/supabase/test-migrations/20260728000000_add_code_to_quizzes.sql b/supabase/test-migrations/20260728000000_add_code_to_quizzes.sql
+new file mode 100644
+index 0000000..9c49a2b
+--- /dev/null
++++ b/supabase/test-migrations/20260728000000_add_code_to_quizzes.sql
+@@ -0,0 +1,2 @@
++alter table public.quizzes
++  add column code text;
+diff --git a/supabase/test-migrations/20260728000001_create_quizzes_code_index.sql b/supabase/test-migrations/20260728000001_create_quizzes_code_index.sql
+new file mode 100644
+index 0000000..abc47d0
+--- /dev/null
++++ b/supabase/test-migrations/20260728000001_create_quizzes_code_index.sql
+@@ -0,0 +1,6 @@
++-- Run with: supabase migration up --no-transaction
++-- CREATE INDEX CONCURRENTLY cannot run inside a transaction block.
++
++create unique index if not exists idx_quizzes_code
++  on public.quizzes (code)
++  where code is not null;
+diff --git a/supabase/test-migrations/20260728100000_create_quiz_attempts.sql b/supabase/test-migrations/20260728100000_create_quiz_attempts.sql
+new file mode 100644
+index 0000000..cb3d3b9
+--- /dev/null
++++ b/supabase/test-migrations/20260728100000_create_quiz_attempts.sql
+@@ -0,0 +1,27 @@
++create table public.quiz_attempts (
++  id uuid primary key default gen_random_uuid(),
++  quiz_id uuid references public.quizzes(id) on delete cascade not null,
++  score integer not null check (score >= 0),
++  total_points integer not null check (total_points >= 0),
++  elapsed_seconds integer check (elapsed_seconds >= 0),
++  answers jsonb not null check (jsonb_typeof(answers) = 'object'),
++  completed_at timestamptz not null default now(),
++  constraint score_not_exceed_total check (score <= total_points)
++);
++
++create index idx_quiz_attempts_quiz_id on public.quiz_attempts(quiz_id);
++
++alter table public.quiz_attempts enable row level security;
++
++create policy "Authenticated users can insert attempts"
++  on public.quiz_attempts for insert
++  with check (auth.role() = 'authenticated');
++
++create policy "Quiz owner can read attempts"
++  on public.quiz_attempts for select
++  using (
++    exists (
++      select 1 from public.quizzes
++      where id = quiz_id and created_by = auth.uid()
++    )
++  );
+diff --git a/supabase/test-migrations/20260728120000_add_attempt_counts_rpc.sql b/supabase/test-migrations/20260728120000_add_attempt_counts_rpc.sql
+new file mode 100644
+index 0000000..7a8135c
+--- /dev/null
++++ b/supabase/test-migrations/20260728120000_add_attempt_counts_rpc.sql
+@@ -0,0 +1,12 @@
++drop function if exists public.get_quiz_attempt_counts;
++
++create or replace function public.get_quiz_attempt_counts(quiz_ids uuid[])
++returns table (quiz_id uuid, count bigint)
++language sql
++stable
++as $$
++  select quiz_id, count(*)::bigint
++  from public.quiz_attempts
++  where quiz_id = any(quiz_ids)
++  group by quiz_id;
++$$;
+diff --git a/supabase/test-migrations/20260729000000_add_quiz_lifecycle.sql b/supabase/test-migrations/20260729000000_add_quiz_lifecycle.sql
+new file mode 100644
+index 0000000..4dc6e86
+--- /dev/null
++++ b/supabase/test-migrations/20260729000000_add_quiz_lifecycle.sql
+@@ -0,0 +1,56 @@
++-- Add the draft/published lifecycle to quizzes.
++-- Using NOT VALID to skip expensive scan on existing rows; validate below.
++alter table public.quizzes
++  add column status text not null default 'draft';
++
++alter table public.quizzes
++  add constraint quizzes_status_check
++  check (status in ('draft', 'published')) not valid;
++
++-- Existing quizzes with an active code are already live.
++update public.quizzes
++set status = 'published'
++where code is not null;
++
++-- Visibility is now limited to private and public.
++update public.quizzes
++set visibility = 'private'
++where visibility = 'unlisted';
++
++alter table public.quizzes
++  drop constraint if exists quizzes_visibility_check;
++
++alter table public.quizzes
++  add constraint quizzes_visibility_check
++  check (visibility in ('private', 'public')) not valid;
++
++-- Validate both newly-added constraints against existing rows.
++alter table public.quizzes validate constraint quizzes_status_check;
++alter table public.quizzes validate constraint quizzes_visibility_check;
++
++-- Draft quizzes must not have an active code.
++update public.quizzes
++set code = null
++where status = 'draft';
++
++drop policy if exists "Anyone can read quizzes" on public.quizzes;
++
++create policy "Anyone can read published quizzes"
++  on public.quizzes for select
++  using (
++    status = 'published'
++    or auth.uid() = created_by
++  );
++
++-- Questions inherit the quiz's visibility: only published quizzes' questions are publicly readable.
++drop policy if exists "Anyone can read questions" on public.questions;
++
++create policy "Anyone can read published questions"
++  on public.questions for select
++  using (
++    exists (
++      select 1 from public.quizzes
++      where id = quiz_id
++        and (status = 'published' or created_by = auth.uid())
++    )
++  );
+diff --git a/supabase/test-migrations/20261022170010_vak_0001_core.sql b/supabase/test-migrations/20261022170010_vak_0001_core.sql
+new file mode 100644
+index 0000000..ad94530
+--- /dev/null
++++ b/supabase/test-migrations/20261022170010_vak_0001_core.sql
+@@ -0,0 +1,359 @@
++-- vak 0001 — tables techniques du module @vak/agent. Copiée par la commande init de sa CLI ; NE JAMAIS MODIFIER (empreinte vérifiée).
++--
++-- Règles : tout dans public, préfixe vak_ ; user_id = auth.uid() par défaut, jamais fourni par le serveur ; RLS
++-- « (select auth.uid()) = user_id », une politique par commande ; fonctions security invoker, search_path vide ;
++-- revoke puis grant explicites ; aucune extension, aucun déclencheur, aucune FK ni aucun droit sur un objet de l'hôte.
++do $$ begin
++  if to_regclass('public.vak_chats') is not null then
++    raise exception 'vak : module déjà installé (public.vak_chats existe). Ne réappliquez pas cette migration : lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.';
++  end if;
++end $$;
++
++create table public.vak_chats (
++  id text primary key check (id ~ '^[A-Za-z0-9_-]{1,128}$'),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null check (agent_id ~ '^[a-z][a-z0-9-]{1,40}$'),
++  title text check (char_length(title) <= 120),
++  created_at timestamptz not null default now(),
++  updated_at timestamptz not null default now(),
++  unique (id, user_id, agent_id)
++);
++create index vak_chats_user_idx on public.vak_chats (user_id, agent_id, updated_at desc);
++
++create table public.vak_messages (
++  chat_id text not null,
++  id text not null,
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  role text not null check (role in ('user', 'assistant')),
++  parts jsonb not null,
++  metadata jsonb,
++  position integer not null,
++  created_at timestamptz not null default now(),
++  primary key (chat_id, id),
++  foreign key (chat_id, user_id, agent_id) references public.vak_chats (id, user_id, agent_id) on delete cascade
++);
++create index vak_messages_chat_idx on public.vak_messages (chat_id, position);
++
++create table public.vak_memories (
++  id uuid primary key default gen_random_uuid(),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  content text not null check (char_length(content) between 1 and 1000),
++  kind text not null default 'fact' check (kind in ('fact', 'preference', 'event')),
++  source text not null default 'chat' check (source in ('chat', 'manual')),
++  fts tsvector generated always as (to_tsvector('simple', content)) stored,
++  created_at timestamptz not null default now()
++);
++create index vak_memories_user_idx on public.vak_memories (user_id, agent_id, created_at desc);
++create index vak_memories_fts_idx on public.vak_memories using gin (fts);
++
++create table public.vak_reminders (
++  id uuid primary key default gen_random_uuid(),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  title text not null check (char_length(title) between 1 and 80),
++  body text not null default '' check (char_length(body) <= 300),
++  due_at timestamptz not null,
++  dedupe_key text not null,
++  status text not null default 'pending' check (status in ('pending', 'sent', 'dismissed')),
++  open_prompt text check (char_length(open_prompt) <= 300),
++  created_at timestamptz not null default now(),
++  unique (user_id, agent_id, dedupe_key)
++);
++create index vak_reminders_due_idx on public.vak_reminders (user_id, agent_id, status, due_at);
++
++create table public.vak_usage (
++  id uuid primary key default gen_random_uuid(),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  -- message : message de l'utilisateur compté par le quota (vak_reserve_turn) ; chat, resume : tokens d'un tour.
++  kind text not null check (kind in ('message', 'chat', 'resume', 'extract', 'eval')),
++  model text not null,
++  input_tokens integer not null default 0 check (input_tokens >= 0),
++  output_tokens integer not null default 0 check (output_tokens >= 0),
++  cached_input_tokens integer not null default 0 check (cached_input_tokens >= 0),
++  chat_id text,
++  created_at timestamptz not null default now()
++);
++create index vak_usage_user_idx on public.vak_usage (user_id, agent_id, created_at);
++
++create table public.vak_actions (
++  id uuid primary key default gen_random_uuid(),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  chat_id text not null,
++  approval_id text,
++  tool text not null,
++  input jsonb,
++  status text not null check (status in ('claimed', 'executed', 'failed', 'denied')),
++  result jsonb,
++  created_at timestamptz not null default now(),
++  updated_at timestamptz not null default now(),
++  unique (user_id, approval_id)
++);
++create index vak_actions_user_idx on public.vak_actions (user_id, agent_id, created_at desc);
++
++create table public.vak_consents (
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null,
++  kind text not null default 'third_party_ai' check (kind = 'third_party_ai'),
++  providers text[] not null default '{}',
++  granted_at timestamptz,
++  revoked_at timestamptz,
++  primary key (user_id, agent_id, kind)
++);
++
++create function public.vak_touch_updated_at() returns trigger
++language plpgsql security invoker set search_path = '' as $$
++begin new.updated_at := now(); return new; end $$;
++create trigger vak_chats_touch before update on public.vak_chats for each row execute function public.vak_touch_updated_at();
++create trigger vak_actions_touch before update on public.vak_actions for each row execute function public.vak_touch_updated_at();
++
++-- RLS : une politique par commande, « (select auth.uid()) = user_id »
++alter table public.vak_chats enable row level security;
++alter table public.vak_messages enable row level security;
++alter table public.vak_memories enable row level security;
++alter table public.vak_reminders enable row level security;
++alter table public.vak_usage enable row level security;
++alter table public.vak_actions enable row level security;
++alter table public.vak_consents enable row level security;
++
++create policy vak_chats_select on public.vak_chats for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_chats_insert on public.vak_chats for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_chats_update on public.vak_chats for update to authenticated
++  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
++create policy vak_chats_delete on public.vak_chats for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++-- vak_messages : UPDATE sert à vak_save_messages (réécrit seulement les messages modifiés).
++create policy vak_messages_select on public.vak_messages for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_messages_insert on public.vak_messages for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_messages_update on public.vak_messages for update to authenticated
++  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
++create policy vak_messages_delete on public.vak_messages for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++create policy vak_memories_select on public.vak_memories for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_memories_insert on public.vak_memories for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_memories_delete on public.vak_memories for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++create policy vak_reminders_select on public.vak_reminders for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_reminders_insert on public.vak_reminders for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_reminders_update on public.vak_reminders for update to authenticated
++  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
++create policy vak_reminders_delete on public.vak_reminders for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++-- vak_usage : ajout seul (sinon un utilisateur remettrait son quota à zéro).
++create policy vak_usage_select on public.vak_usage for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_usage_insert on public.vak_usage for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++
++-- vak_actions : journal ; une action réclamée passe une seule fois à executed ou failed, jamais d'autre modification.
++create policy vak_actions_select on public.vak_actions for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_actions_insert on public.vak_actions for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_actions_update on public.vak_actions for update to authenticated
++  using ((select auth.uid()) = user_id and status = 'claimed')
++  with check ((select auth.uid()) = user_id and status in ('executed', 'failed'));
++
++create policy vak_consents_select on public.vak_consents for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_consents_insert on public.vak_consents for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_consents_update on public.vak_consents for update to authenticated
++  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
++create policy vak_consents_delete on public.vak_consents for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++-- Privilèges : rien pour anon ; le strict nécessaire pour authenticated ; tout pour service_role (exploitation uniquement)
++revoke all on public.vak_chats, public.vak_messages, public.vak_memories, public.vak_reminders,
++  public.vak_usage, public.vak_actions, public.vak_consents from public, anon, authenticated;
++grant select, insert, delete on public.vak_chats to authenticated;
++grant update (title) on public.vak_chats to authenticated;
++grant select, insert, update, delete on public.vak_messages to authenticated;
++grant select, insert, delete on public.vak_memories to authenticated;
++grant select, insert, delete on public.vak_reminders to authenticated;
++grant update (status) on public.vak_reminders to authenticated;
++grant select, insert on public.vak_usage to authenticated;
++grant select, insert on public.vak_actions to authenticated;
++grant update (status, result) on public.vak_actions to authenticated;
++grant select, insert, delete on public.vak_consents to authenticated;
++grant update (providers, granted_at, revoked_at) on public.vak_consents to authenticated;
++grant all on public.vak_chats, public.vak_messages, public.vak_memories, public.vak_reminders,
++  public.vak_usage, public.vak_actions, public.vak_consents to service_role;
++
++-- Fonctions (security invoker, search_path vide)
++create function public.vak_schema_version() returns integer language sql immutable security invoker set search_path = '' as $$ select 1 $$;
++
++-- Remplace l'historique d'une conversation en une transaction : crée la conversation (titre au premier
++-- enregistrement seulement ; ensuite, le déclencheur met updated_at à jour), refus 42501 si elle appartient à un autre
++-- utilisateur ou agent, réécrit seulement les messages nouveaux ou modifiés, supprime les messages retirés.
++create function public.vak_save_messages(p_agent_id text, p_chat_id text, p_messages jsonb, p_title text default null)
++returns void
++language plpgsql security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_save_messages : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  if jsonb_typeof(p_messages) is distinct from 'array' then
++    raise exception 'vak_save_messages : un tableau de messages est attendu' using errcode = '22023';
++  end if;
++
++  insert into public.vak_chats as c (id, agent_id, title)
++  values (p_chat_id, p_agent_id, left(p_title, 120))
++  on conflict (id) do update set title = c.title
++    where c.user_id = v_user_id and c.agent_id = p_agent_id;
++  -- Refus explicite (sinon des messages identiques à ceux d'un autre passeraient en silence, sans rien écrire).
++  if not exists (
++    select 1 from public.vak_chats c where c.id = p_chat_id and c.user_id = v_user_id and c.agent_id = p_agent_id
++  ) then
++    raise exception 'vak_save_messages : conversation inaccessible' using errcode = '42501';
++  end if;
++
++  insert into public.vak_messages as m (chat_id, id, agent_id, role, parts, metadata, position)
++  select p_chat_id, e.value ->> 'id', p_agent_id, e.value ->> 'role',
++         coalesce(e.value -> 'parts', '[]'::jsonb), nullif(e.value -> 'metadata', 'null'::jsonb),
++         (e.ordinality - 1)::integer
++    from jsonb_array_elements(p_messages) with ordinality as e(value, ordinality)
++  on conflict (chat_id, id) do update
++    set role = excluded.role, parts = excluded.parts, metadata = excluded.metadata, position = excluded.position
++    where (m.role, m.parts, m.metadata, m.position)
++          is distinct from (excluded.role, excluded.parts, excluded.metadata, excluded.position);
++
++  delete from public.vak_messages m
++   where m.chat_id = p_chat_id
++     and m.user_id = v_user_id
++     and not exists (select 1 from jsonb_array_elements(p_messages) e where e.value ->> 'id' = m.id);
++end $$;
++
++-- Recherche plein texte dans les souvenirs de l'appelant : un mot suffit (OU), préfixes acceptés, mots de moins de
++-- 3 lettres ignorés. similarity = score normalisé 0..1.
++create function public.vak_search_memories(p_agent_id text, p_query text, p_count integer default 8)
++returns table (id uuid, agent_id text, content text, kind text, source text, created_at timestamptz, similarity double precision)
++language sql stable security invoker set search_path = '' as $$
++  with q as (
++    select to_tsquery('simple', string_agg(quote_literal(t.lexeme) || ':*', ' | ')) as query
++    from unnest(to_tsvector('simple', coalesce(p_query, ''))) as t
++    where char_length(t.lexeme) >= 3
++  )
++  select m.id, m.agent_id, m.content, m.kind, m.source, m.created_at,
++         ts_rank(m.fts, q.query, 32)::double precision as similarity
++  from public.vak_memories m, q
++  where m.user_id = (select auth.uid())
++    and m.agent_id = p_agent_id
++    and m.fts @@ q.query
++  order by similarity desc, m.created_at desc
++  limit least(greatest(coalesce(p_count, 8), 0), 100);
++$$;
++
++-- Crée un rappel une seule fois par (utilisateur, agent, dedupe_key). Un rappel existant n'est jamais modifié ni
++-- ressuscité (envoyé ou écarté). Renvoie { reminder, created }.
++create function public.vak_upsert_reminder(
++  p_agent_id text, p_title text, p_body text, p_due_at timestamptz, p_dedupe_key text, p_open_prompt text default null
++)
++returns jsonb
++language plpgsql security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++  v_reminder public.vak_reminders;
++begin
++  if v_user_id is null then
++    raise exception 'vak_upsert_reminder : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  insert into public.vak_reminders (agent_id, title, body, due_at, dedupe_key, open_prompt)
++  values (p_agent_id, p_title, coalesce(p_body, ''), p_due_at, p_dedupe_key, p_open_prompt)
++  on conflict (user_id, agent_id, dedupe_key) do nothing
++  returning * into v_reminder;
++  if found then
++    return jsonb_build_object('reminder', to_jsonb(v_reminder), 'created', true);
++  end if;
++  select r.* into v_reminder
++    from public.vak_reminders r
++   where r.user_id = v_user_id and r.agent_id = p_agent_id and r.dedupe_key = p_dedupe_key;
++  return jsonb_build_object('reminder', to_jsonb(v_reminder), 'created', false);
++end $$;
++
++-- Verrou d'idempotence : une validation (approvalId) est réclamée au plus une fois par utilisateur.
++create function public.vak_claim_action(p_agent_id text, p_chat_id text, p_approval_id text, p_tool text, p_input jsonb)
++returns table (claimed boolean, status text)
++language plpgsql security invoker set search_path = '' as $$
++begin
++  insert into public.vak_actions (agent_id, chat_id, approval_id, tool, input, status)
++  values (p_agent_id, p_chat_id, p_approval_id, p_tool, p_input, 'claimed')
++  on conflict (user_id, approval_id) do nothing;
++  if found then return query select true, 'claimed'::text; return; end if;
++  return query select false, a.status from public.vak_actions a where a.user_id = auth.uid() and a.approval_id = p_approval_id;
++end $$;
++
++-- Réservation d'un tour (prise « quota ») AVANT l'appel au modèle : sous un verrou par (utilisateur, agent), compte les
++-- messages et les tokens depuis p_since, refuse au-delà des limites, sinon enregistre le message (kind 'message') dans la
++-- même transaction. Des requêtes concurrentes ne dépassent donc jamais la limite de messages.
++create function public.vak_reserve_turn(
++  p_agent_id text, p_chat_id text, p_since timestamptz, p_count_message boolean,
++  p_max_messages integer default null, p_max_tokens bigint default null
++)
++returns table (allowed boolean, messages integer, tokens bigint)
++language plpgsql security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++  v_messages integer;
++  v_tokens bigint;
++begin
++  if v_user_id is null then
++    raise exception 'vak_reserve_turn : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  perform pg_advisory_xact_lock(hashtextextended('vak_reserve_turn:' || v_user_id::text || ':' || p_agent_id, 0));
++  select count(*) filter (where u.kind = 'message')::integer, coalesce(sum(u.input_tokens + u.output_tokens), 0)::bigint
++    into v_messages, v_tokens
++    from public.vak_usage u
++   where u.user_id = v_user_id and u.agent_id = p_agent_id and u.created_at >= p_since;
++  if (p_count_message and p_max_messages is not null and v_messages >= p_max_messages)
++     or (p_max_tokens is not null and v_tokens >= p_max_tokens) then
++    return query select false, v_messages, v_tokens;
++    return;
++  end if;
++  if p_count_message then
++    insert into public.vak_usage (agent_id, kind, model, chat_id) values (p_agent_id, 'message', '', p_chat_id);
++  end if;
++  return query select true, v_messages, v_tokens;
++end $$;
++
++-- Diagnostic pour `vak doctor --db` (sonde « utilisateur inconnu ») : appelable seulement par postgres.
++create function public.vak_probe_visibility(p_tables text[]) returns jsonb
++language plpgsql volatile security invoker set search_path = '' as $$
++declare t text; n bigint; res jsonb := '{}';
++begin
++  perform set_config('request.jwt.claims', json_build_object('sub', gen_random_uuid()::text, 'role', 'authenticated')::text, true);
++  perform set_config('role', 'authenticated', true);
++  foreach t in array p_tables loop
++    execute format('select count(*) from public.%I', t) into n;
++    res := res || jsonb_build_object(t, n);
++  end loop;
++  perform set_config('role', 'none', true);
++  return res;
++end $$;
++
++revoke all on function public.vak_schema_version(), public.vak_save_messages(text, text, jsonb, text),
++  public.vak_search_memories(text, text, integer), public.vak_upsert_reminder(text, text, text, timestamptz, text, text),
++  public.vak_claim_action(text, text, text, text, jsonb), public.vak_reserve_turn(text, text, timestamptz, boolean, integer, bigint),
++  public.vak_probe_visibility(text[]), public.vak_touch_updated_at()
++  from public, anon, authenticated, service_role;
++grant execute on function public.vak_schema_version(), public.vak_save_messages(text, text, jsonb, text),
++  public.vak_search_memories(text, text, integer), public.vak_upsert_reminder(text, text, text, timestamptz, text, text),
++  public.vak_claim_action(text, text, text, text, jsonb), public.vak_reserve_turn(text, text, timestamptz, boolean, integer, bigint)
++  to authenticated;
+diff --git a/supabase/test-migrations/20261022170011_vak_0002_feedback.sql b/supabase/test-migrations/20261022170011_vak_0002_feedback.sql
+new file mode 100644
+index 0000000..04a3271
+--- /dev/null
++++ b/supabase/test-migrations/20261022170011_vak_0002_feedback.sql
+@@ -0,0 +1,53 @@
++-- vak 0002 — avis et signalements des réponses (vak_feedback), usage des tâches (vak_usage.kind 'task'). Copiée par la
++-- commande init de sa CLI ; NE JAMAIS MODIFIER (empreinte vérifiée). Mêmes règles que vak 0001 : public, préfixe vak_,
++-- user_id = auth.uid() par défaut, RLS « (select auth.uid()) = user_id », revoke puis grant explicites.
++do $$ begin
++  if to_regclass('public.vak_chats') is null then
++    raise exception 'vak : migration vak_0001 absente. Appliquez les migrations dans l''ordre, puis lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.';
++  end if;
++  if to_regclass('public.vak_feedback') is not null then
++    raise exception 'vak : migration vak_0002 déjà appliquée (public.vak_feedback existe). Ne la réappliquez pas : lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.';
++  end if;
++end $$;
++
++-- Un avis (up, down) ou un signalement (report) par message de l'assistant et par nature ; ajout seul (un doublon est
++-- ignoré par le serveur). Par la route du serveur, question et answer sont relues dans l'historique scellé ; un
++-- utilisateur peut toutefois écrire ses propres lignes avec son jeton : le contenu est déclaratif (vak insights borne
++-- chaque utilisateur). id, user_id et created_at sont toujours fixés par la base (INSERT par colonne).
++create table public.vak_feedback (
++  id uuid primary key default gen_random_uuid(),
++  user_id uuid not null default auth.uid() references auth.users (id) on delete cascade,
++  agent_id text not null check (agent_id ~ '^[a-z][a-z0-9-]{1,40}$'),
++  chat_id text not null check (chat_id ~ '^[A-Za-z0-9_-]{1,128}$'),
++  message_id text not null check (char_length(message_id) between 1 and 128),
++  kind text not null check (kind in ('up', 'down', 'report')),
++  reason text check (char_length(reason) <= 500),
++  question text not null default '' check (char_length(question) <= 1000),
++  answer text not null default '' check (char_length(answer) <= 2000),
++  app_version text check (char_length(app_version) <= 40),
++  created_at timestamptz not null default now(),
++  unique (user_id, agent_id, message_id, kind)
++);
++create index vak_feedback_agent_idx on public.vak_feedback (agent_id, created_at desc);
++
++alter table public.vak_feedback enable row level security;
++create policy vak_feedback_select on public.vak_feedback for select to authenticated
++  using ((select auth.uid()) = user_id);
++create policy vak_feedback_insert on public.vak_feedback for insert to authenticated
++  with check ((select auth.uid()) = user_id);
++create policy vak_feedback_delete on public.vak_feedback for delete to authenticated
++  using ((select auth.uid()) = user_id);
++
++revoke all on public.vak_feedback from public, anon, authenticated;
++grant select, delete on public.vak_feedback to authenticated;
++grant insert (agent_id, chat_id, message_id, kind, reason, question, answer, app_version) on public.vak_feedback to authenticated;
++grant all on public.vak_feedback to service_role;
++
++-- Tâches hors conversation (POST tasks/:id) : un événement d'usage 'task' par tâche.
++alter table public.vak_usage drop constraint vak_usage_kind_check;
++alter table public.vak_usage add constraint vak_usage_kind_check
++  check (kind in ('message', 'chat', 'resume', 'extract', 'eval', 'task'));
++
++-- Version de schéma : droits de vak_0001 conservés (create or replace ne les change pas).
++create or replace function public.vak_schema_version() returns integer
++language sql immutable security invoker set search_path = '' as $$ select 2 $$;
+diff --git a/supabase/test-migrations/20261022170012_vak_0003_history.sql b/supabase/test-migrations/20261022170012_vak_0003_history.sql
+new file mode 100644
+index 0000000..f67c3d5
+--- /dev/null
++++ b/supabase/test-migrations/20261022170012_vak_0003_history.sql
+@@ -0,0 +1,86 @@
++-- vak 0003 — historique écrit sous condition (0.20.0). Copiée par la commande init de sa CLI ; NE JAMAIS MODIFIER
++-- (empreinte vérifiée). Mêmes règles que vak 0001 : public, préfixe vak_, security invoker, search_path vide, revoke
++-- puis grant explicites. Une fonction statique et la version de schéma, rien d'autre : aucune table, aucune colonne,
++-- aucun droit de table, aucun SQL dynamique. vak_0001 et vak_0002 restent intactes : un serveur 0.19 fonctionne ici.
++-- Garde sur la version (et non sur la fonction) : après un retour à 0.19 puis son « vak remove », la fonction restée
++-- seule est remplacée à la réinstallation (create or replace).
++do $$ begin
++  if to_regclass('public.vak_feedback') is null then
++    raise exception 'vak : migration vak_0002 absente. Appliquez les migrations dans l''ordre, puis lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.';
++  end if;
++  if public.vak_schema_version() >= 3 then
++    raise exception 'vak : migration vak_0003 déjà appliquée (vak_schema_version() = %). Ne la réappliquez pas : lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.', public.vak_schema_version();
++  end if;
++end $$;
++
++-- Historique d'une conversation écrit SEULEMENT s'il est encore celui sur lequel le serveur a fusionné (compare-and-swap ;
++-- constats I4 et I7 de la vérification par machine). p_expected : sceaux (metadata.vakSeal) de cette version, dans
++-- l'ordre (position, id) ; '{}' : conversation neuve. La ligne vak_chats est verrouillée d'abord (FOR NO KEY UPDATE, le
++-- mode que prend aussi l'upsert de vak_save_messages ; DELETE l'attend), puis les sceaux sont lus par une instruction
++-- suivante : en read committed, elle voit toute écriture validée avant le verrou.
++--   Mêmes sceaux : écriture de vak_save_messages (titre à la création seulement, seuls les messages changés réécrits,
++--   retirés supprimés) → {"saved": true}.
++--   Sinon rien n'est écrit → {"saved": false, "messages": [...]} : la version en base (id, role, parts, metadata), triée
++--   par (position, id) ; le serveur vérifie ses sceaux, refait sa fusion, rescelle et réessaie.
++--   Conversation absente alors qu'une version était attendue (supprimée pendant le tour) : jamais recréée →
++--   {"saved": false, "messages": null}.
++-- La clé des sceaux ne va jamais en base : la fonction compare, elle ne scelle rien.
++create or replace function public.vak_save_messages_if(
++  p_agent_id text, p_chat_id text, p_messages jsonb, p_expected text[], p_title text default null
++)
++returns jsonb
++language plpgsql volatile security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_save_messages_if : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  if jsonb_typeof(p_messages) is distinct from 'array' or p_expected is null then
++    raise exception 'vak_save_messages_if : tableau de messages et sceaux attendus requis' using errcode = '22023';
++  end if;
++
++  perform 1 from public.vak_chats c
++   where c.id = p_chat_id and c.user_id = v_user_id and c.agent_id = p_agent_id
++     for no key update;
++  if not found then
++    if cardinality(p_expected) > 0 then
++      return jsonb_build_object('saved', false, 'messages', null);
++    end if;
++    -- Conversation neuve, titre à la création. ON CONFLICT sans cible : tous les index uniques sont arbitres, une
++    -- création concurrente est attendue puis laissée telle quelle (jamais 23505, rien d'écrit), puis verrouillée et
++    -- comparée comme les autres. Ligne d'un autre utilisateur ou agent : 42501.
++    insert into public.vak_chats (id, agent_id, title)
++    values (p_chat_id, p_agent_id, left(p_title, 120))
++    on conflict do nothing;
++    perform 1 from public.vak_chats c
++     where c.id = p_chat_id and c.user_id = v_user_id and c.agent_id = p_agent_id
++       for no key update;
++    if not found then
++      raise exception 'vak_save_messages_if : conversation inaccessible' using errcode = '42501';
++    end if;
++  end if;
++
++  if coalesce((select array_agg(coalesce(m.metadata ->> 'vakSeal', '') order by m.position, m.id)
++                 from public.vak_messages m
++                where m.chat_id = p_chat_id and m.user_id = v_user_id), '{}')
++     is distinct from p_expected then
++    return jsonb_build_object('saved', false, 'messages', (
++      select coalesce(jsonb_agg(jsonb_build_object('id', m.id, 'role', m.role, 'parts', m.parts, 'metadata', m.metadata)
++                                order by m.position, m.id), '[]'::jsonb)
++        from public.vak_messages m
++       where m.chat_id = p_chat_id and m.user_id = v_user_id));
++  end if;
++
++  -- Écriture de vak_0001, sous le verrou déjà pris (son upsert de vak_chats se refait : title = title, updated_at par le
++  -- déclencheur, comme à chaque enregistrement depuis vak_0001).
++  perform public.vak_save_messages(p_agent_id, p_chat_id, p_messages, p_title);
++  return jsonb_build_object('saved', true);
++end $$;
++
++revoke all on function public.vak_save_messages_if(text, text, jsonb, text[], text) from public, anon, authenticated, service_role;
++grant execute on function public.vak_save_messages_if(text, text, jsonb, text[], text) to authenticated;
++
++-- Version de schéma : droits de vak_0001 conservés (create or replace ne les change pas).
++create or replace function public.vak_schema_version() returns integer
++language sql immutable security invoker set search_path = '' as $$ select 3 $$;
+diff --git a/supabase/test-migrations/20261022170013_vak_0004_quota_erase.sql b/supabase/test-migrations/20261022170013_vak_0004_quota_erase.sql
+new file mode 100644
+index 0000000..2a1e3e7
+--- /dev/null
++++ b/supabase/test-migrations/20261022170013_vak_0004_quota_erase.sql
+@@ -0,0 +1,256 @@
++-- vak 0004 — message compté au premier morceau du modèle, effacement complet du journal d'actions (0.22.0). Copiée par la
++-- commande init de sa CLI ; NE JAMAIS MODIFIER (empreinte vérifiée). Mêmes règles que vak 0001 : public, préfixe vak_,
++-- security invoker, search_path vide, revoke puis grant explicites, aucun SQL dynamique, aucune table nouvelle.
++-- vak_0001 à vak_0003 restent intactes ; vak_claim_action est remplacée à signature égale : un serveur 0.20 fonctionne ici.
++-- Garde sur la version (et non sur les fonctions) : après un retour à 0.20 puis son « vak remove », les fonctions restées
++-- seules sont remplacées à la réinstallation (create or replace).
++-- Attente des verrous bornée (db push, une transaction) : derrière une transaction longue sur vak_usage ou vak_actions,
++-- la migration abandonne (55P03), sans rien appliquer, et se relance ; les tours, eux, ne restent pas bloqués derrière.
++do $$ begin
++  perform pg_catalog.set_config('lock_timeout', '3s', true);
++  if to_regprocedure('public.vak_save_messages_if(text, text, jsonb, text[], text)') is null then
++    raise exception 'vak : migration vak_0003 absente. Appliquez les migrations dans l''ordre, puis lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.';
++  end if;
++  if public.vak_schema_version() >= 4 then
++    raise exception 'vak : migration vak_0004 déjà appliquée (vak_schema_version() = %). Ne la réappliquez pas : lancez « node node_modules/@vak/agent/bin/vak.mjs doctor --db » depuis la racine du projet.', public.vak_schema_version();
++  end if;
++end $$;
++
++-- 1. Quota. Un message est réservé « en attente » (pending) avant le modèle, sous le verrou de vak_reserve_turn : il
++-- compte tant qu'il vit (6 minutes), pour que des tours simultanés ne dépassent jamais la limite. Le serveur le confirme
++-- au premier morceau du fournisseur, AVANT d'en laisser sortir quoi que ce soit ; confirmé, il compte pour toujours.
++-- Jamais confirmé (tour arrêté avant toute étape du modèle), il cesse de compter. Aucune transition ne fait baisser le
++-- compte : l'utilisateur ne peut que confirmer ses propres réservations (UPDATE pending → false seulement), jamais
++-- l'inverse, ni changer une date, ni supprimer une ligne (vak_usage reste sans DELETE). Lignes d'avant et lignes d'un
++-- serveur 0.20 : pending = false, comptées comme avant.
++alter table public.vak_usage add column pending boolean not null default false;
++-- 'answer' : empreinte d'une validation répondue (ci-dessous) ; 'eval' reste permis pour les lignes anciennes.
++alter table public.vak_usage drop constraint vak_usage_kind_check;
++alter table public.vak_usage add constraint vak_usage_kind_check
++  check (kind in ('message', 'chat', 'resume', 'extract', 'eval', 'task', 'answer'));
++alter table public.vak_usage add constraint vak_usage_pending_check check (not pending or kind = 'message');
++
++create policy vak_usage_update on public.vak_usage for update to authenticated
++  using ((select auth.uid()) = user_id and pending)
++  with check ((select auth.uid()) = user_id and not pending);
++grant update (pending) on public.vak_usage to authenticated;
++-- Garde : la seule mise à jour de vak_usage est la confirmation d'une réservation (pending vrai → faux), toutes les
++-- autres colonnes inchangées, quels que soient les droits de colonne : un « grant all » de l'app (VAK102 ✗) ne permet
++-- jamais de redater, requalifier ni déplacer une réservation pour qu'elle ne compte plus. Même garde sur vak_actions
++-- (plus bas) : une ligne du journal ne change que par son solde (status, result).
++create or replace function public.vak_usage_confirm_only() returns trigger
++language plpgsql security invoker set search_path = '' as $$
++begin
++  if tg_table_name = 'vak_actions' then
++    if (new.id, new.user_id, new.agent_id, new.chat_id, new.approval_id, new.tool, new.input, new.created_at)
++       is distinct from (old.id, old.user_id, old.agent_id, old.chat_id, old.approval_id, old.tool, old.input, old.created_at) then
++      raise exception 'vak_actions : seul le solde d''une action est permis' using errcode = '42501';
++    end if;
++    return new;
++  end if;
++  if not (old.pending and not new.pending)
++     or (new.id, new.user_id, new.agent_id, new.kind, new.model, new.input_tokens, new.output_tokens, new.cached_input_tokens,
++         new.chat_id, new.created_at)
++        is distinct from (old.id, old.user_id, old.agent_id, old.kind, old.model, old.input_tokens, old.output_tokens,
++         old.cached_input_tokens, old.chat_id, old.created_at) then
++    raise exception 'vak_usage : seule la confirmation d''une réservation est permise' using errcode = '42501';
++  end if;
++  return new;
++end $$;
++create trigger vak_usage_confirm_only before update on public.vak_usage
++  for each row execute function public.vak_usage_confirm_only();
++
++-- Réservation (remplace vak_reserve_turn pour un serveur 0.22, même verrou) : messages comptés = confirmés + en attente
++-- de moins de 6 minutes ; tokens de tous les tours. Refus : rien d'écrit. Sinon, message en attente et son id.
++create or replace function public.vak_reserve_message(
++  p_agent_id text, p_chat_id text, p_since timestamptz, p_count_message boolean,
++  p_max_messages integer default null, p_max_tokens bigint default null
++)
++returns table (allowed boolean, messages integer, tokens bigint, reservation uuid)
++language plpgsql volatile security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++  v_messages integer;
++  v_tokens bigint;
++  v_reservation uuid;
++begin
++  if v_user_id is null then
++    raise exception 'vak_reserve_message : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  perform pg_advisory_xact_lock(hashtextextended('vak_reserve_turn:' || v_user_id::text || ':' || p_agent_id, 0));
++  select count(*) filter (where u.kind = 'message' and (not u.pending or u.created_at > now() - interval '6 minutes'))::integer,
++         coalesce(sum(u.input_tokens + u.output_tokens), 0)::bigint
++    into v_messages, v_tokens
++    from public.vak_usage u
++   where u.user_id = v_user_id and u.agent_id = p_agent_id and u.created_at >= p_since;
++  if (p_count_message and p_max_messages is not null and v_messages >= p_max_messages)
++     or (p_max_tokens is not null and v_tokens >= p_max_tokens) then
++    return query select false, v_messages, v_tokens, null::uuid;
++    return;
++  end if;
++  if p_count_message then
++    insert into public.vak_usage (agent_id, kind, model, chat_id, pending)
++    values (p_agent_id, 'message', '', p_chat_id, true)
++    returning id into v_reservation;
++  end if;
++  return query select true, v_messages, v_tokens, v_reservation;
++end $$;
++
++-- Confirmation : true si la réservation compte désormais (confirmée ici, ou déjà) ; false si elle est inconnue, d'un autre
++-- utilisateur, ou vieille de 5 minutes ou plus (le serveur arrête alors le tour sans rien laisser sortir). Sans verrou
++-- consultatif : l'utilisateur ne peut pas la retarder en saturant vak_reserve_turn. Marge d'une minute avec la durée de
++-- vie comptée par la réservation (6 minutes), bien au-delà du délai d'une requête du serveur (10 secondes).
++create or replace function public.vak_confirm_message(p_reservation uuid)
++returns boolean
++language plpgsql volatile security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_confirm_message : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  update public.vak_usage u set pending = false
++   where u.id = p_reservation and u.user_id = v_user_id and u.kind = 'message' and u.pending
++     and u.created_at > now() - interval '5 minutes';
++  return found or exists (
++    select 1 from public.vak_usage u
++     where u.id = p_reservation and u.user_id = v_user_id and u.kind = 'message' and not u.pending);
++end $$;
++
++-- 2. Journal. Chaque validation répondue (acceptée ou refusée) laisse dans vak_usage une empreinte (kind 'answer', SHA-256
++-- de son approval_id dans chat_id), ajout seul, jamais effacée sauf avec le compte : un journal effacé ne rend jamais une
++-- validation rejouable, même depuis un historique sauvegardé puis réinséré. Deux réponses simultanées se départagent sur
++-- l'index unique de l'empreinte ; une ligne du journal ne s'efface qu'avec sa conversation, et jamais sans empreinte.
++create unique index vak_usage_answer_idx on public.vak_usage (user_id, chat_id) where kind = 'answer';
++
++-- Empreinte d'une validation : SHA-256 hexadécimal de son approval_id (jamais l'identifiant en clair dans l'usage).
++create or replace function public.vak_answer_key(p_approval_id text)
++returns text
++language sql immutable security invoker set search_path = '' as $$
++  select pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(p_approval_id, 'UTF8')), 'hex')
++$$;
++
++-- Ligne du journal effaçable par l'appelant : sa conversation n'existe plus (aucune carte à régler ni à régénérer), et
++-- sa validation, s'il y en a une, a son empreinte. Fonction plutôt que sous-requêtes dans la politique : aucune
++-- dépendance de vak_actions envers vak_chats ni vak_usage (le sql/remove.sql de 0.20, qui supprime ces tables avant
++-- vak_actions, reste utilisable après un retour arrière).
++create or replace function public.vak_erasable(p_approval_id text, p_chat_id text)
++returns boolean
++language sql stable security invoker set search_path = '' as $$
++  select not exists (select 1 from public.vak_chats c where c.id = p_chat_id and c.user_id = (select auth.uid()))
++     and (p_approval_id is null or exists (
++           select 1 from public.vak_usage u
++            where u.user_id = (select auth.uid()) and u.kind = 'answer' and u.chat_id = public.vak_answer_key(p_approval_id)))
++$$;
++
++-- Validations répondues avant vak_0004 (serveur 0.21 ou plus ancien) : leur empreinte, posée une fois.
++insert into public.vak_usage (user_id, agent_id, kind, model, chat_id, created_at)
++select a.user_id, a.agent_id, 'answer', '', public.vak_answer_key(a.approval_id), a.created_at
++  from public.vak_actions a where a.approval_id is not null
++on conflict (user_id, chat_id) where kind = 'answer' do nothing;
++-- Garde du journal (fonction de la garde de vak_usage) : une ligne ne se modifie que pour son solde (status, result),
++-- quels que soient les droits de colonne : un « grant all » de l'app ne la rend jamais rejouable ni effaçable avant
++-- sa conversation.
++create trigger vak_actions_settle_only before update on public.vak_actions
++  for each row execute function public.vak_usage_confirm_only();
++
++create policy vak_actions_delete on public.vak_actions for delete to authenticated
++  using ((select auth.uid()) = user_id and public.vak_erasable(approval_id, chat_id));
++grant delete on public.vak_actions to authenticated;
++
++-- Verrou d'idempotence (remplace celui de vak_0001, même signature et mêmes droits) : empreinte d'abord. Déjà répondue →
++-- claimed = false et le statut du journal, ou 'erased' si le journal a été effacé depuis.
++create or replace function public.vak_claim_action(p_agent_id text, p_chat_id text, p_approval_id text, p_tool text, p_input jsonb)
++returns table (claimed boolean, status text)
++language plpgsql security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_claim_action : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  if coalesce(p_approval_id, '') = '' then
++    raise exception 'vak_claim_action : approval_id requis' using errcode = '22023';
++  end if;
++  insert into public.vak_usage (agent_id, kind, model, chat_id)
++  values (p_agent_id, 'answer', '', public.vak_answer_key(p_approval_id))
++  on conflict (user_id, chat_id) where kind = 'answer' do nothing;
++  if found then
++    insert into public.vak_actions (agent_id, chat_id, approval_id, tool, input, status)
++    values (p_agent_id, p_chat_id, p_approval_id, p_tool, p_input, 'claimed')
++    on conflict (user_id, approval_id) do nothing;
++    if found then
++      return query select true, 'claimed'::text;
++      return;
++    end if;
++  end if;
++  return query select false, coalesce(
++    (select a.status from public.vak_actions a where a.user_id = v_user_id and a.approval_id = p_approval_id), 'erased');
++end $$;
++
++-- Refus sous le même verrou (la première réponse gagne) : recorded = false si la validation a déjà une réponse.
++create or replace function public.vak_deny_action(p_agent_id text, p_chat_id text, p_approval_id text, p_tool text, p_input jsonb)
++returns boolean
++language plpgsql volatile security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_deny_action : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  if coalesce(p_approval_id, '') = '' then
++    raise exception 'vak_deny_action : approval_id requis' using errcode = '22023';
++  end if;
++  insert into public.vak_usage (agent_id, kind, model, chat_id)
++  values (p_agent_id, 'answer', '', public.vak_answer_key(p_approval_id))
++  on conflict (user_id, chat_id) where kind = 'answer' do nothing;
++  if not found then
++    return false;
++  end if;
++  insert into public.vak_actions (agent_id, chat_id, approval_id, tool, input, status)
++  values (p_agent_id, p_chat_id, p_approval_id, p_tool, p_input, 'denied')
++  on conflict (user_id, approval_id) do nothing;
++  return found;
++end $$;
++
++-- « Effacer mes données » (DELETE data) de l'utilisateur pour un agent, en UNE transaction : empreinte de chaque
++-- validation répondue du journal (lignes d'avant vak_0004 ou d'un serveur 0.20 comprises), puis avis, conversations
++-- (messages en cascade), journal, souvenirs, rappels, accord. L'usage reste (compteur du quota, empreintes) : il ne part
++-- qu'avec le compte. Une ligne du journal écrite pendant l'effacement par un serveur 0.20 (refus sans empreinte) reste.
++create or replace function public.vak_erase_data(p_agent_id text)
++returns void
++language plpgsql volatile security invoker set search_path = '' as $$
++declare
++  v_user_id uuid := auth.uid();
++begin
++  if v_user_id is null then
++    raise exception 'vak_erase_data : utilisateur non authentifié' using errcode = '42501';
++  end if;
++  -- Deux effacements simultanés (deux appareils) se suivent : jamais d'interblocage, quel que soit l'ordre des lignes.
++  perform pg_advisory_xact_lock(hashtextextended('vak_erase_data:' || v_user_id::text || ':' || p_agent_id, 0));
++  insert into public.vak_usage (agent_id, kind, model, chat_id)
++  select p_agent_id, 'answer', '', public.vak_answer_key(a.approval_id)
++    from public.vak_actions a
++   where a.user_id = v_user_id and a.agent_id = p_agent_id and a.approval_id is not null
++   order by a.approval_id
++  on conflict (user_id, chat_id) where kind = 'answer' do nothing;
++  delete from public.vak_feedback f where f.user_id = v_user_id and f.agent_id = p_agent_id;
++  delete from public.vak_chats c where c.user_id = v_user_id and c.agent_id = p_agent_id;
++  delete from public.vak_actions a where a.user_id = v_user_id and a.agent_id = p_agent_id;
++  delete from public.vak_memories m where m.user_id = v_user_id and m.agent_id = p_agent_id;
++  delete from public.vak_reminders r where r.user_id = v_user_id and r.agent_id = p_agent_id;
++  delete from public.vak_consents c where c.user_id = v_user_id and c.agent_id = p_agent_id;
++end $$;
++
++revoke all on function public.vak_reserve_message(text, text, timestamptz, boolean, integer, bigint),
++  public.vak_confirm_message(uuid), public.vak_answer_key(text), public.vak_erasable(text, text),
++  public.vak_deny_action(text, text, text, text, jsonb), public.vak_erase_data(text), public.vak_usage_confirm_only()
++  from public, anon, authenticated, service_role;
++grant execute on function public.vak_reserve_message(text, text, timestamptz, boolean, integer, bigint),
++  public.vak_confirm_message(uuid), public.vak_answer_key(text), public.vak_erasable(text, text),
++  public.vak_deny_action(text, text, text, text, jsonb), public.vak_erase_data(text)
++  to authenticated;
++
++-- Version de schéma : droits de vak_0001 conservés (create or replace ne les change pas).
++create or replace function public.vak_schema_version() returns integer
++language sql immutable security invoker set search_path = '' as $$ select 4 $$;
+diff --git a/supabase/test-migrations/README.md b/supabase/test-migrations/README.md
+new file mode 100644
+index 0000000..7253028
+--- /dev/null
++++ b/supabase/test-migrations/README.md
+@@ -0,0 +1,3 @@
++Copie des migrations pour la base de test de `vak` (local, sans Docker) : identique à `supabase/migrations`, sauf
++`20260728000001_create_quizzes_code_index.sql` sans `concurrently` (impossible dans la transaction de `vak localdb`).
++Ne s'applique jamais en production. Retour arrière : retirer ce dossier et `migrationsDir` de `supabase/functions/vak/vak.lock.json`.

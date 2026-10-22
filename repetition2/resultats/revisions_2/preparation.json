@@ -1,0 +1,18 @@
+{
+  "id": "revisions_2",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/revisions.bundle",
+  "commit": "fd44d3346a948512168a8c16e4496fee43bf1ce3",
+  "prepare": "7514e4548050068426fb0a65ba26647e21833591",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/revisions_2/app",
+  "avant": "/work/revisions_2/avant.json",
+  "debut": "2026-10-22T17:57:49Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T17:58:27Z"
+}

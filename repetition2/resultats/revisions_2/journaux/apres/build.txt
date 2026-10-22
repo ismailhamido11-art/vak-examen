@@ -1,0 +1,47 @@
+$ expo export --platform web
+(dossier : /work/revisions_2/apres)
+
+Using src/app as the root directory for Expo Router.
+Starting Metro Bundler
+
+| (node:116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web Bundled 1652ms node_modules/expo-router/entry.js (956 modules)
+
+› Assets (18):
+node_modules/expo-router/assets/arrow_down.017bc6ba3fc25503e5eb5e53826d48a8.png (9.5KB)
+node_modules/expo-router/assets/error.d1ea1496f9057eb392d5bbf3732a61b7.png (469B)
+node_modules/expo-router/assets/file.19eeb73b9593a38f8e9f418337fc7d10.png (138B)
+node_modules/expo-router/assets/forward.d8b800c443b8972542883e0b9de2bdc6.png (188B)
+node_modules/expo-router/assets/pkg.ab19f4cbc543357183a20571f68380a3.png (364B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon-mask.0a328cd9c1afd0afe8e3b1ec5165b1b4.png (653B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon.35ba0eaec5a4f5ed12ca16fabeae451d.png (207B)
+node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)
+node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)
+node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)
+node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)
+node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)
+
+› web bundles (11):
+_expo/static/js/web/__common-a32da276e75c191dfed9b09e4834f421.js (1.4MB)
+_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js (3.8KB)
+_expo/static/js/web/_layout-ccc51fe1f5fc144e24c5e122e72ef5a5.js (4.9KB)
+_expo/static/js/web/[id]-9cd2c791d7ef133667f9f0e26585f711.js (4KB)
+_expo/static/js/web/assistant-8804c854abeae3400855ac2be0e24901.js (609B)
+_expo/static/js/web/due-a23f9df14f1cfbd2dd39d24563d9a6ef.js (2.3KB)
+_expo/static/js/web/entry-9e2f8a2e2f873c624283605db758dd32.js (1.1MB)
+_expo/static/js/web/index-b61a6aa70d65d5ccfdc60c72e38088a7.js (3KB)
+_expo/static/js/web/login-5b848d9eed5206cb21aade0a69251c6f.js (1.7KB)
+_expo/static/js/web/new-card-66bd8e1a75e04113a569a0de4374bfd5.js (894B)
+_expo/static/js/web/reglages-1a30bb1126aa2d8c5fb9d13ef1507517.js (276B)
+
+› Files (3):
+favicon.ico (15KB)
+index.html (1.4KB)
+metadata.json (49B)
+
+Exported: /tmp/mesure-export-lfclMQ

@@ -1,0 +1,108 @@
+$ npm run test
+(dossier : /work/splitbill_1/avant)
+
+
+> splitbill@1.0.0 test
+> jest
+
+PASS tests/sql-security.test.ts
+PASS tests/screens/activity.test.tsx (16.753 s)
+PASS tests/screens/contact-detail.test.tsx (14.774 s)
+  ● Console
+
+    console.error
+      An update to Menu inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-reconciler/cjs/react-reconciler.development.js:16307:19
+      at runWithFiberInDEV (node_modules/react-reconciler/cjs/react-reconciler.development.js:2508:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-reconciler/cjs/react-reconciler.development.js:16306:9)
+      at scheduleUpdateOnFiber (node_modules/react-reconciler/cjs/react-reconciler.development.js:14070:11)
+      at dispatchSetStateInternal (node_modules/react-reconciler/cjs/react-reconciler.development.js:6784:13)
+      at dispatchSetState (node_modules/react-reconciler/cjs/react-reconciler.development.js:6741:7)
+      at setMenuLayout (node_modules/react-native-paper/src/components/Menu/Menu.tsx:381:7)
+      at callback (node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:325:21)
+      at TimingAnimation.callback [as __notifyAnimationEnd] (node_modules/react-native/Libraries/Animated/animations/Animation.js:179:7)
+      at __notifyAnimationEnd (node_modules/react-native/Libraries/Animated/animations/Animation.js:139:16)
+      at Timeout.endCallback [as _onTimeout] (node_modules/react-native/jest/setup.js:341:30)
+
+    console.error
+      An update to Menu inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-reconciler/cjs/react-reconciler.development.js:16307:19
+      at runWithFiberInDEV (node_modules/react-reconciler/cjs/react-reconciler.development.js:2508:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-reconciler/cjs/react-reconciler.development.js:16306:9)
+      at scheduleUpdateOnFiber (node_modules/react-reconciler/cjs/react-reconciler.development.js:14070:11)
+      at dispatchSetStateInternal (node_modules/react-reconciler/cjs/react-reconciler.development.js:6784:13)
+      at dispatchSetState (node_modules/react-reconciler/cjs/react-reconciler.development.js:6741:7)
+      at setRendered (node_modules/react-native-paper/src/components/Menu/Menu.tsx:382:7)
+      at callback (node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:325:21)
+      at TimingAnimation.callback [as __notifyAnimationEnd] (node_modules/react-native/Libraries/Animated/animations/Animation.js:179:7)
+      at __notifyAnimationEnd (node_modules/react-native/Libraries/Animated/animations/Animation.js:139:16)
+      at Timeout.endCallback [as _onTimeout] (node_modules/react-native/jest/setup.js:341:30)
+
+PASS tests/queries/useGroups.test.tsx
+PASS tests/queries/useExpenses.test.tsx
+PASS tests/lib/auth.test.tsx
+PASS tests/queries/usePayments.test.tsx
+PASS tests/screens/group-detail.test.tsx (19.908 s)
+PASS tests/lib/realtime.test.tsx
+PASS tests/queries/useContactExpenses.test.tsx
+PASS tests/split.test.ts
+PASS tests/screens/settle-up.test.tsx
+PASS tests/screens/contact-settle-up.test.tsx
+PASS tests/queries/useContactPayments.test.tsx
+PASS tests/queries/useContactRequests.test.tsx
+PASS tests/queries/useContacts.test.tsx
+PASS tests/queries/useBalances.test.tsx
+PASS tests/format.test.ts
+PASS tests/screens/add-expense.test.tsx (5.12 s)
+PASS tests/screens/add-members.test.tsx
+PASS tests/screens/create-group.test.tsx
+PASS tests/activity-feed.test.ts
+PASS tests/screens/contact-add-expense.test.tsx
+PASS tests/screens/add-contact.test.tsx
+PASS tests/screens/contact-requests.test.tsx
+PASS tests/queries/useProfile.test.tsx
+PASS tests/screens/auth-gate.test.tsx
+PASS tests/screens/manage-group.test.tsx
+PASS tests/balance-display.test.ts
+PASS tests/screens/dashboard.test.tsx
+PASS tests/screens/edit-profile.test.tsx
+PASS tests/screens/edit-payment.test.tsx
+PASS tests/lib/useAsyncStorageState.test.tsx
+PASS tests/lib/theme-preference.test.tsx
+PASS tests/screens/sign-up.test.tsx
+PASS tests/queries/invalidate.test.ts
+PASS tests/lib/notifications.test.tsx
+PASS tests/screens/account-index.test.tsx
+PASS tests/screens/groups-list.test.tsx
+PASS tests/lib/display-currency.test.tsx
+PASS tests/lib/confirm.test.tsx
+PASS tests/lib/snackbar.test.tsx
+PASS tests/screens/sign-in.test.tsx
+PASS tests/utils.test.ts
+PASS tests/screens/notifications-screen.test.tsx
+
+Test Suites: 45 passed, 45 total
+Tests:       364 passed, 364 total
+Snapshots:   0 total
+Time:        27.833 s
+Ran all test suites.

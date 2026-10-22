@@ -1,0 +1,37 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T16:11:42.915Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:187632217355de91b6124bf5b85a8211becb3ca5995d4b15c80c93a2fe728bc4",
+  "schema": "sha256:7a8afb943459cfac0f6a0d8db1a8495fd890947b34c8d982c9c5e1da54f8880c",
+  "tables": {
+    "outings": "éprouvé",
+    "trails": "éprouvé"
+  },
+  "notes": {
+    "outings": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "coéquipier de A non semé (23503 insert or update on table \"outings\" violates foreign key constraint \"outings_trail_id_owner_id_fkey\") : le partage entre membres n'est pas vérifié",
+      "totaux de read_data : 4 ligne(s) de A ajoutée(s) aux bornes des périodes ; 47 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ],
+    "trails": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 56 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « name 0 a »"
+    ]
+  },
+  "totals": 103,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Voit : Itinéraires (Nom, Région, Distance (km), Dénivelé positif (m), Difficulté, Boucle, Ajouté le) ; Sorties (Itinéraire, Date, Durée (min), Météo, Note, Compagnons, Commentaire)",
+    "Peut proposer (après ta validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Nouvelle sortie, Nouvel itinéraire, Itinéraire",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer »"
+  ]
+}

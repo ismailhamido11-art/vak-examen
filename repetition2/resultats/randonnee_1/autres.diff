@@ -1,0 +1,110 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index 607c0f5..03539dc 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,5 +1,7 @@
+ import { Redirect, Stack, useSegments } from 'expo-router';
++import { View } from 'react-native';
+ 
++import { AssistantButton } from '@/components/AssistantButton';
+ import { colors } from '@/components/ui';
+ import { SessionProvider, useSession } from '@/lib/session';
+ 
+@@ -12,6 +14,7 @@ function Guard() {
+   if (!loading && session && onLogin) return <Redirect href="/" />;
+ 
+   return (
++    <View style={{ flex: 1 }}>
+     <Stack
+       screenOptions={{ headerStyle: { backgroundColor: colors.bg }, headerTintColor: colors.accent }}>
+       <Stack.Screen name="index" options={{ title: 'Mes itinéraires' }} />
+@@ -19,7 +22,11 @@ function Guard() {
+       <Stack.Screen name="trail/new" options={{ title: 'Nouvel itinéraire' }} />
+       <Stack.Screen name="trail/[id]" options={{ title: 'Itinéraire' }} />
+       <Stack.Screen name="outing/new" options={{ title: 'Nouvelle sortie' }} />
++      <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++      <Stack.Screen name="reglages" options={{ title: 'Réglages de l\'assistant' }} />
+     </Stack>
++    {session && <AssistantButton />}
++    </View>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 297eca4..63b336e 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -50,6 +50,7 @@ export default function TrailList() {
+             ))}
+         </Fragment>
+       ))}
++      <Button title="Réglages de l'assistant" secondary onPress={() => router.push('/reglages')} />
+       <Button title="Se déconnecter" secondary onPress={() => supabase.auth.signOut()} />
+     </Screen>
+   );
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/src/components/AssistantButton.tsx b/src/components/AssistantButton.tsx
+new file mode 100644
+index 0000000..fcac1eb
+--- /dev/null
++++ b/src/components/AssistantButton.tsx
+@@ -0,0 +1,35 @@
++import { usePathname, useRouter } from 'expo-router';
++import { Pressable, Text } from 'react-native';
++
++import { colors } from '@/components/ui';
++
++// Bouton flottant d'accès à l'assistant vak, présent sur tous les écrans connectés.
++export function AssistantButton() {
++  const router = useRouter();
++  const pathname = usePathname();
++  if (pathname === '/login' || pathname === '/assistant') return null;
++  return (
++    <Pressable
++      accessibilityRole="button"
++      accessibilityLabel="Ouvrir l'assistant"
++      onPress={() => router.push('/assistant')}
++      style={{
++        position: 'absolute',
++        right: 20,
++        bottom: 28,
++        width: 56,
++        height: 56,
++        borderRadius: 28,
++        backgroundColor: colors.accent,
++        alignItems: 'center',
++        justifyContent: 'center',
++        elevation: 6,
++        shadowColor: '#000',
++        shadowOpacity: 0.25,
++        shadowRadius: 4,
++        shadowOffset: { width: 0, height: 2 },
++      }}>
++      <Text style={{ color: '#fff', fontSize: 24 }}>✦</Text>
++    </Pressable>
++  );
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

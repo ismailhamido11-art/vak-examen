@@ -1,0 +1,34 @@
+$ bun run lint
+(dossier : /work/medication_tracker_1/avant)
+
+$ biome lint .
+app/(tabs)/index.tsx:201:3 lint/correctness/useExhaustiveDependencies  FIXABLE  ━━━━━━━━━━━━━━━━━━━━
+
+  ! This hook specifies more dependencies than necessary: selectedISO.
+  
+    200 │   // Clear optimistic overrides when the selected date changes
+  > 201 │   useEffect(() => {
+        │   ^^^^^^^^^
+    202 │     setOverrides({});
+    203 │   }, [selectedISO]);
+  
+  i This dependency can be removed from the list.
+  
+    201 │   useEffect(() => {
+    202 │     setOverrides({});
+  > 203 │   }, [selectedISO]);
+        │       ^^^^^^^^^^^
+    204 │ 
+    205 │   const doses = useMemo(() => {
+  
+  i React relies on hook dependencies to determine when to re-compute Effects.
+    Specifying more dependencies than required can lead to unnecessary re-rendering
+    and degraded performance.
+  
+  i Unsafe fix: Remove the extra dependencies from the list.
+  
+    203 │ ··},·[selectedISO]);
+        │       -----------   
+
+Checked 144 files in 191ms. No fixes applied.
+Found 1 warning.

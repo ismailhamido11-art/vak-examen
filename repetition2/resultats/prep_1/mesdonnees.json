@@ -1,0 +1,362 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "2/2 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/prep_1/apres",
+  "lecture": {
+    "fichier": "/work/prep_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.quizzes",
+      "public.questions",
+      "public.quiz_attempts",
+      "public.quiz_ratings"
+    ],
+    "ignorees": [
+      "public.get_quiz_attempt_counts"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.quizzes",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 6,
+      "attendu_json": 6,
+      "accord": true
+    },
+    {
+      "table": "public.quiz_ratings",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 4,
+      "attendu_json": 4,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.quizzes",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my quizzes are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-93ec9306-a5a2-497b-8e71-cef572ea4bcb",
+        "question": "How many of my quizzes are there?",
+        "texte": "You have **6** quizzes in total.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "quizzes",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "quizzes",
+              "label": "Quizzes",
+              "total": 6,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "b626ac91-85be-41f1-858e-a62f97d6ad97",
+                  "title": "Modern Art Movements",
+                  "description": "From Impressionism to Pop Art.",
+                  "created_at": "2026-05-15T00:00",
+                  "time_limit": 30,
+                  "visibility": "private (Private)",
+                  "category": "Arts & Culture (Arts & culture)",
+                  "difficulty": "Advanced (Advanced)",
+                  "times_taken": 0,
+                  "average_rating": null,
+                  "code": "MART06",
+                  "status": "published (Published)"
+                }
+              ],
+              "note": "1 ligne montrée sur 6 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 6,
+        "nombres_lus": [
+          6
+        ],
+        "ok": true,
+        "retenu": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.quizzes",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my quizzes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-a9b8cf0d-0f78-45fa-ad26-a03f8dbeb815",
+        "question": "List my quizzes.",
+        "texte": "Vous avez 6 quizzes, tous publiés :\n\n| Titre | Catégorie | Niveau | Visibilité | Code |\n|---|---|---|---|---|\n| Modern Art Movements | Arts & culture | Advanced | Private | MART06 |\n| Web Technologies 101 | Technology | Beginner | Public | WEBT05 |\n| Algebra Warm-up | Mathematics | Beginner | Public | ALGB04 |\n| French Revolution Basics | History | Intermediate | Private | FREV03 |\n| Intro to Photosynthesis | Science | Intermediate | Public | PHOT02 |\n| World Capitals Challenge | Geography | Beginner | Public | WCAP01 |\n\nQuelques repères : aucun n'a encore été joué (0 tentative) ; les moyennes de notes vont de 3 à 5 pour les publics. Voulez-vous le détail d'un quiz ou en créer un nouveau ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "quizzes",
+              "order": "newest",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "quizzes",
+              "label": "Quizzes",
+              "total": 6,
+              "shown": 6,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "b626ac91-85be-41f1-858e-a62f97d6ad97",
+                  "title": "Modern Art Movements",
+                  "description": "From Impressionism to Pop Art.",
+                  "created_at": "2026-05-15T00:00",
+                  "time_limit": 30,
+                  "visibility": "private (Private)",
+                  "category": "Arts & Culture (Arts & culture)",
+                  "difficulty": "Advanced (Advanced)",
+                  "times_taken": 0,
+                  "average_rating": null,
+                  "code": "MART06",
+                  "status": "published (Published)"
+                },
+                {
+                  "id": "8838d9a2-a883-4cf5-a4f5-36b581a1df26",
+                  "title": "Web Technologies 101",
+                  "description": "HTML, CSS and HTTP fundamentals.",
+                  "created_at": "2026-05-14T00:00",
+                  "time_limit": null,
+                  "visibility": "public (Public)",
+                  "category": "Technology (Technology)",
+                  "difficulty": "Beginner (Beginner)",
+                  "times_taken": 0,
+                  "average_rating": 4,
+                  "code": "WEBT05",
+                  "status": "published (Published)"
+                },
+                {
+                  "id": "2dd8b029-913b-4395-a15a-7a12de9feed6",
+                  "title": "Algebra Warm-up",
+                  "description": "Quick equations to start the day.",
+                  "created_at": "2026-05-13T00:00",
+                  "time_limit": 10,
+                  "visibility": "public (Public)",
+                  "category": "Mathematics (Mathematics)",
+                  "difficulty": "Beginner (Beginner)",
+                  "times_taken": 0,
+                  "average_rating": 3,
+                  "code": "ALGB04",
+                  "status": "published (Published)"
+                },
+                {
+                  "id": "940faa3f-2f03-4cd9-9323-da81ebcd689f",
+                  "title": "French Revolution Basics",
+                  "description": "Key dates and figures from 1789.",
+                  "created_at": "2026-05-12T00:00",
+                  "time_limit": null,
+                  "visibility": "private (Private)",
+                  "category": "History (History)",
+                  "difficulty": "Intermediate (Intermediate)",
+                  "times_taken": 0,
+                  "average_rating": null,
+                  "code": "FREV03",
+                  "status": "published (Published)"
+                },
+                {
+                  "id": "731b7000-4430-42a0-8c61-0a19f943f71f",
+                  "title": "Intro to Photosynthesis",
+                  "description": "Plants, light and energy.",
+                  "created_at": "2026-05-11T00:00",
+                  "time_limit": 15,
+                  "visibility": "public (Public)",
+                  "category": "Science (Science)",
+                  "difficulty": "Intermediate (Intermediate)",
+                  "times_taken": 0,
+                  "average_rating": 4,
+                  "code": "PHOT02",
+                  "status": "published (Published)"
+                },
+                {
+                  "id": "37304541-8e1a-471f-9aec-dab3c8834a3d",
+                  "title": "World Capitals Challenge",
+                  "description": "Test your knowledge of national capitals.",
+                  "created_at": "2026-05-10T00:00",
+                  "time_limit": 20,
+                  "visibility": "public (Public)",
+                  "category": "Geography (Geography)",
+                  "difficulty": "Beginner (Beginner)",
+                  "times_taken": 0,
+                  "average_rating": 5,
+                  "code": "WCAP01",
+                  "status": "published (Published)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 6,
+        "nombres_lus": [
+          6,
+          101,
+          0,
+          3,
+          5
+        ],
+        "ok": true,
+        "retenu": 6,
+        "source": "nombre annoncé",
+        "elements": 6
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.quiz_ratings",
+      "type": "combien",
+      "langue": "en",
+      "question": "How many of my quiz ratings are there?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-5b7387ed-d04c-4d95-940e-32b881dd15db",
+        "question": "How many of my quiz ratings are there?",
+        "texte": "I'll look that up.\n\nYou have 4 quiz ratings in total.",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "quiz_ratings",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "quiz_ratings",
+              "label": "Quiz ratings",
+              "total": 4,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "96a2fe70-e3a3-4adb-a080-cbdae5564c20",
+                  "quiz_id": "World Capitals Challenge (id 37304541-8e1a-471f-9aec-dab3c8834a3d)",
+                  "rating": 5,
+                  "created_at": "2026-10-22T17:17"
+                }
+              ],
+              "note": "1 ligne montrée sur 4 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 4,
+        "nombres_lus": [
+          4
+        ],
+        "ok": true,
+        "retenu": 4
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.quiz_ratings",
+      "type": "liste",
+      "langue": "en",
+      "question": "List my quiz ratings.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-99d0fd3b-62cf-4465-89f7-af9bd56cbfbc",
+        "question": "List my quiz ratings.",
+        "texte": "Voici vos évaluations de quiz (ratings) — 4 au total, toutes du 22 octobre 2026 :\n\n| Quiz | Note | Date |\n|---|---|---|\n| World Capitals Challenge | 5 | 22/10/2026 17:17 |\n| Intro to Photosynthesis | 4 | 22/10/2026 17:17 |\n| Web Technologies 101 | 4 | 22/10/2026 17:17 |\n| Algebra Warm-up | 3 | 22/10/2026 17:17 |\n\nSouhaitez-vous explorer le catalogue public pour en découvrir d'autres ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "quiz_ratings",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "quiz_ratings",
+              "label": "Quiz ratings",
+              "total": 4,
+              "shown": 4,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "96a2fe70-e3a3-4adb-a080-cbdae5564c20",
+                  "quiz_id": "World Capitals Challenge (id 37304541-8e1a-471f-9aec-dab3c8834a3d)",
+                  "rating": 5,
+                  "created_at": "2026-10-22T17:17"
+                },
+                {
+                  "id": "c4e65b3d-f914-47b3-a0ce-87a88532ddb3",
+                  "quiz_id": "Intro to Photosynthesis (id 731b7000-4430-42a0-8c61-0a19f943f71f)",
+                  "rating": 4,
+                  "created_at": "2026-10-22T17:17"
+                },
+                {
+                  "id": "883d7c14-4a82-4159-935d-7f467049168d",
+                  "quiz_id": "Algebra Warm-up (id 2dd8b029-913b-4395-a15a-7a12de9feed6)",
+                  "rating": 3,
+                  "created_at": "2026-10-22T17:17"
+                },
+                {
+                  "id": "05cfbac5-c6af-46cb-a3aa-55c30ba92645",
+                  "quiz_id": "Web Technologies 101 (id 8838d9a2-a883-4cf5-a4f5-36b581a1df26)",
+                  "rating": 4,
+                  "created_at": "2026-10-22T17:17"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 4,
+        "nombres_lus": [
+          4,
+          5,
+          4,
+          101,
+          4,
+          3
+        ],
+        "ok": true,
+        "retenu": 4,
+        "source": "nombre annoncé",
+        "elements": 4
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 35
+  },
+  "couverture": {
+    "lues": 2,
+    "total": 2,
+    "tables": [
+      {
+        "table": "public.quizzes",
+        "lue": true
+      },
+      {
+        "table": "public.quiz_ratings",
+        "lue": true
+      }
+    ],
+    "texte": "2/2"
+  }
+}

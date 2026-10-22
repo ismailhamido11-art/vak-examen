@@ -1,0 +1,467 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "prep_2",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "identique": true
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "identique": true
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.29.2.tgz sha256 = préparation",
+        "8 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run typecheck",
+            "source": "script « typecheck » : tsc --noEmit",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 11,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint .",
+            "code": 0,
+            "delai": false,
+            "secondes": 11,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "avant": {
+            "commande": "npm run test",
+            "source": "script « test » : vitest run",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 119
+            }
+          },
+          "apres": {
+            "commande": "npm run test",
+            "source": "script « test » : vitest run",
+            "code": 0,
+            "delai": false,
+            "secondes": 8,
+            "erreurs": 0,
+            "tests": {
+              "echecs": 0,
+              "reussis": 119
+            }
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 16,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 1,
+            "delai": false,
+            "secondes": 18,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 1)"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 1,
+      "code": "rien-livre",
+      "resume": "l'agent n'a rien écrit et n'a pas dit que l'app n'est pas prise en charge",
+      "preuve": [
+        "HEAD = commit de préparation 03f06485"
+      ]
+    },
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "pas-integre",
+      "resume": "vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD",
+      "preuve": []
+    }
+  ],
+  "notes": [
+    "build : échoue avant (code 1) et après (code 1) sans erreur reconnue : comparé par le seul code de sortie"
+  ],
+  "entree": {
+    "essai": "/srv/essais/prep_2",
+    "preparation": {
+      "id": "prep_2",
+      "depot": "https://github.com/Truella/prep",
+      "commit": "341c8dc5727f0cd7f3bd4d0db7a099384fdc60af",
+      "prepare": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T18:23:10Z"
+    },
+    "tip": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+    "commitsAgent": 0,
+    "appsVak": [],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 63,
+    "illisibles": 0
+  },
+  "mesures": {
+    "prep": {
+      "revision": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "added 492 packages in 23s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> prep@0.0.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 11,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> prep@0.0.0 lint",
+                "> eslint ."
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : vitest run",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 119
+              },
+              "liste": [],
+              "fin": [
+                " ✓ tests/unit/quiz-taking/hooks/useQuizProgress.test.ts (7 tests) 41ms",
+                " ✓ tests/unit/quiz-management/utils/csvParser.test.ts (9 tests) 19ms",
+                " ✓ tests/unit/quiz-management/utils/transforms.test.ts (6 tests) 6ms",
+                " ✓ tests/unit/quiz-management/utils/csvGenerator.test.ts (5 tests) 31ms",
+                " ✓ tests/integration/quiz-management/hooks/usePublishQuiz.test.ts (3 tests) 35ms",
+                " ✓ tests/unit/quiz-management/utils/questionValidation.test.ts (8 tests) 8ms",
+                " ✓ tests/unit/quiz-management/hooks/useQuestionCollapse.test.ts (1 test) 21ms",
+                " ✓ tests/unit/quiz-taking/components/QuizTimer.test.tsx (7 tests) 51ms",
+                " Test Files  14 passed (14)",
+                "      Tests  119 passed (119)",
+                "   Start at  18:30:49",
+                "   Duration  7.41s (transform 1.35s, setup 0ms, import 3.15s, tests 2.41s, environment 13.59s)"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 16,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "      at getOrInstantiateModuleFromParent (.next/server/chunks/ssr/[turbopack]_runtime.js:877:12)",
+                "      at Context.esmImport [as i] (.next/server/chunks/ssr/[turbopack]_runtime.js:281:20)",
+                "      at module evaluation (.next/server/chunks/ssr/_1wr9hhf._.js:37:47885)",
+                "      at instantiateModule (.next/server/chunks/ssr/[turbopack]_runtime.js:853:9)",
+                "      at getOrInstantiateModuleFromParent (.next/server/chunks/ssr/[turbopack]_runtime.js:877:12)",
+                "      at Context.commonJsRequire [as r] (.next/server/chunks/ssr/[turbopack]_runtime.js:302:12)",
+                "}",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /quiz/[quizId]",
+                "    at ignore-listed frames {",
+                "  type: 'Error'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "added 492 packages in 23s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "added 492 packages in 21s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npm run typecheck",
+              "source": "script « typecheck » : tsc --noEmit",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "> prep@0.0.0 typecheck",
+                "> tsc --noEmit"
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint .",
+              "code": 0,
+              "delai": false,
+              "secondes": 11,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> prep@0.0.0 lint",
+                "> eslint ."
+              ]
+            },
+            "test": {
+              "commande": "npm run test",
+              "source": "script « test » : vitest run",
+              "code": 0,
+              "delai": false,
+              "secondes": 8,
+              "erreurs": 0,
+              "tests": {
+                "echecs": 0,
+                "reussis": 119
+              },
+              "liste": [],
+              "fin": [
+                " ✓ tests/unit/quiz-management/utils/csvParser.test.ts (9 tests) 17ms",
+                " ✓ tests/unit/quiz-taking/hooks/useQuizProgress.test.ts (7 tests) 44ms",
+                " ✓ tests/unit/quiz-management/utils/transforms.test.ts (6 tests) 6ms",
+                " ✓ tests/integration/quiz-management/hooks/usePublishQuiz.test.ts (3 tests) 36ms",
+                " ✓ tests/unit/quiz-management/utils/csvGenerator.test.ts (5 tests) 13ms",
+                " ✓ tests/unit/quiz-management/utils/questionValidation.test.ts (8 tests) 8ms",
+                " ✓ tests/unit/quiz-taking/components/QuizTimer.test.tsx (7 tests) 109ms",
+                " ✓ tests/unit/quiz-management/hooks/useQuestionCollapse.test.ts (1 test) 19ms",
+                " Test Files  14 passed (14)",
+                "      Tests  119 passed (119)",
+                "   Start at  18:32:03",
+                "   Duration  7.25s (transform 1.09s, setup 0ms, import 3.02s, tests 2.33s, environment 13.27s)"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 1,
+              "delai": false,
+              "secondes": 18,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "      at getOrInstantiateModuleFromParent (.next/server/chunks/ssr/[turbopack]_runtime.js:877:12)",
+                "      at Context.esmImport [as i] (.next/server/chunks/ssr/[turbopack]_runtime.js:281:20)",
+                "      at module evaluation (.next/server/chunks/ssr/_1wr9hhf._.js:37:47885)",
+                "      at instantiateModule (.next/server/chunks/ssr/[turbopack]_runtime.js:853:9)",
+                "      at getOrInstantiateModuleFromParent (.next/server/chunks/ssr/[turbopack]_runtime.js:877:12)",
+                "      at Context.commonJsRequire [as r] (.next/server/chunks/ssr/[turbopack]_runtime.js:302:12)",
+                "}",
+                "> Build error occurred",
+                "Error: Failed to collect page data for /quiz/[quizId]",
+                "    at ignore-listed frames {",
+                "  type: 'Error'",
+                "}"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "added 492 packages in 21s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-22T18:32:37.273Z"
+}

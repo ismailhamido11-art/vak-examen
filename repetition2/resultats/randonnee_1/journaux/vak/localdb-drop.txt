@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/randonnee_1/apres)
+
+base locale vak_local_efb681 supprimée [code 0]

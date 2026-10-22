@@ -1,0 +1,93 @@
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 7167c87..1858d09 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,5 +1,7 @@
+ import type { Metadata } from "next";
+ import "./globals.css";
++import "@vak/agent/web/styles.css";
++import { VakButton } from "@/components/VakButton";
+ 
+ export const metadata: Metadata = {
+   title: "Troupe — spectacles et distribution",
+@@ -9,7 +11,10 @@ export const metadata: Metadata = {
+ export default function RootLayout({ children }: LayoutProps<"/">) {
+   return (
+     <html lang="fr">
+-      <body>{children}</body>
++      <body>
++        {children}
++        <VakButton />
++      </body>
+     </html>
+   );
+ }
+diff --git a/app/reglages/agent-settings.tsx b/app/reglages/agent-settings.tsx
+new file mode 100644
+index 0000000..6ab281d
+--- /dev/null
++++ b/app/reglages/agent-settings.tsx
+@@ -0,0 +1,8 @@
++"use client";
++
++import { AgentSettings } from "@vak/agent/web";
++import { vak } from "@/lib/vak";
++
++export function VakSettings() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/app/reglages/page.tsx b/app/reglages/page.tsx
+new file mode 100644
+index 0000000..c270208
+--- /dev/null
++++ b/app/reglages/page.tsx
+@@ -0,0 +1,11 @@
++import Shell from "@/components/Shell";
++import { VakSettings } from "./agent-settings";
++
++export default function ReglagesPage() {
++  return (
++    <Shell>
++      <h1>Réglages</h1>
++      <VakSettings />
++    </Shell>
++  );
++}
+diff --git a/components/Shell.tsx b/components/Shell.tsx
+index 81e7f12..edbc9e6 100644
+--- a/components/Shell.tsx
++++ b/components/Shell.tsx
+@@ -17,6 +17,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
+         <nav>
+           <Link href="/">Mes troupes</Link>
+           <Link href="/mes-personnages">Mes personnages à apprendre</Link>
++          <Link href="/assistant">Assistant</Link>
++          <Link href="/reglages">Réglages</Link>
+           <button className="link" onClick={logout}>
+             Déconnexion
+           </button>
+diff --git a/components/VakButton.tsx b/components/VakButton.tsx
+new file mode 100644
+index 0000000..fb4d3bd
+--- /dev/null
++++ b/components/VakButton.tsx
+@@ -0,0 +1,19 @@
++"use client";
++
++import { AgentButton } from "@vak/agent/web";
++import { useRouter } from "next/navigation";
++import { vak } from "@/lib/vak";
++
++// Bouton flottant de l'assistant, monté dans le layout : présent sur tous les écrans.
++export function VakButton() {
++  const router = useRouter();
++  return (
++    <AgentButton
++      {...vak}
++      label="Assistant"
++      navigate={(href) => router.push(href)}
++      onUnauthorized={() => router.push("/login")}
++      theme={{ accent: "#9f1239", mode: "light", background: "#fafaf9", text: "#1c1917", mutedText: "#78716c" }}
++    />
++  );
++}

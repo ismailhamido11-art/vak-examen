@@ -1,0 +1,3 @@
+$ tsc --noEmit
+(dossier : /work/splitbill_2/apres)
+

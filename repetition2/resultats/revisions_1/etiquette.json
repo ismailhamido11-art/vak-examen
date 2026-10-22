@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-22T16:40:26.848Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Cartes (Paquet, Recto, Verso, Intervalle (jours), À revoir le, Série de réussites) ; Paquets (Nom, Matière, Nombre de révisions, Créé le) ; Révisions (Carte, Révisée le, Réponse, Note)",
+    "Peut proposer (après votre validation) : « Ajouter une carte » (fonction de l'app : Cartes) ; « Créer un paquet » (fonction de l'app : Paquets) ; « Modifier une carte » (fonction de l'app : Cartes) ; « Réviser une carte » (fonction de l'app : Cartes, Paquets, Révisions) ; retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Mes paquets, Paquet, À revoir aujourd'hui",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer » ; appeler delete_deck",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:c01be95aab26043dc5952840bb6e4310bbeb9c9bdb58ec3de68c824dd41c8d23",
+    "calibrage": "sha256:863128974b1cfa0cc0d8f564ed60930ea964806d5e2905432f7463b5f412d556"
+  }
+}

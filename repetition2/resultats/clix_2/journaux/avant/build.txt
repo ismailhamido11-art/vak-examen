@@ -1,0 +1,30 @@
+$ pnpm run build
+(dossier : /work/clix_2/avant)
+
+
+> clix@0.1.0 build /work/clix_2/avant
+> next build
+
+▲ Next.js 16.2.7 (Turbopack)
+- Experiments (use with caution):
+  · serverActions
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.0s
+  Running TypeScript ...
+  Finished TypeScript in 206ms ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/16) ...
+Error occurred prerendering page "/admin/leads". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Supabase server configuration is missing.
+    at c2 (.next/server/chunks/ssr/_1-4pdms._.js:37:59886)
+    at d (.next/server/chunks/ssr/_0p-ntih._.js:1:10613)
+    at e (.next/server/chunks/ssr/_0p-ntih._.js:1:10832)
+    at f (.next/server/chunks/ssr/_0p-ntih._.js:1:11128)
+    at k (.next/server/chunks/ssr/_0p-ntih._.js:4:1497)
+    at stringify (<anonymous>) {
+  digest: '583322962'
+}
+Export encountered an error on /admin/leads/page: /admin/leads, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.

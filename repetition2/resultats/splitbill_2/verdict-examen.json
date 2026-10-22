@@ -1,0 +1,44 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "splitbill_2",
+  "verdict": "refus propre",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": true,
+      "raison": "l'agent s'est arrêté sans rien écrire : « - J'ai lancé `npx -y --package=/work/vak-agent.tgz vak init`. Résultat : `rien n'a été écrit : react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris … »",
+      "preuve": [
+        "journal ligne 81 : - J'ai lancé `npx -y --package=/work/vak-agent.tgz vak init`. Résultat : `rien n'a été écrit : react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ; vak ne change jamais une dépendance de l'app [code 2]`.",
+        "HEAD = commit de préparation bfeb3b07, arbre propre"
+      ]
+    }
+  },
+  "raisons": [],
+  "notes": [
+    "refus propre : compte comme un échec de l'essai (règle, point 7), noté à part"
+  ],
+  "entree": {
+    "essai": "/srv/essais/splitbill_2",
+    "preparation": {
+      "id": "splitbill_2",
+      "depot": "https://github.com/j769chen/splitbill",
+      "commit": "59a168392ccbf4b43a93b9005d7e5d1868a26251",
+      "prepare": "bfeb3b077e33be7c6c46f6a4c24f576b7d6966c5",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T18:07:49Z"
+    },
+    "tip": "bfeb3b077e33be7c6c46f6a4c24f576b7d6966c5",
+    "commitsAgent": 0
+  },
+  "journal": {
+    "entrees": 27,
+    "illisibles": 0
+  },
+  "fin": "2026-10-22T18:11:56.502Z"
+}

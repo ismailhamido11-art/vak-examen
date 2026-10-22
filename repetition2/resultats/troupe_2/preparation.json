@@ -1,0 +1,18 @@
+{
+  "id": "troupe_2",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/troupe.bundle",
+  "commit": "e3c2605fa1ccf3c6cdb560bef834693509c18717",
+  "prepare": "71aa56424344611e96a7ce8987b375661ce1c2a3",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/troupe_2/app",
+  "avant": "/work/troupe_2/avant.json",
+  "debut": "2026-10-22T17:45:50Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T17:46:29Z"
+}

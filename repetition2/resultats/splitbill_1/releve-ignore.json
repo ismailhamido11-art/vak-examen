@@ -1,0 +1,8 @@
+{
+  "id": "splitbill_1",
+  "echecs_de_preuve": [],
+  "ignore": [],
+  "relevees": [],
+  "ecartees_apres_fuite": [],
+  "note": "Sortie de l'outil, recopiée telle quelle sauf ce champ « note », écrit à la main. `node vak-examen/releve-ignore.mjs splitbill_1 /work/jugements/splitbill_1/etat` ne rend pas de JSON sur l'état commité : il lit d'abord la transcription, puis s'arrête (code 1) sur « Error: ENOENT: no such file or directory, open '/work/jugements/splitbill_1/etat/supabase/functions/vak/agent.ts' » (releve-ignore.mjs:55), parce que l'état commité (HEAD bfeb3b0, le commit de préparation) n'a aucun calibrage : `vak init` n'a rien écrit. Le JSON ci-dessus est la sortie du même outil, inchangé, lancé sur un dossier jetable où agent.ts est un fichier vide (effacé ensuite ; rejoué à la vérification adverse, même sortie, code 0) : la partie du journal est celle de l'essai (aucune sortie de vak avec « ✗ … fuite | total faux | étroit | non prouvé » : les seules sorties de vak sont la ligne de refus de `vak init`, transcription ligne 50, et l'aide, ligne 60) ; la partie « ignore » est vide parce qu'il n'y a pas de calibrage commité. Aucune table relevée : releve.json sans objet ; resultat.mjs ne lit que « relevees » (resultat.mjs:95-96)."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "revisions_2",
+  "echecs_de_preuve": [],
+  "ignore": [
+    {
+      "nom": "delete_deck",
+      "ligne": 81
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

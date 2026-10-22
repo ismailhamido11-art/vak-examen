@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/prep_1/apres)
+
+base locale vak_local_5b6949 supprimée [code 0]

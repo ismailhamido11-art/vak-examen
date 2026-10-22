@@ -1,0 +1,39 @@
+verdict revisions_2 : réussi
+{
+  "id": "revisions_2",
+  "verdict": "réussi",
+  "raisons": [],
+  "controleur": {
+    "verdict": "réussi",
+    "raisons": []
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "3/3",
+    "listes_sans_decider": [
+      {
+        "question": "Liste mes paquets.",
+        "attendu": 3,
+        "lu": 3,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes cartes.",
+        "attendu": 9,
+        "lu": 9,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "Liste mes révisions.",
+        "attendu": 12,
+        "lu": 12,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

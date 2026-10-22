@@ -1,0 +1,102 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index 607c0f5..3b33633 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,4 +1,5 @@
+-import { Redirect, Stack, useSegments } from 'expo-router';
++import { Redirect, Stack, useRouter, useSegments } from 'expo-router';
++import { Pressable, StyleSheet, Text } from 'react-native';
+ 
+ import { colors } from '@/components/ui';
+ import { SessionProvider, useSession } from '@/lib/session';
+@@ -6,12 +7,14 @@ import { SessionProvider, useSession } from '@/lib/session';
+ function Guard() {
+   const { session, loading } = useSession();
+   const segments = useSegments();
++  const router = useRouter();
+   const onLogin = segments[0] === 'login';
+ 
+   if (!loading && !session && !onLogin) return <Redirect href="/login" />;
+   if (!loading && session && onLogin) return <Redirect href="/" />;
+ 
+   return (
++    <>
+     <Stack
+       screenOptions={{ headerStyle: { backgroundColor: colors.bg }, headerTintColor: colors.accent }}>
+       <Stack.Screen name="index" options={{ title: 'Mes itinéraires' }} />
+@@ -19,7 +22,18 @@ function Guard() {
+       <Stack.Screen name="trail/new" options={{ title: 'Nouvel itinéraire' }} />
+       <Stack.Screen name="trail/[id]" options={{ title: 'Itinéraire' }} />
+       <Stack.Screen name="outing/new" options={{ title: 'Nouvelle sortie' }} />
++      <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++      <Stack.Screen name="reglages" options={{ title: "Réglages de l'assistant" }} />
+     </Stack>
++    {session && segments[0] !== 'assistant' && segments[0] !== 'login' && (
++      <Pressable
++        accessibilityLabel="Ouvrir l'assistant"
++        style={fab.button}
++        onPress={() => router.push('/assistant')}>
++        <Text style={fab.label}>IA</Text>
++      </Pressable>
++    )}
++    </>
+   );
+ }
+ 
+@@ -30,3 +44,19 @@ export default function RootLayout() {
+     </SessionProvider>
+   );
+ }
++
++const fab = StyleSheet.create({
++  button: {
++    position: 'absolute',
++    right: 20,
++    bottom: 24,
++    width: 56,
++    height: 56,
++    borderRadius: 28,
++    backgroundColor: colors.accent,
++    alignItems: 'center',
++    justifyContent: 'center',
++    elevation: 4,
++  },
++  label: { color: '#fff', fontWeight: '700' },
++});
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 297eca4..63b336e 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -50,6 +50,7 @@ export default function TrailList() {
+             ))}
+         </Fragment>
+       ))}
++      <Button title="Réglages de l'assistant" secondary onPress={() => router.push('/reglages')} />
+       <Button title="Se déconnecter" secondary onPress={() => supabase.auth.signOut()} />
+     </Screen>
+   );
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index 2e9a669..70643f6 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,5 +16,6 @@
+     "**/*.tsx",
+     ".expo/types/**/*.ts",
+     "expo-env.d.ts"
+-  ]
++  ],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

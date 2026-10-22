@@ -1,0 +1,46 @@
+verdict prep_1 : échec (contrôleur : échec (point 4 : fichier géré par vak retouché à la main (4 fois)))
+{
+  "id": "prep_1",
+  "verdict": "échec",
+  "raisons": [
+    "contrôleur : échec (point 4 : fichier géré par vak retouché à la main (4 fois))"
+  ],
+  "controleur": {
+    "verdict": "échec",
+    "raisons": [
+      {
+        "point": 4,
+        "code": "journal-fichier-gere",
+        "resume": "fichier géré par vak retouché à la main (4 fois)",
+        "preuve": [
+          "journal ligne 251 (17:03:12) : écriture sur un fichier géré par vak : supabase/migrations/*_vak_*.sql — commande : V=\"node node_modules/@vak/agent/bin/vak.mjs\"; D=node_modules/.cache/proof-migrations; mkdir -p $D && cp /work/prep_1/proof-migrations/* $D/ && cp supabase/migrations/*_vak_*.sql $D/; $V --db-url post…",
+          "journal ligne 254 (?) : écriture sur un fichier géré par vak : supabase/migrations/*_vak_*.sql — commande : cd /work/prep_1/app && V=\"node node_modules/@vak/agent/bin/vak.mjs\"; D=node_modules/.cache/proof-migrations; mkdir -p $D && cp /work/prep_1/proof-migrations/* $D/ && cp supabase/migrations/*_vak_*.sq…",
+          "journal ligne 315 (17:07:06) : écriture sur un fichier géré par vak : supabase/migrations/*_vak_*.sql — commande : V=\"node node_modules/@vak/agent/bin/vak.mjs\"; D=supabase/test-migrations; mkdir -p $D && cp /work/prep_1/proof-migrations/* $D/ && cp supabase/migrations/*_vak_*.sql $D/ && cat > $D/README.md <<'EOF'…",
+          "journal ligne 318 (?) : écriture sur un fichier géré par vak : supabase/migrations/*_vak_*.sql — commande : cd /work/prep_1/app && V=\"node node_modules/@vak/agent/bin/vak.mjs\"; D=supabase/test-migrations; mkdir -p $D && cp /work/prep_1/proof-migrations/* $D/ && cp supabase/migrations/*_vak_*.sql $D/ && cat…"
+        ]
+      }
+    ]
+  },
+  "point5": {
+    "vrai": true,
+    "raisons": [],
+    "juge": "juste",
+    "couverture": "2/2",
+    "listes_sans_decider": [
+      {
+        "question": "List my quizzes.",
+        "attendu": 6,
+        "lu": 6,
+        "juste": true,
+        "raison": null
+      },
+      {
+        "question": "List my quiz ratings.",
+        "attendu": 4,
+        "lu": 4,
+        "juste": true,
+        "raison": null
+      }
+    ]
+  }
+}

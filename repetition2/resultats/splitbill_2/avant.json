@@ -1,0 +1,86 @@
+{
+  "dossier": "/work/splitbill_2/avant",
+  "commit": "59a168392ccbf4b43a93b9005d7e5d1868a26251",
+  "debut": "2026-10-22T18:07:51.870Z",
+  "fin": "2026-10-22T18:08:53.859Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "expo",
+      "web": true
+    }
+  ],
+  "journaux": "/work/splitbill_2/avant-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/splitbill_2/avant",
+    "code": 0,
+    "duree_s": 16,
+    "erreurs": [],
+    "fin": [
+      "> splitbill@1.0.0 prepare",
+      "> git config core.hooksPath .githooks || true",
+      "added 1088 packages in 16s"
+    ],
+    "journal": "/work/splitbill_2/avant-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/splitbill_2/avant",
+      "code": 0,
+      "duree_s": 6,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/splitbill_2/avant-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/splitbill_2/avant",
+      "code": 0,
+      "duree_s": 4,
+      "erreurs": [],
+      "fin": [
+        "> splitbill@1.0.0 lint",
+        "> eslint ."
+      ],
+      "journal": "/work/splitbill_2/avant-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/splitbill_2/avant",
+      "code": 0,
+      "duree_s": 28,
+      "erreurs": [],
+      "fin": [
+        "Snapshots:   0 total",
+        "Time:        26.959 s",
+        "Ran all test suites."
+      ],
+      "journal": "/work/splitbill_2/avant-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "expo export --platform web",
+      "dossier": "/work/splitbill_2/avant",
+      "code": 0,
+      "duree_s": 8,
+      "erreurs": [],
+      "fin": [
+        "index.html (1.22 kB)",
+        "metadata.json (49 B)",
+        "Exported: /tmp/mesure-export-e2rwnw"
+      ],
+      "journal": "/work/splitbill_2/avant-journaux/build.txt"
+    }
+  }
+}

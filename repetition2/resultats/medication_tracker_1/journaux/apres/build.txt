@@ -1,0 +1,39 @@
+$ expo export --platform web
+(dossier : /work/medication_tracker_1/apres)
+
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+Starting Metro Bundler
+
+| (node:126) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1554/1660)
+| (node:126) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:126) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1800/1801)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1801/1801)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1841/1905)
+Web Bundling failed 13690ms node_modules/expo-router/entry.js (1906 modules)
+Error: Importing native-only module "react-native/Libraries/Utilities/codegenNativeComponent" on web from: node_modules/react-native-google-mobile-ads/lib/module/specs/components/GoogleMobileAdsBannerViewNativeComponent.ts
+
+Import stack:
+
+ node_modules/react-native-google-mobile-ads/lib/module/specs/components/GoogleMobileAdsBannerViewNativeComponent.ts
+ | import "react-native/Libraries/Utilities/codegenNativeComponent"
+           ^ Importing react-native internals is not supported on web.
+
+ node_modules/react-native-google-mobile-ads/lib/module/ads/BannerAd.js
+ | import "../specs/components/GoogleMobileAdsBannerViewNativeComponent"
+
+ node_modules/react-native-google-mobile-ads/lib/module/index.js
+ | import "./ads/BannerAd"
+
+ components/ui/AdBanner.tsx
+ | import "react-native-google-mobile-ads"
+
+ app/(tabs)/index.tsx
+ | import "../../components/ui/AdBanner"
+
+ app (require.context)
+

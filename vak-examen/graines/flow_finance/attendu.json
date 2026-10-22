@@ -1,0 +1,245 @@
+[
+  {
+    "table": "public.spaces",
+    "colonne": "user_id",
+    "nom": "espaces",
+    "langue": "fr",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-BB2A6962",
+      "MARQUEUR-B-481E9632",
+      "MARQUEUR-B-CDE2480E"
+    ]
+  },
+  {
+    "table": "public.bank_connections",
+    "colonne": "user_id",
+    "nom": "connexions bancaires",
+    "langue": "fr",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-9999FFEB",
+      "MARQUEUR-B-44DB47E3",
+      "MARQUEUR-B-21637288",
+      "MARQUEUR-B-979FCA51",
+      "MARQUEUR-B-85D8D4A9",
+      "MARQUEUR-B-E5A74C83"
+    ]
+  },
+  {
+    "table": "public.accounts",
+    "colonne": "user_id",
+    "nom": "comptes bancaires",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-44B3EE7F",
+      "MARQUEUR-B-606CF995",
+      "MARQUEUR-B-78B6B4C2",
+      "MARQUEUR-B-7495F495",
+      "MARQUEUR-B-2C4AF038",
+      "MARQUEUR-B-57D9C17C"
+    ]
+  },
+  {
+    "table": "public.categories",
+    "colonne": "user_id",
+    "nom": "catégories",
+    "langue": "fr",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-677F0895",
+      "MARQUEUR-B-BF649DCC",
+      "MARQUEUR-B-7A1864CC",
+      "MARQUEUR-B-63A6617E",
+      "MARQUEUR-B-C7FA7004",
+      "MARQUEUR-B-380C2A77",
+      "MARQUEUR-B-EB59727A",
+      "MARQUEUR-B-9B5E296A"
+    ]
+  },
+  {
+    "table": "public.recurring_payments",
+    "colonne": "user_id",
+    "nom": "paiements récurrents",
+    "langue": "fr",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-56D5400E",
+      "MARQUEUR-B-97C4D62B",
+      "MARQUEUR-B-2F5284F2",
+      "MARQUEUR-B-5E77729B",
+      "MARQUEUR-B-7CA0E616",
+      "MARQUEUR-B-3020FE1C"
+    ]
+  },
+  {
+    "table": "public.recurring_suggestion_dismissals",
+    "colonne": "user_id",
+    "nom": "suggestions de paiements récurrents écartées",
+    "langue": "fr",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-E18D9C9C",
+      "MARQUEUR-B-8F0807B3",
+      "MARQUEUR-B-7C46BF60",
+      "MARQUEUR-B-D5B36EAB",
+      "MARQUEUR-B-C376DAA2",
+      "MARQUEUR-B-686662A0"
+    ]
+  },
+  {
+    "table": "public.savings_accounts",
+    "colonne": "user_id",
+    "nom": "livrets d'épargne",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-2EA656DC",
+      "MARQUEUR-B-4E62833D",
+      "MARQUEUR-B-65DE85B2",
+      "MARQUEUR-B-5CEFFFBE",
+      "MARQUEUR-B-1B4F8C33"
+    ]
+  },
+  {
+    "table": "public.savings_adjustments",
+    "colonne": "user_id",
+    "nom": "ajustements d'épargne",
+    "langue": "fr",
+    "a": 5,
+    "marqueurs_b": [
+      "MARQUEUR-B-5EB6942C",
+      "MARQUEUR-B-0DCD67B9",
+      "MARQUEUR-B-7C5A8B79",
+      "MARQUEUR-B-8255EF2C",
+      "MARQUEUR-B-6D2BFD59",
+      "MARQUEUR-B-998B1765"
+    ]
+  },
+  {
+    "table": "public.savings_goals",
+    "colonne": "user_id",
+    "nom": "objectifs d'épargne",
+    "langue": "fr",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-6A8DDBB4",
+      "MARQUEUR-B-B3A2E3F4",
+      "MARQUEUR-B-1256ADE3",
+      "MARQUEUR-B-79ACEC90",
+      "MARQUEUR-B-9AEC6652",
+      "MARQUEUR-B-09C2911B",
+      "MARQUEUR-B-044F4301",
+      "MARQUEUR-B-EA9ABCDB"
+    ]
+  },
+  {
+    "table": "public.savings_goal_allocations",
+    "colonne": "user_id",
+    "nom": "affectations aux objectifs d'épargne",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.pea_holdings",
+    "colonne": "user_id",
+    "nom": "titres du PEA",
+    "langue": "fr",
+    "a": 4,
+    "marqueurs_b": [
+      "MARQUEUR-B-45C3BD43",
+      "MARQUEUR-B-7BB9DF41",
+      "MARQUEUR-B-813A3E1D",
+      "MARQUEUR-B-43804588"
+    ]
+  },
+  {
+    "table": "public.pea_investment_plans",
+    "colonne": "user_id",
+    "nom": "plans d'investissement du PEA",
+    "langue": "fr",
+    "a": 2,
+    "marqueurs_b": [
+      "MARQUEUR-B-F936EE1F",
+      "MARQUEUR-B-9567D9A2",
+      "MARQUEUR-B-2D94B6F6",
+      "MARQUEUR-B-DAA5C8DA",
+      "MARQUEUR-B-C99A49E1",
+      "MARQUEUR-B-48FDA596"
+    ]
+  },
+  {
+    "table": "public.pea_transactions",
+    "colonne": "user_id",
+    "nom": "opérations du PEA",
+    "langue": "fr",
+    "a": 7,
+    "marqueurs_b": [
+      "MARQUEUR-B-177DB072",
+      "MARQUEUR-B-D083056E",
+      "MARQUEUR-B-852D695E",
+      "MARQUEUR-B-FF16BE53",
+      "MARQUEUR-B-88367CF0",
+      "MARQUEUR-B-CD1E209B",
+      "MARQUEUR-B-C58C11FC",
+      "MARQUEUR-B-AAECC30C",
+      "MARQUEUR-B-53C992CA",
+      "MARQUEUR-B-B1FE1E7E"
+    ]
+  },
+  {
+    "table": "public.pea_settings",
+    "colonne": "user_id",
+    "nom": "réglages du PEA",
+    "langue": "fr",
+    "a": 1,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.crypto_holdings",
+    "colonne": "user_id",
+    "nom": "cryptomonnaies",
+    "langue": "fr",
+    "a": 3,
+    "marqueurs_b": [
+      "MARQUEUR-B-A09648B0",
+      "MARQUEUR-B-458DAC73",
+      "MARQUEUR-B-60ECF6E8"
+    ]
+  },
+  {
+    "table": "public.crypto_transactions",
+    "colonne": "user_id",
+    "nom": "transactions crypto",
+    "langue": "fr",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-84F0E282",
+      "MARQUEUR-B-E6480DD8",
+      "MARQUEUR-B-1B52DF52",
+      "MARQUEUR-B-3CD859DA"
+    ]
+  },
+  {
+    "table": "public.crypto_portfolio_settings",
+    "colonne": "user_id",
+    "nom": "réglages du portefeuille crypto",
+    "langue": "fr",
+    "a": 1,
+    "marqueurs_b": []
+  },
+  {
+    "table": "public.profiles",
+    "colonne": "id",
+    "nom": "profils",
+    "langue": "fr",
+    "a": 1,
+    "marqueurs_b": [
+      "MARQUEUR-B-95627431",
+      "MARQUEUR-B-0E52D615",
+      "MARQUEUR-B-7045AFBF"
+    ]
+  }
+]

@@ -1,0 +1,1022 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "4/4 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/troupe_1/apres",
+  "lecture": {
+    "fichier": "/work/troupe_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.troupes",
+      "public.troupe_members",
+      "public.shows",
+      "public.characters"
+    ],
+    "ignorees": [
+      "public.can_edit",
+      "public.create_troupe",
+      "public.invite_member",
+      "public.is_member",
+      "public.is_owner",
+      "public.remove_member",
+      "public.set_member_role",
+      "public.show_troupe",
+      "public.troupe_member_list"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.troupes",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.troupe_members",
+      "colonne": "user_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.shows",
+      "colonne": "created_by",
+      "sql_en_tant_que_a": 5,
+      "attendu_json": 5,
+      "accord": true
+    },
+    {
+      "table": "public.characters",
+      "colonne": "titulaire_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.troupes",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes troupes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-2f6dcaa2-cce3-4025-aff8-739934b58844",
+        "question": "Combien de mes troupes ?",
+        "texte": "Vous êtes membre de **3 troupes** :\n\n- Les Tréteaux du Midi — Toulouse\n- Compagnie des Quatre Vents — Nantes\n- Théâtre de la Lanterne — Lyon\n\nSouhaitez-vous en ouvrir une en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupes",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "troupes",
+              "label": "Troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "nom": "Les Tréteaux du Midi",
+                  "ville": "Toulouse",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "nom": "Compagnie des Quatre Vents",
+                  "ville": "Nantes",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "nom": "Théâtre de la Lanterne",
+                  "ville": "Lyon",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          4
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.troupes",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes troupes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-656825fd-27a7-4d21-9939-a25f8ecbcf0a",
+        "question": "Liste mes troupes.",
+        "texte": "Je regarde vos troupes.\n\nVous êtes membre de 3 troupes :\n\n1. **Les Tréteaux du Midi** — Toulouse\n2. **Compagnie des Quatre Vents** — Nantes\n3. **Théâtre de la Lanterne** — Lyon\n\nSouhaitez-vous ouvrir la fiche de l'une d'elles ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupes",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "troupes",
+              "label": "Troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "nom": "Les Tréteaux du Midi",
+                  "ville": "Toulouse",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "nom": "Compagnie des Quatre Vents",
+                  "ville": "Nantes",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "nom": "Théâtre de la Lanterne",
+                  "ville": "Lyon",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          4
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.troupe_members",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes adhésions à une troupe ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-524a3bc9-86d8-4f9f-93ff-1d0d9723cf75",
+        "question": "Combien de mes adhésions à une troupe ?",
+        "texte": "Vous avez **3** adhésions à une troupe :\n\n- Les Tréteaux du Midi — propriétaire\n- Compagnie des Quatre Vents — propriétaire\n- Théâtre de la Lanterne — propriétaire\n\nSouhaitez-vous que je vous ouvre la fiche de l'une d'elles ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupe_members",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "troupe_members",
+              "label": "Membres des troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "troupe_id": "Théâtre de la Lanterne (id f97dd1fa-4c97-48a7-9db7-1e92a622873d)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          4
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.troupe_members",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes adhésions à une troupe.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ec9f0cdd-031a-42a4-933e-611a91dfb78f",
+        "question": "Liste mes adhésions à une troupe.",
+        "texte": "Bonjour ! Voici vos adhésions : **3** troupes, et vous y êtes propriétaire dans chacune.\n\n| Troupe | Ville | Rôle |\n|---|---|---|\n| Les Tréteaux du Midi | Toulouse | Propriétaire |\n| Compagnie des Quatre Vents | Nantes | Propriétaire |\n| Théâtre de la Lanterne | Lyon | Propriétaire |\n\nSouhaitez-vous ouvrir la fiche de l'une d'elles ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupe_members",
+              "order": "oldest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "troupe_members",
+              "label": "Membres des troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "troupe_id": "Théâtre de la Lanterne (id f97dd1fa-4c97-48a7-9db7-1e92a622873d)",
+                  "user_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "role": "owner (Propriétaire)",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupes",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "troupes",
+              "label": "Troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "nom": "Les Tréteaux du Midi",
+                  "ville": "Toulouse",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "nom": "Compagnie des Quatre Vents",
+                  "ville": "Nantes",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "nom": "Théâtre de la Lanterne",
+                  "ville": "Lyon",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          4
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.shows",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes spectacles ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-34bb91b0-48b0-45b7-bd9d-82caa066465b",
+        "question": "Combien de mes spectacles ?",
+        "texte": "Vous avez **5 spectacles** au total dans vos 3 troupes :\n\n- **2 en préparation** : Antigone (Compagnie des Quatre Vents), Cyrano de Bergerac (Les Tréteaux du Midi)\n- **2 à l'affiche** : En attendant Godot (Théâtre de la Lanterne), Le Malade imaginaire (Les Tréteaux du Midi)\n- **1 terminé** : Le Jeu de l'amour et du hasard (Compagnie des Quatre Vents)\n\nVoulez-vous que j'ouvre la fiche d'un de ces spectacles ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupes",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "troupes",
+              "label": "Troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "nom": "Les Tréteaux du Midi",
+                  "ville": "Toulouse",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "nom": "Compagnie des Quatre Vents",
+                  "ville": "Nantes",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "nom": "Théâtre de la Lanterne",
+                  "ville": "Lyon",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "shows",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "shows",
+              "label": "Spectacles",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "titre": "Antigone",
+                  "auteur": "Jean Anouilh",
+                  "premiere": "2026-09-12",
+                  "statut": "en_preparation (En préparation)"
+                },
+                {
+                  "id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "titre": "Cyrano de Bergerac",
+                  "auteur": "Edmond Rostand",
+                  "premiere": "2026-06-20",
+                  "statut": "en_preparation (En préparation)"
+                },
+                {
+                  "id": "84bffec3-9134-4f1f-b1ef-9ec84e639a5c",
+                  "troupe_id": "Théâtre de la Lanterne (id f97dd1fa-4c97-48a7-9db7-1e92a622873d)",
+                  "titre": "En attendant Godot",
+                  "auteur": "Samuel Beckett",
+                  "premiere": "2026-05-02",
+                  "statut": "a_l_affiche (À l'affiche)"
+                },
+                {
+                  "id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "titre": "Le Malade imaginaire",
+                  "auteur": "Molière",
+                  "premiere": "2026-03-14",
+                  "statut": "a_l_affiche (À l'affiche)"
+                },
+                {
+                  "id": "fe1027e1-721a-4904-aeab-75c9232ff62f",
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "titre": "Le Jeu de l'amour et du hasard",
+                  "auteur": "Marivaux",
+                  "premiere": "2025-11-08",
+                  "statut": "termine (Terminé)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          3,
+          2,
+          4,
+          2,
+          1,
+          4
+        ],
+        "ok": true,
+        "retenu": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.shows",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes spectacles.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-ca7b1770-7865-4032-8cfd-3a9e90f6ab83",
+        "question": "Liste mes spectacles.",
+        "texte": "Voici vos 5 spectacles, classés par date de première :\n\n| Spectacle | Auteur | Troupe | Première | Statut |\n|---|---|---|---|---|\n| Le Jeu de l'amour et du hasard | Marivaux | Compagnie des Quatre Vents | 8 nov. 2025 | Terminé |\n| Le Malade imaginaire | Molière | Les Tréteaux du Midi | 14 mars 2026 | À l'affiche |\n| En attendant Godot | Samuel Beckett | Théâtre de la Lanterne | 2 mai 2026 | À l'affiche |\n| Cyrano de Bergerac | Edmond Rostand | Les Tréteaux du Midi | 20 juin 2026 | En préparation |\n| Antigone | Jean Anouilh | Compagnie des Quatre Vents | 12 sept. 2026 | En préparation |\n\nSouhaitez-vous ouvrir la fiche de l'un d'eux pour voir sa distribution ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "troupes",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "troupes",
+              "label": "Troupes",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "nom": "Les Tréteaux du Midi",
+                  "ville": "Toulouse",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "nom": "Compagnie des Quatre Vents",
+                  "ville": "Nantes",
+                  "created_at": "2026-10-22T18:30"
+                },
+                {
+                  "id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "nom": "Théâtre de la Lanterne",
+                  "ville": "Lyon",
+                  "created_at": "2026-10-22T18:30"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "shows",
+              "order": "newest",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "shows",
+              "label": "Spectacles",
+              "total": 5,
+              "shown": 5,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "titre": "Antigone",
+                  "auteur": "Jean Anouilh",
+                  "premiere": "2026-09-12",
+                  "statut": "en_preparation (En préparation)"
+                },
+                {
+                  "id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "titre": "Cyrano de Bergerac",
+                  "auteur": "Edmond Rostand",
+                  "premiere": "2026-06-20",
+                  "statut": "en_preparation (En préparation)"
+                },
+                {
+                  "id": "84bffec3-9134-4f1f-b1ef-9ec84e639a5c",
+                  "troupe_id": "Théâtre de la Lanterne (id f97dd1fa-4c97-48a7-9db7-1e92a622873d)",
+                  "titre": "En attendant Godot",
+                  "auteur": "Samuel Beckett",
+                  "premiere": "2026-05-02",
+                  "statut": "a_l_affiche (À l'affiche)"
+                },
+                {
+                  "id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "troupe_id": "Les Tréteaux du Midi (id 209d5ab5-327b-43e0-a956-3c1cf42cfcae)",
+                  "titre": "Le Malade imaginaire",
+                  "auteur": "Molière",
+                  "premiere": "2026-03-14",
+                  "statut": "a_l_affiche (À l'affiche)"
+                },
+                {
+                  "id": "fe1027e1-721a-4904-aeab-75c9232ff62f",
+                  "troupe_id": "Compagnie des Quatre Vents (id ef1ec0bc-58b8-42a1-becf-e2271639d8ad)",
+                  "titre": "Le Jeu de l'amour et du hasard",
+                  "auteur": "Marivaux",
+                  "premiere": "2025-11-08",
+                  "statut": "termine (Terminé)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 5,
+        "nombres_lus": [
+          5,
+          4,
+          4
+        ],
+        "ok": true,
+        "retenu": 5,
+        "source": "nombre annoncé",
+        "elements": 5
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.characters",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes personnages ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-b67bcf77-609c-4bdd-879d-bd565305d8cb",
+        "question": "Combien de mes personnages ?",
+        "texte": "Vous êtes titulaire de **9 personnages** — et aucun n'est encore marqué « su » :\n\n- **5 à apprendre** : Antigone, Créon (Antigone), Silvia (Le Jeu de l'amour et du hasard), Cyrano, Roxane (Cyrano de Bergerac), Béralde, Toinette (Le Malade imaginaire), Vladimir (En attendant Godot)…\n- **4 en cours** : Créon, Silvia, Cyrano, Argan.\n\nPlus précisément, tous les 9 sont à travailler : 5 « à apprendre » et 4 « en cours ».\n\nVoulez-vous ouvrir la liste pour les retrouver ?\n\nPetite correction de ma liste, pour être exact :\n\n- **À apprendre (5)** : Antigone, Roxane, Béralde, Toinette, Vladimir\n- **En cours (4)** : Créon, Silvia, Cyrano, Argan\n\nSoit **9 personnages** au total, répartis sur 4 spectacles (Antigone, Le Jeu de l'amour et du hasard, Cyrano de Bergerac, Le Malade imaginaire, En attendant Godot — pardon, 5 spectacles). Le bouton « Mes personnages » vous y mène directement.",
+        "outils": [
+          {
+            "nom": "memory_search",
+            "entree": {
+              "query": "utilisateur prénom identifiant membre troupe"
+            },
+            "sortie": {
+              "memories": []
+            }
+          },
+          {
+            "nom": "call_mes_personnages",
+            "entree": {},
+            "sortie": {
+              "function": "mes_personnages",
+              "label": "Mes personnages à apprendre",
+              "result": [
+                {
+                  "id": "dc83ff46-6876-4e8b-9a4b-0ddc4d49dd6c",
+                  "nom": "Antigone",
+                  "repliques": 220,
+                  "statut": "a_apprendre",
+                  "show_id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "show_titre": "Antigone",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "ff6cde13-6c8b-4f07-9cda-c87d597ca27c",
+                  "nom": "Créon",
+                  "repliques": 175,
+                  "statut": "en_cours",
+                  "show_id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "show_titre": "Antigone",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "1773adce-c8a6-4ed8-8d74-f4c5e6f636f5",
+                  "nom": "Silvia",
+                  "repliques": 150,
+                  "statut": "en_cours",
+                  "show_id": "fe1027e1-721a-4904-aeab-75c9232ff62f",
+                  "show_titre": "Le Jeu de l'amour et du hasard",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "c99c66d5-c2b1-4449-a906-cad20c721cdd",
+                  "nom": "Cyrano",
+                  "repliques": 480,
+                  "statut": "en_cours",
+                  "show_id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "show_titre": "Cyrano de Bergerac",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "f8b2196a-c064-470e-88c4-84cb49b85348",
+                  "nom": "Roxane",
+                  "repliques": 190,
+                  "statut": "a_apprendre",
+                  "show_id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "show_titre": "Cyrano de Bergerac",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "4b81e144-e170-445c-90e7-89c43a4ae339",
+                  "nom": "Argan",
+                  "repliques": 210,
+                  "statut": "en_cours",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "6830c995-9cf3-497f-97fc-6be542db24be",
+                  "nom": "Béralde",
+                  "repliques": 75,
+                  "statut": "a_apprendre",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "d9307124-e213-42a3-903c-6993ab719ae5",
+                  "nom": "Toinette",
+                  "repliques": 160,
+                  "statut": "a_apprendre",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "f04c8e5f-70ef-4ca9-b3b5-04b9422a6422",
+                  "nom": "Vladimir",
+                  "repliques": 260,
+                  "statut": "a_apprendre",
+                  "show_id": "84bffec3-9134-4f1f-b1ef-9ec84e639a5c",
+                  "show_titre": "En attendant Godot",
+                  "troupe_id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "troupe_nom": "Théâtre de la Lanterne"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "characters",
+              "id": "dc83ff46-6876-4e8b-9a4b-0ddc4d49dd6c",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "characters",
+              "label": "Personnages",
+              "total": 1,
+              "shown": 1,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "dc83ff46-6876-4e8b-9a4b-0ddc4d49dd6c",
+                  "show_id": "Antigone (id bcc82e73-2d24-4471-ab97-9a4e8b08d4b9)",
+                  "nom": "Antigone",
+                  "repliques": 220,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "characters",
+              "where": [
+                {
+                  "column": "titulaire_id",
+                  "op": "eq",
+                  "value": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b"
+                }
+              ],
+              "limit": 50
+            },
+            "sortie": {
+              "table": "characters",
+              "label": "Personnages",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "f8b2196a-c064-470e-88c4-84cb49b85348",
+                  "show_id": "Cyrano de Bergerac (id 5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6)",
+                  "nom": "Roxane",
+                  "repliques": 190,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "c99c66d5-c2b1-4449-a906-cad20c721cdd",
+                  "show_id": "Cyrano de Bergerac (id 5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6)",
+                  "nom": "Cyrano",
+                  "repliques": 480,
+                  "statut": "en_cours (En cours)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "6830c995-9cf3-497f-97fc-6be542db24be",
+                  "show_id": "Le Malade imaginaire (id d56365f7-1a85-4fd3-b090-38ce9b99cd66)",
+                  "nom": "Béralde",
+                  "repliques": 75,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "d9307124-e213-42a3-903c-6993ab719ae5",
+                  "show_id": "Le Malade imaginaire (id d56365f7-1a85-4fd3-b090-38ce9b99cd66)",
+                  "nom": "Toinette",
+                  "repliques": 160,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "4b81e144-e170-445c-90e7-89c43a4ae339",
+                  "show_id": "Le Malade imaginaire (id d56365f7-1a85-4fd3-b090-38ce9b99cd66)",
+                  "nom": "Argan",
+                  "repliques": 210,
+                  "statut": "en_cours (En cours)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "ff6cde13-6c8b-4f07-9cda-c87d597ca27c",
+                  "show_id": "Antigone (id bcc82e73-2d24-4471-ab97-9a4e8b08d4b9)",
+                  "nom": "Créon",
+                  "repliques": 175,
+                  "statut": "en_cours (En cours)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "dc83ff46-6876-4e8b-9a4b-0ddc4d49dd6c",
+                  "show_id": "Antigone (id bcc82e73-2d24-4471-ab97-9a4e8b08d4b9)",
+                  "nom": "Antigone",
+                  "repliques": 220,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "1773adce-c8a6-4ed8-8d74-f4c5e6f636f5",
+                  "show_id": "Le Jeu de l'amour et du hasard (id fe1027e1-721a-4904-aeab-75c9232ff62f)",
+                  "nom": "Silvia",
+                  "repliques": 150,
+                  "statut": "en_cours (En cours)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                },
+                {
+                  "id": "f04c8e5f-70ef-4ca9-b3b5-04b9422a6422",
+                  "show_id": "En attendant Godot (id 84bffec3-9134-4f1f-b1ef-9ec84e639a5c)",
+                  "nom": "Vladimir",
+                  "repliques": 260,
+                  "statut": "a_apprendre (À apprendre)",
+                  "titulaire_id": "c2ef502b-580f-4e27-ac4c-09d3e47aef1b",
+                  "doublure_id": null
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "mes_personnages"
+            },
+            "sortie": {
+              "href": "/mes-personnages",
+              "label": "Mes personnages"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          5,
+          4,
+          9,
+          5,
+          4,
+          5,
+          4,
+          9,
+          4,
+          5
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.characters",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes personnages.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d1cc6fda-ea0f-4e93-9410-b4bf73769c79",
+        "question": "Liste mes personnages.",
+        "texte": "Voici les personnages dont vous êtes titulaire (9 au total) :\n\n**Compagnie des Quatre Vents**\n- *Antigone* — Antigone : 220 répliques, à apprendre\n- *Antigone* — Créon : 175 répliques, en cours\n- *Le Jeu de l'amour et du hasard* — Silvia : 150 répliques, en cours\n\n**Les Tréteaux du Midi**\n- *Cyrano de Bergerac* — Cyrano : 480 répliques, en cours\n- *Cyrano de Bergerac* — Roxane : 190 répliques, à apprendre\n- *Le Malade imaginaire* — Argan : 210 répliques, en cours\n- *Le Malade imaginaire* — Béralde : 75 répliques, à apprendre\n- *Le Malade imaginaire* — Toinette : 160 répliques, à apprendre\n\n**Théâtre de la Lanterne**\n- *En attendant Godot* — Vladimir : 260 répliques, à apprendre\n\nQuatre rôles sont encore à apprendre et quatre sont en cours — de quoi occuper les répétitions ! Voulez-vous que j'ouvre votre liste de personnages ?",
+        "outils": [
+          {
+            "nom": "call_mes_personnages",
+            "entree": {},
+            "sortie": {
+              "function": "mes_personnages",
+              "label": "Mes personnages à apprendre",
+              "result": [
+                {
+                  "id": "dc83ff46-6876-4e8b-9a4b-0ddc4d49dd6c",
+                  "nom": "Antigone",
+                  "repliques": 220,
+                  "statut": "a_apprendre",
+                  "show_id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "show_titre": "Antigone",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "ff6cde13-6c8b-4f07-9cda-c87d597ca27c",
+                  "nom": "Créon",
+                  "repliques": 175,
+                  "statut": "en_cours",
+                  "show_id": "bcc82e73-2d24-4471-ab97-9a4e8b08d4b9",
+                  "show_titre": "Antigone",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "1773adce-c8a6-4ed8-8d74-f4c5e6f636f5",
+                  "nom": "Silvia",
+                  "repliques": 150,
+                  "statut": "en_cours",
+                  "show_id": "fe1027e1-721a-4904-aeab-75c9232ff62f",
+                  "show_titre": "Le Jeu de l'amour et du hasard",
+                  "troupe_id": "ef1ec0bc-58b8-42a1-becf-e2271639d8ad",
+                  "troupe_nom": "Compagnie des Quatre Vents"
+                },
+                {
+                  "id": "c99c66d5-c2b1-4449-a906-cad20c721cdd",
+                  "nom": "Cyrano",
+                  "repliques": 480,
+                  "statut": "en_cours",
+                  "show_id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "show_titre": "Cyrano de Bergerac",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "f8b2196a-c064-470e-88c4-84cb49b85348",
+                  "nom": "Roxane",
+                  "repliques": 190,
+                  "statut": "a_apprendre",
+                  "show_id": "5e4e600d-7b26-495d-9d52-bf8e9fa3f7d6",
+                  "show_titre": "Cyrano de Bergerac",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "4b81e144-e170-445c-90e7-89c43a4ae339",
+                  "nom": "Argan",
+                  "repliques": 210,
+                  "statut": "en_cours",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "6830c995-9cf3-497f-97fc-6be542db24be",
+                  "nom": "Béralde",
+                  "repliques": 75,
+                  "statut": "a_apprendre",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "d9307124-e213-42a3-903c-6993ab719ae5",
+                  "nom": "Toinette",
+                  "repliques": 160,
+                  "statut": "a_apprendre",
+                  "show_id": "d56365f7-1a85-4fd3-b090-38ce9b99cd66",
+                  "show_titre": "Le Malade imaginaire",
+                  "troupe_id": "209d5ab5-327b-43e0-a956-3c1cf42cfcae",
+                  "troupe_nom": "Les Tréteaux du Midi"
+                },
+                {
+                  "id": "f04c8e5f-70ef-4ca9-b3b5-04b9422a6422",
+                  "nom": "Vladimir",
+                  "repliques": 260,
+                  "statut": "a_apprendre",
+                  "show_id": "84bffec3-9134-4f1f-b1ef-9ec84e639a5c",
+                  "show_titre": "En attendant Godot",
+                  "troupe_id": "f97dd1fa-4c97-48a7-9db7-1e92a622873d",
+                  "troupe_nom": "Théâtre de la Lanterne"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          4,
+          220,
+          175,
+          150,
+          480,
+          190,
+          210,
+          75,
+          160,
+          260,
+          4,
+          4
+        ],
+        "ok": true,
+        "retenu": 9,
+        "source": "nombre annoncé",
+        "elements": 9
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 15
+  },
+  "couverture": {
+    "lues": 4,
+    "total": 4,
+    "tables": [
+      {
+        "table": "public.troupes",
+        "lue": true
+      },
+      {
+        "table": "public.troupe_members",
+        "lue": true
+      },
+      {
+        "table": "public.shows",
+        "lue": true
+      },
+      {
+        "table": "public.characters",
+        "lue": true
+      }
+    ],
+    "texte": "4/4"
+  }
+}

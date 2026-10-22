@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/medication_tracker_1/apres)
+
+base locale vak_local_80e276 supprimée [code 0]

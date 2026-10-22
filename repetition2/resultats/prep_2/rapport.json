@@ -1,0 +1,212 @@
+{
+  "id": "prep_2",
+  "verdict": "échec",
+  "raisons": [
+    "aucun commit de l'essai",
+    "vak non installé : supabase/functions/vak/vak.lock.json absent du commit final",
+    "1 sabotage(s) : restes"
+  ],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [
+    {
+      "type": "restes",
+      "detail": "restes non commités dans /work/prep_2/app :  M app/layout.tsx ;  M package-lock.json ;  M package.json ;  M src/features/dashboard/constants/navItems.ts ;  M supabase/.gitignore ;  M supabase/config.toml ;  M tsconfig.json ; ?? .agents/skills/vak/SKILL.md ; ?? .agents/skills/vak/references/calibration.md ; ?? .agents/skills/vak/references/features.md ; ?? .agents/skills/vak/references/guardrails.md ; ?? .agents/skills/vak/references/local-first.md ; ?? .agents/skills/vak/references/ui.md ; ?? .claude/skills/vak/SKILL.md ; ?? .claude/skills/vak/references/calibration.md ; ?? .claude/skills/vak/references/features.md ; ?? .claude/skills/vak/references/guardrails.md ; ?? .claude/skills/vak/references/local-first.md ; ?? .claude/skills/vak/references/ui.md ; ?? AGENTS.md … et 18"
+    }
+  ],
+  "depot": "https://github.com/Truella/prep",
+  "commit": "341c8dc5727f0cd7f3bd4d0db7a099384fdc60af",
+  "prepare": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+  "head": "03f064856727413d5ede14a7f0ca7056940b1cb1",
+  "branche": "essai",
+  "commits": [],
+  "restes": [
+    " M app/layout.tsx",
+    " M package-lock.json",
+    " M package.json",
+    " M src/features/dashboard/constants/navItems.ts",
+    " M supabase/.gitignore",
+    " M supabase/config.toml",
+    " M tsconfig.json",
+    "?? .agents/skills/vak/SKILL.md",
+    "?? .agents/skills/vak/references/calibration.md",
+    "?? .agents/skills/vak/references/features.md",
+    "?? .agents/skills/vak/references/guardrails.md",
+    "?? .agents/skills/vak/references/local-first.md",
+    "?? .agents/skills/vak/references/ui.md",
+    "?? .claude/skills/vak/SKILL.md",
+    "?? .claude/skills/vak/references/calibration.md",
+    "?? .claude/skills/vak/references/features.md",
+    "?? .claude/skills/vak/references/guardrails.md",
+    "?? .claude/skills/vak/references/local-first.md",
+    "?? .claude/skills/vak/references/ui.md",
+    "?? AGENTS.md",
+    "?? CLAUDE.md",
+    "?? app/assistant/assistant.tsx",
+    "?? app/assistant/layout.tsx",
+    "?? app/assistant/page.tsx",
+    "?? app/settings/agent-settings.tsx",
+    "?? app/settings/layout.tsx",
+    "?? app/settings/page.tsx",
+    "?? src/lib/vak.ts",
+    "?? src/shared/components/VakButton.tsx",
+    "?? supabase/functions/vak/deno.json",
+    "?? supabase/functions/vak/index.ts",
+    "?? supabase/functions/vak/tsconfig.json",
+    "?? supabase/functions/vak/vak-server.mjs",
+    "?? supabase/functions/vak/vak.lock.json",
+    "?? supabase/migrations/20261022182559_vak_0001_core.sql",
+    "?? supabase/migrations/20261022182600_vak_0002_feedback.sql",
+    "?? supabase/migrations/20261022182601_vak_0003_history.sql",
+    "?? supabase/migrations/20261022182602_vak_0004_quota_erase.sql"
+  ],
+  "bundle": null,
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.29.2.tgz",
+      "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      }
+    ],
+    "vakInstalle": null
+  },
+  "controle": {
+    "debut": "2026-10-22T18:28:46.059Z",
+    "fin": "2026-10-22T18:29:57.240Z",
+    "duree_s": 71,
+    "node": "v22.22.0"
+  },
+  "vak": {},
+  "preuve": {
+    "commite": null,
+    "controle": null
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 21,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm ci",
+        "code": 0,
+        "duree_s": 24,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 8,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run typecheck",
+        "code": 0,
+        "duree_s": 8,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 13,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run lint",
+        "code": 0,
+        "duree_s": 13,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "npm run test",
+        "code": 0,
+        "duree_s": 9,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 18,
+        "erreurs": 0,
+        "fin": [
+          "at ignore-listed frames {",
+          "type: 'Error'",
+          "}"
+        ]
+      },
+      "apres": {
+        "commande": "npm run build",
+        "code": 1,
+        "duree_s": 17,
+        "erreurs": 0,
+        "fin": [
+          "at ignore-listed frames {",
+          "type: 'Error'",
+          "}"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "package-lock.json",
+        "supprime": false,
+        "entrees": [
+          590,
+          590
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A vendor/vak/vak-agent-0.29.2.tgz"
+    ],
+    "aRelire": []
+  }
+}

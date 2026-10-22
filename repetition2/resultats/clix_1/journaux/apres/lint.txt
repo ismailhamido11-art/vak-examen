@@ -1,0 +1,7 @@
+$ pnpm run lint
+(dossier : /work/clix_1/apres)
+
+
+> clix@0.1.0 lint /work/clix_1/apres
+> eslint
+

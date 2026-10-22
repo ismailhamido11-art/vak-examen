@@ -1,0 +1,74 @@
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+index 7e22e31..04d3ea1 100644
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -18,6 +18,7 @@ const TAB_ICONS: Record<string, keyof typeof Feather.glyphMap> = {
+   index: 'home',
+   medications: 'package',
+   reports: 'bar-chart-2',
++  assistant: 'message-circle',
+   profile: 'user',
+ };
+ 
+@@ -26,6 +27,7 @@ const RAIL_LABELS: Record<string, string> = {
+   index: 'Today',
+   medications: 'Meds',
+   reports: 'Reports',
++  assistant: 'Assistant',
+   profile: 'Profile',
+ };
+ 
+@@ -248,6 +250,7 @@ export default function TabLayout() {
+         <Tabs.Screen name="index" options={{ title: 'Today' }} />
+         <Tabs.Screen name="medications" options={{ title: 'Medications' }} />
+         <Tabs.Screen name="reports" options={{ title: 'Reports' }} />
++        <Tabs.Screen name="assistant" options={{ title: 'Assistant' }} />
+         <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
+       </Tabs>
+     </View>
+diff --git a/app/(tabs)/profile.tsx b/app/(tabs)/profile.tsx
+index bf850ff..9a6f574 100644
+--- a/app/(tabs)/profile.tsx
++++ b/app/(tabs)/profile.tsx
+@@ -1,4 +1,5 @@
+ import { Feather } from '@expo/vector-icons';
++import { AgentSettings } from '@vak/agent/native';
+ import { LinearGradient } from 'expo-linear-gradient';
+ import { useRouter } from 'expo-router';
+ import React, { useCallback, useMemo, useState } from 'react';
+@@ -26,6 +27,7 @@ import { type ThemePreference, useThemePreference } from '../../contexts/ThemeCo
+ import { useDoseLogsByRange, useMedications, useSchedules } from '../../hooks/useQueryHooks';
+ import { useResponsive } from '../../hooks/useResponsive';
+ import { useThemeColors } from '../../hooks/useThemeColors';
++import { vak } from '../../lib/vak';
+ import { computeAdherence, computeStreak } from '../../utils/adherence';
+ import { toISO } from '../../utils/date';
+ 
+@@ -237,6 +239,9 @@ export default function ProfileScreen() {
+             ))}
+           </View>
+ 
++          {/* AI assistant settings: consent, memories, export, erasure */}
++          <AgentSettings {...vak} />
++
+           {/* Logout */}
+           <TouchableOpacity
+             style={styles.logoutButton}
+diff --git a/biome.json b/biome.json
+index 4ed0345..04a82e9 100644
+--- a/biome.json
++++ b/biome.json
+@@ -38,7 +38,12 @@
+       "!**/coverage",
+       "!**/scripts",
+       "!**/*.lock",
+-      "!**/bun.lockb"
++      "!**/bun.lockb",
++      "!supabase/functions/vak/index.ts",
++      "!supabase/functions/vak/vak-server.mjs",
++      "!supabase/functions/vak/schema.gen.ts",
++      "!supabase/functions/vak/vak.lock.json",
++      "!supabase/functions/vak/vak-proof.json"
+     ]
+   },
+   "javascript": {

@@ -1,0 +1,7 @@
+$ npm run lint
+(dossier : /work/randonnee_2/avant)
+
+
+> app@1.0.0 lint
+> expo lint
+

@@ -1,0 +1,18 @@
+{
+  "id": "splitbill_2",
+  "depot": "https://github.com/j769chen/splitbill",
+  "commit": "59a168392ccbf4b43a93b9005d7e5d1868a26251",
+  "prepare": "bfeb3b077e33be7c6c46f6a4c24f576b7d6966c5",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/splitbill_2/app",
+  "avant": "/work/splitbill_2/avant.json",
+  "debut": "2026-10-22T18:07:49Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T18:09:06Z"
+}

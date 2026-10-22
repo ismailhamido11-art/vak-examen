@@ -1,0 +1,33 @@
+{
+  "lue_le": "2026-10-22T17:57:38.307Z",
+  "langue": "fr",
+  "nom": "Assistant",
+  "etiquette": [
+    "Voit : Troupes (Nom, Ville, Créée le) ; Membres des troupes (Troupe, Membre, Rôle, Membre depuis) ; Spectacles (Troupe, Titre, Auteur, Première, Statut) ; Personnages (Spectacle, Nom, Répliques, Statut, Titulaire, Doublure)",
+    "Peut proposer (après votre validation) : retenir un souvenir (prise memory)",
+    "Peut ouvrir (sans rien enregistrer) : Troupe, Spectacle, Mes personnages",
+    "Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer » ; appeler can_edit, create_troupe, invite_member, is_member, is_owner, remove_member, set_member_role, show_troupe, 1 autres",
+    "Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)"
+  ],
+  "destinations": [
+    {
+      "name": "DeepSeek",
+      "host": "api.deepseek.com",
+      "country": "Chine",
+      "retention": "selon ses conditions"
+    }
+  ],
+  "fournisseurs_accord": [
+    "DeepSeek (api.deepseek.com, CN, ?)"
+  ],
+  "prises": [
+    "consent",
+    "quota",
+    "memory",
+    "drafts"
+  ],
+  "empreintes": {
+    "schema": "sha256:ea5188de2cc3b49c55e828ab357c743601a860e0f29de54fef9951f1dc08fd9b",
+    "calibrage": "sha256:2a1f3154ef3f5f24ea2e4f025372e9885ea1b2de1aa202d879fcb8a7f250fce8"
+  }
+}

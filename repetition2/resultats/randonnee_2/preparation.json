@@ -1,0 +1,18 @@
+{
+  "id": "randonnee_2",
+  "depot": "/home/user/ai-chatbot/vak-examen/apps/randonnee.bundle",
+  "commit": "4f43b027399c074f06de28aff08c967a752d6bd4",
+  "prepare": "0de5556ea710eff35d7a023dd1c7ea106d856bfd",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/randonnee_2/app",
+  "avant": "/work/randonnee_2/avant.json",
+  "debut": "2026-10-22T17:34:08Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T17:34:43Z"
+}

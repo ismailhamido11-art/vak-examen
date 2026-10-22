@@ -1,0 +1,117 @@
+{
+  "id": "troupe_1",
+  "echecs_de_preuve": [
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 147,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "shows",
+      "verdict": "non prouvé",
+      "ligne": 147,
+      "texte": "✗ shows non prouvé"
+    },
+    {
+      "table": "troupes",
+      "verdict": "non prouvé",
+      "ligne": 147,
+      "texte": "✗ troupes non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 147,
+      "texte": "✗ mes_personnages() non prouvé"
+    },
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 157,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 157,
+      "texte": "✗ mes_personnages() non prouvé"
+    },
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 184,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 184,
+      "texte": "✗ mes_personnages() non prouvé"
+    },
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 192,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 192,
+      "texte": "✗ mes_personnages() non prouvé"
+    },
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 233,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 233,
+      "texte": "✗ mes_personnages() non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "can_edit",
+      "ligne": 79
+    },
+    {
+      "nom": "create_troupe",
+      "ligne": 80
+    },
+    {
+      "nom": "invite_member",
+      "ligne": 81
+    },
+    {
+      "nom": "is_member",
+      "ligne": 82
+    },
+    {
+      "nom": "is_owner",
+      "ligne": 83
+    },
+    {
+      "nom": "remove_member",
+      "ligne": 84
+    },
+    {
+      "nom": "set_member_role",
+      "ligne": 85
+    },
+    {
+      "nom": "show_troupe",
+      "ligne": 86
+    },
+    {
+      "nom": "troupe_member_list",
+      "ligne": 87
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

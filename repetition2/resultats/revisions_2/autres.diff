@@ -1,0 +1,92 @@
+diff --git a/src/app/_layout.tsx b/src/app/_layout.tsx
+index c87bc34..b858f00 100644
+--- a/src/app/_layout.tsx
++++ b/src/app/_layout.tsx
+@@ -1,14 +1,28 @@
+-import { Stack } from 'expo-router';
++import { AgentButton } from '@vak/agent/native';
++import { type Href, router, Stack } from 'expo-router';
+ import { StatusBar } from 'expo-status-bar';
+ 
+ import { colors } from '@/components/ui';
++import { vak } from '@/lib/vak';
+ import { SessionProvider, useSession } from '@/lib/session';
+ 
++const agentTheme = {
++  accent: colors.primary,
++  mode: 'light',
++  background: colors.bg,
++  surface: colors.card,
++  text: colors.text,
++  mutedText: colors.muted,
++  border: colors.border,
++  danger: colors.danger,
++} as const;
++
+ function Routes() {
+   const { session, loading } = useSession();
+   if (loading) return null;
+   const signedIn = session !== null;
+   return (
++    <>
+     <Stack screenOptions={{ contentStyle: { backgroundColor: colors.bg } }}>
+       <Stack.Protected guard={!signedIn}>
+         <Stack.Screen name="login" options={{ title: 'Connexion' }} />
+@@ -18,8 +32,20 @@ function Routes() {
+         <Stack.Screen name="deck/[id]" options={{ title: 'Paquet' }} />
+         <Stack.Screen name="new-card" options={{ title: 'Nouvelle carte' }} />
+         <Stack.Screen name="due" options={{ title: "À revoir aujourd'hui" }} />
++        <Stack.Screen name="assistant" options={{ title: 'Assistant' }} />
++        <Stack.Screen name="reglages" options={{ title: "Réglages de l'assistant" }} />
+       </Stack.Protected>
+     </Stack>
++    {signedIn ? (
++      <AgentButton
++        {...vak}
++        label="Assistant"
++        navigate={(href) => router.push(href as Href)}
++        onUnauthorized={() => router.replace('/login')}
++        theme={agentTheme}
++      />
++    ) : null}
++    </>
+   );
+ }
+ 
+diff --git a/src/app/index.tsx b/src/app/index.tsx
+index 748d257..b458a24 100644
+--- a/src/app/index.tsx
++++ b/src/app/index.tsx
+@@ -83,6 +83,7 @@ export default function Decks() {
+           )}
+         />
+       )}
++      <Button title="Réglages de l'assistant" variant="secondary" onPress={() => router.push('/reglages')} />
+       <Button title="Se déconnecter" variant="secondary" onPress={() => supabase.auth.signOut()} />
+     </Screen>
+   );
+diff --git a/src/app/reglages.tsx b/src/app/reglages.tsx
+new file mode 100644
+index 0000000..72d66f4
+--- /dev/null
++++ b/src/app/reglages.tsx
+@@ -0,0 +1,7 @@
++import { AgentSettings } from '@vak/agent/native';
++
++import { vak } from '@/lib/vak';
++
++export default function Reglages() {
++  return <AgentSettings {...vak} />;
++}
+diff --git a/tsconfig.json b/tsconfig.json
+index ec96c84..1702748 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -6,5 +6,6 @@
+       "@/*": ["./src/*"]
+     }
+   },
+-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
++  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
++  "exclude": ["${configDir}/node_modules", "${configDir}/babel.config.js", "${configDir}/metro.config.js", "${configDir}/jest.config.js", "${configDir}/android", "${configDir}/ios", "supabase/functions"]
+ }

@@ -1,0 +1,377 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "randonnee_1",
+  "verdict": "réussi",
+  "reussi": true,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 837
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 29
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.29.2.tgz sha256 = préparation",
+        "1 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": true,
+      "limiteMinutes": 120,
+      "debut": "2026-10-22T16:09:42.916Z",
+      "demande": "2026-10-22T16:09:40.891Z",
+      "premierVakQuiRendZero": "2026-10-22T16:13:56.471Z",
+      "preuve": "ligne finale de vak : vak : fini (sync, doctor, test, prove) [code 0]",
+      "minutes": 4.23,
+      "ligne": 140
+    },
+    "p1": {
+      "ok": true,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 0,
+          "delai": false,
+          "ms": 50193,
+          "derniereLigne": "vak : fini (localdb, sync, doctor, test, prove) [code 0]",
+          "fin": [
+            "✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (2 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (2 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-22 : éprouvé (2 table(s), 103 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne",
+            "Fini pour l'agent de code : `vak` → 0 (`node node_modules/@vak/agent/bin/vak.mjs`, sans commande ; psql requis ; sans PostgreSQL local : `--admin-url postgresql://<super-utilisateur>@<hôte>:<port>/postgres`, base neuve sur ce serveur de test). Le reçu de preuve est à jour pour le schéma et le calibr",
+            "Fini pour le propriétaire : `connect` a joué trois vrais tours avec le vrai modèle sur le projet d'essai.",
+            "Compte rendu : `connect` seule, sans rechange ; tes questions : « aucune », chaque choix tranché dit comme fait (« j'ai … ; pour revenir dessus : <son fichier> »), jamais « à confirmer », « à vous de », supposé ni en question ; si le dépôt exige un circuit de contribution (issue, branche, demande de",
+            "vak : fini (localdb, sync, doctor, test, prove) [code 0]"
+          ],
+          "controles": [
+            "✓ VAK001 structure en place (fonction vak, migration, blocs, skills, verrou)",
+            "✓ VAK002 versions alignées (@vak/agent 0.29.2, bundle serveur et deno.json compris)",
+            "✓ VAK003 fichiers gérés intacts et à jour, CLAUDE.md importe AGENTS.md",
+            "✓ VAK004 tsconfig.json exclut supabase/functions",
+            "✓ VAK005 tsc -p supabase/functions/vak : aucune erreur",
+            "✓ VAK006 supabase/functions/vak/agent.ts se charge (2 table(s) calibrée(s), écrans trouvés dans l'app)",
+            "✓ VAK007 lib/vak.ts et écrans sans vak:todo, persona écrite",
+            "✓ VAK008 fenêtre de chat et réglages de l'assistant montés dans l'app",
+            "✓ VAK009 aucun secret côté client",
+            "✓ VAK010 [functions.vak] verify_jwt = false",
+            "✓ VAK012 @vak/agent installé depuis l'archive locale (vendor/vak), non ignorée par git",
+            "✓ VAK013 chaque table de l'app est calibrée ou ignorée (2 dans tables ; ignore : 0 tables, 0 fonctions)",
+            "✓ VAK014 photographie postérieure aux migrations de l'app (1)",
+            "✓ VAK015 preuve à deux comptes du 2026-10-22 : éprouvé (2 table(s), 103 totaux de read_data exacts), empreintes à jour",
+            "✓ VAK011 photographie à jour (schema.gen.ts = base)",
+            "✓ VAK101 migration vak appliquée (vak_schema_version = 4)",
+            "✓ VAK102 droits des tables vak_ exactement ceux attendus",
+            "✓ VAK103 RLS active sur les tables calibrées et vak_*",
+            "✓ VAK105 vues calibrées en security_invoker",
+            "✓ VAK106 capacités réelles conformes au calibrage",
+            "✓ VAK107 aucun avis de sécurité bloquant",
+            "✓ VAK108 aucune colonne modifiable ne décide qui voit la ligne"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 2,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : expo lint",
+            "code": 0,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "etat": "absente"
+        }
+      }
+    }
+  },
+  "raisons": [],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/randonnee_1",
+    "preparation": {
+      "id": "randonnee_1",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/randonnee.bundle",
+      "commit": "4f43b027399c074f06de28aff08c967a752d6bd4",
+      "prepare": "0de5556ea710eff35d7a023dd1c7ea106d856bfd",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T16:09:02Z"
+    },
+    "tip": "60ab763908c21d60775c9065827c12cf7782a245",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 52,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 2,
+      "tablesAMoi": 2,
+      "aMoiEprouvees": 2,
+      "ignorees": 0,
+      "verdictDuRecu": "éprouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "0de5556ea710eff35d7a023dd1c7ea106d856bfd",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 794 packages in 38s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 2,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : expo lint",
+              "code": 0,
+              "delai": false,
+              "secondes": 4,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@1.0.0 lint",
+                "> expo lint"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 794 packages in 38s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "60ab763908c21d60775c9065827c12cf7782a245",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 795 packages in 19s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "liste": [],
+              "fin": []
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : expo lint",
+              "code": 0,
+              "delai": false,
+              "secondes": 4,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@1.0.0 lint",
+                "> expo lint"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 795 packages in 19s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-22T16:17:40.934Z"
+}

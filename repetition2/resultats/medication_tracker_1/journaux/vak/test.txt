@@ -1,0 +1,20 @@
+$ vak test
+(dossier : /work/medication_tracker_1/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (4 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 5 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1635 tokens (maximum 5000)
+✓ evals 2 évaluations bien formées
+✓ tour read_data medications exécuté sans validation → {"table":"medications","label":"Medications","total":1,"shown":1,"complete":true,"rows":[{"id":"00000000-0000-4000-80…
+✓ tour read_data schedules exécuté sans validation → {"table":"schedules","label":"Reminders","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0…
+✓ tour read_data dose_logs exécuté sans validation → {"table":"dose_logs","label":"Doses taken","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000…
+✓ tour read_data symptoms exécuté sans validation → {"table":"symptoms","label":"Symptoms","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000…
+✓ tour open_screen medication exécuté sans validation → {"href":"/medication/00000000-0000-4000-8000-000003000000","label":"Medication"}
+✓ tour open_screen medications exécuté sans validation → {"href":"/medications","label":"My medications"}
+✓ tour open_screen add_medication exécuté sans validation → {"href":"/medication/add","label":"Add a medication"}
+✓ tour open_screen log_prn exécuté sans validation → {"href":"/medication/log-prn","label":"Log a dose"}
+✓ tour open_screen log_symptom exécuté sans validation → {"href":"/log-symptom","label":"Log a symptom"}
+✓ tour open_screen reports exécuté sans validation → {"href":"/reports","label":"Reports"}
+vak test : tout est vert [code 0]

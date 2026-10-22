@@ -1,0 +1,18 @@
+{
+  "id": "clix_1",
+  "depot": "https://github.com/dmayes77/CLIX",
+  "commit": "03a71b82743471a694b04259bbb4143b3a299b28",
+  "prepare": "e82e922d578b016741c3847476134c983ff4e5d2",
+  "archive": {
+    "nom": "vak-agent-0.29.2.tgz",
+    "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+  },
+  "app": "/work/clix_1/app",
+  "avant": "/work/clix_1/avant.json",
+  "debut": "2026-10-22T16:46:18Z",
+  "acces_admis": [
+    "DEEPSEEK_API_KEY",
+    "SUPABASE_ACCESS_TOKEN"
+  ],
+  "fin": "2026-10-22T16:47:07Z"
+}

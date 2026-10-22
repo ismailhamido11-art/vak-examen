@@ -1,0 +1,38 @@
+[
+  {
+    "table": "public.trails",
+    "colonne": "owner_id",
+    "nom": "itinéraires",
+    "langue": "fr",
+    "a": 6,
+    "marqueurs_b": [
+      "MARQUEUR-B-18695D91",
+      "MARQUEUR-B-4B1F0E0A",
+      "MARQUEUR-B-CFA22916",
+      "MARQUEUR-B-51F5EE22",
+      "MARQUEUR-B-CD01991B",
+      "MARQUEUR-B-E63C9472",
+      "MARQUEUR-B-898A3687",
+      "MARQUEUR-B-98F53143"
+    ]
+  },
+  {
+    "table": "public.outings",
+    "colonne": "owner_id",
+    "nom": "sorties",
+    "langue": "fr",
+    "a": 9,
+    "marqueurs_b": [
+      "MARQUEUR-B-4150E6FD",
+      "MARQUEUR-B-37BE0D2A",
+      "MARQUEUR-B-ADE19193",
+      "MARQUEUR-B-CE943A4F",
+      "MARQUEUR-B-D1C0E26A",
+      "MARQUEUR-B-4F7B378F",
+      "MARQUEUR-B-5186C40A",
+      "MARQUEUR-B-3E955481",
+      "MARQUEUR-B-2E6FF68D",
+      "MARQUEUR-B-6587468C"
+    ]
+  }
+]

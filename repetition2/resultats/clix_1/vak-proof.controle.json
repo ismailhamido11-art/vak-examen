@@ -1,0 +1,28 @@
+{
+  "vak": "0.29.2",
+  "at": "2026-10-22T16:52:30.197Z",
+  "verdict": "éprouvé",
+  "calibration": "sha256:67c72bd3c98650cec0844fde66de1e78069ee7f45ac4235e16aa64fd554cbd93",
+  "schema": "sha256:3c3fc0c3dea2d6ea6246e685eab841e0818294fb6cd373ba8c77c15509dfedc1",
+  "tables": {
+    "admin_profiles": "éprouvé"
+  },
+  "notes": {
+    "admin_profiles": [
+      "RLS de l'app : la ligne de B est invisible pour A",
+      "lecture par l'assistant : jamais la ligne de B",
+      "lecture par l'assistant : la ligne de A",
+      "ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+      "lecture de la ligne de B par son identifiant : refusée",
+      "totaux de read_data : 34 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A"
+    ]
+  },
+  "totals": 34,
+  "hypotheses": "H1-H9",
+  "label": [
+    "Sees: Team access (Role, Created at)",
+    "Can propose (after your approval): nothing",
+    "Can open (saves nothing): CLIX MX home, Plans and resets",
+    "Never: delete a row ; edit anything other than what « Can propose » lists ; read booking_requests, launch_leads, leads, membership_inquiries"
+  ]
+}

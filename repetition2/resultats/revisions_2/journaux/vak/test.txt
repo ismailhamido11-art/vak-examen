@@ -1,0 +1,17 @@
+$ vak test
+(dossier : /work/revisions_2/apres)
+
+✓ chargement supabase/functions/vak/agent.ts se charge (3 tables calibrées)
+✓ noms d'outils aucun nom d'outil en double
+✓ outils 10 outils, JSON Schema valides
+✓ validations chaque écriture demande une validation (sauf confirm: false)
+✓ budget préfixe stable estimé à 1928 tokens (maximum 5000)
+✓ evals 2 évaluations bien formées
+✓ tour read_data decks exécuté sans validation → {"table":"decks","label":"Paquets","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-0000010…
+✓ tour read_data cards exécuté sans validation → {"table":"cards","label":"Cartes","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-00000000…
+✓ tour read_data reviews exécuté sans validation → {"table":"reviews","label":"Révisions","total":2,"shown":2,"complete":true,"rows":[{"id":"00000000-0000-4000-8000-000…
+✓ tour open_screen paquets exécuté sans validation → {"href":"/","label":"Mes paquets"}
+✓ tour open_screen paquet exécuté sans validation → {"href":"/deck/00000000-0000-4000-8000-000001000000","label":"Ouvrir le paquet"}
+✓ tour open_screen a_revoir exécuté sans validation → {"href":"/due","label":"À revoir aujourd'hui"}
+✓ tour open_screen nouvelle_carte exécuté sans validation → {"href":"/new-card?deckId=test","label":"Nouvelle carte"}
+vak test : tout est vert [code 0]

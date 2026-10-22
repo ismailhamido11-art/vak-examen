@@ -1,0 +1,75 @@
+{
+  "id": "troupe_2",
+  "echecs_de_preuve": [
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 165,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "troupe_members",
+      "verdict": "étroit",
+      "ligne": 165,
+      "texte": "✗ troupe_members étroit"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 165,
+      "texte": "✗ mes_personnages() non prouvé"
+    },
+    {
+      "table": "characters",
+      "verdict": "non prouvé",
+      "ligne": 297,
+      "texte": "✗ characters non prouvé"
+    },
+    {
+      "table": "mes_personnages",
+      "verdict": "non prouvé",
+      "ligne": 297,
+      "texte": "✗ mes_personnages() non prouvé"
+    }
+  ],
+  "ignore": [
+    {
+      "nom": "can_edit",
+      "ligne": 61
+    },
+    {
+      "nom": "create_troupe",
+      "ligne": 62
+    },
+    {
+      "nom": "invite_member",
+      "ligne": 63
+    },
+    {
+      "nom": "is_member",
+      "ligne": 64
+    },
+    {
+      "nom": "is_owner",
+      "ligne": 65
+    },
+    {
+      "nom": "remove_member",
+      "ligne": 66
+    },
+    {
+      "nom": "set_member_role",
+      "ligne": 67
+    },
+    {
+      "nom": "show_troupe",
+      "ligne": 68
+    },
+    {
+      "nom": "troupe_member_list",
+      "ligne": 69
+    }
+  ],
+  "relevees": [],
+  "ecartees_apres_fuite": []
+}

@@ -1,0 +1,4 @@
+$ vak localdb --drop
+(dossier : /work/clix_1/apres)
+
+base locale vak_local_6e6e81 supprimée [code 0]

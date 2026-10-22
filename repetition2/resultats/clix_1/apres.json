@@ -1,0 +1,76 @@
+{
+  "dossier": "/work/clix_1/apres",
+  "commit": "42b061aa88ecaaa470227c5bb96b5e7e16fba4cc",
+  "debut": "2026-10-22T16:53:54.982Z",
+  "fin": "2026-10-22T16:54:28.722Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "pnpm",
+    "version": null,
+    "lanceur": "pnpm",
+    "verrous": [
+      "pnpm-lock.yaml"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/clix_1/apres-journaux",
+  "installation": {
+    "commande": "pnpm install --frozen-lockfile",
+    "dossier": "/work/clix_1/apres",
+    "code": 0,
+    "duree_s": 2,
+    "erreurs": [],
+    "fin": [
+      "│                                                                              │",
+      "╰──────────────────────────────────────────────────────────────────────────────╯",
+      "Done in 1.9s using pnpm v10.28.0"
+    ],
+    "journal": "/work/clix_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "tsc --noEmit",
+      "dossier": "/work/clix_1/apres",
+      "code": 0,
+      "duree_s": 2,
+      "erreurs": [],
+      "fin": [],
+      "journal": "/work/clix_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "pnpm run lint",
+      "dossier": "/work/clix_1/apres",
+      "code": 0,
+      "duree_s": 16,
+      "erreurs": [],
+      "fin": [
+        "> clix@0.1.0 lint /work/clix_1/apres",
+        "> eslint"
+      ],
+      "journal": "/work/clix_1/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "absent": true,
+      "raison": "pas de script test"
+    },
+    "build": {
+      "commande": "pnpm run build",
+      "dossier": "/work/clix_1/apres",
+      "code": 1,
+      "duree_s": 14,
+      "erreurs": [],
+      "fin": [
+        "Export encountered an error on /admin/leads/page: /admin/leads, exiting the build.",
+        "⨯ Next.js build worker exited with code: 1 and signal: null",
+        "ELIFECYCLE  Command failed with exit code 1."
+      ],
+      "journal": "/work/clix_1/apres-journaux/build.txt"
+    }
+  }
+}

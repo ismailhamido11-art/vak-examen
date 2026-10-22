@@ -1,0 +1,482 @@
+{
+  "controleur": {
+    "nom": "controler.mjs",
+    "version": "1.0.0"
+  },
+  "id": "troupe_1",
+  "verdict": "échec",
+  "reussi": false,
+  "points": {
+    "p7": {
+      "refusPropre": false
+    },
+    "p3": {
+      "ok": true,
+      "fichiers": [
+        {
+          "fichier": "package-lock.json",
+          "genre": "verrou",
+          "ajouts": 24,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 411
+        },
+        {
+          "fichier": "package.json",
+          "genre": "package.json",
+          "ajouts": 1,
+          "modifies": 0,
+          "retires": 0,
+          "entrees": 10
+        }
+      ],
+      "notes": [],
+      "legacyPoseParVak": []
+    },
+    "p4": {
+      "ok": true,
+      "controles": [
+        "archive vendor/vak/vak-agent-0.29.2.tgz sha256 = préparation",
+        "4 migration(s) de l'app comparées par empreinte : 0 changée(s)",
+        "0 lien(s) symbolique(s) nouveau(x) dans le commit",
+        "20 fichier(s) géré(s) par vak vérifiés par empreinte (supabase/functions/vak/vak.lock.json) : 0 altéré(s)"
+      ],
+      "echecsDePreuve": [
+        "characters non prouvé (journal ligne 147)",
+        "shows non prouvé (journal ligne 147)",
+        "troupes non prouvé (journal ligne 147)",
+        "mes_personnages non prouvé (journal ligne 147)",
+        "characters non prouvé (journal ligne 157)",
+        "mes_personnages non prouvé (journal ligne 157)",
+        "characters non prouvé (journal ligne 184)",
+        "mes_personnages non prouvé (journal ligne 184)",
+        "characters non prouvé (journal ligne 192)",
+        "mes_personnages non prouvé (journal ligne 192)",
+        "characters non prouvé (journal ligne 233)",
+        "mes_personnages non prouvé (journal ligne 233)"
+      ],
+      "fuitesEcartees": [],
+      "journal": []
+    },
+    "p6": {
+      "ok": false,
+      "limiteMinutes": 120
+    },
+    "p1": {
+      "ok": false,
+      "apps": [
+        {
+          "app": ".",
+          "cli": "node_modules/@vak/agent/bin/vak.mjs",
+          "code": 1,
+          "delai": false,
+          "ms": 26211,
+          "derniereLigne": null,
+          "fin": [
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 52 ligne(s) de A ajoutée(s) aux bornes des périodes ; 49 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A ; total inconnu, permis, pour 1 : search « titre 0 a »",
+            "✓ troupe_members éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : l'app la montre à A, l'assistant aussi",
+            "    - totaux de read_data : 43 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✓ troupes éprouvé",
+            "    - RLS de l'app : la ligne de B est invisible pour A",
+            "    - lecture par l'assistant : jamais la ligne de B",
+            "    - lecture par l'assistant : la ligne de A",
+            "    - ligne de C, coéquipier de A : ni l'app ni l'assistant ne la montrent à A",
+            "    - lecture de la ligne de B par son identifiant : refusée",
+            "    - totaux de read_data : 107 ligne(s) de A ajoutée(s) aux bornes des périodes ; 40 appels idéaux, chaque total égal au comptage de l'app sous la RLS de A",
+            "✗ mes_personnages() non prouvé",
+            "    - « characters » (citée par la fonction) : aucune ligne de B semée (23514 new row for relation \"characters\" violates check constraint \"characters_check\") : non vérifiée",
+            "    - appel par l'assistant de A : aucune donnée de B",
+            "    - résultat de A inchangé quand les 17 ligne(s) de B sont retirées, puis quand un second compte copie B (3 table(s)) aux valeurs plus grandes, puis plus petites",
+            "    - fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue",
+            "    → lis les notes : argument sans valeur d'essai, ligne non semée ou appel refusé par l'app ; la preuve ne se prononce pas",
+            "base locale vak_prove_4bc1535e construite (8 migration(s)) puis supprimée",
+            "Si tu t'arrêtes là : `vak` n'a pas rendu 0 ; dis-le en tête du compte rendu, avec sa ligne finale telle quelle et ce qui reste ; pas de `connect`.",
+            "Compte rendu : `connect` seule, sans rechange ; tes questions : « aucune », chaque choix tranché dit comme fait (« j'ai … ; pour revenir dessus : <son fichier> »), jamais « à confirmer », « à vous de », supposé ni en question ; si le dépôt exige un circuit de contribution (issue, branche, demande de",
+            "vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+          ],
+          "controles": [
+            "✗ characters non prouvé",
+            "✓ shows éprouvé",
+            "✓ troupe_members éprouvé",
+            "✓ troupes éprouvé",
+            "✗ mes_personnages() non prouvé"
+          ],
+          "fichiersReecrits": []
+        }
+      ]
+    },
+    "p2": {
+      "ok": true,
+      "dossiers": [
+        "."
+      ],
+      "installation": {
+        "avant": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        },
+        "apres": {
+          "ok": true,
+          "commande": "npm ci --no-audit --no-fund",
+          "souple": false
+        }
+      },
+      "verifs": {
+        "typecheck": {
+          "avant": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 5
+          },
+          "apres": {
+            "commande": "npx --no-install tsc --noEmit",
+            "source": "tsconfig.json à la racine, sans script",
+            "code": 2,
+            "delai": false,
+            "secondes": 4,
+            "erreurs": 5
+          },
+          "erreurs": {
+            "avant": 3,
+            "apres": 3,
+            "nouvelles": []
+          },
+          "etat": "identique (code 2)"
+        },
+        "lint": {
+          "avant": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 3,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "apres": {
+            "commande": "npm run lint",
+            "source": "script « lint » : eslint",
+            "code": 0,
+            "delai": false,
+            "secondes": 12,
+            "erreurs": 0,
+            "avertissements": null
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        },
+        "test": {
+          "etat": "absente"
+        },
+        "build": {
+          "avant": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 10,
+            "erreurs": 0
+          },
+          "apres": {
+            "commande": "npm run build",
+            "source": "script « build » : next build",
+            "code": 0,
+            "delai": false,
+            "secondes": 12,
+            "erreurs": 0
+          },
+          "erreurs": {
+            "avant": 0,
+            "apres": 0,
+            "nouvelles": []
+          },
+          "etat": "identique (code 0)"
+        }
+      }
+    }
+  },
+  "raisons": [
+    {
+      "point": 6,
+      "code": "jamais-fini",
+      "resume": "aucun « vak » ne rend 0 dans le journal",
+      "preuve": [
+        "aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande"
+      ]
+    },
+    {
+      "point": 1,
+      "code": "vak-non-nul",
+      "resume": "« vak » rend 1 dans .",
+      "preuve": [
+        "✗ characters non prouvé",
+        "✗ mes_personnages() non prouvé",
+        "- fuite témoin (calcul sur tous les comptes, posée puis retirée) : vue",
+        "→ lis les notes : argument sans valeur d'essai, ligne non semée ou appel refusé par l'app ; la preuve ne se prononce pas",
+        "base locale vak_prove_4bc1535e construite (8 migration(s)) puis supprimée",
+        "Si tu t'arrêtes là : `vak` n'a pas rendu 0 ; dis-le en tête du compte rendu, avec sa ligne finale telle quelle et ce qui reste ; pas de `connect`.",
+        "Compte rendu : `connect` seule, sans rechange ; tes questions : « aucune », chaque choix tranché dit comme fait (« j'ai … ; pour revenir dessus : <son fichier> »), jamais « à confirmer », « à vous de », supposé ni en question ; si le dépôt exige un circuit de contribution (issue, branche, demande de",
+        "vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : localdb, sync, doctor, test) [code 1]"
+      ]
+    }
+  ],
+  "notes": [],
+  "entree": {
+    "essai": "/srv/essais/troupe_1",
+    "preparation": {
+      "id": "troupe_1",
+      "depot": "/home/user/ai-chatbot/vak-examen/apps/troupe.bundle",
+      "commit": "e3c2605fa1ccf3c6cdb560bef834693509c18717",
+      "prepare": "71aa56424344611e96a7ce8987b375661ce1c2a3",
+      "archive": {
+        "nom": "vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      },
+      "debut": "2026-10-22T16:18:31Z"
+    },
+    "tip": "ce4b0382ca55f575a4e99bd406216a3955180821",
+    "commitsAgent": 1,
+    "appsVak": [
+      ""
+    ],
+    "dossiersMesure": [
+      "."
+    ]
+  },
+  "journal": {
+    "entrees": 91,
+    "illisibles": 0
+  },
+  "couverture": [
+    {
+      "app": ".",
+      "tablesDeLApp": 4,
+      "tablesAMoi": 4,
+      "aMoiEprouvees": 4,
+      "ignorees": 9,
+      "verdictDuRecu": "non prouvé"
+    }
+  ],
+  "mesures": {
+    "prep": {
+      "revision": "71aa56424344611e96a7ce8987b375661ce1c2a3",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 359 packages in 17s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 4,
+              "erreurs": 5,
+              "liste": [
+                "app/layout.tsx:9 app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/spectacles/[id]/page.tsx:4 app/spectacles/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/spectacles/[id]/page.tsx:9 app/spectacles/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx:4 app/troupes/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx:9 app/troupes/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'."
+              ],
+              "fin": [
+                "app/layout.tsx(9,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/spectacles/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/spectacles/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 3,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 10,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "  Finalizing page optimization ...",
+                "Route (app)",
+                "┌ ○ /",
+                "├ ○ /_not-found",
+                "├ ○ /login",
+                "├ ○ /mes-personnages",
+                "├   /spectacles/[id]",
+                "│ └ ◐ /spectacles/[id]",
+                "└   /troupes/[id]",
+                "  └ ◐ /troupes/[id]",
+                "○  (Static)             prerendered as static content",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 359 packages in 17s"
+        ],
+        "delai": false
+      }
+    },
+    "head": {
+      "revision": "ce4b0382ca55f575a4e99bd406216a3955180821",
+      "dossiers": {
+        ".": {
+          "gestionnaire": "npm",
+          "installation": {
+            "ok": true,
+            "tentatives": [
+              {
+                "commande": "npm ci --no-audit --no-fund",
+                "code": 0,
+                "delai": false
+              }
+            ],
+            "commande": "npm ci --no-audit --no-fund",
+            "souple": false,
+            "fin": [
+              "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+              "added 360 packages in 14s"
+            ],
+            "delai": false
+          },
+          "verifs": {
+            "typecheck": {
+              "commande": "npx --no-install tsc --noEmit",
+              "source": "tsconfig.json à la racine, sans script",
+              "code": 2,
+              "delai": false,
+              "secondes": 4,
+              "erreurs": 5,
+              "liste": [
+                "app/layout.tsx:11 app/layout.tsx(11,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/spectacles/[id]/page.tsx:4 app/spectacles/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/spectacles/[id]/page.tsx:9 app/spectacles/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx:4 app/troupes/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx:9 app/troupes/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'."
+              ],
+              "fin": [
+                "app/layout.tsx(11,50): error TS2304: Cannot find name 'LayoutProps'.",
+                "app/spectacles/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/spectacles/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx(4,46): error TS2304: Cannot find name 'PageProps'.",
+                "app/troupes/[id]/page.tsx(9,37): error TS2304: Cannot find name 'PageProps'."
+              ]
+            },
+            "lint": {
+              "commande": "npm run lint",
+              "source": "script « lint » : eslint",
+              "code": 0,
+              "delai": false,
+              "secondes": 12,
+              "erreurs": 0,
+              "avertissements": null,
+              "liste": [],
+              "fin": [
+                "> app@0.1.0 lint",
+                "> eslint"
+              ]
+            },
+            "build": {
+              "commande": "npm run build",
+              "source": "script « build » : next build",
+              "code": 0,
+              "delai": false,
+              "secondes": 12,
+              "erreurs": 0,
+              "liste": [],
+              "fin": [
+                "┌ ○ /",
+                "├ ○ /_not-found",
+                "├ ◐ /assistant",
+                "├ ○ /login",
+                "├ ○ /mes-personnages",
+                "├ ○ /reglages",
+                "├   /spectacles/[id]",
+                "│ └ ◐ /spectacles/[id]",
+                "└   /troupes/[id]",
+                "  └ ◐ /troupes/[id]",
+                "○  (Static)             prerendered as static content",
+                "◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+              ]
+            }
+          }
+        }
+      },
+      "installationRacine": {
+        "ok": true,
+        "tentatives": [
+          {
+            "commande": "npm ci --no-audit --no-fund",
+            "code": 0,
+            "delai": false
+          }
+        ],
+        "commande": "npm ci --no-audit --no-fund",
+        "souple": false,
+        "fin": [
+          "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.",
+          "added 360 packages in 14s"
+        ],
+        "delai": false
+      }
+    }
+  },
+  "fin": "2026-10-22T16:30:06.098Z"
+}

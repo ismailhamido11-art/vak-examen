@@ -1,0 +1,609 @@
+{
+  "verdict": "juste",
+  "raisons": [
+    "3/3 tables « à moi » lues, tous les nombres justes, aucun marqueur de B"
+  ],
+  "dossier": "/work/revisions_1/apres",
+  "lecture": {
+    "fichier": "/work/revisions_1/apres/supabase/functions/vak/agent.ts",
+    "methode": "clé `tables` de supabase/functions/vak/agent.ts, moins `ignore`",
+    "tables_lues": [
+      "public.cards",
+      "public.decks",
+      "public.reviews"
+    ],
+    "ignorees": [
+      "public.delete_deck"
+    ]
+  },
+  "comptages_sql": [
+    {
+      "table": "public.decks",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 3,
+      "attendu_json": 3,
+      "accord": true
+    },
+    {
+      "table": "public.cards",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 9,
+      "attendu_json": 9,
+      "accord": true
+    },
+    {
+      "table": "public.reviews",
+      "colonne": "owner_id",
+      "sql_en_tant_que_a": 12,
+      "attendu_json": 12,
+      "accord": true
+    }
+  ],
+  "questions": [
+    {
+      "table": "public.decks",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes paquets ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-bd3af43d-f91e-4579-bd7f-ea043c06da71",
+        "question": "Combien de mes paquets ?",
+        "texte": "Vous avez **3 paquets** :\n- Anglais courant (langue)\n- Capitales du monde (culture)\n- Droit des contrats (examen)",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "decks",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "decks",
+              "label": "Paquets",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "0378152a-c310-4915-8ce1-bce10ecb01af",
+                  "name": "Anglais courant",
+                  "subject": "langue (Langue)",
+                  "reviews_count": 6,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "6510fc0c-7344-4d25-88f6-35506f75ccad",
+                  "name": "Capitales du monde",
+                  "subject": "culture (Culture)",
+                  "reviews_count": 4,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "68ad1bdc-f1e1-4542-b928-76188d262fe9",
+                  "name": "Droit des contrats",
+                  "subject": "examen (Examen)",
+                  "reviews_count": 2,
+                  "created_at": "2026-10-22T18:40"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 3,
+        "nombres_lus": [
+          3
+        ],
+        "ok": true,
+        "retenu": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.decks",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes paquets.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-c0e66fee-400e-4dde-8500-39ec24422af2",
+        "question": "Liste mes paquets.",
+        "texte": "Vous avez 3 paquets :\n\n- **Anglais courant** — Langue, 6 révisions\n- **Capitales du monde** — Culture, 4 révisions\n- **Droit des contrats** — Examen, 2 révisions\n\nSouhaitez-vous en ouvrir un, ou voir ce qu'il reste à revoir aujourd'hui ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "decks",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "decks",
+              "label": "Paquets",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "0378152a-c310-4915-8ce1-bce10ecb01af",
+                  "name": "Anglais courant",
+                  "subject": "langue (Langue)",
+                  "reviews_count": 6,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "6510fc0c-7344-4d25-88f6-35506f75ccad",
+                  "name": "Capitales du monde",
+                  "subject": "culture (Culture)",
+                  "reviews_count": 4,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "68ad1bdc-f1e1-4542-b928-76188d262fe9",
+                  "name": "Droit des contrats",
+                  "subject": "examen (Examen)",
+                  "reviews_count": 2,
+                  "created_at": "2026-10-22T18:40"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "open_screen",
+            "entree": {
+              "screen": "accueil"
+            },
+            "sortie": {
+              "href": "/",
+              "label": "Mes paquets"
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 3,
+        "nombres_lus": [
+          3,
+          6,
+          4,
+          2
+        ],
+        "ok": true,
+        "retenu": 3,
+        "source": "nombre annoncé",
+        "elements": 3
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.cards",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes cartes ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-33ea81e0-a5c7-42fd-9320-1371f8ab1ce1",
+        "question": "Combien de mes cartes ?",
+        "texte": "Vous avez **9 cartes** au total. Souhaitez-vous en voir la répartition par paquet, ou celles à revoir aujourd'hui ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "cards",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "cards",
+              "label": "Cartes",
+              "total": 9,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "8070b03f-0ca2-48d9-9bd0-630621c69d5d",
+                  "deck_id": "Capitales du monde (id 6510fc0c-7344-4d25-88f6-35506f75ccad)",
+                  "front": "Canada",
+                  "back": "Ottawa",
+                  "interval_days": 8,
+                  "due_date": "2026-11-02",
+                  "streak": 3
+                }
+              ],
+              "note": "1 ligne montrée sur 9 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 9,
+        "nombres_lus": [
+          9
+        ],
+        "ok": true,
+        "retenu": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.cards",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes cartes.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-9b6111d8-2fd2-441d-9114-0d5c77fdf92a",
+        "question": "Liste mes cartes.",
+        "texte": "Voici vos 9 cartes, réparties dans 3 paquets :\n\n**Anglais courant** (3 cartes)\n- although → bien que · à revoir le 26/10\n- to get along with → s'entendre avec · à revoir le 21/10\n- to run out of → manquer de · à revoir le 20/10\n\n**Capitales du monde** (3 cartes)\n- Canada → Ottawa · à revoir le 02/11\n- Australie → Canberra · à revoir le 24/10\n- Bolivie → Sucre · à revoir le 19/10\n\n**Droit des contrats** (3 cartes)\n- Vice du consentement → Erreur, dol ou violence · à revoir le 30/10\n- Cause → Contrepartie ou but du contrat · à revoir le 22/10\n- Nullité relative → Protège une partie, prescription de cinq ans · à revoir le 18/10\n\nPlusieurs cartes sont déjà en retard (celles du 18, 19, 20 et 21/10). Voulez-vous voir celles à revoir aujourd'hui ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "decks",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "decks",
+              "label": "Paquets",
+              "total": 3,
+              "shown": 3,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "0378152a-c310-4915-8ce1-bce10ecb01af",
+                  "name": "Anglais courant",
+                  "subject": "langue (Langue)",
+                  "reviews_count": 6,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "6510fc0c-7344-4d25-88f6-35506f75ccad",
+                  "name": "Capitales du monde",
+                  "subject": "culture (Culture)",
+                  "reviews_count": 4,
+                  "created_at": "2026-10-22T18:40"
+                },
+                {
+                  "id": "68ad1bdc-f1e1-4542-b928-76188d262fe9",
+                  "name": "Droit des contrats",
+                  "subject": "examen (Examen)",
+                  "reviews_count": 2,
+                  "created_at": "2026-10-22T18:40"
+                }
+              ]
+            }
+          },
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "cards",
+              "limit": 50
+            },
+            "sortie": {
+              "table": "cards",
+              "label": "Cartes",
+              "total": 9,
+              "shown": 9,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "8070b03f-0ca2-48d9-9bd0-630621c69d5d",
+                  "deck_id": "Capitales du monde (id 6510fc0c-7344-4d25-88f6-35506f75ccad)",
+                  "front": "Canada",
+                  "back": "Ottawa",
+                  "interval_days": 8,
+                  "due_date": "2026-11-02",
+                  "streak": 3
+                },
+                {
+                  "id": "d1aa6437-8e0d-484b-b555-c807b52e191e",
+                  "deck_id": "Droit des contrats (id 68ad1bdc-f1e1-4542-b928-76188d262fe9)",
+                  "front": "Vice du consentement",
+                  "back": "Erreur, dol ou violence",
+                  "interval_days": 4,
+                  "due_date": "2026-10-30",
+                  "streak": 2
+                },
+                {
+                  "id": "5b3eee19-1c63-4cf4-8403-102bdc682015",
+                  "deck_id": "Anglais courant (id 0378152a-c310-4915-8ce1-bce10ecb01af)",
+                  "front": "although",
+                  "back": "bien que",
+                  "interval_days": 4,
+                  "due_date": "2026-10-26",
+                  "streak": 2
+                },
+                {
+                  "id": "e4fd7f22-770c-4d07-8aa7-e4cac52cfb6a",
+                  "deck_id": "Capitales du monde (id 6510fc0c-7344-4d25-88f6-35506f75ccad)",
+                  "front": "Australie",
+                  "back": "Canberra",
+                  "interval_days": 2,
+                  "due_date": "2026-10-24",
+                  "streak": 1
+                },
+                {
+                  "id": "e6d0c3e4-aca7-4fc5-84c6-74c19b12262b",
+                  "deck_id": "Droit des contrats (id 68ad1bdc-f1e1-4542-b928-76188d262fe9)",
+                  "front": "Cause",
+                  "back": "Contrepartie ou but du contrat",
+                  "interval_days": 2,
+                  "due_date": "2026-10-22",
+                  "streak": 1
+                },
+                {
+                  "id": "d1f2a9ee-10d1-444b-b65e-3567500607b8",
+                  "deck_id": "Anglais courant (id 0378152a-c310-4915-8ce1-bce10ecb01af)",
+                  "front": "to get along with",
+                  "back": "s'entendre avec",
+                  "interval_days": 1,
+                  "due_date": "2026-10-21",
+                  "streak": 0
+                },
+                {
+                  "id": "dff2487f-3a30-485e-b765-386c87e19164",
+                  "deck_id": "Anglais courant (id 0378152a-c310-4915-8ce1-bce10ecb01af)",
+                  "front": "to run out of",
+                  "back": "manquer de",
+                  "interval_days": 2,
+                  "due_date": "2026-10-20",
+                  "streak": 1
+                },
+                {
+                  "id": "275ce017-72ab-4147-80f3-88975d58c876",
+                  "deck_id": "Capitales du monde (id 6510fc0c-7344-4d25-88f6-35506f75ccad)",
+                  "front": "Bolivie",
+                  "back": "Sucre",
+                  "interval_days": 1,
+                  "due_date": "2026-10-19",
+                  "streak": 0
+                },
+                {
+                  "id": "0a8fb1e7-abb4-401a-b67c-5ead63b4b8c1",
+                  "deck_id": "Droit des contrats (id 68ad1bdc-f1e1-4542-b928-76188d262fe9)",
+                  "front": "Nullité relative",
+                  "back": "Protège une partie, prescription de cinq ans",
+                  "interval_days": 1,
+                  "due_date": "2026-10-18",
+                  "streak": 0
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 9,
+        "nombres_lus": [
+          9,
+          3,
+          3,
+          26,
+          21,
+          20,
+          3,
+          2,
+          24,
+          19,
+          3,
+          30,
+          22,
+          5,
+          18,
+          18,
+          19,
+          20,
+          21
+        ],
+        "ok": true,
+        "retenu": 9,
+        "source": "nombre annoncé",
+        "elements": 9
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.reviews",
+      "type": "combien",
+      "langue": "fr",
+      "question": "Combien de mes révisions ?",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-a1786063-bc0c-4aab-b7a9-b55802fd9104",
+        "question": "Combien de mes révisions ?",
+        "texte": "Vous avez **12 révisions** enregistrées au total. 👏\n\nSouhaitez-vous voir le détail (par exemple celles de cette semaine) ou les cartes à revoir aujourd'hui ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "reviews",
+              "limit": 1
+            },
+            "sortie": {
+              "table": "reviews",
+              "label": "Révisions",
+              "total": 12,
+              "shown": 1,
+              "complete": false,
+              "rows": [
+                {
+                  "id": "48000fce-deaf-4c56-8502-f69646dad3dc",
+                  "card_id": "to get along with (id d1f2a9ee-10d1-444b-b65e-3567500607b8)",
+                  "reviewed_on": "2026-10-20",
+                  "answer": "ratee (Ratée)",
+                  "note": "Verbe à particule difficile"
+                }
+              ],
+              "note": "1 ligne montrée sur 12 : pour « combien », donne total ; pour voir les autres, affine (period, where, search) ou augmente limit."
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre du texte",
+        "attendu": 12,
+        "nombres_lus": [
+          12
+        ],
+        "ok": true,
+        "retenu": 12
+      },
+      "marqueurs_b": []
+    },
+    {
+      "table": "public.reviews",
+      "type": "liste",
+      "langue": "fr",
+      "question": "Liste mes révisions.",
+      "reponse": {
+        "compte": "A",
+        "conversation": "examen-d110ee92-af7d-4d49-9f3d-94ff9049d44f",
+        "question": "Liste mes révisions.",
+        "texte": "Voici vos 12 révisions enregistrées, de la plus récente à la plus ancienne :\n\n| Date | Carte | Réponse | Note |\n|---|---|---|---|\n| 20 oct. | to get along with | Ratée | Verbe à particule difficile |\n| 20 oct. | although | Facile | Facile avec la concession |\n| 19 oct. | Cause | Difficile | Distinguer cause et objet |\n| 18 oct. | Bolivie | Ratée | Deux capitales |\n| 17 oct. | Vice du consentement | Facile | — |\n| 16 oct. | although | Difficile | — |\n| 15 oct. | Australie | Difficile | Pas Sydney |\n| 14 oct. | to run out of | Facile | Enfin retenu |\n| 12 oct. | to run out of | Difficile | — |\n| 10 oct. | to run out of | Ratée | Confondu avec to run into |\n| 9 oct. | Canada | Facile | Ottawa, pas Toronto |\n| 8 oct. | Canada | Facile | — |\n\nSouhaitez-vous voir ce qu'il vous reste à revoir aujourd'hui, ou le détail d'une carte en particulier ?",
+        "outils": [
+          {
+            "nom": "read_data",
+            "entree": {
+              "table": "reviews",
+              "order": "newest",
+              "limit": 20
+            },
+            "sortie": {
+              "table": "reviews",
+              "label": "Révisions",
+              "total": 12,
+              "shown": 12,
+              "complete": true,
+              "rows": [
+                {
+                  "id": "48000fce-deaf-4c56-8502-f69646dad3dc",
+                  "card_id": "to get along with (id d1f2a9ee-10d1-444b-b65e-3567500607b8)",
+                  "reviewed_on": "2026-10-20",
+                  "answer": "ratee (Ratée)",
+                  "note": "Verbe à particule difficile"
+                },
+                {
+                  "id": "307020f6-1a68-4a81-ac7e-350fd9824e67",
+                  "card_id": "although (id 5b3eee19-1c63-4cf4-8403-102bdc682015)",
+                  "reviewed_on": "2026-10-20",
+                  "answer": "facile (Facile)",
+                  "note": "Facile avec la concession"
+                },
+                {
+                  "id": "85a98fd8-ba1f-44b2-a49c-183d3e91a2ef",
+                  "card_id": "Cause (id e6d0c3e4-aca7-4fc5-84c6-74c19b12262b)",
+                  "reviewed_on": "2026-10-19",
+                  "answer": "difficile (Difficile)",
+                  "note": "Distinguer cause et objet"
+                },
+                {
+                  "id": "f6162080-ec25-4bff-949d-72e0c83277a5",
+                  "card_id": "Bolivie (id 275ce017-72ab-4147-80f3-88975d58c876)",
+                  "reviewed_on": "2026-10-18",
+                  "answer": "ratee (Ratée)",
+                  "note": "Deux capitales"
+                },
+                {
+                  "id": "44f5063d-c481-4c51-a835-193b37c061c5",
+                  "card_id": "Vice du consentement (id d1aa6437-8e0d-484b-b555-c807b52e191e)",
+                  "reviewed_on": "2026-10-17",
+                  "answer": "facile (Facile)",
+                  "note": null
+                },
+                {
+                  "id": "be5f674f-9444-413d-a4f5-9fd2f20980f2",
+                  "card_id": "although (id 5b3eee19-1c63-4cf4-8403-102bdc682015)",
+                  "reviewed_on": "2026-10-16",
+                  "answer": "difficile (Difficile)",
+                  "note": null
+                },
+                {
+                  "id": "a1344b9d-5ba2-496a-9be1-7dd0f4bde878",
+                  "card_id": "Australie (id e4fd7f22-770c-4d07-8aa7-e4cac52cfb6a)",
+                  "reviewed_on": "2026-10-15",
+                  "answer": "difficile (Difficile)",
+                  "note": "Pas Sydney"
+                },
+                {
+                  "id": "ff040182-987e-498e-a803-82f20979793d",
+                  "card_id": "to run out of (id dff2487f-3a30-485e-b765-386c87e19164)",
+                  "reviewed_on": "2026-10-14",
+                  "answer": "facile (Facile)",
+                  "note": "Enfin retenu"
+                },
+                {
+                  "id": "e4aba56b-b336-4c1e-b79c-cb9be253b00c",
+                  "card_id": "to run out of (id dff2487f-3a30-485e-b765-386c87e19164)",
+                  "reviewed_on": "2026-10-12",
+                  "answer": "difficile (Difficile)",
+                  "note": null
+                },
+                {
+                  "id": "8beccec6-4303-4058-8a07-ceec4defc39a",
+                  "card_id": "to run out of (id dff2487f-3a30-485e-b765-386c87e19164)",
+                  "reviewed_on": "2026-10-10",
+                  "answer": "ratee (Ratée)",
+                  "note": "Confondu avec to run into"
+                },
+                {
+                  "id": "48a9a8b8-10f1-4018-b10a-fb1884768772",
+                  "card_id": "Canada (id 8070b03f-0ca2-48d9-9bd0-630621c69d5d)",
+                  "reviewed_on": "2026-10-09",
+                  "answer": "facile (Facile)",
+                  "note": "Ottawa, pas Toronto"
+                },
+                {
+                  "id": "3b01a675-2e7e-46de-b3f3-393433933267",
+                  "card_id": "Canada (id 8070b03f-0ca2-48d9-9bd0-630621c69d5d)",
+                  "reviewed_on": "2026-10-08",
+                  "answer": "facile (Facile)",
+                  "note": null
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "comparaison": {
+        "regle": "premier nombre avant la liste, sinon nombre d'éléments de la liste",
+        "attendu": 12,
+        "nombres_lus": [
+          12,
+          2
+        ],
+        "ok": true,
+        "retenu": 12,
+        "source": "nombre annoncé",
+        "elements": 12
+      },
+      "marqueurs_b": []
+    }
+  ],
+  "marqueurs_b": {
+    "fuites": [],
+    "connus": 17
+  },
+  "couverture": {
+    "lues": 3,
+    "total": 3,
+    "tables": [
+      {
+        "table": "public.decks",
+        "lue": true
+      },
+      {
+        "table": "public.cards",
+        "lue": true
+      },
+      {
+        "table": "public.reviews",
+        "lue": true
+      }
+    ],
+    "texte": "3/3"
+  }
+}

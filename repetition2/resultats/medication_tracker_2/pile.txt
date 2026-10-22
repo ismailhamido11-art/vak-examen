@@ -1,0 +1,1 @@
+✗ /work/medication_tracker_2/apres/supabase/functions/vak absent : lance d'abord le contrôleur (clone propre de l'état commité)

@@ -1,0 +1,44 @@
+$ expo export --platform web
+(dossier : /work/medication_tracker_1/avant)
+
+[bacons/apple-targets] Expo config is missing required ios.appleTeamId property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+Starting Metro Bundler
+
+| (node:18595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:18595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:18595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓░░░░░░░░░░░ 36.0% (15/26)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓░░░░░░░░░░░ 36.0% (150/357)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓░░░░░░░░░░░ 36.0% (334/631)
+| [33m[bacons/apple-targets][39m Expo config is missing required [36mios.appleTeamId[39m property. Find this in Xcode and add to the Expo Config to correct. iOS builds may fail until this is corrected.
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓░░░░░░░░░░ 39.9% (555/879)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 57.3% ( 803/1061)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓░░░░░░ 67.9% (1084/1518)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 85.2% (1474/1599)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 98.7% (1765/1777)
+Web Bundling failed 26993ms node_modules/expo-router/entry.js (1783 modules)
+Error: Importing native-only module "react-native/Libraries/Utilities/codegenNativeComponent" on web from: node_modules/react-native-google-mobile-ads/lib/module/specs/components/GoogleMobileAdsBannerViewNativeComponent.ts
+
+Import stack:
+
+ node_modules/react-native-google-mobile-ads/lib/module/specs/components/GoogleMobileAdsBannerViewNativeComponent.ts
+ | import "react-native/Libraries/Utilities/codegenNativeComponent"
+           ^ Importing react-native internals is not supported on web.
+
+ node_modules/react-native-google-mobile-ads/lib/module/ads/BannerAd.js
+ | import "../specs/components/GoogleMobileAdsBannerViewNativeComponent"
+
+ node_modules/react-native-google-mobile-ads/lib/module/index.js
+ | import "./ads/BannerAd"
+
+ components/ui/AdBanner.tsx
+ | import "react-native-google-mobile-ads"
+
+ app/(tabs)/profile.tsx
+ | import "../../components/ui/AdBanner"
+
+ app (require.context)
+

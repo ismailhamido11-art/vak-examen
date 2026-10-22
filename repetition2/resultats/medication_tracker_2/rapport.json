@@ -1,0 +1,167 @@
+{
+  "id": "medication_tracker_2",
+  "verdict": "échec",
+  "raisons": [
+    "aucun commit de l'essai",
+    "vak non installé : supabase/functions/vak/vak.lock.json absent du commit final"
+  ],
+  "notes": [
+    "USER absent de l'environnement : posé à « root » pour les commandes de vak du contrôleur (sans lui, la CLI Supabase se connecte en user=unknown avec l'URL de localdb)",
+    "accès du compte d'essai (DEEPSEEK_API_KEY, SUPABASE_ACCESS_TOKEN) restés hors de la bulle de l'agent (lancer.sh : environnement vide sauf proxy et certificats)"
+  ],
+  "sabotages": [],
+  "depot": "https://github.com/PanagiotisKaraliolios/medication-tracker",
+  "commit": "cfad84170a40378b684a115b6afe7486fa5f5a2a",
+  "prepare": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+  "head": "bafe9c825febc7325ebda176b639ee3d9bf65fc9",
+  "branche": "essai",
+  "commits": [],
+  "restes": [],
+  "bundle": null,
+  "archive": {
+    "attendue": {
+      "nom": "vak-agent-0.29.2.tgz",
+      "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+    },
+    "commitees": [
+      {
+        "fichier": "vendor/vak/vak-agent-0.29.2.tgz",
+        "sha256": "29a2856be79e1fc35164293cff4eafa29f980d41ae53a1985d4bf47f6843e641"
+      }
+    ],
+    "vakInstalle": null
+  },
+  "controle": {
+    "debut": "2026-10-22T18:36:48.990Z",
+    "fin": "2026-10-22T18:37:18.294Z",
+    "duree_s": 29,
+    "node": "v22.22.0"
+  },
+  "vak": {},
+  "preuve": {
+    "commite": null,
+    "controle": null
+  },
+  "verifications": {
+    "installation": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun install --frozen-lockfile",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun install --frozen-lockfile",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "typecheck": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run typecheck",
+        "code": 0,
+        "duree_s": 7,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run typecheck",
+        "code": 0,
+        "duree_s": 7,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "lint": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run lint",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run lint",
+        "code": 0,
+        "duree_s": 0,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "tests": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "bun run test",
+        "code": 0,
+        "duree_s": 16,
+        "erreurs": 0
+      },
+      "apres": {
+        "commande": "bun run test",
+        "code": 0,
+        "duree_s": 16,
+        "erreurs": 0
+      },
+      "nouvelles": [],
+      "disparues": 0
+    },
+    "build": {
+      "etat": "pas pire",
+      "avant": {
+        "commande": "expo export --platform web",
+        "code": 1,
+        "duree_s": 5,
+        "erreurs": 0,
+        "fin": [
+          "app/(tabs)/index.tsx",
+          "| import \"../../components/ui/AdBanner\"",
+          "app (require.context)"
+        ]
+      },
+      "apres": {
+        "commande": "expo export --platform web",
+        "code": 1,
+        "duree_s": 5,
+        "erreurs": 0,
+        "fin": [
+          "app/(tabs)/index.tsx",
+          "| import \"../../components/ui/AdBanner\"",
+          "app (require.context)"
+        ]
+      },
+      "nouvelles": [],
+      "disparues": 0
+    }
+  },
+  "dependances": {
+    "changements": [],
+    "verrous": [
+      {
+        "verrou": "bun.lock",
+        "supprime": false,
+        "entrees": [
+          1351,
+          1351
+        ],
+        "retirees": [],
+        "changees": [],
+        "deplacees": [],
+        "ajoutees": 0,
+        "exemplesAjoutees": []
+      }
+    ],
+    "manifestes": []
+  },
+  "fichiers": {
+    "integration": [
+      "A vendor/vak/vak-agent-0.29.2.tgz"
+    ],
+    "aRelire": []
+  }
+}

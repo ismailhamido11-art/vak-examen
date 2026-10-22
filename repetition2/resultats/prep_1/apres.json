@@ -1,0 +1,86 @@
+{
+  "dossier": "/work/prep_1/apres",
+  "commit": "f9dc68f5086c3c132701b2e5b1decaac12d30407",
+  "debut": "2026-10-22T17:11:36.992Z",
+  "fin": "2026-10-22T17:12:51.687Z",
+  "node": "v22.22.0",
+  "gestionnaire": {
+    "nom": "npm",
+    "version": null,
+    "lanceur": "npm",
+    "verrous": [
+      "package-lock.json"
+    ]
+  },
+  "monorepo": false,
+  "apps": [
+    {
+      "dossier": ".",
+      "type": "next"
+    }
+  ],
+  "journaux": "/work/prep_1/apres-journaux",
+  "installation": {
+    "commande": "npm ci",
+    "dossier": "/work/prep_1/apres",
+    "code": 0,
+    "duree_s": 20,
+    "erreurs": [],
+    "fin": [
+      "added 493 packages in 20s"
+    ],
+    "journal": "/work/prep_1/apres-journaux/installation.txt"
+  },
+  "controles": {
+    "typecheck": {
+      "commande": "npm run typecheck",
+      "dossier": "/work/prep_1/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "> prep@0.0.0 typecheck",
+        "> tsc --noEmit"
+      ],
+      "journal": "/work/prep_1/apres-journaux/typecheck.txt"
+    },
+    "lint": {
+      "commande": "npm run lint",
+      "dossier": "/work/prep_1/apres",
+      "code": 0,
+      "duree_s": 18,
+      "erreurs": [],
+      "fin": [
+        "> prep@0.0.0 lint",
+        "> eslint ."
+      ],
+      "journal": "/work/prep_1/apres-journaux/lint.txt"
+    },
+    "tests": {
+      "commande": "npm run test",
+      "dossier": "/work/prep_1/apres",
+      "code": 0,
+      "duree_s": 9,
+      "erreurs": [],
+      "fin": [
+        "Tests  119 passed (119)",
+        "Start at  17:12:24",
+        "Duration  7.87s (transform 1.07s, setup 0ms, import 3.13s, tests 2.40s, environment 14.92s)"
+      ],
+      "journal": "/work/prep_1/apres-journaux/tests.txt"
+    },
+    "build": {
+      "commande": "npm run build",
+      "dossier": "/work/prep_1/apres",
+      "code": 1,
+      "duree_s": 19,
+      "erreurs": [],
+      "fin": [
+        "at ignore-listed frames {",
+        "type: 'Error'",
+        "}"
+      ],
+      "journal": "/work/prep_1/apres-journaux/build.txt"
+    }
+  }
+}
