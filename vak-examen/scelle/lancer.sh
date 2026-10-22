@@ -101,6 +101,19 @@ process.stdout.write(e.etiquette.join("\n") + "\n");' "$ETIQUETTE" > "$S/travail
   DEMANDE="$(basename "$CONSIGNE")"
   IDS=()
   CONSIGNE=""
+elif [ "${CANDIDATS:-}" = 1 ]; then
+  # Liste des apps éligibles, complétée (22/10) : CANDIDATS=1 CONSIGNE=vak-examen/scelle/CANDIDATS-2.md
+  # SCELLE=/srv/candidats-2 : la règle, la consigne et le dossier candidats/ (outil, liste, exclusions, README) ; ni la
+  # page de vak, ni le dépôt.
+  [ -n "$CONSIGNE" ] || fail "CANDIDATS=1 demande une CONSIGNE"
+  rmdir "$S/travail/essais"
+  cp vak-examen/REGLE.md "$CONSIGNE" "$S/travail/"
+  mkdir -p "$S/travail/candidats"
+  cp vak-examen/candidats/verifier.mjs vak-examen/candidats/candidats.tsv vak-examen/candidats/exclusions.txt \
+    vak-examen/candidats/README.md "$S/travail/candidats/"
+  DEMANDE="$(basename "$CONSIGNE")"
+  IDS=()
+  CONSIGNE=""
 elif [ "${SANS_ESSAIS:-}" = 1 ]; then
   # Tâche sans rapport avec vak (liste des apps éligibles) : la règle, la consigne et les exclusions seulement.
   [ -n "$CONSIGNE" ] || fail "SANS_ESSAIS=1 demande une CONSIGNE"
@@ -175,6 +188,8 @@ elif [ "${JUGE:-}" = 1 ]; then
   ls "$S/travail/mesdonnees" "$S/travail/mesdonnees/tests" 2>/dev/null || echo "✗ aucun mesdonnees/"
 elif [ -n "${ETIQUETTE:-}" ]; then
   cat "$S/travail/reponses.json" 2>/dev/null || echo "✗ aucun reponses.json"
+elif [ "${CANDIDATS:-}" = 1 ]; then
+  wc -l "$S/travail/candidats/candidats.tsv" 2>/dev/null || echo "✗ aucun candidats.tsv"
 else
   ls "$S/travail/controleur" 2>/dev/null || echo "✗ aucun dossier controleur/"
 fi

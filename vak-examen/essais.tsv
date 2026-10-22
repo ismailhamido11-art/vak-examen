@@ -1,23 +1,15 @@
-# Essais du quatrième examen (REGLE.md) : id, dépôt (URL, ou archive git depuis la racine du dépôt), commit, métier,
-# emplacement. Les champs de la demande (métier, emplacement) sont fixés avant le premier essai et publiés (14/10) : le
-# métier reprend la phrase de la fiche de forme (fiches-4/) ; l'emplacement suit la règle de champs-candidats.tsv (un
+# Essais du cinquième examen (REGLE.md) : id, dépôt (URL, ou archive git depuis la racine du dépôt), commit, métier,
+# emplacement. Les champs de la demande (métier, emplacement) sont fixés avant le premier essai et publiés (22/10) : le
+# métier reprend la phrase de la fiche de forme (fiches-5/) ; l'emplacement suit la règle de champs-candidats.tsv (un
 # onglet « Assistant » pour une app Expo à onglets ; les 3 apps construites naviguent par pile : un bouton flottant).
-# Les 4 apps tirées s'ajoutent après le tirage (liste-essais.mjs). Les trois premiers examens (06/10, 10/10, 11/10) sont
-# dans l'historique.
+# Les 4 apps tirées s'ajoutent après le tirage (liste-essais.mjs). Les quatre premiers examens (06/10, 10/10, 11/10,
+# 14/10) sont dans l'historique.
 # Usage : APPS=vak-examen/essais.tsv bash vak-examen/repetition/jouer.sh <id>…
 # Un id n'a que des minuscules, des chiffres et « _ » (<app>_<n>) : la pile nomme sa base examen_<id>, et vak localdb
 # refuse tout autre caractère (06/10).
-disques_1	vak-examen/apps/disques.bundle	398bb03d983fe88fe3e97d720c90dfea67d9269a	La collection de disques vinyles d'une personne : ses disques, et chaque fois qu'elle en a écouté un.	un bouton flottant sur tous les écrans
-disques_2	vak-examen/apps/disques.bundle	398bb03d983fe88fe3e97d720c90dfea67d9269a	La collection de disques vinyles d'une personne : ses disques, et chaque fois qu'elle en a écouté un.	un bouton flottant sur tous les écrans
-journal_1	vak-examen/apps/journal.bundle	af3d891a02374dbc938f61018bbd6f690573d729	La rédaction d'un journal de quartier : les bénévoles partagent les articles de leurs journaux et leurs photos, et chacun suit les articles qui lui sont confiés.	un bouton flottant sur tous les écrans
-journal_2	vak-examen/apps/journal.bundle	af3d891a02374dbc938f61018bbd6f690573d729	La rédaction d'un journal de quartier : les bénévoles partagent les articles de leurs journaux et leurs photos, et chacun suit les articles qui lui sont confiés.	un bouton flottant sur tous les écrans
-prets_1	vak-examen/apps/prets.bundle	9c8fe30d622d869a72ee04cff55e3d4e0740f162	Les prêts d'objets d'une personne à ses proches (livres, outils, jeux…) : ses objets, chaque prêt, et les prêts en retard.	un bouton flottant sur tous les écrans
-prets_2	vak-examen/apps/prets.bundle	9c8fe30d622d869a72ee04cff55e3d4e0740f162	Les prêts d'objets d'une personne à ses proches (livres, outils, jeux…) : ses objets, chaque prêt, et les prêts en retard.	un bouton flottant sur tous les écrans
-split_free_frontend_1	https://github.com/abdullahozer11/split-free-frontend	74b661256ea210cccb9aa5bdaa8d5bb55c08abcd	Le partage de dépenses entre amis ou en groupe, réglé avec le moins de virements possible.	un onglet « Assistant »
-split_free_frontend_2	https://github.com/abdullahozer11/split-free-frontend	74b661256ea210cccb9aa5bdaa8d5bb55c08abcd	Le partage de dépenses entre amis ou en groupe, réglé avec le moins de virements possible.	un onglet « Assistant »
-smart_budget_application_1	https://github.com/NikolayAngelov90/Smart-Budget-Application	d8173d6acceda25588b8b9f38ce9956aade38935	Un budget personnel : on y note ses dépenses par catégorie, on y fixe ses budgets et on les partage avec son foyer.	un bouton flottant sur tous les écrans
-smart_budget_application_2	https://github.com/NikolayAngelov90/Smart-Budget-Application	d8173d6acceda25588b8b9f38ce9956aade38935	Un budget personnel : on y note ses dépenses par catégorie, on y fixe ses budgets et on les partage avec son foyer.	un bouton flottant sur tous les écrans
-flow_finance_1	https://github.com/Alexandre-Pascal/flow-finance	642880178c93a8206834b1a1b5ca1de9bcd9c7a0	Un suivi de finances personnelles : on y voit ses comptes courants et livrets, leurs soldes et ses transactions.	un bouton flottant sur tous les écrans
-flow_finance_2	https://github.com/Alexandre-Pascal/flow-finance	642880178c93a8206834b1a1b5ca1de9bcd9c7a0	Un suivi de finances personnelles : on y voit ses comptes courants et livrets, leurs soldes et ses transactions.	un bouton flottant sur tous les écrans
-streakmates_1	https://github.com/navysum/StreakMates	79c610d7b49c84d0492451bca1d5435b2827ed1b	Un suivi d'habitudes à plusieurs : on y suit ses habitudes, seules ou partagées avec un groupe d'amis.	un onglet « Assistant »
-streakmates_2	https://github.com/navysum/StreakMates	79c610d7b49c84d0492451bca1d5435b2827ed1b	Un suivi d'habitudes à plusieurs : on y suit ses habitudes, seules ou partagées avec un groupe d'amis.	un onglet « Assistant »
+randonnee_1	vak-examen/apps/randonnee.bundle	4f43b027399c074f06de28aff08c967a752d6bd4	Le carnet de randonnée d'une personne : ses itinéraires, et chaque fois qu'elle en a parcouru un.	un bouton flottant sur tous les écrans
+randonnee_2	vak-examen/apps/randonnee.bundle	4f43b027399c074f06de28aff08c967a752d6bd4	Le carnet de randonnée d'une personne : ses itinéraires, et chaque fois qu'elle en a parcouru un.	un bouton flottant sur tous les écrans
+troupe_1	vak-examen/apps/troupe.bundle	e3c2605fa1ccf3c6cdb560bef834693509c18717	Les spectacles d'une troupe de théâtre amateur : les membres partagent les spectacles de leurs troupes et leur distribution ; un personnage a un titulaire et, s'il le faut, une doublure, et chacun suit les personnages dont il est titulaire.	un bouton flottant sur tous les écrans
+troupe_2	vak-examen/apps/troupe.bundle	e3c2605fa1ccf3c6cdb560bef834693509c18717	Les spectacles d'une troupe de théâtre amateur : les membres partagent les spectacles de leurs troupes et leur distribution ; un personnage a un titulaire et, s'il le faut, une doublure, et chacun suit les personnages dont il est titulaire.	un bouton flottant sur tous les écrans
+revisions_1	vak-examen/apps/revisions.bundle	fd44d3346a948512168a8c16e4496fee43bf1ce3	Les cartes de révision d'une personne (langues, examens, culture…) : ses paquets de cartes, chaque carte, ses révisions, et les cartes à revoir aujourd'hui.	un bouton flottant sur tous les écrans
+revisions_2	vak-examen/apps/revisions.bundle	fd44d3346a948512168a8c16e4496fee43bf1ce3	Les cartes de révision d'une personne (langues, examens, culture…) : ses paquets de cartes, chaque carte, ses révisions, et les cartes à revoir aujourd'hui.	un bouton flottant sur tous les écrans

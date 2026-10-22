@@ -1,9 +1,9 @@
-# Examen public de vak : la règle (quatrième examen)
+# Examen public de vak : la règle (cinquième examen)
 
 **À figer avant le tirage des apps.** Son empreinte SHA-256 sera publiée dans [`PUBLICATION.md`](PUBLICATION.md),
 avec celle de l'archive du kit et le tour drand choisi. Après cette publication, plus rien ne change. Les règles des
-trois premiers examens (06/10/2026, échoué : 2 essais réussis sur 14 ; 10/10/2026, échoué : 9 sur 14 ; 11/10/2026,
-échoué : 6 sur 14) restent lisibles dans l'historique de ce dépôt.
+quatre premiers examens (06/10/2026, échoué : 2 essais réussis sur 14 ; 10/10/2026, échoué : 9 sur 14 ; 11/10/2026,
+échoué : 6 sur 14 ; 14/10/2026, échoué : 12 sur 14) restent lisibles dans l'historique de ce dépôt.
 
 ## Ce que l'examen mesure
 
@@ -15,12 +15,28 @@ autre compte. L'examen dit si c'est vrai, sur 14 essais, avec des seuils publié
 
 - **4 vraies apps publiques**, tirées au sort parmi les apps éligibles.
 - **3 apps construites par un tiers** qui n'a jamais vu vak : une session Claude Code scellée (sans le dépôt de vak,
-  sans mémoire). Ce sont trois apps nouvelles : vak a vu celles des trois premiers examens, et a été corrigé depuis
-  sur ce que plusieurs d'entre elles ont montré. Chacune suit une fiche de forme d'une page (`fiches-4/`), écrite
+  sans mémoire). Ce sont trois apps nouvelles : vak a vu celles des quatre premiers examens, et a été corrigé depuis
+  sur ce que plusieurs d'entre elles ont montré. Chacune suit une fiche de forme d'une page (`fiches-5/`), écrite
   avant sa construction et publiée avec son empreinte :
   - une app qui démarre (peu de tables, peu de code) ;
   - une app d'équipe (des données partagées entre membres) ;
   - une app « tout par fonctions », qui écrit par des fonctions SQL, avec du JSON.
+
+  Ce qui est su et publié avant le tirage :
+  - les fiches sont écrites par la session de travail qui écrit vak, après le gel du kit et après ses répétitions
+    privées : elle sait ce que le kit gelé traite. Seuls les constructeurs n'ont jamais vu vak. Des relectures
+    adverses ont cherché à ce que les fiches ne favorisent ni ne défavorisent vak ; exemple de ce qui reste : la fiche
+    d'équipe dit qu'un `viewer` ne joue aucun personnage, et le constructeur en a tiré un déclencheur qui refuse des
+    lignes, le cas que vak a corrigé après le quatrième examen (H1) ;
+  - chaque fiche garde la forme des fiches de même rang des examens passés. L'app d'équipe confie des lignes à des
+    membres selon leur rôle, comme journal ; l'app « tout par fonctions » a des fonctions qui écrivent plusieurs
+    tables, un compte tenu par un déclencheur et une liste à une date, comme prets. vak a été corrigé sur ces deux
+    apps du quatrième examen (H1, H2), puis les a réussies en répétition privée ;
+  - les fiches ajoutent des traits qu'aucune fiche passée n'avait : deux membres pour une même ligne (un titulaire et
+    une doublure) ; une troisième table et un compte remonté sur deux niveaux ; une fonction qui écrit elle-même deux
+    tables ; des refus de doublon ; un effacement refusé selon une date ;
+  - le domaine de la fiche « tout par fonctions » (des cartes de révision) est voisin de celui d'une app éligible
+    (`Truella/prep`, un outil de quiz) et de celui d'une app du banc du kit (`ppl-quiz`, des séances de quiz).
 
 **Éligibilité** d'une app publique :
 - les `engines.node` de l'app sont compatibles avec l'environnement de l'examen ;
@@ -30,16 +46,22 @@ autre compte. L'examen dit si c'est vrai, sur 14 essais, avec des seuils publié
   éligible.
 
 La liste des apps éligibles est `candidats/historique.tsv` (colonne `eligible`). Chaque app y est prise à son commit
-de `candidats/candidats.tsv`.
+de `candidats/candidats.tsv`. La liste du 04/10 a été complétée le 22/10 par une autre session scellée, avec le même
+`verifier.mjs` (`candidats/README.md`, « Ajouts du 22/10/2026 ») : il ne restait qu'une app Next éligible.
 
 **Exclusions :**
-- les 21 apps des trois premiers examens (06/10, 10/10 et 11/10), leurs copies et leurs propriétaires : vak les a
-  vues, et a été corrigé depuis sur ce qu'elles ont montré. Les 12 apps tirées sont dans `candidats/exclusions.txt`
-  (`historique.mjs` les note « app des répétitions ») ; les 9 apps construites ne sont pas des candidates ;
+- les 28 apps des quatre premiers examens (06/10, 10/10, 11/10 et 14/10), leurs copies et leurs propriétaires : vak
+  les a vues, et a été corrigé depuis sur ce que plusieurs ont montré. Les 16 apps tirées sont dans
+  `candidats/exclusions.txt` (`historique.mjs` les note « app des répétitions ») ; les 12 apps construites ne sont pas
+  des candidates ;
 - les apps des répétitions, dont celles où le kit a été développé et testé (liste publiée :
   `candidats/exclusions.txt`), leurs copies et leurs propriétaires. Une copie se reconnaît mécaniquement : un commit
   commun, ou plus de la moitié des fichiers identiques octet pour octet (`candidats/historique.mjs`). Deux apps
-  éligibles copiées l'une de l'autre sont écartées toutes les deux ;
+  éligibles copiées l'une de l'autre sont écartées toutes les deux. Une app est écartée à la main, dans le doute :
+  elle porte le nom d'une app des répétitions sans en être une copie selon ce critère (`candidats/exclusions.txt`) ;
+- les modèles de départ : un dépôt qui se présente lui-même comme un modèle (starter, template, boilerplate) dans son
+  nom ou son README n'est pas une vraie app. Les examens passés en avaient pris ; trois, ajoutés à la liste le 22/10,
+  sont écartés à la main avant le tirage (`candidats/exclusions.txt`, fin) ;
 - aucune mesure de développement du kit ne s'est faite sur un dépôt éligible.
 
 **Tirage :**
@@ -59,7 +81,8 @@ d'un HOME neuf et de bases locales vides, dans une session sans mémoire. L'agen
 régularité : un succès de hasard ne suffit pas. (Codex était prévu comme second agent ; l'abonnement du propriétaire
 a pris fin le 03/10.)
 
-- **Le kit est gelé** : une seule archive `vak-agent-<version>.tgz`, dont l'empreinte est publiée avant le tirage.
+- **Le kit est gelé** : une seule archive `vak-agent-<version>.tgz`, dont l'empreinte est publiée avec celles des
+  fiches, avant la construction des 3 apps.
 - **La demande** est celle du README de vak, mot pour mot, avec ses trois champs remplis. Le lanceur la place après
   trois phrases d'introduction (l'essai, personne ne répond, où est l'app) et avant les règles de l'essai et la
   consigne du compte rendu (`repetition2/messages.sh`). Les champs sont fixés avant l'essai :
@@ -86,8 +109,8 @@ a pris fin le 03/10.)
   - la CLI Supabase à la version que fixe l'archive gelée ; pas de Docker ;
   - les versions exactes sont dans `PUBLICATION.md` ;
   - l'agent : Claude Code en mode non interactif, avec le modèle par défaut de sa version ; la version est consignée
-    pour chaque essai (2.1.296 aux deuxième et troisième examens ; celle de ce quatrième examen est dans
-    `PUBLICATION.md`) ;
+    pour chaque essai (2.1.296 aux deuxième et troisième examens, 2.1.299 au quatrième ; celle de ce cinquième
+    examen est dans `PUBLICATION.md`) ;
   - pour l'assistant, un vrai modèle (DeepSeek) avec une clé plafonnée.
 
 ## Un essai réussit si tout est vrai
@@ -196,12 +219,17 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 
 - **La durée médiane** est la moyenne des 7e et 8e durées des 14 essais, rangées de la plus courte à la plus longue.
   Un essai où `vak` ne rend jamais 0 a une durée infinie.
-- **Un geste humain** est ce que le compte rendu final de l'agent demande à l'humain pour que l'assistant marche : une
-  commande à lancer, une valeur à fournir (une clé, par exemple), ou une question restée ouverte.
+- **Un geste humain** est ce que le compte rendu final de l'agent demande à l'humain, ou lui laisse à faire, pour que
+  l'assistant marche dans son app : une commande à lancer, une valeur à fournir (une clé, par exemple), une question
+  restée ouverte, ou une action laissée à faire.
   - Chaque commande distincte compte pour un geste, avec les valeurs que sa ligne demande. Une même commande citée deux
     fois compte une fois.
-  - Une suggestion facultative, ou un signalement sans action demandée (une faille de l'app), n'en est pas un. Dans le
-    doute, c'est un geste.
+  - Le circuit de contribution du dépôt de l'app (issue, branche, demande de fusion, que demande son guide), s'il est
+    nécessaire pour que le travail atteigne l'app, compte pour un seul geste, en commandes ou « non fait ».
+  - Une question n'est pas un geste si le compte rendu la donne tranchée, avec la façon d'y revenir. Une question
+    tranchée sans retour arrière écrit, une supposition ou un choix « à confirmer » en est un.
+  - Une suggestion facultative, marquée comme telle, ou un signalement sans action demandée (une faille de l'app), n'en
+    est pas un. Dans le doute, c'est un geste.
   - Le seuil vaut pour chaque essai, réussi ou non. Chaque geste est publié avec sa citation : chacun peut recompter.
 - **Aucune fuite et des chiffres exacts** valent pour chaque essai dont la pile sert l'assistant, réussi ou non : ce
   sont les marqueurs de B et les réponses à « combien de mes … ? » du point 5.
@@ -251,8 +279,9 @@ La façon de compter chaque seuil est dans « Comment on compte les seuils », p
 
 ## Le groupe témoin « sans vak »
 
-Il n'est pas rejoué pour ce quatrième examen, pas plus qu'aux deuxième et troisième. C'est le choix du propriétaire du
-10/10, reconduit sans nouvelle décision : son accord du 14/10 au quatrième examen ne portait pas sur le groupe témoin.
+Il n'est pas rejoué pour ce cinquième examen, pas plus qu'aux deuxième, troisième et quatrième. C'est le choix du
+propriétaire du 10/10, reconduit sans nouvelle décision : son accord du 21/10 au cinquième examen ne portait pas sur le
+groupe témoin.
 Sans témoin, l'examen ne dit pas ce qu'un agent de code ferait sans vak sur ces apps. Celui du premier examen (06/10 :
 7 essais, un par app, sur les apps d'alors) reste publié, avec sa règle, dans l'historique de ce dépôt et dans son
 `EXAMEN.md`. Il ne décidait pas de l'examen.

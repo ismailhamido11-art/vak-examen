@@ -1,4 +1,4 @@
-# Consigne : les graines A et B des apps construites (quatrième examen)
+# Consigne : les graines A et B des apps construites (cinquième examen)
 
 Tu prépares le point 5 de l'examen public de vak (`REGLE.md`, « Mes données ont le bon sens » et « Comment on vérifie
 « mes données » »). vak est un kit qui ajoute un assistant IA à une app Expo ou Next.js adossée à Supabase ; sa page
@@ -8,7 +8,7 @@ travail : ne pose aucune question, tranche, et note tes choix dans ton compte re
 ## Ce que tu as, dans ce dossier
 
 - `REGLE.md`, `PAGE-VAK.md`.
-- `apps/` : les 3 apps construites pour le quatrième examen par des sessions comme toi, chacune d'après une fiche de
+- `apps/` : les 3 apps construites pour le cinquième examen par des sessions comme toi, chacune d'après une fiche de
   forme, à son commit. `apps/TIREES.tsv` donne, pour chacune, son nom ici, son dépôt et son commit.
 - `graines/` : ce qu'une session comme toi a écrit pour les apps construites du premier examen.
   - `demarre/graine.sql` et `demarre/attendu.json` : un exemple de la forme attendue (l'app `demarre` n'est pas ici).

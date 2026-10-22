@@ -1,5 +1,0 @@
-{
-  "id": "journal_1",
-  "minutes": null,
-  "preuve": "aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; les quatre `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 56 (sortie ligne 59 : « vak doctor : doctor : à corriger […] (passé : localdb, sync) [code 1] »), ligne 97 (sortie ligne 98), ligne 130 (sortie ligne 133) et ligne 155, après le commit (sortie ligne 156) : « vak prove : preuve à deux comptes : non prouvé […] [code 1] » ; les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 36, sortie ligne 37 : « vak 0.28.1 installé (., serveur edge) [code 0] ») et `vak test` (ligne 81, sortie ligne 82 : « vak test : tout est vert [code 0] ») ; le « vak test : tout est vert [code 0] » de la ligne 53 est le texte du skill lu par `sed` (ligne 52), pas une sortie de vak. Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme abonnements_1 au troisième examen"
-}

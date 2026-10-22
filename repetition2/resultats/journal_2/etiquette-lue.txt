@@ -1,5 +1,0 @@
-Voit : Journaux (Nom, Quartier, Créé le) ; Articles (Journal, Titre, Rubrique, Signes prévus, Statut, À rendre le, Confié à, Créé le) ; Photos (Article, Légende, Photographe, Largeur (px), Ajoutée le) ; Membres (Journal, Membre, Rôle, Depuis le) ; Profils (Nom affiché, E-mail)
-Peut proposer (après votre validation) : retenir un souvenir (prise memory)
-Peut ouvrir (sans rien enregistrer) : Mes journaux, Mes articles à rendre, Ouvrir le journal, Ouvrir l'article, Membres du journal
-Jamais : supprimer une ligne ; modifier hors de ces listes, sauf par retenir un souvenir (prise memory) ; lire newspaper_invitations ; appeler claim_invitations, create_newspaper, invite_member, remove_member
-Envoie vos messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

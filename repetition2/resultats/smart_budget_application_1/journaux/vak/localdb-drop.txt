@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/smart_budget_application_1/apres)
-
-base locale vak_local_d4adb1 supprimée [code 0]

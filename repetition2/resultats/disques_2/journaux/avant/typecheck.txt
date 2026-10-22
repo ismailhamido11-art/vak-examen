@@ -1,3 +1,0 @@
-$ tsc --noEmit
-(dossier : /work/disques_2/avant)
-

@@ -2,11 +2,11 @@
 
 Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://github.com/ismailhamido11-art/vak-examen
 (publié le 06/10/2026 pour le premier examen, le 10/10/2026 pour le deuxième, le 11/10/2026 pour le troisième, le
-14/10/2026 pour le quatrième), avec le lanceur des essais (`repetition2/`). C'est [`publier.sh`](publier.sh) qui le
-recopie. Les trois premiers examens sont dans l'historique.
+14/10/2026 pour le quatrième, le 22/10/2026 pour le cinquième), avec le lanceur des essais (`repetition2/`). C'est
+[`publier.sh`](publier.sh) qui le recopie. Les quatre premiers examens sont dans l'historique.
 
 - [`REGLE.md`](REGLE.md) : la règle. Elle dit ce qui est mesuré, quelles apps sont choisies, ce qu'est un essai réussi
-  et quels sont les seuils. Celle du quatrième examen est figée le 14/10/2026.
+  et quels sont les seuils. Celle du cinquième examen est figée le 22/10/2026.
 - [`PUBLICATION.md`](PUBLICATION.md) : ce qui est figé avant le tirage (empreintes, texte de la demande,
   environnement, tour drand).
 - [`pile/`](pile/) : la vérification « mes données » d'un essai fini.
@@ -20,7 +20,9 @@ recopie. Les trois premiers examens sont dans l'historique.
     vérifie que le contrôleur rend « échec » pour la bonne raison.
 
 - [`candidats/`](candidats/) : les apps publiques éligibles (23 au 06/10 ; 19 au 10/10, sans les 4 apps tirées du
-  premier examen ; 15 au 11/10, sans les 4 apps tirées du deuxième ; 11 au 14/10, sans les 4 apps tirées du troisième),
+  premier examen ; 15 au 11/10, sans les 4 apps tirées du deuxième ; 11 au 14/10, sans les 4 apps tirées du troisième ; 12 au 22/10,
+  sans les 4 apps tirées du quatrième, la liste complétée par une autre session scellée, trois modèles de départ
+  écartés),
   constituées en tiers par une session scellée (`verifier.mjs`), puis passées au critère « pas une copie » et à la
   liste d'exclusion complète (`historique.mjs`, 06/10).
 - [`tirage.mjs`](tirage.mjs) : le tirage des 4 apps publiques. `node tirage.mjs <tour drand>` lit l'aléa du tour
@@ -28,8 +30,8 @@ recopie. Les trois premiers examens sont dans l'historique.
   Expo et les 2 premières apps Next ; les suivantes forment la réserve de chaque plateforme.
 - [`apps/`](apps/) : les 3 apps construites du premier examen (06/10, `fiches/`), celles du deuxième (10/10 : plantes,
   agence, compteurs, `fiches-2/`), celles du troisième (10/10 au soir : cuisine, club, abonnements, `fiches-3/`) et
-  celles du quatrième (14/10 : disques, journal, prets, `fiches-4/`), chacune par une session scellée qui n'a reçu que
-  sa fiche ; leurs archives git, leurs empreintes et les vérifications.
+  celles du quatrième (14/10 : disques, journal, prets, `fiches-4/`) et celles du cinquième (22/10 : randonnee,
+  troupe, revisions, `fiches-5/`), chacune par une session scellée qui n'a reçu que sa fiche ; leurs archives git, leurs empreintes et les vérifications.
 - [`controleur/`](controleur/) : le contrôleur de l'examen. Une session Claude Code scellée l'a écrit le 04/10, sans
   le dépôt de vak, d'après `REGLE.md`, la page publique et [`scelle/CAHIER.md`](scelle/CAHIER.md) ; d'autres sessions
   scellées l'ont mis à jour (`scelle/MISE-A-JOUR-1.md` à `-3.md`, la dernière le 13/10). Le lanceur est
@@ -45,12 +47,14 @@ recopie. Les trois premiers examens sont dans l'historique.
   ([`scelle/ETIQUETTE.md`](scelle/ETIQUETTE.md)) et la comparaison.
 - [`scelle/GRAINES-TIREES.md`](scelle/GRAINES-TIREES.md) : la consigne des graines des 4 apps tirées (`TIREES=` du
   lanceur scellé) ; [`scelle/GRAINES-CONSTRUITES.md`](scelle/GRAINES-CONSTRUITES.md), celle des 3 apps construites
-  des deuxième, troisième et quatrième examens.
+  des deuxième, troisième, quatrième et cinquième examens ; [`scelle/CANDIDATS-2.md`](scelle/CANDIDATS-2.md), celle
+  de la session qui a complété la liste des apps éligibles (22/10).
 - [`graines/`](graines/) : les graines A et B de chaque app, écrites par des sessions scellées, publiées après les
   essais ; leurs empreintes l'ont été avant (`PUBLICATION.md`, `EMPREINTES.sha256`, `AVANT-ESSAIS.md`).
 - [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du quatrième examen,
-  publiés après ses essais ; les résultats de chaque essai sont dans `repetition2/resultats/<id>/`. Le journal et le
-  verdict des trois premiers examens sont dans l'historique (au troisième, `resultat-corrige.mjs`, `resultat.mjs` à une
+  publiés après ses essais, jusqu'à ceux du cinquième ; ses résultats d'essais (`repetition2/resultats/<id>/`) et ses
+  graines sont dans l'historique (commit `ff57d67` et avant), comme le journal et le verdict des trois premiers
+  examens (au troisième, `resultat-corrige.mjs`, `resultat.mjs` à une
   ligne près, corrigé depuis).
 - [`recompte-gestes-4.json`](recompte-gestes-4.json) : la pratique des examens publics sur les gestes, et le recompte
   strict des 14 essais du quatrième examen qu'elle a fondé.

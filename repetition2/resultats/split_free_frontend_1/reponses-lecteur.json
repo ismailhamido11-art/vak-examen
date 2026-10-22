@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["remember a memory (plugin memory)"],
-  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
-  "remarques": "Suppression : l'étiquette dit « Never: delete a row ». Modification : seule « remember a memory (plugin memory) » est proposée, et seulement après approbation de l'utilisateur ; l'étiquette dit ne rien modifier en dehors de cela. Les actions « Open group », « Group statistics » et « New expense » ouvrent seulement (« saves nothing »). Envoi : DeepSeek, hôte api.deepseek.com, en Chine, selon ses propres conditions. L'étiquette cite aussi « 11 others » fonctions interdites sans les nommer."
-}

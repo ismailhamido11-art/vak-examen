@@ -40,3 +40,24 @@ https://github.com/Razikus/supabase-nextjs-template
 https://github.com/battisteb/habitquest
 https://github.com/quitefrank/workout-app
 https://github.com/antoineross/Hikari
+#
+# Quatrième examen (14/10) : ses 4 apps tirées ont été vues de vak, et vak a été corrigé sur l'une d'elles (H5 de vak
+# 0.29.1, split_free_frontend), puis rejoué sur elle en répétition privée (20/10 au 21/10). Exclues du cinquième
+# examen, avec leurs copies et leurs propriétaires (ajouté le 22/10, avant le tirage).
+https://github.com/abdullahozer11/split-free-frontend
+https://github.com/NikolayAngelov90/Smart-Budget-Application
+https://github.com/Alexandre-Pascal/flow-finance
+https://github.com/navysum/StreakMates
+#
+# Écartée à la main le 22/10, avant le tirage, dans le doute : même nom qu'une app des répétitions
+# (imbhargav5/nextbase-nextjs-supabase-starter, plus haut), dont elle semble dériver ; historique.mjs n'y voit ni
+# commit commun ni contenu copié (29 % de fichiers identiques, sous le seuil de 50 %).
+https://github.com/lightdev627/nextbase-nextjs-supabase-starter
+#
+# Modèles de départ, écartés à la main le 22/10, avant le tirage : la règle veut de vraies apps, et ces dépôts se
+# présentent eux-mêmes comme des modèles (starter, template) dans leur nom et leur README. Ajoutés à la liste par la
+# session du 22/10, ils remplissaient les critères de verifier.mjs. Dans le doute, contre vak : vak a été développé et
+# corrigé sur des modèles de ce genre.
+https://github.com/dannyhw/app-template
+https://github.com/RCushmaniii/nextjs-supabase-auth-starter
+https://github.com/maximilian-V/next-supabase-starter

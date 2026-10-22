@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/journal_2/apres)
-
-
-> app@0.1.0 lint
-> eslint
-

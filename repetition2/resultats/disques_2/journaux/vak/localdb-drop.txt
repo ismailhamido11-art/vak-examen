@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/disques_2/apres)
-
-base locale vak_local_e36bff supprimée [code 0]

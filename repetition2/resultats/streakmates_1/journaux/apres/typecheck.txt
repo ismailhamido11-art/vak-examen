@@ -1,7 +1,0 @@
-$ npm run typecheck
-(dossier : /work/streakmates_1/apres)
-
-
-> streakmates@1.0.0 typecheck
-> tsc --noEmit
-

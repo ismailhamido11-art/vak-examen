@@ -1,5 +1,0 @@
-Sees: Habits (Group, Title, Emoji, Cadence, Target days, Target per week, Reminder at, Archived at) ; Check-ins (Habit, Local date, Note) ; Tasks (Title, Done at, Group, Completion) ; Task completions (Task, Completed by, Done at) ; Focus sessions (Task, Started at, Minutes) ; Group memberships (Group, Member, Role, Joined at) ; Groups (Name, Emoji, Created at)
-Can propose (after your approval): remember a memory (plugin memory)
-Can open (saves nothing): Today, Groups, Focus, Habit, New habit, Group
-Never: delete a row ; edit outside these lists, except through remember a memory (plugin memory) ; read habit_order, nudges, profiles, reactions, invite_code_attempts ; call can_see_check_in, can_see_habit, can_see_task, is_group_member, is_group_owner, is_shared_once_task, shares_group_with, create_group, 5 others
-Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

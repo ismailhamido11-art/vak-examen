@@ -99,3 +99,61 @@ comme toute app qui remplit les critères.
 
 Refait le 10/10, le 11/10 et le 14/10, avec les 4 apps tirées de l'examen précédent ajoutées à `exclusions.txt` :
 19, 15, puis 11 éligibles (8 Expo, 3 Next) ; seules leurs 4 lignes changent à chaque fois.
+
+Refait le 22/10, avant le cinquième examen, après les ajouts du 22/10 (section suivante) : **12 éligibles (6 Expo, 6
+Next)**.
+- Les 4 apps tirées le 14/10 sont ajoutées à `exclusions.txt`.
+- `lightdev627/nextbase-nextjs-supabase-starter`, jugée éligible par `verifier.mjs`, est écartée à la main, dans le
+  doute : elle porte le nom d'une app des répétitions (`imbhargav5/nextbase-nextjs-supabase-starter`), mais
+  `historique.mjs` n'y voit ni commit commun ni contenu copié (29 % de fichiers identiques).
+- Trois modèles de départ ajoutés le 22/10 (`dannyhw/app-template`, `RCushmaniii/nextjs-supabase-auth-starter`,
+  `maximilian-V/next-supabase-starter`) sont écartés à la main, avant le tirage : la règle veut de vraies apps, et ils
+  se présentent eux-mêmes comme des modèles. `historique.mjs` les note « app des répétitions », la seule étiquette qu'il
+  donne à une adresse d'`exclusions.txt`.
+- `SoulSej10/spliteven` ne se clone plus (dépôt supprimé ou devenu privé) : écartée.
+- `battisteb/habitquest`, une app des répétitions, ne se clone plus non plus : elle est comparée depuis la copie gardée
+  par la session de travail, au commit de la répétition (`GIT_CONFIG_KEY_0=url.file://<copie>.insteadOf`,
+  `GIT_CONFIG_VALUE_0=https://github.com/battisteb/habitquest.git`).
+- Part la plus haute de fichiers identiques entre éligibles : 29 % (`ChathuraJT/meditrack-mobile` et
+  `Jithinppp/expns-v02`), loin du seuil.
+
+## Ajouts du 22/10/2026
+
+Complément de la liste, pour avoir assez d'apps Next.js au tirage (une seule restait éligible). Ajouté par une autre
+session que celle du 04/10, avec le même `verifier.mjs`, non modifié.
+
+**Sources et requêtes.** Recherche web (outil WebSearch, le 22/10/2026), toujours sans l'API ni la recherche de
+GitHub (réponses 403 depuis cette machine). Requêtes du type « github nextjs supabase <domaine> » pour : réservation,
+santé et médicaments, recettes, apprentissage et cartes mémoire, voyages, associations, fitness, finance, kanban et
+équipes, école, jeux et classements, habitudes et journal, CRM et facturation, rendez-vous, notes, animaux et plantes,
+organisations et invitations, restauration, immobilier, événements, quiz, suivi du temps, listes de souhaits,
+forums ; et « github expo react native supabase <domaine> » pour : habitudes et santé, événements et communauté,
+sport, budget, éducation et langues, réservation et livraison, messagerie, nutrition, courses partagées. Deux
+requêtes sur les modèles de départ (« next supabase starter » avec migrations et RLS, Expo Router avec
+`supabase/migrations`). Les dépôts viennent des seuls résultats du moteur, donc de ce qu'il indexe.
+
+**Résultat.** 95 dépôts nouveaux examinés, tous ajoutés à `candidats.tsv` (lignes 82 à 176) ; 10 sont éligibles selon
+l'outil, dont 1 est écarté ci-dessous :
+- Next.js, 7 : `dmayes77/CLIX`, `SynnIA/FitTrack`, `martin9020/crm`, `RCushmaniii/nextjs-supabase-auth-starter`,
+  `maximilian-V/next-supabase-starter`, `Truella/prep`, `joCur/giftify`.
+- Expo, 2 : `Jithinppp/expns-v02`, `dannyhw/app-template`.
+- `lightdev627/nextbase-nextjs-supabase-starter` : jugé éligible (Next.js) par l'outil, mais c'est une copie du
+  modèle `imbhargav5/nextbase-nextjs-supabase-starter`, qui est dans `exclusions.txt` (même nom, même description ;
+  tête différente, commit commun non vérifié). **À écarter** ; `historique.mjs` doit la retrouver.
+- Les autres refus : critère 3 (pas de `supabase/migrations`) pour la plupart, puis critère 6 (dernier commit avant le
+  30/03/2025), critère 2 (ni Next ni Expo), critère 1 (dépôt privé ou supprimé, 5 cas), critère 7 (migrations).
+
+**Limites.**
+- Les mêmes que le 04/10 : fork non vérifié (API fermée), pour les 10 éligibles ; `historique.mjs` n'a pas été rejoué
+  sur ces ajouts (commits communs et contenu copié entre candidats non contrôlés) ; faux Supabase minimal.
+- Expo reste mince : seulement 2 apps nouvelles, dont `dannyhw/app-template`, un modèle de départ plus qu'une app.
+  Plusieurs apps Next éligibles sont aussi des modèles (`nextjs-supabase-auth-starter`, `next-supabase-starter`).
+- Refus où l'outil a pu se tromper (limites du faux Supabase, rien n'a été corrigé) :
+  `phishy/magicmeal` (dump produit par PostgreSQL 17 : `transaction_timeout` inconnu de la version 16),
+  `nyl20/offmap` (extension `postgis` absente, hors de la liste tolérée), `daulric-dev/gb` (extension `hypopg`
+  absente, hors de la liste), `Vyntechs/Tr1via.com` (colonne `auth.users.is_sso_user` absente du faux schéma `auth`).
+  Ils ont pu être éligibles avec un vrai Supabase. À l'inverse, `AAALI/Tack`, `devkamanish/PocketPilot`,
+  `michaeljajo/Pilkarzyki`, `tinodau/twitmark`, `ravixalgorithm/collegestudy` échouent car leurs migrations ne créent
+  pas les tables de départ (relation absente) : refus probablement justes, non étudiés plus loin.
+- Rien n'a été lu du code des apps au-delà de la plateforme ; les noms des domaines cherchés ne disent rien de ce
+  que fait chaque app.

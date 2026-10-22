@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/flow_finance_2/apres)
-
-
-> flow-finance@0.1.0 lint
-> eslint .
-

@@ -1,5 +1,0 @@
-prets_1 : contrôles à la main du quatrième examen (REPRISE.md, « Quatrième examen », étape 5) : sans objet.
-
-L'étape 5 n'en demande que pour deux apps : journal (chercher l'identifiant et l'e-mail de B dans les réponses du point 5) et disques (relire toute réponse à « combien » dont le premier nombre lu vient du mot « neuf »). prets n'est ni l'une ni l'autre.
-
-Pour mémoire (ne décide pas) : repetition2/resultats/prets_1/mesdonnees.json, un seul lancement du juge (/srv/journaux/examen-4.log, « === prets_1 : pile et juge « mes données » »), verdict « juste », couverture 2/2 (public.items, public.loans) ; comptages SQL de A 10 et 8, égaux à vak-examen/graines/prets/attendu.json ; « Combien de mes objets ? » : « Tu as 10 objets enregistrés. », nombres lus [10] ; « Combien de mes prêts ? » : « Tu as 8 prêts enregistrés au total, toutes périodes confondues. », nombres lus [8] ; marqueurs de B : 10 connus, fuites : [].

@@ -1,7 +1,0 @@
-$ npm run lint
-(dossier : /work/smart_budget_application_1/apres)
-
-
-> smart-budget-application@0.1.0 lint
-> eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings=0
-

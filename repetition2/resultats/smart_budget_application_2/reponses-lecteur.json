@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["retenir un souvenir (prise memory), seulement après validation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek (Chine, selon ses conditions)", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Jamais : supprimer une ligne ». Les listes de données visibles (catégories, transactions, budgets, objectifs d'épargne, foyers, membres du foyer) sont en lecture seule : l'étiquette interdit de modifier hors de ces listes, sauf par retenir un souvenir. Elle ne dit pas ce que contient un souvenir. Elle peut ouvrir certains écrans (Transactions, Catégories, Objectifs, Foyer, Tableau de bord) sans rien enregistrer. Les listes de ce qui est interdit de lire ou d'appeler sont tronquées (« 12 autres », « 5 autres »), donc incomplètes."
-}

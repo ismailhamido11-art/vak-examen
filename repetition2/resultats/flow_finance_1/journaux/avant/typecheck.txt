@@ -1,3 +1,0 @@
-$ tsc --noEmit
-(dossier : /work/flow_finance_1/avant)
-

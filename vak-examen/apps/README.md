@@ -1,6 +1,7 @@
 # Les apps construites des examens
 
-Celles du quatrième examen (disques, journal, prets) sont plus bas, section « Quatrième examen ».
+Celles du quatrième examen (disques, journal, prets) sont plus bas, section « Quatrième examen », et celles du
+cinquième (randonnee, troupe, revisions) à la fin, section « Cinquième examen ».
 
 ## Premier examen : 3 apps (06/10)
 
@@ -138,5 +139,54 @@ Vérifications du 14/10, par la session de travail, sur un clone neuf de chaque 
   `npm run lint` et `npm run build` passent ; `npx tsc --noEmit` rend 1 erreur sur un clone neuf (`LayoutProps`, un
   type que Next 16 génère au build), puis 0 après `npm run build`, comme les apps d'équipe des examens passés. Les
   apps sont gardées telles quelles ;
+- **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
+  flottant sur tous les écrans (`../essais.tsv`).
+
+## Cinquième examen : 3 apps nouvelles (22/10)
+
+Construites le 22/10/2026, de 13:10:27 à 13:16 UTC, chacune par une session Claude Code scellée (`../scelle/lancer.sh`,
+mode « fiche »), qui n'a reçu que [`../scelle/CONSTRUIRE.md`](../scelle/CONSTRUIRE.md) et sa fiche de forme : ni vak,
+ni la règle, ni le dépôt du kit. Les fiches (`../fiches-5/`) étaient commitées avant, et leurs empreintes publiées,
+avec celle de l'archive gelée du kit, sur le ticket n°5 du dépôt public avant la construction.
+
+| forme | app | plateforme | commit | session |
+|---|---|---|---|---|
+| [démarre](../fiches-5/demarre.md) | carnet de randonnée : itinéraires et sorties | Expo 58 | `4f43b02` | 13 tours, 0,30 $, 4 min |
+| [équipe](../fiches-5/equipe.md) | spectacles d'une troupe de théâtre : distribution | Next.js 16.4 | `e3c2605` | 16 tours, 0,44 $, 5 min |
+| [fonctions](../fiches-5/fonctions.md) | cartes de révision, écritures par RPC | Expo 58 | `fd44d33` | 19 tours, 0,51 $, 5 min |
+
+- Chaque app est un fichier `<nom>.bundle` (`randonnee`, `troupe`, `revisions`) : `git clone <nom>.bundle <dossier>`.
+- Les comptes rendus des sessions sont recopiés tels quels dans [`rapports/`](rapports/).
+- **Messages de commit** : comme au quatrième examen, la seule ligne `Co-Authored-By` (la ligne d'attribution que
+  Claude Code met à ses commits, qui nomme le modèle) est retirée des messages (`git filter-branch --msg-filter`), sans
+  toucher aux fichiers : arbres, auteurs et dates sont identiques à ceux des sessions ; seuls les identifiants des
+  commits réécrits changent. Les comptes rendus citent les identifiants d'avant : randonnee `3d6cc8a` devenu
+  `4f43b02`, troupe `cec3ea0` devenu `e3c2605`, revisions `ab67170` devenu `fd44d33` (les premiers commits de
+  randonnee et de revisions, ceux du gabarit, gardent les leurs).
+- Les gabarits de `create-expo-app` apportaient un `AGENTS.md` et un `.claude/settings.json` : pour randonnee et
+  revisions, ils restent dans le premier commit, celui du gabarit, et sont retirés au second, comme le veut la fiche
+  (« aucune mention d'un kit d'assistant »). La session de troupe a retiré l'`AGENTS.md` de `create-next-app` avant
+  son seul commit.
+- **Écarts aux fiches**, gardés tels quels (détail dans [`rapports/`](rapports/)) : randonnee lie une sortie à son
+  itinéraire par la clé composite `(trail_id, owner_id)`, et n'a ni modification ni suppression dans l'interface ;
+  troupe ajoute `troupes.created_by`, n'invite que des personnes qui ont déjà un compte (pas de table d'invitations),
+  réserve titulaire et doublure aux `owner` et `actor` par un déclencheur, et écrit les membres par des fonctions
+  `security definer` (`create_troupe`, `invite_member`, `remove_member`, `set_member_role`). Ses lectures passent
+  aussi par des fonctions `security definer` : `troupe_member_list` rend l'e-mail de chaque co-membre, `mes_personnages`
+  lit hors RLS ; sa RLS s'appuie sur des aides `security definer` appelables en RPC, dont `show_troupe`, qui rend la
+  troupe de n'importe quel spectacle sans vérifier l'appartenance ; un déclencheur libère les personnages d'un membre
+  retiré ou passé `viewer`. revisions a ses fonctions en `security definer`, sauf `cards_due` (`security invoker`).
+  Comme la fiche le dit, `delete_deck` refuse un paquet qui contient une carte neuve du jour (elle est à revoir ce
+  jour-là).
+
+Vérifications du 22/10, par la session de travail, sur un clone neuf de chaque archive :
+- **critères d'une app publique** (`../candidats/verifier.mjs`, `SOURCE=` un clone de l'archive) : les trois sont
+  éligibles, leurs migrations passent sur un PostgreSQL 16 neuf. Tables « à moi » : randonnee : `outings`, `trails` ;
+  troupe : `characters`, `shows`, `troupe_members`, `troupes` ; revisions : `cards`, `decks`, `reviews` ;
+- **ce que demande la fiche** : `npm ci` passe ; `package-lock.json` et `.env.example` sont commités ; aucun `.env` ni
+  secret n'est commité. randonnee et revisions : `npx tsc --noEmit` et `npx expo export -p web` passent. troupe :
+  `npm run lint` et `npm run build` passent ; `npx tsc --noEmit` rend 5 erreurs sur un clone neuf (`LayoutProps` et
+  `PageProps`, des types que Next 16 génère au build), puis 0 après `npm run build`, comme les apps d'équipe des
+  examens passés. Les apps sont gardées telles quelles ;
 - **navigation** : les trois naviguent par pile (Expo Router `Stack`, ou Next.js) : leur emplacement est un bouton
   flottant sur tous les écrans (`../essais.tsv`).

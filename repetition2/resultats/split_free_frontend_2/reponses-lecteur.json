@@ -1,6 +1,0 @@
-{
-  "supprimer": "non",
-  "modifier": ["remember a memory (plugin memory), seulement après approbation de l'utilisateur"],
-  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
-  "remarques": "L'étiquette dit « Never: delete a row » (suppression exclue). Elle dit aussi « edit outside these lists, except through remember a memory (plugin memory) » : la seule modification possible est donc l'ajout d'un souvenir via le plugin memory, proposé puis soumis à approbation. Les écrans Groups, Group, Statistics et Add an expense peuvent être ouverts mais n'enregistrent rien (« saves nothing »). Les messages sont envoyés à DeepSeek (api.deepseek.com), situé en Chine et soumis à ses propres conditions (« under its own terms »). L'étiquette liste aussi des données lues et des outils interdits, dont 11 autres non nommés ; elle ne les détaille pas."
-}

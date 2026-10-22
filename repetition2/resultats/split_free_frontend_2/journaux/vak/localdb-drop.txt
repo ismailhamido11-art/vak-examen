@@ -1,4 +1,0 @@
-$ vak localdb --drop
-(dossier : /work/split_free_frontend_2/apres)
-
-base locale vak_local_2c91d1 supprimée [code 0]
