@@ -1,0 +1,5 @@
+Voit : Paquets (Nom, Matière, Révisions faites, Créé le) ; Cartes (Paquet, Recto, Verso, Intervalle (jours), À revoir le, Série de réussites) ; Révisions (Carte, Révisée le, Réponse, Note)
+Peut proposer (après ta validation) : « Créer un paquet » (fonction de l'app : Paquets) ; « Ajouter une carte » (fonction de l'app : Cartes) ; « Modifier une carte » (fonction de l'app : Cartes) ; « Réviser une carte » (fonction de l'app : Cartes, Paquets, Révisions) ; retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Mes paquets, Ouvrir le paquet, À revoir aujourd'hui, Nouvelle carte
+Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer » ; appeler delete_deck
+Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

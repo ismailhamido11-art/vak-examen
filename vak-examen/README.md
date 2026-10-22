@@ -51,9 +51,9 @@ Ce dossier est recopié tel quel dans le dépôt public de l'examen, https://git
   de la session qui a complété la liste des apps éligibles (22/10).
 - [`graines/`](graines/) : les graines A et B de chaque app, écrites par des sessions scellées, publiées après les
   essais ; leurs empreintes l'ont été avant (`PUBLICATION.md`, `EMPREINTES.sha256`, `AVANT-ESSAIS.md`).
-- [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du quatrième examen,
-  publiés après ses essais, jusqu'à ceux du cinquième ; ses résultats d'essais (`repetition2/resultats/<id>/`) et ses
-  graines sont dans l'historique (commit `ff57d67` et avant), comme le journal et le verdict des trois premiers
+- [`EXAMEN.md`](EXAMEN.md) et [`RESULTAT.json`](RESULTAT.json) : le journal et le verdict du cinquième examen,
+  publiés après ses essais, avec ses résultats d'essais (`repetition2/resultats/<id>/`) et ses graines ; ceux du
+  quatrième sont dans l'historique (commit `ff57d67` et avant), comme le journal et le verdict des trois premiers
   examens (au troisième, `resultat-corrige.mjs`, `resultat.mjs` à une
   ligne près, corrigé depuis).
 - [`recompte-gestes-4.json`](recompte-gestes-4.json) : la pratique des examens publics sur les gestes, et le recompte
@@ -87,3 +87,8 @@ Le quatrième examen (14/10) reprend ces étapes avec vak 0.28.1 gelé et les ou
 jour (`controleur/verdicts-sabotages-13-10/`), la publication, le tirage, les graines des 4 apps tirées, puis les 14
 essais. Le groupe témoin n'est pas rejoué (`REGLE.md`). Verdict : échoué, 12 essais réussis sur 14, cinq seuils sur
 sept tenus (`EXAMEN.md`).
+
+Le cinquième examen (22/10) reprend ces étapes avec vak 0.29.2 gelé : 3 apps nouvelles construites et leurs graines,
+la publication, le tirage, les graines des 4 apps tirées, puis les 14 essais. Les 6 sabotages ne sont pas rejoués (le
+contrôleur n'a pas changé depuis le 13/10), ni le groupe témoin (`REGLE.md`). Verdict : échoué, 4 essais réussis sur
+14 ; cinq seuils sur sept tenus à la lettre, quatre dans le doute (`EXAMEN.md`).

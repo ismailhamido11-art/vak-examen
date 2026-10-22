@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["remember a memory (plugin memory)"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Suppression : l'étiquette dit « Never: delete a row ». Modification : seulement ce que « Can propose » liste, et après approbation de l'utilisateur (« after your approval »). « Can open (saves nothing) » (See plans, Join the Waitlist) n'enregistre rien. Messages envoyés à DeepSeek (api.deepseek.com), en Chine, selon ses propres conditions. L'étiquette indique aussi que l'assistant ne lit pas launch_leads, booking_requests, leads, membership_inquiries."
+}

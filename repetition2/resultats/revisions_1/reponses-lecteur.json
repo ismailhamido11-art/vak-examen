@@ -1,0 +1,11 @@
+{
+  "supprimer": "non",
+  "modifier": [
+    "Cartes (via « Ajouter une carte », « Modifier une carte », « Réviser une carte »)",
+    "Paquets (via « Créer un paquet », « Réviser une carte »)",
+    "Révisions (via « Réviser une carte »)",
+    "un souvenir (prise memory)"
+  ],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Les modifications ne se font qu'après validation de l'utilisateur. L'étiquette dit « Jamais : supprimer une ligne » et « appeler delete_deck ». Elle ne précise pas quels champs exacts chaque fonction modifie, ni ce que fait la prise memory au-delà de « retenir un souvenir ». Les messages vont en Chine, selon les conditions de DeepSeek."
+}

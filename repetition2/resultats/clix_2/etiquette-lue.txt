@@ -1,0 +1,5 @@
+Sees: Admin profile (Role, Created at)
+Can propose (after your approval): remember a memory (plugin memory)
+Can open (saves nothing): See plans, Join the Waitlist
+Never: delete a row ; edit anything other than what « Can propose » lists ; read launch_leads, booking_requests, leads, membership_inquiries
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

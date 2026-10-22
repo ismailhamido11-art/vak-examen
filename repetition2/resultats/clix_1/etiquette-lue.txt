@@ -1,0 +1,5 @@
+Sees: Team access (Role, Created at)
+Can propose (after your approval): nothing
+Can open (saves nothing): CLIX MX home, Plans and resets
+Never: delete a row ; edit anything other than what « Can propose » lists ; read booking_requests, launch_leads, leads, membership_inquiries
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

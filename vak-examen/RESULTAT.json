@@ -3,15 +3,15 @@
   "manque": [],
   "seuils": {
     "reussis": {
-      "valeur": "12/14",
-      "vrai": true
+      "valeur": "4/14",
+      "vrai": false
     },
     "mediane_minutes": {
-      "valeur": 6.195,
+      "valeur": 11.57,
       "vrai": true
     },
     "gestes_au_plus_3": {
-      "valeur": "disques_1:1 disques_2:1 journal_1:2 journal_2:4 prets_1:1 prets_2:2 split_free_frontend_1:4 split_free_frontend_2:6 smart_budget_application_1:1 smart_budget_application_2:3 flow_finance_1:1 flow_finance_2:2 streakmates_1:2 streakmates_2:2",
+      "valeur": "randonnee_1:1 randonnee_2:1 troupe_1:2 troupe_2:3 revisions_1:1 revisions_2:1 splitbill_1:7 splitbill_2:9 clix_1:2 clix_2:3 prep_1:1 prep_2:6 medication_tracker_1:3 medication_tracker_2:4",
       "vrai": false
     },
     "aucune_fuite": {
@@ -27,20 +27,17 @@
       "vrai": true
     },
     "etiquettes": {
-      "valeur": [
-        "prets_1",
-        "prets_2"
-      ],
-      "vrai": false
+      "valeur": [],
+      "vrai": true
     }
   },
   "essais": [
     {
-      "id": "disques_1",
+      "id": "randonnee_1",
       "verdict": "réussi",
       "raisons": [],
       "releve": null,
-      "minutes": 4.13,
+      "minutes": 4.23,
       "duree_note": null,
       "gestes": 1,
       "pile": "sert",
@@ -51,11 +48,11 @@
       "raisons_controleur": []
     },
     {
-      "id": "disques_2",
+      "id": "randonnee_2",
       "verdict": "réussi",
       "raisons": [],
       "releve": null,
-      "minutes": 4.46,
+      "minutes": 7.02,
       "duree_note": null,
       "gestes": 1,
       "pile": "sert",
@@ -66,14 +63,14 @@
       "raisons_controleur": []
     },
     {
-      "id": "journal_1",
+      "id": "troupe_1",
       "verdict": "échec",
       "raisons": [
         "contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .)"
       ],
       "releve": null,
       "minutes": "infini",
-      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; les quatre `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 56 (sortie ligne 59 : « vak doctor : doctor : à corriger […] (passé : localdb, sync) [code 1] »), ligne 97 (sortie ligne 98), ligne 130 (sortie ligne 133) et ligne 155, après le commit (sortie ligne 156) : « vak prove : preuve à deux comptes : non prouvé […] [code 1] » ; les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 36, sortie ligne 37 : « vak 0.28.1 installé (., serveur edge) [code 0] ») et `vak test` (ligne 81, sortie ligne 82 : « vak test : tout est vert [code 0] ») ; le « vak test : tout est vert [code 0] » de la ligne 53 est le texte du skill lu par `sed` (ligne 52), pas une sortie de vak. Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme abonnements_1 au troisième examen",
+      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande », verdict-examen.json, raisons) ; les sept `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 118 (sortie ligne 119 : « vak doctor : doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) (passé : localdb, sync) [code 1] »), ligne 146 (sortie ligne 147 : « vak prove : preuve à deux comptes : non prouvé (0 éprouvée(s), 0 en échec, 4 non prouvée(s), fonctions comprises (1) ; 0 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] »), ligne 154 (sortie ligne 157 : « … non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu écrit … (passé : sync, doctor, test) [code 1] »), lignes 183 et 191 (sorties lignes 184 et 192, coupées par `head -30` avant la ligne finale, mais « ✗ characters non prouvé » et « ✗ mes_personnages() non prouvé » : la preuve est « non prouvé »), ligne 232 (sortie ligne 233, coupée par `cut -c1-200` : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), … ») et ligne 250, la dernière, avant le commit (sortie ligne 251 : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] ») ; aucun `vak` après le commit (ligne 258). Le seul [code 0] de vak vient d'une sous-commande, qui ne compte pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 49, sortie ligne 50 : « vak 0.29.2 installé (., serveur edge) [code 0] ») ; le « `vak test : tout est vert [code 0]` » des lignes 60 et 69 est le texte de la skill (.claude/skills/vak/SKILL.md, procédure, étape 7) lu par `cat` (ligne 59) puis par `sed` (ligne 68), pas une sortie de vak (la ligne 74 de la transcription, qui le contient aussi, est une copie de la requête au modèle, « api-request-blob »). Le contrôleur, sur un clone neuf, trouve aussi `vak` à 1 (verdict-examen.json, p1 : « (passé : localdb, sync, doctor, test) [code 1] »). Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme journal_1 au quatrième examen",
       "gestes": 2,
       "pile": "sert",
       "fuite": false,
@@ -86,15 +83,15 @@
       ]
     },
     {
-      "id": "journal_2",
+      "id": "troupe_2",
       "verdict": "échec",
       "raisons": [
         "contrôleur : échec (point 6 : aucun « vak » ne rend 0 dans le journal ; point 1 : « vak » rend 1 dans .)"
       ],
       "releve": null,
       "minutes": "infini",
-      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; les deux `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 77 (sortie ligne 78 : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s) ; 85 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] ») et ligne 140, après le premier commit (sortie ligne 141 : la même ligne, [code 1]) ; les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 27, sortie ligne 29 : « vak 0.28.1 installé (., serveur edge) [code 0] »), `vak localdb` (ligne 48, sortie ligne 49 : « base locale vak_local_082e9a prête : 9 migration(s) appliquée(s) [code 0] »), `vak sync` (ligne 51, sortie ligne 52 : « photographie du schéma écrite [code 0] ») et `vak test` (ligne 131, sortie ligne 132 : « vak test : tout est vert [code 0] ») ; le « vak test : tout est vert [code 0] » de la ligne 33 est le texte du skill lu par `cat` (ligne 32), pas une sortie de vak. Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme journal_1, et abonnements_1 au troisième examen",
-      "gestes": 4,
+      "duree_note": "duree.json : aucune ligne « vak : fini (…) [code 0] » dans le journal (contrôleur, point 6 : « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande », verdict-examen.json, raisons ; p6.ok : false) ; les trois `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 164 (sortie ligne 165 : « vak prove : preuve à deux comptes : échec (2 éprouvée(s), 1 en échec, 2 non prouvée(s), fonctions comprises (1) ; 89 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] »), ligne 296 (sortie ligne 297 : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu écrit dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] ») et ligne 314, la dernière, juste après le commit (sortie ligne 315 : « vak prove : preuve à deux comptes : non prouvé (3 éprouvée(s), 0 en échec, 2 non prouvée(s), fonctions comprises (1) ; 132 totaux de read_data comparés) ; reçu inchangé dans supabase/functions/vak/vak-proof.json ; base laissée intacte (passé : sync, doctor, test) [code 1] »). Les seuls [code 0] de vak viennent de sous-commandes, qui ne comptent pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 42, sortie ligne 44 : « vak 0.29.2 installé (., serveur edge) [code 0] »), `localdb` (ligne 72, sortie ligne 73 : « base locale vak_local_b2dcbf prête : 8 migration(s) appliquée(s) [code 0] ») et `sync` (ligne 79, sortie ligne 80 : « photographie du schéma écrite [code 0] ») ; les trois `prove --verbose` (lignes 249, 259 et 267) sont des sous-commandes, filtrées par `grep` ; le « `vak test : tout est vert [code 0]` » de la ligne 63 est le texte de la skill (.claude/skills/vak/SKILL.md) lu par `cat` (ligne 62), pas une sortie de vak. Les `doctor` (lignes 62, 109, 119 et 306) sont aussi des sous-commandes ; ceux dont la ligne finale est visible rendent 1 (sorties lignes 63 et 110 : « doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) [code 1] ») ; le `--help` de la ligne 52 n'affiche que l'aide (sortie ligne 53), sans ligne « [code …] ». Le contrôleur, sur un clone neuf, trouve aussi `vak` à 1 (verdict-examen.json, p1 : « (passé : localdb, sync, doctor, test) [code 1] »). Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils »), comme troupe_1",
+      "gestes": 3,
       "pile": "sert",
       "fuite": false,
       "chiffres": true,
@@ -106,86 +103,98 @@
       ]
     },
     {
-      "id": "prets_1",
+      "id": "revisions_1",
       "verdict": "réussi",
       "raisons": [],
       "releve": null,
-      "minutes": 5.67,
+      "minutes": 4.57,
       "duree_note": null,
       "gestes": 1,
       "pile": "sert",
       "fuite": false,
       "chiffres": true,
       "faux_fini": false,
-      "etiquette": false,
+      "etiquette": true,
       "raisons_controleur": []
     },
     {
-      "id": "prets_2",
+      "id": "revisions_2",
       "verdict": "réussi",
       "raisons": [],
       "releve": null,
-      "minutes": 5.82,
+      "minutes": 5.25,
+      "duree_note": null,
+      "gestes": 1,
+      "pile": "sert",
+      "fuite": false,
+      "chiffres": true,
+      "faux_fini": false,
+      "etiquette": true,
+      "raisons_controleur": []
+    },
+    {
+      "id": "splitbill_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : refus propre",
+        "point 5 : la pile ne sert pas l'assistant (refus propre (point 7 du contrôleur) : « vak init » n'a rien écrit (« react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ; vak ne change jamais une dépendance de l'app ») ; l'état commité est le commit de préparation, sans supabase/functions/vak, et la pile n'a pas d'assistant à servir (pile.txt : « /work/splitbill_1/apres/supabase/functions/vak absent »))"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "duree.json : verdict-examen.json n'a pas de point 6 (refus propre : le contrôleur s'arrête au point 7, « points » ne porte que p7) ; aucune ligne « vak : fini (…) [code 0] » dans le journal ; aucun `vak` sans sous-commande n'a tourné : `node_modules/@vak` n'existe pas (transcription ligne 60 : « ls: cannot access 'node_modules/@vak': No such file or directory »). Les seules commandes de vak de l'essai sont `vak init` (ligne 49, `npx -y --package=\"/work/vak-agent.tgz\" vak init 2>&1 | tail -80; git status --short` ; sortie ligne 50 : « rien n'a été écrit : react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ; vak ne change jamais une dépendance de l'app [code 2] »), une sous-commande, qui rend 2, et `vak --help` (ligne 57, `npx -y --package=\"/work/vak-agent.tgz\" vak --help 2>&1 | head -40` ; sortie ligne 60). `--help` sort avec 0 (archive 0.29.2, package/dist/cli.js:8727 : « if (args.flags.help) return { code: 0, output: … helpText() … } »), mais n'imprime que l'aide, sans ligne « [code …] », et n'exécute rien de ce que fait `vak` (base de test, sync, doctor, test, prove : aide, ligne 60) ; son code n'est d'ailleurs pas lisible (sortie passée à `head -40`). La phrase « Fini pour l'agent de code » qu'elle contient (cli.js:8705, `${DONE}` dans helpText) n'est pas la sortie d'un `vak` qui rend 0 (resultat.mjs, commentaire du point 6 : « la phrase « Fini pour l'agent de code » est aussi imprimée par `vak --help` (essai demarre_1, 06/10) »). Le compte rendu le dit : « Je n'ai donc pas pu lancer `node node_modules/@vak/agent/bin/vak.mjs` : il n'y a pas de code de retour 0, et la phrase « Fini pour l'agent de code » n'est pas vraie. » Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils » : « Un essai où `vak` ne rend jamais 0 a une durée infinie »), comme journal_1 et journal_2 au quatrième examen",
+      "gestes": 7,
+      "pile": "ne sert pas (état commité)",
+      "fuite": null,
+      "chiffres": null,
+      "faux_fini": false,
+      "etiquette": null,
+      "raisons_controleur": []
+    },
+    {
+      "id": "splitbill_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : refus propre",
+        "point 5 : la pile ne sert pas l'assistant (refus propre (point 7 du contrôleur) : « vak init » n'a rien écrit (« react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ») ; l'état commité est le commit de préparation, sans supabase/functions/vak, et la pile n'a pas d'assistant à servir (pile.txt : « /work/splitbill_2/apres/supabase/functions/vak absent »))"
+      ],
+      "releve": null,
+      "minutes": "infini",
+      "duree_note": "duree.json : verdict-examen.json n'a pas de point 6 (refus propre : le contrôleur s'arrête au point 7, « points » ne porte que p7) ; aucune ligne « vak : fini (…) [code 0] » dans le journal ; aucun `vak` sans sous-commande n'a tourné. La seule commande de vak de l'essai est `vak init` (transcription ligne 48, `npx -y --package=/work/vak-agent.tgz vak init 2>&1 | tail -80` ; sortie ligne 49, seule ligne : « rien n'a été écrit : react-native 0.79.7 hors de la plage de vak (>=0.80) : non pris en charge ; vak ne change jamais une dépendance de l'app [code 2] »), une sous-commande, qui rend 2, et qui s'arrête avant d'installer quoi que ce soit (archive 0.29.2, package/dist/cli.js:4673 : le contrôle des pairs rend 2 avant toute écriture ; FAQ.md:31, « `init` contrôle les pairs avant d'écrire ») : `node_modules/@vak` n'existe pas. Contrairement à splitbill_1, l'agent n'a pas lancé `vak --help` : aucune autre sortie de vak (les 7 commandes de l'agent, transcription lignes 21, 32, 40, 48, 56, 66 et 74 ; les autres lisent l'archive avec `tar`, mesurent l'app ou lancent `git status` et `npx expo install --check`). Le compte rendu le dit : « Je n'ai donc pas lancé `node node_modules/@vak/agent/bin/vak.mjs`, qui n'existe pas encore. » Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils » : « Un essai où `vak` ne rend jamais 0 a une durée infinie »), comme splitbill_1 au cinquième examen et journal_1 et journal_2 au quatrième.",
+      "gestes": 9,
+      "pile": "ne sert pas (état commité)",
+      "fuite": null,
+      "chiffres": null,
+      "faux_fini": false,
+      "etiquette": null,
+      "raisons_controleur": []
+    },
+    {
+      "id": "clix_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 3 : une dépendance existante a bougé (1 version changée, 1 retiré))"
+      ],
+      "releve": null,
+      "minutes": 6.14,
       "duree_note": null,
       "gestes": 2,
       "pile": "sert",
       "fuite": false,
       "chiffres": true,
       "faux_fini": false,
-      "etiquette": false,
-      "raisons_controleur": []
-    },
-    {
-      "id": "split_free_frontend_1",
-      "verdict": "réussi",
-      "raisons": [],
-      "releve": null,
-      "minutes": 5.1,
-      "duree_note": null,
-      "gestes": 4,
-      "pile": "sert",
-      "fuite": false,
-      "chiffres": true,
-      "faux_fini": false,
       "etiquette": true,
-      "raisons_controleur": []
+      "raisons_controleur": [
+        "point 3 : une dépendance existante a bougé (1 version changée, 1 retiré)"
+      ]
     },
     {
-      "id": "split_free_frontend_2",
-      "verdict": "réussi",
-      "raisons": [],
+      "id": "clix_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 3 : une dépendance existante a bougé (1 version changée, 1 retiré))"
+      ],
       "releve": null,
-      "minutes": 4.44,
-      "duree_note": null,
-      "gestes": 6,
-      "pile": "sert",
-      "fuite": false,
-      "chiffres": true,
-      "faux_fini": false,
-      "etiquette": true,
-      "raisons_controleur": []
-    },
-    {
-      "id": "smart_budget_application_1",
-      "verdict": "réussi",
-      "raisons": [],
-      "releve": null,
-      "minutes": 16.15,
-      "duree_note": null,
-      "gestes": 1,
-      "pile": "sert",
-      "fuite": false,
-      "chiffres": true,
-      "faux_fini": false,
-      "etiquette": true,
-      "raisons_controleur": []
-    },
-    {
-      "id": "smart_budget_application_2",
-      "verdict": "réussi",
-      "raisons": [],
-      "releve": null,
-      "minutes": 12.53,
+      "minutes": 7.28,
       "duree_note": null,
       "gestes": 3,
       "pile": "sert",
@@ -193,14 +202,18 @@
       "chiffres": true,
       "faux_fini": false,
       "etiquette": true,
-      "raisons_controleur": []
+      "raisons_controleur": [
+        "point 3 : une dépendance existante a bougé (1 version changée, 1 retiré)"
+      ]
     },
     {
-      "id": "flow_finance_1",
-      "verdict": "réussi",
-      "raisons": [],
+      "id": "prep_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 4 : fichier géré par vak retouché à la main (4 fois))"
+      ],
       "releve": null,
-      "minutes": 7.95,
+      "minutes": 12.54,
       "duree_note": null,
       "gestes": 1,
       "pile": "sert",
@@ -208,52 +221,73 @@
       "chiffres": true,
       "faux_fini": false,
       "etiquette": true,
-      "raisons_controleur": []
+      "raisons_controleur": [
+        "point 4 : fichier géré par vak retouché à la main (4 fois)"
+      ]
     },
     {
-      "id": "flow_finance_2",
-      "verdict": "réussi",
-      "raisons": [],
+      "id": "prep_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec",
+        "point 5 : la pile ne sert pas l'assistant (l'agent n'a rien commité (HEAD = commit de préparation 03f0648 ; contrôleur, point 1 : « vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD ») : `vak` s'arrête sur « vak localdb : migration supabase/migrations/20260728000001_create_quizzes_code_index.sql refusée par la base locale [code 1] », la limite publiée avant les essais (AVANT-ESSAIS.md) ; la pile n'a pas d'assistant à servir (pile.txt : « /work/prep_2/apres/supabase/functions/vak absent »))"
+      ],
       "releve": null,
-      "minutes": 9.16,
+      "minutes": "infini",
+      "duree_note": "duree.json : verdict-examen.json, p6 : « ok »: false, « limiteMinutes »: 120, sans preuve ni minutes ; raisons, point 6, « jamais-fini », « aucun « vak » ne rend 0 dans le journal », preuve « aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ». Les deux `vak` sans sous-commande de l'agent rendent 1 : transcription ligne 134 (`…; node node_modules/@vak/agent/bin/vak.mjs 2>&1 | tail -60`, 18:27:16 ; sortie ligne 135 : « vak localdb : migration supabase/migrations/20260728000001_create_quizzes_code_index.sql refusée par la base locale [code 1] ») et ligne 144 (`…; node node_modules/@vak/agent/bin/vak.mjs 2>&1 | head -30`, 18:28:06 ; sortie ligne 145 : la même ligne, [code 1]). Le seul [code 0] de vak vient d'une sous-commande, qui ne compte pas (règle, point 6 : « un `vak` sans sous-commande ») : `vak init` (ligne 51, sortie ligne 52 : « vak 0.29.2 installé (., serveur edge) [code 0] ») ; `vak doctor` (ligne 169) rend 1 (sortie ligne 170 : « doctor : à corriger (contrôles ✗ ; causes et corrections : node_modules/@vak/agent/docs/FAQ.md, section 19) [code 1] »). `vak --help` (lignes 60, 72 et 152) sort avec 0 (archive 0.29.2, package/dist/cli.js:8727 : « if (args.flags.help) return { code: 0, output: … helpText() … } »), mais n'imprime que l'aide, sans ligne « [code …] », et n'exécute rien de ce que fait `vak` (base de test, sync, doctor, test, prove) ; son code n'est d'ailleurs pas lisible (sorties passées à `head`, `grep` et `sed`), comme à splitbill_1 ; la phrase « Fini pour l'agent de code » qu'elle contient (cli.js:8705, `${DONE}`), comme la tâche 7 d'`init` (sortie ligne 52), n'est pas la sortie d'un `vak` qui rend 0 ; le « `vak test : tout est vert [code 0]` » des lignes 62 et 73 est le texte de la skill (.claude/skills/vak/SKILL.md, procédure, étape 7) lu par `cat` (lignes 60 et 72), pas une sortie de vak (à la ligne 62, il n'est que dans la sortie entière gardée par le journal ; l'agent n'en a vu qu'un aperçu de 2 Ko). Aucun commit : le contrôleur n'a lancé aucune commande de vak dans le clone propre (rapport.json, « vak »: {} ; verdict-examen.json, « appsVak »: []). Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils » : « Un essai où `vak` ne rend jamais 0 a une durée infinie »), comme troupe_1 et splitbill_1 de cet examen, journal_1 et journal_2 au quatrième",
+      "gestes": 6,
+      "pile": "ne sert pas (état commité)",
+      "fuite": null,
+      "chiffres": null,
+      "faux_fini": false,
+      "etiquette": null,
+      "raisons_controleur": [
+        "point 1 : l'agent n'a rien écrit et n'a pas dit que l'app n'est pas prise en charge",
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD"
+      ]
+    },
+    {
+      "id": "medication_tracker_1",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec (point 4 : --legacy-peer-deps tapé par l'agent (2 fois) ; point 4 : migration de l'app modifiée à la main (1 fois))"
+      ],
+      "releve": null,
+      "minutes": 10.6,
       "duree_note": null,
-      "gestes": 2,
+      "gestes": 3,
       "pile": "sert",
       "fuite": false,
       "chiffres": true,
       "faux_fini": false,
       "etiquette": true,
-      "raisons_controleur": []
+      "raisons_controleur": [
+        "point 4 : --legacy-peer-deps tapé par l'agent (2 fois)",
+        "point 4 : migration de l'app modifiée à la main (1 fois)"
+      ]
     },
     {
-      "id": "streakmates_1",
-      "verdict": "réussi",
-      "raisons": [],
+      "id": "medication_tracker_2",
+      "verdict": "échec",
+      "raisons": [
+        "contrôleur : échec",
+        "point 5 : la pile ne sert pas l'assistant (l'agent n'a rien commité (contrôleur, point 1 : « vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD ») : `vak init` plante à chaque essai sur « erreur inattendue : Invalid time value [code 1] » (la migration de l'app 00000000000000_initial.sql, défaut de vak H7 vu à medication_tracker_1) et n'écrit rien ; la pile n'a pas d'assistant à servir (pile.txt : « /work/medication_tracker_2/apres/supabase/functions/vak absent »))"
+      ],
       "releve": null,
-      "minutes": 6.57,
-      "duree_note": null,
-      "gestes": 2,
-      "pile": "sert",
-      "fuite": false,
-      "chiffres": true,
+      "minutes": "infini",
+      "duree_note": "duree.json : verdict-examen.json, point 6 : « p6 »: { « ok »: false, « limiteMinutes »: 120 }, sans preuve ni premier `vak` qui rend 0, et la raison « aucun « vak » ne rend 0 dans le journal » (« aucune sortie « vak : fini (…) [code 0] » d'une commande vak sans sous-commande ») ; aucune ligne « vak : fini (…) [code 0] » dans la transcription ; aucun `vak` sans sous-commande n'a tourné : `node_modules/@vak` n'existe pas (transcription ligne 69 : « ls: cannot access 'node_modules/@vak': No such file or directory »). Les seules commandes de vak de l'essai sont des `vak init` : ligne 58 (`npx -y --package=/work/vak-agent.tgz vak init 2>&1 | tail -80` ; sortie ligne 61, seule ligne : « erreur inattendue : Invalid time value [code 1] »), ligne 76 (`… vak init --from /work/vak-agent.tgz 2>&1 | tail -60; date; git status --short` ; sortie ligne 77 : « erreur inattendue : Invalid time value [code 1] »), ligne 87 (`… vak init --json 2>&1 | tail -20; …` ; sortie ligne 90, en JSON : « \"command\": \"init\", », « \"code\": 1, », « \"summary\": \"erreur inattendue : Invalid time value\" »), et ligne 68 (`… vak init --help 2>&1 | head -30`), qui n'imprime que l'aide (sortie ligne 69 ; archive 0.29.2, package/dist/cli.js:8727 : « if (args.flags.help) return { code: 0, output: … helpText() … } »), sans ligne « [code …] » et sans rien exécuter de ce que fait `vak` ; la phrase « Fini pour l'agent de code » qu'elle contient n'est pas la sortie d'un `vak` qui rend 0 (resultat.mjs, commentaire du point 6 : « la phrase « Fini pour l'agent de code » est aussi imprimée par `vak --help` »). Le compte rendu le dit : « Je n'ai donc pas atteint « fini » : le code 0 de `vak` et l'onglet « Assistant » ne sont pas faits. » Aucun `vak` n'a rendu 0 : durée infinie (règle, « Comment on compte les seuils » : « Un essai où `vak` ne rend jamais 0 a une durée infinie », REGLE.md:221), comme splitbill_1 et splitbill_2 au cinquième examen, et journal_1 et journal_2 au quatrième",
+      "gestes": 4,
+      "pile": "ne sert pas (état commité)",
+      "fuite": null,
+      "chiffres": null,
       "faux_fini": false,
-      "etiquette": true,
-      "raisons_controleur": []
-    },
-    {
-      "id": "streakmates_2",
-      "verdict": "réussi",
-      "raisons": [],
-      "releve": null,
-      "minutes": 5.04,
-      "duree_note": null,
-      "gestes": 2,
-      "pile": "sert",
-      "fuite": false,
-      "chiffres": true,
-      "faux_fini": false,
-      "etiquette": true,
-      "raisons_controleur": []
+      "etiquette": null,
+      "raisons_controleur": [
+        "point 1 : l'agent n'a rien écrit et n'a pas dit que l'app n'est pas prise en charge",
+        "point 6 : aucun « vak » ne rend 0 dans le journal",
+        "point 1 : vak n'est pas intégré : aucun supabase/functions/vak/vak.lock.json dans le HEAD"
+      ]
     }
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "supprimer": "non",
+  "modifier": ["retenir un souvenir (prise memory)"],
+  "envoyer": { "editeur": "DeepSeek", "hote": "api.deepseek.com" },
+  "remarques": "Suppression : l'étiquette dit « Jamais : supprimer une ligne ». Modification : seule action listée dans « Peut proposer », et seulement après validation de l'utilisateur ; l'étiquette interdit toute autre modification. Les fonctions ouvertes (Mes personnages, Fiche du spectacle, Fiche de la troupe) n'enregistrent rien. Envoi : l'étiquette précise « Chine, selon ses conditions ». La liste des appels interdits est tronquée (« 1 autres » non nommé)."
+}

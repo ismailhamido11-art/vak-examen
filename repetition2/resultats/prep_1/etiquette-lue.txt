@@ -1,0 +1,5 @@
+Sees: Quizzes (Title, Description, Created at, Time limit, Visibility, Category, Difficulty, Times taken, Average rating, Share code, Status) ; Questions (Quiz, Question, Option A, Option B, Option C, Option D, Correct answer, Points, Created at) ; Quiz attempts (Quiz, Score, Total points, Elapsed seconds, Completed at) ; Quiz ratings (Quiz, Rating, Created at)
+Can propose (after your approval): remember a memory (plugin memory)
+Can open (saves nothing): Create a quiz, My quizzes, Quiz details, Quiz bank, Results
+Never: delete a row ; edit anything other than what « Can propose » lists ; call get_quiz_attempt_counts
+Sends your messages to: DeepSeek (api.deepseek.com, China, under its own terms)

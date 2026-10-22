@@ -1,0 +1,12 @@
+{
+  "id": "clix_2",
+  "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+  "supprimer": true,
+  "modifier": true,
+  "envoyer": true,
+  "notes": {
+    "supprimer": "vérité : « non » ; lecteur : « non » ; le même non (l'étiquette : « Never: delete a row » ; verite.json : aucune fonction déclarée dans agent.ts, et l'app n'en a aucune d'appelable, seulement deux fonctions de déclencheur qui posent updated_at ; admin_profiles, la seule table calibrée, sans create ni update ; les quatre autres tables dans ignore ; les deux écrans ne font qu'ouvrir l'app ; memory_save n'efface jamais, drafts n'écrit rien, consent et quota sans outil ; DELETE chats/:id et DELETE data sont des routes de l'utilisateur, dans ses réglages, pas des outils de l'assistant) : juste",
+    "modifier": "vérité : public.vak_memories (sa mémoire (prise memory)) seule, aucune table de l'app (verite.json) ; lecteur : « remember a memory (plugin memory) » ; son seul élément est celui de la ligne « Can propose (after your approval): remember a memory (plugin memory) » : la mémoire, nommée par l'étiquette (« retenir un souvenir » / « remember a memory », prise memory), et rien d'autre ; aucune table de l'app nommée en trop : Admin profile (admin_profiles), que l'étiquette range sous « Sees », n'est pas dans sa réponse ; les écrans « Can open » : See plans et Join the Waitlist (agent.ts:52-55, sans table ; Join the Waitlist est la page d'accueil où se trouve le formulaire de la liste d'attente, « CLIX MX home page with the waitlist form », agent.ts:54, que l'utilisateur remplit lui-même), sont notés à part par le lecteur, dans ses remarques, comme n'enregistrant rien (« « Can open (saves nothing) » (See plans, Join the Waitlist) n'enregistre rien ») ; launch_leads, booking_requests, leads et membership_inquiries sont cités comme non lus (« l'assistant ne lit pas … »), pas comme écritures : juste, comme cuisine_1 et habitquest_1 (la mémoire seule), avec les mêmes mots anglais qu'à hikari_1 (« remember a memory (plugin memory) »)",
+    "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek, api.deepseek.com ; l'éditeur et l'hôte, tous deux nommés : juste"
+  }
+}

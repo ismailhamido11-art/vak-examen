@@ -5,7 +5,18 @@ essais, avec des seuils publiés avant la mesure. Dans chaque essai, un agent de
 qu'il n'a jamais vue, sans rien casser. L'assistant obtenu doit donner des chiffres exacts, et ne jamais montrer les
 données d'un autre compte.
 
-- **Le cinquième examen** (22/10/2026), avec vak 0.29.2 gelé : **en cours**.
+- **Le cinquième examen** (22/10/2026), avec vak 0.29.2 gelé : **échoué**. 4 essais réussis sur 14 (il en fallait
+  12) : randonnee et revisions, deux des trois apps construites, deux fois chacune. Aucun essai sur une vraie app
+  publique ne réussit (0 sur 8) : chacun bute sur un défaut ou une limite de vak ; deux agents contournent ensuite
+  ce défaut, ce que la demande défendait, et l'un d'eux (medication_tracker_1) tape aussi lui-même
+  `--legacy-peer-deps`, que la FAQ de vak lui défend. À la lettre de la règle, cinq seuils sur sept sont tenus : la durée médiane
+  (11,6 minutes), aucune fuite, des chiffres exacts, aucun faux « c'est fait », et les lecteurs des 10 étiquettes
+  répondent juste. Dans le doute, quatre : la durée médiane tombe si l'on compte infinie une durée venue d'un
+  contournement interdit. Manquent les essais réussis et les gestes demandés à l'humain (4 à 9 dans quatre essais
+  en échec, pour 3 au plus).
+  - son journal : [`vak-examen/EXAMEN.md`](vak-examen/EXAMEN.md) ; son verdict :
+    [`vak-examen/RESULTAT.json`](vak-examen/RESULTAT.json) ; les résultats de chaque essai :
+    [`repetition2/resultats/`](repetition2/resultats/) ; les graines : [`vak-examen/graines/`](vak-examen/graines/) ;
   - la règle : [`vak-examen/REGLE.md`](vak-examen/REGLE.md), figée le 22/10/2026 ;
   - ce qui est figé avant le tirage : [`vak-examen/PUBLICATION.md`](vak-examen/PUBLICATION.md). On y trouve les
     empreintes, le texte de la demande, l'environnement, le tour drand du tirage et ce qui a changé depuis le
@@ -13,9 +24,8 @@ données d'un autre compte.
 - **Le quatrième examen** (14/10/2026), avec vak 0.28.1 gelé : **échoué**. 12 essais réussis sur 14 (il en fallait
   12), une durée médiane de 6 minutes (45 au plus), aucune fuite, des chiffres exacts, aucun faux « c'est fait » :
   cinq seuils sur sept tenus ; manquent les gestes demandés à l'humain et les étiquettes. Sa règle, sa publication,
-  son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`, encore dans l'arbre jusqu'au
-  verdict du cinquième), les résultats de chaque essai et ses graines restent dans l'historique de ce dépôt (commit
-  `ff57d67` et avant).
+  son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`), les résultats de chaque essai
+  et ses graines restent dans l'historique de ce dépôt (commit `ff57d67` et avant).
 - **Le troisième examen** (11/10/2026) : échoué, 6 essais réussis sur 14 (il en fallait 12), aucune fuite. Sa règle,
   sa publication, son journal et son verdict (`vak-examen/EXAMEN.md`, `vak-examen/RESULTAT.json`), les résultats de
   chaque essai et ses graines restent dans l'historique de ce dépôt (commit `b3e8c89` et avant).

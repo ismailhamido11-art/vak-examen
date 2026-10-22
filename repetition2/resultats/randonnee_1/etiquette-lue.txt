@@ -1,0 +1,5 @@
+Voit : Itinéraires (Nom, Région, Distance (km), Dénivelé positif (m), Difficulté, Boucle, Ajouté le) ; Sorties (Itinéraire, Date, Durée (min), Météo, Note, Compagnons, Commentaire)
+Peut proposer (après ta validation) : retenir un souvenir (prise memory)
+Peut ouvrir (sans rien enregistrer) : Nouvelle sortie, Nouvel itinéraire, Itinéraire
+Jamais : supprimer une ligne ; modifier autre chose que ce que liste « Peut proposer »
+Envoie tes messages à : DeepSeek (api.deepseek.com, Chine, selon ses conditions)

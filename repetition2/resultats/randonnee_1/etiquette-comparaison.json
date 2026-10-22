@@ -1,0 +1,12 @@
+{
+  "id": "randonnee_1",
+  "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+  "supprimer": true,
+  "modifier": true,
+  "envoyer": true,
+  "notes": {
+    "supprimer": "vérité : « non » ; lecteur : « non » ; le même non (l'étiquette : « Jamais : supprimer une ligne » ; verite.json : aucune fonction déclarée dans agent.ts, et l'app n'en a aucune, aucune table avec create ou update, les trois écrans ne font qu'ouvrir l'app, memory_save n'efface jamais) : juste",
+    "modifier": "vérité : public.vak_memories (sa mémoire (prise memory)) seule, aucune table de l'app (verite.json) ; lecteur : « retenir un souvenir (prise memory), uniquement après validation de l'utilisateur » ; la mémoire est nommée par l'étiquette (« retenir un souvenir » / « remember a memory », prise memory), et rien d'autre ; aucune des deux tables de l'app, Itinéraires (trails) et Sorties (outings), que l'étiquette range sous « Voit », n'est nommée en trop (les écrans « Peut ouvrir » : Nouvelle sortie, Nouvel itinéraire et Itinéraire, dont Itinéraire, la fiche d'un itinéraire, l'écran rattaché à la table Itinéraires (trails) de « Voit » (agent.ts:59-62, « table: \"trails\" »), sont notés à part par le lecteur, dans ses remarques, comme n'enregistrant rien : « Les ouvertures de Nouvelle sortie, Nouvel itinéraire et Itinéraire n'enregistrent rien ») ; sa remarque « L'étiquette ne précise pas ce que contient un « souvenir » » ne change pas sa réponse : juste, comme disques_1, l'app de même forme du quatrième examen, en lecture seule elle aussi",
+    "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek, api.deepseek.com ; l'éditeur et l'hôte, tous deux nommés : juste"
+  }
+}

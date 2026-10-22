@@ -1,0 +1,12 @@
+{
+  "id": "revisions_2",
+  "methode": "vak-examen/etiquettes/README.md, « 4. Comparer » : supprimer, le même oui ou non ; modifier quoi, toutes les tables où l'assistant peut écrire et aucune autre, par le nom de l'étiquette ou par celui de la table ; envoyer où, l'éditeur ou l'hôte. Dans le doute, faux. Jugé à la main, après la lecture.",
+  "supprimer": true,
+  "modifier": true,
+  "envoyer": true,
+  "notes": {
+    "supprimer": "vérité : « non » ; lecteur : « non » ; le même non (l'étiquette : « Jamais : supprimer une ligne » et « appeler delete_deck » ; verite.json : delete_deck, la seule fonction de l'app qui supprime, est dans ignore, aucune des cinq fonctions déclarées ne supprime, aucune table avec create ou update, memory_save n'efface jamais). Juste",
+    "modifier": "vérité : public.decks (Paquets), public.cards (Cartes), public.reviews (Révisions), public.vak_memories (sa mémoire (prise memory)) ; lecteur : « Créer un paquet (Paquets) », « Ajouter une carte (Cartes) », « Modifier une carte (Cartes) », « Réviser une carte (Cartes, Paquets, Révisions) », « retenir un souvenir (prise memory) » ; les quatre tables sont nommées : Paquets, Cartes et Révisions par le nom de l'étiquette (« Voit : Paquets (…) ; Cartes (…) ; Révisions (…) », et chaque fonction rattachée à ses tables : « (fonction de l'app : Cartes, Paquets, Révisions) », ce qui couvre l'écriture de decks.reviews_count par le déclencheur reviews_bump_deck_count à la révision), sa mémoire par « retenir un souvenir (prise memory) » (sa remarque, « L'étiquette ne dit pas ce que contient un « souvenir » ni où il est stocké », ne retire rien à sa réponse) ; aucune autre table (les écrans de « Peut ouvrir » : Mes paquets, Ouvrir le paquet, À revoir aujourd'hui, Nouvelle carte, n'y sont pas ; delete_deck n'y est pas, citée par l'étiquette comme interdite). Juste, comme prets_12 à prets_14",
+    "envoyer": "vérité : DeepSeek, api.deepseek.com ; lecteur : DeepSeek, api.deepseek.com ; l'éditeur et l'hôte. Juste"
+  }
+}
